@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loose Gemstones | Rainbow Moonstone | Vivaaz Gems & Jewellery</title>
+  <link rel="stylesheet" href="../flatsome-child/style.css">
+  <style>
+    .catalog-container {
+      max-width: 1200px;
+      margin: 32px auto;
+      padding: 0 24px;
+    }
+    .breadcrumbs {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .catalog-title {
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--color-text-dark);
+      margin-bottom: 4px;
+    }
+    .catalog-subtitle {
+      font-size: 14px;
+      color: var(--color-text-muted);
+    }
+    
+    /* Top Cut Boxes (Part 5 & Part 10 Requirement) */
+    .cut-boxes-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    @media (max-width: 768px) {
+      .cut-boxes-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .cut-box {
+      background: #FFFFFF;
+      border: 1px solid #E4E7EC;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .cut-box.active, .cut-box:hover {
+      border-color: var(--color-gold-accent);
+      background: var(--color-gold-light);
+    }
+    .cut-box-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--color-text-dark);
+      margin-bottom: 2px;
+    }
+    .cut-box-count {
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
+
+    /* Main Layout: Left Filters + Product Grid */
+    .catalog-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 32px;
+    }
+    @media (max-width: 900px) {
+      .catalog-layout { grid-template-columns: 1fr; }
+    }
+
+    /* Filter Sidebar */
+    .filter-sidebar {
+      background: #FFFFFF;
+      border: 1px solid #E4E7EC;
+      border-radius: 8px;
+      padding: 20px;
+      height: fit-content;
+    }
+    .filter-group {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #F0F2F5;
+      padding-bottom: 16px;
+    }
+    .filter-group:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .filter-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-dark);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--color-text-dark);
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    .filter-option input[type="checkbox"] {
+      accent-color: var(--color-gold-accent);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    .filter-count {
+      margin-left: auto;
+      color: var(--color-text-muted);
+      font-size: 12px;
+    }
+
+    /* Active Filters Bar */
+    .active-filters-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .filter-chip {
+      background: var(--color-gold-light);
+      border: 1px solid var(--color-gold-border);
+      color: var(--color-gold-accent);
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .filter-chip span { cursor: pointer; }
+
+    /* Toolbar: Sort & Count */
+    .catalog-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+    .sort-select {
+      padding: 6px 12px;
+      border: 1px solid #D0D5DD;
+      border-radius: 4px;
+      font-size: 13px;
+      background: #FFFFFF;
+      outline: none;
+    }
+
+    /* Product Grid */
+    .stone-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .stone-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .stone-grid { grid-template-columns: 1fr; }
+    }
+
+    .stone-card {
+      background: #FFFFFF;
+      border: 1px solid #E4E7EC;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: var(--transition-smooth);
+    }
+    .stone-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+    }
+    .stone-card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(30, 37, 43, 0.8);
+      color: #FFFFFF;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      z-index: 10;
+    }
+    .stone-card-img {
+      height: 220px;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      border-bottom: 1px solid #F0F2F5;
+    }
+    .stone-card-img img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+    }
+    .stone-card:hover .stone-card-img img { transform: scale(1.08); }
+
+    .stone-card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .stone-card-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--color-text-dark);
+      margin-bottom: 4px;
+    }
+    .stone-card-specs {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      margin-bottom: 12px;
+    }
+    .stone-card-price {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-text-dark);
+      margin-top: auto;
+    }
+    .stone-card-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-gold-accent);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Line -->
+  <div style="background: #1E252B; color: #EAECF0; font-size: 12px; padding: 8px 24px; display: flex; justify-content: space-between; align-items: center;">
+    <div>WhatsApp +91 96805 52270 · Insured shipping worldwide</div>
+    <div>
+      <a href="../index.html" style="color: #EAECF0; margin-left: 16px;">Home</a>
+      <a href="about.html" style="color: #EAECF0; margin-left: 16px;">Our story</a>
+      <a href="contact.html" style="color: #EAECF0; margin-left: 16px;">Contact</a>
+      <a href="#" style="color: #EAECF0; margin-left: 16px;">₹ INR ▾</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #E4E7EC; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000;" class="main-header">
+    <a href="../index.html" style="font-size: 20px; font-weight: 700; letter-spacing: 0.15em; color: #1E252B;">VIVAAZ GEMS & JEWELLERY</a>
+    <nav style="display: flex; gap: 24px; font-size: 13px; font-weight: 600;">
+      <a href="loose-gemstones.html" style="color: #C59B27;">GEMSTONES</a>
+      <a href="layouts.html">LAYOUTS</a>
+      <a href="beads.html">BEADS</a>
+      <a href="tennis-jewelry.html">JEWELRY</a>
+      <a href="astrology.html">ASTROLOGY</a>
+    </nav>
+    <div style="display: flex; gap: 16px; font-size: 13px;">
+      <a href="#">Search</a>
+      <a href="ceylon-sapphire-product.html">Bag <span style="background: #FDF9EE; border: 1px solid #E8D9AB; color: #C59B27; padding: 2px 6px; border-radius: 10px; font-weight: 700;">2</span></a>
+    </div>
+  </header>
+
+  <div class="catalog-container reveal-on-scroll">
+    <div class="breadcrumbs">Home › Loose Gemstones › Semi-Precious › Rainbow Moonstone › Cabochon</div>
+    
+    <div class="catalog-header">
+      <div>
+        <h1 class="catalog-title">Rainbow Moonstone</h1>
+        <p class="catalog-subtitle">Natural, from India and Sri Lanka. Blue flash. Faceted, cabochon, rose cut and rough. <a href="#" style="color: #C59B27; text-decoration: underline;">Stone guide →</a></p>
+      </div>
+      <a href="https://wa.me/919680552270?text=Hi%20Vivaaz%20Gems,%20please%20notify%20me%20when%20new%20Rainbow%20Moonstone%20stock%20arrives." class="btn-whatsapp">
+        Get new stock on WhatsApp →
+      </a>
+    </div>
+
+    <!-- Cut Boxes on Top (Part 10 Requirement) -->
+    <div class="cut-boxes-grid">
+      <div class="cut-box" onclick="filterByCut('all')">
+        <div class="cut-box-title">All</div>
+        <div class="cut-box-count">18 products</div>
+      </div>
+      <div class="cut-box" onclick="filterByCut('faceted')">
+        <div class="cut-box-title">Faceted</div>
+        <div class="cut-box-count">7 products</div>
+      </div>
+      <div class="cut-box active" onclick="filterByCut('cabochon')">
+        <div class="cut-box-title">Cabochon</div>
+        <div class="cut-box-count">8 products</div>
+      </div>
+      <div class="cut-box" onclick="filterByCut('rosecut')">
+        <div class="cut-box-title">Rose cut</div>
+        <div class="cut-box-count">2 products</div>
+      </div>
+      <div class="cut-box" onclick="filterByCut('rough')">
+        <div class="cut-box-title">Rough</div>
+        <div class="cut-box-count">1 product</div>
+      </div>
+    </div>
+
+    <!-- Catalog Layout -->
+    <div class="catalog-layout">
+      <!-- Left Sidebar Filters -->
+      <aside class="filter-sidebar">
+        <div class="filter-group">
+          <div class="filter-title">Shape <span>⌃</span></div>
+          <label class="filter-option"><input type="checkbox" checked onclick="filterProducts()"> Oval <span class="filter-count">4</span></label>
+          <label class="filter-option"><input type="checkbox" onclick="filterProducts()"> Round <span class="filter-count">2</span></label>
+          <label class="filter-option"><input type="checkbox" onclick="filterProducts()"> Pear <span class="filter-count">1</span></label>
+          <label class="filter-option"><input type="checkbox" onclick="filterProducts()"> Freeform <span class="filter-count">1</span></label>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-title">Size (mm) <span>⌃</span></div>
+          <label class="filter-option"><input type="checkbox" onclick="filterProducts()"> 6×8 mm <span class="filter-count">1</span></label>
+          <label class="filter-option"><input type="checkbox" checked onclick="filterProducts()"> 8×10 mm <span class="filter-count">2</span></label>
+          <label class="filter-option"><input type="checkbox" onclick="filterProducts()"> 10×12 mm <span class="filter-count">1</span></label>
+          <label class="filter-option"><input type="checkbox" onclick="filterProducts()"> 12×16 mm <span class="filter-count">1</span></label>
+          <label class="filter-option"><input type="checkbox" onclick="filterProducts()"> 15×20 mm <span class="filter-count">1</span></label>
+          <label class="filter-option"><input type="checkbox" onclick="filterProducts()"> 18×25 mm <span class="filter-count">1</span></label>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-title">Sold as <span>⌄</span></div>
+          <label class="filter-option"><input type="checkbox" checked onclick="filterProducts()"> Single stone <span class="filter-count">4</span></label>
+          <label class="filter-option"><input type="checkbox" onclick="filterProducts()"> Matched Pair <span class="filter-count">2</span></label>
+          <label class="filter-option"><input type="checkbox" onclick="filterProducts()"> Calibrated Lot <span class="filter-count">2</span></label>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-title">Price Range <span>⌄</span></div>
+          <label class="filter-option"><input type="checkbox" onclick="filterProducts()"> Under ₹1,000</label>
+          <label class="filter-option"><input type="checkbox" checked onclick="filterProducts()"> ₹1,000 - ₹5,000</label>
+          <label class="filter-option"><input type="checkbox" onclick="filterProducts()"> ₹5,000+</label>
+        </div>
+      </aside>
+
+      <!-- Main Product Grid Section -->
+      <main>
+        <!-- Active Filter Chips -->
+        <div class="active-filters-bar">
+          <div class="filter-chip">Cabochon ×</div>
+          <div class="filter-chip">Oval ×</div>
+          <div class="filter-chip">Clear all</div>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div>4 products showing</div>
+          <div>
+            Sort by: 
+            <select class="sort-select">
+              <option>Size: Low to High</option>
+              <option>Newest</option>
+              <option>Best-selling</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Weight (carats)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 4 Products Grid -->
+        <div class="stone-grid" id="product-grid">
+          <!-- Card 1: Moonstone -->
+          <a href="ceylon-sapphire-product.html" class="stone-card gem-shimmer-container">
+            <div class="stone-card-img">
+              <img src="../assets/images/moonstone.jpg" alt="Rainbow Moonstone">
+            </div>
+            <div class="stone-card-body">
+              <div class="stone-card-title">Rainbow Moonstone Oval Cabochon</div>
+              <div class="stone-card-specs">6×8 to 12×16 mm · 4 sizes</div>
+              <div class="stone-card-price">from ₹95 <span style="font-weight: 400; font-size: 12px; color: #5A6571;">per piece</span></div>
+              <div class="stone-card-tag">CALIBRATED · 10+ PIECES</div>
+            </div>
+          </a>
+
+          <!-- Card 2: Ceylon Sapphire -->
+          <a href="ceylon-sapphire-product.html" class="stone-card gem-shimmer-container">
+            <span class="stone-card-badge">Only 1</span>
+            <div class="stone-card-img">
+              <img src="../assets/images/ceylon-sapphire.jpg" alt="Ceylon Sapphire">
+            </div>
+            <div class="stone-card-body">
+              <div class="stone-card-title">Ceylon Blue Sapphire Oval Faceted</div>
+              <div class="stone-card-specs">7×5 mm · 1.82 ct</div>
+              <div class="stone-card-price">₹18,400</div>
+              <div class="stone-card-tag">SINGLE STONE</div>
+            </div>
+          </a>
+
+          <!-- Card 3: Ruby -->
+          <a href="ceylon-sapphire-product.html" class="stone-card gem-shimmer-container">
+            <div class="stone-card-img">
+              <img src="../assets/images/ruby.jpg" alt="Pigeon Blood Ruby">
+            </div>
+            <div class="stone-card-body">
+              <div class="stone-card-title">Pigeon Blood Ruby Oval Pair</div>
+              <div class="stone-card-specs">6×4 mm · 2 pieces</div>
+              <div class="stone-card-price">₹34,500</div>
+              <div class="stone-card-tag">MATCHED PAIR</div>
+            </div>
+          </a>
+
+          <!-- Card 4: Emerald -->
+          <a href="ceylon-sapphire-product.html" class="stone-card gem-shimmer-container">
+            <span class="stone-card-badge">Only 1</span>
+            <div class="stone-card-img">
+              <img src="../assets/images/emerald.jpg" alt="Zambian Emerald">
+            </div>
+            <div class="stone-card-body">
+              <div class="stone-card-title">Zambian Emerald Step Cut</div>
+              <div class="stone-card-specs">8×6 mm · 1.50 ct</div>
+              <div class="stone-card-price">₹28,000</div>
+              <div class="stone-card-tag">SINGLE STONE</div>
+            </div>
+          </a>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../flatsome-child/animations.js"></script>
+  <script>
+    function filterByCut(cutType) {
+      document.querySelectorAll('.cut-box').forEach(el => el.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+    }
+    function filterProducts() {}
+  </script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ceylon Blue Sapphire Oval Faceted | Vivaaz Gems & Jewellery</title>
+  <link rel="stylesheet" href="../flatsome-child/style.css">
+  <style>
+    /* Specific product page layout CSS */
+    .product-container {
+      max-width: 1200px;
+      margin: 32px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    @media (max-width: 900px) {
+      .product-container { grid-template-columns: 1fr; gap: 24px; margin: 16px auto; padding: 0 16px; }
+    }
+    
+    .gallery-main {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: #FFFFFF;
+      border: 1px solid #E4E7EC;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 16px;
+      overflow: hidden;
+      padding: 20px;
+    }
+    .gallery-main img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+    }
+    .gallery-main:hover img { transform: scale(1.08); }
+
+    .gallery-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(30, 37, 43, 0.85);
+      color: #FFFFFF;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      z-index: 10;
+    }
+    .gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    .thumb-item {
+      aspect-ratio: 1/1;
+      border: 1px solid #D0D5DD;
+      border-radius: 6px;
+      background: #FFFFFF;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #5A6571;
+      overflow: hidden;
+      padding: 4px;
+      transition: all 0.25s ease;
+    }
+    .thumb-item img { width: 100%; height: 100%; object-fit: contain; }
+    .thumb-item.active, .thumb-item:hover { border-color: #C59B27; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(197, 155, 39, 0.2); }
+
+    .breadcrumbs { font-size: 12px; color: #5A6571; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .product-title { font-size: 28px; font-weight: 500; color: #1E252B; margin-bottom: 8px; }
+    .price-main { font-size: 26px; font-weight: 700; color: #1E252B; }
+
+    /* Short description box */
+    .short-description-box {
+      border-left: 3px solid #C59B27;
+      background-color: #FFFFFF;
+      padding: 12px 16px;
+      border-radius: 0 4px 4px 0;
+      margin: 16px 0;
+    }
+    .short-desc-row { display: flex; gap: 12px; margin-bottom: 4px; }
+    .short-desc-label { color: #C59B27; font-weight: 700; font-size: 12px; text-transform: uppercase; min-width: 65px; }
+    .short-desc-text { color: #1E252B; font-size: 14px; }
+
+    .size-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .size-btn { border: 1px solid #D0D5DD; background: #FFFFFF; padding: 8px 16px; border-radius: 4px; font-size: 13px; cursor: pointer; transition: all 0.2s; color: #1E252B; }
+    .size-btn.active { border-color: #C59B27; background: #FDF9EE; color: #C59B27; font-weight: 700; }
+    .size-btn.disabled { opacity: 0.5; text-decoration: line-through; cursor: not-allowed; }
+
+    .pieces-tier-container { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 12px 0; }
+    .tier-btn { border: 1px solid #D0D5DD; background: #FFFFFF; padding: 10px; border-radius: 4px; text-align: center; cursor: pointer; font-weight: 500; transition: all 0.2s; color: #1E252B; }
+    .tier-btn.active, .tier-btn:hover { border-color: #C59B27; background: #FDF9EE; color: #C59B27; font-weight: 700; }
+
+    .tier-price-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+    .tier-price-table th, .tier-price-table td { padding: 8px 12px; border: 1px solid #E4E7EC; text-align: center; }
+    .tier-price-table th { background-color: #F8F9FA; color: #5A6571; }
+
+    .trust-bar-pdp { display: flex; justify-content: space-between; border-top: 1px solid #E4E7EC; border-bottom: 1px solid #E4E7EC; padding: 12px 0; margin: 20px 0; font-size: 12px; color: #5A6571; }
+    .accordion-item { border-bottom: 1px solid #E4E7EC; padding: 14px 0; cursor: pointer; display: flex; justify-content: space-between; font-weight: 500; transition: color 0.2s; }
+    .accordion-item:hover { color: #C59B27; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Line -->
+  <div style="background: #1E252B; color: #EAECF0; font-size: 12px; padding: 8px 24px; display: flex; justify-content: space-between; align-items: center;">
+    <div>WhatsApp +91 96805 52270 · Insured shipping worldwide</div>
+    <div>
+      <a href="../index.html" style="color: #EAECF0; margin-left: 16px;">Home</a>
+      <a href="about.html" style="color: #EAECF0; margin-left: 16px;">Our story</a>
+      <a href="contact.html" style="color: #EAECF0; margin-left: 16px;">Contact</a>
+      <a href="#" style="color: #EAECF0; margin-left: 16px;">₹ INR ▾</a>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="main-header" style="background: #FFFFFF; border-bottom: 1px solid #E4E7EC; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button class="hamburger-btn" id="drawer-toggle-btn" aria-label="Open Menu">☰</button>
+      <a href="../index.html" style="font-size: 20px; font-weight: 700; letter-spacing: 0.15em; color: #1E252B;" class="brand-logo">VIVAAZ GEMS & JEWELLERY</a>
+    </div>
+    <nav style="display: flex; gap: 24px; font-size: 13px; font-weight: 600;" class="nav-menu">
+      <a href="loose-gemstones.html" style="color: #C59B27;">GEMSTONES</a>
+      <a href="layouts.html">LAYOUTS</a>
+      <a href="beads.html">BEADS</a>
+      <a href="tennis-jewelry.html">JEWELRY</a>
+      <a href="astrology.html">ASTROLOGY</a>
+    </nav>
+    <div style="display: flex; gap: 16px; font-size: 13px;" class="header-actions">
+      <a href="loose-gemstones.html">Search</a>
+      <a href="cart-checkout.html" onclick="openSideCart(event)">Bag <span style="background: #FDF9EE; border: 1px solid #E8D9AB; color: #C59B27; padding: 2px 6px; border-radius: 10px; font-weight: 700;">2</span></a>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <span class="mobile-drawer-title">VIVAAZ GEMS</span>
+      <button class="close-drawer-btn" id="close-drawer-btn">✕</button>
+    </div>
+    <div class="mobile-drawer-body">
+      <a href="../index.html" class="mobile-drawer-link">Home Page <span>→</span></a>
+      <a href="loose-gemstones.html" class="mobile-drawer-link">Gemstones <span>→</span></a>
+      <a href="ceylon-sapphire-product.html" class="mobile-drawer-link" style="color: #C59B27;">Ceylon Sapphire PDP <span>★</span></a>
+      <a href="layouts.html" class="mobile-drawer-link">Layouts <span>→</span></a>
+      <a href="beads.html" class="mobile-drawer-link">Gemstone Beads <span>→</span></a>
+      <a href="tennis-jewelry.html" class="mobile-drawer-link">Tennis Jewelry <span>→</span></a>
+      <a href="astrology.html" class="mobile-drawer-link">Astrology <span>→</span></a>
+      <a href="about.html" class="mobile-drawer-link">About Us <span>→</span></a>
+      <a href="contact.html" class="mobile-drawer-link">Contact Us <span>→</span></a>
+      <a href="https://wa.me/919680552270" class="mobile-drawer-link" style="color: #25D366;">WhatsApp Inquiry <span>💬</span></a>
+    </div>
+  </div>
+
+  <div class="product-container reveal-on-scroll">
+    <!-- LEFT COLUMN: GALLERY -->
+    <div>
+      <div class="gallery-main gem-shimmer-container" id="main-view">
+        <span class="gallery-badge" id="view-badge">▶ Video · seen on Instagram</span>
+        <img src="../assets/images/ceylon-sapphire.jpg" alt="Ceylon Sapphire" id="main-img-display">
+      </div>
+
+      <!-- 5 Thumbnails (Fixed with Real Photo Switching) -->
+      <div class="gallery-thumbs">
+        <div class="thumb-item active" onclick="switchMedia('../assets/images/ceylon-sapphire.jpg', '▶ Video · seen on Instagram', this)">
+          <img src="../assets/images/ceylon-sapphire.jpg" alt="Video">
+        </div>
+        <div class="thumb-item" onclick="switchMedia('../assets/images/ceylon-sapphire.jpg', '1 Daylight', this)">
+          <img src="../assets/images/ceylon-sapphire.jpg" alt="Daylight">
+        </div>
+        <div class="thumb-item" onclick="switchMedia('../assets/images/ceylon-sapphire.jpg', 'Lamp', this)">
+          <img src="../assets/images/ceylon-sapphire.jpg" alt="Lamp">
+        </div>
+        <div class="thumb-item" onclick="switchMedia('../assets/images/lab-certificate.jpg', 'Lab Certificate', this)">
+          <img src="../assets/images/lab-certificate.jpg" alt="Lab Cert">
+        </div>
+        <div class="thumb-item" onclick="switchMedia('../assets/images/true-size-grid.jpg', '4 True Size (1mm Grid)', this)">
+          <img src="../assets/images/true-size-grid.jpg" alt="True Size">
+        </div>
+      </div>
+      <p style="font-size: 12px; color: #5A6571; margin-top: 12px;">Light photos: only the lights this stone was photographed in (Daylight · Indoor · Lamp). Each photo has its light written small in the corner.</p>
+    </div>
+
+    <!-- RIGHT COLUMN: DETAILS -->
+    <div>
+      <div class="breadcrumbs">CEYLON SAPPHIRE · FACETED · CALIBRATED</div>
+      <h1 class="product-title">Ceylon Blue Sapphire Oval Faceted</h1>
+      
+      <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px;">
+        <span class="price-main" id="unit-price-display">₹1,450</span>
+        <span style="font-size: 14px; color: #5A6571;">per piece</span>
+      </div>
+      <div style="font-size: 12px; color: #5A6571; margin-bottom: 16px;">Inclusive of taxes · India 2–3 days · worldwide 4–7 days · insured</div>
+
+      <!-- Short Description Box (2 Lines max) -->
+      <div class="short-description-box">
+        <div class="short-desc-row">
+          <span class="short-desc-label">Look</span>
+          <span class="short-desc-text">Deep royal blue with bright sparkle</span>
+        </div>
+        <div class="short-desc-row">
+          <span class="short-desc-label">Best for</span>
+          <span class="short-desc-text">Rings, earrings, halo settings</span>
+        </div>
+      </div>
+
+      <!-- Size Selector -->
+      <div style="margin-bottom: 20px;">
+        <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #1E252B; font-weight: 600; display: flex; justify-content: space-between;">
+          <span>SIZE (MM)</span>
+          <a href="#size-guide" style="color: #C59B27; text-transform: none; text-decoration: underline;">Size guide</a>
+        </div>
+        <div class="size-buttons">
+          <button class="size-btn" type="button" onclick="selectSize(this)">5×3</button>
+          <button class="size-btn" type="button" onclick="selectSize(this)">6×4</button>
+          <button class="size-btn active" type="button" onclick="selectSize(this)">7×5</button>
+          <button class="size-btn disabled" type="button">8×6 (Sold out)</button>
+        </div>
+      </div>
+
+      <!-- Pieces Tier Selector -->
+      <div style="margin-bottom: 20px;">
+        <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #1E252B; font-weight: 600;">PIECES</div>
+        <div class="pieces-tier-container">
+          <div class="tier-btn" onclick="updatePcs(10, 1450, this)">10</div>
+          <div class="tier-btn active" onclick="updatePcs(20, 1450, this)">20</div>
+          <div class="tier-btn" onclick="updatePcs(50, 1320, this)">50</div>
+          <div class="tier-btn" onclick="updatePcs(100, 1210, this)">100</div>
+          <div class="tier-btn" onclick="updatePcs(500, 1100, this)">500</div>
+          <div class="tier-btn" onclick="updatePcs('Custom', 1450, this)">Other</div>
+        </div>
+        <p style="font-size: 12px; color: #5A6571; margin-top: 4px;">Price per piece — lower for more pieces</p>
+
+        <table class="tier-price-table">
+          <thead>
+            <tr>
+              <th>10+ pcs</th>
+              <th style="background: #FDF9EE; color: #C59B27; font-weight: 600;">50+ pcs</th>
+              <th>100+ pcs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>₹1,450</td>
+              <td style="background: #FDF9EE; font-weight: 600; color: #C59B27;">₹1,320</td>
+              <td>₹1,210</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="font-size: 16px; font-weight: 700; color: #1E252B; text-align: right; margin-top: 8px;">
+          Total for <span id="pcs-count">20</span> pieces: <span style="color: #C59B27;" id="total-price-display">₹29,000</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons (Strict Gold & WhatsApp Styling) -->
+      <div style="display: flex; flex-direction: column; gap: 12px; margin: 24px 0;">
+        <button type="button" class="button primary" style="background: #C59B27 !important; color: #FFFFFF !important; padding: 16px 28px !important; font-size: 14px !important; font-weight: 700 !important; width: 100% !important;" onclick="triggerAddToCart()">
+          ADD TO CART
+        </button>
+        <a href="https://wa.me/919680552270?text=Hi%20Vivaaz%20Gems,%20I%20want%20to%20ask%20about%20Ceylon%20Blue%20Sapphire%20Oval%20Faceted%20(SKU:%20VG-SPH-OV-0705)." class="btn-whatsapp" style="background: #25D366 !important; color: #FFFFFF !important; padding: 14px 28px !important; font-size: 14px !important; text-align: center !important; justify-content: center !important;">
+          Ask about this stone on WhatsApp
+        </a>
+      </div>
+
+      <!-- Bulk & Video Box -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0;">
+        <div style="border: 1px solid #E4E7EC; border-radius: 6px; padding: 12px; background: #FFF;">
+          <div style="font-weight: 600; font-size: 13px; color: #1E252B;">◇ Bulk / B2B price ›</div>
+          <div style="font-size: 12px; color: #5A6571;">Parcels, calibrated lots, wholesale</div>
+        </div>
+        <div style="border: 1px solid #E4E7EC; border-radius: 6px; padding: 12px; background: #FFF;">
+          <div style="font-weight: 600; font-size: 13px; color: #1E252B;">▷ See it on a video call ›</div>
+          <div style="font-size: 12px; color: #5A6571;">We show you the stone live</div>
+        </div>
+      </div>
+
+      <!-- Trust Bar -->
+      <div class="trust-bar-pdp">
+        <span>◈ Lab certified</span>
+        <span>◈ Insured shipping</span>
+        <span>◈ Secure payment</span>
+        <span>◈ 7-day returns</span>
+      </div>
+
+      <!-- Signature Stone Passport Box (Strict Page 13 Brief Styling) -->
+      <div class="stone-passport-box" style="border: 1px solid #E8D9AB !important; background-color: #FDF9EE !important; border-radius: 8px !important; padding: 20px !important; margin: 24px 0 !important;">
+        <div class="stone-passport-header" style="display: flex; justify-content: space-between; border-bottom: 1px solid #E8D9AB; padding-bottom: 10px; margin-bottom: 14px;">
+          <span class="stone-passport-title" style="color: #C59B27; font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 0.12em;">Stone Passport</span>
+          <span class="stone-passport-sku" style="font-family: monospace; color: #5A6571;">No. VG-SPH-OV-0705</span>
+        </div>
+        <div class="stone-passport-grid" style="display: grid; grid-template-columns: 140px 1fr; row-gap: 8px; font-size: 14px;">
+          <div class="stone-passport-label" style="color: #5A6571;">Stone</div>
+          <div class="stone-passport-value" style="color: #1E252B; font-weight: 500;">Natural Blue Sapphire</div>
+          <div class="stone-passport-label" style="color: #5A6571;">Origin</div>
+          <div class="stone-passport-value" style="color: #1E252B; font-weight: 500;">Sri Lanka (Ceylon)</div>
+          <div class="stone-passport-label" style="color: #5A6571;">Treatment</div>
+          <div class="stone-passport-value" style="color: #1E252B; font-weight: 500;">Heated</div>
+          <div class="stone-passport-label" style="color: #5A6571;">Size</div>
+          <div class="stone-passport-value" style="color: #1E252B; font-weight: 500;">7 × 5 mm</div>
+          <div class="stone-passport-label" style="color: #5A6571;">Tolerance</div>
+          <div class="stone-passport-value" style="color: #1E252B; font-weight: 500;">± 0.2 mm</div>
+          <div class="stone-passport-label" style="color: #5A6571;">Approx. weight</div>
+          <div class="stone-passport-value" style="color: #1E252B; font-weight: 500;">≈ 0.85 ct per piece</div>
+          <div class="stone-passport-label" style="color: #5A6571;">Shape / cut</div>
+          <div class="stone-passport-value" style="color: #1E252B; font-weight: 500;">Oval, faceted (calibrated)</div>
+          <div class="stone-passport-label" style="color: #5A6571;">Colour / clarity</div>
+          <div class="stone-passport-value" style="color: #1E252B; font-weight: 500;">Royal blue · Eye-clean</div>
+          <div class="stone-passport-label" style="color: #5A6571;">Quality</div>
+          <div class="stone-passport-value" style="color: #1E252B; font-weight: 500;">AAA · colour matched across lot</div>
+          <div class="stone-passport-label" style="color: #5A6571;">Certificate</div>
+          <div class="stone-passport-value"><a href="../assets/images/lab-certificate.jpg" target="_blank" style="color: #C59B27; text-decoration: underline; font-weight: 600;">Lab report for the lot (view)</a></div>
+        </div>
+      </div>
+
+      <!-- Accordions -->
+      <div>
+        <div class="accordion-item">Shipping & returns <span>+</span></div>
+        <div class="accordion-content">
+          <p>Orders ship within 24 hours from Jaipur. Domestic orders arrive in 2–3 business days via insured express courier. International orders take 4–7 business days. 7-day no-questions return policy.</p>
+        </div>
+
+        <div class="accordion-item">Care & setting notes <span>+</span></div>
+        <div class="accordion-content">
+          <p>Natural Ceylon sapphire has a Mohs hardness of 9. Ideal for everyday rings, earrings, and halo settings. Clean with warm soapy water and a soft brush.</p>
+        </div>
+
+        <div class="accordion-item">About Ceylon sapphires <span>+</span></div>
+        <div class="accordion-content">
+          <p>Ceylon (Sri Lanka) sapphires are world-renowned for their luminous medium-to-deep blue hues, exceptional clarity, and vibrant sparkle under daylight and evening lamps.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Sticky Bar (Hidden on Desktop) -->
+  <div class="mobile-sticky-bar">
+    <div class="mobile-sticky-price" id="mobile-price">₹1,450 / pc</div>
+    <div class="mobile-sticky-actions">
+      <button class="button primary" style="padding: 8px 16px !important; font-size: 13px !important; background: #C59B27 !important;" onclick="triggerAddToCart()">ADD TO CART</button>
+      <a href="https://wa.me/919680552270" class="btn-whatsapp" style="padding: 8px 12px !important; background: #25D366 !important;">✆</a>
+    </div>
+  </div>
+
+  <!-- Interactive Side Cart Modal (Fixed Styling for Image 1) -->
+  <div class="side-cart-overlay" id="side-cart">
+    <div class="side-cart-panel">
+      <div class="side-cart-header">
+        <span class="side-cart-title">Your Bag (2 Items)</span>
+        <button class="close-cart-btn" onclick="closeSideCart()">×</button>
+      </div>
+      <div class="side-cart-body">
+        <div class="cart-item">
+          <div class="cart-item-img">
+            <img src="../assets/images/ceylon-sapphire.jpg" alt="Sapphire">
+          </div>
+          <div class="cart-item-info">
+            <div class="cart-item-title">Ceylon Blue Sapphire Oval Faceted</div>
+            <div class="cart-item-meta">Size: 7×5 mm · Qty: 20 pcs</div>
+            <div class="cart-item-price">₹29,000</div>
+          </div>
+        </div>
+      </div>
+      <div class="side-cart-footer">
+        <div class="cart-subtotal-row">
+          <span>Subtotal</span>
+          <span style="color: #C59B27;">₹29,000</span>
+        </div>
+        <a href="cart-checkout.html" class="button primary" style="background: #C59B27 !important; color: #FFF !important; display: block; text-align: center;">PROCEED TO CHECKOUT →</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../flatsome-child/animations.js"></script>
+  <script>
+    function switchMedia(imgSrc, badgeText, thumbEl) {
+      document.querySelectorAll('.thumb-item').forEach(e => e.classList.remove('active'));
+      if (thumbEl) thumbEl.classList.add('active');
+      document.getElementById('view-badge').innerText = badgeText;
+      const mainView = document.getElementById('main-view');
+      mainView.innerHTML = `<span class="gallery-badge" id="view-badge">${badgeText}</span><img src="${imgSrc}" alt="${badgeText}">`;
+    }
+
+    function selectSize(btn) {
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function updatePcs(pcs, rate, btn) {
+      document.querySelectorAll('.tier-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('pcs-count').innerText = pcs;
+      document.getElementById('unit-price-display').innerText = '₹' + rate.toLocaleString();
+      const total = typeof pcs === 'number' ? pcs * rate : rate;
+      document.getElementById('total-price-display').innerText = '₹' + total.toLocaleString();
+    }
+
+    function triggerAddToCart() {
+      document.getElementById('side-cart').classList.add('active');
+    }
+
+    function closeSideCart() {
+      document.getElementById('side-cart').classList.remove('active');
+    }
+
+    function openSideCart(e) {
+      e.preventDefault();
+      document.getElementById('side-cart').classList.add('active');
+    }
+    const drawerToggleBtn = document.getElementById('drawer-toggle-btn');
+    const closeDrawerBtn = document.getElementById('close-drawer-btn');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const drawerBackdrop = document.getElementById('drawer-backdrop');
+
+    if (drawerToggleBtn) {
+      drawerToggleBtn.addEventListener('click', () => {
+        mobileDrawer.classList.add('active');
+        drawerBackdrop.classList.add('active');
+      });
+    }
+
+    if (closeDrawerBtn) {
+      closeDrawerBtn.addEventListener('click', () => {
+        mobileDrawer.classList.remove('active');
+        drawerBackdrop.classList.remove('active');
+      });
+    }
+
+    if (drawerBackdrop) {
+      drawerBackdrop.addEventListener('click', () => {
+        mobileDrawer.classList.remove('active');
+        drawerBackdrop.classList.remove('active');
+      });
+    }
+  </script>
+
+  <!-- Mobile Bottom Nav -->
+  <div class="mobile-nav-bar">
+    <a href="../index.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon">🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="loose-gemstones.html" class="mobile-nav-item active">
+      <span class="mobile-nav-icon">💎</span>
+      <span>Gems</span>
+    </a>
+    <a href="beads.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon">📿</span>
+      <span>Beads</span>
+    </a>
+    <a href="https://wa.me/919680552270" class="mobile-nav-item" style="color: #25D366;">
+      <span class="mobile-nav-icon">💬</span>
+      <span>WhatsApp</span>
+    </a>
+    <a href="cart-checkout.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon">🛒</span>
+      <span>Bag (2)</span>
+    </a>
+  </div>
+</body>
+</html>

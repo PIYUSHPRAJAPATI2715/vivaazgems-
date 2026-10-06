@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Vivaaz Gems & Jewellery</title>
+  <link rel="stylesheet" href="../flatsome-child/style.css">
+  <style>
+    .checkout-container { max-width: 1100px; margin: 40px auto; padding: 0 24px; }
+    .checkout-steps { display: flex; justify-content: center; gap: 32px; margin-bottom: 40px; border-bottom: 1px solid #E4E7EC; padding-bottom: 16px; }
+    .step-item { font-size: 13px; font-weight: 600; text-transform: uppercase; color: #98A2B3; }
+    .step-item.active { color: #C59B27; border-bottom: 2px solid #C59B27; padding-bottom: 14px; }
+    
+    .checkout-layout { display: grid; grid-template-columns: 1fr 380px; gap: 40px; }
+    @media (max-width: 900px) { .checkout-layout { grid-template-columns: 1fr; } }
+    
+    .box { background: #FFFFFF; border: 1px solid #E4E7EC; border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+    .box-title { font-size: 16px; font-weight: 600; margin-bottom: 16px; color: #1E252B; }
+    
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; color: #1E252B; }
+    .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #D0D5DD; border-radius: 4px; font-size: 14px; outline: none; background: #FFF; }
+
+    .payment-option { border: 1px solid #E4E7EC; border-radius: 6px; padding: 16px; margin-bottom: 12px; cursor: pointer; transition: border-color 0.2s; }
+    .payment-option.active { border-color: #C59B27; background: #FDF9EE; }
+    .payment-option-title { font-weight: 600; font-size: 14px; display: flex; justify-content: space-between; margin-bottom: 4px; }
+    .payment-option-desc { font-size: 12px; color: #5A6571; }
+
+    .summary-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 10px; color: #5A6571; }
+    .summary-total { display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; color: #1E252B; border-top: 1px solid #E4E7EC; padding-top: 14px; margin-top: 14px; }
+  </style>
+</head>
+<body>
+  <header style="background: #FFFFFF; border-bottom: 1px solid #E4E7EC; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center;">
+    <a href="../index.html" style="font-size: 20px; font-weight: 700; letter-spacing: 0.15em; color: #1E252B;">VIVAAZ GEMS & JEWELLERY</a>
+    <div style="font-size: 12px; color: #5A6571;">🔒 256-bit SSL Secure Checkout</div>
+  </header>
+
+  <div class="checkout-container">
+    <!-- 3 Step Bar -->
+    <div class="checkout-steps">
+      <div class="step-item">1. Cart</div>
+      <div class="step-item active">2. Details & Shipping</div>
+      <div class="step-item">3. Payment & Complete</div>
+    </div>
+
+    <div class="checkout-layout">
+      <!-- Left Form -->
+      <div>
+        <!-- Login Mode -->
+        <div class="box" style="background: #FDF9EE; border-color: #E8D9AB;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong>Checkout as Guest</strong>
+              <div style="font-size: 12px; color: #5A6571;">No account required to place an order.</div>
+            </div>
+            <a href="#" style="font-size: 12px; color: #C59B27; font-weight: 600;">Log in instead →</a>
+          </div>
+        </div>
+
+        <!-- Single Full Name Field (Part 8 Requirement) -->
+        <div class="box">
+          <div class="box-title">Shipping Address</div>
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" required placeholder="Enter your full name">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" required placeholder="name@domain.com">
+            </div>
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" required placeholder="+91 98765 43210">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Street Address *</label>
+            <input type="text" required placeholder="House/Flat No, Building, Street">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>City *</label>
+              <input type="text" required placeholder="City">
+            </div>
+            <div class="form-group">
+              <label>State / Province *</label>
+              <input type="text" required placeholder="State">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>PIN / Postal Code *</label>
+              <input type="text" required placeholder="Postal Code">
+            </div>
+            <div class="form-group">
+              <label>Country *</label>
+              <select required>
+                <option>India (₹ INR)</option>
+                <option>United States ($ USD)</option>
+                <option>United Kingdom (£ GBP)</option>
+                <option>United Arab Emirates (AED)</option>
+                <option>European Union (€ EUR)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Gateways (Part 8 Requirement) -->
+        <div class="box">
+          <div class="box-title">Select Payment Method</div>
+          
+          <!-- India Cashfree -->
+          <div class="payment-option active">
+            <div class="payment-option-title">
+              <span>UPI / Credit & Debit Cards / Netbanking (Cashfree)</span>
+              <span style="color: #C59B27;">Popular in India</span>
+            </div>
+            <div class="payment-option-desc">Instant payment via Google Pay, PhonePe, Paytm, BHIM UPI, Cards or Netbanking.</div>
+          </div>
+
+          <!-- Overseas PayPal -->
+          <div class="payment-option">
+            <div class="payment-option-title">
+              <span>PayPal / Foreign Credit Cards</span>
+              <span>USD, EUR, GBP, AED</span>
+            </div>
+            <div class="payment-option-desc">Pay securely using PayPal or international Visa / Mastercard / Amex.</div>
+          </div>
+
+          <!-- Payoneer Offline -->
+          <div class="payment-option">
+            <div class="payment-option-title">
+              <span>Payoneer Invoice Payment</span>
+              <span>Trade Buyers</span>
+            </div>
+            <div class="payment-option-desc">We will email you an official Payoneer payment request link upon order placement.</div>
+          </div>
+
+          <!-- Bank Transfer -->
+          <div class="payment-option">
+            <div class="payment-option-title">
+              <span>Direct Bank Transfer (NEFT / RTGS / SWIFT)</span>
+              <span>Wholesale Orders</span>
+            </div>
+            <div class="payment-option-desc">Transfer funds directly to our ICICI Bank / HDFC Bank account in Jaipur.</div>
+          </div>
+
+          <button class="button primary" style="width: 100%; margin-top: 16px;" onclick="alert('Order placed successfully! Order confirmation sent via WhatsApp and Email.'); location.href='../index.html';">
+            PLACE ORDER & PAY
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Order Summary -->
+      <div>
+        <div class="box">
+          <div class="box-title">Order Summary (2 Items)</div>
+          
+          <div style="border-bottom: 1px solid #E4E7EC; padding-bottom: 12px; margin-bottom: 12px;">
+            <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 500; margin-bottom: 4px;">
+              <span>Ceylon Blue Sapphire Oval Faceted (20 pcs)</span>
+              <span>₹29,000</span>
+            </div>
+            <div style="font-size: 12px; color: #5A6571;">Size: 7×5 mm · SKU: VG-SPH-OV-0705</div>
+          </div>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>₹29,000</span>
+          </div>
+          <div class="summary-row">
+            <span>Insured Shipping (India 2-3 days)</span>
+            <span style="color: #25D366; font-weight: 600;">FREE</span>
+          </div>
+          <div class="summary-row">
+            <span>Taxes</span>
+            <span>Inclusive of GST</span>
+          </div>
+
+          <div class="summary-total">
+            <span>Total Payable</span>
+            <span style="color: #C59B27;">₹29,000</span>
+          </div>
+
+          <!-- Import Duties Note (Part 8 Requirement) -->
+          <div style="background: #FAF9F6; border: 1px solid #E4E7EC; border-radius: 6px; padding: 12px; font-size: 11px; color: #5A6571; margin-top: 16px; line-height: 1.5;">
+            ◈ <strong>International Customs Notice</strong>: Import duties and taxes depend on the destination country and are paid by the customer upon delivery.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
