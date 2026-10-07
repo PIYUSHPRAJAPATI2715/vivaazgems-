@@ -3,7 +3,7 @@ Theme Name: Vivaaz Gems Theme
 Theme URI: https://vivaazgems.com
 Description: Custom Luxury Standalone & WooCommerce Theme for Vivaaz Gems & Jewellery.
 Author: Google Antigravity
-Version: 3.0.0
+Version: 3.5.0
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
@@ -92,6 +92,24 @@ a:hover { opacity: 0.85; }
   color: #FFFFFF;
 }
 
+.btn-square-dark-full {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: var(--color-text-main);
+  color: #FFFFFF;
+  padding: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 0px;
+  cursor: pointer;
+}
+
 .btn-square-white {
   display: inline-flex;
   align-items: center;
@@ -130,7 +148,7 @@ a:hover { opacity: 0.85; }
 }
 
 /* ==========================================================================
-   2. TOP BAR & MAIN HEADER
+   2. TOP BAR & MAIN HEADER WITH MEGA DROPDOWNS
    ========================================================================== */
 .top-bar-notice {
   background: #1C1A17;
@@ -200,7 +218,7 @@ a:hover { opacity: 0.85; }
   display: block;
 }
 .brand-logo-subtitle {
-  font-size: 9px;
+  font-size: 8px;
   letter-spacing: 0.25em;
   color: var(--color-text-muted);
   display: block;
@@ -219,10 +237,69 @@ a:hover { opacity: 0.85; }
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-text-main);
-  padding: 8px 0;
+  padding: 12px 0;
 }
 .nav-link:hover, .nav-link.active {
   color: var(--color-gold-label);
+}
+
+/* MEGA DROPDOWNS */
+.has-mega-dropdown {
+  position: relative;
+}
+.mega-dropdown-panel {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 920px;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-light);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+  padding: 30px;
+  z-index: 9999;
+}
+.has-mega-dropdown:hover .mega-dropdown-panel {
+  display: block;
+}
+.mega-dropdown-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 220px;
+  gap: 30px;
+  text-align: left;
+}
+.mega-col-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-main);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+.mega-link-list {
+  list-style: none;
+}
+.mega-link-list li {
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+.mega-link-list li a:hover {
+  color: var(--color-text-main);
+}
+.mega-promo-box {
+  background: #FAF7F2;
+  border: 1px solid var(--color-border-light);
+  padding: 14px;
+  text-align: center;
+}
+.mega-promo-box img {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
 }
 
 .header-action-group {
@@ -231,7 +308,9 @@ a:hover { opacity: 0.85; }
   gap: 18px;
 }
 .icon-action-btn {
-  font-size: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   color: var(--color-text-main);
   background: transparent;
   border: none;
@@ -239,6 +318,7 @@ a:hover { opacity: 0.85; }
   position: relative;
   display: flex;
   align-items: center;
+  gap: 4px;
 }
 .cart-badge-count {
   position: absolute;
@@ -336,11 +416,6 @@ a:hover { opacity: 0.85; }
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
-.trust-line-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
 
 .hero-visual-card {
   position: relative;
@@ -369,531 +444,240 @@ a:hover { opacity: 0.85; }
 }
 
 /* ==========================================================================
-   4. COLOUR & BY STONE TABS
+   4. ACCOUNT LOGIN & REGISTRATION PAGE STYLING
    ========================================================================== */
-.explore-colour-section {
+.account-login-page-wrapper {
   padding: 60px 40px;
   background: var(--color-page-bg);
 }
-.explore-colour-container {
-  max-width: 1200px;
+.account-login-container {
+  max-width: 900px;
   margin: 0 auto;
 }
-.section-header-tabs-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 30px;
-  border-bottom: 1px solid var(--color-border-light);
-  padding-bottom: 12px;
-}
-.tab-button-group {
-  display: flex;
-  gap: 24px;
-}
-.tab-btn {
-  background: transparent;
-  border: none;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  padding-bottom: 8px;
-  position: relative;
-}
-.tab-btn.active {
-  color: var(--color-text-main);
-}
-.tab-btn.active::after {
-  content: '';
-  position: absolute;
-  bottom: -13px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--color-text-main);
-}
-
-.colour-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 20px;
-}
-.colour-item {
-  background: #FFFFFF;
-  border: 1px solid var(--color-border-light);
-  padding: 20px 12px;
+.account-page-header {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: var(--transition-smooth);
+  margin-bottom: 40px;
 }
-.colour-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
-}
-.colour-gem-img {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-  margin-bottom: 12px;
-}
-.colour-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--color-text-main);
-  display: block;
-}
-.colour-subtext {
-  font-size: 10px;
-  color: var(--color-text-muted);
-  margin-top: 4px;
-}
-
-/* ==========================================================================
-   5. LAYOUTS & BEADS SECTIONS
-   ========================================================================== */
-.layouts-section {
-  padding: 60px 40px;
-  background: var(--color-page-bg);
-}
-.layouts-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #FFFFFF;
-  border: 1px solid var(--color-border-light);
-  padding: 40px;
+.account-forms-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: center;
-}
-.layouts-img {
-  width: 100%;
-  max-height: 320px;
-  object-fit: contain;
-}
-.layouts-title {
-  font-family: var(--font-family-serif);
-  font-size: 36px;
-  font-weight: 400;
-  margin: 8px 0 14px;
-}
-.layouts-stats-grid {
-  display: flex;
-  gap: 30px;
-  margin: 24px 0;
-  padding: 16px 0;
-  border-top: 1px solid var(--color-border-light);
-  border-bottom: 1px solid var(--color-border-light);
-}
-.stat-box-val {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--color-text-main);
-}
-.stat-box-lbl {
-  font-size: 11px;
-  color: var(--color-text-muted);
-}
-
-.beads-section {
-  padding: 40px 40px 60px;
-  background: var(--color-page-bg);
-}
-.beads-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.beads-grid-6 {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 16px;
-}
-
-/* ==========================================================================
-   6. NEW ARRIVALS & BEST SELLERS
-   ========================================================================== */
-.products-tab-section {
-  padding: 60px 40px;
-  background: var(--color-page-bg);
-}
-.products-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.products-grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-.product-card-luxury {
-  background: #FFFFFF;
-  border: 1px solid var(--color-border-light);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  transition: var(--transition-smooth);
-}
-.product-card-luxury:hover {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-}
-
-.product-card-media {
-  position: relative;
-  background: #FFFFFF;
-  padding: 24px;
-  text-align: center;
-  overflow: hidden;
-}
-.product-card-media img {
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
-  transition: transform 0.4s ease;
-}
-.product-card-luxury:hover .product-card-media img {
-  transform: scale(1.05);
-}
-
-.wishlist-heart-btn {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  font-size: 16px;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  z-index: 5;
-  background: transparent;
-  border: none;
-}
-.wishlist-heart-btn:hover { color: #E74C3C; }
-
-.quick-view-hover-bar {
-  position: absolute;
-  bottom: -40px;
-  left: 0;
-  width: 100%;
-  background: rgba(28, 26, 23, 0.9);
-  color: #FFFFFF;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 10px;
-  text-align: center;
-  transition: bottom 0.25s ease;
-}
-.product-card-luxury:hover .quick-view-hover-bar {
-  bottom: 0;
-}
-
-.product-card-body {
-  padding: 18px 20px 22px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-.product-title-heading {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--color-text-main);
-  margin-bottom: 4px;
-}
-.product-meta-sub {
-  font-size: 11px;
-  color: var(--color-text-muted);
-  margin-bottom: 12px;
-}
-.product-price-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
-  padding-top: 10px;
-}
-.product-price-val {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--color-text-main);
-}
-.product-price-unit {
-  font-size: 10px;
-  color: var(--color-text-muted);
-  font-weight: 400;
-}
-
-/* ==========================================================================
-   7. OUR STORY & GOOGLE REVIEWS + EXPERT BOX
-   ========================================================================== */
-.story-section {
-  padding: 60px 40px;
-  background: var(--color-page-bg);
-}
-.story-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #FFFFFF;
-  border: 1px solid var(--color-border-light);
-  padding: 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: center;
-}
-.story-media-box {
-  position: relative;
-  background: #1C1A17;
-}
-.story-media-box img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  opacity: 0.85;
-}
-.story-play-overlay {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  background: rgba(0,0,0,0.6);
-  color: #FFFFFF;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  padding: 8px 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-}
-
-.reviews-expert-section {
-  padding: 60px 40px;
-  background: var(--color-page-bg);
-}
-.reviews-expert-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
   gap: 40px;
 }
-.reviews-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-.google-review-card {
-  background: #FFFFFF;
-  border: 1px solid var(--color-border-light);
-  padding: 20px;
-  font-size: 12px;
-}
-.star-rating-row {
-  color: #F39C12;
-  margin-bottom: 8px;
-}
-.review-author-name {
-  font-weight: 600;
-  margin-top: 14px;
-  color: var(--color-text-main);
-  font-size: 11px;
-}
-
-.expert-box-card {
-  background: #FFFFFF;
-  border: 1px solid var(--color-border-light);
-  padding: 30px;
-  text-align: center;
-}
-.expert-box-title {
-  font-family: var(--font-family-serif);
-  font-size: 22px;
-  margin-bottom: 8px;
-}
-.expert-btn-green {
-  background: var(--color-whatsapp-green);
-  color: #FFFFFF;
-  width: 100%;
-  padding: 12px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin: 14px 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-/* ==========================================================================
-   8. INSTAGRAM REELS
-   ========================================================================== */
-.instagram-reels-section {
-  padding: 60px 40px;
-  background: var(--color-page-bg);
-}
-.instagram-reels-container {
-  max-width: 1200px;
+.account-forms-grid.login-only {
+  grid-template-columns: 1fr;
+  max-width: 460px;
   margin: 0 auto;
 }
-.reels-grid-5 {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
-}
-.reel-card-tall {
-  position: relative;
-  aspect-ratio: 9 / 16;
-  background: #1C1A17;
-  overflow: hidden;
+.account-form-card {
+  background: #FFFFFF;
   border: 1px solid var(--color-border-light);
+  padding: 36px;
 }
-.reel-card-tall img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-.reel-card-tall:hover img {
-  transform: scale(1.06);
-}
-.reel-info-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-  color: #FFFFFF;
-  padding: 16px 12px 12px;
-  font-size: 11px;
-}
-
-/* ==========================================================================
-   9. LUXURY FOOTER
-   ========================================================================== */
-.main-footer {
-  background: var(--color-footer-bg);
-  color: var(--color-text-main);
-  padding: 60px 40px 20px;
-  border-top: 1px solid var(--color-border-light);
-}
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.footer-brand-header {
-  text-align: center;
-  margin-bottom: 40px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #E4DDD2;
-}
-.footer-brand-title {
+.form-card-title {
   font-family: var(--font-family-serif);
-  font-size: 36px;
-  letter-spacing: 0.35em;
-  color: var(--color-text-main);
-  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-border-light);
 }
-.footer-brand-sub {
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  color: var(--color-text-muted);
-  margin-top: 4px;
+.form-group-item {
+  margin-bottom: 18px;
 }
-
-.footer-5col-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 30px;
-  margin-bottom: 40px;
-}
-.footer-col-title {
+.form-group-item label {
+  display: block;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-text-main);
-  margin-bottom: 16px;
-}
-.footer-col-links {
-  list-style: none;
-}
-.footer-col-links li {
-  margin-bottom: 10px;
-  font-size: 12px;
-  color: var(--color-text-muted);
-}
-.footer-col-links li a:hover {
+  margin-bottom: 6px;
   color: var(--color-text-main);
 }
-
-.footer-social-updates-row {
+.input-text-custom {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border-light);
+  font-size: 13px;
+  color: var(--color-text-main);
+  outline: none;
+}
+.form-action-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
-  border-top: 1px solid #E4DDD2;
-  border-bottom: 1px solid #E4DDD2;
   font-size: 12px;
   margin-bottom: 20px;
 }
-.social-icons-flex {
+.remember-me-checkbox {
   display: flex;
-  gap: 16px;
-}
-
-.footer-bottom-bar {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-size: 11px;
+  gap: 6px;
   color: var(--color-text-muted);
 }
-.payment-badges-row {
-  display: flex;
-  gap: 8px;
-}
-.pay-badge-item {
-  border: 1px solid #D9D2C6;
-  background: #FFFFFF;
-  padding: 3px 8px;
-  font-size: 9px;
-  font-weight: 700;
-  color: var(--color-text-main);
+.lost-pass-link {
+  color: var(--color-gold-label);
+  text-decoration: underline;
 }
 
-/* ==========================================================================
-   10. MOBILE BOTTOM NAVIGATION BAR & RESPONSIVE CALM VIEW
-   ========================================================================== */
-.mobile-bottom-nav {
-  position: fixed;
-  bottom: 0;
+.social-login-divider {
+  text-align: center;
+  margin: 24px 0 16px;
+  position: relative;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+.social-login-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
   left: 0;
   width: 100%;
-  background: #FFFFFF;
-  border-top: 1px solid var(--color-border-light);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 8px 0;
-  z-index: 9999;
+  height: 1px;
+  background: var(--color-border-light);
+  z-index: 1;
 }
-.mobile-nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 10px;
+.social-login-divider span {
+  background: #FFFFFF;
+  padding: 0 10px;
+  position: relative;
+  z-index: 2;
+}
+.social-btn-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.btn-social-item {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-light);
+  padding: 10px;
+  font-size: 11px;
+  font-weight: 600;
   color: var(--color-text-main);
-  gap: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
 }
 
 /* ==========================================================================
-   11. SINGLE PRODUCT PAGE LUXURY LAYOUT (PDF MASTER BRIEF SPEC 1:1)
+   5. SHOP ARCHIVE PAGE STYLING (PAGE 10 SPEC)
+   ========================================================================== */
+.shop-archive-page-wrapper {
+  padding: 40px;
+  background: var(--color-page-bg);
+}
+.shop-archive-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.breadcrumb-trail {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+.shop-main-title {
+  font-family: var(--font-family-serif);
+  font-size: 36px;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+.shop-description-sub {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+}
+
+.cut-pills-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.cut-pill-item {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-light);
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+.cut-pill-item.active {
+  background: #FDFBF7;
+  border-color: var(--color-gold-label);
+  color: var(--color-gold-label);
+}
+
+.active-filter-badges-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: 30px;
+  font-size: 12px;
+}
+.active-badge {
+  background: #F5F1EA;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.clear-all-link {
+  color: var(--color-gold-label);
+  text-decoration: underline;
+}
+.result-count-text {
+  margin-left: auto;
+  color: var(--color-text-muted);
+}
+
+.shop-layout-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 40px;
+}
+.filter-widget-box {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-light);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.filter-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+.filter-category-list, .filter-checkbox-list {
+  list-style: none;
+  font-size: 12px;
+}
+.filter-category-list li {
+  margin-bottom: 8px;
+}
+.filter-checkbox-list label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+.products-grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ==========================================================================
+   6. SINGLE PRODUCT PAGE LUXURY LAYOUT
    ========================================================================== */
 .single-product-custom-layout {
   padding: 40px;
@@ -1046,11 +830,6 @@ a:hover { opacity: 0.85; }
   background: var(--color-text-main);
   color: #FFFFFF;
   border-color: var(--color-text-main);
-}
-.size-pill-btn.disabled {
-  opacity: 0.5;
-  background: #F5F1EA;
-  cursor: not-allowed;
 }
 
 .price-discount-table {
@@ -1218,6 +997,10 @@ a:hover { opacity: 0.85; }
   .colour-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .beads-grid-6 { grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .products-grid-4 { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .products-grid-3col { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .shop-layout-grid { grid-template-columns: 1fr; gap: 20px; }
+  .shop-filter-sidebar { display: none; }
+  .account-forms-grid { grid-template-columns: 1fr; gap: 20px; }
   
   .layouts-container, .story-container, .reviews-expert-container { grid-template-columns: 1fr; gap: 30px; padding: 20px; }
   .footer-5col-grid { grid-template-columns: 1fr; gap: 16px; }
