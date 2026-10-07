@@ -132,3 +132,13 @@ add_shortcode('stone_passport', 'vivaaz_stone_passport_shortcode');
 add_filter('option_woocommerce_enable_myaccount_registration', '__return_true');
 add_filter('option_woocommerce_registration_generate_password', '__return_false');
 
+/**
+ * 8. Permanently Disable WooCommerce Coming Soon / Maintenance Mode Blocking
+ */
+add_filter('option_woocommerce_coming_soon', '__return_false');
+add_filter('option_woocommerce_store_pages_only', '__return_false');
+add_filter('pre_option_woocommerce_coming_soon', '__return_false');
+add_filter('pre_option_woocommerce_store_pages_only', '__return_false');
+
+
+
