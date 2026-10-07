@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SEO Proposal & 30-Day Ranking Action Plan - handicraft.layest.shop</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm 15mm 15mm 15mm;
+            @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
+            }
+        }
+        
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            color: #1F2937;
+            background-color: #FFFFFF;
+            line-height: 1.5;
+            font-size: 13px;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header / Cover Banner */
+        .header-banner {
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 60%, #3B82F6 100%);
+            color: #FFFFFF;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-banner h1 {
+            font-size: 26px;
+            margin: 0 0 8px 0;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #FFFFFF;
+        }
+
+        .header-banner .subtitle {
+            font-size: 15px;
+            color: #93C5FD;
+            margin-bottom: 18px;
+            font-weight: 500;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 18px;
+            border-radius: 6px;
+            backdrop-filter: blur(5px);
+        }
+
+        .meta-item {
+            font-size: 12px;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: #F3F4F6;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .meta-item span {
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 24px;
+            page-break-inside: avoid;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1E3A8A;
+            border-bottom: 2px solid #E2E8F0;
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background-color: #D97706;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background-color: #FEF3C7;
+            border-left: 4px solid #D97706;
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box h4 {
+            margin: 0 0 6px 0;
+            color: #92400E;
+            font-size: 14px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: #78350F;
+            font-size: 12px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 18px;
+            font-size: 12px;
+        }
+
+        th {
+            background-color: #1E3A8A;
+            color: #FFFFFF;
+            text-align: left;
+            padding: 10px 12px;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #E2E8F0;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background-color: #F8FAFC;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-primary { background-color: #DBEAFE; color: #1E40AF; }
+        .badge-success { background-color: #D1FAE5; color: #065F46; }
+        .badge-warning { background-color: #FEF3C7; color: #92400E; }
+
+        /* Timeline Roadmap Cards */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 10px;
+        }
+
+        .timeline-card {
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 14px;
+            background-color: #FFFFFF;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            page-break-inside: avoid;
+        }
+
+        .timeline-card.active {
+            border-top: 4px solid #1E3A8A;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #F1F5F9;
+            padding-bottom: 6px;
+        }
+
+        .timeline-header h3 {
+            margin: 0;
+            font-size: 14px;
+            color: #0F172A;
+            font-weight: 700;
+        }
+
+        .timeline-card ul {
+            margin: 0;
+            padding-left: 18px;
+            color: #475569;
+        }
+
+        .timeline-card li {
+            margin-bottom: 5px;
+            font-size: 11.5px;
+        }
+
+        /* Deliverables List */
+        .deliverables-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .deliverable-item {
+            background-color: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .deliverable-item .icon {
+            font-size: 20px;
+            margin-bottom: 6px;
+            color: #1E3A8A;
+        }
+
+        .deliverable-item h5 {
+            margin: 0 0 4px 0;
+            font-size: 12px;
+            color: #0F172A;
+        }
+
+        .deliverable-item p {
+            margin: 0;
+            font-size: 11px;
+            color: #64748B;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            padding-top: 14px;
+            border-top: 1px solid #E2E8F0;
+            text-align: center;
+            font-size: 11px;
+            color: #94A3B8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Banner -->
+    <div class="header-banner">
+        <h1>SEO Proposal & 30-Day Top 3 Ranking Strategy</h1>
+        <div class="subtitle">Comprehensive International Organic Growth Plan for Premium Wooden Temples</div>
+        
+        <div class="meta-grid">
+            <div class="meta-item">
+                <strong>Target Website</strong>
+                <span>handicraft.layest.shop</span>
+            </div>
+            <div class="meta-item">
+                <strong>Target Markets</strong>
+                <span>USA, Canada, UK, UAE & Global NRIs</span>
+            </div>
+            <div class="meta-item">
+                <strong>Execution Timeline</strong>
+                <span>30 Days (4-Week Campaign)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Executive Summary -->
+    <div class="section">
+        <div class="section-title">1. Executive Summary & Campaign Vision</div>
+        <p>
+            <strong>handicraft.layest.shop</strong> specializes in handcrafted, premium wooden pooja mandirs and traditional Indian art pieces. The primary objective of this SEO campaign is to position 5 high-converting, commercial-intent keywords in the <strong>Top 3 Google Search Results</strong> within 30 days.
+        </p>
+        <p>
+            Our strategy focuses exclusively on high-value buyers and homeowners living abroad who are searching for permanent, high-quality solid wood temples for their homes.
+        </p>
+    </div>
+
+    <!-- Renter Exclusion Strategy -->
+    <div class="highlight-box">
+        <h4>🎯 High-Intent Audience Strategy: Excluding Renters</h4>
+        <p>
+            <strong>Strategic Focus:</strong> Renters generally look for small, temporary, or cheap folding temples. To maximize ROI and target actual buyers/homeowners, our content, metadata, and keyword targeting emphasize <em>"Solid Wood", "Custom Handcrafted", "Luxury Home Shrine",</em> and <em>"Permanent Home Mandir"</em>. Low-intent terms like <em>"cheap", "rental", "folding",</em> and <em>"plastic mandir"</em> will be strictly excluded.
+        </p>
+    </div>
+
+    <!-- Target Keywords Table -->
+    <div class="section">
+        <div class="section-title">2. Top 5 Target Keywords (International Market)</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Target Keyword</th>
+                    <th>Target Audience</th>
+                    <th>Intent Type</th>
+                    <th>Strategic Rationale</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Handcrafted Wooden Mandir for Home USA</strong></td>
+                    <td>USA NRI Homeowners</td>
+                    <td><span class="badge badge-primary">High Commercial</span></td>
+                    <td>Targets established homeowners in the US seeking handcrafted wooden temples.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>Custom Wooden Pooja Mandir Buy Online</strong></td>
+                    <td>Global Property Owners</td>
+                    <td><span class="badge badge-success">Transactional</span></td>
+                    <td>Attracts premium buyers looking for custom size/design mandirs online.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>Indian Home Temple USA</strong></td>
+                    <td>US & Canada Expats</td>
+                    <td><span class="badge badge-primary">High Volume</span></td>
+                    <td>Core generic keyword with massive search volume among the Indian diaspora.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><strong>Solid Wood Pooja Temple for Home</strong></td>
+                    <td>Premium Buyers</td>
+                    <td><span class="badge badge-warning">Quality Focused</span></td>
+                    <td>Filters out temporary renters by focusing strictly on solid wood craftsmanship.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>Buy Wooden Mandir in USA</strong></td>
+                    <td>Direct Buyers</td>
+                    <td><span class="badge badge-success">Direct Conversion</span></td>
+                    <td>High-converting transactional keyword for ready-to-buy customers.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 30-Day Roadmap -->
+    <div class="section">
+        <div class="section-title">3. 30-Day Top 3 Google Ranking Action Plan</div>
+        
+        <div class="timeline-grid">
+            
+            <div class="timeline-card active">
+                <div class="timeline-header">
+                    <h3>Week 1: Technical & On-Page Foundation</h3>
+                    <span class="badge badge-primary">Foundation</span>
+                </div>
+                <ul>
+                    <li><strong>Page Speed Optimization:</strong> Achieve &lt; 2.5s load speed on mobile & desktop.</li>
+                    <li><strong>Metadata Rewriting:</strong> Optimize Page Titles & Meta Descriptions with 5 target keywords & USA geography.</li>
+                    <li><strong>Heading Structure:</strong> Restructure H1, H2, and H3 tags on homepage & product pages.</li>
+                    <li><strong>Schema Implementation:</strong> Deploy Product, LocalBusiness, Organization & FAQ Schema.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-card active">
+                <div class="timeline-header">
+                    <h3>Week 2: Content & Intent Targeting</h3>
+                    <span class="badge badge-success">Optimization</span>
+                </div>
+                <ul>
+                    <li><strong>Buyer-Centric Content:</strong> Rewrite product pages emphasizing solid wood, durability & express USA shipping.</li>
+                    <li><strong>Silo Link Architecture:</strong> Interlink product collections (`Kashthakala`, Mandirs) logically.</li>
+                    <li><strong>International Geo-Targeting:</strong> Configure Hreflang tags (en-US, en-CA, en-GB) & GSC target regions.</li>
+                    <li><strong>Trust Signals:</strong> Add security badges, warranty info, and dimensions clarity.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-card active">
+                <div class="timeline-header">
+                    <h3>Week 3: Off-Page SEO & Backlink Building</h3>
+                    <span class="badge badge-warning">Authority</span>
+                </div>
+                <ul>
+                    <li><strong>Niche Guest Posting:</strong> Secure high DA (40+) backlinks from Home Decor & Craft blogs.</li>
+                    <li><strong>USA Local Citations:</strong> Submit site to premium international & US directories.</li>
+                    <li><strong>Visual & Image SEO:</strong> Alt-tag optimization for Google Images & Pinterest syndication.</li>
+                    <li><strong>Web 2.0 Webmaster Outlets:</strong> Build secondary authority nodes pointing to key product pages.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-card active">
+                <div class="timeline-header">
+                    <h3>Week 4: Shopping Indexing & Rank Push</h3>
+                    <span class="badge badge-primary">Conversion</span>
+                </div>
+                <ul>
+                    <li><strong>Google Merchant Center Sync:</strong> Feed integration for organic Google Shopping rich snippets.</li>
+                    <li><strong>GSC Re-indexing Push:</strong> Submit priority URLs for instant index refresh.</li>
+                    <li><strong>Daily Rank Tracking:</strong> Monitor position movements on google.com (USA).</li>
+                    <li><strong>Conversion Optimization:</strong> Refine call-to-action buttons & inquiry flow.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Deliverables & Reporting -->
+    <div class="section">
+        <div class="section-title">4. Deliverables & Transparency Reporting</div>
+        <div class="deliverables-list">
+            <div class="deliverable-item">
+                <div class="icon">📊</div>
+                <h5>Weekly Rank Reports</h5>
+                <p>Track Google position movements for all 5 target keywords.</p>
+            </div>
+            <div class="deliverable-item">
+                <div class="icon">🔗</div>
+                <h5>Live Backlink Sheet</h5>
+                <p>Complete transparent reporting of all built guest posts & citations.</p>
+            </div>
+            <div class="deliverable-item">
+                <div class="icon">📈</div>
+                <h5>GSC Traffic Analytics</h5>
+                <p>Detailed performance report on organic clicks & search impressions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Confidential SEO Strategy Document Prepared for <strong>handicraft.layest.shop</strong> | Generated: October 2026
+    </div>
+
+</body>
+</html>

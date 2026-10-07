@@ -9,12 +9,13 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * 1. Enqueue Theme Stylesheet Directly
+ * 1. Enqueue Theme Stylesheet Directly with High Priority
  */
 function vivaaz_enqueue_styles() {
-    wp_enqueue_style('vivaaz-theme-style', get_stylesheet_uri(), array(), '3.0.0');
+    wp_enqueue_style('flatsome-style', get_template_directory_uri() . '/style.css', array(), '3.20.11');
+    wp_enqueue_style('vivaaz-theme-style', get_stylesheet_uri(), array('flatsome-style'), '4.0.0');
 }
-add_action('wp_enqueue_scripts', 'vivaaz_enqueue_styles', 10);
+add_action('wp_enqueue_scripts', 'vivaaz_enqueue_styles', 9999);
 
 /**
  * 2. Pre-fill WhatsApp Inquiry Link for Products
