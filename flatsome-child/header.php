@@ -32,10 +32,7 @@
   <header class="main-header">
     <!-- Brand Logo -->
     <a href="<?php echo esc_url(home_url('/')); ?>" class="brand-logo-container">
-      <div>
-        <span class="brand-logo-text">V I V A A Z</span>
-        <span class="brand-logo-subtitle">GEMS & JEWELLERY · JAIPUR</span>
-      </div>
+      <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/vivaaz-logo.png'); ?>" alt="Vivaaz Gems & Jewellery" class="brand-logo-img" style="height: 44px; width: auto; max-width: 220px; object-fit: contain; display: block;">
     </a>
 
     <!-- Centered Navigation Menu with Mega Dropdowns -->

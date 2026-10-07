@@ -9,7 +9,9 @@
       
       <!-- Large Centered Brand Header -->
       <div class="footer-brand-header">
-        <h2 class="footer-brand-title">V I V A A Z</h2>
+        <a href="<?php echo esc_url(home_url('/')); ?>" style="display: inline-block;">
+          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/vivaaz-logo.png'); ?>" alt="Vivaaz Gems & Jewellery" style="height: 48px; width: auto; max-width: 260px; object-fit: contain; display: block; margin: 0 auto 8px;">
+        </a>
         <p class="footer-brand-sub">GEMS · JAIPUR · BANGKOK</p>
       </div>
 
