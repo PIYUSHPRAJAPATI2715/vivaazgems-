@@ -30,9 +30,13 @@
 
   <!-- MAIN HEADER (CLIENT SPEC: LOGO LEFT, CENTRED MENU, ICONS RIGHT) -->
   <header class="main-header">
-    <!-- Brand Logo -->
+    <!-- Brand Logo & Name -->
     <a href="<?php echo esc_url(home_url('/')); ?>" class="brand-logo-container">
-      <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/vivaaz-logo.png'); ?>" alt="Vivaaz Gems & Jewellery" class="brand-logo-img" style="height: 44px; width: auto; max-width: 220px; object-fit: contain; display: block;">
+      <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/vivaaz-logo.png'); ?>" alt="Vivaaz Gems & Jewellery" class="brand-logo-img" style="height: 38px; width: auto; object-fit: contain; display: block;">
+      <div class="brand-logo-text-block">
+        <span class="brand-logo-text">V I V A A Z</span>
+        <span class="brand-logo-subtitle">GEMS & JEWELLERY · JAIPUR</span>
+      </div>
     </a>
 
     <!-- Centered Navigation Menu with Mega Dropdowns -->

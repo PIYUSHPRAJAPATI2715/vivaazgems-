@@ -9,10 +9,13 @@
       
       <!-- Large Centered Brand Header -->
       <div class="footer-brand-header">
-        <a href="<?php echo esc_url(home_url('/')); ?>" style="display: inline-block;">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/vivaaz-logo.png'); ?>" alt="Vivaaz Gems & Jewellery" style="height: 48px; width: auto; max-width: 260px; object-fit: contain; display: block; margin: 0 auto 8px;">
+        <a href="<?php echo esc_url(home_url('/')); ?>" style="display: inline-flex; align-items: center; justify-content: center; gap: 14px; text-decoration: none;">
+          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/vivaaz-logo.png'); ?>" alt="Vivaaz Gems & Jewellery" style="height: 44px; width: auto; object-fit: contain;">
+          <div style="text-align: left;">
+            <h2 class="footer-brand-title" style="margin: 0; line-height: 1; font-size: 32px; letter-spacing: 0.3em;">V I V A A Z</h2>
+            <p class="footer-brand-sub" style="margin: 4px 0 0 0; font-size: 10px; letter-spacing: 0.25em;">GEMS & JEWELLERY · JAIPUR · BANGKOK</p>
+          </div>
         </a>
-        <p class="footer-brand-sub">GEMS · JAIPUR · BANGKOK</p>
       </div>
 
       <!-- 5-Column Navigation Grid -->
