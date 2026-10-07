@@ -7,6 +7,7 @@
 </head>
 <body <?php body_class(); ?>>
 
+<div class="site-header-wrapper">
   <!-- TOP BAR (CLIENT SPEC PAGE 3) -->
   <div class="top-bar-notice">
     <div class="top-bar-left">
@@ -205,7 +206,27 @@
     <!-- Header Action Icons (Account, Wishlist, Cart) -->
     <div class="header-action-group">
       <a href="<?php echo esc_url(home_url('/shop/?s=')); ?>" class="icon-action-btn" title="Search">🔍</a>
-      <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="icon-action-btn" title="Sign In / Sign Up">👤 account</a>
+      
+      <!-- Dynamic Account Login / Logout Dropdown -->
+      <?php if (is_user_logged_in()) : 
+        $current_user = wp_get_current_user();
+      ?>
+        <div class="has-account-dropdown">
+          <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="icon-action-btn" title="My Account">
+            👤 <?php echo esc_html($current_user->display_name ?: $current_user->user_login); ?> ▾
+          </a>
+          <div class="account-hover-menu">
+            <a href="<?php echo esc_url(home_url('/my-account/')); ?>">Dashboard</a>
+            <a href="<?php echo esc_url(home_url('/my-account/orders/')); ?>">My Orders</a>
+            <a href="<?php echo esc_url(home_url('/wishlist/')); ?>">Wishlist</a>
+            <div class="account-menu-divider"></div>
+            <a href="<?php echo esc_url(wp_logout_url(home_url('/'))); ?>" class="logout-link">Sign Out / Logout →</a>
+          </div>
+        </div>
+      <?php else : ?>
+        <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="icon-action-btn" title="Sign In / Sign Up">👤 account</a>
+      <?php endif; ?>
+
       <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="icon-action-btn" title="Wishlist">♡</a>
       <a href="<?php echo esc_url(home_url('/cart/')); ?>" class="icon-action-btn" title="Cart Bag">
         🛒 bag
@@ -215,3 +236,4 @@
       </a>
     </div>
   </header>
+</div>
