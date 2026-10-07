@@ -21,7 +21,7 @@ do_action('woocommerce_before_customer_login_form');
       <p class="text-muted" style="font-size: 13px;">Sign in to your account or create a new account to track orders and save your wishlist.</p>
     </div>
 
-    <div class="account-forms-grid <?php echo (get_option('woocommerce_enable_myaccount_registration') === 'yes') ? 'has-register' : 'login-only'; ?>">
+    <div class="account-forms-grid has-register">
       
       <!-- 1. SIGN IN FORM -->
       <div class="account-form-card">
@@ -71,7 +71,6 @@ do_action('woocommerce_before_customer_login_form');
         </form>
       </div>
 
-      <?php if (get_option('woocommerce_enable_myaccount_registration') === 'yes') : ?>
       <!-- 2. CREATE ACCOUNT FORM -->
       <div class="account-form-card">
         <h2 class="form-card-title">Create an Account</h2>
@@ -114,7 +113,6 @@ do_action('woocommerce_before_customer_login_form');
 
         </form>
       </div>
-      <?php endif; ?>
 
     </div>
 

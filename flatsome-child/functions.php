@@ -125,3 +125,10 @@ function vivaaz_stone_passport_shortcode($atts) {
     return ob_get_clean();
 }
 add_shortcode('stone_passport', 'vivaaz_stone_passport_shortcode');
+
+/**
+ * 7. Force WooCommerce Account Registration & User Password Input
+ */
+add_filter('option_woocommerce_enable_myaccount_registration', '__return_true');
+add_filter('option_woocommerce_registration_generate_password', '__return_false');
+
