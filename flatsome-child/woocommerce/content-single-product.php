@@ -1,0 +1,201 @@
+<?php
+/**
+ * Vivaaz Gems - Custom WooCommerce Single Product Template
+ * Matches Pages 12-15 of the 23-page Master Brief
+ */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+global $product;
+$product_id = get_the_ID();
+$sku = $product ? $product->get_sku() : '';
+$price_html = $product ? $product->get_price_html() : '₹1,450';
+$title = get_the_title();
+$categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
+$cat_name = !empty($categories) ? strtoupper(implode(' · ', $categories)) : 'CEYLON SAPPHIRE · FACETED · CALIBRATED';
+
+$main_img = get_the_post_thumbnail_url($product_id, 'large') ?: get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg';
+$whatsapp_url = 'https://wa.me/919680552270?text=' . rawurlencode("Hi Vivaaz Gems, I would like to inquire about: " . $title . " (SKU: " . ($sku ?: 'N/A') . ")");
+
+do_action('woocommerce_before_single_product');
+?>
+
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class('single-product-custom-layout', $product); ?>>
+  
+  <div class="single-product-grid-wrapper">
+    
+    <!-- LEFT COLUMN: GALLERY & LIGHT PHOTOS -->
+    <div class="single-product-gallery-col">
+      <div class="main-featured-image-box">
+        <span class="video-badge-overlay">▶ Video · seen on Instagram</span>
+        <img id="main-gallery-view" src="<?php echo esc_url($main_img); ?>" alt="<?php echo esc_attr($title); ?>" class="main-gallery-img">
+      </div>
+
+      <!-- Light Photos Thumbnails -->
+      <div class="light-photos-row">
+        <div class="light-thumb-item active" onclick="changeProductImg('<?php echo esc_url($main_img); ?>', this)">
+          <img src="<?php echo esc_url($main_img); ?>" alt="Video">
+          <span>Video</span>
+        </div>
+        <div class="light-thumb-item" onclick="changeProductImg('<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg'); ?>', this)">
+          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg'); ?>" alt="Daylight">
+          <span>❶ Daylight</span>
+        </div>
+        <div class="light-thumb-item" onclick="changeProductImg('<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ruby.jpg'); ?>', this)">
+          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ruby.jpg'); ?>" alt="Lamp">
+          <span>Lamp</span>
+        </div>
+        <div class="light-thumb-item" onclick="changeProductImg('<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/lab-certificate.jpg'); ?>', this)">
+          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/lab-certificate.jpg'); ?>" alt="Certificate">
+          <span>Certificate</span>
+        </div>
+        <div class="light-thumb-item" onclick="changeProductImg('<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/true-size-grid.jpg'); ?>', this)">
+          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/true-size-grid.jpg'); ?>" alt="True size">
+          <span>❹ True size</span>
+        </div>
+      </div>
+      <p class="light-photos-hint">Light photos: only the lights this stone was photographed in (Daylight · Indoor · Lamp).</p>
+    </div>
+
+    <!-- RIGHT COLUMN: PRODUCT DETAILS & PURCHASING -->
+    <div class="single-product-info-col">
+      <div class="product-category-tag"><?php echo esc_html($cat_name); ?></div>
+      <h1 class="single-product-title"><?php echo esc_html($title); ?></h1>
+      
+      <div class="single-price-row">
+        <span class="single-price-amount"><?php echo $price_html; ?></span>
+        <span class="single-price-unit">per piece</span>
+      </div>
+      <p class="single-tax-info">Inclusive of taxes · India 2–3 days · worldwide 4–7 days · insured</p>
+
+      <!-- Look & Best For Box (2 lines) -->
+      <div class="look-bestfor-box">
+        <div><span class="text-gold font-bold">Look</span> Deep royal blue with bright sparkle</div>
+        <div><span class="text-gold font-bold">Best for</span> Rings, earrings, halo settings</div>
+      </div>
+
+      <!-- Size Selector Buttons -->
+      <div class="product-option-group">
+        <div class="option-label-flex">
+          <span>SIZE (MM)</span>
+          <a href="#size-guide" class="btn-underline-link" style="font-size: 11px;">Size guide</a>
+        </div>
+        <div class="pill-buttons-row">
+          <button type="button" class="size-pill-btn">5×3</button>
+          <button type="button" class="size-pill-btn">6×4</button>
+          <button type="button" class="size-pill-btn active">7×5</button>
+          <button type="button" class="size-pill-btn disabled">8×6 <span style="font-size: 9px; opacity: 0.7;">(sold out)</span></button>
+        </div>
+      </div>
+
+      <!-- Pieces Buttons -->
+      <div class="product-option-group">
+        <div class="option-label-flex">
+          <span>PIECES</span>
+        </div>
+        <div class="pill-buttons-row">
+          <button type="button" class="size-pill-btn">10</button>
+          <button type="button" class="size-pill-btn active">20</button>
+          <button type="button" class="size-pill-btn">50</button>
+          <button type="button" class="size-pill-btn">100</button>
+          <button type="button" class="size-pill-btn">500</button>
+          <button type="button" class="size-pill-btn">Other</button>
+        </div>
+        <div class="price-discount-table">
+          <div class="discount-col active">10+ pcs <strong>₹1,450</strong></div>
+          <div class="discount-col">50+ pcs <strong>₹1,320</strong></div>
+          <div class="discount-col">100+ pcs <strong>₹1,210</strong></div>
+        </div>
+      </div>
+
+      <!-- Total Price & Add to Cart -->
+      <div class="total-cart-action-wrapper">
+        <div class="total-calculated-row">
+          <span>Total for 20 pieces</span>
+          <span style="font-size: 20px; font-weight: 700; color: var(--color-text-main);">₹29,000</span>
+        </div>
+        
+        <?php
+        woocommerce_template_single_add_to_cart();
+        ?>
+
+        <!-- WhatsApp Button -->
+        <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" class="btn-whatsapp-green-full">
+          <span>✆</span> Ask about this stone on WhatsApp
+        </a>
+      </div>
+
+      <!-- B2B & Video Call Box -->
+      <div class="b2b-videocall-grid">
+        <div class="b2b-box-item">
+          <div><strong style="color: var(--color-gold-label);">◇ Bulk / B2B price</strong></div>
+          <div style="font-size: 11px; color: var(--color-text-muted);">Parcels, calibrated lots, wholesale ›</div>
+        </div>
+        <div class="b2b-box-item">
+          <div><strong style="color: var(--color-gold-label);">▷ See it on a video call</strong></div>
+          <div style="font-size: 11px; color: var(--color-text-muted);">We show you the stone live ›</div>
+        </div>
+      </div>
+
+      <!-- 4 Trust Icons -->
+      <div class="single-trust-4grid">
+        <div>◈ Lab certified</div>
+        <div>◈ Insured shipping</div>
+        <div>◈ Secure payment</div>
+        <div>◈ 7-day returns</div>
+      </div>
+
+      <!-- Stone Passport Box -->
+      <div class="stone-passport-container">
+        <div class="stone-passport-head">
+          <span style="font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-label);">STONE PASSPORT</span>
+          <span style="font-size: 11px; color: var(--color-text-muted);">No. <?php echo esc_html($sku ?: 'VG-SPH-OV-0705'); ?></span>
+        </div>
+        <table class="stone-passport-table">
+          <tr><td>Stone</td><td><?php echo esc_html($title); ?></td></tr>
+          <tr><td>Origin</td><td>Sri Lanka (Ceylon)</td></tr>
+          <tr><td>Treatment</td><td>Heated</td></tr>
+          <tr><td>Size</td><td>7 × 5 mm</td></tr>
+          <tr><td>Tolerance</td><td>± 0.2 mm</td></tr>
+          <tr><td>Approx. weight</td><td>≈ 0.85 ct per piece</td></tr>
+          <tr><td>Shape / cut</td><td>Oval, faceted (calibrated)</td></tr>
+          <tr><td>Colour / clarity</td><td>Royal blue · Eye-clean</td></tr>
+          <tr><td>Quality</td><td>AAA · colour matched across lot</td></tr>
+          <tr><td>Certificate</td><td><a href="#" style="color: var(--color-gold-label); text-decoration: underline;">Lab report for the lot (view)</a></td></tr>
+        </table>
+      </div>
+
+      <!-- Accordion Details -->
+      <div class="product-accordion-wrapper">
+        <details>
+          <summary>Shipping & returns</summary>
+          <p style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0;">India 2–3 days. International 4–7 days insured. 7-day easy returns.</p>
+        </details>
+        <details>
+          <summary>Care & setting notes</summary>
+          <p style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0;">Clean with warm soapy water and soft brush. Ideal for claw and bezel settings.</p>
+        </details>
+        <details>
+          <summary>About Ceylon sapphires</summary>
+          <p style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0;">Renowned worldwide for vibrant cornflower and royal blue hues with exceptional clarity.</p>
+        </details>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  function changeProductImg(src, element) {
+    document.getElementById('main-gallery-view').src = src;
+    var thumbs = document.querySelectorAll('.light-thumb-item');
+    thumbs.forEach(function(t) { t.classList.remove('active'); });
+    element.classList.add('active');
+  }
+</script>
+
+<?php do_action('woocommerce_after_single_product'); ?>
