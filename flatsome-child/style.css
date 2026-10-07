@@ -1367,6 +1367,10 @@ body.admin-bar .site-header-wrapper {
   border: 1px solid var(--color-border-light) !important;
   overflow: hidden !important;
   margin-bottom: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 400px !important;
   aspect-ratio: 1 / 1 !important;
 }
 
@@ -1387,7 +1391,8 @@ body.admin-bar .site-header-wrapper {
 .main-gallery-img {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
+  max-height: 520px !important;
+  object-fit: contain !important;
   display: block !important;
 }
 
@@ -1543,70 +1548,135 @@ body.admin-bar .site-header-wrapper {
   background: #F5F1EA !important;
 }
 
-.btn-add-to-cart-gold {
-  display: block !important;
-  width: 100% !important;
-  padding: 16px !important;
-  background: var(--color-gold-label) !important;
+.price-discount-table {
+  display: flex !important;
+  gap: 12px !important;
+  margin: 16px 0 !important;
+}
+
+.discount-col {
+  flex: 1 !important;
+  padding: 10px !important;
+  border: 1px solid var(--color-border-light) !important;
+  background: #FFFFFF !important;
+  font-size: 12px !important;
+  text-align: center !important;
+}
+
+.discount-col.active {
+  border-color: var(--color-gold-label) !important;
+  background: #FDFBF7 !important;
+}
+
+.total-cart-action-wrapper {
+  margin-bottom: 24px !important;
+}
+
+.total-calculated-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 12px 16px !important;
+  background: #FFFFFF !important;
+  border: 1px solid var(--color-border-light) !important;
+  margin-bottom: 14px !important;
+  font-size: 13px !important;
+}
+
+/* WOOCOMMERCE FORM & BUTTON OVERRIDES */
+.single-product-custom-layout form.cart {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: center !important;
+  margin-bottom: 14px !important;
+}
+
+.single-product-custom-layout form.cart .quantity {
+  margin: 0 !important;
+}
+
+.single-product-custom-layout form.cart .quantity .qty {
+  width: 60px !important;
+  height: 48px !important;
+  padding: 0 10px !important;
+  border: 1px solid var(--color-border-light) !important;
+  text-align: center !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  background: #FFFFFF !important;
+  border-radius: 0 !important;
+}
+
+.single-product-custom-layout form.cart .single_add_to_cart_button,
+.single-product-custom-layout button[name="add-to-cart"] {
+  flex: 1 !important;
+  height: 48px !important;
+  background: #1A1A1A !important;
   color: #FFFFFF !important;
   border: none !important;
-  font-size: 13px !important;
+  font-size: 12px !important;
   font-weight: 700 !important;
   letter-spacing: 0.15em !important;
   text-transform: uppercase !important;
   cursor: pointer !important;
   text-align: center !important;
-  margin-bottom: 12px !important;
+  border-radius: 0 !important;
   transition: background 0.2s ease !important;
-  text-decoration: none !important;
 }
 
-.btn-add-to-cart-gold:hover {
-  background: #1A1A1A !important;
+.single-product-custom-layout form.cart .single_add_to_cart_button:hover,
+.single-product-custom-layout button[name="add-to-cart"]:hover {
+  background: var(--color-gold-label) !important;
   color: #FFFFFF !important;
 }
 
-.btn-whatsapp-inquire {
+.btn-whatsapp-green-full {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
   width: 100% !important;
   padding: 14px !important;
-  background: #FFFFFF !important;
-  border: 1px solid var(--color-border-light) !important;
-  color: var(--color-text-main) !important;
+  background: #25D366 !important;
+  color: #FFFFFF !important;
   font-size: 12px !important;
   font-weight: 700 !important;
   letter-spacing: 0.1em !important;
   text-transform: uppercase !important;
   text-decoration: none !important;
-  margin-bottom: 24px !important;
-  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
+  transition: background 0.2s ease !important;
 }
 
-.btn-whatsapp-inquire:hover {
-  background: #25D366 !important;
+.btn-whatsapp-green-full:hover {
+  background: #1eb956 !important;
   color: #FFFFFF !important;
-  border-color: #25D366 !important;
 }
 
-.trust-badges-flex {
-  display: flex !important;
-  justify-content: space-between !important;
+.b2b-videocall-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  margin: 20px 0 !important;
+}
+
+.b2b-box-item {
+  background: #FFFFFF !important;
+  border: 1px solid var(--color-border-light) !important;
+  padding: 14px !important;
+  font-size: 12px !important;
+}
+
+.single-trust-4grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
   gap: 10px !important;
   padding: 16px 0 !important;
   border-top: 1px solid var(--color-border-light) !important;
   border-bottom: 1px solid var(--color-border-light) !important;
-  margin-bottom: 28px !important;
-}
-
-.trust-badge-item {
+  margin: 20px 0 !important;
   font-size: 11px !important;
   color: var(--color-text-muted) !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 6px !important;
 }
 
 /* Stone Passport Box */
@@ -1645,6 +1715,18 @@ body.admin-bar .site-header-wrapper {
 .stone-passport-table tr td:last-child {
   color: var(--color-text-main) !important;
   font-weight: 500 !important;
+}
+
+.product-accordion-wrapper details {
+  border-bottom: 1px solid var(--color-border-light) !important;
+  padding: 12px 0 !important;
+}
+
+.product-accordion-wrapper summary {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  color: var(--color-text-main) !important;
 }
 
 @media (max-width: 768px) {

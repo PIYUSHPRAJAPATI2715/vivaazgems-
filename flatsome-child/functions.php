@@ -140,5 +140,15 @@ add_filter('option_woocommerce_store_pages_only', '__return_false');
 add_filter('pre_option_woocommerce_coming_soon', '__return_false');
 add_filter('pre_option_woocommerce_store_pages_only', '__return_false');
 
+/**
+ * 9. Allow Mobile Phones on Same Wi-Fi to View Site via Computer IP
+ */
+if (isset($_SERVER['HTTP_HOST']) && preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/', $_SERVER['HTTP_HOST'])) {
+    $current_ip_url = 'http://' . $_SERVER['HTTP_HOST'];
+    add_filter('option_siteurl', function() use ($current_ip_url) { return $current_ip_url; });
+    add_filter('option_home', function() use ($current_ip_url) { return $current_ip_url; });
+}
+
+
 
 
