@@ -509,45 +509,85 @@ body.admin-bar .site-header-wrapper {
 }
 
 /* ==========================================================================
-   4. ACCOUNT LOGIN & REGISTRATION PAGE STYLING (FIXED WOOCOMMERCE FORM ROWS)
+   4. ACCOUNT LOGIN & REGISTRATION PAGE STYLING (LUXURY TABBED CARD DESIGN)
    ========================================================================== */
 .account-login-page-wrapper {
-  padding: 60px 40px !important;
+  padding: 50px 20px !important;
   background: var(--color-page-bg) !important;
+  min-height: 70vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
-.account-login-container {
-  max-width: 900px !important;
+
+.account-login-card-container {
+  max-width: 480px !important;
+  width: 100% !important;
   margin: 0 auto !important;
-}
-.account-page-header {
-  text-align: center !important;
-  margin-bottom: 40px !important;
-}
-.account-forms-grid {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 40px !important;
-}
-.account-forms-grid.login-only {
-  grid-template-columns: 1fr !important;
-  max-width: 460px !important;
-  margin: 0 auto !important;
-}
-.account-form-card {
   background: #FFFFFF !important;
   border: 1px solid var(--color-border-light) !important;
-  padding: 36px !important;
+  padding: 40px 36px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03) !important;
+  border-radius: 2px !important;
 }
-.form-card-title {
-  font-family: var(--font-family-serif) !important;
-  font-size: 24px !important;
-  font-weight: 400 !important;
-  margin-bottom: 20px !important;
-  padding-bottom: 10px !important;
-  border-bottom: 1px solid var(--color-border-light) !important;
+
+.account-page-header {
+  text-align: center !important;
+  margin-bottom: 24px !important;
+}
+
+/* Luxury Tabs Header */
+.account-tabs-header {
+  display: flex !important;
+  border-bottom: 2px solid #E6DFD5 !important;
+  margin-bottom: 28px !important;
+}
+
+.account-tab-btn {
+  flex: 1 !important;
+  padding: 12px 8px !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  margin-bottom: -2px !important;
+  font-family: var(--font-family-base) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  color: var(--color-text-muted) !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  text-align: center !important;
+}
+
+.account-tab-btn:hover {
+  color: var(--color-text-main) !important;
+}
+
+.account-tab-btn.active {
+  color: var(--color-text-main) !important;
+  border-bottom-color: var(--color-gold-label) !important;
+}
+
+/* Tab Panels */
+.account-tab-panel {
+  display: none !important;
+}
+
+.account-tab-panel.active {
+  display: block !important;
+  animation: fadeIn 0.3s ease-in-out !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Fixed WooCommerce Input Lines */
+.account-tab-panel form p.form-row,
+.account-tab-panel .form-group-item,
 .account-form-card form p.form-row,
 .account-form-card .form-group-item,
 .woocommerce-form-row {
@@ -557,6 +597,8 @@ body.admin-bar .site-header-wrapper {
   width: 100% !important;
   float: none !important;
 }
+
+.account-tab-panel label,
 .account-form-card label {
   display: block !important;
   font-size: 11px !important;
@@ -567,6 +609,12 @@ body.admin-bar .site-header-wrapper {
   color: var(--color-text-main) !important;
   float: none !important;
 }
+
+.account-tab-panel input[type="text"],
+.account-tab-panel input[type="email"],
+.account-tab-panel input[type="password"],
+.account-tab-panel .input-text,
+.account-tab-panel .input-text-custom,
 .account-form-card input[type="text"],
 .account-form-card input[type="email"],
 .account-form-card input[type="password"],
@@ -583,7 +631,13 @@ body.admin-bar .site-header-wrapper {
   box-sizing: border-box !important;
   border-radius: 0px !important;
   float: none !important;
+  transition: border-color 0.2s ease !important;
 }
+
+.account-tab-panel input:focus {
+  border-color: var(--color-gold-label) !important;
+}
+
 .form-action-row {
   display: flex !important;
   justify-content: space-between !important;
@@ -592,15 +646,61 @@ body.admin-bar .site-header-wrapper {
   margin-bottom: 20px !important;
   width: 100% !important;
 }
+
 .remember-me-checkbox {
   display: flex !important;
   align-items: center !important;
   gap: 6px !important;
   color: var(--color-text-muted) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
 }
+
 .lost-pass-link {
   color: var(--color-gold-label) !important;
+  font-size: 12px !important;
   text-decoration: underline !important;
+}
+
+.btn-square-dark-full {
+  display: block !important;
+  width: 100% !important;
+  padding: 14px !important;
+  background: #1A1A1A !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  transition: background 0.2s ease !important;
+}
+
+.btn-square-dark-full:hover {
+  background: var(--color-gold-label) !important;
+  color: #FFFFFF !important;
+}
+
+.account-switch-prompt {
+  text-align: center !important;
+  margin-top: 18px !important;
+  font-size: 13px !important;
+  color: var(--color-text-muted) !important;
+}
+
+.account-switch-prompt .switch-link {
+  color: var(--color-text-main) !important;
+  font-weight: 700 !important;
+  text-decoration: underline !important;
+  margin-left: 4px !important;
+}
+
+.account-switch-prompt .switch-link:hover {
+  color: var(--color-gold-label) !important;
 }
 
 .social-login-divider {
