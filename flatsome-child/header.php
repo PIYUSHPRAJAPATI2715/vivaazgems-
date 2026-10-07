@@ -99,7 +99,7 @@
   <div class="mobile-drawer" id="mobile-drawer">
     <div class="mobile-drawer-header">
       <div class="brand-logo-container">
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/vivaaz-logo.png" alt="Vivaaz Gems Logo" style="height: 32px;">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/vivaaz-logo.png" alt="Vivaaz Gems Logo" style="height: 32px;">
         <span class="brand-logo-text" style="font-size: 15px;">VIVAAZ GEMS</span>
       </div>
       <button class="close-drawer-btn" id="close-drawer-btn" style="background:none; border:none; font-size:24px; cursor:pointer;">✕</button>

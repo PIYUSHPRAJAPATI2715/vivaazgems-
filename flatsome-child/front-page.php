@@ -52,7 +52,7 @@ get_header();
       <!-- Right Visual Card -->
       <a href="<?php echo home_url('/ceylon-sapphire-product/'); ?>" class="hero-visual-card">
         <div class="hero-visual-pedestal">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/ceylon-sapphire.jpg" alt="Natural Ceylon Sapphire" class="hero-gem-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ceylon-sapphire.jpg" alt="Natural Ceylon Sapphire" class="hero-gem-img">
         </div>
         <div class="hero-caption-text">
           <span class="font-italic" style="color: var(--color-gold-accent); font-weight: 600;">Premium Quality</span><br>
@@ -73,32 +73,32 @@ get_header();
       <div class="colour-grid">
         <!-- 1. Blue -->
         <a href="<?php echo home_url('/shop/?filter_color=blue'); ?>" class="colour-item active">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/ceylon-sapphire.jpg" alt="Blue Gemstones" class="colour-gem-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ceylon-sapphire.jpg" alt="Blue Gemstones" class="colour-gem-img">
           <span class="colour-name">Blue</span>
         </a>
         <!-- 2. Red -->
         <a href="<?php echo home_url('/shop/?filter_color=red'); ?>" class="colour-item">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/ruby.jpg" alt="Red Gemstones" class="colour-gem-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ruby.jpg" alt="Red Gemstones" class="colour-gem-img">
           <span class="colour-name">Red</span>
         </a>
         <!-- 3. Pink -->
         <a href="<?php echo home_url('/shop/?filter_color=pink'); ?>" class="colour-item">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/ceylon-sapphire.jpg" alt="Pink Gemstones" class="colour-gem-img" style="filter: hue-rotate(280deg);">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ceylon-sapphire.jpg" alt="Pink Gemstones" class="colour-gem-img" style="filter: hue-rotate(280deg);">
           <span class="colour-name">Pink</span>
         </a>
         <!-- 4. Green -->
         <a href="<?php echo home_url('/shop/?filter_color=green'); ?>" class="colour-item">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/emerald.jpg" alt="Green Gemstones" class="colour-gem-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/emerald.jpg" alt="Green Gemstones" class="colour-gem-img">
           <span class="colour-name">Green</span>
         </a>
         <!-- 5. Yellow -->
         <a href="<?php echo home_url('/shop/?filter_color=yellow'); ?>" class="colour-item">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/swiss-topaz.jpg" alt="Yellow Gemstones" class="colour-gem-img" style="filter: hue-rotate(180deg);">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/swiss-topaz.jpg" alt="Yellow Gemstones" class="colour-gem-img" style="filter: hue-rotate(180deg);">
           <span class="colour-name">Yellow</span>
         </a>
         <!-- 6. Purple -->
         <a href="<?php echo home_url('/shop/?filter_color=purple'); ?>" class="colour-item">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/moonstone.jpg" alt="Purple Gemstones" class="colour-gem-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/moonstone.jpg" alt="Purple Gemstones" class="colour-gem-img">
           <span class="colour-name">Purple</span>
         </a>
       </div>
@@ -130,7 +130,7 @@ get_header();
       <a href="<?php echo home_url('/shop/'); ?>" class="category-luxury-card">
         <div class="category-card-media">
           <span class="category-card-badge badge-blue">💎 PREMIUM QUALITY</span>
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/ceylon-sapphire.jpg" alt="Gemstones" class="category-card-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ceylon-sapphire.jpg" alt="Gemstones" class="category-card-img">
         </div>
         <div class="category-card-body">
           <h3 class="category-card-heading">Gemstones</h3>
@@ -143,7 +143,7 @@ get_header();
       <a href="<?php echo home_url('/beads/'); ?>" class="category-luxury-card">
         <div class="category-card-media">
           <span class="category-card-badge badge-green">🛡️ CERTIFIED</span>
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/emerald.jpg" alt="Gemstone Beads" class="category-card-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/emerald.jpg" alt="Gemstone Beads" class="category-card-img">
         </div>
         <div class="category-card-body">
           <h3 class="category-card-heading">Gemstone Beads</h3>
@@ -156,7 +156,7 @@ get_header();
       <a href="<?php echo home_url('/tennis-jewelry/'); ?>" class="category-luxury-card">
         <div class="category-card-media">
           <span class="category-card-badge badge-red">⭐ AUTHENTIC</span>
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/ruby.jpg" alt="Jewelry Tennis" class="category-card-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ruby.jpg" alt="Jewelry Tennis" class="category-card-img">
         </div>
         <div class="category-card-body">
           <h3 class="category-card-heading">Jewelry · Tennis</h3>
@@ -169,7 +169,7 @@ get_header();
       <a href="<?php echo home_url('/astrology/'); ?>" class="category-luxury-card">
         <div class="category-card-media">
           <span class="category-card-badge badge-purple">🪷 EXCLUSIVE</span>
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/moonstone.jpg" alt="Astrology Gemstones" class="category-card-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/moonstone.jpg" alt="Astrology Gemstones" class="category-card-img">
         </div>
         <div class="category-card-body">
           <h3 class="category-card-heading">Astrology</h3>
@@ -209,7 +209,7 @@ get_header();
           <a href="<?php echo home_url('/ceylon-sapphire-product/'); ?>" class="product-card-luxury">
             <div class="product-card-media-box">
               <span class="category-card-badge badge-navy">New</span>
-              <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/ceylon-sapphire.jpg" alt="Ceylon Blue Sapphire" class="category-card-img">
+              <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ceylon-sapphire.jpg" alt="Ceylon Blue Sapphire" class="category-card-img">
             </div>
             <div class="product-card-body-row">
               <h3 class="product-card-title-text">Ceylon Blue Sapphire</h3>
@@ -225,7 +225,7 @@ get_header();
           <a href="<?php echo home_url('/shop/'); ?>" class="product-card-luxury">
             <div class="product-card-media-box">
               <span class="category-card-badge badge-gold">Best Seller</span>
-              <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/ruby.jpg" alt="Pigeon Blood Ruby" class="category-card-img">
+              <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ruby.jpg" alt="Pigeon Blood Ruby" class="category-card-img">
             </div>
             <div class="product-card-body-row">
               <h3 class="product-card-title-text">Pigeon Blood Ruby</h3>
@@ -241,7 +241,7 @@ get_header();
           <a href="<?php echo home_url('/shop/'); ?>" class="product-card-luxury">
             <div class="product-card-media-box">
               <span class="category-card-badge badge-darkgreen">Premium</span>
-              <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/emerald.jpg" alt="Zambian Emerald" class="category-card-img">
+              <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/emerald.jpg" alt="Zambian Emerald" class="category-card-img">
             </div>
             <div class="product-card-body-row">
               <h3 class="product-card-title-text">Zambian Emerald</h3>
@@ -257,7 +257,7 @@ get_header();
           <a href="<?php echo home_url('/shop/'); ?>" class="product-card-luxury">
             <div class="product-card-media-box">
               <span class="category-card-badge badge-navy">New</span>
-              <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/swiss-topaz.jpg" alt="Swiss Blue Topaz" class="category-card-img">
+              <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/swiss-topaz.jpg" alt="Swiss Blue Topaz" class="category-card-img">
             </div>
             <div class="product-card-body-row">
               <h3 class="product-card-title-text">Swiss Blue Topaz</h3>
@@ -306,32 +306,32 @@ get_header();
       <!-- 6 Reel Video Cards Grid -->
       <div class="reels-grid-6">
         <a href="<?php echo home_url('/ceylon-sapphire-product/'); ?>" class="reel-video-card">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/ceylon-sapphire.jpg" alt="Reel 1" class="reel-bg-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ceylon-sapphire.jpg" alt="Reel 1" class="reel-bg-img">
           <div class="reel-play-circle">▶</div>
           <div class="reel-bottom-badge">🎬 Reel 1</div>
         </a>
         <a href="<?php echo home_url('/ceylon-sapphire-product/'); ?>" class="reel-video-card">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/ruby.jpg" alt="Reel 2" class="reel-bg-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ruby.jpg" alt="Reel 2" class="reel-bg-img">
           <div class="reel-play-circle">▶</div>
           <div class="reel-bottom-badge">🎬 Reel 2</div>
         </a>
         <a href="<?php echo home_url('/ceylon-sapphire-product/'); ?>" class="reel-video-card">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/emerald.jpg" alt="Reel 3" class="reel-bg-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/emerald.jpg" alt="Reel 3" class="reel-bg-img">
           <div class="reel-play-circle">▶</div>
           <div class="reel-bottom-badge">🎬 Reel 3</div>
         </a>
         <a href="<?php echo home_url('/ceylon-sapphire-product/'); ?>" class="reel-video-card">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/swiss-topaz.jpg" alt="Reel 4" class="reel-bg-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/swiss-topaz.jpg" alt="Reel 4" class="reel-bg-img">
           <div class="reel-play-circle">▶</div>
           <div class="reel-bottom-badge">🎬 Reel 4</div>
         </a>
         <a href="<?php echo home_url('/ceylon-sapphire-product/'); ?>" class="reel-video-card">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/moonstone.jpg" alt="Reel 5" class="reel-bg-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/moonstone.jpg" alt="Reel 5" class="reel-bg-img">
           <div class="reel-play-circle">▶</div>
           <div class="reel-bottom-badge">🎬 Reel 5</div>
         </a>
         <a href="<?php echo home_url('/ceylon-sapphire-product/'); ?>" class="reel-video-card">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/../assets/images/ceylon-sapphire.jpg" alt="Reel 6" class="reel-bg-img">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ceylon-sapphire.jpg" alt="Reel 6" class="reel-bg-img">
           <div class="reel-play-circle">▶</div>
           <div class="reel-bottom-badge">🎬 Reel 6</div>
         </a>
