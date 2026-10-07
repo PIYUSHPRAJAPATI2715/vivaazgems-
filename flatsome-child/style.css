@@ -830,6 +830,396 @@ body.admin-bar .site-header-wrapper {
 }
 
 /* ==========================================================================
+   5B. HOMEPAGE SECTIONS (LAYOUTS, BEADS, PRODUCTS, STORY, REVIEWS, REELS)
+   ========================================================================== */
+
+/* 3. LAYOUTS SECTION */
+.layouts-section {
+  padding: 80px 40px !important;
+  background: #FFFFFF !important;
+  border-top: 1px solid var(--color-border-light) !important;
+  border-bottom: 1px solid var(--color-border-light) !important;
+}
+
+.layouts-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 60px !important;
+  align-items: center !important;
+}
+
+.layouts-img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  border: 1px solid var(--color-border-light) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04) !important;
+}
+
+.layouts-title {
+  font-family: var(--font-family-serif) !important;
+  font-size: 36px !important;
+  font-weight: 400 !important;
+  margin: 12px 0 16px !important;
+  line-height: 1.25 !important;
+  color: var(--color-text-main) !important;
+}
+
+.layouts-stats-grid {
+  display: flex !important;
+  gap: 36px !important;
+  margin: 28px 0 36px !important;
+  padding-top: 20px !important;
+  border-top: 1px solid var(--color-border-light) !important;
+}
+
+.stat-box-val {
+  font-family: var(--font-family-serif) !important;
+  font-size: 26px !important;
+  font-weight: 400 !important;
+  color: var(--color-text-main) !important;
+}
+
+.stat-box-lbl {
+  font-size: 11px !important;
+  letter-spacing: 0.05em !important;
+  color: var(--color-text-muted) !important;
+  margin-top: 4px !important;
+}
+
+/* 4. BEADS SECTION */
+.beads-section {
+  padding: 80px 40px !important;
+  background: var(--color-page-bg) !important;
+}
+
+.beads-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+.beads-grid-6 {
+  display: grid !important;
+  grid-template-columns: repeat(6, 1fr) !important;
+  gap: 20px !important;
+  margin-top: 24px !important;
+}
+
+/* 5. PRODUCTS TAB SECTION */
+.products-tab-section {
+  padding: 80px 40px !important;
+  background: #FFFFFF !important;
+  border-top: 1px solid var(--color-border-light) !important;
+}
+
+.products-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+.products-grid-4 {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px !important;
+  margin-top: 30px !important;
+}
+
+.product-card-luxury {
+  background: #FFFFFF !important;
+  border: 1px solid var(--color-border-light) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.product-card-luxury:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06) !important;
+}
+
+.product-card-media {
+  position: relative !important;
+  overflow: hidden !important;
+  background: #FDFBF7 !important;
+  padding-bottom: 100% !important;
+}
+
+.product-card-media img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.4s ease !important;
+}
+
+.product-card-luxury:hover .product-card-media img {
+  transform: scale(1.05) !important;
+}
+
+.wishlist-heart-btn {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  z-index: 5 !important;
+  background: #FFFFFF !important;
+  border: 1px solid var(--color-border-light) !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  color: var(--color-text-main) !important;
+}
+
+.quick-view-hover-bar {
+  position: absolute !important;
+  bottom: -40px !important;
+  left: 0 !important;
+  width: 100% !important;
+  background: rgba(26,26,26,0.9) !important;
+  color: #FFFFFF !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-align: center !important;
+  padding: 10px 0 !important;
+  transition: bottom 0.25s ease !important;
+  z-index: 4 !important;
+}
+
+.product-card-luxury:hover .quick-view-hover-bar {
+  bottom: 0 !important;
+}
+
+.product-card-body {
+  padding: 20px 16px !important;
+}
+
+.product-title-heading {
+  font-family: var(--font-family-serif) !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  margin: 0 0 4px !important;
+  color: var(--color-text-main) !important;
+}
+
+.product-meta-sub {
+  font-size: 11px !important;
+  color: var(--color-text-muted) !important;
+  margin-bottom: 12px !important;
+}
+
+.product-price-row {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 4px !important;
+}
+
+.product-price-val {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--color-text-main) !important;
+}
+
+.product-price-unit {
+  font-size: 11px !important;
+  color: var(--color-text-muted) !important;
+}
+
+/* 6. OUR STORY SECTION */
+.story-section {
+  padding: 80px 40px !important;
+  background: var(--color-page-bg) !important;
+}
+
+.story-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 60px !important;
+  align-items: center !important;
+}
+
+.story-media-box {
+  position: relative !important;
+  overflow: hidden !important;
+  border: 1px solid var(--color-border-light) !important;
+}
+
+.story-media-box img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+.story-play-overlay {
+  position: absolute !important;
+  bottom: 16px !important;
+  left: 16px !important;
+  background: rgba(26,26,26,0.85) !important;
+  color: #FFFFFF !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  padding: 8px 14px !important;
+}
+
+/* 7. REVIEWS & EXPERT SECTION */
+.reviews-expert-section {
+  padding: 80px 40px !important;
+  background: #FFFFFF !important;
+  border-top: 1px solid var(--color-border-light) !important;
+}
+
+.reviews-expert-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: 1.4fr 0.8fr !important;
+  gap: 50px !important;
+  align-items: start !important;
+}
+
+.reviews-cards-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 16px !important;
+  margin-top: 24px !important;
+}
+
+.google-review-card {
+  background: var(--color-page-bg) !important;
+  border: 1px solid var(--color-border-light) !important;
+  padding: 20px 16px !important;
+  font-size: 12px !important;
+}
+
+.star-rating-row {
+  color: #D4AF37 !important;
+  font-size: 14px !important;
+  margin-bottom: 8px !important;
+}
+
+.review-author-name {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  margin-top: 12px !important;
+  color: var(--color-text-main) !important;
+}
+
+.expert-box-card {
+  background: var(--color-page-bg) !important;
+  border: 1px solid var(--color-border-light) !important;
+  padding: 32px 24px !important;
+  text-align: center !important;
+}
+
+.expert-box-title {
+  font-family: var(--font-family-serif) !important;
+  font-size: 22px !important;
+  font-weight: 400 !important;
+  margin: 10px 0 12px !important;
+}
+
+.expert-btn-green {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  background: #25D366 !important;
+  color: #FFFFFF !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  padding: 14px !important;
+  margin: 20px 0 12px !important;
+  text-decoration: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.btn-square-white {
+  display: inline-block !important;
+  background: #FFFFFF !important;
+  border: 1px solid var(--color-border-light) !important;
+  color: var(--color-text-main) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  padding: 12px 24px !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-square-white:hover {
+  background: var(--color-text-main) !important;
+  color: #FFFFFF !important;
+}
+
+/* 8. INSTAGRAM REELS SECTION */
+.instagram-reels-section {
+  padding: 80px 40px !important;
+  background: var(--color-page-bg) !important;
+}
+
+.instagram-reels-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+.reels-grid-5 {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 16px !important;
+  margin-top: 24px !important;
+}
+
+.reel-card-tall {
+  position: relative !important;
+  overflow: hidden !important;
+  padding-bottom: 150% !important;
+  display: block !important;
+  border: 1px solid var(--color-border-light) !important;
+}
+
+.reel-card-tall img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.4s ease !important;
+}
+
+.reel-card-tall:hover img {
+  transform: scale(1.06) !important;
+}
+
+.reel-info-overlay {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8)) !important;
+  color: #FFFFFF !important;
+  padding: 16px 10px 10px !important;
+  font-size: 11px !important;
+  box-sizing: border-box !important;
+}
+
+/* ==========================================================================
    6. LUXURY FOOTER & RESPONSIVE
    ========================================================================== */
 .main-footer {
