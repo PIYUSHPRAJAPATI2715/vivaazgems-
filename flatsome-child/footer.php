@@ -110,26 +110,6 @@
     </div>
   </footer>
 
-  <!-- MOBILE FLOATING BOTTOM BAR (CLIENT SPEC PAGE 6 & 10) -->
-  <div class="mobile-bottom-nav">
-    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-nav-item">
-      <span>🛍️</span>
-      <span>Shop</span>
-    </a>
-    <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="mobile-nav-item">
-      <span>♡</span>
-      <span>Wishlist</span>
-    </a>
-    <a href="https://wa.me/919680552270" target="_blank" class="mobile-nav-item">
-      <span>💬</span>
-      <span>WhatsApp</span>
-    </a>
-    <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="mobile-nav-item">
-      <span>👤</span>
-      <span>Account</span>
-    </a>
-  </div>
-
   <?php wp_footer(); ?>
 </body>
 </html>

@@ -1316,25 +1316,7 @@ body.admin-bar .site-header-wrapper {
 }
 
 .mobile-bottom-nav {
-  position: fixed !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  background: #FFFFFF !important;
-  border-top: 1px solid var(--color-border-light) !important;
-  display: flex !important;
-  justify-content: space-around !important;
-  align-items: center !important;
-  padding: 8px 0 !important;
-  z-index: 99999 !important;
-}
-.mobile-nav-item {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  font-size: 10px !important;
-  color: var(--color-text-main) !important;
-  gap: 3px !important;
+  display: none !important;
 }
 
 /* ==========================================================================
@@ -1732,16 +1714,28 @@ body.admin-bar .site-header-wrapper {
 @media (max-width: 768px) {
   .single-product-grid-wrapper { grid-template-columns: 1fr !important; gap: 30px !important; }
   .top-bar-notice { display: none !important; }
-  .main-header { padding: 12px 20px !important; }
+  .main-header { padding: 12px 16px !important; flex-wrap: wrap !important; gap: 12px !important; justify-content: space-between !important; }
   .nav-menu-center { display: none !important; }
   
-  .hero-banner-section { padding: 30px 20px !important; }
-  .hero-banner-container { grid-template-columns: 1fr !important; gap: 30px !important; }
-  .hero-heading { font-size: 32px !important; }
+  .brand-logo-img { height: 30px !important; }
+  .brand-logo-text { font-size: 16px !important; letter-spacing: 0.12em !important; }
+  .brand-logo-subtitle { font-size: 7px !important; letter-spacing: 0.15em !important; }
   
-  .colour-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; }
-  .products-grid-4 { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .header-action-group { gap: 12px !important; font-size: 11px !important; }
+  .icon-action-btn { font-size: 11px !important; }
+  
+  .hero-banner-section { padding: 30px 16px !important; }
+  .hero-banner-container { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .hero-heading { font-size: 28px !important; }
+  
+  .colour-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
+  .products-grid-4 { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+  .layouts-container, .beads-container, .story-container, .reviews-expert-container, .instagram-reels-container { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .beads-grid-6 { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; }
+  .reels-grid-5 { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
   .shop-layout-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
   .account-forms-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-  .footer-5col-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .footer-5col-grid { grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
+  .footer-brand-header { text-align: center !important; }
+  .mobile-bottom-nav { display: none !important; }
 }
