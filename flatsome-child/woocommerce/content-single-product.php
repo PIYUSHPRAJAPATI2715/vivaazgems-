@@ -118,7 +118,11 @@ do_action('woocommerce_before_single_product');
         </div>
         
         <?php
-        woocommerce_template_single_add_to_cart();
+        if (function_exists('woocommerce_template_single_add_to_cart')) {
+            woocommerce_template_single_add_to_cart();
+        } else {
+            echo '<a href="' . esc_url(home_url('/cart/')) . '" class="btn-square-dark-full">ADD TO CART →</a>';
+        }
         ?>
 
         <!-- WhatsApp Button -->

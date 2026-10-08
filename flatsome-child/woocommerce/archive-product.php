@@ -8,27 +8,31 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-get_header('shop');
+if (!did_action('get_header')) {
+    get_header();
+}
 ?>
 
 <div class="shop-archive-page-wrapper">
   
-  <div class="shop-archive-container">
+  <div class="shop-archive-container" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
     
     <!-- Shop Header Hero -->
-    <div class="shop-header-hero">
-      <div class="breadcrumb-trail">
+    <div class="shop-header-hero" style="margin-bottom: 30px;">
+      <div class="breadcrumb-trail" style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 8px;">
         <a href="<?php echo esc_url(home_url('/')); ?>">Home</a> › 
         <span>Loose Gemstones</span>
       </div>
-      <h1 class="shop-main-title"><?php woocommerce_page_title(); ?></h1>
-      <p class="shop-description-sub">
+      <h1 class="shop-main-title" style="font-family: var(--font-family-serif); font-size: 32px; font-weight: 400; margin-bottom: 8px;">
+        <?php echo function_exists('woocommerce_page_title') ? woocommerce_page_title(false) : 'Loose Gemstones'; ?>
+      </h1>
+      <p class="shop-description-sub" style="font-size: 13px; color: var(--color-text-muted);">
         Natural, certified loose gemstones carefully selected from Jaipur and Sri Lanka. 
         <a href="https://wa.me/919680552270" target="_blank" class="text-gold" style="font-weight: 600; text-decoration: underline;">Get new stock on WhatsApp →</a>
       </p>
 
       <!-- Cut Pills (Faceted, Cabochon, Rose cut, Rough) -->
-      <div class="cut-pills-row">
+      <div class="cut-pills-row" style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
         <a href="<?php echo esc_url(add_query_arg('filter_cut', 'all')); ?>" class="cut-pill-item active">All <span>(18)</span></a>
         <a href="<?php echo esc_url(add_query_arg('filter_cut', 'faceted')); ?>" class="cut-pill-item">Faceted <span>(7)</span></a>
         <a href="<?php echo esc_url(add_query_arg('filter_cut', 'cabochon')); ?>" class="cut-pill-item">Cabochon <span>(8)</span></a>
@@ -38,30 +42,30 @@ get_header('shop');
     </div>
 
     <!-- Active Filter Badges Bar -->
-    <div class="active-filter-badges-bar">
-      <span class="active-badge">Cabochon ✕</span>
-      <span class="active-badge">Oval ✕</span>
-      <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="clear-all-link">Clear all</a>
-      <span class="result-count-text">4 products · Sort: Size ▾</span>
+    <div class="active-filter-badges-bar" style="display: flex; align-items: center; gap: 12px; margin-bottom: 30px; font-size: 12px;">
+      <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; border-radius: 12px;">Cabochon ✕</span>
+      <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; border-radius: 12px;">Oval ✕</span>
+      <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="clear-all-link" style="text-decoration: underline; color: var(--color-text-muted);">Clear all</a>
+      <span class="result-count-text" style="margin-left: auto; color: var(--color-text-muted);">4 products · Sort: Size ▾</span>
     </div>
 
     <!-- Main Shop Layout Grid (Sidebar + Products) -->
-    <div class="shop-layout-grid">
+    <div class="shop-layout-grid" style="display: grid; grid-template-columns: 260px 1fr; gap: 40px;">
       
       <!-- LEFT FILTER SIDEBAR (CLIENT SPEC PAGE 10 & 11) -->
       <aside class="shop-filter-sidebar">
         
         <!-- Category Accordion -->
-        <div class="filter-widget-box">
-          <h4 class="filter-title">PRODUCT CATEGORY</h4>
-          <ul class="filter-category-list">
-            <li class="active"><a href="<?php echo esc_url(home_url('/shop/')); ?>">Loose Gemstones ⌃</a>
-              <ul class="sub-cat-list">
+        <div class="filter-widget-box" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
+          <h4 class="filter-title" style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px;">PRODUCT CATEGORY</h4>
+          <ul class="filter-category-list" style="list-style: none; padding: 0; font-size: 13px; line-height: 1.8;">
+            <li class="active"><a href="<?php echo esc_url(home_url('/shop/')); ?>" style="font-weight: 600;">Loose Gemstones ⌃</a>
+              <ul class="sub-cat-list" style="list-style: none; padding-left: 14px; margin: 6px 0;">
                 <li><a href="#">Precious ⌄</a></li>
-                <li class="active"><a href="#">Semi-Precious ⌃</a>
-                  <ul class="sub-sub-cat-list">
+                <li class="active"><a href="#" style="color: var(--color-gold-label); font-weight: 600;">Semi-Precious ⌃</a>
+                  <ul class="sub-sub-cat-list" style="list-style: none; padding-left: 14px; margin: 4px 0;">
                     <li><a href="#">Faceted</a></li>
-                    <li class="active"><a href="#">Cabochon</a></li>
+                    <li class="active"><a href="#" style="font-weight: 600;">Cabochon</a></li>
                     <li><a href="#">Rose cut</a></li>
                     <li><a href="#">Rough</a></li>
                   </ul>
@@ -78,37 +82,37 @@ get_header('shop');
         </div>
 
         <!-- Filter by Shape -->
-        <div class="filter-widget-box">
-          <h4 class="filter-title">Shape ⌃</h4>
-          <div class="filter-checkbox-list">
-            <label><input type="checkbox" checked /> Oval <span>(4)</span></label>
-            <label><input type="checkbox" /> Round <span>(2)</span></label>
-            <label><input type="checkbox" /> Pear <span>(1)</span></label>
-            <label><input type="checkbox" /> Freeform <span>(1)</span></label>
+        <div class="filter-widget-box" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
+          <h4 class="filter-title" style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px;">Shape ⌃</h4>
+          <div class="filter-checkbox-list" style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+            <label style="cursor: pointer;"><input type="checkbox" checked /> Oval <span style="color: var(--color-text-muted);">(4)</span></label>
+            <label style="cursor: pointer;"><input type="checkbox" /> Round <span style="color: var(--color-text-muted);">(2)</span></label>
+            <label style="cursor: pointer;"><input type="checkbox" /> Pear <span style="color: var(--color-text-muted);">(1)</span></label>
+            <label style="cursor: pointer;"><input type="checkbox" /> Freeform <span style="color: var(--color-text-muted);">(1)</span></label>
           </div>
         </div>
 
         <!-- Filter by Size (mm) -->
-        <div class="filter-widget-box">
-          <h4 class="filter-title">Size (mm) ⌃</h4>
-          <div class="filter-checkbox-list">
-            <label><input type="checkbox" /> 6×8 mm <span>(1)</span></label>
-            <label><input type="checkbox" /> 8×10 mm <span>(2)</span></label>
-            <label><input type="checkbox" /> 10×12 mm <span>(1)</span></label>
-            <label><input type="checkbox" /> 12×16 mm <span>(1)</span></label>
-            <label><input type="checkbox" /> 15×20 mm <span>(1)</span></label>
-            <label><input type="checkbox" /> 18×25 mm <span>(1)</span></label>
+        <div class="filter-widget-box" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
+          <h4 class="filter-title" style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px;">Size (mm) ⌃</h4>
+          <div class="filter-checkbox-list" style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+            <label style="cursor: pointer;"><input type="checkbox" /> 6×8 mm <span style="color: var(--color-text-muted);">(1)</span></label>
+            <label style="cursor: pointer;"><input type="checkbox" /> 8×10 mm <span style="color: var(--color-text-muted);">(2)</span></label>
+            <label style="cursor: pointer;"><input type="checkbox" /> 10×12 mm <span style="color: var(--color-text-muted);">(1)</span></label>
+            <label style="cursor: pointer;"><input style="cursor: pointer;" type="checkbox" /> 12×16 mm <span style="color: var(--color-text-muted);">(1)</span></label>
+            <label style="cursor: pointer;"><input type="checkbox" /> 15×20 mm <span style="color: var(--color-text-muted);">(1)</span></label>
+            <label style="cursor: pointer;"><input type="checkbox" /> 18×25 mm <span style="color: var(--color-text-muted);">(1)</span></label>
           </div>
         </div>
 
         <!-- Filter by Price -->
-        <div class="filter-widget-box">
-          <h4 class="filter-title">Price ⌃</h4>
-          <div class="filter-checkbox-list">
-            <label><input type="checkbox" /> Under ₹1,000</label>
-            <label><input type="checkbox" /> ₹1,000 – ₹5,000</label>
-            <label><input type="checkbox" /> ₹5,000 – ₹20,000</label>
-            <label><input type="checkbox" /> Above ₹20,000</label>
+        <div class="filter-widget-box" style="margin-bottom: 24px;">
+          <h4 class="filter-title" style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px;">Price ⌃</h4>
+          <div class="filter-checkbox-list" style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+            <label style="cursor: pointer;"><input type="checkbox" /> Under ₹1,000</label>
+            <label style="cursor: pointer;"><input type="checkbox" /> ₹1,000 – ₹5,000</label>
+            <label style="cursor: pointer;"><input type="checkbox" /> ₹5,000 – ₹20,000</label>
+            <label style="cursor: pointer;"><input type="checkbox" /> Above ₹20,000</label>
           </div>
         </div>
 
@@ -116,24 +120,24 @@ get_header('shop');
 
       <!-- RIGHT PRODUCT GRID -->
       <main class="shop-products-main">
-        <?php if (woocommerce_product_loop()) : ?>
+        <?php if (function_exists('woocommerce_product_loop') && woocommerce_product_loop()) : ?>
           
-          <div class="products-grid-3col">
+          <div class="products-grid-3col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
             <?php
             while (have_posts()) :
               the_post();
-              do_action('woocommerce_shop_loop');
-              wc_get_template_part('content', 'product');
+              if (function_exists('do_action')) do_action('woocommerce_shop_loop');
+              if (function_exists('wc_get_template_part')) wc_get_template_part('content', 'product');
             endwhile;
             ?>
           </div>
 
-          <?php do_action('woocommerce_after_shop_loop'); ?>
+          <?php if (function_exists('do_action')) do_action('woocommerce_after_shop_loop'); ?>
 
         <?php else : ?>
           
           <!-- Fallback Showcase Products matching Page 10 Spec -->
-          <div class="products-grid-3col">
+          <div class="products-grid-3col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
             
             <!-- Card 1 -->
             <div class="product-card-luxury">
@@ -237,4 +241,6 @@ get_header('shop');
 </div>
 
 <?php
-get_footer('shop');
+if (did_action('get_header') && !did_action('get_footer')) {
+    get_footer();
+}
