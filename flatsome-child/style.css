@@ -2178,3 +2178,102 @@ body.admin-bar .site-header-wrapper {
 .stone-passport-table tr td:last-child {
   font-weight: 500 !important;
 }
+
+
+/* ==========================================================================
+   PAGE 13 & 15 PDF SPEC - EXACT BUTTON COLORS & MOBILE STICKY BAR
+   ========================================================================== */
+.btn-gold-add-to-cart {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  background: #9C7C4C !important;
+  color: #FFFFFF !important;
+  padding: 15px 24px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  border: none !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  width: 100% !important;
+  transition: var(--transition-smooth) !important;
+}
+.btn-gold-add-to-cart:hover {
+  background: #84683C !important;
+  color: #FFFFFF !important;
+}
+
+.btn-whatsapp-outline-full {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  background: #FFFFFF !important;
+  color: #25D366 !important;
+  border: 1px solid #25D366 !important;
+  padding: 13px 20px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  border-radius: 4px !important;
+  text-decoration: none !important;
+  width: 100% !important;
+  transition: var(--transition-smooth) !important;
+}
+.btn-whatsapp-outline-full:hover {
+  background: #25D366 !important;
+  color: #FFFFFF !important;
+}
+
+.mobile-sticky-product-bar {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-sticky-product-bar {
+    display: flex !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #FFFFFF !important;
+    border-top: 1px dashed var(--color-border-light) !important;
+    padding: 10px 16px !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    z-index: 999999 !important;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
+  }
+  .sticky-price-text {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: var(--color-text-main) !important;
+  }
+  .sticky-add-cart-btn {
+    background: #9C7C4C !important;
+    color: #FFFFFF !important;
+    padding: 10px 18px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    border-radius: 4px !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+  }
+  .sticky-whatsapp-btn {
+    background: #25D366 !important;
+    color: #FFFFFF !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 16px !important;
+    text-decoration: none !important;
+  }
+}

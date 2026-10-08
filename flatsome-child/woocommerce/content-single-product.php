@@ -1,7 +1,7 @@
 <?php
 /**
  * Vivaaz Gems - Custom WooCommerce Single Product Template
- * Matches Pages 12-15 of the 23-page Master Brief
+ * Matches Pages 12-15 of the 23-page Master Brief & Page 13/15 Exact Layout
  */
 
 if (!defined('ABSPATH')) {
@@ -26,14 +26,14 @@ do_action('woocommerce_before_single_product');
   
   <div class="single-product-grid-wrapper">
     
-    <!-- LEFT COLUMN: GALLERY & LIGHT PHOTOS -->
+    <!-- LEFT COLUMN: GALLERY & LIGHT PHOTOS (PAGE 13 SPEC) -->
     <div class="single-product-gallery-col">
       <div class="main-featured-image-box">
         <span class="video-badge-overlay">▶ Video · seen on Instagram</span>
         <img id="main-gallery-view" src="<?php echo esc_url($main_img); ?>" alt="<?php echo esc_attr($title); ?>" class="main-gallery-img">
       </div>
 
-      <!-- Light Photos Thumbnails -->
+      <!-- Light Photos Thumbnails (5 Items) -->
       <div class="light-photos-row">
         <div class="light-thumb-item active" onclick="changeProductImg('<?php echo esc_url($main_img); ?>', this)">
           <img src="<?php echo esc_url($main_img); ?>" alt="Video">
@@ -56,10 +56,10 @@ do_action('woocommerce_before_single_product');
           <span>❹ True size</span>
         </div>
       </div>
-      <p class="light-photos-hint">Light photos: only the lights this stone was photographed in (Daylight · Indoor · Lamp).</p>
+      <p class="light-photos-hint">Light photos: only the lights this stone was photographed in (Daylight · Indoor · Lamp — one, two or all three). Each photo has its light written small in the corner.</p>
     </div>
 
-    <!-- RIGHT COLUMN: PRODUCT DETAILS & PURCHASING -->
+    <!-- RIGHT COLUMN: PRODUCT DETAILS & PURCHASING (PAGE 13 SPEC) -->
     <div class="single-product-info-col">
       <div class="product-category-tag"><?php echo esc_html($cat_name); ?></div>
       <h1 class="single-product-title"><?php echo esc_html($title); ?></h1>
@@ -70,7 +70,7 @@ do_action('woocommerce_before_single_product');
       </div>
       <p class="single-tax-info">Inclusive of taxes · India 2–3 days · worldwide 4–7 days · insured</p>
 
-      <!-- Look & Best For Box (2 lines) -->
+      <!-- Look & Best For Box (Page 13 / 14 Spec) -->
       <div class="look-bestfor-box">
         <div><span class="text-gold font-bold">Look</span> Deep royal blue with bright sparkle</div>
         <div><span class="text-gold font-bold">Best for</span> Rings, earrings, halo settings</div>
@@ -86,8 +86,9 @@ do_action('woocommerce_before_single_product');
           <button type="button" class="size-pill-btn">5×3</button>
           <button type="button" class="size-pill-btn">6×4</button>
           <button type="button" class="size-pill-btn active">7×5</button>
-          <button type="button" class="size-pill-btn disabled">8×6 <span style="font-size: 9px; opacity: 0.7;">(sold out)</span></button>
+          <button type="button" class="size-pill-btn disabled">8×6</button>
         </div>
+        <div style="font-size: 11px; color: var(--color-text-muted);">8×6 sold out — ask on WhatsApp when it is back →</div>
       </div>
 
       <!-- Pieces Buttons -->
@@ -103,10 +104,11 @@ do_action('woocommerce_before_single_product');
           <button type="button" class="size-pill-btn">500</button>
           <button type="button" class="size-pill-btn">Other</button>
         </div>
+        <div style="font-size: 11px; color: var(--color-text-muted);">Price per piece — lower for more pieces</div>
         <div class="price-discount-table">
-          <div class="discount-col active">10+ pcs <strong>₹1,450</strong></div>
-          <div class="discount-col">50+ pcs <strong>₹1,320</strong></div>
-          <div class="discount-col">100+ pcs <strong>₹1,210</strong></div>
+          <div class="discount-col active">10+ pcs<br><strong>₹1,450</strong></div>
+          <div class="discount-col">50+ pcs<br><strong>₹1,320</strong></div>
+          <div class="discount-col">100+ pcs<br><strong>₹1,210</strong></div>
         </div>
       </div>
 
@@ -114,36 +116,36 @@ do_action('woocommerce_before_single_product');
       <div class="total-cart-action-wrapper">
         <div class="total-calculated-row">
           <span>Total for 20 pieces</span>
-          <span style="font-size: 20px; font-weight: 700; color: var(--color-text-main);">₹29,000</span>
+          <span style="font-size: 22px; font-weight: 700; color: var(--color-text-main);">₹29,000</span>
         </div>
         
         <?php
         if (function_exists('woocommerce_template_single_add_to_cart')) {
             woocommerce_template_single_add_to_cart();
         } else {
-            echo '<a href="' . esc_url(home_url('/cart/')) . '" class="btn-square-dark-full">ADD TO CART →</a>';
+            echo '<a href="' . esc_url(home_url('/cart/')) . '" class="btn-gold-add-to-cart">ADD TO CART</a>';
         }
         ?>
 
         <!-- WhatsApp Button -->
-        <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" class="btn-whatsapp-green-full">
+        <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" class="btn-whatsapp-outline-full">
           <span>✆</span> Ask about this stone on WhatsApp
         </a>
       </div>
 
-      <!-- B2B & Video Call Box -->
+      <!-- B2B & Video Call Box (Page 13 Spec) -->
       <div class="b2b-videocall-grid">
         <div class="b2b-box-item">
-          <div><strong style="color: var(--color-gold-label);">◇ Bulk / B2B price</strong></div>
-          <div style="font-size: 11px; color: var(--color-text-muted);">Parcels, calibrated lots, wholesale ›</div>
+          <div style="display: flex; justify-content: space-between; align-items: center;"><strong style="color: var(--color-gold-label);">◇ Bulk / B2B price</strong><span>›</span></div>
+          <div style="font-size: 11px; color: var(--color-text-muted); margin-top: 4px;">Parcels, calibrated lots, wholesale</div>
         </div>
         <div class="b2b-box-item">
-          <div><strong style="color: var(--color-gold-label);">▷ See it on a video call</strong></div>
-          <div style="font-size: 11px; color: var(--color-text-muted);">We show you the stone live ›</div>
+          <div style="display: flex; justify-content: space-between; align-items: center;"><strong style="color: var(--color-gold-label);">▷ See it on a video call</strong><span>›</span></div>
+          <div style="font-size: 11px; color: var(--color-text-muted); margin-top: 4px;">We show you the stone live</div>
         </div>
       </div>
 
-      <!-- 4 Trust Icons -->
+      <!-- 4 Trust Badges (Page 13 Spec) -->
       <div class="single-trust-4grid">
         <div>◈ Lab certified</div>
         <div>◈ Insured shipping</div>
@@ -151,10 +153,10 @@ do_action('woocommerce_before_single_product');
         <div>◈ 7-day returns</div>
       </div>
 
-      <!-- Stone Passport Box -->
+      <!-- Stone Passport Box (Page 13 / 14 Spec) -->
       <div class="stone-passport-container">
         <div class="stone-passport-head">
-          <span style="font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-label);">STONE PASSPORT</span>
+          <span style="font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-label);">● STONE PASSPORT</span>
           <span style="font-size: 11px; color: var(--color-text-muted);">No. <?php echo esc_html($sku ?: 'VG-SPH-OV-0705'); ?></span>
         </div>
         <table class="stone-passport-table">
@@ -169,11 +171,12 @@ do_action('woocommerce_before_single_product');
           <tr><td>Quality</td><td>AAA · colour matched across lot</td></tr>
           <tr><td>Certificate</td><td><a href="#" style="color: var(--color-gold-label); text-decoration: underline;">Lab report for the lot (view)</a></td></tr>
         </table>
+        <div style="font-size: 10px; color: var(--color-text-muted); margin-top: 12px; font-style: italic;">Height is not listed for calibrated lots (it varies piece to piece).</div>
       </div>
 
-      <!-- Accordion Details -->
+      <!-- Accordion Details (Page 14 Spec) -->
       <div class="product-accordion-wrapper">
-        <details>
+        <details open>
           <summary>Shipping & returns</summary>
           <p style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0;">India 2–3 days. International 4–7 days insured. 7-day easy returns.</p>
         </details>
@@ -189,6 +192,13 @@ do_action('woocommerce_before_single_product');
 
     </div>
 
+  </div>
+
+  <!-- Mobile Sticky Bottom Bar (Page 15 Spec) -->
+  <div class="mobile-sticky-product-bar">
+    <div class="sticky-price-text">₹1,450 / pc</div>
+    <a href="<?php echo esc_url(home_url('/cart/')); ?>" class="sticky-add-cart-btn">ADD TO CART</a>
+    <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" class="sticky-whatsapp-btn">✆</a>
   </div>
 
 </div>
