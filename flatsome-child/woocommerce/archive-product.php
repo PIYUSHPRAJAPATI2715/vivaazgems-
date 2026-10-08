@@ -135,6 +135,7 @@ get_header('shop');
         <?php else : ?>
           
           <!-- Fallback Showcase Products matching Page 10 Spec -->
+          <?php $sample_prod_url = home_url('/?post_type=product&p=18'); ?>
           <div class="products-grid-3col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
             
             <!-- Card 1 -->
@@ -142,11 +143,15 @@ get_header('shop');
               <div class="product-card-media">
                 <span class="category-card-badge badge-gold">CALIBRATED · 10+ PIECES</span>
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon">
-                <div class="quick-view-hover-bar">QUICK VIEW</div>
+                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
+                  <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon">
+                </a>
+                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
               </div>
               <div class="product-card-body">
-                <h3 class="product-title-heading">Rainbow Moonstone Oval Cabochon</h3>
+                <h3 class="product-title-heading">
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Rainbow Moonstone Oval Cabochon</a>
+                </h3>
                 <div class="product-meta-sub">6×8 to 12×16 mm · 4 sizes</div>
                 <div class="product-price-row">
                   <div>
@@ -156,7 +161,7 @@ get_header('shop');
                   </div>
                 </div>
                 <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-underline-link">SELECT OPTIONS</a>
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">SELECT OPTIONS</a>
                 </div>
               </div>
             </div>
@@ -166,11 +171,15 @@ get_header('shop');
               <div class="product-card-media">
                 <span class="category-card-badge badge-blue">ONLY 1</span>
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon" style="filter: hue-rotate(20deg);">
-                <div class="quick-view-hover-bar">QUICK VIEW</div>
+                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
+                  <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon" style="filter: hue-rotate(20deg);">
+                </a>
+                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
               </div>
               <div class="product-card-body">
-                <h3 class="product-title-heading">Rainbow Moonstone Oval Cabochon</h3>
+                <h3 class="product-title-heading">
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Rainbow Moonstone Oval Cabochon</a>
+                </h3>
                 <div class="product-meta-sub">18×25 mm · 32 ct · single</div>
                 <div class="product-price-row">
                   <div>
@@ -178,7 +187,7 @@ get_header('shop');
                   </div>
                 </div>
                 <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-underline-link">ADD TO CART</a>
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">VIEW DETAILS</a>
                 </div>
               </div>
             </div>
@@ -188,11 +197,15 @@ get_header('shop');
               <div class="product-card-media">
                 <span class="category-card-badge badge-green">MATCHED PAIR</span>
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon Pair">
-                <div class="quick-view-hover-bar">QUICK VIEW</div>
+                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
+                  <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon Pair">
+                </a>
+                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
               </div>
               <div class="product-card-body">
-                <h3 class="product-title-heading">Rainbow Moonstone Oval Cabochon Pair</h3>
+                <h3 class="product-title-heading">
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Rainbow Moonstone Oval Cabochon Pair</a>
+                </h3>
                 <div class="product-meta-sub">8×10 mm · 2 pieces</div>
                 <div class="product-price-row">
                   <div>
@@ -200,7 +213,7 @@ get_header('shop');
                   </div>
                 </div>
                 <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-underline-link">ADD TO CART</a>
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">VIEW DETAILS</a>
                 </div>
               </div>
             </div>
@@ -210,11 +223,15 @@ get_header('shop');
               <div class="product-card-media">
                 <span class="category-card-badge badge-gold">ONLY 1</span>
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon">
-                <div class="quick-view-hover-bar">QUICK VIEW</div>
+                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
+                  <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon">
+                </a>
+                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
               </div>
               <div class="product-card-body">
-                <h3 class="product-title-heading">Rainbow Moonstone Oval Cabochon</h3>
+                <h3 class="product-title-heading">
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Rainbow Moonstone Oval Cabochon</a>
+                </h3>
                 <div class="product-meta-sub">15×20 mm · 19 ct</div>
                 <div class="product-price-row">
                   <div>
@@ -222,7 +239,7 @@ get_header('shop');
                   </div>
                 </div>
                 <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-underline-link">ADD TO CART</a>
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">VIEW DETAILS</a>
                 </div>
               </div>
             </div>

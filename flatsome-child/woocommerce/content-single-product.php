@@ -10,11 +10,14 @@ if (!defined('ABSPATH')) {
 
 global $product;
 $product_id = get_the_ID();
+if (!$product && $product_id && function_exists('wc_get_product')) {
+    $product = wc_get_product($product_id);
+}
 $sku = $product ? $product->get_sku() : '';
-$price_html = $product ? $product->get_price_html() : '₹1,450';
-$title = get_the_title();
-$categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
-$cat_name = !empty($categories) ? strtoupper(implode(' · ', $categories)) : 'CEYLON SAPPHIRE · FACETED · CALIBRATED';
+$price_html = ($product && $product->get_price_html()) ? $product->get_price_html() : '₹1,450';
+$title = get_the_title() ?: 'Ceylon Blue Sapphire — 7×5 mm Oval';
+$categories = ($product_id && !is_wp_error(wp_get_post_terms($product_id, 'product_cat'))) ? wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names')) : array();
+$cat_name = (!empty($categories) && is_array($categories)) ? strtoupper(implode(' · ', $categories)) : 'CEYLON SAPPHIRE · FACETED · CALIBRATED';
 
 $main_img = get_the_post_thumbnail_url($product_id, 'large') ?: vivaaz_get_img_url('ceylon-sapphire.jpg');
 $whatsapp_url = 'https://wa.me/919680552270?text=' . rawurlencode("Hi Vivaaz Gems, I would like to inquire about: " . $title . " (SKU: " . ($sku ?: 'N/A') . ")");

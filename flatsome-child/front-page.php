@@ -242,7 +242,7 @@ get_header();
                 global $product;
                 $p_id = get_the_ID();
                 $p_title = get_the_title();
-                $p_link = get_permalink();
+                $p_link = get_permalink($p_id) ?: home_url('/?post_type=product&p=' . $p_id);
                 $p_price = $product ? $product->get_price_html() : '';
                 $p_img = get_the_post_thumbnail_url($p_id, 'woocommerce_thumbnail') ?: vivaaz_get_img_url('ceylon-sapphire.jpg');
                 $is_variable = $product ? $product->is_type('variable') : false;
@@ -250,11 +250,15 @@ get_header();
             <div class="product-card-luxury">
               <div class="product-card-media">
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url($p_img); ?>" alt="<?php echo esc_attr($p_title); ?>">
-                <div class="quick-view-hover-bar">QUICK VIEW</div>
+                <a href="<?php echo esc_url($p_link); ?>" style="display: block; width: 100%; height: 100%;">
+                  <img src="<?php echo esc_url($p_img); ?>" alt="<?php echo esc_attr($p_title); ?>">
+                </a>
+                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($p_link); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
               </div>
               <div class="product-card-body">
-                <h3 class="product-title-heading"><?php echo esc_html($p_title); ?></h3>
+                <h3 class="product-title-heading">
+                  <a href="<?php echo esc_url($p_link); ?>" style="color: inherit; text-decoration: none;"><?php echo esc_html($p_title); ?></a>
+                </h3>
                 <div class="product-meta-sub">3 mm · lot of 20</div>
                 <div class="product-price-row">
                   <div>
@@ -264,7 +268,7 @@ get_header();
                 </div>
                 <div style="margin-top: 12px;">
                   <a href="<?php echo esc_url($p_link); ?>" class="btn-underline-link">
-                    <?php echo $is_variable ? 'SELECT OPTIONS' : 'ADD TO CART'; ?>
+                    <?php echo $is_variable ? 'SELECT OPTIONS' : 'VIEW DETAILS'; ?>
                   </a>
                 </div>
               </div>
@@ -273,16 +277,21 @@ get_header();
             endwhile;
             wp_reset_postdata();
         else :
+            $sample_prod_url = home_url('/?post_type=product&p=18');
         ?>
             <!-- Fallback Static Product Cards (Spec Page 9) -->
             <div class="product-card-luxury">
               <div class="product-card-media">
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Blue Sapphire, Round">
-                <div class="quick-view-hover-bar">QUICK VIEW</div>
+                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
+                  <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Blue Sapphire, Round">
+                </a>
+                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
               </div>
               <div class="product-card-body">
-                <h3 class="product-title-heading">Blue Sapphire, Round</h3>
+                <h3 class="product-title-heading">
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Blue Sapphire, Round</a>
+                </h3>
                 <div class="product-meta-sub">3 mm · lot of 20</div>
                 <div class="product-price-row">
                   <div>
@@ -291,7 +300,7 @@ get_header();
                   </div>
                 </div>
                 <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-underline-link">SELECT OPTIONS</a>
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">SELECT OPTIONS</a>
                 </div>
               </div>
             </div>
@@ -299,11 +308,15 @@ get_header();
             <div class="product-card-luxury">
               <div class="product-card-media">
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby, Oval Pair">
-                <div class="quick-view-hover-bar">QUICK VIEW</div>
+                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
+                  <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby, Oval Pair">
+                </a>
+                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
               </div>
               <div class="product-card-body">
-                <h3 class="product-title-heading">Ruby, Oval Pair</h3>
+                <h3 class="product-title-heading">
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Ruby, Oval Pair</a>
+                </h3>
                 <div class="product-meta-sub">7×5 mm · matched pair</div>
                 <div class="product-price-row">
                   <div>
@@ -312,7 +325,7 @@ get_header();
                   </div>
                 </div>
                 <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-underline-link">ADD TO CART</a>
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">VIEW DETAILS</a>
                 </div>
               </div>
             </div>
@@ -320,11 +333,15 @@ get_header();
             <div class="product-card-luxury">
               <div class="product-card-media">
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald, Octagon">
-                <div class="quick-view-hover-bar">QUICK VIEW</div>
+                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
+                  <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald, Octagon">
+                </a>
+                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
               </div>
               <div class="product-card-body">
-                <h3 class="product-title-heading">Emerald, Octagon</h3>
+                <h3 class="product-title-heading">
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Emerald, Octagon</a>
+                </h3>
                 <div class="product-meta-sub">9×7 mm · 1.82 ct · single</div>
                 <div class="product-price-row">
                   <div>
@@ -333,7 +350,7 @@ get_header();
                   </div>
                 </div>
                 <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-underline-link">ADD TO CART</a>
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">VIEW DETAILS</a>
                 </div>
               </div>
             </div>
@@ -341,11 +358,15 @@ get_header();
             <div class="product-card-luxury">
               <div class="product-card-media">
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Pink Tourmaline, Round" style="filter: hue-rotate(280deg);">
-                <div class="quick-view-hover-bar">QUICK VIEW</div>
+                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
+                  <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Pink Tourmaline, Round" style="filter: hue-rotate(280deg);">
+                </a>
+                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
               </div>
               <div class="product-card-body">
-                <h3 class="product-title-heading">Pink Tourmaline, Round</h3>
+                <h3 class="product-title-heading">
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Pink Tourmaline, Round</a>
+                </h3>
                 <div class="product-meta-sub">2.5 mm · lot of 50</div>
                 <div class="product-price-row">
                   <div>
@@ -354,7 +375,7 @@ get_header();
                   </div>
                 </div>
                 <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-underline-link">SELECT OPTIONS</a>
+                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">SELECT OPTIONS</a>
                 </div>
               </div>
             </div>
@@ -366,11 +387,15 @@ get_header();
         <div class="product-card-luxury">
           <div class="product-card-media">
             <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-            <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Garnet, Round">
-            <div class="quick-view-hover-bar">QUICK VIEW</div>
+            <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
+              <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Garnet, Round">
+            </a>
+            <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
           </div>
           <div class="product-card-body">
-            <h3 class="product-title-heading">Garnet, Round</h3>
+            <h3 class="product-title-heading">
+              <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Garnet, Round</a>
+            </h3>
             <div class="product-meta-sub">4 mm · lot of 100</div>
             <div class="product-price-row">
               <div>
@@ -379,7 +404,7 @@ get_header();
               </div>
             </div>
             <div style="margin-top: 12px;">
-              <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-underline-link">SELECT OPTIONS</a>
+              <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">SELECT OPTIONS</a>
             </div>
           </div>
         </div>
@@ -387,11 +412,15 @@ get_header();
         <div class="product-card-luxury">
           <div class="product-card-media">
             <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-            <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Blue Topaz, Oval">
-            <div class="quick-view-hover-bar">QUICK VIEW</div>
+            <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
+              <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Blue Topaz, Oval">
+            </a>
+            <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
           </div>
           <div class="product-card-body">
-            <h3 class="product-title-heading">Blue Topaz, Oval</h3>
+            <h3 class="product-title-heading">
+              <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Blue Topaz, Oval</a>
+            </h3>
             <div class="product-meta-sub">6×4 mm · lot of 50</div>
             <div class="product-price-row">
               <div>
@@ -400,7 +429,7 @@ get_header();
               </div>
             </div>
             <div style="margin-top: 12px;">
-              <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-underline-link">SELECT OPTIONS</a>
+              <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">SELECT OPTIONS</a>
             </div>
           </div>
         </div>
@@ -408,11 +437,15 @@ get_header();
         <div class="product-card-luxury">
           <div class="product-card-media">
             <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-            <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby Layout, Graduated" style="filter: hue-rotate(320deg);">
-            <div class="quick-view-hover-bar">QUICK VIEW</div>
+            <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
+              <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby Layout, Graduated" style="filter: hue-rotate(320deg);">
+            </a>
+            <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
           </div>
           <div class="product-card-body">
-            <h3 class="product-title-heading">Ruby Layout, Graduated</h3>
+            <h3 class="product-title-heading">
+              <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Ruby Layout, Graduated</a>
+            </h3>
             <div class="product-meta-sub">2–5 mm · 27 stones</div>
             <div class="product-price-row">
               <div>
@@ -429,11 +462,15 @@ get_header();
         <div class="product-card-luxury">
           <div class="product-card-media">
             <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-            <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Amethyst, Round">
-            <div class="quick-view-hover-bar">QUICK VIEW</div>
+            <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
+              <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Amethyst, Round">
+            </a>
+            <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
           </div>
           <div class="product-card-body">
-            <h3 class="product-title-heading">Amethyst, Round</h3>
+            <h3 class="product-title-heading">
+              <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Amethyst, Round</a>
+            </h3>
             <div class="product-meta-sub">5 mm · lot of 50</div>
             <div class="product-price-row">
               <div>
@@ -442,7 +479,7 @@ get_header();
               </div>
             </div>
             <div style="margin-top: 12px;">
-              <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-underline-link">SELECT OPTIONS</a>
+              <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">SELECT OPTIONS</a>
             </div>
           </div>
         </div>
