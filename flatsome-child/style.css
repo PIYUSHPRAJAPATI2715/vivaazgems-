@@ -1739,3 +1739,94 @@ body.admin-bar .site-header-wrapper {
   .footer-brand-header { text-align: center !important; }
   .mobile-bottom-nav { display: none !important; }
 }
+
+
+/* ==========================================================================
+   CART & CHECKOUT LUXURY LAYOUT STYLES
+   ========================================================================== */
+.luxury-cart-page-wrapper, .luxury-checkout-page-wrapper {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.cart-page-header, .checkout-page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.cart-layout-grid, .checkout-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 40px;
+}
+
+.cart-items-section, .checkout-billing-section {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-light);
+  padding: 24px;
+}
+
+.cart-totals-sidebar, .checkout-summary-section {
+  position: sticky;
+  top: 100px;
+}
+
+.cart-totals-card, .checkout-order-card {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-light);
+  padding: 24px;
+}
+
+.totals-heading, .checkout-section-title {
+  font-family: var(--font-family-serif);
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.remove-cart-item-btn {
+  color: #c53030;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+.remove-cart-item-btn:hover {
+  color: #9b2c2c;
+}
+
+.cart-item-title-link {
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+.cart-item-title-link:hover {
+  color: var(--color-gold-label);
+}
+
+.coupon-input-wrapper {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.cart-trust-badges {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--color-border-light);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+  .cart-layout-grid, .checkout-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .cart-totals-sidebar, .checkout-summary-section {
+    position: static;
+  }
+}
