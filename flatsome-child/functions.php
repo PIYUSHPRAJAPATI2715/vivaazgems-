@@ -75,10 +75,29 @@ function vivaaz_enable_sku_search($query) {
 add_action('pre_get_posts', 'vivaaz_enable_sku_search');
 
 /**
- * 5. Default WooCommerce Product Image Fallback (No Broken Placeholder Frames)
+ * 5. Dynamic Helper: Robust Image Path Lookup (Theme Assets -> Uploads Fallback)
  */
+function vivaaz_get_img_url($filename) {
+    // 1. Check child theme assets folder
+    $theme_file = get_stylesheet_directory() . '/assets/images/' . $filename;
+    if (file_exists($theme_file)) {
+        return get_stylesheet_directory_uri() . '/assets/images/' . $filename;
+    }
+    // 2. Check WordPress uploads base directory
+    $upload_dir = wp_upload_dir();
+    if (file_exists($upload_dir['basedir'] . '/' . $filename)) {
+        return $upload_dir['baseurl'] . '/' . $filename;
+    }
+    // 3. Check 2026/10 dated uploads folder
+    if (file_exists($upload_dir['basedir'] . '/2026/10/' . $filename)) {
+        return $upload_dir['baseurl'] . '/2026/10/' . $filename;
+    }
+    // 4. Default URL fallback to uploads folder
+    return content_url('/uploads/' . $filename);
+}
+
 function vivaaz_custom_woocommerce_placeholder($image_url) {
-    return get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg';
+    return vivaaz_get_img_url('ceylon-sapphire.jpg');
 }
 add_filter('woocommerce_placeholder_img_src', 'vivaaz_custom_woocommerce_placeholder');
 

@@ -48,7 +48,7 @@ get_header();
       <!-- Right Visual Card -->
       <a href="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/')); ?>" class="hero-visual-card">
         <span class="macro-video-badge">▶ MACRO VIDEO PLAYS HERE</span>
-        <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg'); ?>" alt="Natural Ceylon Sapphire" class="hero-gem-img">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Natural Ceylon Sapphire" class="hero-gem-img">
         <div style="margin-top: 16px;">
           <span class="font-italic text-gold" style="font-weight: 600; font-size: 13px;">Premium Quality</span><br>
           <span style="font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Natural Ceylon Sapphire</span>
@@ -74,32 +74,32 @@ get_header();
       <!-- TAB 1: BY COLOUR -->
       <div id="tab-content-colour" class="colour-grid">
         <a href="<?php echo esc_url(home_url('/shop/?filter_color=blue')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg'); ?>" alt="Blue Gemstones" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Blue Gemstones" class="colour-gem-img">
           <span class="colour-name">Blue</span>
           <span class="colour-subtext">Sapphire, tanzanite, aquamarine</span>
         </a>
         <a href="<?php echo esc_url(home_url('/shop/?filter_color=red')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ruby.jpg'); ?>" alt="Red Gemstones" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Red Gemstones" class="colour-gem-img">
           <span class="colour-name">Red</span>
           <span class="colour-subtext">Ruby, spinel, garnet</span>
         </a>
         <a href="<?php echo esc_url(home_url('/shop/?filter_color=pink')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg'); ?>" alt="Pink Gemstones" class="colour-gem-img" style="filter: hue-rotate(280deg);">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Pink Gemstones" class="colour-gem-img" style="filter: hue-rotate(280deg);">
           <span class="colour-name">Pink</span>
           <span class="colour-subtext">Pink sapphire, tourmaline</span>
         </a>
         <a href="<?php echo esc_url(home_url('/shop/?filter_color=green')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/emerald.jpg'); ?>" alt="Green Gemstones" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Green Gemstones" class="colour-gem-img">
           <span class="colour-name">Green</span>
           <span class="colour-subtext">Emerald, tsavorite, peridot</span>
         </a>
         <a href="<?php echo esc_url(home_url('/shop/?filter_color=yellow')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/swiss-topaz.jpg'); ?>" alt="Yellow Gemstones" class="colour-gem-img" style="filter: hue-rotate(180deg);">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Yellow Gemstones" class="colour-gem-img" style="filter: hue-rotate(180deg);">
           <span class="colour-name">Yellow</span>
           <span class="colour-subtext">Yellow sapphire, citrine</span>
         </a>
         <a href="<?php echo esc_url(home_url('/shop/?filter_color=purple')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/moonstone.jpg'); ?>" alt="Purple Gemstones" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Purple Gemstones" class="colour-gem-img">
           <span class="colour-name">Purple</span>
           <span class="colour-subtext">Amethyst, purple sapphire</span>
         </a>
@@ -108,32 +108,32 @@ get_header();
       <!-- TAB 2: BY STONE (HIDDEN BY DEFAULT) -->
       <div id="tab-content-stone" class="colour-grid" style="display: none;">
         <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ruby.jpg'); ?>" alt="Ruby" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Ruby" class="colour-gem-img">
           <span class="colour-name">Ruby</span>
           <span class="colour-subtext">Rounds, ovals, layouts</span>
         </a>
         <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg'); ?>" alt="Sapphire" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Sapphire" class="colour-gem-img">
           <span class="colour-name">Sapphire</span>
           <span class="colour-subtext">Blue, pink, yellow</span>
         </a>
         <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/emerald.jpg'); ?>" alt="Emerald" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Emerald" class="colour-gem-img">
           <span class="colour-name">Emerald</span>
           <span class="colour-subtext">Octagon, oval, round</span>
         </a>
         <a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ruby.jpg'); ?>" alt="Garnet" class="colour-gem-img" style="filter: hue-rotate(330deg);">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Garnet" class="colour-gem-img" style="filter: hue-rotate(330deg);">
           <span class="colour-name">Garnet</span>
           <span class="colour-subtext">Calibrated lots</span>
         </a>
         <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/moonstone.jpg'); ?>" alt="Amethyst" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Amethyst" class="colour-gem-img">
           <span class="colour-name">Amethyst</span>
           <span class="colour-subtext">Calibrated lots</span>
         </a>
         <a href="<?php echo esc_url(home_url('/shop/?filter_stone=blue-topaz')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/swiss-topaz.jpg'); ?>" alt="Blue Topaz" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Blue Topaz" class="colour-gem-img">
           <span class="colour-name">Blue Topaz</span>
           <span class="colour-subtext">Sky, Swiss, London</span>
         </a>
@@ -145,7 +145,7 @@ get_header();
   <section id="layouts" class="layouts-section">
     <div class="layouts-container">
       <div>
-        <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/true-size-grid.jpg'); ?>" alt="Matched Gemstone Layouts" class="layouts-img">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Matched Gemstone Layouts" class="layouts-img">
       </div>
       <div>
         <span class="section-tag-divider">FOR JEWELLERS</span>
@@ -192,27 +192,27 @@ get_header();
 
       <div class="beads-grid-6">
         <a href="<?php echo esc_url(home_url('/beads/?shape=round')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg'); ?>" alt="Round Beads" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Round Beads" class="colour-gem-img">
           <span class="colour-name">Round</span>
         </a>
         <a href="<?php echo esc_url(home_url('/beads/?shape=rondelle')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ruby.jpg'); ?>" alt="Rondelle Beads" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Rondelle Beads" class="colour-gem-img">
           <span class="colour-name">Rondelle</span>
         </a>
         <a href="<?php echo esc_url(home_url('/beads/?shape=faceted')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/moonstone.jpg'); ?>" alt="Faceted Beads" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Faceted Beads" class="colour-gem-img">
           <span class="colour-name">Faceted</span>
         </a>
         <a href="<?php echo esc_url(home_url('/beads/?shape=nugget')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/emerald.jpg'); ?>" alt="Nugget Beads" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Nugget Beads" class="colour-gem-img">
           <span class="colour-name">Nugget</span>
         </a>
         <a href="<?php echo esc_url(home_url('/beads/?shape=chips')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/swiss-topaz.jpg'); ?>" alt="Chips Beads" class="colour-gem-img">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Chips Beads" class="colour-gem-img">
           <span class="colour-name">Chips</span>
         </a>
         <a href="<?php echo esc_url(home_url('/beads/?shape=heishi')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg'); ?>" alt="Heishi Beads" class="colour-gem-img" style="filter: hue-rotate(40deg);">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Heishi Beads" class="colour-gem-img" style="filter: hue-rotate(40deg);">
           <span class="colour-name">Heishi</span>
         </a>
       </div>
@@ -244,7 +244,7 @@ get_header();
                 $p_title = get_the_title();
                 $p_link = get_permalink();
                 $p_price = $product ? $product->get_price_html() : '';
-                $p_img = get_the_post_thumbnail_url($p_id, 'woocommerce_thumbnail') ?: get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg';
+                $p_img = get_the_post_thumbnail_url($p_id, 'woocommerce_thumbnail') ?: vivaaz_get_img_url('');
                 $is_variable = $product ? $product->is_type('variable') : false;
         ?>
             <div class="product-card-luxury">
@@ -278,7 +278,7 @@ get_header();
             <div class="product-card-luxury">
               <div class="product-card-media">
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg'); ?>" alt="Blue Sapphire, Round">
+                <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Blue Sapphire, Round">
                 <div class="quick-view-hover-bar">QUICK VIEW</div>
               </div>
               <div class="product-card-body">
@@ -299,7 +299,7 @@ get_header();
             <div class="product-card-luxury">
               <div class="product-card-media">
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ruby.jpg'); ?>" alt="Ruby, Oval Pair">
+                <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Ruby, Oval Pair">
                 <div class="quick-view-hover-bar">QUICK VIEW</div>
               </div>
               <div class="product-card-body">
@@ -320,7 +320,7 @@ get_header();
             <div class="product-card-luxury">
               <div class="product-card-media">
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/emerald.jpg'); ?>" alt="Emerald, Octagon">
+                <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Emerald, Octagon">
                 <div class="quick-view-hover-bar">QUICK VIEW</div>
               </div>
               <div class="product-card-body">
@@ -341,7 +341,7 @@ get_header();
             <div class="product-card-luxury">
               <div class="product-card-media">
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg'); ?>" alt="Pink Tourmaline, Round" style="filter: hue-rotate(280deg);">
+                <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Pink Tourmaline, Round" style="filter: hue-rotate(280deg);">
                 <div class="quick-view-hover-bar">QUICK VIEW</div>
               </div>
               <div class="product-card-body">
@@ -366,7 +366,7 @@ get_header();
         <div class="product-card-luxury">
           <div class="product-card-media">
             <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-            <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ruby.jpg'); ?>" alt="Garnet, Round">
+            <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Garnet, Round">
             <div class="quick-view-hover-bar">QUICK VIEW</div>
           </div>
           <div class="product-card-body">
@@ -387,7 +387,7 @@ get_header();
         <div class="product-card-luxury">
           <div class="product-card-media">
             <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-            <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/swiss-topaz.jpg'); ?>" alt="Blue Topaz, Oval">
+            <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Blue Topaz, Oval">
             <div class="quick-view-hover-bar">QUICK VIEW</div>
           </div>
           <div class="product-card-body">
@@ -408,7 +408,7 @@ get_header();
         <div class="product-card-luxury">
           <div class="product-card-media">
             <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-            <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ruby.jpg'); ?>" alt="Ruby Layout, Graduated" style="filter: hue-rotate(320deg);">
+            <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Ruby Layout, Graduated" style="filter: hue-rotate(320deg);">
             <div class="quick-view-hover-bar">QUICK VIEW</div>
           </div>
           <div class="product-card-body">
@@ -429,7 +429,7 @@ get_header();
         <div class="product-card-luxury">
           <div class="product-card-media">
             <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-            <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/moonstone.jpg'); ?>" alt="Amethyst, Round">
+            <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Amethyst, Round">
             <div class="quick-view-hover-bar">QUICK VIEW</div>
           </div>
           <div class="product-card-body">
@@ -454,7 +454,7 @@ get_header();
   <section id="our-story" class="story-section">
     <div class="story-container">
       <div class="story-media-box">
-        <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/emerald.jpg'); ?>" alt="Vivaaz Gems Gemstone Craftsmanship">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Vivaaz Gems Gemstone Craftsmanship">
         <div class="story-play-overlay">
           <span>▶</span> UNDER THE LOUPE · 0:40
         </div>
@@ -544,7 +544,7 @@ get_header();
 
       <div class="reels-grid-5">
         <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="reel-card-tall">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ruby.jpg'); ?>" alt="Ruby, Oval">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Ruby, Oval">
           <div class="reel-info-overlay">
             <div style="font-weight: 600;">Ruby, Oval</div>
             <div style="opacity: 0.8; font-size: 10px;">₹18,200</div>
@@ -552,7 +552,7 @@ get_header();
         </a>
 
         <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="reel-card-tall">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/emerald.jpg'); ?>" alt="Emerald lot, 3 mm">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Emerald lot, 3 mm">
           <div class="reel-info-overlay">
             <div style="font-weight: 600;">Emerald lot, 3 mm</div>
             <div style="opacity: 0.8; font-size: 10px;">₹650 per piece</div>
@@ -560,7 +560,7 @@ get_header();
         </a>
 
         <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="reel-card-tall">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/ceylon-sapphire.jpg'); ?>" alt="Sapphire pair">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Sapphire pair">
           <div class="reel-info-overlay">
             <div style="font-weight: 600;">Sapphire pair</div>
             <div style="opacity: 0.8; font-size: 10px;">₹9,400</div>
@@ -568,7 +568,7 @@ get_header();
         </a>
 
         <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="reel-card-tall">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/moonstone.jpg'); ?>" alt="Tanzanite, Round">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Tanzanite, Round">
           <div class="reel-info-overlay">
             <div style="font-weight: 600;">Tanzanite, Round</div>
             <div style="opacity: 0.8; font-size: 10px;">₹7,900</div>
@@ -576,7 +576,7 @@ get_header();
         </a>
 
         <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="reel-card-tall">
-          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/swiss-topaz.jpg'); ?>" alt="Yellow sapphire lot">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Yellow sapphire lot">
           <div class="reel-info-overlay">
             <div style="font-weight: 600;">Yellow sapphire lot</div>
             <div style="opacity: 0.8; font-size: 10px;">₹1,100 per piece</div>
