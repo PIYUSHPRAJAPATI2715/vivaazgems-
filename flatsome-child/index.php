@@ -1,11 +1,18 @@
 <?php
 /**
- * Vivaaz Gems Theme Index & Shop Catalog Fallback Template
- * Renders the custom shop catalog or page content cleanly.
+ * Vivaaz Gems Theme Index Template
  */
 
-if (is_shop() || is_product_taxonomy() || is_post_type_archive('product') || isset($_GET['filter_color']) || isset($_GET['filter_stone']) || isset($_GET['filter_cut']) || isset($_GET['s'])) {
-    include locate_template('archive-product.php');
+$is_wc_shop = (function_exists('is_shop') && is_shop()) || 
+              (function_exists('is_product_taxonomy') && is_product_taxonomy()) || 
+              is_post_type_archive('product') || 
+              isset($_GET['filter_color']) || 
+              isset($_GET['filter_stone']) || 
+              isset($_GET['filter_cut']) || 
+              isset($_GET['s']);
+
+if ($is_wc_shop) {
+    include locate_template('woocommerce/archive-product.php');
 } else {
     get_header();
     ?>
@@ -17,7 +24,7 @@ if (is_shop() || is_product_taxonomy() || is_post_type_archive('product') || iss
                     the_content();
                 endwhile;
             else :
-                include locate_template('archive-product.php');
+                include locate_template('woocommerce/archive-product.php');
             endif;
             ?>
         </div>
