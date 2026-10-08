@@ -44,11 +44,17 @@ function vivaaz_get_whatsapp_link($product_id = null) {
  * 3. Simplify WooCommerce Checkout
  */
 function vivaaz_simplify_checkout_fields($fields) {
-    unset($fields['billing']['billing_last_name']);
-    $fields['billing']['billing_first_name']['label'] = __('Full Name', 'woocommerce');
-    $fields['billing']['billing_first_name']['placeholder'] = __('Enter your full name', 'woocommerce');
-    $fields['billing']['billing_first_name']['class'] = array('form-row-wide');
-    unset($fields['billing']['billing_company']);
+    if (isset($fields['billing']['billing_last_name'])) {
+        unset($fields['billing']['billing_last_name']);
+    }
+    if (isset($fields['billing']['billing_first_name'])) {
+        $fields['billing']['billing_first_name']['label'] = 'Full Name';
+        $fields['billing']['billing_first_name']['placeholder'] = 'Enter your full name';
+        $fields['billing']['billing_first_name']['class'] = array('form-row-wide');
+    }
+    if (isset($fields['billing']['billing_company'])) {
+        unset($fields['billing']['billing_company']);
+    }
     return $fields;
 }
 add_filter('woocommerce_checkout_fields', 'vivaaz_simplify_checkout_fields');
