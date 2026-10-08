@@ -1,8 +1,5 @@
-﻿-- MySQL dump 10.13  Distrib 8.4.0, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: local
--- ------------------------------------------------------
--- Server version	8.4.0
+﻿SET FOREIGN_KEY_CHECKS = 0;
+SET SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO';
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -15,9 +12,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Table structure for table `wp_actionscheduler_actions`
---
 
 DROP TABLE IF EXISTS `wp_actionscheduler_actions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -50,9 +44,6 @@ CREATE TABLE `wp_actionscheduler_actions` (
 ) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_actionscheduler_actions`
---
 
 LOCK TABLES `wp_actionscheduler_actions` WRITE;
 /*!40000 ALTER TABLE `wp_actionscheduler_actions` DISABLE KEYS */;
@@ -60,9 +51,6 @@ INSERT INTO `wp_actionscheduler_actions` VALUES (9,'action_scheduler_run_recurri
 /*!40000 ALTER TABLE `wp_actionscheduler_actions` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_actionscheduler_claims`
---
 
 DROP TABLE IF EXISTS `wp_actionscheduler_claims`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -75,18 +63,12 @@ CREATE TABLE `wp_actionscheduler_claims` (
 ) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_actionscheduler_claims`
---
 
 LOCK TABLES `wp_actionscheduler_claims` WRITE;
 /*!40000 ALTER TABLE `wp_actionscheduler_claims` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_actionscheduler_claims` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_actionscheduler_groups`
---
 
 DROP TABLE IF EXISTS `wp_actionscheduler_groups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -99,9 +81,6 @@ CREATE TABLE `wp_actionscheduler_groups` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_actionscheduler_groups`
---
 
 LOCK TABLES `wp_actionscheduler_groups` WRITE;
 /*!40000 ALTER TABLE `wp_actionscheduler_groups` DISABLE KEYS */;
@@ -109,9 +88,6 @@ INSERT INTO `wp_actionscheduler_groups` VALUES (1,'ActionScheduler'),(2,'woocomm
 /*!40000 ALTER TABLE `wp_actionscheduler_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_actionscheduler_logs`
---
 
 DROP TABLE IF EXISTS `wp_actionscheduler_logs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -128,9 +104,6 @@ CREATE TABLE `wp_actionscheduler_logs` (
 ) ENGINE=InnoDB AUTO_INCREMENT=277 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_actionscheduler_logs`
---
 
 LOCK TABLES `wp_actionscheduler_logs` WRITE;
 /*!40000 ALTER TABLE `wp_actionscheduler_logs` DISABLE KEYS */;
@@ -138,9 +111,6 @@ INSERT INTO `wp_actionscheduler_logs` VALUES (1,9,'action created','2026-10-07 0
 /*!40000 ALTER TABLE `wp_actionscheduler_logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_commentmeta`
---
 
 DROP TABLE IF EXISTS `wp_commentmeta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -156,18 +126,12 @@ CREATE TABLE `wp_commentmeta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_commentmeta`
---
 
 LOCK TABLES `wp_commentmeta` WRITE;
 /*!40000 ALTER TABLE `wp_commentmeta` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_commentmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_comments`
---
 
 DROP TABLE IF EXISTS `wp_comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -200,9 +164,6 @@ CREATE TABLE `wp_comments` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_comments`
---
 
 LOCK TABLES `wp_comments` WRITE;
 /*!40000 ALTER TABLE `wp_comments` DISABLE KEYS */;
@@ -210,9 +171,6 @@ INSERT INTO `wp_comments` VALUES (1,1,'A WordPress Commenter','wapuu@wordpress.e
 /*!40000 ALTER TABLE `wp_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_gla_attribute_mapping_rules`
---
 
 DROP TABLE IF EXISTS `wp_gla_attribute_mapping_rules`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -227,18 +185,12 @@ CREATE TABLE `wp_gla_attribute_mapping_rules` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_gla_attribute_mapping_rules`
---
 
 LOCK TABLES `wp_gla_attribute_mapping_rules` WRITE;
 /*!40000 ALTER TABLE `wp_gla_attribute_mapping_rules` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_gla_attribute_mapping_rules` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_gla_budget_recommendations`
---
 
 DROP TABLE IF EXISTS `wp_gla_budget_recommendations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -253,9 +205,6 @@ CREATE TABLE `wp_gla_budget_recommendations` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4231 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_gla_budget_recommendations`
---
 
 LOCK TABLES `wp_gla_budget_recommendations` WRITE;
 /*!40000 ALTER TABLE `wp_gla_budget_recommendations` DISABLE KEYS */;
@@ -263,9 +212,6 @@ INSERT INTO `wp_gla_budget_recommendations` VALUES (1,'AED','US',55),(2,'AED','C
 /*!40000 ALTER TABLE `wp_gla_budget_recommendations` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_gla_merchant_issues`
---
 
 DROP TABLE IF EXISTS `wp_gla_merchant_issues`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -287,18 +233,12 @@ CREATE TABLE `wp_gla_merchant_issues` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_gla_merchant_issues`
---
 
 LOCK TABLES `wp_gla_merchant_issues` WRITE;
 /*!40000 ALTER TABLE `wp_gla_merchant_issues` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_gla_merchant_issues` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_gla_merchant_price_benchmarks`
---
 
 DROP TABLE IF EXISTS `wp_gla_merchant_price_benchmarks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -330,18 +270,12 @@ CREATE TABLE `wp_gla_merchant_price_benchmarks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_gla_merchant_price_benchmarks`
---
 
 LOCK TABLES `wp_gla_merchant_price_benchmarks` WRITE;
 /*!40000 ALTER TABLE `wp_gla_merchant_price_benchmarks` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_gla_merchant_price_benchmarks` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_gla_shipping_rates`
---
 
 DROP TABLE IF EXISTS `wp_gla_shipping_rates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -358,18 +292,12 @@ CREATE TABLE `wp_gla_shipping_rates` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_gla_shipping_rates`
---
 
 LOCK TABLES `wp_gla_shipping_rates` WRITE;
 /*!40000 ALTER TABLE `wp_gla_shipping_rates` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_gla_shipping_rates` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_gla_shipping_times`
---
 
 DROP TABLE IF EXISTS `wp_gla_shipping_times`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -384,18 +312,12 @@ CREATE TABLE `wp_gla_shipping_times` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_gla_shipping_times`
---
 
 LOCK TABLES `wp_gla_shipping_times` WRITE;
 /*!40000 ALTER TABLE `wp_gla_shipping_times` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_gla_shipping_times` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_links`
---
 
 DROP TABLE IF EXISTS `wp_links`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -419,18 +341,12 @@ CREATE TABLE `wp_links` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_links`
---
 
 LOCK TABLES `wp_links` WRITE;
 /*!40000 ALTER TABLE `wp_links` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_links` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_automation_run_logs`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_automation_run_logs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -454,18 +370,12 @@ CREATE TABLE `wp_mailpoet_automation_run_logs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_automation_run_logs`
---
 
 LOCK TABLES `wp_mailpoet_automation_run_logs` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_automation_run_logs` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_automation_run_logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_automation_run_subjects`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_automation_run_subjects`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -482,18 +392,12 @@ CREATE TABLE `wp_mailpoet_automation_run_subjects` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_automation_run_subjects`
---
 
 LOCK TABLES `wp_mailpoet_automation_run_subjects` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_automation_run_subjects` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_automation_run_subjects` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_automation_runs`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_automation_runs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -516,18 +420,12 @@ CREATE TABLE `wp_mailpoet_automation_runs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_automation_runs`
---
 
 LOCK TABLES `wp_mailpoet_automation_runs` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_automation_runs` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_automation_runs` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_automation_triggers`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_automation_triggers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -539,18 +437,12 @@ CREATE TABLE `wp_mailpoet_automation_triggers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_automation_triggers`
---
 
 LOCK TABLES `wp_mailpoet_automation_triggers` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_automation_triggers` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_automation_triggers` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_automation_versions`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_automation_versions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -566,18 +458,12 @@ CREATE TABLE `wp_mailpoet_automation_versions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_automation_versions`
---
 
 LOCK TABLES `wp_mailpoet_automation_versions` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_automation_versions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_automation_versions` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_automations`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_automations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -596,18 +482,12 @@ CREATE TABLE `wp_mailpoet_automations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_automations`
---
 
 LOCK TABLES `wp_mailpoet_automations` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_automations` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_automations` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_custom_fields`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_custom_fields`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -625,18 +505,12 @@ CREATE TABLE `wp_mailpoet_custom_fields` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_custom_fields`
---
 
 LOCK TABLES `wp_mailpoet_custom_fields` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_custom_fields` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_custom_fields` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_dynamic_segment_filters`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_dynamic_segment_filters`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -654,18 +528,12 @@ CREATE TABLE `wp_mailpoet_dynamic_segment_filters` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_dynamic_segment_filters`
---
 
 LOCK TABLES `wp_mailpoet_dynamic_segment_filters` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_dynamic_segment_filters` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_dynamic_segment_filters` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_feature_flags`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_feature_flags`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -681,18 +549,12 @@ CREATE TABLE `wp_mailpoet_feature_flags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_feature_flags`
---
 
 LOCK TABLES `wp_mailpoet_feature_flags` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_feature_flags` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_feature_flags` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_forms`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_forms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -711,18 +573,12 @@ CREATE TABLE `wp_mailpoet_forms` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_forms`
---
 
 LOCK TABLES `wp_mailpoet_forms` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_forms` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_forms` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_log`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -741,18 +597,12 @@ CREATE TABLE `wp_mailpoet_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_log`
---
 
 LOCK TABLES `wp_mailpoet_log` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_log` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_migrations`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -769,9 +619,6 @@ CREATE TABLE `wp_mailpoet_migrations` (
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_migrations`
---
 
 LOCK TABLES `wp_mailpoet_migrations` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_migrations` DISABLE KEYS */;
@@ -779,9 +626,6 @@ INSERT INTO `wp_mailpoet_migrations` VALUES (1,'Migration_20221028_105818','2026
 /*!40000 ALTER TABLE `wp_mailpoet_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_newsletter_links`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_newsletter_links`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -801,18 +645,12 @@ CREATE TABLE `wp_mailpoet_newsletter_links` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_newsletter_links`
---
 
 LOCK TABLES `wp_mailpoet_newsletter_links` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_newsletter_links` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_newsletter_links` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_newsletter_option`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_newsletter_option`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -829,18 +667,12 @@ CREATE TABLE `wp_mailpoet_newsletter_option` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_newsletter_option`
---
 
 LOCK TABLES `wp_mailpoet_newsletter_option` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_newsletter_option` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_newsletter_option` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_newsletter_option_fields`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_newsletter_option_fields`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -856,9 +688,6 @@ CREATE TABLE `wp_mailpoet_newsletter_option_fields` (
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_newsletter_option_fields`
---
 
 LOCK TABLES `wp_mailpoet_newsletter_option_fields` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_newsletter_option_fields` DISABLE KEYS */;
@@ -866,9 +695,6 @@ INSERT INTO `wp_mailpoet_newsletter_option_fields` VALUES (1,'isScheduled','stan
 /*!40000 ALTER TABLE `wp_mailpoet_newsletter_option_fields` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_newsletter_posts`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_newsletter_posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -884,18 +710,12 @@ CREATE TABLE `wp_mailpoet_newsletter_posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_newsletter_posts`
---
 
 LOCK TABLES `wp_mailpoet_newsletter_posts` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_newsletter_posts` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_newsletter_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_newsletter_segment`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_newsletter_segment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -911,18 +731,12 @@ CREATE TABLE `wp_mailpoet_newsletter_segment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_newsletter_segment`
---
 
 LOCK TABLES `wp_mailpoet_newsletter_segment` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_newsletter_segment` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_newsletter_segment` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_newsletter_templates`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_newsletter_templates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -943,9 +757,6 @@ CREATE TABLE `wp_mailpoet_newsletter_templates` (
 ) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_newsletter_templates`
---
 
 LOCK TABLES `wp_mailpoet_newsletter_templates` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_newsletter_templates` DISABLE KEYS */;
@@ -954,9 +765,6 @@ INSERT INTO `wp_mailpoet_newsletter_templates` VALUES (65,0,'Photography','[\"st
 /*!40000 ALTER TABLE `wp_mailpoet_newsletter_templates` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_newsletters`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_newsletters`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -988,18 +796,12 @@ CREATE TABLE `wp_mailpoet_newsletters` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_newsletters`
---
 
 LOCK TABLES `wp_mailpoet_newsletters` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_newsletters` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_newsletters` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_scheduled_task_subscribers`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_scheduled_task_subscribers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1017,18 +819,12 @@ CREATE TABLE `wp_mailpoet_scheduled_task_subscribers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_scheduled_task_subscribers`
---
 
 LOCK TABLES `wp_mailpoet_scheduled_task_subscribers` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_scheduled_task_subscribers` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_scheduled_task_subscribers` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_scheduled_tasks`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_scheduled_tasks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1053,9 +849,6 @@ CREATE TABLE `wp_mailpoet_scheduled_tasks` (
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_scheduled_tasks`
---
 
 LOCK TABLES `wp_mailpoet_scheduled_tasks` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_scheduled_tasks` DISABLE KEYS */;
@@ -1063,9 +856,6 @@ INSERT INTO `wp_mailpoet_scheduled_tasks` VALUES (1,'inactive_subscribers_mainte
 /*!40000 ALTER TABLE `wp_mailpoet_scheduled_tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_segments`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_segments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1090,9 +880,6 @@ CREATE TABLE `wp_mailpoet_segments` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_segments`
---
 
 LOCK TABLES `wp_mailpoet_segments` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_segments` DISABLE KEYS */;
@@ -1100,9 +887,6 @@ INSERT INTO `wp_mailpoet_segments` VALUES (1,'WordPress Users','wp_users','This 
 /*!40000 ALTER TABLE `wp_mailpoet_segments` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_sending_queues`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_sending_queues`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1127,18 +911,12 @@ CREATE TABLE `wp_mailpoet_sending_queues` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_sending_queues`
---
 
 LOCK TABLES `wp_mailpoet_sending_queues` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_sending_queues` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_sending_queues` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_settings`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_settings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1154,9 +932,6 @@ CREATE TABLE `wp_mailpoet_settings` (
 ) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_settings`
---
 
 LOCK TABLES `wp_mailpoet_settings` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_settings` DISABLE KEYS */;
@@ -1164,9 +939,6 @@ INSERT INTO `wp_mailpoet_settings` VALUES (1,'log_table_pruned_migration_2025092
 /*!40000 ALTER TABLE `wp_mailpoet_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_statistics_bounces`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_statistics_bounces`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1181,18 +953,12 @@ CREATE TABLE `wp_mailpoet_statistics_bounces` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_statistics_bounces`
---
 
 LOCK TABLES `wp_mailpoet_statistics_bounces` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_bounces` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_bounces` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_statistics_clicks`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_statistics_clicks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1215,18 +981,12 @@ CREATE TABLE `wp_mailpoet_statistics_clicks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_statistics_clicks`
---
 
 LOCK TABLES `wp_mailpoet_statistics_clicks` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_clicks` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_clicks` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_statistics_forms`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_statistics_forms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1241,18 +1001,12 @@ CREATE TABLE `wp_mailpoet_statistics_forms` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_statistics_forms`
---
 
 LOCK TABLES `wp_mailpoet_statistics_forms` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_forms` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_forms` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_statistics_newsletters`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_statistics_newsletters`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1272,18 +1026,12 @@ CREATE TABLE `wp_mailpoet_statistics_newsletters` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_statistics_newsletters`
---
 
 LOCK TABLES `wp_mailpoet_statistics_newsletters` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_newsletters` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_newsletters` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_statistics_opens`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_statistics_opens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1305,18 +1053,12 @@ CREATE TABLE `wp_mailpoet_statistics_opens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_statistics_opens`
---
 
 LOCK TABLES `wp_mailpoet_statistics_opens` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_opens` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_opens` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_statistics_unsubscribes`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_statistics_unsubscribes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1341,18 +1083,12 @@ CREATE TABLE `wp_mailpoet_statistics_unsubscribes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_statistics_unsubscribes`
---
 
 LOCK TABLES `wp_mailpoet_statistics_unsubscribes` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_unsubscribes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_unsubscribes` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_statistics_woocommerce_purchases`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_statistics_woocommerce_purchases`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1378,18 +1114,12 @@ CREATE TABLE `wp_mailpoet_statistics_woocommerce_purchases` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_statistics_woocommerce_purchases`
---
 
 LOCK TABLES `wp_mailpoet_statistics_woocommerce_purchases` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_woocommerce_purchases` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_statistics_woocommerce_purchases` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_stats_notifications`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_stats_notifications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1406,18 +1136,12 @@ CREATE TABLE `wp_mailpoet_stats_notifications` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_stats_notifications`
---
 
 LOCK TABLES `wp_mailpoet_stats_notifications` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_stats_notifications` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_stats_notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_subscriber_custom_field`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_subscriber_custom_field`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1434,18 +1158,12 @@ CREATE TABLE `wp_mailpoet_subscriber_custom_field` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_subscriber_custom_field`
---
 
 LOCK TABLES `wp_mailpoet_subscriber_custom_field` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_subscriber_custom_field` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_subscriber_custom_field` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_subscriber_ips`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_subscriber_ips`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1458,18 +1176,12 @@ CREATE TABLE `wp_mailpoet_subscriber_ips` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_subscriber_ips`
---
 
 LOCK TABLES `wp_mailpoet_subscriber_ips` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_subscriber_ips` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_subscriber_ips` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_subscriber_segment`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_subscriber_segment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1488,9 +1200,6 @@ CREATE TABLE `wp_mailpoet_subscriber_segment` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_subscriber_segment`
---
 
 LOCK TABLES `wp_mailpoet_subscriber_segment` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_subscriber_segment` DISABLE KEYS */;
@@ -1498,9 +1207,6 @@ INSERT INTO `wp_mailpoet_subscriber_segment` VALUES (1,1,1,'subscribed','2026-10
 /*!40000 ALTER TABLE `wp_mailpoet_subscriber_segment` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_subscriber_tag`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_subscriber_tag`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1517,18 +1223,12 @@ CREATE TABLE `wp_mailpoet_subscriber_tag` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_subscriber_tag`
---
 
 LOCK TABLES `wp_mailpoet_subscriber_tag` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_subscriber_tag` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_subscriber_tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_subscribers`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_subscribers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1595,9 +1295,6 @@ CREATE TABLE `wp_mailpoet_subscribers` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_subscribers`
---
 
 LOCK TABLES `wp_mailpoet_subscribers` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_subscribers` DISABLE KEYS */;
@@ -1605,9 +1302,6 @@ INSERT INTO `wp_mailpoet_subscribers` VALUES (1,1,0,'admin','','admin@local.host
 /*!40000 ALTER TABLE `wp_mailpoet_subscribers` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_tags`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_tags`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1623,18 +1317,12 @@ CREATE TABLE `wp_mailpoet_tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_tags`
---
 
 LOCK TABLES `wp_mailpoet_tags` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_tags` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_tags` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_user_agents`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_user_agents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1650,18 +1338,12 @@ CREATE TABLE `wp_mailpoet_user_agents` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_user_agents`
---
 
 LOCK TABLES `wp_mailpoet_user_agents` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_user_agents` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_user_agents` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_mailpoet_user_flags`
---
 
 DROP TABLE IF EXISTS `wp_mailpoet_user_flags`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1678,18 +1360,12 @@ CREATE TABLE `wp_mailpoet_user_flags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_mailpoet_user_flags`
---
 
 LOCK TABLES `wp_mailpoet_user_flags` WRITE;
 /*!40000 ALTER TABLE `wp_mailpoet_user_flags` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_mailpoet_user_flags` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_options`
---
 
 DROP TABLE IF EXISTS `wp_options`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1705,9 +1381,6 @@ CREATE TABLE `wp_options` (
 ) ENGINE=InnoDB AUTO_INCREMENT=921 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_options`
---
 
 LOCK TABLES `wp_options` WRITE;
 /*!40000 ALTER TABLE `wp_options` DISABLE KEYS */;
@@ -1715,9 +1388,6 @@ INSERT INTO `wp_options` VALUES (1,'cron','a:18:{i:1791449705;a:1:{s:26:\"action
 /*!40000 ALTER TABLE `wp_options` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_postmeta`
---
 
 DROP TABLE IF EXISTS `wp_postmeta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1733,9 +1403,6 @@ CREATE TABLE `wp_postmeta` (
 ) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_postmeta`
---
 
 LOCK TABLES `wp_postmeta` WRITE;
 /*!40000 ALTER TABLE `wp_postmeta` DISABLE KEYS */;
@@ -1743,9 +1410,6 @@ INSERT INTO `wp_postmeta` VALUES (1,2,'_wp_page_template','default'),(2,3,'_wp_p
 /*!40000 ALTER TABLE `wp_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_posts`
---
 
 DROP TABLE IF EXISTS `wp_posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1783,9 +1447,6 @@ CREATE TABLE `wp_posts` (
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_posts`
---
 
 LOCK TABLES `wp_posts` WRITE;
 /*!40000 ALTER TABLE `wp_posts` DISABLE KEYS */;
@@ -1793,9 +1454,6 @@ INSERT INTO `wp_posts` VALUES (1,1,'2026-10-07 05:53:22','2026-10-07 05:53:22','
 /*!40000 ALTER TABLE `wp_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_term_relationships`
---
 
 DROP TABLE IF EXISTS `wp_term_relationships`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1809,9 +1467,6 @@ CREATE TABLE `wp_term_relationships` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_term_relationships`
---
 
 LOCK TABLES `wp_term_relationships` WRITE;
 /*!40000 ALTER TABLE `wp_term_relationships` DISABLE KEYS */;
@@ -1819,9 +1474,6 @@ INSERT INTO `wp_term_relationships` VALUES (1,1,0),(18,4,0),(18,18,0),(18,19,0),
 /*!40000 ALTER TABLE `wp_term_relationships` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_term_taxonomy`
---
 
 DROP TABLE IF EXISTS `wp_term_taxonomy`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1839,9 +1491,6 @@ CREATE TABLE `wp_term_taxonomy` (
 ) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_term_taxonomy`
---
 
 LOCK TABLES `wp_term_taxonomy` WRITE;
 /*!40000 ALTER TABLE `wp_term_taxonomy` DISABLE KEYS */;
@@ -1849,9 +1498,6 @@ INSERT INTO `wp_term_taxonomy` VALUES (1,1,'category','',0,1),(2,2,'product_type
 /*!40000 ALTER TABLE `wp_term_taxonomy` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_termmeta`
---
 
 DROP TABLE IF EXISTS `wp_termmeta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1867,9 +1513,6 @@ CREATE TABLE `wp_termmeta` (
 ) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_termmeta`
---
 
 LOCK TABLES `wp_termmeta` WRITE;
 /*!40000 ALTER TABLE `wp_termmeta` DISABLE KEYS */;
@@ -1877,9 +1520,6 @@ INSERT INTO `wp_termmeta` VALUES (1,15,'product_count_product_cat','0'),(2,16,'o
 /*!40000 ALTER TABLE `wp_termmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_terms`
---
 
 DROP TABLE IF EXISTS `wp_terms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1895,9 +1535,6 @@ CREATE TABLE `wp_terms` (
 ) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_terms`
---
 
 LOCK TABLES `wp_terms` WRITE;
 /*!40000 ALTER TABLE `wp_terms` DISABLE KEYS */;
@@ -1905,9 +1542,6 @@ INSERT INTO `wp_terms` VALUES (1,'Uncategorized','uncategorized',0),(2,'simple',
 /*!40000 ALTER TABLE `wp_terms` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_usermeta`
---
 
 DROP TABLE IF EXISTS `wp_usermeta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1923,9 +1557,6 @@ CREATE TABLE `wp_usermeta` (
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_usermeta`
---
 
 LOCK TABLES `wp_usermeta` WRITE;
 /*!40000 ALTER TABLE `wp_usermeta` DISABLE KEYS */;
@@ -1933,9 +1564,6 @@ INSERT INTO `wp_usermeta` VALUES (1,1,'nickname','admin'),(2,1,'first_name',''),
 /*!40000 ALTER TABLE `wp_usermeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_users`
---
 
 DROP TABLE IF EXISTS `wp_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1958,9 +1586,6 @@ CREATE TABLE `wp_users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_users`
---
 
 LOCK TABLES `wp_users` WRITE;
 /*!40000 ALTER TABLE `wp_users` DISABLE KEYS */;
@@ -1968,9 +1593,6 @@ INSERT INTO `wp_users` VALUES (1,'admin','$wp$2y$10$vzuDDlCM2LvhfM22Z88A3O7WOsai
 /*!40000 ALTER TABLE `wp_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_admin_note_actions`
---
 
 DROP TABLE IF EXISTS `wp_wc_admin_note_actions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1990,9 +1612,6 @@ CREATE TABLE `wp_wc_admin_note_actions` (
 ) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_admin_note_actions`
---
 
 LOCK TABLES `wp_wc_admin_note_actions` WRITE;
 /*!40000 ALTER TABLE `wp_wc_admin_note_actions` DISABLE KEYS */;
@@ -2000,9 +1619,6 @@ INSERT INTO `wp_wc_admin_note_actions` VALUES (1,1,'notify-refund-returns-page',
 /*!40000 ALTER TABLE `wp_wc_admin_note_actions` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_admin_notes`
---
 
 DROP TABLE IF EXISTS `wp_wc_admin_notes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2029,9 +1645,6 @@ CREATE TABLE `wp_wc_admin_notes` (
 ) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_admin_notes`
---
 
 LOCK TABLES `wp_wc_admin_notes` WRITE;
 /*!40000 ALTER TABLE `wp_wc_admin_notes` DISABLE KEYS */;
@@ -2039,9 +1652,6 @@ INSERT INTO `wp_wc_admin_notes` VALUES (1,'wc-refund-returns-page','info','en_US
 /*!40000 ALTER TABLE `wp_wc_admin_notes` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_category_lookup`
---
 
 DROP TABLE IF EXISTS `wp_wc_category_lookup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2053,9 +1663,6 @@ CREATE TABLE `wp_wc_category_lookup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_category_lookup`
---
 
 LOCK TABLES `wp_wc_category_lookup` WRITE;
 /*!40000 ALTER TABLE `wp_wc_category_lookup` DISABLE KEYS */;
@@ -2063,9 +1670,6 @@ INSERT INTO `wp_wc_category_lookup` VALUES (15,15),(16,16),(16,17),(16,18),(16,2
 /*!40000 ALTER TABLE `wp_wc_category_lookup` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_customer_lookup`
---
 
 DROP TABLE IF EXISTS `wp_wc_customer_lookup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2089,9 +1693,6 @@ CREATE TABLE `wp_wc_customer_lookup` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_customer_lookup`
---
 
 LOCK TABLES `wp_wc_customer_lookup` WRITE;
 /*!40000 ALTER TABLE `wp_wc_customer_lookup` DISABLE KEYS */;
@@ -2099,9 +1700,6 @@ INSERT INTO `wp_wc_customer_lookup` VALUES (1,2,'13prajapatipiyush15','','','13p
 /*!40000 ALTER TABLE `wp_wc_customer_lookup` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_download_log`
---
 
 DROP TABLE IF EXISTS `wp_wc_download_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2118,18 +1716,12 @@ CREATE TABLE `wp_wc_download_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_download_log`
---
 
 LOCK TABLES `wp_wc_download_log` WRITE;
 /*!40000 ALTER TABLE `wp_wc_download_log` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_wc_download_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_email_unsubscribes`
---
 
 DROP TABLE IF EXISTS `wp_wc_email_unsubscribes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2145,18 +1737,12 @@ CREATE TABLE `wp_wc_email_unsubscribes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_email_unsubscribes`
---
 
 LOCK TABLES `wp_wc_email_unsubscribes` WRITE;
 /*!40000 ALTER TABLE `wp_wc_email_unsubscribes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_wc_email_unsubscribes` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_order_addresses`
---
 
 DROP TABLE IF EXISTS `wp_wc_order_addresses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2184,18 +1770,12 @@ CREATE TABLE `wp_wc_order_addresses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_order_addresses`
---
 
 LOCK TABLES `wp_wc_order_addresses` WRITE;
 /*!40000 ALTER TABLE `wp_wc_order_addresses` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_wc_order_addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_order_coupon_lookup`
---
 
 DROP TABLE IF EXISTS `wp_wc_order_coupon_lookup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2211,18 +1791,12 @@ CREATE TABLE `wp_wc_order_coupon_lookup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_order_coupon_lookup`
---
 
 LOCK TABLES `wp_wc_order_coupon_lookup` WRITE;
 /*!40000 ALTER TABLE `wp_wc_order_coupon_lookup` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_wc_order_coupon_lookup` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_order_operational_data`
---
 
 DROP TABLE IF EXISTS `wp_wc_order_operational_data`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2252,18 +1826,12 @@ CREATE TABLE `wp_wc_order_operational_data` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_order_operational_data`
---
 
 LOCK TABLES `wp_wc_order_operational_data` WRITE;
 /*!40000 ALTER TABLE `wp_wc_order_operational_data` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_wc_order_operational_data` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_order_product_lookup`
---
 
 DROP TABLE IF EXISTS `wp_wc_order_product_lookup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2291,18 +1859,12 @@ CREATE TABLE `wp_wc_order_product_lookup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_order_product_lookup`
---
 
 LOCK TABLES `wp_wc_order_product_lookup` WRITE;
 /*!40000 ALTER TABLE `wp_wc_order_product_lookup` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_wc_order_product_lookup` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_order_stats`
---
 
 DROP TABLE IF EXISTS `wp_wc_order_stats`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2330,18 +1892,12 @@ CREATE TABLE `wp_wc_order_stats` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_order_stats`
---
 
 LOCK TABLES `wp_wc_order_stats` WRITE;
 /*!40000 ALTER TABLE `wp_wc_order_stats` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_wc_order_stats` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_order_tax_lookup`
---
 
 DROP TABLE IF EXISTS `wp_wc_order_tax_lookup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2359,18 +1915,12 @@ CREATE TABLE `wp_wc_order_tax_lookup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_order_tax_lookup`
---
 
 LOCK TABLES `wp_wc_order_tax_lookup` WRITE;
 /*!40000 ALTER TABLE `wp_wc_order_tax_lookup` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_wc_order_tax_lookup` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_orders`
---
 
 DROP TABLE IF EXISTS `wp_wc_orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2406,18 +1956,12 @@ CREATE TABLE `wp_wc_orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_orders`
---
 
 LOCK TABLES `wp_wc_orders` WRITE;
 /*!40000 ALTER TABLE `wp_wc_orders` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_wc_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_orders_meta`
---
 
 DROP TABLE IF EXISTS `wp_wc_orders_meta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2433,18 +1977,12 @@ CREATE TABLE `wp_wc_orders_meta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_orders_meta`
---
 
 LOCK TABLES `wp_wc_orders_meta` WRITE;
 /*!40000 ALTER TABLE `wp_wc_orders_meta` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_wc_orders_meta` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_product_attributes_lookup`
---
 
 DROP TABLE IF EXISTS `wp_wc_product_attributes_lookup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2463,9 +2001,6 @@ CREATE TABLE `wp_wc_product_attributes_lookup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_product_attributes_lookup`
---
 
 LOCK TABLES `wp_wc_product_attributes_lookup` WRITE;
 /*!40000 ALTER TABLE `wp_wc_product_attributes_lookup` DISABLE KEYS */;
@@ -2473,9 +2008,6 @@ INSERT INTO `wp_wc_product_attributes_lookup` VALUES (18,18,'pa_size',46,0,1),(1
 /*!40000 ALTER TABLE `wp_wc_product_attributes_lookup` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_product_download_directories`
---
 
 DROP TABLE IF EXISTS `wp_wc_product_download_directories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2489,9 +2021,6 @@ CREATE TABLE `wp_wc_product_download_directories` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_product_download_directories`
---
 
 LOCK TABLES `wp_wc_product_download_directories` WRITE;
 /*!40000 ALTER TABLE `wp_wc_product_download_directories` DISABLE KEYS */;
@@ -2499,9 +2028,6 @@ INSERT INTO `wp_wc_product_download_directories` VALUES (1,'file://C:/Users/AB C
 /*!40000 ALTER TABLE `wp_wc_product_download_directories` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_product_meta_lookup`
---
 
 DROP TABLE IF EXISTS `wp_wc_product_meta_lookup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2533,9 +2059,6 @@ CREATE TABLE `wp_wc_product_meta_lookup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_product_meta_lookup`
---
 
 LOCK TABLES `wp_wc_product_meta_lookup` WRITE;
 /*!40000 ALTER TABLE `wp_wc_product_meta_lookup` DISABLE KEYS */;
@@ -2543,9 +2066,6 @@ INSERT INTO `wp_wc_product_meta_lookup` VALUES (18,'VG-SPH-OV-0705','',0,0,0.000
 /*!40000 ALTER TABLE `wp_wc_product_meta_lookup` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_rate_limits`
---
 
 DROP TABLE IF EXISTS `wp_wc_rate_limits`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2560,18 +2080,12 @@ CREATE TABLE `wp_wc_rate_limits` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_rate_limits`
---
 
 LOCK TABLES `wp_wc_rate_limits` WRITE;
 /*!40000 ALTER TABLE `wp_wc_rate_limits` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_wc_rate_limits` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_reserved_stock`
---
 
 DROP TABLE IF EXISTS `wp_wc_reserved_stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2587,18 +2101,12 @@ CREATE TABLE `wp_wc_reserved_stock` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_reserved_stock`
---
 
 LOCK TABLES `wp_wc_reserved_stock` WRITE;
 /*!40000 ALTER TABLE `wp_wc_reserved_stock` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_wc_reserved_stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_tax_rate_classes`
---
 
 DROP TABLE IF EXISTS `wp_wc_tax_rate_classes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2612,9 +2120,6 @@ CREATE TABLE `wp_wc_tax_rate_classes` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_tax_rate_classes`
---
 
 LOCK TABLES `wp_wc_tax_rate_classes` WRITE;
 /*!40000 ALTER TABLE `wp_wc_tax_rate_classes` DISABLE KEYS */;
@@ -2622,9 +2127,6 @@ INSERT INTO `wp_wc_tax_rate_classes` VALUES (1,'Reduced rate','reduced-rate'),(2
 /*!40000 ALTER TABLE `wp_wc_tax_rate_classes` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_wc_webhooks`
---
 
 DROP TABLE IF EXISTS `wp_wc_webhooks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2649,18 +2151,12 @@ CREATE TABLE `wp_wc_webhooks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_wc_webhooks`
---
 
 LOCK TABLES `wp_wc_webhooks` WRITE;
 /*!40000 ALTER TABLE `wp_wc_webhooks` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_wc_webhooks` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_api_keys`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_api_keys`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2681,18 +2177,12 @@ CREATE TABLE `wp_woocommerce_api_keys` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_api_keys`
---
 
 LOCK TABLES `wp_woocommerce_api_keys` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_api_keys` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_woocommerce_api_keys` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_attribute_taxonomies`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_attribute_taxonomies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2709,9 +2199,6 @@ CREATE TABLE `wp_woocommerce_attribute_taxonomies` (
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_attribute_taxonomies`
---
 
 LOCK TABLES `wp_woocommerce_attribute_taxonomies` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_attribute_taxonomies` DISABLE KEYS */;
@@ -2719,9 +2206,6 @@ INSERT INTO `wp_woocommerce_attribute_taxonomies` VALUES (1,'size','size','selec
 /*!40000 ALTER TABLE `wp_woocommerce_attribute_taxonomies` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_downloadable_product_permissions`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_downloadable_product_permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2747,18 +2231,12 @@ CREATE TABLE `wp_woocommerce_downloadable_product_permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_downloadable_product_permissions`
---
 
 LOCK TABLES `wp_woocommerce_downloadable_product_permissions` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_downloadable_product_permissions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_woocommerce_downloadable_product_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_log`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2775,18 +2253,12 @@ CREATE TABLE `wp_woocommerce_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_log`
---
 
 LOCK TABLES `wp_woocommerce_log` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_log` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_woocommerce_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_order_itemmeta`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_order_itemmeta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2802,18 +2274,12 @@ CREATE TABLE `wp_woocommerce_order_itemmeta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_order_itemmeta`
---
 
 LOCK TABLES `wp_woocommerce_order_itemmeta` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_order_itemmeta` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_woocommerce_order_itemmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_order_items`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_order_items`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2828,18 +2294,12 @@ CREATE TABLE `wp_woocommerce_order_items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_order_items`
---
 
 LOCK TABLES `wp_woocommerce_order_items` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_order_items` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_woocommerce_order_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_payment_tokenmeta`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_payment_tokenmeta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2855,18 +2315,12 @@ CREATE TABLE `wp_woocommerce_payment_tokenmeta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_payment_tokenmeta`
---
 
 LOCK TABLES `wp_woocommerce_payment_tokenmeta` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_payment_tokenmeta` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_woocommerce_payment_tokenmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_payment_tokens`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_payment_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2883,18 +2337,12 @@ CREATE TABLE `wp_woocommerce_payment_tokens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_payment_tokens`
---
 
 LOCK TABLES `wp_woocommerce_payment_tokens` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_payment_tokens` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_woocommerce_payment_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_sessions`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_sessions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2910,9 +2358,6 @@ CREATE TABLE `wp_woocommerce_sessions` (
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_sessions`
---
 
 LOCK TABLES `wp_woocommerce_sessions` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_sessions` DISABLE KEYS */;
@@ -2920,9 +2365,6 @@ INSERT INTO `wp_woocommerce_sessions` VALUES (30,'t_67ba584a70bb030834e6436c139a
 /*!40000 ALTER TABLE `wp_woocommerce_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_shipping_zone_locations`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_shipping_zone_locations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2938,9 +2380,6 @@ CREATE TABLE `wp_woocommerce_shipping_zone_locations` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_shipping_zone_locations`
---
 
 LOCK TABLES `wp_woocommerce_shipping_zone_locations` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_shipping_zone_locations` DISABLE KEYS */;
@@ -2948,9 +2387,6 @@ INSERT INTO `wp_woocommerce_shipping_zone_locations` VALUES (1,1,'IN','country')
 /*!40000 ALTER TABLE `wp_woocommerce_shipping_zone_locations` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_shipping_zone_methods`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_shipping_zone_methods`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2967,9 +2403,6 @@ CREATE TABLE `wp_woocommerce_shipping_zone_methods` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_shipping_zone_methods`
---
 
 LOCK TABLES `wp_woocommerce_shipping_zone_methods` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_shipping_zone_methods` DISABLE KEYS */;
@@ -2977,9 +2410,6 @@ INSERT INTO `wp_woocommerce_shipping_zone_methods` VALUES (1,1,'free_shipping',1
 /*!40000 ALTER TABLE `wp_woocommerce_shipping_zone_methods` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_shipping_zones`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_shipping_zones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2993,9 +2423,6 @@ CREATE TABLE `wp_woocommerce_shipping_zones` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_shipping_zones`
---
 
 LOCK TABLES `wp_woocommerce_shipping_zones` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_shipping_zones` DISABLE KEYS */;
@@ -3003,9 +2430,6 @@ INSERT INTO `wp_woocommerce_shipping_zones` VALUES (1,'India',0);
 /*!40000 ALTER TABLE `wp_woocommerce_shipping_zones` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_tax_rate_locations`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_tax_rate_locations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -3021,18 +2445,12 @@ CREATE TABLE `wp_woocommerce_tax_rate_locations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_tax_rate_locations`
---
 
 LOCK TABLES `wp_woocommerce_tax_rate_locations` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_tax_rate_locations` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_woocommerce_tax_rate_locations` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `wp_woocommerce_tax_rates`
---
 
 DROP TABLE IF EXISTS `wp_woocommerce_tax_rates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -3056,9 +2474,6 @@ CREATE TABLE `wp_woocommerce_tax_rates` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wp_woocommerce_tax_rates`
---
 
 LOCK TABLES `wp_woocommerce_tax_rates` WRITE;
 /*!40000 ALTER TABLE `wp_woocommerce_tax_rates` DISABLE KEYS */;
@@ -3073,5 +2488,3 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2026-10-08 15:06:47
