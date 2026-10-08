@@ -2,6 +2,11 @@
 /**
  * Vivaaz Gems Theme - Footer Template (Client Spec Page 5 & 10)
  */
+global $vivaaz_footer_rendered;
+if (!empty($vivaaz_footer_rendered)) {
+    return;
+}
+$vivaaz_footer_rendered = true;
 ?>
   <!-- LUXURY FOOTER (GREIGE #F1EBE1) -->
   <footer class="main-footer">

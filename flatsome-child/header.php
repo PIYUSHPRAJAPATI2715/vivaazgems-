@@ -1,3 +1,10 @@
+<?php
+global $vivaaz_header_rendered;
+if (!empty($vivaaz_header_rendered)) {
+    return;
+}
+$vivaaz_header_rendered = true;
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
