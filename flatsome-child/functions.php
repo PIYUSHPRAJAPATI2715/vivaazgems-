@@ -174,6 +174,33 @@ if (isset($_SERVER['HTTP_HOST']) && preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{
     add_filter('option_home', function() use ($current_ip_url) { return $current_ip_url; });
 }
 
+/**
+ * 10. Dynamic Helper: Get Real Single Product Detail Page URL (Prevents attachment zip download)
+ */
+function vivaaz_get_sample_product_url() {
+    if (function_exists('wc_get_products')) {
+        $products = wc_get_products(array(
+            'limit'  => 1,
+            'status' => 'publish',
+            'return' => 'ids',
+        ));
+        if (!empty($products) && is_array($products)) {
+            return get_permalink($products[0]);
+        }
+    }
+    $posts = get_posts(array(
+        'post_type'      => 'product',
+        'post_status'    => 'publish',
+        'posts_per_page' => 1,
+        'fields'         => 'ids',
+    ));
+    if (!empty($posts) && is_array($posts)) {
+        return get_permalink($posts[0]);
+    }
+    return home_url('/product/ceylon-blue-sapphire-7x5mm/');
+}
+
+
 
 
 

@@ -16,7 +16,7 @@ if (empty($product) || !$product->is_visible()) {
 
 $product_id = $product->get_id();
 $title = $product->get_name();
-$link = get_permalink($product_id) ?: home_url('/?post_type=product&p=' . $product_id);
+$link = get_permalink($product_id) ?: (function_exists('vivaaz_get_sample_product_url') ? vivaaz_get_sample_product_url() : home_url('/product/ceylon-blue-sapphire-7x5mm/'));
 $price_html = $product->get_price_html();
 $img_url = get_the_post_thumbnail_url($product_id, 'woocommerce_thumbnail') ?: vivaaz_get_img_url('ceylon-sapphire.jpg');
 $is_variable = $product->is_type('variable');

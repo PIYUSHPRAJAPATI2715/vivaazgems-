@@ -135,7 +135,7 @@ get_header('shop');
         <?php else : ?>
           
           <!-- Fallback Showcase Products matching Page 10 Spec -->
-          <?php $sample_prod_url = home_url('/?post_type=product&p=18'); ?>
+          <?php $sample_prod_url = function_exists('vivaaz_get_sample_product_url') ? vivaaz_get_sample_product_url() : home_url('/product/ceylon-blue-sapphire-7x5mm/'); ?>
           <div class="products-grid-3col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
             
             <!-- Card 1 -->
