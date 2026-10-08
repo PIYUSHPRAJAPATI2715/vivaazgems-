@@ -32,7 +32,7 @@
   <header class="main-header">
     <!-- Brand Logo & Name -->
     <a href="<?php echo esc_url(home_url('/')); ?>" class="brand-logo-container">
-      <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Vivaaz Gems & Jewellery" class="brand-logo-img" style="height: 38px; width: auto; object-fit: contain; display: block;">
+      <img src="<?php echo esc_url(vivaaz_get_img_url('vivaaz-logo.png')); ?>" alt="Vivaaz Gems & Jewellery" class="brand-logo-img" style="height: 38px; width: auto; object-fit: contain; display: block;">
       <div class="brand-logo-text-block">
         <span class="brand-logo-text">V I V A A Z</span>
         <span class="brand-logo-subtitle">GEMS & JEWELLERY · JAIPUR</span>
@@ -96,7 +96,7 @@
 
             <!-- Photo Panel -->
             <div class="mega-promo-box">
-              <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="New this week">
+              <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="New this week">
               <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">New this week</div>
               <p style="font-size: 10px; color: var(--color-text-muted);">Fresh loose stones, added every week.</p>
               <a href="<?php echo esc_url(home_url('/shop/?orderby=date')); ?>" class="btn-underline-link" style="font-size: 10px; margin-top: 6px;">See what is new →</a>

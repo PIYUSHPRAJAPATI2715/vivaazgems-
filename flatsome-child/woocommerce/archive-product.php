@@ -140,7 +140,7 @@ get_header('shop');
               <div class="product-card-media">
                 <span class="category-card-badge badge-gold">CALIBRATED · 10+ PIECES</span>
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Rainbow Moonstone Oval Cabochon">
+                <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon">
                 <div class="quick-view-hover-bar">QUICK VIEW</div>
               </div>
               <div class="product-card-body">
@@ -164,7 +164,7 @@ get_header('shop');
               <div class="product-card-media">
                 <span class="category-card-badge badge-blue">ONLY 1</span>
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Rainbow Moonstone Oval Cabochon" style="filter: hue-rotate(20deg);">
+                <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon" style="filter: hue-rotate(20deg);">
                 <div class="quick-view-hover-bar">QUICK VIEW</div>
               </div>
               <div class="product-card-body">
@@ -186,7 +186,7 @@ get_header('shop');
               <div class="product-card-media">
                 <span class="category-card-badge badge-green">MATCHED PAIR</span>
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Rainbow Moonstone Oval Cabochon Pair">
+                <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon Pair">
                 <div class="quick-view-hover-bar">QUICK VIEW</div>
               </div>
               <div class="product-card-body">
@@ -208,7 +208,7 @@ get_header('shop');
               <div class="product-card-media">
                 <span class="category-card-badge badge-gold">ONLY 1</span>
                 <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Rainbow Moonstone Oval Cabochon">
+                <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon">
                 <div class="quick-view-hover-bar">QUICK VIEW</div>
               </div>
               <div class="product-card-body">

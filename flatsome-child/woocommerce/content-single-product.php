@@ -16,7 +16,7 @@ $title = get_the_title();
 $categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
 $cat_name = !empty($categories) ? strtoupper(implode(' · ', $categories)) : 'CEYLON SAPPHIRE · FACETED · CALIBRATED';
 
-$main_img = get_the_post_thumbnail_url($product_id, 'large') ?: vivaaz_get_img_url('');
+$main_img = get_the_post_thumbnail_url($product_id, 'large') ?: vivaaz_get_img_url('ceylon-sapphire.jpg');
 $whatsapp_url = 'https://wa.me/919680552270?text=' . rawurlencode("Hi Vivaaz Gems, I would like to inquire about: " . $title . " (SKU: " . ($sku ?: 'N/A') . ")");
 
 do_action('woocommerce_before_single_product');
@@ -39,20 +39,20 @@ do_action('woocommerce_before_single_product');
           <img src="<?php echo esc_url($main_img); ?>" alt="Video">
           <span>Video</span>
         </div>
-        <div class="light-thumb-item" onclick="changeProductImg('<?php echo esc_url(vivaaz_get_img_url('')); ?>', this)">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Daylight">
+        <div class="light-thumb-item" onclick="changeProductImg('<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>', this)">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Daylight">
           <span>❶ Daylight</span>
         </div>
-        <div class="light-thumb-item" onclick="changeProductImg('<?php echo esc_url(vivaaz_get_img_url('')); ?>', this)">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Lamp">
+        <div class="light-thumb-item" onclick="changeProductImg('<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>', this)">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Lamp">
           <span>Lamp</span>
         </div>
-        <div class="light-thumb-item" onclick="changeProductImg('<?php echo esc_url(vivaaz_get_img_url('')); ?>', this)">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Certificate">
+        <div class="light-thumb-item" onclick="changeProductImg('<?php echo esc_url(vivaaz_get_img_url('lab-certificate.jpg')); ?>', this)">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('lab-certificate.jpg')); ?>" alt="Certificate">
           <span>Certificate</span>
         </div>
-        <div class="light-thumb-item" onclick="changeProductImg('<?php echo esc_url(vivaaz_get_img_url('')); ?>', this)">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="True size">
+        <div class="light-thumb-item" onclick="changeProductImg('<?php echo esc_url(vivaaz_get_img_url('true-size-grid.jpg')); ?>', this)">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('true-size-grid.jpg')); ?>" alt="True size">
           <span>❹ True size</span>
         </div>
       </div>

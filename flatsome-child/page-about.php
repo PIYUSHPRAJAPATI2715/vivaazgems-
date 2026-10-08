@@ -19,7 +19,7 @@ get_header();
 
     <!-- Big Photo of Jaipur Office -->
     <div style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 20px; text-align: center; margin-bottom: 40px;">
-      <img src="<?php echo esc_url(vivaaz_get_img_url('')); ?>" alt="Vivaaz Gems Jaipur Office" style="width: 100%; max-height: 480px; object-fit: cover;">
+      <img src="<?php echo esc_url(vivaaz_get_img_url('true-size-grid.jpg')); ?>" alt="Vivaaz Gems Jaipur Office" style="width: 100%; max-height: 480px; object-fit: cover;">
       <div style="font-size: 11px; color: var(--color-text-muted); margin-top: 10px;">Our Jaipur office & master gemstone sorting desk at Johari Bazar</div>
     </div>
 
