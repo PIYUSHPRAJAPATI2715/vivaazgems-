@@ -8,9 +8,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if (!did_action('get_header')) {
-    get_header();
-}
+get_header('shop');
 ?>
 
 <div class="shop-archive-page-wrapper">
@@ -24,7 +22,7 @@ if (!did_action('get_header')) {
         <span>Loose Gemstones</span>
       </div>
       <h1 class="shop-main-title" style="font-family: var(--font-family-serif); font-size: 32px; font-weight: 400; margin-bottom: 8px;">
-        <?php echo function_exists('woocommerce_page_title') ? woocommerce_page_title(false) : 'Loose Gemstones'; ?>
+        <?php echo (function_exists('woocommerce_page_title') && is_callable('woocommerce_page_title')) ? woocommerce_page_title(false) : 'Loose Gemstones'; ?>
       </h1>
       <p class="shop-description-sub" style="font-size: 13px; color: var(--color-text-muted);">
         Natural, certified loose gemstones carefully selected from Jaipur and Sri Lanka. 
@@ -99,7 +97,7 @@ if (!did_action('get_header')) {
             <label style="cursor: pointer;"><input type="checkbox" /> 6×8 mm <span style="color: var(--color-text-muted);">(1)</span></label>
             <label style="cursor: pointer;"><input type="checkbox" /> 8×10 mm <span style="color: var(--color-text-muted);">(2)</span></label>
             <label style="cursor: pointer;"><input type="checkbox" /> 10×12 mm <span style="color: var(--color-text-muted);">(1)</span></label>
-            <label style="cursor: pointer;"><input style="cursor: pointer;" type="checkbox" /> 12×16 mm <span style="color: var(--color-text-muted);">(1)</span></label>
+            <label style="cursor: pointer;"><input type="checkbox" /> 12×16 mm <span style="color: var(--color-text-muted);">(1)</span></label>
             <label style="cursor: pointer;"><input type="checkbox" /> 15×20 mm <span style="color: var(--color-text-muted);">(1)</span></label>
             <label style="cursor: pointer;"><input type="checkbox" /> 18×25 mm <span style="color: var(--color-text-muted);">(1)</span></label>
           </div>
@@ -241,6 +239,4 @@ if (!did_action('get_header')) {
 </div>
 
 <?php
-if (did_action('get_header') && !did_action('get_footer')) {
-    get_footer();
-}
+get_footer('shop');
