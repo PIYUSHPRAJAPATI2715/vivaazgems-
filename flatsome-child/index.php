@@ -1,45 +1,70 @@
 <?php
 /**
- * Vivaaz Gems Theme Index Template
+ * Vivaaz Gems Theme Index / Master Router Template
  */
 
-$request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-$is_single_prod = (function_exists('is_product') && is_product()) 
-               || is_singular('product') 
-               || (isset($_GET['post_type']) && $_GET['post_type'] === 'product')
-               || (strpos($request_uri, '/product/') !== false);
+if (!defined('ABSPATH')) {
+    exit;
+}
 
-if ($is_single_prod) {
+$request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+
+// 1. My Account / Login Route
+if ((function_exists('is_account_page') && is_account_page()) || is_page('my-account') || strpos($request_uri, '/my-account/') !== false) {
+    include locate_template('page-my-account.php');
+    return;
+}
+
+// 2. Wishlist Route
+if (is_page('wishlist') || strpos($request_uri, '/wishlist/') !== false) {
+    include locate_template('page-wishlist.php');
+    return;
+}
+
+// 3. Contact Route
+if (is_page('contact') || strpos($request_uri, '/contact/') !== false) {
+    include locate_template('page-contact.php');
+    return;
+}
+
+// 4. About Route
+if (is_page('about') || is_page('our-story') || strpos($request_uri, '/about/') !== false || strpos($request_uri, '/our-story/') !== false) {
+    include locate_template('page-about.php');
+    return;
+}
+
+// 5. Single Product Detail Route
+if ((function_exists('is_product') && is_product()) || is_singular('product') || (isset($_GET['post_type']) && $_GET['post_type'] === 'product') || strpos($request_uri, '/product/') !== false) {
     include locate_template('single-product.php');
     return;
 }
 
-$is_wc_shop = (function_exists('is_shop') && is_shop()) || 
-              (function_exists('is_product_taxonomy') && is_product_taxonomy()) || 
-              is_post_type_archive('product') || 
-              isset($_GET['filter_color']) || 
-              isset($_GET['filter_stone']) || 
-              isset($_GET['filter_cut']) || 
-              isset($_GET['s']);
-
-if ($is_wc_shop) {
+// 6. Shop Catalog Route
+if ((function_exists('is_shop') && is_shop()) || (function_exists('is_product_taxonomy') && is_product_taxonomy()) || strpos($request_uri, '/shop/') !== false) {
     include locate_template('woocommerce/archive-product.php');
-} else {
-    get_header();
-    ?>
-    <main id="main-content" class="site-main">
-        <div class="container" style="max-width: 1200px; margin: 40px auto; padding: 0 24px;">
-            <?php
-            if (have_posts()) :
-                while (have_posts()) : the_post();
-                    the_content();
-                endwhile;
-            else :
-                include locate_template('woocommerce/archive-product.php');
-            endif;
-            ?>
-        </div>
-    </main>
-    <?php
-    get_footer();
+    return;
 }
+
+// 7. Generic Page Fallback
+get_header('shop');
+?>
+<main id="main-content" class="site-main" style="background: var(--color-page-bg); padding: 40px 20px;">
+    <div class="container" style="max-width: 1100px; margin: 0 auto; background: var(--color-tile-bg); padding: 30px; border: 1px solid var(--color-border-light);">
+        <?php
+        if (have_posts()) :
+            while (have_posts()) : the_post();
+                ?>
+                <h1 style="font-family: var(--font-family-serif); font-size: 28px; margin-bottom: 20px; color: var(--color-text-main);"><?php the_title(); ?></h1>
+                <div class="page-entry-content">
+                    <?php the_content(); ?>
+                </div>
+                <?php
+            endwhile;
+        else :
+            echo '<p>Page content coming soon.</p>';
+        endif;
+        ?>
+    </div>
+</main>
+<?php
+get_footer('shop');

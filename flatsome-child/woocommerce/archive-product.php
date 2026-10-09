@@ -9,6 +9,14 @@ if (!defined('ABSPATH')) {
 }
 
 $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+
+// 1. My Account Route Guard
+if ((function_exists('is_account_page') && is_account_page()) || is_page('my-account') || strpos($request_uri, '/my-account/') !== false) {
+    include locate_template('page-my-account.php');
+    return;
+}
+
+// 2. Single Product Route Guard
 $is_single_prod = (function_exists('is_product') && is_product()) 
                || is_singular('product') 
                || (isset($_GET['post_type']) && $_GET['post_type'] === 'product')
