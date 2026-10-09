@@ -2678,3 +2678,220 @@ body.admin-bar .site-header-wrapper {
 .cart-item-title-link:hover {
   color: var(--color-gold-label) !important;
 }
+
+/* ==========================================================================
+   PERFECT MOBILE RESPONSIVE DESIGN (PDF SPEC PAGES 2, 5, 6, 8, 15, 17)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  /* 1. Global Spacing & Typography on Mobile */
+  body {
+    font-size: 13px !important;
+  }
+
+  .site-header-wrapper {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 99999 !important;
+    background: #FFFFFF !important;
+  }
+
+  .top-bar-notice {
+    flex-direction: column !important;
+    gap: 6px !important;
+    padding: 8px 12px !important;
+    text-align: center !important;
+    font-size: 10px !important;
+  }
+
+  .top-bar-left, .top-bar-right {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  .main-header {
+    padding: 10px 14px !important;
+  }
+
+  .brand-logo-text {
+    font-size: 16px !important;
+    letter-spacing: 0.15em !important;
+  }
+
+  .brand-logo-subtitle {
+    font-size: 8px !important;
+  }
+
+  .header-action-group {
+    gap: 12px !important;
+  }
+
+  .icon-action-btn svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* 2. Single Product Page Mobile Layout (Page 15 Spec) */
+  .single-product-grid-wrapper {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .main-gallery-view, .main-featured-image-box {
+    max-height: 340px !important;
+    border-radius: 0px !important;
+  }
+
+  .light-photos-row {
+    display: flex !important;
+    overflow-x: auto !important;
+    gap: 8px !important;
+    padding-bottom: 8px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .light-thumb-item {
+    flex: 0 0 68px !important;
+    width: 68px !important;
+    height: 68px !important;
+  }
+
+  .single-product-title {
+    font-size: 22px !important;
+    line-height: 1.25 !important;
+  }
+
+  .single-price-amount {
+    font-size: 22px !important;
+  }
+
+  .pill-buttons-row {
+    gap: 8px !important;
+  }
+
+  .size-pill-btn, .size-option-btn, .pieces-option-btn {
+    padding: 10px 14px !important;
+    font-size: 12px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+
+  .price-discount-table {
+    grid-template-columns: repeat(3, 1fr) !important;
+    font-size: 10px !important;
+    padding: 8px !important;
+  }
+
+  .mobile-sticky-product-bar {
+    display: flex !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #FFFFFF !important;
+    border-top: 1px solid #E6DFD5 !important;
+    padding: 10px 16px !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    z-index: 999999 !important;
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.08) !important;
+  }
+
+  .sticky-price-text {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: var(--color-text-main) !important;
+  }
+
+  .sticky-add-cart-btn {
+    flex: 1 !important;
+    background: #9C7C4C !important;
+    color: #FFFFFF !important;
+    padding: 12px 14px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    border-radius: 0px !important;
+  }
+
+  .sticky-whatsapp-btn {
+    background: #25D366 !important;
+    color: #FFFFFF !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 18px !important;
+    text-decoration: none !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* 3. Cart & Checkout Mobile Layout (Page 17 Spec) */
+  .luxury-cart-page-wrapper, .luxury-checkout-page-wrapper {
+    padding: 20px 10px !important;
+  }
+
+  .cart-layout-grid, .checkout-layout-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .cart-items-section, .cart-totals-card, .checkout-order-card {
+    padding: 16px !important;
+  }
+
+  .cart-items-section table.shop_table {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+
+  /* 4. My Account Mobile Layout */
+  .account-login-card-container {
+    padding: 24px 18px !important;
+    max-width: 100% !important;
+  }
+
+  .account-tabs-header {
+    margin-bottom: 20px !important;
+  }
+
+  .account-tab-btn {
+    font-size: 10px !important;
+    padding: 10px 4px !important;
+  }
+
+  .vivaaz-account-main-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .account-stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* 5. Touch Friendly Input Heights */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  select {
+    min-height: 44px !important;
+    font-size: 14px !important;
+  }
+
+  button, .btn-square-dark-full, .btn-gold-add-to-cart {
+    min-height: 46px !important;
+    font-size: 12px !important;
+  }
+}
