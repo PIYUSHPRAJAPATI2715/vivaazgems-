@@ -88,30 +88,29 @@ $default_tab = (isset($_GET['action']) && $_GET['action'] === 'register') || (!e
     <!-- 2. CREATE ACCOUNT PANEL -->
     <div class="account-tab-panel <?php echo $default_tab === 'register' ? 'active' : ''; ?>" id="tab-panel-register">
       
-      <form method="post" class="woocommerce-form woocommerce-form-register register" <?php do_action('woocommerce_register_form_tag'); ?> >
+      <form method="post" class="woocommerce-form woocommerce-form-register register" <?php do_action('woocommerce_register_form_tag'); ?> onsubmit="return validateRegisterForm(this);">
 
         <?php do_action('woocommerce_register_form_start'); ?>
 
-        <?php if ('no' === get_option('woocommerce_registration_generate_username')) : ?>
-          <div class="form-group-item">
-            <label for="reg_username">Username <span class="required">*</span></label>
-            <input type="text" class="input-text-custom" name="username" id="reg_username" autocomplete="username" value="<?php echo (!empty($_POST['username'])) ? esc_attr(wp_unslash($_POST['username'])) : ''; ?>" placeholder="Choose a username" required />
-          </div>
-        <?php endif; ?>
+        <div class="form-group-item">
+          <label for="reg_first_name">Full Name <span class="required">*</span></label>
+          <input type="text" class="input-text-custom" name="account_first_name" id="reg_first_name" autocomplete="name" value="<?php echo (!empty($_POST['account_first_name'])) ? esc_attr(wp_unslash($_POST['account_first_name'])) : ''; ?>" placeholder="Enter your full name" required />
+        </div>
 
         <div class="form-group-item">
           <label for="reg_email">Email address <span class="required">*</span></label>
           <input type="email" class="input-text-custom" name="email" id="reg_email" autocomplete="email" value="<?php echo (!empty($_POST['email'])) ? esc_attr(wp_unslash($_POST['email'])) : ''; ?>" placeholder="Enter your email address" required />
         </div>
 
-        <?php if ('no' === get_option('woocommerce_registration_generate_password')) : ?>
-          <div class="form-group-item">
-            <label for="reg_password">Password <span class="required">*</span></label>
-            <input type="password" class="input-text-custom" name="password" id="reg_password" autocomplete="new-password" placeholder="Create a strong password" required />
-          </div>
-        <?php else : ?>
-          <p style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 14px;">A password will be sent to your email address.</p>
-        <?php endif; ?>
+        <div class="form-group-item">
+          <label for="reg_password">Password <span class="required">*</span></label>
+          <input type="password" class="input-text-custom" name="password" id="reg_password" autocomplete="new-password" placeholder="Create a strong password (min. 6 characters)" required />
+        </div>
+
+        <div class="form-group-item">
+          <label for="reg_password_confirm">Confirm Password <span class="required">*</span></label>
+          <input type="password" class="input-text-custom" name="password_confirm" id="reg_password_confirm" autocomplete="new-password" placeholder="Re-enter your password" required />
+        </div>
 
         <?php do_action('woocommerce_register_form'); ?>
 
@@ -165,6 +164,17 @@ function switchAccountTab(tabName) {
       location.hash = '#login';
     }
   }
+}
+
+function validateRegisterForm(form) {
+  var pass = form.querySelector('#reg_password');
+  var passConfirm = form.querySelector('#reg_password_confirm');
+  if (pass && passConfirm && pass.value !== passConfirm.value) {
+    alert('Passwords do not match. Please enter matching passwords.');
+    passConfirm.focus();
+    return false;
+  }
+  return true;
 }
 
 document.addEventListener("DOMContentLoaded", function() {

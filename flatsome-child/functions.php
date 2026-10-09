@@ -152,10 +152,44 @@ function vivaaz_stone_passport_shortcode($atts) {
 add_shortcode('stone_passport', 'vivaaz_stone_passport_shortcode');
 
 /**
- * 7. Force WooCommerce Account Registration & User Password Input
+ * 7. Custom Registration Handler (Full Name, Password + Confirm Password, DB Sync, Redirect to Dashboard)
  */
 add_filter('option_woocommerce_enable_myaccount_registration', '__return_true');
 add_filter('option_woocommerce_registration_generate_password', '__return_false');
+add_filter('option_woocommerce_registration_generate_username', '__return_true');
+
+function vivaaz_validate_extra_register_fields($errors, $username, $email) {
+    if (isset($_POST['account_first_name']) && empty(trim($_POST['account_first_name']))) {
+        $errors->add('error_account_first_name', __('<strong>Error</strong>: Please enter your full name.', 'woocommerce'));
+    }
+    if (isset($_POST['password']) && isset($_POST['password_confirm'])) {
+        if ($_POST['password'] !== $_POST['password_confirm']) {
+            $errors->add('error_password_mismatch', __('<strong>Error</strong>: Passwords do not match. Please enter matching passwords.', 'woocommerce'));
+        }
+    }
+    return $errors;
+}
+add_filter('woocommerce_process_registration_errors', 'vivaaz_validate_extra_register_fields', 10, 3);
+
+function vivaaz_save_extra_register_fields($customer_id) {
+    if (isset($_POST['account_first_name']) && !empty($_POST['account_first_name'])) {
+        $full_name = sanitize_text_field($_POST['account_first_name']);
+        wp_update_user(array(
+            'ID'           => $customer_id,
+            'first_name'   => $full_name,
+            'display_name' => $full_name,
+        ));
+        update_user_meta($customer_id, 'billing_first_name', $full_name);
+        update_user_meta($customer_id, 'shipping_first_name', $full_name);
+    }
+}
+add_action('woocommerce_created_customer', 'vivaaz_save_extra_register_fields');
+
+function vivaaz_registration_redirect($redirect) {
+    return home_url('/my-account/');
+}
+add_filter('woocommerce_registration_redirect', 'vivaaz_registration_redirect');
+add_filter('woocommerce_login_redirect', 'vivaaz_registration_redirect');
 
 /**
  * 8. Permanently Disable WooCommerce Coming Soon / Maintenance Mode Blocking
