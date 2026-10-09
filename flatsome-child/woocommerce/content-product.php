@@ -22,7 +22,7 @@ $img_url = get_the_post_thumbnail_url($product_id, 'woocommerce_thumbnail') ?: v
 $is_variable = $product->is_type('variable');
 ?>
 
-<div <?php wc_product_class('product-card-luxury', $product); ?>>
+<div <?php if (function_exists('wc_product_class')) { wc_product_class('product-card-luxury', $product); } else { echo 'class="product product-card-luxury"'; } ?>>
   <div class="product-card-media">
     <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
     <a href="<?php echo esc_url($link); ?>" style="display: block; width: 100%; height: 100%;">

@@ -25,7 +25,7 @@ $whatsapp_url = 'https://wa.me/919680552270?text=' . rawurlencode("Hi Vivaaz Gem
 do_action('woocommerce_before_single_product');
 ?>
 
-<div id="product-<?php the_ID(); ?>" <?php wc_product_class('single-product-custom-layout', $product); ?>>
+<div id="product-<?php echo esc_attr(get_the_ID() ?: '0'); ?>" <?php if (function_exists('wc_product_class')) { wc_product_class('single-product-custom-layout', $product); } else { echo 'class="product single-product-custom-layout"'; } ?>>
   
   <div class="single-product-grid-wrapper">
     
