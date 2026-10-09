@@ -18,7 +18,11 @@ $default_tab = (isset($_GET['action']) && $_GET['action'] === 'register') || (!e
   
   <div class="account-login-card-container">
     
-    <?php wc_print_notices(); ?>
+    <?php
+    if (function_exists('wc_print_notices')) {
+        wc_print_notices();
+    }
+    ?>
     
     <div class="account-page-header">
       <span class="section-tag-divider">MY ACCOUNT</span>

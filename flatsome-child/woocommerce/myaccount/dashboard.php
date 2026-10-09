@@ -14,15 +14,19 @@ $customer_id  = $current_user->ID;
 $customer_orders = function_exists('wc_get_orders') ? wc_get_orders(array('customer_id' => $customer_id, 'limit' => -1)) : array();
 $order_count     = count($customer_orders);
 $first_name      = get_user_meta($customer_id, 'first_name', true) ?: $current_user->display_name;
+
+$orders_url  = function_exists('wc_get_account_endpoint_url') ? wc_get_account_endpoint_url('orders') : home_url('/my-account/orders/');
+$address_url = function_exists('wc_get_account_endpoint_url') ? wc_get_account_endpoint_url('edit-address') : home_url('/my-account/edit-address/');
+$profile_url = function_exists('wc_get_account_endpoint_url') ? wc_get_account_endpoint_url('edit-account') : home_url('/my-account/edit-account/');
 ?>
 
 <div class="vivaaz-dashboard-overview">
     <div class="dashboard-welcome-banner">
         <p style="margin: 0; font-size: 14px; line-height: 1.6; color: var(--color-text-main);">
             From your account dashboard you can view your 
-            <a href="<?php echo esc_url(wc_get_account_endpoint_url('orders')); ?>" style="color: var(--color-gold-label); text-decoration: underline; font-weight: 600;">recent orders</a>, 
-            manage your <a href="<?php echo esc_url(wc_get_account_endpoint_url('edit-address')); ?>" style="color: var(--color-gold-label); text-decoration: underline; font-weight: 600;">shipping and billing addresses</a>, 
-            and <a href="<?php echo esc_url(wc_get_account_endpoint_url('edit-account')); ?>" style="color: var(--color-gold-label); text-decoration: underline; font-weight: 600;">edit your profile & password</a>.
+            <a href="<?php echo esc_url($orders_url); ?>" style="color: var(--color-gold-label); text-decoration: underline; font-weight: 600;">recent orders</a>, 
+            manage your <a href="<?php echo esc_url($address_url); ?>" style="color: var(--color-gold-label); text-decoration: underline; font-weight: 600;">shipping and billing addresses</a>, 
+            and <a href="<?php echo esc_url($profile_url); ?>" style="color: var(--color-gold-label); text-decoration: underline; font-weight: 600;">edit your profile & password</a>.
         </p>
     </div>
 
@@ -34,7 +38,7 @@ $first_name      = get_user_meta($customer_id, 'first_name', true) ?: $current_u
                 <span class="stat-card-val"><?php echo esc_html($order_count); ?></span>
             </div>
             <div class="stat-card-title">Total Orders</div>
-            <a href="<?php echo esc_url(wc_get_account_endpoint_url('orders')); ?>" class="stat-card-link">View Order History →</a>
+            <a href="<?php echo esc_url($orders_url); ?>" class="stat-card-link">View Order History →</a>
         </div>
 
         <div class="stat-card-item">
@@ -43,7 +47,7 @@ $first_name      = get_user_meta($customer_id, 'first_name', true) ?: $current_u
                 <span class="stat-card-val">Active</span>
             </div>
             <div class="stat-card-title">Account Profile</div>
-            <a href="<?php echo esc_url(wc_get_account_endpoint_url('edit-account')); ?>" class="stat-card-link">Edit Details →</a>
+            <a href="<?php echo esc_url($profile_url); ?>" class="stat-card-link">Edit Details →</a>
         </div>
 
         <div class="stat-card-item">
@@ -79,7 +83,7 @@ $first_name      = get_user_meta($customer_id, 'first_name', true) ?: $current_u
         </table>
         
         <div style="margin-top: 20px;">
-            <a href="<?php echo esc_url(wc_get_account_endpoint_url('edit-account')); ?>" class="btn-edit-account-profile">
+            <a href="<?php echo esc_url($profile_url); ?>" class="btn-edit-account-profile">
                 UPDATE PROFILE & PASSWORD →
             </a>
         </div>

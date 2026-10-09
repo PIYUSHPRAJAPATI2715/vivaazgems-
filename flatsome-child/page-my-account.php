@@ -20,9 +20,19 @@ get_header('shop');
             endwhile;
         else :
             if (is_user_logged_in()) {
-                wc_get_template('myaccount/my-account.php');
+                if (function_exists('wc_get_template')) {
+                    wc_get_template('myaccount/my-account.php');
+                } else {
+                    $template = locate_template('woocommerce/myaccount/my-account.php');
+                    if ($template) include $template;
+                }
             } else {
-                wc_get_template('myaccount/form-login.php');
+                if (function_exists('wc_get_template')) {
+                    wc_get_template('myaccount/form-login.php');
+                } else {
+                    $template = locate_template('woocommerce/myaccount/form-login.php');
+                    if ($template) include $template;
+                }
             }
         endif;
         ?>

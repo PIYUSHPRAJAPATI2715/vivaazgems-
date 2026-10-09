@@ -38,7 +38,9 @@ $first_name = get_user_meta($current_user->ID, 'first_name', true) ?: $current_u
         
         <main class="vivaaz-account-content">
             <?php
-            wc_print_notices();
+            if (function_exists('wc_print_notices')) {
+                wc_print_notices();
+            }
             do_action('woocommerce_account_content');
             ?>
         </main>
