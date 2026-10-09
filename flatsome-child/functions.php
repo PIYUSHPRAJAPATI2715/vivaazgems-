@@ -261,7 +261,7 @@ function vivaaz_handle_custom_add_to_cart() {
         }
     }
 }
-add_action('wp_loaded', 'vivaaz_handle_custom_add_to_cart', 5);
+add_action('template_redirect', 'vivaaz_handle_custom_add_to_cart', 1);
 
 /**
  * 8. Permanently Disable WooCommerce Coming Soon / Maintenance Mode Blocking

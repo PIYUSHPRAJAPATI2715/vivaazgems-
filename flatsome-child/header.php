@@ -222,11 +222,13 @@ $vivaaz_header_rendered = true;
         $current_user = wp_get_current_user();
       ?>
         <div class="has-account-dropdown">
-          <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="icon-action-btn">
-            <svg width="16" height="16" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 3px; overflow: visible; display: inline-block;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <?php echo esc_html($current_user->display_name ?: $current_user->user_login); ?> ▾
+          <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="icon-action-btn" title="My Account (<?php echo esc_attr($current_user->display_name); ?>)">
+            <svg width="18" height="18" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; overflow: visible; display: inline-block;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </a>
           <div class="account-hover-menu">
+            <div style="padding: 8px 16px; font-size: 11px; font-weight: 700; color: var(--color-gold-label); border-bottom: 1px solid var(--color-border-light);">
+              Hello, <?php echo esc_html($current_user->first_name ?: $current_user->display_name); ?>
+            </div>
             <a href="<?php echo esc_url(home_url('/my-account/')); ?>">Dashboard</a>
             <a href="<?php echo esc_url(home_url('/my-account/orders/')); ?>">My Orders</a>
             <a href="<?php echo esc_url(home_url('/wishlist/')); ?>">Wishlist</a>
@@ -236,9 +238,8 @@ $vivaaz_header_rendered = true;
         </div>
       <?php else : ?>
         <div class="has-account-dropdown">
-          <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="icon-action-btn">
-            <svg width="16" height="16" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 3px; overflow: visible; display: inline-block;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            account ▾
+          <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="icon-action-btn" title="Sign In / Register">
+            <svg width="18" height="18" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; overflow: visible; display: inline-block;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </a>
           <div class="account-hover-menu">
             <a href="<?php echo esc_url(home_url('/my-account/')); ?>">Sign In / Login</a>
@@ -250,14 +251,13 @@ $vivaaz_header_rendered = true;
       <?php endif; ?>
 
       <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="icon-action-btn" title="Wishlist">
-        <svg width="16" height="16" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; overflow: visible; display: inline-block;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <svg width="18" height="18" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; overflow: visible; display: inline-block;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </a>
 
-      <a href="<?php echo esc_url(home_url('/cart/')); ?>" class="icon-action-btn" title="Cart Bag">
-        <svg width="16" height="16" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 3px; overflow: visible; display: inline-block;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-        bag
+      <a href="<?php echo esc_url(home_url('/cart/')); ?>" class="icon-action-btn" title="Shopping Bag">
+        <svg width="18" height="18" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; overflow: visible; display: inline-block;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
         <span class="cart-badge-count">
-          <?php echo class_exists('WooCommerce') && WC()->cart ? WC()->cart->get_cart_contents_count() : '0'; ?>
+          <?php echo (function_exists('WC') && WC()->cart) ? WC()->cart->get_cart_contents_count() : '0'; ?>
         </span>
       </a>
     </div>
