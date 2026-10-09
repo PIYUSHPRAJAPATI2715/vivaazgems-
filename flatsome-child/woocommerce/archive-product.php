@@ -4,7 +4,11 @@
  * Matches Page 10 of the 23-page Master Brief & Page 9 of Homepage Spec
  */
 
-if (is_product() || is_singular('product')) {
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+if ((function_exists('is_product') && is_product()) || is_singular('product')) {
     include locate_template('single-product.php');
     return;
 }
