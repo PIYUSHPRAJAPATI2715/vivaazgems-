@@ -18,6 +18,8 @@ $default_tab = (isset($_GET['action']) && $_GET['action'] === 'register') || (!e
   
   <div class="account-login-card-container">
     
+    <?php wc_print_notices(); ?>
+    
     <div class="account-page-header">
       <span class="section-tag-divider">MY ACCOUNT</span>
       <h1 class="font-serif" style="font-size: 28px; font-weight: 400; margin: 8px 0 4px;">Welcome to <span class="font-italic text-gold">Vivaaz Gems</span></h1>

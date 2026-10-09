@@ -152,11 +152,19 @@ function vivaaz_stone_passport_shortcode($atts) {
 add_shortcode('stone_passport', 'vivaaz_stone_passport_shortcode');
 
 /**
- * 7. Custom Registration Handler (Full Name, Password + Confirm Password, DB Sync, Redirect to Dashboard)
+ * 7. Custom Registration & Account Handler (Full Name, Password + Confirm Password, DB Sync, Redirect to Dashboard)
  */
 add_filter('option_woocommerce_enable_myaccount_registration', '__return_true');
 add_filter('option_woocommerce_registration_generate_password', '__return_false');
 add_filter('option_woocommerce_registration_generate_username', '__return_true');
+
+// Auto-populate username from email if missing
+add_action('wp_loaded', 'vivaaz_prepare_registration_fields', 5);
+function vivaaz_prepare_registration_fields() {
+    if (isset($_POST['register']) && !empty($_POST['email']) && empty($_POST['username'])) {
+        $_POST['username'] = sanitize_user(current(explode('@', $_POST['email'])), true);
+    }
+}
 
 function vivaaz_validate_extra_register_fields($errors, $username, $email) {
     if (isset($_POST['account_first_name']) && empty(trim($_POST['account_first_name']))) {
@@ -173,14 +181,21 @@ add_filter('woocommerce_process_registration_errors', 'vivaaz_validate_extra_reg
 
 function vivaaz_save_extra_register_fields($customer_id) {
     if (isset($_POST['account_first_name']) && !empty($_POST['account_first_name'])) {
-        $full_name = sanitize_text_field($_POST['account_first_name']);
+        $full_name  = sanitize_text_field($_POST['account_first_name']);
+        $name_parts = explode(' ', $full_name, 2);
+        $first_name = $name_parts[0];
+        $last_name  = isset($name_parts[1]) ? $name_parts[1] : '';
+
         wp_update_user(array(
             'ID'           => $customer_id,
-            'first_name'   => $full_name,
+            'first_name'   => $first_name,
+            'last_name'    => $last_name,
             'display_name' => $full_name,
         ));
-        update_user_meta($customer_id, 'billing_first_name', $full_name);
-        update_user_meta($customer_id, 'shipping_first_name', $full_name);
+        update_user_meta($customer_id, 'billing_first_name', $first_name);
+        update_user_meta($customer_id, 'billing_last_name', $last_name);
+        update_user_meta($customer_id, 'shipping_first_name', $first_name);
+        update_user_meta($customer_id, 'shipping_last_name', $last_name);
     }
 }
 add_action('woocommerce_created_customer', 'vivaaz_save_extra_register_fields');

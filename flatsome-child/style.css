@@ -2277,3 +2277,319 @@ body.admin-bar .site-header-wrapper {
     text-decoration: none !important;
   }
 }
+
+/* ==========================================================================
+   WOOCOMMERCE NOTICES & LOGGED-IN MY ACCOUNT DASHBOARD STYLING
+   ========================================================================== */
+
+/* 1. Notice Messages (Error, Info, Success) */
+.woocommerce-error,
+.woocommerce-info,
+.woocommerce-message {
+  padding: 14px 18px !important;
+  margin-bottom: 20px !important;
+  border-radius: 0px !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  list-style: none !important;
+}
+
+.woocommerce-error {
+  background: #FDEDEC !important;
+  border-left: 4px solid #E74C3C !important;
+  color: #922B21 !important;
+}
+
+.woocommerce-info {
+  background: #EBF5FB !important;
+  border-left: 4px solid #3498DB !important;
+  color: #1B4F72 !important;
+}
+
+.woocommerce-message {
+  background: #EAFAF1 !important;
+  border-left: 4px solid #2ECC71 !important;
+  color: #145A32 !important;
+}
+
+.woocommerce-error li,
+.woocommerce-info li,
+.woocommerce-message li {
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+/* 2. Logged In Account Dashboard Hero Card */
+.vivaaz-account-dashboard-wrapper {
+  margin-top: 10px !important;
+}
+
+.vivaaz-account-hero-card {
+  background: #FFFFFF !important;
+  border: 1px solid var(--color-border-light) !important;
+  padding: 28px 32px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 30px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
+}
+
+.user-hero-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+}
+
+.user-avatar-badge {
+  width: 56px !important;
+  height: 56px !important;
+  background: var(--color-text-main) !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-family-serif) !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 2px solid var(--color-gold-label) !important;
+}
+
+.user-greeting-tag {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  color: var(--color-gold-label) !important;
+  text-transform: uppercase !important;
+  display: block !important;
+}
+
+.user-display-name {
+  font-family: var(--font-family-serif) !important;
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  color: var(--color-text-main) !important;
+  margin: 4px 0 2px !important;
+}
+
+.user-email-text {
+  font-size: 12px !important;
+  color: var(--color-text-muted) !important;
+  margin: 0 !important;
+}
+
+.btn-logout-hero {
+  display: inline-block !important;
+  padding: 10px 18px !important;
+  border: 1px solid var(--color-border-light) !important;
+  background: #FAF7F2 !important;
+  color: #C0392B !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-logout-hero:hover {
+  background: #C0392B !important;
+  color: #FFFFFF !important;
+  border-color: #C0392B !important;
+}
+
+/* 3. Account Grid & Sidebar Navigation */
+.vivaaz-account-main-grid {
+  display: grid !important;
+  grid-template-columns: 240px 1fr !important;
+  gap: 36px !important;
+}
+
+@media (max-width: 768px) {
+  .vivaaz-account-hero-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    padding: 20px !important;
+  }
+  .vivaaz-account-main-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.vivaaz-account-sidebar {
+  background: #FFFFFF !important;
+  border: 1px solid var(--color-border-light) !important;
+  padding: 20px 0 !important;
+  height: fit-content !important;
+}
+
+.vivaaz-account-nav-list,
+.woocommerce-MyAccount-navigation ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.vivaaz-nav-item,
+.woocommerce-MyAccount-navigation-link {
+  margin: 0 !important;
+}
+
+.vivaaz-nav-link,
+.woocommerce-MyAccount-navigation-link a {
+  display: block !important;
+  padding: 12px 24px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  color: var(--color-text-muted) !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  border-left: 3px solid transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.vivaaz-nav-link:hover,
+.woocommerce-MyAccount-navigation-link a:hover {
+  background: #FAF7F2 !important;
+  color: var(--color-text-main) !important;
+}
+
+.vivaaz-nav-item.is-active .vivaaz-nav-link,
+.woocommerce-MyAccount-navigation-link.is-active a {
+  background: #FAF7F2 !important;
+  color: var(--color-text-main) !important;
+  border-left-color: var(--color-gold-label) !important;
+  font-weight: 700 !important;
+}
+
+/* 4. Dashboard Stats & Overview */
+.vivaaz-account-content {
+  background: #FFFFFF !important;
+  border: 1px solid var(--color-border-light) !important;
+  padding: 30px !important;
+}
+
+.dashboard-welcome-banner {
+  background: #FAF7F2 !important;
+  border: 1px solid var(--color-border-light) !important;
+  padding: 16px 20px !important;
+  margin-bottom: 24px !important;
+}
+
+.account-stats-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px !important;
+  margin-bottom: 30px !important;
+}
+
+@media (max-width: 600px) {
+  .account-stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.stat-card-item {
+  background: #FFFFFF !important;
+  border: 1px solid var(--color-border-light) !important;
+  padding: 20px !important;
+  text-align: left !important;
+  transition: transform 0.2s ease !important;
+}
+
+.stat-card-item:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--color-gold-label) !important;
+}
+
+.stat-card-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 8px !important;
+}
+
+.stat-card-icon {
+  font-size: 22px !important;
+}
+
+.stat-card-val {
+  font-family: var(--font-family-serif) !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: var(--color-text-main) !important;
+}
+
+.stat-card-title {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  color: var(--color-text-muted) !important;
+  text-transform: uppercase !important;
+  margin-bottom: 12px !important;
+}
+
+.stat-card-link {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: var(--color-gold-label) !important;
+  text-decoration: underline !important;
+}
+
+/* 5. Account Profile Summary Box */
+.account-profile-summary-box {
+  background: #FFFFFF !important;
+  border: 1px solid var(--color-border-light) !important;
+  padding: 24px !important;
+}
+
+.summary-box-heading {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  color: var(--color-text-main) !important;
+  margin: 0 0 16px 0 !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid var(--color-border-light) !important;
+}
+
+.account-info-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-size: 13px !important;
+}
+
+.account-info-table td {
+  padding: 10px 0 !important;
+  border-bottom: 1px solid #FAF7F2 !important;
+}
+
+.account-info-table .info-label {
+  color: var(--color-text-muted) !important;
+  width: 35% !important;
+}
+
+.account-info-table .info-value {
+  color: var(--color-text-main) !important;
+}
+
+.btn-edit-account-profile {
+  display: inline-block !important;
+  padding: 12px 20px !important;
+  background: #1A1A1A !important;
+  color: #FFFFFF !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  transition: background 0.2s ease !important;
+}
+
+.btn-edit-account-profile:hover {
+  background: var(--color-gold-label) !important;
+  color: #FFFFFF !important;
+}

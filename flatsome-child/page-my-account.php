@@ -11,18 +11,18 @@ if (!defined('ABSPATH')) {
 get_header('shop');
 ?>
 
-<div class="my-account-page-wrapper" style="background: var(--color-page-bg); padding: 40px 20px;">
-    <div class="container" style="max-width: 900px; margin: 0 auto;">
+<div class="my-account-page-wrapper" style="background: var(--color-page-bg); padding: 40px 20px; min-height: 70vh;">
+    <div class="container" style="max-width: 1000px; margin: 0 auto;">
         <?php
         if (have_posts()) :
             while (have_posts()) : the_post();
                 the_content();
             endwhile;
         else :
-            if (function_exists('woocommerce_account_content')) {
-                woocommerce_account_content();
+            if (is_user_logged_in()) {
+                wc_get_template('myaccount/my-account.php');
             } else {
-                include locate_template('woocommerce/myaccount/form-login.php');
+                wc_get_template('myaccount/form-login.php');
             }
         endif;
         ?>
