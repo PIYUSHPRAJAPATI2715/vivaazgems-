@@ -81,6 +81,8 @@ do_action('woocommerce_before_single_product');
 
       <!-- Add To Cart Form Wrapper -->
       <form class="cart" method="post" enctype="multipart/form-data" action="<?php echo esc_url(get_permalink($product_id)); ?>">
+        <input type="hidden" name="vivaaz_add_to_cart" value="1">
+        <input type="hidden" name="product_id" value="<?php echo esc_attr($product_id); ?>">
 
         <!-- Size Selector Buttons -->
         <div class="product-option-group" style="margin-top: 20px;">
@@ -89,12 +91,12 @@ do_action('woocommerce_before_single_product');
             <a href="#size-guide" class="btn-underline-link" style="font-size: 11px;">Size guide</a>
           </div>
           <div class="pill-buttons-row">
-            <button type="button" class="size-pill-btn" onclick="selectSize('5×3', this)">5×3</button>
-            <button type="button" class="size-pill-btn" onclick="selectSize('6×4', this)">6×4</button>
-            <button type="button" class="size-pill-btn active" onclick="selectSize('7×5', this)">7×5</button>
-            <button type="button" class="size-pill-btn disabled" onclick="alert('8×6 is sold out! Please inquire on WhatsApp.'); return false;">8×6</button>
+            <button type="button" class="size-option-btn size-pill-btn" onclick="selectSizeOption('5×3', this)">5×3</button>
+            <button type="button" class="size-option-btn size-pill-btn" onclick="selectSizeOption('6×4', this)">6×4</button>
+            <button type="button" class="size-option-btn size-pill-btn active" onclick="selectSizeOption('7×5', this)">7×5</button>
+            <button type="button" class="size-option-btn size-pill-btn disabled" onclick="alert('8×6 is sold out! Please inquire on WhatsApp.'); return false;">8×6</button>
           </div>
-          <input type="hidden" name="attribute_pa_size" id="selected-size-input" value="7×5">
+          <input type="hidden" name="selected_size" id="selected-size-input" value="7×5">
           <div style="font-size: 11px; color: var(--color-text-muted); margin-top: 4px;">8×6 sold out — ask on WhatsApp when it is back →</div>
         </div>
 
@@ -104,12 +106,12 @@ do_action('woocommerce_before_single_product');
             <span>PIECES</span>
           </div>
           <div class="pill-buttons-row">
-            <button type="button" class="pieces-pill-btn size-pill-btn" onclick="selectPieces(10, 1450, this)">10</button>
-            <button type="button" class="pieces-pill-btn size-pill-btn active" onclick="selectPieces(20, 1450, this)">20</button>
-            <button type="button" class="pieces-pill-btn size-pill-btn" onclick="selectPieces(50, 1320, this)">50</button>
-            <button type="button" class="pieces-pill-btn size-pill-btn" onclick="selectPieces(100, 1210, this)">100</button>
-            <button type="button" class="pieces-pill-btn size-pill-btn" onclick="selectPieces(500, 1210, this)">500</button>
-            <button type="button" class="pieces-pill-btn size-pill-btn" onclick="selectCustomPieces(this)">Other</button>
+            <button type="button" class="pieces-option-btn size-pill-btn" onclick="selectPiecesOption(10, 1450, this)">10</button>
+            <button type="button" class="pieces-option-btn size-pill-btn active" onclick="selectPiecesOption(20, 1450, this)">20</button>
+            <button type="button" class="pieces-option-btn size-pill-btn" onclick="selectPiecesOption(50, 1320, this)">50</button>
+            <button type="button" class="pieces-option-btn size-pill-btn" onclick="selectPiecesOption(100, 1210, this)">100</button>
+            <button type="button" class="pieces-option-btn size-pill-btn" onclick="selectPiecesOption(500, 1210, this)">500</button>
+            <button type="button" class="pieces-option-btn size-pill-btn" onclick="selectCustomPiecesOption(this)">Other</button>
           </div>
           <input type="hidden" name="quantity" id="selected-quantity-input" value="20">
           <div style="font-size: 11px; color: var(--color-text-muted); margin-top: 4px;">Price per piece — lower for more pieces</div>
@@ -217,13 +219,9 @@ do_action('woocommerce_before_single_product');
     element.classList.add('active');
   }
 
-  function selectSize(sizeStr, btn) {
-    var sizeBtns = document.querySelectorAll('.pill-buttons-row .size-pill-btn');
-    sizeBtns.forEach(function(b) { 
-      if (!b.classList.contains('pieces-pill-btn')) {
-        b.classList.remove('active'); 
-      }
-    });
+  function selectSizeOption(sizeStr, btn) {
+    var sizeBtns = document.querySelectorAll('.size-option-btn');
+    sizeBtns.forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     
     var hiddenInput = document.getElementById('selected-size-input');
@@ -233,8 +231,8 @@ do_action('woocommerce_before_single_product');
     if (passportSize) passportSize.innerText = sizeStr + ' mm';
   }
 
-  function selectPieces(count, unitPrice, btn) {
-    var piecesBtns = document.querySelectorAll('.pieces-pill-btn');
+  function selectPiecesOption(count, unitPrice, btn) {
+    var piecesBtns = document.querySelectorAll('.pieces-option-btn');
     piecesBtns.forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     
@@ -264,14 +262,14 @@ do_action('woocommerce_before_single_product');
     }
   }
 
-  function selectCustomPieces(btn) {
+  function selectCustomPiecesOption(btn) {
     var customQty = prompt("Enter required number of pieces:", "25");
     if (customQty && !isNaN(customQty) && parseInt(customQty) > 0) {
       var qty = parseInt(customQty);
       var unitPrice = 1450;
       if (qty >= 100) unitPrice = 1210;
       else if (qty >= 50) unitPrice = 1320;
-      selectPieces(qty, unitPrice, btn);
+      selectPiecesOption(qty, unitPrice, btn);
     }
   }
 </script>

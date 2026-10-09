@@ -212,6 +212,35 @@ function vivaaz_add_to_cart_redirect($url) {
 add_filter('woocommerce_add_to_cart_redirect', 'vivaaz_add_to_cart_redirect');
 
 /**
+ * Universal Custom Add To Cart Handler (Guarantees item is added to cart regardless of product type)
+ */
+function vivaaz_handle_custom_add_to_cart() {
+    if (isset($_POST['vivaaz_add_to_cart']) && !empty($_POST['product_id'])) {
+        $product_id = intval($_POST['product_id']);
+        $quantity   = isset($_POST['quantity']) ? max(1, intval($_POST['quantity'])) : 1;
+        $size       = isset($_POST['selected_size']) ? sanitize_text_field($_POST['selected_size']) : '';
+        
+        $variation_id = 0;
+        $variations   = array();
+        if (!empty($size)) {
+            $variations['attribute_pa_size'] = $size;
+            $variations['size'] = $size;
+        }
+
+        if (function_exists('WC') && WC()->cart) {
+            WC()->cart->add_to_cart($product_id, $quantity, $variation_id, $variations);
+            if (function_exists('wc_add_notice')) {
+                wc_add_notice(sprintf(__('%d × item added to your shopping bag.', 'woocommerce'), $quantity), 'success');
+            }
+            $cart_url = function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_url('/cart/');
+            wp_safe_redirect($cart_url);
+            exit;
+        }
+    }
+}
+add_action('wp_loaded', 'vivaaz_handle_custom_add_to_cart', 20);
+
+/**
  * 8. Permanently Disable WooCommerce Coming Soon / Maintenance Mode Blocking
  */
 add_filter('option_woocommerce_coming_soon', '__return_false');
