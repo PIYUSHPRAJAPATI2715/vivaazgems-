@@ -8,7 +8,13 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if ((function_exists('is_product') && is_product()) || is_singular('product')) {
+$request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+$is_single_prod = (function_exists('is_product') && is_product()) 
+               || is_singular('product') 
+               || (isset($_GET['post_type']) && $_GET['post_type'] === 'product')
+               || (strpos($request_uri, '/product/') !== false);
+
+if ($is_single_prod) {
     include locate_template('single-product.php');
     return;
 }
