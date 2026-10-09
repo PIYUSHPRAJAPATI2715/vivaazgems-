@@ -206,6 +206,11 @@ function vivaaz_registration_redirect($redirect) {
 add_filter('woocommerce_registration_redirect', 'vivaaz_registration_redirect');
 add_filter('woocommerce_login_redirect', 'vivaaz_registration_redirect');
 
+function vivaaz_add_to_cart_redirect($url) {
+    return function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_url('/cart/');
+}
+add_filter('woocommerce_add_to_cart_redirect', 'vivaaz_add_to_cart_redirect');
+
 /**
  * 8. Permanently Disable WooCommerce Coming Soon / Maintenance Mode Blocking
  */

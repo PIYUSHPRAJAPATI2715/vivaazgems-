@@ -79,77 +79,80 @@ do_action('woocommerce_before_single_product');
         <div><span class="text-gold font-bold">Best for</span> Rings, earrings, halo settings</div>
       </div>
 
-      <!-- Size Selector Buttons -->
-      <div class="product-option-group">
-        <div class="option-label-flex">
-          <span>SIZE (MM)</span>
-          <a href="#size-guide" class="btn-underline-link" style="font-size: 11px;">Size guide</a>
-        </div>
-        <div class="pill-buttons-row">
-          <button type="button" class="size-pill-btn">5×3</button>
-          <button type="button" class="size-pill-btn">6×4</button>
-          <button type="button" class="size-pill-btn active">7×5</button>
-          <button type="button" class="size-pill-btn disabled">8×6</button>
-        </div>
-        <div style="font-size: 11px; color: var(--color-text-muted);">8×6 sold out — ask on WhatsApp when it is back →</div>
-      </div>
+      <!-- Add To Cart Form Wrapper -->
+      <form class="cart" method="post" enctype="multipart/form-data" action="<?php echo esc_url(get_permalink($product_id)); ?>">
 
-      <!-- Pieces Buttons -->
-      <div class="product-option-group">
-        <div class="option-label-flex">
-          <span>PIECES</span>
+        <!-- Size Selector Buttons -->
+        <div class="product-option-group" style="margin-top: 20px;">
+          <div class="option-label-flex">
+            <span>SIZE (MM)</span>
+            <a href="#size-guide" class="btn-underline-link" style="font-size: 11px;">Size guide</a>
+          </div>
+          <div class="pill-buttons-row">
+            <button type="button" class="size-pill-btn" onclick="selectSize('5×3', this)">5×3</button>
+            <button type="button" class="size-pill-btn" onclick="selectSize('6×4', this)">6×4</button>
+            <button type="button" class="size-pill-btn active" onclick="selectSize('7×5', this)">7×5</button>
+            <button type="button" class="size-pill-btn disabled" onclick="alert('8×6 is sold out! Please inquire on WhatsApp.'); return false;">8×6</button>
+          </div>
+          <input type="hidden" name="attribute_pa_size" id="selected-size-input" value="7×5">
+          <div style="font-size: 11px; color: var(--color-text-muted); margin-top: 4px;">8×6 sold out — ask on WhatsApp when it is back →</div>
         </div>
-        <div class="pill-buttons-row">
-          <button type="button" class="size-pill-btn">10</button>
-          <button type="button" class="size-pill-btn active">20</button>
-          <button type="button" class="size-pill-btn">50</button>
-          <button type="button" class="size-pill-btn">100</button>
-          <button type="button" class="size-pill-btn">500</button>
-          <button type="button" class="size-pill-btn">Other</button>
-        </div>
-        <div style="font-size: 11px; color: var(--color-text-muted);">Price per piece — lower for more pieces</div>
-        <div class="price-discount-table">
-          <div class="discount-col active">10+ pcs<br><strong>₹1,450</strong></div>
-          <div class="discount-col">50+ pcs<br><strong>₹1,320</strong></div>
-          <div class="discount-col">100+ pcs<br><strong>₹1,210</strong></div>
-        </div>
-      </div>
 
-      <!-- Total Price & Add to Cart -->
-      <div class="total-cart-action-wrapper">
-        <div class="total-calculated-row">
-          <span>Total for 20 pieces</span>
-          <span style="font-size: 22px; font-weight: 700; color: var(--color-text-main);">₹29,000</span>
+        <!-- Pieces Buttons -->
+        <div class="product-option-group" style="margin-top: 20px;">
+          <div class="option-label-flex">
+            <span>PIECES</span>
+          </div>
+          <div class="pill-buttons-row">
+            <button type="button" class="pieces-pill-btn size-pill-btn" onclick="selectPieces(10, 1450, this)">10</button>
+            <button type="button" class="pieces-pill-btn size-pill-btn active" onclick="selectPieces(20, 1450, this)">20</button>
+            <button type="button" class="pieces-pill-btn size-pill-btn" onclick="selectPieces(50, 1320, this)">50</button>
+            <button type="button" class="pieces-pill-btn size-pill-btn" onclick="selectPieces(100, 1210, this)">100</button>
+            <button type="button" class="pieces-pill-btn size-pill-btn" onclick="selectPieces(500, 1210, this)">500</button>
+            <button type="button" class="pieces-pill-btn size-pill-btn" onclick="selectCustomPieces(this)">Other</button>
+          </div>
+          <input type="hidden" name="quantity" id="selected-quantity-input" value="20">
+          <div style="font-size: 11px; color: var(--color-text-muted); margin-top: 4px;">Price per piece — lower for more pieces</div>
+          <div class="price-discount-table" style="margin-top: 10px;">
+            <div class="discount-col active" id="tier-10">10+ pcs<br><strong>₹1,450</strong></div>
+            <div class="discount-col" id="tier-50">50+ pcs<br><strong>₹1,320</strong></div>
+            <div class="discount-col" id="tier-100">100+ pcs<br><strong>₹1,210</strong></div>
+          </div>
         </div>
-        
-        <?php
-        if (function_exists('woocommerce_template_single_add_to_cart')) {
-            woocommerce_template_single_add_to_cart();
-        } else {
-            echo '<a href="' . esc_url(home_url('/cart/')) . '" class="btn-gold-add-to-cart">ADD TO CART</a>';
-        }
-        ?>
 
-        <!-- WhatsApp Button -->
-        <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" class="btn-whatsapp-outline-full">
-          <span>✆</span> Ask about this stone on WhatsApp
-        </a>
-      </div>
+        <!-- Total Price & Add to Cart -->
+        <div class="total-cart-action-wrapper" style="margin-top: 24px;">
+          <div class="total-calculated-row">
+            <span id="total-pieces-label">Total for 20 pieces</span>
+            <span id="total-price-amount" style="font-size: 22px; font-weight: 700; color: var(--color-text-main);">₹29,000</span>
+          </div>
+          
+          <button type="submit" name="add-to-cart" value="<?php echo esc_attr($product_id); ?>" class="btn-gold-add-to-cart" style="display: flex; align-items: center; justify-content: center; width: 100%; padding: 15px; background: #9C7C4C; color: #fff; border: none; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; text-decoration: none;">
+            ADD TO CART →
+          </button>
+
+          <!-- WhatsApp Button -->
+          <a href="<?php echo esc_url($whatsapp_url); ?>" id="whatsapp-inquire-btn" target="_blank" class="btn-whatsapp-outline-full">
+            <span>✆</span> Ask about this stone on WhatsApp
+          </a>
+        </div>
+
+      </form>
 
       <!-- B2B & Video Call Box (Page 13 Spec) -->
-      <div class="b2b-videocall-grid">
-        <div class="b2b-box-item">
+      <div class="b2b-videocall-grid" style="margin-top: 24px;">
+        <div class="b2b-box-item" onclick="window.open('<?php echo esc_url($whatsapp_url); ?>', '_blank')">
           <div style="display: flex; justify-content: space-between; align-items: center;"><strong style="color: var(--color-gold-label);">◇ Bulk / B2B price</strong><span>›</span></div>
           <div style="font-size: 11px; color: var(--color-text-muted); margin-top: 4px;">Parcels, calibrated lots, wholesale</div>
         </div>
-        <div class="b2b-box-item">
+        <div class="b2b-box-item" onclick="window.open('<?php echo esc_url($whatsapp_url); ?>', '_blank')">
           <div style="display: flex; justify-content: space-between; align-items: center;"><strong style="color: var(--color-gold-label);">▷ See it on a video call</strong><span>›</span></div>
           <div style="font-size: 11px; color: var(--color-text-muted); margin-top: 4px;">We show you the stone live</div>
         </div>
       </div>
 
       <!-- 4 Trust Badges (Page 13 Spec) -->
-      <div class="single-trust-4grid">
+      <div class="single-trust-4grid" style="margin-top: 24px;">
         <div>◈ Lab certified</div>
         <div>◈ Insured shipping</div>
         <div>◈ Secure payment</div>
@@ -157,7 +160,7 @@ do_action('woocommerce_before_single_product');
       </div>
 
       <!-- Stone Passport Box (Page 13 / 14 Spec) -->
-      <div class="stone-passport-container">
+      <div class="stone-passport-container" style="margin-top: 24px;">
         <div class="stone-passport-head">
           <span style="font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-label);">● STONE PASSPORT</span>
           <span style="font-size: 11px; color: var(--color-text-muted);">No. <?php echo esc_html($sku ?: 'VG-SPH-OV-0705'); ?></span>
@@ -166,7 +169,7 @@ do_action('woocommerce_before_single_product');
           <tr><td>Stone</td><td><?php echo esc_html($title); ?></td></tr>
           <tr><td>Origin</td><td>Sri Lanka (Ceylon)</td></tr>
           <tr><td>Treatment</td><td>Heated</td></tr>
-          <tr><td>Size</td><td>7 × 5 mm</td></tr>
+          <tr><td>Size</td><td id="passport-size-val">7 × 5 mm</td></tr>
           <tr><td>Tolerance</td><td>± 0.2 mm</td></tr>
           <tr><td>Approx. weight</td><td>≈ 0.85 ct per piece</td></tr>
           <tr><td>Shape / cut</td><td>Oval, faceted (calibrated)</td></tr>
@@ -178,17 +181,17 @@ do_action('woocommerce_before_single_product');
       </div>
 
       <!-- Accordion Details (Page 14 Spec) -->
-      <div class="product-accordion-wrapper">
+      <div class="product-accordion-wrapper" style="margin-top: 24px;">
         <details open>
-          <summary>Shipping & returns</summary>
+          <summary style="font-weight: 700; cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--color-border-light);">Shipping & returns</summary>
           <p style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0;">India 2–3 days. International 4–7 days insured. 7-day easy returns.</p>
         </details>
-        <details>
-          <summary>Care & setting notes</summary>
+        <details style="margin-top: 10px;">
+          <summary style="font-weight: 700; cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--color-border-light);">Care & setting notes</summary>
           <p style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0;">Clean with warm soapy water and soft brush. Ideal for claw and bezel settings.</p>
         </details>
-        <details>
-          <summary>About Ceylon sapphires</summary>
+        <details style="margin-top: 10px;">
+          <summary style="font-weight: 700; cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--color-border-light);">About Ceylon sapphires</summary>
           <p style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0;">Renowned worldwide for vibrant cornflower and royal blue hues with exceptional clarity.</p>
         </details>
       </div>
@@ -199,8 +202,8 @@ do_action('woocommerce_before_single_product');
 
   <!-- Mobile Sticky Bottom Bar (Page 15 Spec) -->
   <div class="mobile-sticky-product-bar">
-    <div class="sticky-price-text">₹1,450 / pc</div>
-    <a href="<?php echo esc_url(home_url('/cart/')); ?>" class="sticky-add-cart-btn">ADD TO CART</a>
+    <div class="sticky-price-text" id="mobile-sticky-price">₹1,450 / pc</div>
+    <a href="javascript:void(0);" onclick="document.querySelector('button[name=add-to-cart]').click();" class="sticky-add-cart-btn">ADD TO CART</a>
     <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" class="sticky-whatsapp-btn">✆</a>
   </div>
 
@@ -212,6 +215,64 @@ do_action('woocommerce_before_single_product');
     var thumbs = document.querySelectorAll('.light-thumb-item');
     thumbs.forEach(function(t) { t.classList.remove('active'); });
     element.classList.add('active');
+  }
+
+  function selectSize(sizeStr, btn) {
+    var sizeBtns = document.querySelectorAll('.pill-buttons-row .size-pill-btn');
+    sizeBtns.forEach(function(b) { 
+      if (!b.classList.contains('pieces-pill-btn')) {
+        b.classList.remove('active'); 
+      }
+    });
+    btn.classList.add('active');
+    
+    var hiddenInput = document.getElementById('selected-size-input');
+    if (hiddenInput) hiddenInput.value = sizeStr;
+    
+    var passportSize = document.getElementById('passport-size-val');
+    if (passportSize) passportSize.innerText = sizeStr + ' mm';
+  }
+
+  function selectPieces(count, unitPrice, btn) {
+    var piecesBtns = document.querySelectorAll('.pieces-pill-btn');
+    piecesBtns.forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    
+    var qtyInput = document.getElementById('selected-quantity-input');
+    if (qtyInput) qtyInput.value = count;
+    
+    var total = count * unitPrice;
+    var formattedTotal = '₹' + total.toLocaleString('en-IN');
+    
+    var piecesLabel = document.getElementById('total-pieces-label');
+    if (piecesLabel) piecesLabel.innerText = 'Total for ' + count + ' pieces';
+    
+    var priceAmt = document.getElementById('total-price-amount');
+    if (priceAmt) priceAmt.innerText = formattedTotal;
+
+    // Highlight tier
+    document.querySelectorAll('.discount-col').forEach(function(c) { c.classList.remove('active'); });
+    if (count >= 100) {
+      var t100 = document.getElementById('tier-100');
+      if (t100) t100.classList.add('active');
+    } else if (count >= 50) {
+      var t50 = document.getElementById('tier-50');
+      if (t50) t50.classList.add('active');
+    } else {
+      var t10 = document.getElementById('tier-10');
+      if (t10) t10.classList.add('active');
+    }
+  }
+
+  function selectCustomPieces(btn) {
+    var customQty = prompt("Enter required number of pieces:", "25");
+    if (customQty && !isNaN(customQty) && parseInt(customQty) > 0) {
+      var qty = parseInt(customQty);
+      var unitPrice = 1450;
+      if (qty >= 100) unitPrice = 1210;
+      else if (qty >= 50) unitPrice = 1320;
+      selectPieces(qty, unitPrice, btn);
+    }
   }
 </script>
 
