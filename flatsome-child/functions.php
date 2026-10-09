@@ -98,8 +98,8 @@ function vivaaz_get_img_url($filename) {
     if (file_exists($upload_dir['basedir'] . '/2026/10/' . $filename)) {
         return $upload_dir['baseurl'] . '/2026/10/' . $filename;
     }
-    // 4. Default URL fallback to uploads folder
-    return content_url('/uploads/' . $filename);
+    // 4. Default URL fallback to theme assets folder
+    return get_stylesheet_directory_uri() . '/assets/images/' . $filename;
 }
 
 function vivaaz_custom_woocommerce_placeholder($image_url) {
