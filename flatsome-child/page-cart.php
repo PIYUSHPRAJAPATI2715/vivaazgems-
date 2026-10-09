@@ -18,18 +18,27 @@ get_header('shop');
             wc_print_notices();
         }
 
-        if (have_posts()) :
-            while (have_posts()) : the_post();
-                the_content();
-            endwhile;
-        else :
+        if (function_exists('WC') && WC()->cart && WC()->cart->is_empty()) {
             if (function_exists('wc_get_template')) {
-                wc_get_template('cart/cart.php');
+                wc_get_template('cart/cart-empty.php');
             } else {
-                $template = locate_template('woocommerce/cart/cart.php');
+                $template = locate_template('woocommerce/cart/cart-empty.php');
                 if ($template) include $template;
             }
-        endif;
+        } else {
+            if (have_posts()) :
+                while (have_posts()) : the_post();
+                    the_content();
+                endwhile;
+            else :
+                if (function_exists('wc_get_template')) {
+                    wc_get_template('cart/cart.php');
+                } else {
+                    $template = locate_template('woocommerce/cart/cart.php');
+                    if ($template) include $template;
+                }
+            endif;
+        }
         ?>
     </div>
 </div>
