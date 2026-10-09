@@ -222,7 +222,7 @@ $vivaaz_header_rendered = true;
         $current_user = wp_get_current_user();
       ?>
         <div class="has-account-dropdown">
-          <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="icon-action-btn" title="My Account">
+          <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="icon-action-btn">
             <svg width="16" height="16" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 3px; overflow: visible; display: inline-block;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             <?php echo esc_html($current_user->display_name ?: $current_user->user_login); ?> ▾
           </a>
@@ -235,10 +235,18 @@ $vivaaz_header_rendered = true;
           </div>
         </div>
       <?php else : ?>
-        <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="icon-action-btn" title="Sign In / Sign Up">
-          <svg width="16" height="16" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 3px; overflow: visible; display: inline-block;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-          account
-        </a>
+        <div class="has-account-dropdown">
+          <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="icon-action-btn">
+            <svg width="16" height="16" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 3px; overflow: visible; display: inline-block;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            account ▾
+          </a>
+          <div class="account-hover-menu">
+            <a href="<?php echo esc_url(home_url('/my-account/')); ?>">Sign In / Login</a>
+            <a href="<?php echo esc_url(home_url('/my-account/?action=register')); ?>">Create an Account</a>
+            <a href="<?php echo esc_url(home_url('/my-account/orders/')); ?>">Track Orders</a>
+            <a href="<?php echo esc_url(home_url('/wishlist/')); ?>">Wishlist</a>
+          </div>
+        </div>
       <?php endif; ?>
 
       <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="icon-action-btn" title="Wishlist">
