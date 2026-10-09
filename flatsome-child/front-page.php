@@ -242,7 +242,7 @@ get_header();
                 global $product;
                 $p_id = get_the_ID();
                 $p_title = get_the_title();
-                $p_link = get_permalink($p_id) ?: home_url('/?post_type=product&p=' . $p_id);
+                $p_link = get_permalink($p_id) ?: (function_exists('vivaaz_get_sample_product_url') ? vivaaz_get_sample_product_url() : home_url('/product/ceylon-blue-sapphire-7x5mm/'));
                 $p_price = $product ? $product->get_price_html() : '';
                 $p_img = get_the_post_thumbnail_url($p_id, 'woocommerce_thumbnail') ?: vivaaz_get_img_url('ceylon-sapphire.jpg');
                 $is_variable = $product ? $product->is_type('variable') : false;
@@ -277,7 +277,7 @@ get_header();
             endwhile;
             wp_reset_postdata();
         else :
-            $sample_prod_url = home_url('/?post_type=product&p=18');
+            $sample_prod_url = function_exists('vivaaz_get_sample_product_url') ? vivaaz_get_sample_product_url() : home_url('/product/ceylon-blue-sapphire-7x5mm/');
         ?>
             <!-- Fallback Static Product Cards (Spec Page 9) -->
             <div class="product-card-luxury">
