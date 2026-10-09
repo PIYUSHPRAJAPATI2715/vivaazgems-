@@ -2,6 +2,7 @@
 /**
  * Vivaaz Gems - Custom Luxury Cart Details Template
  * Clean 2-column layout: Cart Items Table (Left) + Order Summary Card (Right)
+ * Strictly matches Page 17 of PDF Brief.
  */
 
 defined('ABSPATH') || exit;
@@ -10,7 +11,7 @@ do_action('woocommerce_before_cart'); ?>
 
 <div class="luxury-cart-page-wrapper">
   
-  <div class="cart-page-header">
+  <div class="cart-page-header" style="text-align: center; margin-bottom: 30px;">
     <span class="section-tag-divider">SHOPPING BAG</span>
     <h1 class="font-serif" style="font-size: 32px; font-weight: 400; margin: 8px 0 4px;">Your <span class="font-italic text-gold">Selection</span></h1>
     <p class="text-muted" style="font-size: 13px;">Review your loose gemstones, matched lots, and jewelry before proceeding to checkout.</p>
@@ -50,12 +51,11 @@ do_action('woocommerce_before_cart'); ?>
 
                       <td class="product-remove">
                         <?php
-                        echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                        echo apply_filters(
                             'woocommerce_cart_item_remove_link',
                             sprintf(
                                 '<a href="%s" class="remove-cart-item-btn" aria-label="%s" data-product_id="%s" data-product_sku="%s">&times;</a>',
                                 esc_url(wc_get_cart_remove_url($cart_item_key)),
-                                /* translators: %s is the product name */
                                 esc_attr(sprintf(__('Remove %s from cart', 'woocommerce'), wp_strip_all_tags($product_name))),
                                 esc_attr($product_id),
                                 esc_attr($_product->get_sku())
@@ -70,9 +70,9 @@ do_action('woocommerce_before_cart'); ?>
                         $thumbnail = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image('woocommerce_thumbnail'), $cart_item, $cart_item_key);
 
                         if (!$product_permalink) {
-                            echo $thumbnail; // PHPCS: XSS ok.
+                            echo $thumbnail;
                         } else {
-                            printf('<a href="%s">%s</a>', esc_url($product_permalink), $thumbnail); // PHPCS: XSS ok.
+                            printf('<a href="%s">%s</a>', esc_url($product_permalink), $thumbnail);
                         }
                         ?>
                       </td>
@@ -88,7 +88,7 @@ do_action('woocommerce_before_cart'); ?>
                         do_action('woocommerce_after_cart_item_name', $cart_item, $cart_item_key);
 
                         // Meta data.
-                        echo wc_get_formatted_cart_item_data($cart_item); // PHPCS: XSS ok.
+                        echo wc_get_formatted_cart_item_data($cart_item);
 
                         // Backorder notification.
                         if ($_product->backorders_require_notification() && $_product->is_on_backorder($cart_item['quantity'])) {
@@ -99,7 +99,7 @@ do_action('woocommerce_before_cart'); ?>
 
                       <td class="product-price" data-title="<?php esc_attr_e('Price', 'woocommerce'); ?>">
                         <?php
-                            echo apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key); // PHPCS: XSS ok.
+                            echo apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key);
                         ?>
                       </td>
 
@@ -125,13 +125,13 @@ do_action('woocommerce_before_cart'); ?>
                             false
                         );
 
-                        echo apply_filters('woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item); // PHPCS: XSS ok.
+                        echo apply_filters('woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item);
                         ?>
                       </td>
 
                       <td class="product-subtotal" data-title="<?php esc_attr_e('Subtotal', 'woocommerce'); ?>">
                         <?php
-                            echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); // PHPCS: XSS ok.
+                            echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key);
                         ?>
                       </td>
                     </tr>
@@ -143,20 +143,20 @@ do_action('woocommerce_before_cart'); ?>
             <?php do_action('woocommerce_cart_contents'); ?>
 
             <tr>
-              <td colspan="6" class="actions">
+              <td colspan="6" class="actions" style="padding: 20px 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+                  <?php if (wc_coupons_enabled()) { ?>
+                    <div class="coupon-input-wrapper" style="display: flex; gap: 8px;">
+                      <input type="text" name="coupon_code" class="input-text-custom" id="coupon_code" value="" placeholder="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>" style="padding: 10px 14px; font-size: 12px; border: 1px solid var(--color-border-light);" />
+                      <button type="submit" class="btn-outline-dark" name="apply_coupon" value="<?php esc_attr_e('Apply coupon', 'woocommerce'); ?>" style="padding: 10px 18px; font-size: 11px; font-weight: 700; cursor: pointer; border: 1px solid #1A1A1A; background: #fff; text-transform: uppercase;"><?php esc_html_e('APPLY', 'woocommerce'); ?></button>
+                      <?php do_action('woocommerce_cart_coupon'); ?>
+                    </div>
+                  <?php } ?>
 
-                <?php if (wc_coupons_enabled()) { ?>
-                  <div class="coupon-input-wrapper">
-                    <input type="text" name="coupon_code" class="input-text-custom" id="coupon_code" value="" placeholder="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>" />
-                    <button type="submit" class="btn-outline-dark" name="apply_coupon" value="<?php esc_attr_e('Apply coupon', 'woocommerce'); ?>"><?php esc_html_e('APPLY', 'woocommerce'); ?></button>
-                    <?php do_action('woocommerce_cart_coupon'); ?>
-                  </div>
-                <?php } ?>
-
-                <button type="submit" class="btn-square-dark" name="update_cart" value="<?php esc_attr_e('Update cart', 'woocommerce'); ?>"><?php esc_html_e('UPDATE CART', 'woocommerce'); ?></button>
+                  <button type="submit" class="btn-square-dark" name="update_cart" value="<?php esc_attr_e('Update cart', 'woocommerce'); ?>" style="padding: 10px 20px; font-size: 11px; font-weight: 700; background: #1A1A1A; color: #fff; border: none; cursor: pointer; text-transform: uppercase;"><?php esc_html_e('UPDATE CART', 'woocommerce'); ?></button>
+                </div>
 
                 <?php do_action('woocommerce_cart_actions'); ?>
-
                 <?php wp_nonce_field('woocommerce-cart', 'woocommerce-cart-nonce'); ?>
               </td>
             </tr>
@@ -168,8 +168,8 @@ do_action('woocommerce_before_cart'); ?>
 
       <!-- Right Column: Cart Totals & Checkout -->
       <div class="cart-totals-sidebar">
-        <div class="cart-totals-card">
-          <h3 class="totals-heading">Order Summary</h3>
+        <div class="cart-totals-card" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 28px;">
+          <h3 class="totals-heading" style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--color-border-light);">Order Summary</h3>
           
           <div class="cart-collaterals">
             <?php
@@ -183,16 +183,30 @@ do_action('woocommerce_before_cart'); ?>
             ?>
           </div>
 
-          <div style="margin-top: 20px;">
-            <a href="<?php echo esc_url(wc_get_checkout_url()); ?>" class="btn-square-dark-full">
+          <!-- Page 17 PDF Brief Specific Shipping & Payment Info -->
+          <div class="cart-shipping-spec-info" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 16px; margin: 20px 0; font-size: 12px; line-height: 1.6;">
+            <div style="font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--color-gold-label);">SHIPPING & IMPORT INFORMATION</div>
+            <div style="margin-bottom: 4px;"><strong>🇮🇳 India:</strong> Insured shipping · Delivery in 2–3 days (GST included)</div>
+            <div style="margin-bottom: 4px;"><strong>🌐 Overseas ($/€/£):</strong> Insured DHL/FedEx/UPS · Delivery in 4–7 days</div>
+            <div style="font-size: 11px; color: var(--color-text-muted); margin-top: 6px; border-top: 1px dashed var(--color-border-light); padding-top: 6px;">
+              * Import duties depend on customer's country and are paid on delivery.
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="<?php echo esc_url(wc_get_checkout_url()); ?>" class="btn-square-dark-full" style="display: block; width: 100%; padding: 14px; background: #1A1A1A; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-align: center; text-transform: uppercase; text-decoration: none;">
               PROCEED TO CHECKOUT →
+            </a>
+
+            <a href="https://wa.me/919680552270?text=<?php echo rawurlencode('Hi Vivaaz Gems, I have items in my shopping bag and would like to inquire before ordering.'); ?>" target="_blank" class="btn-whatsapp-outline-full" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; border: 1px solid #25D366; color: #25D366; background: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-align: center; text-decoration: none;">
+              <span>💬</span> Ask about order on WhatsApp
             </a>
           </div>
 
-          <div class="cart-trust-badges">
-            <div>✓ Insured Express Shipping Worldwide</div>
-            <div>✓ Authentic Lab Certificate Included</div>
-            <div>✓ Direct WhatsApp Support Ready</div>
+          <div class="cart-trust-badges" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--color-border-light); font-size: 11px; color: var(--color-text-muted); display: flex; flex-direction: column; gap: 6px;">
+            <div>◈ Lab certified loose gemstones</div>
+            <div>◈ Insured door-step express delivery</div>
+            <div>◈ 7-Day return guarantee</div>
           </div>
         </div>
       </div>
