@@ -12,7 +12,13 @@ $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
 
 // 1. My Account Route Guard
 if ((function_exists('is_account_page') && is_account_page()) || is_page('my-account') || strpos($request_uri, '/my-account/') !== false) {
-    include locate_template('page-my-account.php');
+    $acc_tpl = get_stylesheet_directory() . '/page-my-account.php';
+    if (file_exists($acc_tpl)) {
+        include $acc_tpl;
+    } else {
+        $loc = locate_template('page-my-account.php');
+        if (!empty($loc) && file_exists($loc)) include $loc;
+    }
     return;
 }
 
@@ -23,7 +29,13 @@ $is_single_prod = (function_exists('is_product') && is_product())
                || (strpos($request_uri, '/product/') !== false);
 
 if ($is_single_prod) {
-    include locate_template('single-product.php');
+    $sp_tpl = get_stylesheet_directory() . '/single-product.php';
+    if (file_exists($sp_tpl)) {
+        include $sp_tpl;
+    } else {
+        $loc = locate_template('single-product.php');
+        if (!empty($loc) && file_exists($loc)) include $loc;
+    }
     return;
 }
 

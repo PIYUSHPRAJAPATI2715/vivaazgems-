@@ -2,4 +2,8 @@
 /**
  * Vivaaz Gems - Shop Footer Template
  */
-include locate_template('footer.php');
+if (file_exists(get_stylesheet_directory() . '/footer.php')) {
+    include get_stylesheet_directory() . '/footer.php';
+} else {
+    get_footer();
+}

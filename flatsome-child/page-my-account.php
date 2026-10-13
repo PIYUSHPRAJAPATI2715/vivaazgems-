@@ -20,18 +20,24 @@ get_header('shop');
             endwhile;
         else :
             if (is_user_logged_in()) {
-                if (function_exists('wc_get_template')) {
+                $my_acc_file = get_stylesheet_directory() . '/woocommerce/myaccount/my-account.php';
+                if (file_exists($my_acc_file)) {
+                    include $my_acc_file;
+                } elseif (function_exists('wc_get_template')) {
                     wc_get_template('myaccount/my-account.php');
                 } else {
                     $template = locate_template('woocommerce/myaccount/my-account.php');
-                    if ($template) include $template;
+                    if (!empty($template) && file_exists($template)) include $template;
                 }
             } else {
-                if (function_exists('wc_get_template')) {
+                $login_file = get_stylesheet_directory() . '/woocommerce/myaccount/form-login.php';
+                if (file_exists($login_file)) {
+                    include $login_file;
+                } elseif (function_exists('wc_get_template')) {
                     wc_get_template('myaccount/form-login.php');
                 } else {
                     $template = locate_template('woocommerce/myaccount/form-login.php');
-                    if ($template) include $template;
+                    if (!empty($template) && file_exists($template)) include $template;
                 }
             }
         endif;

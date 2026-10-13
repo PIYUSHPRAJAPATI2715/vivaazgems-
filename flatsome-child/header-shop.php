@@ -2,4 +2,8 @@
 /**
  * Vivaaz Gems - Shop Header Template
  */
-include locate_template('header.php');
+if (file_exists(get_stylesheet_directory() . '/header.php')) {
+    include get_stylesheet_directory() . '/header.php';
+} else {
+    get_header();
+}

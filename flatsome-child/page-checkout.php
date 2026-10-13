@@ -51,11 +51,14 @@ get_header('shop');
                     the_content();
                 endwhile;
             else :
-                if (function_exists('wc_get_template')) {
+                $chk_file = get_stylesheet_directory() . '/woocommerce/checkout/form-checkout.php';
+                if (file_exists($chk_file)) {
+                    include $chk_file;
+                } elseif (function_exists('wc_get_template')) {
                     wc_get_template('checkout/form-checkout.php', array('checkout' => $checkout));
                 } else {
                     $template = locate_template('woocommerce/checkout/form-checkout.php');
-                    if ($template) include $template;
+                    if (!empty($template) && file_exists($template)) include $template;
                 }
             endif;
         }
