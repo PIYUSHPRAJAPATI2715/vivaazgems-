@@ -184,19 +184,19 @@ do_action('woocommerce_before_single_product');
       </div>
 
       <!-- Add To Cart Form Wrapper -->
-      <form id="vivaaz-product-form" class="cart vivaaz-buy-form" method="post" action="<?php echo esc_url(function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_url('/cart/')); ?>" onsubmit="return handleProductFormSubmit(this);">
+      <form id="vivaaz-product-form" class="cart vivaaz-buy-form" method="post" action="<?php echo esc_url(function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_url('/cart/')); ?>" onsubmit="return handleProductFormSubmit(this);" style="display: block !important; width: 100% !important; margin: 0 0 24px 0 !important; clear: both !important;">
         <input type="hidden" name="vivaaz_add_to_cart" value="1" />
         <input type="hidden" name="product_id" value="<?php echo esc_attr($product_id); ?>" />
         <input type="hidden" name="selected_size" id="form-selected-size" value="6×8 mm" />
         <input type="hidden" name="buy_now" id="form-buy-now-flag" value="0" />
 
         <!-- 1. SIZE SELECTION (BUTTONS) -->
-        <div class="product-option-group" style="margin-bottom: 22px;">
-          <div class="option-label-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <div class="product-option-group" style="display: block !important; width: 100% !important; margin-bottom: 22px !important; clear: both !important;">
+          <div class="option-label-flex" style="display: flex !important; justify-content: space-between !important; align-items: center !important; margin-bottom: 8px !important; width: 100% !important;">
             <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">SIZE</span>
             <a href="javascript:void(0);" onclick="switchGalleryView('image', '<?php echo esc_url($actual_size_img); ?>', null)" class="btn-underline-link" style="font-size: 11px; text-decoration: underline;">See actual size</a>
           </div>
-          <div class="pill-buttons-row" style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <div class="pill-buttons-row" style="display: flex !important; flex-wrap: wrap !important; gap: 8px !important; width: 100% !important;">
             <button type="button" class="size-pill-btn" onclick="selectProductSize('3×4 mm', this)">3×4 mm</button>
             <button type="button" class="size-pill-btn" onclick="selectProductSize('3×5 mm', this)">3×5 mm</button>
             <button type="button" class="size-pill-btn" onclick="selectProductSize('4×5 mm', this)">4×5 mm</button>
@@ -211,18 +211,18 @@ do_action('woocommerce_before_single_product');
         </div>
 
         <!-- 2. PIECES SELECTION (STEPPER + STOCK + TOTAL) -->
-        <div class="product-option-group" style="margin-bottom: 24px;">
-          <div class="option-label-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <div class="product-option-group" style="display: block !important; width: 100% !important; margin-bottom: 24px !important; clear: both !important;">
+          <div class="option-label-flex" style="display: flex !important; justify-content: space-between !important; align-items: center !important; margin-bottom: 8px !important; width: 100% !important;">
             <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">PIECES</span>
             <span style="font-size: 11px; color: var(--color-text-muted);">62 ready · more in 1–3 weeks</span>
           </div>
           
-          <div style="display: flex; align-items: center; justify-content: space-between; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 10px 16px;">
+          <div class="stepper-total-container" style="display: flex !important; align-items: center !important; justify-content: space-between !important; background: #FFFFFF !important; border: 1px solid var(--color-border-light) !important; padding: 10px 16px !important; width: 100% !important; box-sizing: border-box !important;">
             <!-- Stepper − / + -->
-            <div class="stepper-control-box" style="display: flex; align-items: center; gap: 8px;">
-              <button type="button" class="btn-stepper" onclick="adjustPieces(-1)" style="width: 32px; height: 32px; background: #FAF7F2; border: 1px solid var(--color-border-light); font-size: 16px; font-weight: 700; cursor: pointer;">−</button>
-              <input type="number" name="quantity" id="pieces-number-input" value="12" min="1" max="9999" onchange="calculateLiveTotal()" onkeyup="calculateLiveTotal()" style="width: 60px; height: 32px; text-align: center; border: 1px solid var(--color-border-light); font-size: 14px; font-weight: 700;" />
-              <button type="button" class="btn-stepper" onclick="adjustPieces(1)" style="width: 32px; height: 32px; background: #FAF7F2; border: 1px solid var(--color-border-light); font-size: 16px; font-weight: 700; cursor: pointer;">+</button>
+            <div class="stepper-control-box" style="display: flex !important; align-items: center !important; gap: 8px !important;">
+              <button type="button" class="btn-stepper" onclick="adjustPieces(-1)" style="width: 32px; height: 32px; background: #FAF7F2; border: 1px solid var(--color-border-light); font-size: 16px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; border-radius: 0;">−</button>
+              <input type="number" name="quantity" id="pieces-number-input" value="12" min="1" max="9999" onchange="calculateLiveTotal()" onkeyup="calculateLiveTotal()" style="width: 60px; height: 32px; text-align: center; border: 1px solid var(--color-border-light); font-size: 14px; font-weight: 700; margin: 0; padding: 0; border-radius: 0; background: #FFFFFF;" />
+              <button type="button" class="btn-stepper" onclick="adjustPieces(1)" style="width: 32px; height: 32px; background: #FAF7F2; border: 1px solid var(--color-border-light); font-size: 16px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; border-radius: 0;">+</button>
             </div>
 
             <!-- Total Price Display -->
@@ -233,28 +233,28 @@ do_action('woocommerce_before_single_product');
         </div>
 
         <!-- 3. ACTION BUTTONS: ADD TO CART & BUY NOW & WISHLIST (PAGE 14 SPEC) -->
-        <div class="action-buttons-grid" style="display: flex; gap: 12px; margin-bottom: 16px;">
-          <button type="submit" class="btn-action-add-cart" onclick="document.getElementById('form-buy-now-flag').value='0';" style="flex: 1; padding: 14px 20px; background: #1C1A17; color: #FFFFFF; border: 1px solid #1C1A17; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">
+        <div class="action-buttons-grid" style="display: flex !important; align-items: stretch !important; gap: 12px !important; margin-bottom: 16px !important; width: 100% !important; box-sizing: border-box !important;">
+          <button type="submit" class="btn-action-add-cart" onclick="document.getElementById('form-buy-now-flag').value='0';" style="flex: 1 1 0 !important; height: 48px !important; padding: 0 16px !important; background: #1C1A17 !important; color: #FFFFFF !important; border: 1px solid #1C1A17 !important; font-size: 12px !important; font-weight: 700 !important; letter-spacing: 0.1em !important; text-transform: uppercase !important; cursor: pointer !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; border-radius: 0 !important; transition: all 0.2s ease !important;">
             ADD TO CART
           </button>
           
-          <button type="submit" class="btn-action-buy-now" onclick="document.getElementById('form-buy-now-flag').value='1';" style="flex: 1; padding: 14px 20px; background: #9C7C4C; color: #FFFFFF; border: 1px solid #9C7C4C; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">
+          <button type="submit" class="btn-action-buy-now" onclick="document.getElementById('form-buy-now-flag').value='1';" style="flex: 1 1 0 !important; height: 48px !important; padding: 0 16px !important; background: #9C7C4C !important; color: #FFFFFF !important; border: 1px solid #9C7C4C !important; font-size: 12px !important; font-weight: 700 !important; letter-spacing: 0.1em !important; text-transform: uppercase !important; cursor: pointer !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; border-radius: 0 !important; transition: all 0.2s ease !important;">
             BUY NOW
           </button>
 
-          <button type="button" class="btn-action-wishlist" id="single-wishlist-btn" data-wishlist-id="<?php echo esc_attr($product_id); ?>" onclick="toggleProductWishlist(<?php echo intval($product_id); ?>, <?php echo json_encode($title); ?>, <?php echo json_encode($main_img); ?>, '₹ <?php echo number_format($tier_10); ?>', <?php echo json_encode(get_permalink($product_id) ?: home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>, this);" title="Save to Wishlist" style="width: 48px; height: 48px; background: #FFFFFF; border: 1px solid var(--color-border-light); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px; color: var(--color-text-main); flex-shrink: 0; transition: all 0.2s ease;">
+          <button type="button" class="btn-action-wishlist" id="single-wishlist-btn" data-wishlist-id="<?php echo esc_attr($product_id); ?>" onclick="toggleProductWishlist(<?php echo intval($product_id); ?>, <?php echo json_encode($title); ?>, <?php echo json_encode($main_img); ?>, '₹ <?php echo number_format($tier_10); ?>', <?php echo json_encode(get_permalink($product_id) ?: home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>, this);" title="Save to Wishlist" style="flex: 0 0 48px !important; width: 48px !important; height: 48px !important; background: #FFFFFF !important; border: 1px solid var(--color-border-light) !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; cursor: pointer !important; font-size: 20px !important; color: var(--color-text-main) !important; border-radius: 0 !important; box-sizing: border-box !important; transition: all 0.2s ease !important;">
             <span class="wishlist-heart-symbol" id="single-heart-symbol">♡</span>
           </button>
         </div>
 
         <!-- 4. QUIET TRUST LINE (PAGE 14 SPEC) -->
-        <div class="quiet-trust-line" style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 12px; text-align: center;">
+        <div class="quiet-trust-line" style="font-size: 11px !important; color: var(--color-text-muted) !important; margin-bottom: 12px !important; text-align: center !important; width: 100% !important; display: block !important;">
           Ships in 1–2 days · Insured worldwide · <a href="<?php echo esc_url(home_url('/guarantee/')); ?>" style="text-decoration: underline; color: inherit;">Our guarantee</a>
         </div>
 
         <!-- 5. WHATSAPP LIVE LOT LINK (PAGE 14 SPEC) -->
-        <div style="text-align: center; margin-bottom: 24px;">
-          <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" style="font-size: 12px; color: #1E9E52; font-weight: 600; text-decoration: underline;">
+        <div class="whatsapp-lot-link-wrap" style="text-align: center !important; margin-bottom: 24px !important; width: 100% !important; display: block !important;">
+          <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" style="font-size: 12px; color: #1E9E52; font-weight: 600; text-decoration: underline; display: inline-block;">
             See this exact lot live on WhatsApp →
           </a>
         </div>
