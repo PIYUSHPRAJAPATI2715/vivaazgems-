@@ -427,14 +427,14 @@ $vivaaz_header_rendered = true;
 <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop" onclick="toggleMobileMenuDrawer();" style="display: none;"></div>
 
 <!-- POPUP LIVE SEARCH MODAL (BUILD BOOK PAGE 13) -->
-<div id="live-search-modal" class="live-search-modal" style="display: none;">
-  <div class="search-modal-box">
+<div id="live-search-modal" class="live-search-modal" style="display: none !important;" onclick="if(event.target === this) closeLiveSearchModal();">
+  <div class="search-modal-box" onclick="event.stopPropagation();">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
       <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">SEARCH VIVAAZ GEMS</span>
-      <button type="button" onclick="toggleLiveSearchModal()" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+      <button type="button" aria-label="Close search" onclick="closeLiveSearchModal();" class="search-modal-close-btn">&times;</button>
     </div>
-    <form action="<?php echo esc_url(home_url('/shop/')); ?>" method="get">
-      <input type="text" name="s" id="live-search-input" placeholder="Search a stone, shape or code (e.g. moonstone 6x8 or RMCOC)..." style="width: 100%; padding: 14px; font-size: 14px; border: 1px solid var(--color-border-light); outline: none; margin-bottom: 14px;" autofocus />
+    <form action="<?php echo esc_url(home_url('/shop/')); ?>" method="get" onsubmit="closeLiveSearchModal();">
+      <input type="text" name="s" id="live-search-input" placeholder="Search a stone, shape or code (e.g. moonstone 6x8 or RMCOC)..." style="width: 100%; padding: 14px; font-size: 14px; border: 1px solid var(--color-border-light); outline: none; margin-bottom: 14px;" />
       <button type="submit" class="btn-square-dark-full" style="padding: 12px;">SEARCH CATALOG →</button>
     </form>
     <div style="margin-top: 16px; font-size: 11px; color: var(--color-text-muted);">
@@ -479,21 +479,54 @@ $vivaaz_header_rendered = true;
     }
   }
 
-  function toggleLiveSearchModal() {
+  function openLiveSearchModal() {
     var modal = document.getElementById('live-search-modal');
     if (modal) {
-      modal.style.display = (modal.style.display === 'none' || modal.style.display === '') ? 'flex' : 'none';
-      if (modal.style.display === 'flex') {
-        setTimeout(function() { document.getElementById('live-search-input').focus(); }, 100);
+      modal.classList.add('open');
+      modal.style.setProperty('display', 'flex', 'important');
+      var inp = document.getElementById('live-search-input');
+      if (inp) {
+        setTimeout(function() { inp.focus(); }, 100);
       }
     }
   }
+
+  function closeLiveSearchModal() {
+    var modal = document.getElementById('live-search-modal');
+    if (modal) {
+      modal.classList.remove('open');
+      modal.style.setProperty('display', 'none', 'important');
+    }
+  }
+
+  function toggleLiveSearchModal() {
+    var modal = document.getElementById('live-search-modal');
+    if (modal) {
+      if (modal.classList.contains('open') || modal.style.display === 'flex') {
+        closeLiveSearchModal();
+      } else {
+        openLiveSearchModal();
+      }
+    }
+  }
+
+  // Close modals on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' || e.keyCode === 27) {
+      closeLiveSearchModal();
+      var drawer = document.getElementById('mobile-menu-drawer');
+      if (drawer && (drawer.classList.contains('open') || drawer.style.display === 'flex')) {
+        toggleMobileMenuDrawer();
+      }
+    }
+  });
 
   function switchCurrency(curr) {
     alert('Currency set to ' + curr + '. Prices update automatically.');
   }
 
   document.addEventListener("DOMContentLoaded", function() {
+    closeLiveSearchModal();
     try {
       var badge = document.getElementById('header-bag-count');
       if (badge && (badge.textContent.trim() === '0' || badge.textContent.trim() === '')) {
