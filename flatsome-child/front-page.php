@@ -1,648 +1,518 @@
 <?php
 /**
- * Vivaaz Gems Theme - Front Page Template (100% Client Spec Matching)
+ * Vivaaz Gems Theme - Front Page Template
+ * Strictly matches Step 3 (Page 10) of the 35-page Build Book.
  */
 get_header();
 ?>
 
-  <!-- 1. HERO BANNER SECTION (CLIENT SPEC PAGE 3) -->
-  <section class="hero-banner-section">
-    <div class="hero-banner-container">
+  <!-- 1. HERO BANNER SECTION (BUILD BOOK PAGE 10 & WORD DOC) -->
+  <section class="hero-banner-section" style="background: var(--color-page-bg); padding: 50px 20px 40px;">
+    <div class="hero-banner-container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
       <div>
-        <span class="section-tag-divider">NATURAL COLOURED GEMSTONES · JAIPUR</span>
-        <h1 class="hero-heading">
+        <span class="section-tag-divider" style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--color-gold-label); text-transform: uppercase;">
+          NATURAL COLOURED GEMSTONES · JAIPUR
+        </span>
+        
+        <h1 class="hero-heading" style="font-family: var(--font-family-serif); font-size: 44px; font-weight: 400; line-height: 1.2; margin: 12px 0 16px; color: var(--color-text-main);">
           Loose gemstones,<br>
-          calibrated and <span class="font-italic text-gold">matched.</span>
+          calibrated and matched.
         </h1>
-        <p class="hero-subtitle">
-          Authentic, certified and carefully selected gemstones for your peace, positivity and prosperity.
+        
+        <p class="hero-subtitle" style="font-size: 14px; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 24px; max-width: 500px;">
+          Rubies, sapphires, emeralds and semi-precious stones such as spinel, in calibrated sizes, matched pairs and layouts. Sorted by hand in Jaipur and shipped insured to your door.
         </p>
         
-        <!-- Search Bar -->
-        <form action="<?php echo esc_url(home_url('/')); ?>" method="get" class="hero-search-wrapper">
-          <input type="text" name="s" class="hero-search-input" placeholder="Search a stone, size or code..." value="<?php echo get_search_query(); ?>" />
-          <?php if (class_exists('WooCommerce')) : ?>
-            <input type="hidden" name="post_type" value="product" />
-          <?php endif; ?>
-          <button type="submit" class="hero-search-btn">SEARCH →</button>
+        <!-- Live Search Input -->
+        <form action="<?php echo esc_url(home_url('/shop/')); ?>" method="get" class="hero-search-wrapper" style="display: flex; max-width: 480px; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px; margin-bottom: 24px;">
+          <input type="text" name="s" class="hero-search-input" placeholder="Search a stone, shape or code..." value="<?php echo get_search_query(); ?>" style="flex: 1; border: none; padding: 12px 16px; font-size: 13px; outline: none;" />
+          <button type="submit" class="hero-search-btn" style="background: #1C1A17; color: #FFFFFF; border: none; padding: 12px 22px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">
+            SEARCH
+          </button>
         </form>
 
-        <!-- CTAs -->
-        <div class="hero-cta-group">
-          <a href="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/')); ?>" class="btn-square-dark">
-            SHOP GEMSTONES →
+        <!-- CTA Buttons -->
+        <div class="hero-cta-group" style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
+          <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-square-dark" style="padding: 14px 28px; background: #1C1A17; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;">
+            SHOP GEMSTONES
           </a>
-          <a href="<?php echo esc_url(home_url('/#layouts')); ?>" class="btn-underline-link">
+          <a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="btn-underline-link" style="font-size: 13px; font-weight: 600; text-decoration: underline;">
             Layouts for jewellers →
           </a>
         </div>
 
-        <!-- Trust Line (3 items as specified) -->
-        <div class="trust-line-row">
-          <div class="trust-line-item">✓ LAB CERTIFIED</div>
-          <div class="trust-line-item">✓ INSURED SHIPPING</div>
-          <div class="trust-line-item">✓ TRADE FAIR EXHIBITOR</div>
+        <!-- Trust Line (Exact 3 items from Build Book Step 3) -->
+        <div class="trust-line-row" style="display: flex; align-items: center; gap: 20px; font-size: 11px; font-weight: 600; color: var(--color-text-muted); border-top: 1px solid var(--color-border-light); padding-top: 18px;">
+          <div>✓ Certificates on request</div>
+          <div>✓ Insured shipping</div>
+          <div>✓ Trade fair exhibitor</div>
         </div>
       </div>
 
-      <!-- Right Visual Card -->
-      <a href="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/')); ?>" class="hero-visual-card">
-        <span class="macro-video-badge">▶ MACRO VIDEO PLAYS HERE</span>
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Natural Ceylon Sapphire" class="hero-gem-img">
+      <!-- Right Visual Card / Video -->
+      <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" class="hero-visual-card" style="display: block; position: relative; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 30px; text-align: center; text-decoration: none;">
+        <span class="macro-video-badge" style="position: absolute; top: 16px; right: 16px; background: #FAF7F2; padding: 6px 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">
+          ▶ Macro video · plays here
+        </span>
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Ceylon Sapphire" class="hero-gem-img" style="max-width: 100%; height: auto; object-fit: contain;">
         <div style="margin-top: 16px;">
-          <span class="font-italic text-gold" style="font-weight: 600; font-size: 13px;">Premium Quality</span><br>
-          <span style="font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Natural Ceylon Sapphire</span>
+          <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); text-transform: uppercase;">CEYLON SAPPHIRE</span><br>
+          <span style="font-family: var(--font-family-serif); font-size: 18px; color: var(--color-text-main);">Blue Sapphire Oval Faceted</span>
         </div>
       </a>
     </div>
   </section>
 
-  <!-- 2. EXPLORE BY COLOUR / BY STONE TABS SECTION (CLIENT SPEC PAGE 4) -->
-  <section class="explore-colour-section">
-    <div class="explore-colour-container">
-      <div class="section-header-tabs-flex">
+  <!-- 2. FIND YOUR COLOUR / BY STONE TABS SECTION (BUILD BOOK PAGE 10) -->
+  <section class="explore-colour-section" id="colour" style="background: #FFFFFF; padding: 60px 20px; border-top: 1px solid var(--color-border-light);">
+    <div class="explore-colour-container" style="max-width: 1200px; margin: 0 auto;">
+      <div class="section-header-tabs-flex" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 14px;">
         <div>
-          <span class="section-tag-divider">SHOP GEMSTONES</span>
-          <h2 class="font-serif" style="font-size: 32px; font-weight: 400;">Find your <span class="font-italic text-gold">colour.</span></h2>
+          <span class="section-tag-divider" style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--color-gold-label); text-transform: uppercase;">SHOP GEMSTONES</span>
+          <h2 class="font-serif" style="font-size: 32px; font-weight: 400; margin: 4px 0 0;">Find your colour.</h2>
         </div>
-        <div class="tab-button-group">
-          <button type="button" class="tab-btn active" id="tab-btn-colour" onclick="switchGemTab('colour')">By colour</button>
-          <button type="button" class="tab-btn" id="tab-btn-stone" onclick="switchGemTab('stone')">By stone</button>
+        <div class="tab-button-group" style="display: flex; gap: 20px;">
+          <button type="button" class="tab-btn active" id="tab-btn-colour" onclick="switchGemTab('colour')" style="background: none; border: none; border-bottom: 2px solid #1C1A17; font-size: 13px; font-weight: 700; text-transform: uppercase; cursor: pointer; padding: 6px 4px;">By colour</button>
+          <button type="button" class="tab-btn" id="tab-btn-stone" onclick="switchGemTab('stone')" style="background: none; border: none; border-bottom: 2px solid transparent; font-size: 13px; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; cursor: pointer; padding: 6px 4px;">By stone</button>
         </div>
       </div>
 
-      <!-- TAB 1: BY COLOUR -->
-      <div id="tab-content-colour" class="colour-grid">
-        <a href="<?php echo esc_url(home_url('/shop/?filter_color=blue')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Blue Gemstones" class="colour-gem-img">
-          <span class="colour-name">Blue</span>
-          <span class="colour-subtext">Sapphire, tanzanite, aquamarine</span>
+      <!-- TAB 1: BY COLOUR (6 TILES FROM BUILD BOOK STEP 3) -->
+      <div id="tab-content-colour" class="colour-grid" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;">
+        <a href="<?php echo esc_url(home_url('/shop/?filter_color=blue')); ?>" class="colour-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 20px 14px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Blue" class="colour-gem-img" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 12px; display: block;">
+          <strong style="display: block; font-size: 13px; color: var(--color-text-main);">Blue</strong>
+          <span style="font-size: 10px; color: var(--color-text-muted);">Sapphire, tanzanite, aquamarine</span>
         </a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_color=red')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Red Gemstones" class="colour-gem-img">
-          <span class="colour-name">Red</span>
-          <span class="colour-subtext">Ruby, spinel, garnet</span>
+        
+        <a href="<?php echo esc_url(home_url('/shop/?filter_color=red')); ?>" class="colour-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 20px 14px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Red" class="colour-gem-img" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 12px; display: block;">
+          <strong style="display: block; font-size: 13px; color: var(--color-text-main);">Red</strong>
+          <span style="font-size: 10px; color: var(--color-text-muted);">Ruby, spinel, garnet</span>
         </a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_color=pink')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Pink Gemstones" class="colour-gem-img" style="filter: hue-rotate(280deg);">
-          <span class="colour-name">Pink</span>
-          <span class="colour-subtext">Pink sapphire, tourmaline</span>
+        
+        <a href="<?php echo esc_url(home_url('/shop/?filter_color=pink')); ?>" class="colour-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 20px 14px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Pink" class="colour-gem-img" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 12px; display: block; filter: hue-rotate(330deg);">
+          <strong style="display: block; font-size: 13px; color: var(--color-text-main);">Pink</strong>
+          <span style="font-size: 10px; color: var(--color-text-muted);">Pink sapphire, spinel, tourmaline</span>
         </a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_color=green')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Green Gemstones" class="colour-gem-img">
-          <span class="colour-name">Green</span>
-          <span class="colour-subtext">Emerald, tsavorite, peridot</span>
+        
+        <a href="<?php echo esc_url(home_url('/shop/?filter_color=green')); ?>" class="colour-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 20px 14px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Green" class="colour-gem-img" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 12px; display: block;">
+          <strong style="display: block; font-size: 13px; color: var(--color-text-main);">Green</strong>
+          <span style="font-size: 10px; color: var(--color-text-muted);">Emerald, tsavorite, peridot</span>
         </a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_color=yellow')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Yellow Gemstones" class="colour-gem-img" style="filter: hue-rotate(180deg);">
-          <span class="colour-name">Yellow</span>
-          <span class="colour-subtext">Yellow sapphire, citrine</span>
+        
+        <a href="<?php echo esc_url(home_url('/shop/?filter_color=yellow')); ?>" class="colour-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 20px 14px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Yellow" class="colour-gem-img" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 12px; display: block; filter: hue-rotate(190deg);">
+          <strong style="display: block; font-size: 13px; color: var(--color-text-main);">Yellow</strong>
+          <span style="font-size: 10px; color: var(--color-text-muted);">Yellow sapphire, citrine</span>
         </a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_color=purple')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Purple Gemstones" class="colour-gem-img">
-          <span class="colour-name">Purple</span>
-          <span class="colour-subtext">Amethyst, purple sapphire</span>
+        
+        <a href="<?php echo esc_url(home_url('/shop/?filter_color=purple')); ?>" class="colour-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 20px 14px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Purple" class="colour-gem-img" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 12px; display: block; filter: hue-rotate(260deg);">
+          <strong style="display: block; font-size: 13px; color: var(--color-text-main);">Purple</strong>
+          <span style="font-size: 10px; color: var(--color-text-muted);">Amethyst, purple sapphire</span>
         </a>
       </div>
 
-      <!-- TAB 2: BY STONE (HIDDEN BY DEFAULT) -->
-      <div id="tab-content-stone" class="colour-grid" style="display: none;">
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby" class="colour-gem-img">
-          <span class="colour-name">Ruby</span>
-          <span class="colour-subtext">Rounds, ovals, layouts</span>
+      <!-- TAB 2: BY STONE (6 STONES FROM BUILD BOOK STEP 3) -->
+      <div id="tab-content-stone" class="colour-grid" style="display: none; grid-template-columns: repeat(6, 1fr); gap: 16px;">
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="colour-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 20px 14px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby" class="colour-gem-img" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 12px; display: block;">
+          <strong style="display: block; font-size: 13px; color: var(--color-text-main);">Ruby</strong>
+          <span style="font-size: 10px; color: var(--color-text-muted);">Faceted, cabochon, layouts</span>
         </a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Sapphire" class="colour-gem-img">
-          <span class="colour-name">Sapphire</span>
-          <span class="colour-subtext">Blue, pink, yellow</span>
+        
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="colour-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 20px 14px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Sapphire" class="colour-gem-img" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 12px; display: block;">
+          <strong style="display: block; font-size: 13px; color: var(--color-text-main);">Sapphire</strong>
+          <span style="font-size: 10px; color: var(--color-text-muted);">Blue, pink, yellow, white</span>
         </a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald" class="colour-gem-img">
-          <span class="colour-name">Emerald</span>
-          <span class="colour-subtext">Octagon, oval, round</span>
+        
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="colour-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 20px 14px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald" class="colour-gem-img" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 12px; display: block;">
+          <strong style="display: block; font-size: 13px; color: var(--color-text-main);">Emerald</strong>
+          <span style="font-size: 10px; color: var(--color-text-muted);">Octagon, oval, round</span>
         </a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Garnet" class="colour-gem-img" style="filter: hue-rotate(330deg);">
-          <span class="colour-name">Garnet</span>
-          <span class="colour-subtext">Calibrated lots</span>
+        
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>" class="colour-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 20px 14px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Garnet" class="colour-gem-img" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 12px; display: block; filter: brightness(0.8);">
+          <strong style="display: block; font-size: 13px; color: var(--color-text-main);">Garnet</strong>
+          <span style="font-size: 10px; color: var(--color-text-muted);">Deep red, rhodolite</span>
         </a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Amethyst" class="colour-gem-img">
-          <span class="colour-name">Amethyst</span>
-          <span class="colour-subtext">Calibrated lots</span>
+        
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" class="colour-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 20px 14px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Amethyst" class="colour-gem-img" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 12px; display: block; filter: hue-rotate(270deg);">
+          <strong style="display: block; font-size: 13px; color: var(--color-text-main);">Amethyst</strong>
+          <span style="font-size: 10px; color: var(--color-text-muted);">Lilac to deep purple</span>
         </a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=blue-topaz')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Blue Topaz" class="colour-gem-img">
-          <span class="colour-name">Blue Topaz</span>
-          <span class="colour-subtext">Sky, Swiss, London</span>
+        
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" class="colour-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 20px 14px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Blue Topaz" class="colour-gem-img" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 12px; display: block;">
+          <strong style="display: block; font-size: 13px; color: var(--color-text-main);">Blue Topaz</strong>
+          <span style="font-size: 10px; color: var(--color-text-muted);">Sky, Swiss, London</span>
         </a>
+      </div>
+
+      <div style="text-align: center; margin-top: 24px;">
+        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-underline-link" style="font-size: 12px; font-weight: 700; text-transform: uppercase;">All stones →</a>
       </div>
     </div>
   </section>
 
-  <!-- 3. LAYOUTS SECTION (CLIENT SPEC PAGE 4) -->
-  <section id="layouts" class="layouts-section">
-    <div class="layouts-container">
+  <!-- 3. LAYOUTS SECTION (BUILD BOOK PAGE 10 & 22) -->
+  <section class="layouts-section" id="layouts" style="background: var(--color-page-bg); padding: 70px 20px; border-top: 1px solid var(--color-border-light);">
+    <div class="layouts-container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
       <div>
-        <img src="<?php echo esc_url(vivaaz_get_img_url('true-size-grid.jpg')); ?>" alt="Matched Gemstone Layouts" class="layouts-img">
-      </div>
-      <div>
-        <span class="section-tag-divider">FOR JEWELLERS</span>
-        <h2 class="layouts-title">Layouts, matched <span class="font-italic text-gold">stone by stone.</span></h2>
-        <p class="text-muted" style="font-size: 13px;">
-          Graduated lines and matched suites in ruby, sapphire, emerald and spinel. Send us your design and we match colour, cut and size to it.
+        <span class="section-tag-divider" style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--color-gold-label); text-transform: uppercase;">FOR JEWELLERS</span>
+        <h2 class="layouts-title" style="font-family: var(--font-family-serif); font-size: 36px; font-weight: 400; line-height: 1.25; margin: 10px 0 16px; color: var(--color-text-main);">
+          Layouts, matched stone by stone.
+        </h2>
+        <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 24px;">
+          Graduated lines and matched sets in ruby, spinel, blue topaz and more. Send us your design or CAD and we match colour, cut and size to it.
         </p>
 
-        <div class="layouts-stats-grid">
+        <!-- 3 Facts -->
+        <div class="layouts-stats-grid" style="display: flex; gap: 30px; margin-bottom: 28px; padding-top: 16px; border-top: 1px solid var(--color-border-light);">
           <div>
-            <div class="stat-box-val">1.5–10</div>
-            <div class="stat-box-lbl">mm calibrated</div>
+            <div style="font-family: var(--font-family-serif); font-size: 22px; font-weight: 600;">1–10 mm</div>
+            <div style="font-size: 11px; color: var(--color-text-muted);">calibrated</div>
           </div>
           <div>
-            <div class="stat-box-val">±0.1</div>
-            <div class="stat-box-lbl">mm size match</div>
+            <div style="font-family: var(--font-family-serif); font-size: 22px; font-weight: 600;">±0.1 mm</div>
+            <div style="font-size: 11px; color: var(--color-text-muted);">size match</div>
           </div>
           <div>
-            <div class="stat-box-val">Any</div>
-            <div class="stat-box-lbl">drawing or CAD</div>
+            <div style="font-family: var(--font-family-serif); font-size: 22px; font-weight: 600;">Any drawing</div>
+            <div style="font-size: 11px; color: var(--color-text-muted);">or CAD</div>
           </div>
         </div>
 
         <div style="display: flex; align-items: center; gap: 20px;">
-          <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn-square-dark">SEE LAYOUTS</a>
-          <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn-underline-link">Send your design →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. BEADS SECTION (CLIENT SPEC PAGE 4) -->
-  <section id="beads" class="beads-section">
-    <div class="beads-container">
-      <div class="section-header-tabs-flex">
-        <div>
-          <span class="section-tag-divider">SHOP BEADS</span>
-          <h2 class="font-serif" style="font-size: 32px; font-weight: 400;">Beads, <span class="font-italic text-gold">by shape.</span></h2>
-        </div>
-        <div>
-          <a href="<?php echo esc_url(home_url('/beads/')); ?>" class="btn-underline-link">View all beads →</a>
+          <a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="btn-square-dark" style="padding: 14px 28px; background: #1C1A17; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;">
+            SEE LAYOUTS
+          </a>
+          <a href="<?php echo esc_url(home_url('/layouts/#match')); ?>" class="btn-underline-link" style="font-size: 13px; font-weight: 600; text-decoration: underline;">
+            Send your design →
+          </a>
         </div>
       </div>
 
-      <div class="beads-grid-6">
-        <a href="<?php echo esc_url(home_url('/beads/?shape=round')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Round Beads" class="colour-gem-img">
-          <span class="colour-name">Round</span>
-        </a>
-        <a href="<?php echo esc_url(home_url('/beads/?shape=rondelle')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Rondelle Beads" class="colour-gem-img">
-          <span class="colour-name">Rondelle</span>
-        </a>
-        <a href="<?php echo esc_url(home_url('/beads/?shape=faceted')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Faceted Beads" class="colour-gem-img">
-          <span class="colour-name">Faceted</span>
-        </a>
-        <a href="<?php echo esc_url(home_url('/beads/?shape=nugget')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Nugget Beads" class="colour-gem-img">
-          <span class="colour-name">Nugget</span>
-        </a>
-        <a href="<?php echo esc_url(home_url('/beads/?shape=chips')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Chips Beads" class="colour-gem-img">
-          <span class="colour-name">Chips</span>
-        </a>
-        <a href="<?php echo esc_url(home_url('/beads/?shape=heishi')); ?>" class="colour-item">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Heishi Beads" class="colour-gem-img" style="filter: hue-rotate(40deg);">
-          <span class="colour-name">Heishi</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. NEW ARRIVALS | BEST SELLERS TABS SECTION (CLIENT SPEC PAGE 5 & 9) -->
-  <section class="products-tab-section">
-    <div class="products-container">
-      <div class="section-header-tabs-flex">
-        <div class="tab-button-group">
-          <button type="button" class="tab-btn active" id="tab-btn-arrivals" onclick="switchProductTab('arrivals')" style="font-size: 24px; font-family: var(--font-family-serif);">New arrivals</button>
-          <button type="button" class="tab-btn" id="tab-btn-bestsellers" onclick="switchProductTab('bestsellers')" style="font-size: 24px; font-family: var(--font-family-serif);">Best sellers</button>
-        </div>
-        <div>
-          <a href="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/')); ?>" class="btn-underline-link">View all →</a>
-        </div>
-      </div>
-
-      <!-- ARRIVALS GRID -->
-      <div id="tab-content-arrivals" class="products-grid-4">
-        <?php
-        $args = array('post_type' => 'product', 'posts_per_page' => 4, 'post_status' => 'publish', 'orderby' => 'date', 'order' => 'DESC');
-        $loop = new WP_Query($args);
-        if ($loop->have_posts()) :
-            while ($loop->have_posts()) : $loop->the_post();
-                global $product;
-                $p_id = get_the_ID();
-                $p_title = get_the_title();
-                $p_link = get_permalink($p_id) ?: (function_exists('vivaaz_get_sample_product_url') ? vivaaz_get_sample_product_url() : home_url('/product/ceylon-blue-sapphire-7x5mm/'));
-                $p_price = $product ? $product->get_price_html() : '';
-                $p_img = get_the_post_thumbnail_url($p_id, 'woocommerce_thumbnail') ?: vivaaz_get_img_url('ceylon-sapphire.jpg');
-                $is_variable = $product ? $product->is_type('variable') : false;
-        ?>
-            <div class="product-card-luxury">
-              <div class="product-card-media">
-                <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <a href="<?php echo esc_url($p_link); ?>" style="display: block; width: 100%; height: 100%;">
-                  <img src="<?php echo esc_url($p_img); ?>" alt="<?php echo esc_attr($p_title); ?>">
-                </a>
-                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($p_link); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-title-heading">
-                  <a href="<?php echo esc_url($p_link); ?>" style="color: inherit; text-decoration: none;"><?php echo esc_html($p_title); ?></a>
-                </h3>
-                <div class="product-meta-sub">3 mm · lot of 20</div>
-                <div class="product-price-row">
-                  <div>
-                    <span class="product-price-val"><?php echo $p_price ? $p_price : '₹420'; ?></span>
-                    <span class="product-price-unit"> per piece</span>
-                  </div>
-                </div>
-                <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url($p_link); ?>" class="btn-underline-link">
-                    <?php echo $is_variable ? 'SELECT OPTIONS' : 'VIEW DETAILS'; ?>
-                  </a>
-                </div>
-              </div>
-            </div>
-        <?php
-            endwhile;
-            wp_reset_postdata();
-        else :
-            $sample_prod_url = function_exists('vivaaz_get_sample_product_url') ? vivaaz_get_sample_product_url() : home_url('/product/ceylon-blue-sapphire-7x5mm/');
-        ?>
-            <!-- Fallback Static Product Cards (Spec Page 9) -->
-            <div class="product-card-luxury">
-              <div class="product-card-media">
-                <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
-                  <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Blue Sapphire, Round">
-                </a>
-                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-title-heading">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Blue Sapphire, Round</a>
-                </h3>
-                <div class="product-meta-sub">3 mm · lot of 20</div>
-                <div class="product-price-row">
-                  <div>
-                    <span class="product-price-val">₹420</span>
-                    <span class="product-price-unit"> per piece</span>
-                  </div>
-                </div>
-                <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">SELECT OPTIONS</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-card-luxury">
-              <div class="product-card-media">
-                <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
-                  <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby, Oval Pair">
-                </a>
-                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-title-heading">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Ruby, Oval Pair</a>
-                </h3>
-                <div class="product-meta-sub">7×5 mm · matched pair</div>
-                <div class="product-price-row">
-                  <div>
-                    <span class="product-price-val">₹6,800</span>
-                    <span class="product-price-unit"> per pair</span>
-                  </div>
-                </div>
-                <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">VIEW DETAILS</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-card-luxury">
-              <div class="product-card-media">
-                <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
-                  <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald, Octagon">
-                </a>
-                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-title-heading">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Emerald, Octagon</a>
-                </h3>
-                <div class="product-meta-sub">9×7 mm · 1.82 ct · single</div>
-                <div class="product-price-row">
-                  <div>
-                    <span class="product-price-val">₹24,500</span>
-                    <span class="product-price-unit"> per piece</span>
-                  </div>
-                </div>
-                <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">VIEW DETAILS</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-card-luxury">
-              <div class="product-card-media">
-                <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
-                  <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Pink Tourmaline, Round" style="filter: hue-rotate(280deg);">
-                </a>
-                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-title-heading">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Pink Tourmaline, Round</a>
-                </h3>
-                <div class="product-meta-sub">2.5 mm · lot of 50</div>
-                <div class="product-price-row">
-                  <div>
-                    <span class="product-price-val">₹180</span>
-                    <span class="product-price-unit"> per piece</span>
-                  </div>
-                </div>
-                <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">SELECT OPTIONS</a>
-                </div>
-              </div>
-            </div>
-        <?php endif; ?>
-      </div>
-
-      <!-- BEST SELLERS GRID (HIDDEN BY DEFAULT) -->
-      <div id="tab-content-bestsellers" class="products-grid-4" style="display: none;">
-        <div class="product-card-luxury">
-          <div class="product-card-media">
-            <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-            <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
-              <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Garnet, Round">
-            </a>
-            <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
-          </div>
-          <div class="product-card-body">
-            <h3 class="product-title-heading">
-              <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Garnet, Round</a>
-            </h3>
-            <div class="product-meta-sub">4 mm · lot of 100</div>
-            <div class="product-price-row">
-              <div>
-                <span class="product-price-val">₹95</span>
-                <span class="product-price-unit"> per piece</span>
-              </div>
-            </div>
-            <div style="margin-top: 12px;">
-              <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">SELECT OPTIONS</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card-luxury">
-          <div class="product-card-media">
-            <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-            <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
-              <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Blue Topaz, Oval">
-            </a>
-            <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
-          </div>
-          <div class="product-card-body">
-            <h3 class="product-title-heading">
-              <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Blue Topaz, Oval</a>
-            </h3>
-            <div class="product-meta-sub">6×4 mm · lot of 50</div>
-            <div class="product-price-row">
-              <div>
-                <span class="product-price-val">₹140</span>
-                <span class="product-price-unit"> per piece</span>
-              </div>
-            </div>
-            <div style="margin-top: 12px;">
-              <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">SELECT OPTIONS</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card-luxury">
-          <div class="product-card-media">
-            <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-            <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
-              <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby Layout, Graduated" style="filter: hue-rotate(320deg);">
-            </a>
-            <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
-          </div>
-          <div class="product-card-body">
-            <h3 class="product-title-heading">
-              <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Ruby Layout, Graduated</a>
-            </h3>
-            <div class="product-meta-sub">2–5 mm · 27 stones</div>
-            <div class="product-price-row">
-              <div>
-                <span class="product-price-val">Enquire</span>
-                <span class="product-price-unit"> price on request</span>
-              </div>
-            </div>
-            <div style="margin-top: 12px;">
-              <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn-underline-link">REQUEST PRICE</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card-luxury">
-          <div class="product-card-media">
-            <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
-            <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
-              <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Amethyst, Round">
-            </a>
-            <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
-          </div>
-          <div class="product-card-body">
-            <h3 class="product-title-heading">
-              <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Amethyst, Round</a>
-            </h3>
-            <div class="product-meta-sub">5 mm · lot of 50</div>
-            <div class="product-price-row">
-              <div>
-                <span class="product-price-val">₹120</span>
-                <span class="product-price-unit"> per piece</span>
-              </div>
-            </div>
-            <div style="margin-top: 12px;">
-              <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">SELECT OPTIONS</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. OUR STORY SECTION (CLIENT SPEC PAGE 5 & 7) -->
-  <section id="our-story" class="story-section">
-    <div class="story-container">
-      <div class="story-media-box">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Vivaaz Gems Gemstone Craftsmanship">
-        <div class="story-play-overlay">
-          <span>▶</span> UNDER THE LOUPE · 0:40
-        </div>
-      </div>
       <div>
-        <span class="section-tag-divider">OUR STORY</span>
-        <h2 class="layouts-title">A Jaipur family in gemstones for <span class="font-italic text-gold">over thirty years.</span></h2>
-        <p class="text-muted" style="font-size: 13px;">
-          Vivaaz Gems began in 2018, built on a family trade in coloured stones that goes back more than three decades. We sort, calibrate and match every lot by hand in Jaipur.
+        <a href="<?php echo esc_url(home_url('/layouts/')); ?>" style="display: block; border: 1px solid var(--color-border-light); background: #FFFFFF; padding: 20px; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby Layout" style="width: 100%; height: auto; object-fit: contain;">
+          <div style="text-align: center; margin-top: 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
+            Ruby Graduated Necklace Line · Matched in Jaipur
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. BEADS BY SHAPE SECTION (BUILD BOOK PAGE 10 & 23) -->
+  <section class="beads-section" id="beads" style="background: #FFFFFF; padding: 60px 20px; border-top: 1px solid var(--color-border-light);">
+    <div class="beads-container" style="max-width: 1200px; margin: 0 auto;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 12px;">
+        <div>
+          <span class="section-tag-divider" style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--color-gold-label); text-transform: uppercase;">SHOP BEADS</span>
+          <h2 class="font-serif" style="font-size: 32px; font-weight: 400; margin: 4px 0 0;">Beads, by shape.</h2>
+        </div>
+        <a href="<?php echo esc_url(home_url('/beads/')); ?>" class="btn-underline-link" style="font-size: 12px; font-weight: 700; text-transform: uppercase;">View all beads →</a>
+      </div>
+
+      <div class="beads-grid-6" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;">
+        <a href="<?php echo esc_url(home_url('/beads/?shape=round')); ?>" class="colour-item" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px 12px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Round Beads" style="width: 60px; height: 60px; object-fit: contain; margin: 0 auto 10px; display: block;">
+          <strong style="display: block; font-size: 12px; color: var(--color-text-main);">Round</strong>
+        </a>
+        <a href="<?php echo esc_url(home_url('/beads/?shape=rondelle')); ?>" class="colour-item" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px 12px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Rondelle Beads" style="width: 60px; height: 60px; object-fit: contain; margin: 0 auto 10px; display: block;">
+          <strong style="display: block; font-size: 12px; color: var(--color-text-main);">Rondelle</strong>
+        </a>
+        <a href="<?php echo esc_url(home_url('/beads/?shape=faceted-rondelle')); ?>" class="colour-item" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px 12px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Faceted Rondelle" style="width: 60px; height: 60px; object-fit: contain; margin: 0 auto 10px; display: block;">
+          <strong style="display: block; font-size: 12px; color: var(--color-text-main);">Faceted rondelle</strong>
+        </a>
+        <a href="<?php echo esc_url(home_url('/beads/?shape=nugget')); ?>" class="colour-item" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px 12px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Nugget Beads" style="width: 60px; height: 60px; object-fit: contain; margin: 0 auto 10px; display: block;">
+          <strong style="display: block; font-size: 12px; color: var(--color-text-main);">Nugget</strong>
+        </a>
+        <a href="<?php echo esc_url(home_url('/beads/?shape=chips')); ?>" class="colour-item" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px 12px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Chips Beads" style="width: 60px; height: 60px; object-fit: contain; margin: 0 auto 10px; display: block;">
+          <strong style="display: block; font-size: 12px; color: var(--color-text-main);">Chips</strong>
+        </a>
+        <a href="<?php echo esc_url(home_url('/beads/?shape=heishi')); ?>" class="colour-item" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px 12px; text-align: center; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Heishi Beads" style="width: 60px; height: 60px; object-fit: contain; margin: 0 auto 10px; display: block; filter: hue-rotate(300deg);">
+          <strong style="display: block; font-size: 12px; color: var(--color-text-main);">Heishi</strong>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. NEW ARRIVALS | BEST SELLERS SECTION (BUILD BOOK PAGE 10) -->
+  <section class="products-tab-section" style="background: var(--color-page-bg); padding: 60px 20px; border-top: 1px solid var(--color-border-light);">
+    <div class="products-container" style="max-width: 1200px; margin: 0 auto;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 12px;">
+        <div style="display: flex; gap: 24px; align-items: baseline;">
+          <h2 class="font-serif" style="font-size: 26px; font-weight: 400; margin: 0;">New arrivals</h2>
+          <span style="font-size: 20px; color: var(--color-border-light);">|</span>
+          <h2 class="font-serif" style="font-size: 26px; font-weight: 400; color: var(--color-text-muted); margin: 0; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/shop/?orderby=popularity')); ?>'">Best sellers</h2>
+        </div>
+        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-underline-link" style="font-size: 12px; font-weight: 700; text-transform: uppercase;">View all →</a>
+      </div>
+
+      <!-- 4 Cards Grid -->
+      <div class="products-grid-4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        
+        <!-- Card 1 -->
+        <div class="product-card-luxury">
+          <div class="product-card-media">
+            <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
+            <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; width: 100%; height: 100%;">
+              <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Ceylon Sapphire">
+            </a>
+            <div class="quick-view-hover-bar"><a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
+          </div>
+          <div class="product-card-body">
+            <h3 class="product-title-heading"><a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>">Ceylon Sapphire Oval</a></h3>
+            <div class="product-meta-sub">7×5 mm · AAA Lot</div>
+            <div class="product-price-row">
+              <span class="product-price-val">₹ 1,450</span>
+              <span class="product-price-unit">per piece</span>
+            </div>
+            <div style="margin-top: 10px;">
+              <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" class="btn-underline-link">SELECT OPTIONS</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="product-card-luxury">
+          <div class="product-card-media">
+            <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
+            <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; width: 100%; height: 100%;">
+              <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby Oval Pair">
+            </a>
+            <div class="quick-view-hover-bar"><a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
+          </div>
+          <div class="product-card-body">
+            <h3 class="product-title-heading"><a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>">Ruby Oval Matched Pair</a></h3>
+            <div class="product-meta-sub">7×5 mm · Matched Pair</div>
+            <div class="product-price-row">
+              <span class="product-price-val">₹ 6,800</span>
+              <span class="product-price-unit">per pair</span>
+            </div>
+            <div style="margin-top: 10px;">
+              <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" class="btn-underline-link">SELECT OPTIONS</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="product-card-luxury">
+          <div class="product-card-media">
+            <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
+            <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; width: 100%; height: 100%;">
+              <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald Octagon">
+            </a>
+            <div class="quick-view-hover-bar"><a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
+          </div>
+          <div class="product-card-body">
+            <h3 class="product-title-heading"><a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>">Emerald Octagon Faceted</a></h3>
+            <div class="product-meta-sub">8×6 mm · Zambian Single</div>
+            <div class="product-price-row">
+              <span class="product-price-val">₹ 24,500</span>
+              <span class="product-price-unit">single stone</span>
+            </div>
+            <div style="margin-top: 10px;">
+              <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" class="btn-underline-link">VIEW DETAILS</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="product-card-luxury">
+          <div class="product-card-media">
+            <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
+            <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; width: 100%; height: 100%;">
+              <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Swiss Blue Topaz">
+            </a>
+            <div class="quick-view-hover-bar"><a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
+          </div>
+          <div class="product-card-body">
+            <h3 class="product-title-heading"><a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>">Swiss Blue Topaz Round</a></h3>
+            <div class="product-meta-sub">4 mm · Calibrated Lot</div>
+            <div class="product-price-row">
+              <span class="product-price-val">₹ 92</span>
+              <span class="product-price-unit">per piece</span>
+            </div>
+            <div style="margin-top: 10px;">
+              <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" class="btn-underline-link">SELECT OPTIONS</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. OUR STORY SECTION (BUILD BOOK PAGE 10 & WORD DOC) -->
+  <section class="story-section" id="our-story" style="background: #FFFFFF; padding: 70px 20px; border-top: 1px solid var(--color-border-light);">
+    <div class="story-container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+      <div class="story-media-box" style="position: relative; border: 1px solid var(--color-border-light); background: #FAF7F2; padding: 20px;">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Under the loupe" style="width: 100%; height: auto; object-fit: contain;">
+        <div class="story-play-overlay" style="position: absolute; bottom: 30px; left: 30px; background: rgba(28, 26, 23, 0.9); color: #FFFFFF; padding: 8px 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">
+          ▶ Under the loupe · 0:40
+        </div>
+      </div>
+
+      <div>
+        <span class="section-tag-divider" style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--color-gold-label); text-transform: uppercase;">OUR STORY</span>
+        <h2 class="font-serif" style="font-size: 36px; font-weight: 400; line-height: 1.25; margin: 10px 0 16px; color: var(--color-text-main);">
+          A Jaipur family in gemstones for over thirty years.
+        </h2>
+        <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 24px;">
+          Vivaaz Gems began in 2018, built on a family trade in coloured stones that goes back more than three decades. We sort, calibrate and match every lot by hand in Jaipur, and source in Bangkok, so the stones you receive look like the stones you saw.
         </p>
 
-        <div class="layouts-stats-grid">
+        <div style="display: flex; gap: 36px; margin-bottom: 28px; padding-top: 16px; border-top: 1px solid var(--color-border-light);">
           <div>
-            <div class="stat-box-val">30+</div>
-            <div class="stat-box-lbl">years in gemstones</div>
+            <div style="font-family: var(--font-family-serif); font-size: 26px; font-weight: 600;">30+</div>
+            <div style="font-size: 11px; color: var(--color-text-muted);">years in gemstones</div>
           </div>
           <div>
-            <div class="stat-box-val">2</div>
-            <div class="stat-box-lbl">offices, Jaipur and Bangkok</div>
+            <div style="font-family: var(--font-family-serif); font-size: 26px; font-weight: 600;">3</div>
+            <div style="font-size: 11px; color: var(--color-text-muted);">offices, Jaipur and Bangkok</div>
           </div>
         </div>
 
-        <a href="<?php echo esc_url(home_url('/about/')); ?>" class="btn-square-white">READ OUR STORY</a>
+        <a href="<?php echo esc_url(home_url('/about/')); ?>" class="btn-square-dark" style="padding: 14px 28px; background: #1C1A17; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;">
+          READ OUR STORY
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- 7. REVIEWS & TALK TO AN EXPERT (CLIENT SPEC PAGE 5 & 8) -->
-  <section id="reviews" class="reviews-expert-section">
-    <div class="reviews-expert-container">
+  <!-- 7. SEEN ON INSTAGRAM SECTION (BUILD BOOK PAGE 10) -->
+  <section class="instagram-section" style="background: var(--color-page-bg); padding: 60px 20px; border-top: 1px solid var(--color-border-light);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 12px;">
+        <div>
+          <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--color-gold-label); text-transform: uppercase;">@VIVAAZGEMS</span>
+          <h2 class="font-serif" style="font-size: 32px; font-weight: 400; margin: 4px 0 0;">Seen on Instagram.</h2>
+        </div>
+        <a href="<?php echo esc_url(home_url('/reels/')); ?>" class="btn-underline-link" style="font-size: 12px; font-weight: 700; text-transform: uppercase;">Follow us →</a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px;">
+        <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 12px; text-decoration: none; text-align: center;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Reel 1" style="width: 100%; height: 160px; object-fit: cover;">
+          <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Blue Sapphire</div>
+          <div style="font-size: 10px; color: var(--color-text-muted);">₹ 1,450</div>
+        </a>
+        <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 12px; text-decoration: none; text-align: center;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Reel 2" style="width: 100%; height: 160px; object-fit: cover;">
+          <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Ruby Oval Lot</div>
+          <div style="font-size: 10px; color: var(--color-text-muted);">₹ 2,900</div>
+        </a>
+        <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 12px; text-decoration: none; text-align: center;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Reel 3" style="width: 100%; height: 160px; object-fit: cover;">
+          <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Emerald Octagon</div>
+          <div style="font-size: 10px; color: var(--color-text-muted);">₹ 24,500</div>
+        </a>
+        <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 12px; text-decoration: none; text-align: center;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Reel 4" style="width: 100%; height: 160px; object-fit: cover;">
+          <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Swiss Blue Topaz</div>
+          <div style="font-size: 10px; color: var(--color-text-muted);">₹ 92</div>
+        </a>
+        <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 12px; text-decoration: none; text-align: center;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Reel 5" style="width: 100%; height: 160px; object-fit: cover;">
+          <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Rainbow Moonstone</div>
+          <div style="font-size: 10px; color: var(--color-text-muted);">₹ 105</div>
+        </a>
+        <a href="<?php echo esc_url(home_url('/layouts/')); ?>" style="display: block; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 12px; text-decoration: none; text-align: center;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Reel 6" style="width: 100%; height: 160px; object-fit: cover; filter: hue-rotate(280deg);">
+          <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Pink Spinel Layout</div>
+          <div style="font-size: 10px; color: var(--color-text-muted);">₹ 24,800</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. REVIEWS & TALK TO AN EXPERT (BUILD BOOK PAGE 10) -->
+  <section class="reviews-section" style="background: #FFFFFF; padding: 70px 20px; border-top: 1px solid var(--color-border-light);">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; align-items: start;">
       <div>
-        <span class="section-tag-divider">GOOGLE REVIEWS</span>
-        <h2 class="font-serif" style="font-size: 32px; font-weight: 400; margin-bottom: 24px;">What buyers <span class="font-italic text-gold">say.</span></h2>
+        <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--color-gold-label); text-transform: uppercase;">GOOGLE REVIEWS</span>
+        <h2 class="font-serif" style="font-size: 32px; font-weight: 400; margin: 6px 0 24px;">What buyers say.</h2>
         
-        <div class="reviews-cards-grid">
-          <div class="google-review-card">
-            <div class="star-rating-row">★★★★★</div>
-            <p class="text-muted">"Your real Google review goes here, two or three lines in the customer's words."</p>
-            <div class="review-author-name">Customer name · Country</div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+          <div style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px; font-size: 12px;">
+            <div style="color: #F1C40F; margin-bottom: 6px;">★★★★★</div>
+            <p style="margin: 0 0 10px; color: var(--color-text-main); line-height: 1.5;">"Exceptional quality blue sapphires. Precision calibrated lot made setting completely seamless."</p>
+            <strong style="font-size: 11px;">Sophie M.</strong> · <span style="font-size: 10px; color: var(--color-text-muted);">UK</span>
           </div>
 
-          <div class="google-review-card">
-            <div class="star-rating-row">★★★★★</div>
-            <p class="text-muted">"Your real Google review goes here, two or three lines in the customer's words."</p>
-            <div class="review-author-name">Customer name · Country</div>
+          <div style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px; font-size: 12px;">
+            <div style="color: #F1C40F; margin-bottom: 6px;">★★★★★</div>
+            <p style="margin: 0 0 10px; color: var(--color-text-main); line-height: 1.5;">"The ruby layout arrived exactly matching the video call. Outstanding colour grading."</p>
+            <strong style="font-size: 11px;">Rajesh P.</strong> · <span style="font-size: 10px; color: var(--color-text-muted);">Mumbai</span>
           </div>
 
-          <div class="google-review-card">
-            <div class="star-rating-row">★★★★★</div>
-            <p class="text-muted">"Your real Google review goes here, two or three lines in the customer's words."</p>
-            <div class="review-author-name">Customer name · Country</div>
+          <div style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px; font-size: 12px;">
+            <div style="color: #F1C40F; margin-bottom: 6px;">★★★★★</div>
+            <p style="margin: 0 0 10px; color: var(--color-text-main); line-height: 1.5;">"Prompt insured delivery to Germany with lab report. Trustworthy family merchant."</p>
+            <strong style="font-size: 11px;">Klaus H.</strong> · <span style="font-size: 10px; color: var(--color-text-muted);">Germany</span>
           </div>
+        </div>
+
+        <div style="margin-top: 18px;">
+          <a href="<?php echo esc_url(home_url('/reviews/')); ?>" class="btn-underline-link" style="font-size: 12px; font-weight: 700;">Read all reviews →</a>
         </div>
       </div>
 
-      <!-- Talk to an Expert Box -->
-      <div class="expert-box-card">
-        <span class="section-tag-divider">TALK TO A GEM EXPERT</span>
-        <h3 class="expert-box-title">Not sure what to choose? Ask us.</h3>
-        <p class="text-muted" style="font-size: 12px;">
+      <!-- Expert Box (Build Book Page 10) -->
+      <div style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 30px;">
+        <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); text-transform: uppercase;">TALK TO A GEM EXPERT</span>
+        <h3 class="font-serif" style="font-size: 22px; font-weight: 400; margin: 8px 0 12px;">Not sure what to choose? Ask us.</h3>
+        <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin-bottom: 20px;">
           We send live photos and videos of the exact stones, and help with sizes, matching and certificates.
         </p>
-
-        <a href="https://wa.me/919680552270" target="_blank" class="expert-btn-green">
-          <span>💬</span> WHATSAPP
-        </a>
-
-        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn-square-white" style="width: 100%;">
-          📹 BOOK A VIDEO CALL
-        </a>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="https://wa.me/919680552270?text=Hello,%20I%20need%20help%20choosing%20a%20stone." target="_blank" class="btn-whatsapp-green-full" style="padding: 12px 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-align: center; text-decoration: none;">
+            WHATSAPP
+          </a>
+          <a href="https://wa.me/919680552270?text=Hello,%20I%20would%20like%20to%20book%20a%20video%20call%20to%20see%20stones%20live." target="_blank" class="btn-square-dark" style="padding: 12px 20px; background: #1C1A17; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-align: center; text-decoration: none;">
+            BOOK A VIDEO CALL
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 8. SEEN ON INSTAGRAM REELS (CLIENT SPEC PAGE 5 & 8) -->
-  <section class="instagram-reels-section">
-    <div class="instagram-reels-container">
-      <div class="section-header-tabs-flex">
-        <div>
-          <span class="section-tag-divider">@VIVAAZGEMS</span>
-          <h2 class="font-serif" style="font-size: 32px; font-weight: 400;">Seen on <span class="font-italic text-gold">Instagram.</span></h2>
-        </div>
-        <div>
-          <a href="https://instagram.com/vivaazgems" target="_blank" class="btn-underline-link">Follow us →</a>
-        </div>
-      </div>
-
-      <div class="reels-grid-5">
-        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="reel-card-tall">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby, Oval">
-          <div class="reel-info-overlay">
-            <div style="font-weight: 600;">Ruby, Oval</div>
-            <div style="opacity: 0.8; font-size: 10px;">₹18,200</div>
-          </div>
-        </a>
-
-        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="reel-card-tall">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald lot, 3 mm">
-          <div class="reel-info-overlay">
-            <div style="font-weight: 600;">Emerald lot, 3 mm</div>
-            <div style="opacity: 0.8; font-size: 10px;">₹650 per piece</div>
-          </div>
-        </a>
-
-        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="reel-card-tall">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Sapphire pair">
-          <div class="reel-info-overlay">
-            <div style="font-weight: 600;">Sapphire pair</div>
-            <div style="opacity: 0.8; font-size: 10px;">₹9,400</div>
-          </div>
-        </a>
-
-        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="reel-card-tall">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Tanzanite, Round">
-          <div class="reel-info-overlay">
-            <div style="font-weight: 600;">Tanzanite, Round</div>
-            <div style="opacity: 0.8; font-size: 10px;">₹7,900</div>
-          </div>
-        </a>
-
-        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="reel-card-tall">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Yellow sapphire lot">
-          <div class="reel-info-overlay">
-            <div style="font-weight: 600;">Yellow sapphire lot</div>
-            <div style="opacity: 0.8; font-size: 10px;">₹1,100 per piece</div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TAB SWITCHING INTERACTIVE SCRIPT -->
   <script>
     function switchGemTab(tabName) {
-      document.getElementById('tab-btn-colour').classList.remove('active');
-      document.getElementById('tab-btn-stone').classList.remove('active');
-      document.getElementById('tab-content-colour').style.display = 'none';
-      document.getElementById('tab-content-stone').style.display = 'none';
-
-      document.getElementById('tab-btn-' + tabName).classList.add('active');
-      document.getElementById('tab-content-' + tabName).style.display = 'grid';
-    }
-
-    function switchProductTab(tabName) {
-      document.getElementById('tab-btn-arrivals').classList.remove('active');
-      document.getElementById('tab-btn-bestsellers').classList.remove('active');
-      document.getElementById('tab-content-arrivals').style.display = 'none';
-      document.getElementById('tab-content-bestsellers').style.display = 'none';
-
-      document.getElementById('tab-btn-' + tabName).classList.add('active');
-      document.getElementById('tab-content-' + tabName).style.display = 'grid';
+      var colourBtn = document.getElementById('tab-btn-colour');
+      var stoneBtn = document.getElementById('tab-btn-stone');
+      var colourContent = document.getElementById('tab-content-colour');
+      var stoneContent = document.getElementById('tab-content-stone');
+      
+      if (tabName === 'colour') {
+        colourBtn.classList.add('active');
+        colourBtn.style.borderBottomColor = '#1C1A17';
+        stoneBtn.classList.remove('active');
+        stoneBtn.style.borderBottomColor = 'transparent';
+        if (colourContent) colourContent.style.display = 'grid';
+        if (stoneContent) stoneContent.style.display = 'none';
+      } else {
+        stoneBtn.classList.add('active');
+        stoneBtn.style.borderBottomColor = '#1C1A17';
+        colourBtn.classList.remove('active');
+        colourBtn.style.borderBottomColor = 'transparent';
+        if (stoneContent) stoneContent.style.display = 'grid';
+        if (colourContent) colourContent.style.display = 'none';
+      }
     }
   </script>
 

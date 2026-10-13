@@ -21,11 +21,30 @@ get_header('shop');
         $checkout = (function_exists('WC') && WC()->checkout()) ? WC()->checkout() : null;
 
         if (function_exists('WC') && WC()->cart && WC()->cart->is_empty()) {
-            echo '<div style="text-align: center; padding: 60px 20px;">';
-            echo '<h2 style="font-family: var(--font-family-serif); font-size: 26px; margin-bottom: 16px;">Your shopping bag is empty</h2>';
-            echo '<p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 24px;">Add loose gemstones or jewelry to your shopping bag before proceeding to checkout.</p>';
-            echo '<a href="' . esc_url(home_url('/shop/')) . '" class="btn-square-dark" style="padding: 12px 24px; background: #1A1A1A; color: #fff; text-decoration: none; font-size: 11px; font-weight: 700; text-transform: uppercase;">EXPLORE GEMSTONES →</a>';
-            echo '</div>';
+            ?>
+            <div id="checkout-empty-state" style="text-align: center; padding: 60px 20px;">
+                <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; margin-bottom: 16px;">Your shopping bag is empty</h2>
+                <p style="font-size: 13px; color: #76706A; margin-bottom: 24px;">Add loose gemstones or jewelry to your shopping bag before proceeding to checkout.</p>
+                <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-square-dark" style="padding: 12px 24px; background: #1C1A17; color: #fff; text-decoration: none; font-size: 11px; font-weight: 700; text-transform: uppercase;">EXPLORE GEMSTONES →</a>
+            </div>
+            <script>
+            // Check if local storage has items and sync immediately
+            try {
+                var saved = JSON.parse(localStorage.getItem('vivaaz_local_cart') || '[]');
+                if (saved && saved.length > 0) {
+                    var emptyState = document.getElementById('checkout-empty-state');
+                    if (emptyState) emptyState.innerHTML = '<p style="font-size: 14px; color: #9C7C4C;">Restoring your selection...</p>';
+                    fetch('/wp-admin/admin-ajax.php?action=vivaaz_sync_cart', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: 'items=' + encodeURIComponent(JSON.stringify(saved))
+                    }).then(function() {
+                        window.location.reload();
+                    });
+                }
+            } catch(e) {}
+            </script>
+            <?php
         } else {
             if (have_posts()) :
                 while (have_posts()) : the_post();

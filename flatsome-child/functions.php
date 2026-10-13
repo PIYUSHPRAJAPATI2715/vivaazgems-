@@ -154,51 +154,122 @@ add_shortcode('stone_passport', 'vivaaz_stone_passport_shortcode');
 /**
  * 7. Custom Registration & Account Handler (Full Name, Password + Confirm Password, DB Sync, Redirect to Dashboard)
  */
-add_filter('option_woocommerce_enable_myaccount_registration', '__return_true');
-add_filter('option_woocommerce_registration_generate_password', '__return_false');
-add_filter('option_woocommerce_registration_generate_username', '__return_true');
+add_filter('option_woocommerce_enable_myaccount_registration', function() { return 'yes'; });
+add_filter('option_woocommerce_registration_generate_password', function() { return 'no'; });
+add_filter('option_woocommerce_registration_generate_username', function() { return 'yes'; });
 
-// Auto-populate username from email if missing
-add_action('wp_loaded', 'vivaaz_prepare_registration_fields', 5);
-function vivaaz_prepare_registration_fields() {
-    if (isset($_POST['register']) && !empty($_POST['email']) && empty($_POST['username'])) {
-        $_POST['username'] = sanitize_user(current(explode('@', $_POST['email'])), true);
-    }
-}
+// Robust Native + Custom Registration & Login Processor
+function vivaaz_handle_registration_and_login() {
+    // 1. Process Custom Registration
+    if (isset($_POST['register']) && !empty($_POST['email'])) {
+        $email            = sanitize_email($_POST['email']);
+        $password         = isset($_POST['password']) ? $_POST['password'] : '';
+        $password_confirm = isset($_POST['password_confirm']) ? $_POST['password_confirm'] : '';
+        $full_name        = isset($_POST['account_first_name']) ? sanitize_text_field($_POST['account_first_name']) : '';
 
-function vivaaz_validate_extra_register_fields($errors, $username, $email) {
-    if (isset($_POST['account_first_name']) && empty(trim($_POST['account_first_name']))) {
-        $errors->add('error_account_first_name', __('<strong>Error</strong>: Please enter your full name.', 'woocommerce'));
-    }
-    if (isset($_POST['password']) && isset($_POST['password_confirm'])) {
-        if ($_POST['password'] !== $_POST['password_confirm']) {
-            $errors->add('error_password_mismatch', __('<strong>Error</strong>: Passwords do not match. Please enter matching passwords.', 'woocommerce'));
+        // Validation
+        if (!is_email($email)) {
+            if (function_exists('wc_add_notice')) {
+                wc_add_notice(__('Please enter a valid email address.', 'woocommerce'), 'error');
+            }
+            return;
         }
-    }
-    return $errors;
-}
-add_filter('woocommerce_process_registration_errors', 'vivaaz_validate_extra_register_fields', 10, 3);
+        if (email_exists($email)) {
+            if (function_exists('wc_add_notice')) {
+                wc_add_notice(__('An account is already registered with this email address. Please sign in.', 'woocommerce'), 'error');
+            }
+            return;
+        }
+        if (strlen($password) < 6) {
+            if (function_exists('wc_add_notice')) {
+                wc_add_notice(__('Password must be at least 6 characters long.', 'woocommerce'), 'error');
+            }
+            return;
+        }
+        if (!empty($password_confirm) && $password !== $password_confirm) {
+            if (function_exists('wc_add_notice')) {
+                wc_add_notice(__('Passwords do not match. Please re-enter matching passwords.', 'woocommerce'), 'error');
+            }
+            return;
+        }
 
-function vivaaz_save_extra_register_fields($customer_id) {
-    if (isset($_POST['account_first_name']) && !empty($_POST['account_first_name'])) {
-        $full_name  = sanitize_text_field($_POST['account_first_name']);
+        // Clean unique username
+        $username = sanitize_user(current(explode('@', $email)), true);
+        if (empty($username) || username_exists($username)) {
+            $username = 'vg_' . substr(md5($email), 0, 8);
+        }
+
         $name_parts = explode(' ', $full_name, 2);
-        $first_name = $name_parts[0];
+        $first_name = !empty($name_parts[0]) ? $name_parts[0] : 'Customer';
         $last_name  = isset($name_parts[1]) ? $name_parts[1] : '';
 
-        wp_update_user(array(
-            'ID'           => $customer_id,
+        $userdata = array(
+            'user_login'   => $username,
+            'user_email'   => $email,
+            'user_pass'    => $password,
             'first_name'   => $first_name,
             'last_name'    => $last_name,
-            'display_name' => $full_name,
-        ));
-        update_user_meta($customer_id, 'billing_first_name', $first_name);
-        update_user_meta($customer_id, 'billing_last_name', $last_name);
-        update_user_meta($customer_id, 'shipping_first_name', $first_name);
-        update_user_meta($customer_id, 'shipping_last_name', $last_name);
+            'display_name' => $full_name ?: $first_name,
+            'role'         => 'customer',
+        );
+
+        $user_id = wp_insert_user($userdata);
+
+        if (!is_wp_error($user_id)) {
+            update_user_meta($user_id, 'billing_first_name', $first_name);
+            update_user_meta($user_id, 'billing_last_name', $last_name);
+            update_user_meta($user_id, 'shipping_first_name', $first_name);
+            update_user_meta($user_id, 'shipping_last_name', $last_name);
+            update_user_meta($user_id, 'billing_email', $email);
+
+            wp_set_current_user($user_id);
+            wp_set_auth_cookie($user_id, true);
+            if (function_exists('wc_set_customer_auth_cookie')) {
+                wc_set_customer_auth_cookie($user_id);
+            }
+
+            if (function_exists('wc_add_notice')) {
+                wc_add_notice(__('Registration successful! Welcome to Vivaaz Gems.', 'woocommerce'), 'success');
+            }
+
+            wp_safe_redirect(home_url('/my-account/'));
+            exit;
+        } else {
+            if (function_exists('wc_add_notice')) {
+                wc_add_notice($user_id->get_error_message(), 'error');
+            }
+        }
+    }
+
+    // 2. Process Custom Login
+    if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
+        $login_user = sanitize_text_field($_POST['username']);
+        $password   = $_POST['password'];
+
+        $creds = array(
+            'user_login'    => $login_user,
+            'user_password' => $password,
+            'remember'      => isset($_POST['rememberme']),
+        );
+
+        $user = wp_signon($creds, is_ssl());
+
+        if (!is_wp_error($user)) {
+            wp_set_current_user($user->ID);
+            wp_set_auth_cookie($user->ID, true);
+            if (function_exists('wc_set_customer_auth_cookie')) {
+                wc_set_customer_auth_cookie($user->ID);
+            }
+            wp_safe_redirect(home_url('/my-account/'));
+            exit;
+        } else {
+            if (function_exists('wc_add_notice')) {
+                wc_add_notice(__('Invalid email or password. Please verify your credentials.', 'woocommerce'), 'error');
+            }
+        }
     }
 }
-add_action('woocommerce_created_customer', 'vivaaz_save_extra_register_fields');
+add_action('init', 'vivaaz_handle_registration_and_login', 10);
 
 function vivaaz_registration_redirect($redirect) {
     return home_url('/my-account/');
@@ -262,6 +333,54 @@ function vivaaz_handle_custom_add_to_cart() {
     }
 }
 add_action('template_redirect', 'vivaaz_handle_custom_add_to_cart', 1);
+
+/**
+ * AJAX endpoint to sync client LocalStorage cart into WooCommerce session
+ */
+function vivaaz_ajax_sync_cart() {
+    if (!function_exists('WC')) {
+        wp_send_json_error(array('message' => 'WooCommerce not active'));
+    }
+    
+    if (null === WC()->session) {
+        $session_class = apply_filters('woocommerce_session_handler', 'WC_Session_Handler');
+        WC()->session = new $session_class();
+        WC()->session->init();
+    }
+    if (!WC()->session->has_session()) {
+        WC()->session->set_customer_session_cookie(true);
+    }
+    if (null === WC()->cart) {
+        WC()->cart = new WC_Cart();
+    }
+
+    $raw_items = isset($_POST['items']) ? $_POST['items'] : '';
+    if (is_string($raw_items)) {
+        $items = json_decode(stripslashes($raw_items), true);
+    } else {
+        $items = $raw_items;
+    }
+
+    if (!empty($items) && is_array($items)) {
+        foreach ($items as $item) {
+            $product_id = isset($item['product_id']) ? intval($item['product_id']) : 0;
+            if (!$product_id) {
+                $p = get_posts(array('post_type' => 'product', 'posts_per_page' => 1, 'fields' => 'ids'));
+                if (!empty($p)) $product_id = $p[0];
+            }
+            if ($product_id > 0) {
+                $qty  = isset($item['quantity']) ? max(1, intval($item['quantity'])) : 1;
+                $size = isset($item['size']) ? sanitize_text_field($item['size']) : '7×5';
+                WC()->cart->add_to_cart($product_id, $qty, 0, array('size' => $size));
+            }
+        }
+        wp_send_json_success(array('count' => WC()->cart->get_cart_contents_count()));
+    }
+
+    wp_send_json_error(array('message' => 'No items provided'));
+}
+add_action('wp_ajax_vivaaz_sync_cart', 'vivaaz_ajax_sync_cart');
+add_action('wp_ajax_nopriv_vivaaz_sync_cart', 'vivaaz_ajax_sync_cart');
 
 /**
  * 8. Permanently Disable WooCommerce Coming Soon / Maintenance Mode Blocking

@@ -1831,6 +1831,17 @@ body.admin-bar .site-header-wrapper {
   }
 }
 
+@media (max-width: 600px) {
+  .cart-items-section {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 12px !important;
+  }
+  #cart-items-table {
+    min-width: 480px !important;
+  }
+}
+
 
 /* ==========================================================================
    CUT PILLS, ACTIVE FILTERS & LUXURY SHOP CATALOG STYLES
