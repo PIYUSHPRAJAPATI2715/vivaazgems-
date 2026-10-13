@@ -17,7 +17,7 @@ $vivaaz_footer_rendered = true;
       <div class="footer-brand-header" style="text-align: center; margin-bottom: 36px;">
         <a href="<?php echo esc_url(home_url('/')); ?>" style="display: inline-block; text-decoration: none;">
           <h2 class="footer-brand-title" style="margin: 0; font-family: var(--font-family-serif); font-size: 38px; font-weight: 400; letter-spacing: 0.25em; color: var(--color-text-main);">
-            V I V A A Z &nbsp; G E M S
+            VIVAAZ GEMS
           </h2>
           <p class="footer-brand-sub" style="margin: 6px 0 0 0; font-size: 11px; letter-spacing: 0.2em; color: var(--color-text-muted); text-transform: uppercase;">
             JAIPUR · BANGKOK

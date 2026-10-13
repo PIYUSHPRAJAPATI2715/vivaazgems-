@@ -45,7 +45,7 @@ $vivaaz_header_rendered = true;
     <a href="<?php echo esc_url(home_url('/')); ?>" class="brand-logo-container">
       <img src="<?php echo esc_url(vivaaz_get_img_url('vivaaz-logo.png')); ?>" alt="Vivaaz Gems" class="brand-logo-img" style="height: 38px; width: auto; object-fit: contain; display: block;" onerror="this.style.display='none';">
       <div class="brand-logo-text-block">
-        <span class="brand-logo-text">V I V A A Z &nbsp; G E M S</span>
+        <span class="brand-logo-text">VIVAAZ GEMS</span>
         <span class="brand-logo-subtitle">JAIPUR · BANGKOK</span>
       </div>
     </a>
@@ -381,9 +381,9 @@ $vivaaz_header_rendered = true;
 </div>
 
 <!-- MOBILE SLIDE-IN MENU DRAWER (BUILD BOOK PAGE 7 & 8) -->
-<div class="mobile-menu-drawer" id="mobile-menu-drawer">
+<div class="mobile-menu-drawer" id="mobile-menu-drawer" style="display: none;">
   <div class="mobile-drawer-header">
-    <div style="font-weight: 700; letter-spacing: 0.15em; font-size: 13px;">V I V A A Z &nbsp; G E M S</div>
+    <div style="font-weight: 700; letter-spacing: 0.15em; font-size: 13px;">VIVAAZ GEMS</div>
     <button type="button" class="mobile-drawer-close" onclick="toggleMobileMenuDrawer();">&times;</button>
   </div>
   
@@ -424,7 +424,7 @@ $vivaaz_header_rendered = true;
     </div>
   </div>
 </div>
-<div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop" onclick="toggleMobileMenuDrawer();"></div>
+<div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop" onclick="toggleMobileMenuDrawer();" style="display: none;"></div>
 
 <!-- POPUP LIVE SEARCH MODAL (BUILD BOOK PAGE 13) -->
 <div id="live-search-modal" class="live-search-modal" style="display: none;">
@@ -460,8 +460,22 @@ $vivaaz_header_rendered = true;
     var drawer = document.getElementById('mobile-menu-drawer');
     var backdrop = document.getElementById('mobile-drawer-backdrop');
     if (drawer && backdrop) {
-      drawer.classList.toggle('open');
-      backdrop.classList.toggle('open');
+      var isOpening = (drawer.style.display === 'none' || !drawer.classList.contains('open'));
+      if (isOpening) {
+        drawer.style.display = 'flex';
+        backdrop.style.display = 'block';
+        setTimeout(function() {
+          drawer.classList.add('open');
+          backdrop.classList.add('open');
+        }, 10);
+      } else {
+        drawer.classList.remove('open');
+        backdrop.classList.remove('open');
+        setTimeout(function() {
+          drawer.style.display = 'none';
+          backdrop.style.display = 'none';
+        }, 300);
+      }
     }
   }
 
