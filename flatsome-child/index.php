@@ -29,6 +29,12 @@ if (!function_exists('vivaaz_safe_include')) {
 $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
 $clean_path  = trim(parse_url($request_uri, PHP_URL_PATH), '/');
 
+// 0. Homepage / Front Page Route Guard
+if (is_front_page() || is_home() || $clean_path === '' || empty($clean_path)) {
+    vivaaz_safe_include('front-page.php');
+    return;
+}
+
 // 1. My Account / Login / Register Route
 if ((function_exists('is_account_page') && is_account_page()) || is_page('my-account') || strpos($request_uri, '/my-account') !== false) {
     vivaaz_safe_include('page-my-account.php');
