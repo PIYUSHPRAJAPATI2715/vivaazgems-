@@ -360,8 +360,9 @@ $vivaaz_header_rendered = true;
       </div>
 
       <!-- Wishlist -->
-      <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="icon-action-btn" title="Wishlist">
+      <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="icon-action-btn" title="Wishlist" style="position: relative;">
         <svg width="18" height="18" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; overflow: visible; display: inline-block;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span class="cart-badge-count" id="header-wishlist-count" style="display: none;">0</span>
       </a>
 
       <!-- Shopping Bag -->
@@ -525,8 +526,112 @@ $vivaaz_header_rendered = true;
     alert('Currency set to ' + curr + '. Prices update automatically.');
   }
 
+  // GLOBAL WISHLIST ENGINE (LOCALSTORAGE + SYNC)
+  function getWishlistItems() {
+    try {
+      return JSON.parse(localStorage.getItem('vivaaz_wishlist') || '[]');
+    } catch(e) {
+      return [];
+    }
+  }
+
+  function setWishlistItems(items) {
+    try {
+      localStorage.setItem('vivaaz_wishlist', JSON.stringify(items));
+    } catch(e) {}
+    updateWishlistCountBadge();
+  }
+
+  function toggleProductWishlist(id, title, img, price, url, btn) {
+    var items = getWishlistItems();
+    var strId = String(id);
+    var idx = items.findIndex(function(item) { return String(item.id) === strId; });
+    var added = false;
+    if (idx > -1) {
+      items.splice(idx, 1);
+      added = false;
+    } else {
+      items.push({
+        id: strId,
+        title: title || 'Gemstone',
+        img: img || '',
+        price: price || '',
+        url: url || window.location.href
+      });
+      added = true;
+    }
+    setWishlistItems(items);
+    updateAllWishlistButtons();
+    showWishlistToast(added ? ('Added to your wishlist') : ('Removed from your wishlist'));
+  }
+
+  function updateWishlistCountBadge() {
+    var items = getWishlistItems();
+    var count = items.length;
+    var badge = document.getElementById('header-wishlist-count');
+    if (badge) {
+      badge.textContent = count;
+      badge.style.display = count > 0 ? 'flex' : 'none';
+    }
+    var mobileWishlistCount = document.getElementById('mobile-wishlist-count');
+    if (mobileWishlistCount) {
+      mobileWishlistCount.textContent = count > 0 ? '(' + count + ')' : '';
+    }
+  }
+
+  function updateAllWishlistButtons() {
+    var items = getWishlistItems();
+    var ids = items.map(function(item) { return String(item.id); });
+    
+    // Update all product card heart buttons on page
+    document.querySelectorAll('.wishlist-heart-btn, [data-wishlist-id]').forEach(function(btn) {
+      var id = String(btn.getAttribute('data-wishlist-id') || '');
+      if (id && ids.indexOf(id) > -1) {
+        btn.classList.add('in-wishlist');
+        btn.innerHTML = '♥';
+        btn.style.color = '#C0392B';
+      } else if (id) {
+        btn.classList.remove('in-wishlist');
+        btn.innerHTML = '♡';
+        btn.style.color = '';
+      }
+    });
+
+    // Update single product heart button if present
+    var singleBtn = document.getElementById('single-wishlist-btn');
+    var singleSymbol = document.getElementById('single-heart-symbol');
+    if (singleBtn) {
+      var singleId = String(singleBtn.getAttribute('data-wishlist-id') || '');
+      if (singleId && ids.indexOf(singleId) > -1) {
+        if (singleSymbol) singleSymbol.innerHTML = '♥';
+        singleBtn.style.color = '#C0392B';
+      } else {
+        if (singleSymbol) singleSymbol.innerHTML = '♡';
+        singleBtn.style.color = '';
+      }
+    }
+  }
+
+  function showWishlistToast(msg) {
+    var toast = document.getElementById('vivaaz-wishlist-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'vivaaz-wishlist-toast';
+      toast.style.cssText = 'position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #1C1A17; color: #FFFFFF; padding: 12px 24px; font-size: 12px; letter-spacing: 0.05em; font-weight: 600; z-index: 9999999; box-shadow: 0 8px 24px rgba(0,0,0,0.2); transition: opacity 0.3s; opacity: 0; pointer-events: none; text-align: center;';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.style.opacity = '1';
+    clearTimeout(window._wishlistToastTimer);
+    window._wishlistToastTimer = setTimeout(function() {
+      toast.style.opacity = '0';
+    }, 2400);
+  }
+
   document.addEventListener("DOMContentLoaded", function() {
     closeLiveSearchModal();
+    updateWishlistCountBadge();
+    updateAllWishlistButtons();
     try {
       var badge = document.getElementById('header-bag-count');
       if (badge && (badge.textContent.trim() === '0' || badge.textContent.trim() === '')) {

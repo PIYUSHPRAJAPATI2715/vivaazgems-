@@ -161,7 +161,7 @@ get_header('shop');
             <div class="product-card-luxury">
               <div class="product-card-media">
                 <span class="category-card-badge badge-gold">CALIBRATED · 10+ PIECES</span>
-                <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
+                <button type="button" class="wishlist-heart-btn" data-wishlist-id="rmcoc-1" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmcoc-1', 'Rainbow Moonstone Oval Cabochon', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹95', '<?php echo esc_url($sample_prod_url); ?>', this);" title="Add to Wishlist">♡</button>
                 <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
                   <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon">
                 </a>
@@ -189,7 +189,7 @@ get_header('shop');
             <div class="product-card-luxury">
               <div class="product-card-media">
                 <span class="category-card-badge badge-blue">ONLY 1</span>
-                <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
+                <button type="button" class="wishlist-heart-btn" data-wishlist-id="rmcoc-2" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmcoc-2', 'Rainbow Moonstone Oval Cabochon 18×25mm', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹4,800', '<?php echo esc_url($sample_prod_url); ?>', this);" title="Add to Wishlist">♡</button>
                 <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
                   <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon" style="filter: hue-rotate(20deg);">
                 </a>
@@ -215,7 +215,7 @@ get_header('shop');
             <div class="product-card-luxury">
               <div class="product-card-media">
                 <span class="category-card-badge badge-green">MATCHED PAIR</span>
-                <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
+                <button type="button" class="wishlist-heart-btn" data-wishlist-id="rmcoc-3" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmcoc-3', 'Ceylon Sapphire Oval Pair', '<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>', '₹2,600', '<?php echo esc_url($sample_prod_url); ?>', this);" title="Add to Wishlist">♡</button>
                 <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
                   <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon Pair">
                 </a>
@@ -241,7 +241,7 @@ get_header('shop');
             <div class="product-card-luxury">
               <div class="product-card-media">
                 <span class="category-card-badge badge-gold">ONLY 1</span>
-                <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
+                <button type="button" class="wishlist-heart-btn" data-wishlist-id="rmcoc-4" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmcoc-4', 'Ruby Oval Cabochon', '<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>', '₹3,200', '<?php echo esc_url($sample_prod_url); ?>', this);" title="Add to Wishlist">♡</button>
                 <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
                   <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon">
                 </a>

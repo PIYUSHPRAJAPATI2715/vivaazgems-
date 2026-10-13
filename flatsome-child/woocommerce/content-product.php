@@ -24,7 +24,7 @@ $is_variable = $product->is_type('variable');
 
 <div <?php if (function_exists('wc_product_class')) { wc_product_class('product-card-luxury', $product); } else { echo 'class="product product-card-luxury"'; } ?>>
   <div class="product-card-media">
-    <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
+    <button type="button" class="wishlist-heart-btn" data-wishlist-id="<?php echo esc_attr($product_id); ?>" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist(<?php echo intval($product_id); ?>, <?php echo json_encode($title); ?>, <?php echo json_encode($img_url); ?>, <?php echo json_encode(wp_strip_all_tags($price_html)); ?>, <?php echo json_encode($link); ?>, this);" title="Add to Wishlist">♡</button>
     <a href="<?php echo esc_url($link); ?>" style="display: block; width: 100%; height: 100%;">
       <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($title); ?>">
     </a>

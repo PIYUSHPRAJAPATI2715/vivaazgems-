@@ -268,7 +268,7 @@ get_header();
         <!-- Card 1 -->
         <div class="product-card-luxury">
           <div class="product-card-media">
-            <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
+            <button type="button" class="wishlist-heart-btn" data-wishlist-id="front-sapphire" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('front-sapphire', 'Ceylon Sapphire Oval', '<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>', '₹ 1,450', '<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>', this);" title="Add to Wishlist">♡</button>
             <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; width: 100%; height: 100%;">
               <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Ceylon Sapphire">
             </a>
@@ -290,7 +290,7 @@ get_header();
         <!-- Card 2 -->
         <div class="product-card-luxury">
           <div class="product-card-media">
-            <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
+            <button type="button" class="wishlist-heart-btn" data-wishlist-id="front-ruby" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('front-ruby', 'Ruby Oval Matched Pair', '<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>', '₹ 6,800', '<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>', this);" title="Add to Wishlist">♡</button>
             <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; width: 100%; height: 100%;">
               <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby Oval Pair">
             </a>
@@ -312,7 +312,7 @@ get_header();
         <!-- Card 3 -->
         <div class="product-card-luxury">
           <div class="product-card-media">
-            <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
+            <button type="button" class="wishlist-heart-btn" data-wishlist-id="front-emerald" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('front-emerald', 'Emerald Octagon Faceted', '<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>', '₹ 24,500', '<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>', this);" title="Add to Wishlist">♡</button>
             <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; width: 100%; height: 100%;">
               <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald Octagon">
             </a>
@@ -334,7 +334,7 @@ get_header();
         <!-- Card 4 -->
         <div class="product-card-luxury">
           <div class="product-card-media">
-            <button class="wishlist-heart-btn" title="Add to Wishlist">♡</button>
+            <button type="button" class="wishlist-heart-btn" data-wishlist-id="front-topaz" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('front-topaz', 'Swiss Blue Topaz Round', '<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>', '₹ 380', '<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>', this);" title="Add to Wishlist">♡</button>
             <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; width: 100%; height: 100%;">
               <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Swiss Blue Topaz">
             </a>

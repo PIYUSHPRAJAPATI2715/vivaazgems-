@@ -184,7 +184,7 @@ do_action('woocommerce_before_single_product');
       </div>
 
       <!-- Add To Cart Form Wrapper -->
-      <form id="vivaaz-product-form" class="cart vivaaz-buy-form" method="post" action="<?php echo esc_url(wc_get_cart_url()); ?>" onsubmit="return handleProductFormSubmit(this);">
+      <form id="vivaaz-product-form" class="cart vivaaz-buy-form" method="post" action="<?php echo esc_url(function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_url('/cart/')); ?>" onsubmit="return handleProductFormSubmit(this);">
         <input type="hidden" name="vivaaz_add_to_cart" value="1" />
         <input type="hidden" name="product_id" value="<?php echo esc_attr($product_id); ?>" />
         <input type="hidden" name="selected_size" id="form-selected-size" value="6×8 mm" />
@@ -232,14 +232,18 @@ do_action('woocommerce_before_single_product');
           </div>
         </div>
 
-        <!-- 3. ACTION BUTTONS: ADD TO CART & BUY NOW (PAGE 14 SPEC) -->
-        <div class="action-buttons-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
-          <button type="submit" class="btn-action-add-cart" onclick="document.getElementById('form-buy-now-flag').value='0';" style="padding: 14px 20px; background: #1C1A17; color: #FFFFFF; border: 1px solid #1C1A17; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">
+        <!-- 3. ACTION BUTTONS: ADD TO CART & BUY NOW & WISHLIST (PAGE 14 SPEC) -->
+        <div class="action-buttons-grid" style="display: flex; gap: 12px; margin-bottom: 16px;">
+          <button type="submit" class="btn-action-add-cart" onclick="document.getElementById('form-buy-now-flag').value='0';" style="flex: 1; padding: 14px 20px; background: #1C1A17; color: #FFFFFF; border: 1px solid #1C1A17; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">
             ADD TO CART
           </button>
           
-          <button type="submit" class="btn-action-buy-now" onclick="document.getElementById('form-buy-now-flag').value='1';" style="padding: 14px 20px; background: #9C7C4C; color: #FFFFFF; border: 1px solid #9C7C4C; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">
+          <button type="submit" class="btn-action-buy-now" onclick="document.getElementById('form-buy-now-flag').value='1';" style="flex: 1; padding: 14px 20px; background: #9C7C4C; color: #FFFFFF; border: 1px solid #9C7C4C; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">
             BUY NOW
+          </button>
+
+          <button type="button" class="btn-action-wishlist" id="single-wishlist-btn" data-wishlist-id="<?php echo esc_attr($product_id); ?>" onclick="toggleProductWishlist(<?php echo intval($product_id); ?>, <?php echo json_encode($title); ?>, <?php echo json_encode($main_img); ?>, '₹ <?php echo number_format($tier_10); ?>', <?php echo json_encode(get_permalink($product_id) ?: home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>, this);" title="Save to Wishlist" style="width: 48px; height: 48px; background: #FFFFFF; border: 1px solid var(--color-border-light); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px; color: var(--color-text-main); flex-shrink: 0; transition: all 0.2s ease;">
+            <span class="wishlist-heart-symbol" id="single-heart-symbol">♡</span>
           </button>
         </div>
 
@@ -430,6 +434,7 @@ do_action('woocommerce_before_single_product');
   var currentTier50 = <?php echo json_encode($tier_50); ?>;
   var currentTitle = <?php echo json_encode($title); ?>;
   var currentSku = <?php echo json_encode($sku); ?>;
+  window.currentProductId = <?php echo json_encode(strval($product_id)); ?>;
 
   function switchGalleryView(type, src, element) {
     var displayImg = document.getElementById('main-gallery-view');
