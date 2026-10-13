@@ -13,9 +13,21 @@ if (!defined('ABSPATH')) {
  */
 function vivaaz_enqueue_styles() {
     wp_enqueue_style('flatsome-style', get_template_directory_uri() . '/style.css', array(), '3.20.11');
-    wp_enqueue_style('vivaaz-theme-style', get_stylesheet_uri(), array('flatsome-style'), '4.0.0');
+    wp_enqueue_style('vivaaz-theme-style', get_stylesheet_uri(), array('flatsome-style'), time());
 }
 add_action('wp_enqueue_scripts', 'vivaaz_enqueue_styles', 9999);
+
+/**
+ * Force Full-Width Clean Layout & Strip Framed/Boxed Layout Classes
+ */
+function vivaaz_force_full_width_layout($classes) {
+    if (is_array($classes)) {
+        $classes = array_diff($classes, array('framed', 'boxed', 'widgets-framed', 'widgets-boxed', 'framed-layout', 'boxed-layout'));
+        $classes[] = 'full-width';
+    }
+    return $classes;
+}
+add_filter('body_class', 'vivaaz_force_full_width_layout', 9999);
 
 /**
  * 2. Pre-fill WhatsApp Inquiry Link for Products

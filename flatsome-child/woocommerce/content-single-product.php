@@ -20,22 +20,66 @@ if (!$sku) $sku = 'RMCOC68';
 
 $title = get_the_title() ?: 'Rainbow Moonstone Oval Cabochon';
 
-// Categories & stone name
+// Stone Name detection from title / terms
+$stone_name = 'Rainbow Moonstone';
+if (stripos($title, 'sapphire') !== false) {
+    $stone_name = 'Ceylon Blue Sapphire';
+} elseif (stripos($title, 'ruby') !== false) {
+    $stone_name = 'Ruby';
+} elseif (stripos($title, 'emerald') !== false) {
+    $stone_name = 'Emerald';
+} elseif (stripos($title, 'tourmaline') !== false) {
+    $stone_name = 'Tourmaline';
+} elseif (stripos($title, 'garnet') !== false) {
+    $stone_name = 'Garnet';
+} elseif (stripos($title, 'tanzanite') !== false) {
+    $stone_name = 'Tanzanite';
+} elseif (stripos($title, 'topaz') !== false) {
+    $stone_name = 'Topaz';
+} elseif (stripos($title, 'opal') !== false) {
+    $stone_name = 'Opal';
+} elseif (!empty($title)) {
+    $stone_name = esc_html($title);
+}
+
+// Categories & stone subtitle
 $categories = ($product_id && !is_wp_error(wp_get_post_terms($product_id, 'product_cat'))) ? wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names')) : array();
-$cat_subtitle = 'RMCOC · CALIBRATED LOT · AAA';
+$cat_subtitle = esc_html($sku . ' · CALIBRATED LOT · AAA');
 if (!empty($categories) && is_array($categories)) {
     $cat_subtitle = esc_html(strtoupper(implode(' · ', array_slice($categories, 0, 3))));
 }
 
-// Images
-$main_img = get_the_post_thumbnail_url($product_id, 'large') ?: vivaaz_get_img_url('moonstone.jpg');
-if (!$main_img || strpos($main_img, 'moonstone.jpg') !== false) {
-    $main_img = vivaaz_get_img_url('moonstone.jpg');
+// Short tagline
+$short_desc = ($product && $product->get_short_description()) ? wp_strip_all_tags($product->get_short_description()) : '';
+if (!$short_desc) {
+    if (stripos($title, 'sapphire') !== false) {
+        $short_desc = 'Pure Ceylon royal blue color, precision calibrated. For rings, pendants and fine jewelry.';
+    } elseif (stripos($title, 'ruby') !== false) {
+        $short_desc = 'Rich pigeon blood red color, natural unheated. For rings, earrings and fine jewelry.';
+    } elseif (stripos($title, 'emerald') !== false) {
+        $short_desc = 'Vivid Zambian green luster, clean precision cut. For rings, pendants and luxury jewelry.';
+    } else {
+        $short_desc = 'White with a soft blue flash. For rings, pendants and earrings.';
+    }
 }
 
-$daylight_img    = vivaaz_get_img_url('ceylon-sapphire.jpg');
-$lamp_img        = vivaaz_get_img_url('ruby.jpg');
-$loupe_img       = vivaaz_get_img_url('emerald.jpg');
+// Images
+$main_img = get_the_post_thumbnail_url($product_id, 'large');
+if (!$main_img) {
+    if (stripos($title, 'sapphire') !== false) {
+        $main_img = vivaaz_get_img_url('ceylon-sapphire.jpg');
+    } elseif (stripos($title, 'ruby') !== false) {
+        $main_img = vivaaz_get_img_url('ruby.jpg');
+    } elseif (stripos($title, 'emerald') !== false) {
+        $main_img = vivaaz_get_img_url('emerald.jpg');
+    } else {
+        $main_img = vivaaz_get_img_url('moonstone.jpg');
+    }
+}
+
+$daylight_img    = (stripos($title, 'sapphire') !== false) ? vivaaz_get_img_url('ceylon-sapphire.jpg') : vivaaz_get_img_url('ceylon-sapphire.jpg');
+$lamp_img        = (stripos($title, 'ruby') !== false) ? vivaaz_get_img_url('ruby.jpg') : vivaaz_get_img_url('ruby.jpg');
+$loupe_img       = (stripos($title, 'emerald') !== false) ? vivaaz_get_img_url('emerald.jpg') : vivaaz_get_img_url('emerald.jpg');
 $actual_size_img = vivaaz_get_img_url('true-size-grid.jpg');
 
 $whatsapp_url = 'https://wa.me/919680552270?text=' . rawurlencode("Hello Vivaaz Gems, I am looking at " . $title . " (code " . $sku . "). Could you send live photos?");
@@ -114,7 +158,7 @@ do_action('woocommerce_before_single_product');
       <h1 class="single-product-title"><?php echo esc_html($title); ?></h1>
       
       <p class="product-short-tagline" style="font-size: 13px; color: var(--color-text-muted); margin: 6px 0 16px;">
-        White with a soft blue flash. For rings, pendants and earrings.
+        <?php echo esc_html($short_desc); ?>
       </p>
 
       <!-- Active Tier Price Display -->
@@ -243,27 +287,27 @@ do_action('woocommerce_before_single_product');
         <table class="passport-facts-table" style="width: 100%; border-collapse: collapse; font-size: 12px;">
           <tr>
             <td style="padding: 6px 0; color: var(--color-text-muted); width: 40%;">STONE</td>
-            <td style="padding: 6px 0; font-weight: 600;">Rainbow Moonstone</td>
+            <td style="padding: 6px 0; font-weight: 600;"><?php echo esc_html($stone_name); ?></td>
           </tr>
           <tr>
             <td style="padding: 6px 0; color: var(--color-text-muted);">CUT AND SHAPE</td>
-            <td style="padding: 6px 0; font-weight: 600;">Cabochon, oval</td>
+            <td style="padding: 6px 0; font-weight: 600;"><?php echo (stripos($title, 'cabochon') !== false) ? 'Cabochon, calibrated' : 'Faceted, calibrated'; ?></td>
           </tr>
           <tr>
             <td style="padding: 6px 0; color: var(--color-text-muted);">COLOUR</td>
-            <td style="padding: 6px 0; font-weight: 600;">White, blue flash</td>
+            <td style="padding: 6px 0; font-weight: 600;"><?php echo (stripos($title, 'sapphire') !== false) ? 'Royal blue, brilliant luster' : ((stripos($title, 'ruby') !== false) ? 'Pigeon blood red' : ((stripos($title, 'emerald') !== false) ? 'Vivid emerald green' : 'White, blue flash')); ?></td>
           </tr>
           <tr>
             <td style="padding: 6px 0; color: var(--color-text-muted);">QUALITY</td>
-            <td style="padding: 6px 0; font-weight: 600;">AAA, matched lot</td>
+            <td style="padding: 6px 0; font-weight: 600;">AAA, matched calibrated lot</td>
           </tr>
           <tr>
             <td style="padding: 6px 0; color: var(--color-text-muted);">ORIGIN</td>
-            <td style="padding: 6px 0; font-weight: 600;">India</td>
+            <td style="padding: 6px 0; font-weight: 600;"><?php echo (stripos($title, 'sapphire') !== false) ? 'Sri Lanka (Ceylon)' : ((stripos($title, 'emerald') !== false) ? 'Zambia / Colombia' : 'India'); ?></td>
           </tr>
           <tr>
             <td style="padding: 6px 0; color: var(--color-text-muted);">HARDNESS</td>
-            <td style="padding: 6px 0; font-weight: 600;">6 – 6.5 Mohs</td>
+            <td style="padding: 6px 0; font-weight: 600;"><?php echo (stripos($title, 'sapphire') !== false || stripos($title, 'ruby') !== false) ? '9 Mohs' : ((stripos($title, 'emerald') !== false) ? '7.5 – 8 Mohs' : '6 – 6.5 Mohs'); ?></td>
           </tr>
         </table>
       </div>

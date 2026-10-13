@@ -11,8 +11,8 @@ if (!defined('ABSPATH')) {
 get_header('shop');
 ?>
 
-<div id="content" class="single-product-page-wrapper" role="main" style="background: var(--color-page-bg); padding: 40px 20px;">
-    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+<div id="content" class="single-product-page-wrapper" role="main">
+    <div class="single-product-main-container">
 
         <?php
         if (have_posts()) :
