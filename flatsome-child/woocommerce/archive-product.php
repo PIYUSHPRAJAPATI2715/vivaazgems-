@@ -1,7 +1,7 @@
 <?php
 /**
  * Vivaaz Gems - Custom WooCommerce Archive / Shop Page Template
- * Matches Page 10 of the 23-page Master Brief & Page 9 of Homepage Spec
+ * Matches Page 10 of the 23-page Master Brief & Client PDF Points 7 & 17
  */
 
 if (!defined('ABSPATH')) {
@@ -32,10 +32,10 @@ get_header('shop');
 
 <div class="shop-archive-page-wrapper">
   
-  <div class="shop-archive-container" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+  <div class="shop-archive-container" style="max-width: 1240px; margin: 30px auto 60px; padding: 0 20px;">
     
     <!-- Shop Header Hero -->
-    <div class="shop-header-hero" style="margin-bottom: 30px;">
+    <div class="shop-header-hero" style="margin-bottom: 24px;">
       <div class="breadcrumb-trail" style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 8px;">
         <a href="<?php echo esc_url(home_url('/')); ?>">Home</a> › 
         <span>Loose Gemstones</span>
@@ -43,75 +43,133 @@ get_header('shop');
       <h1 class="shop-main-title" style="font-family: var(--font-family-serif); font-size: 32px; font-weight: 400; margin-bottom: 8px;">
         <?php echo (function_exists('woocommerce_page_title') && is_callable('woocommerce_page_title')) ? woocommerce_page_title(false) : 'Loose Gemstones'; ?>
       </h1>
-      <p class="shop-description-sub" style="font-size: 13px; color: var(--color-text-muted);">
-        Natural, certified loose gemstones carefully selected from Jaipur and Sri Lanka. 
-        <a href="https://wa.me/919680552270" target="_blank" class="text-gold" style="font-weight: 600; text-decoration: underline;">Get new stock on WhatsApp →</a>
+      <p class="shop-description-sub" style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 16px;">
+        Natural, calibrated and single loose gemstones cut in Jaipur. Direct from the cutters.
+        <a href="https://wa.me/919680552270" target="_blank" class="text-gold" style="font-weight: 600; text-decoration: underline; margin-left: 6px;">Get new stock on WhatsApp →</a>
       </p>
 
-      <!-- Cut Pills (Faceted, Cabochon, Rose cut, Rough) -->
-      <div class="cut-pills-row" style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
-        <a href="<?php echo esc_url(add_query_arg('filter_cut', 'all')); ?>" class="cut-pill-item active">All <span>(18)</span></a>
-        <a href="<?php echo esc_url(add_query_arg('filter_cut', 'faceted')); ?>" class="cut-pill-item">Faceted <span>(7)</span></a>
-        <a href="<?php echo esc_url(add_query_arg('filter_cut', 'cabochon')); ?>" class="cut-pill-item">Cabochon <span>(8)</span></a>
-        <a href="<?php echo esc_url(add_query_arg('filter_cut', 'rose-cut')); ?>" class="cut-pill-item">Rose cut <span>(2)</span></a>
-        <a href="<?php echo esc_url(add_query_arg('filter_cut', 'rough')); ?>" class="cut-pill-item">Rough <span>(1)</span></a>
+      <!-- POINT 7 SPEC: Cut Buttons at Top (All · Cabochon · Faceted · Rose cut) -->
+      <div class="cut-pills-row" style="display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap;">
+        <a href="<?php echo esc_url(add_query_arg('filter_cut', 'all')); ?>" class="cut-pill-item active" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid #1C1A17; background: #1C1A17; color: #FFFFFF; text-decoration: none;">All <span>(18)</span></a>
+        <a href="<?php echo esc_url(add_query_arg('filter_cut', 'cabochon')); ?>" class="cut-pill-item" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid var(--color-border-light); background: #FFFFFF; color: var(--color-text-main); text-decoration: none;">Cabochon <span>(8)</span></a>
+        <a href="<?php echo esc_url(add_query_arg('filter_cut', 'faceted')); ?>" class="cut-pill-item" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid var(--color-border-light); background: #FFFFFF; color: var(--color-text-main); text-decoration: none;">Faceted <span>(7)</span></a>
+        <a href="<?php echo esc_url(add_query_arg('filter_cut', 'rose-cut')); ?>" class="cut-pill-item" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid var(--color-border-light); background: #FFFFFF; color: var(--color-text-main); text-decoration: none;">Rose cut <span>(3)</span></a>
+      </div>
+
+      <!-- POINT 17 SPEC (PHONE & DESKTOP): Stones Quick Filter Row (Stones first) -->
+      <div class="stones-quick-row-wrap" style="position: relative; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px; margin-bottom: 20px; white-space: nowrap;">
+        <div class="stones-chips-bar" style="display: inline-flex; gap: 8px; font-size: 12px;">
+          <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="stone-chip active" style="padding: 6px 12px; background: #FAF7F2; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none; font-weight: 600;">All stones</a>
+          <a href="<?php echo esc_url(add_query_arg('stone', 'moonstone')); ?>" class="stone-chip" style="padding: 6px 12px; background: #FFFFFF; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none;">Rainbow Moonstone</a>
+          <a href="<?php echo esc_url(add_query_arg('stone', 'sapphire')); ?>" class="stone-chip" style="padding: 6px 12px; background: #FFFFFF; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none;">Sapphire</a>
+          <a href="<?php echo esc_url(add_query_arg('stone', 'ruby')); ?>" class="stone-chip" style="padding: 6px 12px; background: #FFFFFF; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none;">Ruby</a>
+          <a href="<?php echo esc_url(add_query_arg('stone', 'emerald')); ?>" class="stone-chip" style="padding: 6px 12px; background: #FFFFFF; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none;">Emerald</a>
+          <a href="<?php echo esc_url(add_query_arg('stone', 'amethyst')); ?>" class="stone-chip" style="padding: 6px 12px; background: #FFFFFF; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none;">Amethyst</a>
+          <a href="<?php echo esc_url(add_query_arg('stone', 'aquamarine')); ?>" class="stone-chip" style="padding: 6px 12px; background: #FFFFFF; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none;">Aquamarine</a>
+          <a href="<?php echo esc_url(add_query_arg('stone', 'citrine')); ?>" class="stone-chip" style="padding: 6px 12px; background: #FFFFFF; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none;">Citrine</a>
+          <a href="<?php echo esc_url(add_query_arg('stone', 'garnet')); ?>" class="stone-chip" style="padding: 6px 12px; background: #FFFFFF; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none;">Garnet</a>
+          <a href="<?php echo esc_url(add_query_arg('stone', 'opal')); ?>" class="stone-chip" style="padding: 6px 12px; background: #FFFFFF; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none;">Opal</a>
+          <a href="<?php echo esc_url(add_query_arg('stone', 'peridot')); ?>" class="stone-chip" style="padding: 6px 12px; background: #FFFFFF; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none;">Peridot</a>
+          <a href="<?php echo esc_url(add_query_arg('stone', 'tanzanite')); ?>" class="stone-chip" style="padding: 6px 12px; background: #FFFFFF; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none;">Tanzanite</a>
+          <a href="<?php echo esc_url(add_query_arg('stone', 'topaz')); ?>" class="stone-chip" style="padding: 6px 12px; background: #FFFFFF; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none;">Topaz</a>
+          <a href="<?php echo esc_url(add_query_arg('stone', 'tourmaline')); ?>" class="stone-chip" style="padding: 6px 12px; background: #FFFFFF; border: 1px solid var(--color-border-light); color: var(--color-text-main); text-decoration: none;">Tourmaline</a>
+        </div>
       </div>
     </div>
 
-    <!-- Active Filter Badges Bar -->
-    <div class="active-filter-badges-bar" style="display: flex; align-items: center; gap: 12px; margin-bottom: 30px; font-size: 12px;">
-      <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; border-radius: 12px;">Cabochon ✕</span>
-      <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; border-radius: 12px;">Oval ✕</span>
-      <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="clear-all-link" style="text-decoration: underline; color: var(--color-text-muted);">Clear all</a>
-      <span class="result-count-text" style="margin-left: auto; color: var(--color-text-muted);">4 products · Sort: Size ▾</span>
+    <!-- Active Filter Badges Bar + Mobile Filter Trigger (Point 17) -->
+    <div class="shop-filter-bar-header" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--color-border-light); font-size: 12px;">
+      
+      <!-- Mobile Filter Button (Point 17: filters behind a [Filter] button modal on phone) -->
+      <div class="mobile-filter-btn-wrap" style="display: none;">
+        <button type="button" class="btn-mobile-filter-trigger" onclick="openShopFilterDrawer()" style="background: #FFFFFF; border: 1px solid #1C1A17; color: #1C1A17; padding: 8px 16px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+          <span>⚙</span> FILTERS
+        </button>
+      </div>
+
+      <div class="active-badges-flex" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; font-size: 11px;">Cabochon ✕</span>
+        <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; font-size: 11px;">Oval ✕</span>
+        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="clear-all-link" style="text-decoration: underline; color: var(--color-text-muted); font-size: 11px;">Clear all</a>
+      </div>
+
+      <div class="result-count-sort-flex" style="display: flex; align-items: center; gap: 14px; margin-left: auto;">
+        <span class="result-count-text" style="color: var(--color-text-muted); font-size: 12px;">4 products</span>
+        <select class="shop-sort-select" style="font-size: 12px; border: 1px solid var(--color-border-light); background: #FFFFFF; padding: 4px 8px; cursor: pointer;">
+          <option>Sort: Size (small to large)</option>
+          <option>Sort: Price (low to high)</option>
+          <option>Sort: Price (high to low)</option>
+          <option>Sort: Newest</option>
+        </select>
+      </div>
     </div>
 
     <!-- Main Shop Layout Grid (Sidebar + Products) -->
-    <div class="shop-layout-grid" style="display: grid; grid-template-columns: 260px 1fr; gap: 40px;">
+    <div class="shop-layout-grid" style="display: grid; grid-template-columns: 240px 1fr; gap: 36px;">
       
-      <!-- LEFT FILTER SIDEBAR (CLIENT SPEC PAGE 10 & 11) -->
-      <aside class="shop-filter-sidebar">
+      <!-- LEFT FILTER SIDEBAR (POINT 7 SPEC: Clean stones hierarchy, NO CUTS in list) -->
+      <aside class="shop-filter-sidebar" id="desktop-shop-sidebar">
         
-        <!-- Category Accordion -->
+        <!-- Category Accordion (Point 7: Loose gemstones → Precious / Semi-precious → stones, NO CUTS) -->
         <div class="filter-widget-box" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
-          <h4 class="filter-title" style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px;">PRODUCT CATEGORY</h4>
+          <h4 class="filter-title" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px; text-transform: uppercase;">PRODUCT CATEGORY</h4>
+          
           <ul class="filter-category-list" style="list-style: none; padding: 0; font-size: 13px; line-height: 1.8;">
-            <li class="active"><a href="<?php echo esc_url(home_url('/shop/')); ?>" style="font-weight: 600;">Loose Gemstones ⌃</a>
-              <ul class="sub-cat-list" style="list-style: none; padding-left: 14px; margin: 6px 0;">
-                <li><a href="#">Precious ⌄</a></li>
-                <li class="active"><a href="#" style="color: var(--color-gold-label); font-weight: 600;">Semi-Precious ⌃</a>
-                  <ul class="sub-sub-cat-list" style="list-style: none; padding-left: 14px; margin: 4px 0;">
-                    <li><a href="#">Faceted</a></li>
-                    <li class="active"><a href="#" style="font-weight: 600;">Cabochon</a></li>
-                    <li><a href="#">Rose cut</a></li>
-                    <li><a href="#">Rough</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Amethyst ⌄</a></li>
-                <li><a href="#">Garnet ⌄</a></li>
-              </ul>
+            <li class="active">
+              <a href="<?php echo esc_url(home_url('/shop/')); ?>" style="font-weight: 700; color: #1C1A17; text-decoration: none;">Loose Gemstones ⌃</a>
+              
+              <!-- Sub-group: Precious -->
+              <div style="padding-left: 12px; margin-top: 6px;">
+                <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.05em; color: var(--color-text-muted); text-transform: uppercase;">PREVIOUS / PRECIOUS</span>
+                <ul class="sub-stone-list" style="list-style: none; padding-left: 8px; margin: 4px 0 10px;">
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Ruby (12)</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Sapphire (18)</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Emerald (15)</a></li>
+                </ul>
+              </div>
+
+              <!-- Sub-group: Semi-Precious (Point 7: clean stones list, no cuts!) -->
+              <div style="padding-left: 12px; margin-top: 4px;">
+                <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.05em; color: var(--color-text-muted); text-transform: uppercase;">SEMI-PRECIOUS</span>
+                <ul class="sub-stone-list" style="list-style: none; padding-left: 8px; margin: 4px 0 10px; max-height: 240px; overflow-y: auto;">
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=moonstone')); ?>" style="color: var(--color-gold-label); font-weight: 600; text-decoration: none; font-size: 12px;">Rainbow Moonstone (24)</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Amethyst (16)</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=aquamarine')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Aquamarine (9)</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=citrine')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Citrine (14)</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Garnet (12)</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=labradorite')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Labradorite (6)</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=opal')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Opal (10)</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=peridot')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Peridot (7)</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=tanzanite')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Tanzanite (8)</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Topaz (11)</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=tourmaline')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Tourmaline (15)</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=turquoise')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Turquoise (5)</a></li>
+                </ul>
+              </div>
             </li>
-            <li><a href="<?php echo esc_url(home_url('/#layouts')); ?>">Layouts ⌄</a></li>
-            <li><a href="<?php echo esc_url(home_url('/beads/')); ?>">Gemstone Beads ⌄</a></li>
-            <li><a href="<?php echo esc_url(home_url('/tennis-jewelry/')); ?>">Jewelry ⌄</a></li>
-            <li><a href="<?php echo esc_url(home_url('/astrology/')); ?>">Astrology ⌄</a></li>
+            
+            <li style="margin-top: 8px;"><a href="<?php echo esc_url(home_url('/#layouts')); ?>" style="color: var(--color-text-main); text-decoration: none;">Layouts ⌄</a></li>
+            <li><a href="<?php echo esc_url(home_url('/beads/')); ?>" style="color: var(--color-text-main); text-decoration: none;">Gemstone Beads ⌄</a></li>
+            <li><a href="<?php echo esc_url(home_url('/tennis-jewelry/')); ?>" style="color: var(--color-text-main); text-decoration: none;">Jewelry ⌄</a></li>
+            <li><a href="<?php echo esc_url(home_url('/astrology/')); ?>" style="color: var(--color-text-main); text-decoration: none;">Astrology ⌄</a></li>
           </ul>
         </div>
 
         <!-- Filter by Shape -->
         <div class="filter-widget-box" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
-          <h4 class="filter-title" style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px;">Shape ⌃</h4>
+          <h4 class="filter-title" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px; text-transform: uppercase;">Shape ⌃</h4>
           <div class="filter-checkbox-list" style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
             <label style="cursor: pointer;"><input type="checkbox" checked /> Oval <span style="color: var(--color-text-muted);">(4)</span></label>
             <label style="cursor: pointer;"><input type="checkbox" /> Round <span style="color: var(--color-text-muted);">(2)</span></label>
             <label style="cursor: pointer;"><input type="checkbox" /> Pear <span style="color: var(--color-text-muted);">(1)</span></label>
+            <label style="cursor: pointer;"><input type="checkbox" /> Cushion <span style="color: var(--color-text-muted);">(2)</span></label>
             <label style="cursor: pointer;"><input type="checkbox" /> Freeform <span style="color: var(--color-text-muted);">(1)</span></label>
           </div>
         </div>
 
         <!-- Filter by Size (mm) -->
         <div class="filter-widget-box" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
-          <h4 class="filter-title" style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px;">Size (mm) ⌃</h4>
+          <h4 class="filter-title" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px; text-transform: uppercase;">Size (mm) ⌃</h4>
           <div class="filter-checkbox-list" style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
             <label style="cursor: pointer;"><input type="checkbox" /> 6×8 mm <span style="color: var(--color-text-muted);">(1)</span></label>
             <label style="cursor: pointer;"><input type="checkbox" /> 8×10 mm <span style="color: var(--color-text-muted);">(2)</span></label>
@@ -123,13 +181,22 @@ get_header('shop');
         </div>
 
         <!-- Filter by Price -->
-        <div class="filter-widget-box" style="margin-bottom: 24px;">
-          <h4 class="filter-title" style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px;">Price ⌃</h4>
+        <div class="filter-widget-box" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
+          <h4 class="filter-title" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px; text-transform: uppercase;">Price ⌃</h4>
           <div class="filter-checkbox-list" style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
             <label style="cursor: pointer;"><input type="checkbox" /> Under ₹1,000</label>
             <label style="cursor: pointer;"><input type="checkbox" /> ₹1,000 – ₹5,000</label>
             <label style="cursor: pointer;"><input type="checkbox" /> ₹5,000 – ₹20,000</label>
             <label style="cursor: pointer;"><input type="checkbox" /> Above ₹20,000</label>
+          </div>
+        </div>
+
+        <!-- Filter by Treatment -->
+        <div class="filter-widget-box" style="margin-bottom: 24px;">
+          <h4 class="filter-title" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px; text-transform: uppercase;">Treatment ⌃</h4>
+          <div class="filter-checkbox-list" style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+            <label style="cursor: pointer;"><input type="checkbox" /> Untreated / Natural only</label>
+            <label style="cursor: pointer;"><input type="checkbox" /> Heated only</label>
           </div>
         </div>
 
@@ -168,7 +235,7 @@ get_header('shop');
                 <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
               </div>
               <div class="product-card-body">
-                <h3 class="product-title-heading">
+                <h3 class="product-title-heading" style="font-size: 13px;">
                   <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Rainbow Moonstone Oval Cabochon</a>
                 </h3>
                 <div class="product-meta-sub">6×8 to 12×16 mm · 4 sizes</div>
@@ -196,7 +263,7 @@ get_header('shop');
                 <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
               </div>
               <div class="product-card-body">
-                <h3 class="product-title-heading">
+                <h3 class="product-title-heading" style="font-size: 13px;">
                   <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Rainbow Moonstone Oval Cabochon</a>
                 </h3>
                 <div class="product-meta-sub">18×25 mm · 32 ct · single</div>
@@ -222,7 +289,7 @@ get_header('shop');
                 <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
               </div>
               <div class="product-card-body">
-                <h3 class="product-title-heading">
+                <h3 class="product-title-heading" style="font-size: 13px;">
                   <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Rainbow Moonstone Oval Cabochon Pair</a>
                 </h3>
                 <div class="product-meta-sub">8×10 mm · 2 pieces</div>
@@ -248,7 +315,7 @@ get_header('shop');
                 <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
               </div>
               <div class="product-card-body">
-                <h3 class="product-title-heading">
+                <h3 class="product-title-heading" style="font-size: 13px;">
                   <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Rainbow Moonstone Oval Cabochon</a>
                 </h3>
                 <div class="product-meta-sub">15×20 mm · 19 ct</div>
@@ -273,6 +340,72 @@ get_header('shop');
   </div>
 
 </div>
+
+<!-- POINT 17 SPEC: MOBILE FILTER MODAL / DRAWER -->
+<div id="vivaaz-filter-drawer-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 99998;" onclick="closeShopFilterDrawer()"></div>
+<div id="vivaaz-filter-drawer" style="position: fixed; top: 0; left: -100%; width: 85%; max-width: 320px; height: 100%; background: #FFFFFF; z-index: 99999; box-shadow: 2px 0 16px rgba(0,0,0,0.2); transition: left 0.3s ease; overflow-y: auto; padding: 24px; box-sizing: border-box;">
+  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border-light); padding-bottom: 14px; margin-bottom: 20px;">
+    <h3 style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 0;">Filters</h3>
+    <button type="button" onclick="closeShopFilterDrawer()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #1C1A17;">✕</button>
+  </div>
+  
+  <div class="mobile-filter-drawer-content">
+    <!-- Shape in drawer -->
+    <div style="margin-bottom: 20px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 16px;">
+      <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Shape</h4>
+      <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+        <label><input type="checkbox" checked /> Oval (4)</label>
+        <label><input type="checkbox" /> Round (2)</label>
+        <label><input type="checkbox" /> Pear (1)</label>
+        <label><input type="checkbox" /> Cushion (2)</label>
+        <label><input type="checkbox" /> Freeform (1)</label>
+      </div>
+    </div>
+
+    <!-- Size in drawer -->
+    <div style="margin-bottom: 20px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 16px;">
+      <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Size</h4>
+      <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+        <label><input type="checkbox" /> 6×8 mm (1)</label>
+        <label><input type="checkbox" /> 8×10 mm (2)</label>
+        <label><input type="checkbox" /> 10×12 mm (1)</label>
+        <label><input type="checkbox" /> 12×16 mm (1)</label>
+        <label><input type="checkbox" /> 15×20 mm (1)</label>
+      </div>
+    </div>
+
+    <!-- Price in drawer -->
+    <div style="margin-bottom: 24px;">
+      <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Price</h4>
+      <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+        <label><input type="checkbox" /> Under ₹1,000</label>
+        <label><input type="checkbox" /> ₹1,000 – ₹5,000</label>
+        <label><input type="checkbox" /> Above ₹5,000</label>
+      </div>
+    </div>
+
+    <button type="button" onclick="closeShopFilterDrawer()" style="width: 100%; padding: 12px; background: #1C1A17; color: #FFFFFF; border: none; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;">
+      Apply Filters
+    </button>
+  </div>
+</div>
+
+<script>
+function openShopFilterDrawer() {
+  var overlay = document.getElementById('vivaaz-filter-drawer-overlay');
+  var drawer = document.getElementById('vivaaz-filter-drawer');
+  if (overlay) overlay.style.display = 'block';
+  if (drawer) drawer.style.left = '0';
+  document.body.style.overflow = 'hidden';
+}
+function closeShopFilterDrawer() {
+  var overlay = document.getElementById('vivaaz-filter-drawer-overlay');
+  var drawer = document.getElementById('vivaaz-filter-drawer');
+  if (overlay) overlay.style.display = 'none';
+  if (drawer) drawer.style.left = '-100%';
+  document.body.style.overflow = '';
+}
+</script>
 
 <?php
 get_footer('shop');

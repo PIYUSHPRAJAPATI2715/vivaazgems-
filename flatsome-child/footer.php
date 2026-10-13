@@ -115,12 +115,12 @@ $vivaaz_footer_rendered = true;
           © <?php echo date('Y'); ?> Vivaaz Gems & Jewellery
         </div>
 
-        <div class="payment-badges-row" style="display: flex; gap: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.05em;">
-          <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px;">VISA</span>
-          <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px;">MASTERCARD</span>
-          <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px;">UPI</span>
-          <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px;">PAYPAL</span>
-          <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px;">BANK TRANSFER</span>
+        <div class="payment-badges-row" style="display: flex; flex-wrap: wrap; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; max-width: 100%;">
+          <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px; white-space: nowrap;">VISA</span>
+          <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px; white-space: nowrap;">MASTERCARD</span>
+          <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px; white-space: nowrap;">UPI</span>
+          <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px; white-space: nowrap;">PAYPAL</span>
+          <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px; white-space: nowrap;">BANK TRANSFER</span>
         </div>
 
         <div>
@@ -132,25 +132,49 @@ $vivaaz_footer_rendered = true;
     </div>
   </footer>
 
-  <!-- PHONE BOTTOM BAR (ALWAYS VISIBLE ON PHONE - BUILD BOOK PAGE 7) -->
-  <div class="phone-bottom-bar-fixed" id="phone-bottom-nav">
-    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="phone-bottom-item" title="Shop">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-      <span>Shop</span>
+  <!-- PHONE BOTTOM BAR (FIXED ON PHONE, HIDDEN ON DESKTOP - POINT 4, 6, 23 SPEC) -->
+  <div class="mobile-fixed-bottom-bar" id="mobile-fixed-bottom-bar">
+    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-bar-btn" title="Shop">
+      <span class="bar-icon">⊞</span>
+      <span class="bar-text">Shop</span>
     </a>
-    <a href="javascript:void(0);" onclick="toggleLiveSearchModal();" class="phone-bottom-item" title="Search">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      <span>Search</span>
+    <a href="https://wa.me/919680552270" target="_blank" class="mobile-bar-btn" title="WhatsApp">
+      <span class="bar-icon">💬</span>
+      <span class="bar-text">WhatsApp</span>
     </a>
-    <a href="https://wa.me/919680552270" target="_blank" class="phone-bottom-item" title="WhatsApp">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-      <span>WhatsApp</span>
+    <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="mobile-bar-btn" title="Wishlist">
+      <span class="bar-icon">♡</span>
+      <span class="bar-text">Wishlist</span>
+      <span class="cart-badge-count" id="mobile-bar-wishlist-count" style="display: none;">0</span>
     </a>
-    <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="phone-bottom-item" title="Wishlist">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-      <span>Wishlist</span>
+    <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="mobile-bar-btn" title="Account">
+      <span class="bar-icon">👤</span>
+      <span class="bar-text">Account</span>
     </a>
   </div>
+
+  <script>
+  // Soft fade-in on scroll (Point 14 Spec)
+  document.addEventListener('DOMContentLoaded', function() {
+    if ('IntersectionObserver' in window) {
+      var fadeObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            fadeObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.fade-in-on-scroll, .product-card-luxury, .reels-card-item, .home-two-col-row, .review-card-item').forEach(function(el) {
+        fadeObserver.observe(el);
+      });
+    } else {
+      document.querySelectorAll('.fade-in-on-scroll').forEach(function(el) {
+        el.classList.add('visible');
+      });
+    }
+  });
+  </script>
 
   <?php wp_footer(); ?>
 </body>

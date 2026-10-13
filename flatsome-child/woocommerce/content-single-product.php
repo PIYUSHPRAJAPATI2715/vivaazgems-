@@ -149,7 +149,75 @@ do_action('woocommerce_before_single_product');
         </div>
       </div>
       
-      <p class="light-photos-hint">Photos and video are of our own stones from this lot.</p>
+      <p class="light-photos-hint" style="font-size: 11px; color: var(--color-text-muted); margin: 8px 0 24px;">Photos and video are of our own stones from this lot.</p>
+
+      <!-- THE STONE (PASSPORT BLOCK - UNDER PHOTOS ON LEFT PER POINT 8 SPEC) -->
+      <div class="stone-passport-box" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 24px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 10px;">
+          <span style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">The stone</span>
+          <span style="font-size: 11px; color: var(--color-text-muted); letter-spacing: 0.05em;">PASSPORT · <?php echo esc_html($sku ?: 'RMCOC68'); ?></span>
+        </div>
+
+        <!-- 4 Large Stat Numbers -->
+        <div class="passport-4stats-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 22px; text-align: center;">
+          <div style="background: #FAF7F2; padding: 12px 6px;">
+            <div id="passport-size-large" style="font-size: 16px; font-weight: 700; color: var(--color-text-main);">6×8 mm</div>
+            <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-top: 4px;">SIZE</div>
+          </div>
+          <div style="background: #FAF7F2; padding: 12px 6px;">
+            <div style="font-size: 16px; font-weight: 700; color: var(--color-text-main);">≈1.2 ct</div>
+            <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-top: 4px;">EACH PIECE</div>
+          </div>
+          <div style="background: #FAF7F2; padding: 12px 6px;">
+            <div style="font-size: 16px; font-weight: 700; color: var(--color-text-main);">±0.1 mm</div>
+            <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-top: 4px;">CALIBRATED</div>
+          </div>
+          <div style="background: #FAF7F2; padding: 12px 6px;">
+            <div style="font-size: 16px; font-weight: 700; color: var(--color-text-main);">None</div>
+            <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-top: 4px;">TREATMENT</div>
+          </div>
+        </div>
+
+        <!-- 6 Stone Facts Table -->
+        <table class="passport-facts-table" style="width: 100%; border-collapse: collapse; font-size: 12px;">
+          <tr>
+            <td style="padding: 6px 0; color: var(--color-text-muted); width: 40%;">STONE</td>
+            <td style="padding: 6px 0; font-weight: 600;">Rainbow Moonstone</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; color: var(--color-text-muted);">CUT AND SHAPE</td>
+            <td style="padding: 6px 0; font-weight: 600;">Cabochon, oval</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; color: var(--color-text-muted);">COLOUR</td>
+            <td style="padding: 6px 0; font-weight: 600;">White, blue flash</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; color: var(--color-text-muted);">QUALITY</td>
+            <td style="padding: 6px 0; font-weight: 600;">AAA, matched calibrated lot</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; color: var(--color-text-muted);">ORIGIN</td>
+            <td style="padding: 6px 0; font-weight: 600;">India</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; color: var(--color-text-muted);">HARDNESS</td>
+            <td style="padding: 6px 0; font-weight: 600;">6 – 6.5 Mohs</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- MAKE IT INTO JEWELRY (BELOW THE STONE BOX ON LEFT PER POINT 8 SPEC) -->
+      <div class="make-jewelry-left-card" style="background: #1C1A17; color: #FFFFFF; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <div>
+          <h4 style="font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin: 0 0 4px; color: #FFFFFF;">Make it into jewelry</h4>
+          <p style="font-size: 12px; color: #D5D0C8; margin: 0;">We set this stone in silver or gold.</p>
+        </div>
+        <a href="<?php echo esc_url(home_url('/make-it-into-jewelry/')); ?>" style="color: #FFFFFF; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: underline; white-space: nowrap;">
+          ASK FOR A QUOTE →
+        </a>
+      </div>
+
     </div>
 
     <!-- RIGHT COLUMN: PRODUCT DETAILS & PURCHASING (BUILD BOOK PAGE 14 SPEC) -->
@@ -260,64 +328,8 @@ do_action('woocommerce_before_single_product');
         </div>
       </form>
 
-      <!-- 6. THE STONE (PASSPORT BLOCK - PAGE 14 SPEC) -->
-      <div class="stone-passport-box" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 24px; margin-bottom: 28px;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 10px;">
-          <span style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">The stone</span>
-          <span style="font-size: 11px; color: var(--color-text-muted); letter-spacing: 0.05em;">PASSPORT · <?php echo esc_html($sku); ?></span>
-        </div>
-
-        <!-- 4 Large Stat Numbers -->
-        <div class="passport-4stats-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; text-align: center;">
-          <div style="background: #FAF7F2; padding: 12px 6px;">
-            <div id="passport-size-large" style="font-size: 18px; font-weight: 700; color: var(--color-text-main);">6×8 mm</div>
-            <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-top: 4px;">SIZE</div>
-          </div>
-          <div style="background: #FAF7F2; padding: 12px 6px;">
-            <div style="font-size: 18px; font-weight: 700; color: var(--color-text-main);">≈1.2 ct</div>
-            <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-top: 4px;">EACH PIECE</div>
-          </div>
-          <div style="background: #FAF7F2; padding: 12px 6px;">
-            <div style="font-size: 18px; font-weight: 700; color: var(--color-text-main);">±0.1 mm</div>
-            <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-top: 4px;">CALIBRATED</div>
-          </div>
-          <div style="background: #FAF7F2; padding: 12px 6px;">
-            <div style="font-size: 18px; font-weight: 700; color: var(--color-text-main);">None</div>
-            <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-top: 4px;">TREATMENT</div>
-          </div>
-        </div>
-
-        <!-- 6 Stone Facts Table -->
-        <table class="passport-facts-table" style="width: 100%; border-collapse: collapse; font-size: 12px;">
-          <tr>
-            <td style="padding: 6px 0; color: var(--color-text-muted); width: 40%;">STONE</td>
-            <td style="padding: 6px 0; font-weight: 600;"><?php echo esc_html($stone_name); ?></td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 0; color: var(--color-text-muted);">CUT AND SHAPE</td>
-            <td style="padding: 6px 0; font-weight: 600;"><?php echo (stripos($title, 'cabochon') !== false) ? 'Cabochon, calibrated' : 'Faceted, calibrated'; ?></td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 0; color: var(--color-text-muted);">COLOUR</td>
-            <td style="padding: 6px 0; font-weight: 600;"><?php echo (stripos($title, 'sapphire') !== false) ? 'Royal blue, brilliant luster' : ((stripos($title, 'ruby') !== false) ? 'Pigeon blood red' : ((stripos($title, 'emerald') !== false) ? 'Vivid emerald green' : 'White, blue flash')); ?></td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 0; color: var(--color-text-muted);">QUALITY</td>
-            <td style="padding: 6px 0; font-weight: 600;">AAA, matched calibrated lot</td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 0; color: var(--color-text-muted);">ORIGIN</td>
-            <td style="padding: 6px 0; font-weight: 600;"><?php echo (stripos($title, 'sapphire') !== false) ? 'Sri Lanka (Ceylon)' : ((stripos($title, 'emerald') !== false) ? 'Zambia / Colombia' : 'India'); ?></td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 0; color: var(--color-text-muted);">HARDNESS</td>
-            <td style="padding: 6px 0; font-weight: 600;"><?php echo (stripos($title, 'sapphire') !== false || stripos($title, 'ruby') !== false) ? '9 Mohs' : ((stripos($title, 'emerald') !== false) ? '7.5 – 8 Mohs' : '6 – 6.5 Mohs'); ?></td>
-          </tr>
-        </table>
-      </div>
-
-      <!-- 7. ACCORDION (PAGE 14 SPEC) -->
-      <div class="product-accordion-wrapper" style="margin-bottom: 28px;">
+      <!-- 6. ACCORDION (PAGE 14 SPEC & PAGE 26 WORD UPDATES) -->
+      <div class="product-accordion-wrapper" style="margin-bottom: 24px;">
         <details style="border-bottom: 1px solid var(--color-border-light); padding: 12px 0;">
           <summary style="font-size: 13px; font-weight: 600; cursor: pointer;">Shipping and export</summary>
           <div style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0; line-height: 1.6;">
@@ -333,7 +345,7 @@ do_action('woocommerce_before_single_product');
         </details>
         
         <details style="border-bottom: 1px solid var(--color-border-light); padding: 12px 0;">
-          <summary style="font-size: 13px; font-weight: 600; cursor: pointer;">Lab certificate</summary>
+          <summary style="font-size: 13px; font-weight: 600; cursor: pointer;">Certificates on request</summary>
           <div style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0; line-height: 1.6;">
             Need a lab certificate? Ask us on WhatsApp or write it in your order note. We confirm the laboratory, cost, and timeline before sending the stone.
           </div>
@@ -354,15 +366,17 @@ do_action('woocommerce_before_single_product');
         </details>
       </div>
 
-      <!-- 8. NEXT STEPS (PAGE 14 SPEC) -->
-      <div class="next-steps-card" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 20px; margin-bottom: 16px;">
-        <h4 style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 6px;">Make it into jewelry</h4>
-        <p style="font-size: 12px; color: var(--color-text-muted); margin: 0 0 10px;">We set this stone in silver or gold for your bespoke designs.</p>
-        <a href="<?php echo esc_url(home_url('/make-it-into-jewelry/')); ?>" style="font-size: 12px; font-weight: 700; color: var(--color-gold-label); text-decoration: underline;">Ask for a quote →</a>
-      </div>
-
-      <div style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 24px;">
-        Need another size or 1,000+ pieces? <a href="<?php echo esc_url(home_url('/bulk-enquiry/')); ?>" style="text-decoration: underline;">Bulk / B2B enquiry →</a> Asking is free.
+      <!-- 7. BUYING IN BULK (DEDICATED BOX BELOW ACCORDION - POINT 8 SPEC) -->
+      <div class="buying-in-bulk-card" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px;">
+        <div>
+          <h4 style="font-size: 13px; font-weight: 700; margin: 0 0 6px; color: var(--color-text-main);">Buying in bulk?</h4>
+          <p style="font-size: 12px; color: var(--color-text-muted); margin: 0; line-height: 1.5;">
+            1,000+ pieces, another size or a matched lot for your workshop. Asking is free.
+          </p>
+        </div>
+        <a href="<?php echo esc_url(home_url('/bulk-enquiry/')); ?>" class="btn-square-dark" style="padding: 12px 18px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; text-decoration: none; background: #FFFFFF; color: #1C1A17; border: 1px solid var(--color-border-light); display: inline-block;">
+          BULK / B2B ENQUIRY
+        </a>
       </div>
 
     </div>

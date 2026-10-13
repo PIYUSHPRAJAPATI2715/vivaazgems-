@@ -53,55 +53,60 @@ $vivaaz_header_rendered = true;
     <!-- Centered Navigation Menu with 5 Mega Dropdowns (Step 2) -->
     <ul class="nav-menu-center">
       
-      <!-- 1. GEMSTONES MEGA DROPDOWN (BUILD BOOK PAGE 4) -->
-      <li class="has-mega-dropdown">
+      <!-- 1. GEMSTONES MEGA DROPDOWN (POINT 3 SPEC: FULL WIDTH, PHOTO RIGHT, ALL STONES) -->
+      <li class="has-mega-dropdown mega-item-fullwidth">
         <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="nav-link">GEMSTONES ▾</a>
-        <div class="mega-dropdown-panel" style="width: 980px;">
-          <div class="mega-dropdown-grid" style="grid-template-columns: 140px 180px 140px 180px 240px; gap: 20px;">
+        <div class="mega-dropdown-panel mega-dropdown-fullwidth">
+          <div class="mega-dropdown-grid" style="grid-template-columns: 140px 1fr 130px 170px 220px; gap: 28px; max-width: 1240px; margin: 0 auto; align-items: start;">
             <!-- Col 1: Precious -->
             <div>
               <h4 class="mega-col-title">PRECIOUS</h4>
               <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" onmouseenter="updateMegaPhoto('ruby.jpg', 'Ruby · King of precious stones')">Ruby</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" onmouseenter="updateMegaPhoto('ceylon-sapphire.jpg', 'Sapphire · Ceylon blue & fancy')">Sapphire</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" onmouseenter="updateMegaPhoto('emerald.jpg', 'Emerald · Colombian & Zambian')">Emerald</a></li>
-                <li style="margin-top: 10px;"><a href="<?php echo esc_url(home_url('/shop/?filter_group=precious')); ?>" class="text-gold font-bold">All precious stones →</a></li>
+                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" onmouseenter="updateMegaPhoto('ruby.jpg', 'Ruby', 'Deep pigeon blood red')">Ruby</a></li>
+                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" onmouseenter="updateMegaPhoto('ceylon-sapphire.jpg', 'Sapphire', 'Ceylon blue & fancy')">Sapphire</a></li>
+                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" onmouseenter="updateMegaPhoto('emerald.jpg', 'Emerald', 'Colombian & Zambian')">Emerald</a></li>
+                <li style="margin-top: 14px;"><a href="<?php echo esc_url(home_url('/shop/?filter_group=precious')); ?>" class="text-gold font-bold">All precious stones →</a></li>
               </ul>
             </div>
 
-            <!-- Col 2: Semi-Precious A to Z -->
+            <!-- Col 2: Semi-Precious A to Z (3 columns showing all 27 stones cleanly without scroll) -->
             <div>
               <h4 class="mega-col-title">SEMI-PRECIOUS · A TO Z</h4>
-              <ul class="mega-link-list" style="max-height: 290px; overflow-y: auto;">
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=agate')); ?>">Agate</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=amazonite')); ?>">Amazonite</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=amber')); ?>">Amber</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" onmouseenter="updateMegaPhoto('ruby.jpg', 'Amethyst · Royal purple')">Amethyst</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=aquamarine')); ?>" onmouseenter="updateMegaPhoto('ceylon-sapphire.jpg', 'Aquamarine · Sea blue beryl')">Aquamarine</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=aventurine')); ?>">Aventurine</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=carnelian')); ?>">Carnelian</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=citrine')); ?>">Citrine</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>">Garnet</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=green-jade')); ?>">Green Jade</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=iolite')); ?>">Iolite</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=labradorite')); ?>">Labradorite</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=lapis-lazuli')); ?>">Lapis Lazuli</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=larimar')); ?>">Larimar</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=malachite')); ?>" onmouseenter="updateMegaPhoto('emerald.jpg', 'Malachite · Vivid banded green')">Malachite</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=onyx')); ?>">Onyx</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=opal')); ?>">Opal</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=peridot')); ?>" onmouseenter="updateMegaPhoto('emerald.jpg', 'Peridot · Olive lime green')">Peridot</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=prehnite')); ?>">Prehnite</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" onmouseenter="updateMegaPhoto('moonstone.jpg', 'Rainbow Moonstone · Blue flash')">Rainbow Moonstone</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=rose-quartz')); ?>">Rose Quartz</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=spinel')); ?>" onmouseenter="updateMegaPhoto('ruby.jpg', 'Spinel · Red, pink, blue, purple')">Spinel</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=tanzanite')); ?>">Tanzanite</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=tiger-eye')); ?>">Tiger Eye</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" onmouseenter="updateMegaPhoto('swiss-topaz.jpg', 'Topaz · Sky, Swiss, London')">Topaz</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=tourmaline')); ?>">Tourmaline</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=turquoise')); ?>">Turquoise</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/')); ?>" class="text-gold font-bold">Other stones →</a></li>
-              </ul>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px 18px;">
+                <ul class="mega-link-list">
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=agate')); ?>" onmouseenter="updateMegaPhoto('moonstone.jpg', 'Agate', 'Banded chalcedony')">Agate</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=amazonite')); ?>">Amazonite</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=amber')); ?>">Amber</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" onmouseenter="updateMegaPhoto('ruby.jpg', 'Amethyst', 'Lilac to deep purple')">Amethyst</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=aquamarine')); ?>" onmouseenter="updateMegaPhoto('ceylon-sapphire.jpg', 'Aquamarine', 'Sea blue beryl')">Aquamarine</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=aventurine')); ?>">Aventurine</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=carnelian')); ?>">Carnelian</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=citrine')); ?>">Citrine</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>">Garnet</a></li>
+                </ul>
+                <ul class="mega-link-list">
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=green-jade')); ?>">Green Jade</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=iolite')); ?>">Iolite</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=labradorite')); ?>">Labradorite</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=lapis-lazuli')); ?>">Lapis Lazuli</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=larimar')); ?>">Larimar</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=malachite')); ?>">Malachite</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=onyx')); ?>">Onyx</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=opal')); ?>">Opal</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=peridot')); ?>">Peridot</a></li>
+                </ul>
+                <ul class="mega-link-list">
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=prehnite')); ?>">Prehnite</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" onmouseenter="updateMegaPhoto('moonstone.jpg', 'Rainbow Moonstone', 'Blue adularescence')">Rainbow Moonstone</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=rose-quartz')); ?>">Rose Quartz</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=spinel')); ?>" onmouseenter="updateMegaPhoto('ruby.jpg', 'Spinel', 'Red, pink & cobalt blue')">Spinel</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=tanzanite')); ?>">Tanzanite</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=tiger-eye')); ?>">Tiger Eye</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" onmouseenter="updateMegaPhoto('swiss-topaz.jpg', 'Topaz', 'Sky, Swiss & London blue')">Topaz</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=tourmaline')); ?>">Tourmaline</a></li>
+                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=turquoise')); ?>">Turquoise</a></li>
+                </ul>
+              </div>
             </div>
 
             <!-- Col 3: By Cut -->
@@ -128,12 +133,12 @@ $vivaaz_header_rendered = true;
               </ul>
             </div>
 
-            <!-- Col 5: Photo Panel (Hoverable) -->
-            <div class="mega-promo-box" id="gem-mega-promo">
-              <img id="gem-promo-img" src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Gemstone Highlight">
-              <div id="gem-promo-title" style="font-size: 11px; font-weight: 700; margin-top: 8px;">New this week</div>
-              <p id="gem-promo-sub" style="font-size: 10px; color: var(--color-text-muted);">Fresh loose stones, hand-sorted in Jaipur.</p>
-              <a href="<?php echo esc_url(home_url('/shop/?orderby=date')); ?>" class="btn-underline-link" style="font-size: 10px; margin-top: 6px;">Shop collection →</a>
+            <!-- Col 5: Photo Panel (Right side) -->
+            <div class="mega-promo-box" id="gem-mega-promo" style="text-align: center; background: #FAF7F2; padding: 16px; border: 1px solid var(--color-border-light);">
+              <img id="gem-promo-img" src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Featured Gemstone" style="width: 100%; height: 150px; object-fit: contain; margin-bottom: 10px; display: block;">
+              <div id="gem-promo-title" style="font-size: 13px; font-weight: 700; color: var(--color-text-main);">Amethyst</div>
+              <p id="gem-promo-sub" style="font-size: 11px; color: var(--color-text-muted); margin: 4px 0 10px;">Lilac to deep purple</p>
+              <a id="gem-promo-link" href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" class="btn-underline-link" style="font-size: 11px; font-weight: 700;">Shop amethyst →</a>
             </div>
           </div>
         </div>
@@ -366,7 +371,7 @@ $vivaaz_header_rendered = true;
       </a>
 
       <!-- Shopping Bag -->
-      <a href="<?php echo esc_url(home_url('/cart/')); ?>" class="icon-action-btn" title="Shopping Bag">
+      <a href="javascript:void(0);" onclick="openCartDrawer();" class="icon-action-btn" title="Shopping Bag">
         <svg width="18" height="18" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; overflow: visible; display: inline-block;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
         <span class="cart-badge-count" id="header-bag-count">
           <?php echo (function_exists('WC') && WC()->cart) ? WC()->cart->get_cart_contents_count() : '0'; ?>
@@ -381,39 +386,146 @@ $vivaaz_header_rendered = true;
   </header>
 </div>
 
-<!-- MOBILE SLIDE-IN MENU DRAWER (BUILD BOOK PAGE 7 & 8) -->
+<!-- MOBILE SLIDE-IN MENU DRAWER (POINT 4, 5 SPEC: CLEAN ACCORDIONS, SOFT EXPANSION) -->
 <div class="mobile-menu-drawer" id="mobile-menu-drawer" style="display: none;">
   <div class="mobile-drawer-header">
     <div style="font-weight: 700; letter-spacing: 0.15em; font-size: 13px;">VIVAAZ GEMS</div>
-    <button type="button" class="mobile-drawer-close" onclick="toggleMobileMenuDrawer();">&times;</button>
+    <button type="button" class="mobile-drawer-close" onclick="toggleMobileMenuDrawer();" aria-label="Close menu">&times;</button>
   </div>
   
   <div class="mobile-drawer-content">
-    <!-- Top Account Line -->
-    <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="mobile-drawer-link" style="border-bottom: 2px solid var(--color-border-light); font-weight: 700;">
-      Sign in / My account ›
+    <!-- Top Account Line (Point 4 & 5 Spec) -->
+    <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="mobile-drawer-link" style="background: #FAF7F2; border-bottom: 1px solid var(--color-border-light); font-weight: 600; display: flex; justify-content: space-between; align-items: center; padding: 14px 16px;">
+      <span>Sign in / My account</span>
+      <span style="color: var(--color-text-muted); font-size: 14px;">›</span>
     </a>
 
-    <!-- 5 Main Links -->
-    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-drawer-link">GEMSTONES ›</a>
-    <a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="mobile-drawer-link">LAYOUTS ›</a>
-    <a href="<?php echo esc_url(home_url('/beads/')); ?>" class="mobile-drawer-link">BEADS ›</a>
-    <a href="<?php echo esc_url(home_url('/jewelry/')); ?>" class="mobile-drawer-link">JEWELRY ›</a>
-    <a href="<?php echo esc_url(home_url('/astrology/')); ?>" class="mobile-drawer-link">ASTROLOGY ›</a>
+    <!-- Accordion 1: Gemstones -->
+    <div class="mobile-acc-item">
+      <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
+        <span>Gemstones</span>
+        <span class="acc-chevron">⌄</span>
+      </div>
+      <div class="mobile-acc-body" style="display: none;">
+        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-acc-sublink-top">Shop all gemstones →</a>
+        
+        <div class="mobile-acc-cat-label">PRECIOUS</div>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="mobile-acc-sublink">Ruby</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="mobile-acc-sublink">Sapphire</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="mobile-acc-sublink">Emerald</a>
+
+        <div class="mobile-acc-cat-label" onclick="event.stopPropagation(); toggleMobileSemi(this);" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 8px 0;">
+          <span>Semi-precious A–Z</span>
+          <span style="font-size: 11px;">⌄</span>
+        </div>
+        <div class="mobile-acc-semi-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; margin-bottom: 10px;">
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=agate')); ?>" class="mobile-acc-sublink">Agate</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amazonite')); ?>" class="mobile-acc-sublink">Amazonite</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amber')); ?>" class="mobile-acc-sublink">Amber</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" class="mobile-acc-sublink">Amethyst</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=aquamarine')); ?>" class="mobile-acc-sublink">Aquamarine</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=aventurine')); ?>" class="mobile-acc-sublink">Aventurine</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=carnelian')); ?>" class="mobile-acc-sublink">Carnelian</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=citrine')); ?>" class="mobile-acc-sublink">Citrine</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>" class="mobile-acc-sublink">Garnet</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=green-jade')); ?>" class="mobile-acc-sublink">Green Jade</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=iolite')); ?>" class="mobile-acc-sublink">Iolite</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=labradorite')); ?>" class="mobile-acc-sublink">Labradorite</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=lapis-lazuli')); ?>" class="mobile-acc-sublink">Lapis Lazuli</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=larimar')); ?>" class="mobile-acc-sublink">Larimar</a>
+          <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-acc-sublink" style="color: var(--color-gold-label); grid-column: span 2;">… to Turquoise</a>
+        </div>
+
+        <div class="mobile-acc-cat-label">BY CUT</div>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_cut=faceted')); ?>" class="mobile-acc-sublink">Faceted</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_cut=cabochon')); ?>" class="mobile-acc-sublink">Cabochon</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_cut=rose-cut')); ?>" class="mobile-acc-sublink">Rose cut</a>
+        
+        <div class="mobile-acc-cat-label" style="margin-top: 10px;">SHOP BY</div>
+        <a href="<?php echo esc_url(home_url('/#colour')); ?>" class="mobile-acc-sublink">By colour, shape, price</a>
+      </div>
+    </div>
+
+    <!-- Accordion 2: Layouts -->
+    <div class="mobile-acc-item">
+      <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
+        <span>Layouts</span>
+        <span class="acc-chevron">⌄</span>
+      </div>
+      <div class="mobile-acc-body" style="display: none;">
+        <a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="mobile-acc-sublink-top">Shop all layouts →</a>
+        <a href="<?php echo esc_url(home_url('/layouts/#ruby')); ?>" class="mobile-acc-sublink">Ruby layouts</a>
+        <a href="<?php echo esc_url(home_url('/layouts/#spinel')); ?>" class="mobile-acc-sublink">Spinel layouts</a>
+        <a href="<?php echo esc_url(home_url('/layouts/?type=necklace-lines')); ?>" class="mobile-acc-sublink">Necklace lines</a>
+        <a href="<?php echo esc_url(home_url('/layouts/?type=bracelet-lines')); ?>" class="mobile-acc-sublink">Bracelet lines</a>
+        <a href="<?php echo esc_url(home_url('/layouts/#match')); ?>" class="mobile-acc-sublink" style="color: var(--color-gold-label); font-weight: 600;">Send your design or CAD →</a>
+      </div>
+    </div>
+
+    <!-- Accordion 3: Beads -->
+    <div class="mobile-acc-item">
+      <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
+        <span>Beads</span>
+        <span class="acc-chevron">⌄</span>
+      </div>
+      <div class="mobile-acc-body" style="display: none;">
+        <a href="<?php echo esc_url(home_url('/beads/')); ?>" class="mobile-acc-sublink-top">Shop all beads →</a>
+        <a href="<?php echo esc_url(home_url('/beads/?shape=round')); ?>" class="mobile-acc-sublink">Round beads</a>
+        <a href="<?php echo esc_url(home_url('/beads/?shape=rondelle')); ?>" class="mobile-acc-sublink">Rondelle</a>
+        <a href="<?php echo esc_url(home_url('/beads/?shape=faceted-rondelle')); ?>" class="mobile-acc-sublink">Faceted rondelle</a>
+        <a href="<?php echo esc_url(home_url('/beads/?shape=nugget')); ?>" class="mobile-acc-sublink">Nugget</a>
+        <a href="<?php echo esc_url(home_url('/beads/?shape=chips')); ?>" class="mobile-acc-sublink">Chips</a>
+        <a href="<?php echo esc_url(home_url('/beads/?shape=heishi')); ?>" class="mobile-acc-sublink">Heishi</a>
+      </div>
+    </div>
+
+    <!-- Accordion 4: Jewelry -->
+    <div class="mobile-acc-item">
+      <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
+        <span>Jewelry</span>
+        <span class="acc-chevron">⌄</span>
+      </div>
+      <div class="mobile-acc-body" style="display: none;">
+        <a href="<?php echo esc_url(home_url('/jewelry/')); ?>" class="mobile-acc-sublink-top">Shop jewelry →</a>
+        <a href="<?php echo esc_url(home_url('/jewelry/tennis-bracelets/')); ?>" class="mobile-acc-sublink">Tennis bracelets</a>
+        <a href="<?php echo esc_url(home_url('/jewelry/tennis-necklaces/')); ?>" class="mobile-acc-sublink">Tennis necklaces</a>
+        <a href="<?php echo esc_url(home_url('/make-it-into-jewelry/')); ?>" class="mobile-acc-sublink" style="color: var(--color-gold-label); font-weight: 600;">Make it into jewelry (Custom) →</a>
+      </div>
+    </div>
+
+    <!-- Accordion 5: Astrology -->
+    <div class="mobile-acc-item">
+      <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
+        <span>Astrology</span>
+        <span class="acc-chevron">⌄</span>
+      </div>
+      <div class="mobile-acc-body" style="display: none;">
+        <a href="<?php echo esc_url(home_url('/astrology/')); ?>" class="mobile-acc-sublink-top">Gemstones and astrology →</a>
+        <a href="<?php echo esc_url(home_url('/astrology/#sun')); ?>" class="mobile-acc-sublink">Stones for nine planets</a>
+        <a href="<?php echo esc_url(home_url('/astrology/#birthstones')); ?>" class="mobile-acc-sublink">Birthstones by month</a>
+        <a href="javascript:void(0);" onclick="openConsultationModal(); toggleMobileMenuDrawer();" class="mobile-acc-sublink" style="color: var(--color-gold-label); font-weight: 600;">Book a consultation →</a>
+      </div>
+    </div>
+
+    <!-- Wishlist Link -->
+    <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="mobile-drawer-link" style="display: flex; justify-content: space-between; align-items: center;">
+      <span>Wishlist</span>
+      <span id="mobile-wishlist-count" style="font-size: 11px; color: var(--color-gold-label);"></span>
+    </a>
 
     <!-- Help Group -->
-    <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--color-border-light);">
+    <div style="margin-top: 24px; padding: 16px 20px 24px; border-top: 1px solid var(--color-border-light);">
       <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 10px;">HELP</div>
-      <a href="<?php echo esc_url(home_url('/track-order/')); ?>" class="mobile-drawer-sublink">Track my order</a>
-      <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="mobile-drawer-sublink">Contact us</a>
+      <a href="<?php echo esc_url(home_url('/track-order/')); ?>" class="mobile-drawer-sublink" style="display: block; padding: 6px 0; color: var(--color-text-main); text-decoration: none; font-size: 13px;">Track my order</a>
+      <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="mobile-drawer-sublink" style="display: block; padding: 6px 0; color: var(--color-text-main); text-decoration: none; font-size: 13px;">Contact us</a>
       
-      <div style="margin-top: 16px;">
-        <a href="https://wa.me/919680552270" target="_blank" class="btn-whatsapp-green-full" style="padding: 10px 16px; font-size: 11px;">
+      <div style="margin-top: 14px;">
+        <a href="https://wa.me/919680552270" target="_blank" class="btn-whatsapp-green-full" style="padding: 10px 16px; font-size: 11px; display: block; text-align: center; text-decoration: none;">
           WHATSAPP US
         </a>
       </div>
 
-      <div style="margin-top: 16px;">
+      <div style="margin-top: 14px;">
         <select onchange="switchCurrency(this.value)" style="width: 100%; padding: 8px; border: 1px solid var(--color-border-light); background: #FAF7F2; font-size: 12px;">
           <option value="INR">IN | ₹ INR ▾</option>
           <option value="USD">US | $ USD</option>
@@ -426,6 +538,120 @@ $vivaaz_header_rendered = true;
   </div>
 </div>
 <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop" onclick="toggleMobileMenuDrawer();" style="display: none;"></div>
+
+
+
+<!-- LUXURY SLIDE-IN CART DRAWER (POINT 9 & 19 SPEC: CHANGE SIZE, REMOVE WITH UNDO, NO COUPON) -->
+<div class="vivaaz-cart-drawer" id="vivaaz-cart-drawer" style="display: none;">
+  <div class="cart-drawer-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid var(--color-border-light);">
+    <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">
+      Your bag (<span id="cart-drawer-count">0</span>)
+    </div>
+    <button type="button" class="cart-drawer-close" onclick="closeCartDrawer();" style="background: none; border: none; font-size: 24px; cursor: pointer; color: var(--color-text-main);">&times;</button>
+  </div>
+  
+  <!-- Undo Bar Container -->
+  <div id="cart-drawer-undo-bar" style="display: none; background: #FAF7F2; border-bottom: 1px solid var(--color-border-light); padding: 10px 20px; font-size: 12px; justify-content: space-between; align-items: center;">
+    <span id="cart-drawer-undo-msg">Item removed.</span>
+    <button type="button" onclick="undoRemoveCartItem();" style="background: none; border: none; font-size: 12px; font-weight: 700; color: #1C1A17; text-decoration: underline; cursor: pointer;">Undo</button>
+  </div>
+
+  <div class="cart-drawer-items-wrap" id="cart-drawer-items-list" style="flex: 1; overflow-y: auto; padding: 20px;">
+    <!-- Items rendered dynamically by JS -->
+    <div style="text-align: center; padding: 40px 10px; color: var(--color-text-muted); font-size: 13px;">Your bag is currently empty.</div>
+  </div>
+
+  <div class="cart-drawer-footer" style="border-top: 1px solid var(--color-border-light); padding: 20px; background: #FFFFFF;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+      <span style="font-size: 13px; font-weight: 600;">Subtotal</span>
+      <span id="cart-drawer-subtotal" style="font-size: 18px; font-weight: 700;">₹ 0</span>
+    </div>
+    <p style="font-size: 11px; color: var(--color-text-muted); margin: 0 0 16px; line-height: 1.5;">
+      Shipping is added at checkout. Outside India, import duties are paid on delivery.
+    </p>
+    <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+      <a href="<?php echo esc_url(home_url('/cart/')); ?>" class="btn-square-dark" style="flex: 1; padding: 12px; font-size: 11px; text-align: center; text-decoration: none; background: #FFFFFF; color: #1C1A17; border: 1px solid #1C1A17;">VIEW BAG</a>
+      <a href="<?php echo esc_url(home_url('/checkout/')); ?>" class="btn-square-dark" style="flex: 1; padding: 12px; font-size: 11px; text-align: center; text-decoration: none; background: #1C1A17; color: #FFFFFF;">CHECKOUT</a>
+    </div>
+    <div style="text-align: center; font-size: 10px; color: var(--color-text-muted); letter-spacing: 0.05em;">
+      Insured shipping · Our guarantee
+    </div>
+  </div>
+</div>
+<div class="cart-drawer-backdrop" id="cart-drawer-backdrop" onclick="closeCartDrawer();" style="display: none;"></div>
+
+<!-- CONSULTATION MODAL POPUP (POINT 13 SPEC) -->
+<div class="consultation-modal-backdrop" id="vivaaz-consultation-modal" style="display: none;" onclick="if(event.target === this) closeConsultationModal();">
+  <div class="consultation-modal-box">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+      <h3 style="font-family: var(--font-family-serif); font-size: 24px; font-weight: 400; margin: 0;">Book a consultation</h3>
+      <button type="button" onclick="closeConsultationModal();" style="background: none; border: none; font-size: 22px; cursor: pointer;">&times;</button>
+    </div>
+    <p style="font-size: 12px; color: var(--color-text-muted); margin: 0 0 20px;">We confirm the time of your call on WhatsApp.</p>
+    
+    <form id="consultation-popup-form" onsubmit="handleConsultationSubmit(event);">
+      <div style="margin-bottom: 14px;">
+        <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">NAME</label>
+        <input type="text" id="consult-name" placeholder="Your name" required style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border-light); font-size: 13px; box-sizing: border-box;" />
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+        <div>
+          <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">WHATSAPP NUMBER</label>
+          <input type="text" id="consult-wa" placeholder="+91" required style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border-light); font-size: 13px; box-sizing: border-box;" />
+        </div>
+        <div>
+          <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">EMAIL</label>
+          <input type="email" id="consult-email" placeholder="Optional" style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border-light); font-size: 13px; box-sizing: border-box;" />
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+        <div>
+          <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">DATE OF BIRTH</label>
+          <input type="text" id="consult-dob" placeholder="DD / MM / YYYY" required style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border-light); font-size: 13px; box-sizing: border-box;" />
+        </div>
+        <div>
+          <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">TIME OF BIRTH</label>
+          <input type="text" id="consult-tob" placeholder="If known" style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border-light); font-size: 13px; box-sizing: border-box;" />
+        </div>
+      </div>
+
+      <div style="margin-bottom: 14px;">
+        <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">PLACE OF BIRTH</label>
+        <input type="text" id="consult-pob" placeholder="City, country" required style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border-light); font-size: 13px; box-sizing: border-box;" />
+      </div>
+
+      <div style="margin-bottom: 14px;">
+        <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">I AM ASKING ABOUT</label>
+        <div class="consult-pills-row" style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <button type="button" class="consult-pill active" onclick="selectConsultTopic('Career', this)">Career</button>
+          <button type="button" class="consult-pill" onclick="selectConsultTopic('Health', this)">Health</button>
+          <button type="button" class="consult-pill" onclick="selectConsultTopic('Marriage', this)">Marriage</button>
+          <button type="button" class="consult-pill" onclick="selectConsultTopic('Wealth', this)">Wealth</button>
+          <button type="button" class="consult-pill" onclick="selectConsultTopic('Studies', this)">Studies</button>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 18px;">
+        <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">BUDGET FOR THE STONE</label>
+        <div class="consult-pills-row" style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <button type="button" class="consult-pill" onclick="selectConsultBudget('Under ₹10,000', this)">Under ₹10,000</button>
+          <button type="button" class="consult-pill active" onclick="selectConsultBudget('₹10,000–50,000', this)">₹10,000–50,000</button>
+          <button type="button" class="consult-pill" onclick="selectConsultBudget('₹50,000+', this)">₹50,000+</button>
+        </div>
+      </div>
+
+      <p style="font-size: 11px; color: var(--color-text-muted); margin: 0 0 16px; line-height: 1.5;">
+        Paid consultation. You see the fee and pay online. Then we confirm the time of your call on WhatsApp.
+      </p>
+
+      <button type="submit" class="btn-square-dark" style="width: 100%; padding: 14px; background: #1C1A17; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer;">
+        BOOK A CONSULTATION
+      </button>
+    </form>
+  </div>
+</div>
 
 <!-- POPUP LIVE SEARCH MODAL (BUILD BOOK PAGE 13) -->
 <div id="live-search-modal" class="live-search-modal" style="display: none !important;" onclick="if(event.target === this) closeLiveSearchModal();">
@@ -628,19 +854,301 @@ $vivaaz_header_rendered = true;
     }, 2400);
   }
 
+  // MOBILE ACCORDION ENGINE (POINT 5 SPEC)
+  function toggleMobileAcc(header) {
+    var body = header.nextElementSibling;
+    var chevron = header.querySelector('.acc-chevron');
+    if (!body) return;
+    var isOpen = body.style.display !== 'none';
+    if (isOpen) {
+      body.style.display = 'none';
+      if (chevron) chevron.textContent = '⌄';
+      header.classList.remove('active');
+    } else {
+      body.style.display = 'block';
+      if (chevron) chevron.textContent = '⌃';
+      header.classList.add('active');
+    }
+  }
+
+  function toggleMobileSemi(title) {
+    var grid = title.nextElementSibling;
+    if (!grid) return;
+    var isOpen = grid.style.display !== 'none';
+    grid.style.display = isOpen ? 'none' : 'grid';
+    var arrow = title.querySelector('span:last-child');
+    if (arrow) arrow.textContent = isOpen ? '⌄' : '⌃';
+  }
+
+  // LUXURY CART DRAWER ENGINE (POINT 9 & 14 & 19 SPEC)
+  var _lastRemovedCartItem = null;
+  var _lastRemovedIndex = -1;
+
+  function getCartItems() {
+    try {
+      return JSON.parse(localStorage.getItem('vivaaz_local_cart') || '[]');
+    } catch(e) {
+      return [];
+    }
+  }
+
+  function setCartItems(items) {
+    try {
+      localStorage.setItem('vivaaz_local_cart', JSON.stringify(items));
+    } catch(e) {}
+    updateHeaderBagCount();
+  }
+
+  function updateHeaderBagCount() {
+    var items = getCartItems();
+    var count = items.reduce(function(acc, it) { return acc + (parseInt(it.quantity || it.qty) || 1); }, 0);
+    var badge = document.getElementById('header-bag-count');
+    if (badge) badge.textContent = count;
+  }
+
+  function openCartDrawer() {
+    renderCartDrawer();
+    var drawer = document.getElementById('vivaaz-cart-drawer');
+    var backdrop = document.getElementById('cart-drawer-backdrop');
+    if (drawer && backdrop) {
+      drawer.style.display = 'flex';
+      backdrop.style.display = 'block';
+      setTimeout(function() {
+        drawer.classList.add('open');
+        backdrop.classList.add('open');
+      }, 10);
+    }
+  }
+
+  function closeCartDrawer() {
+    var drawer = document.getElementById('vivaaz-cart-drawer');
+    var backdrop = document.getElementById('cart-drawer-backdrop');
+    if (drawer && backdrop) {
+      drawer.classList.remove('open');
+      backdrop.classList.remove('open');
+      setTimeout(function() {
+        drawer.style.display = 'none';
+        backdrop.style.display = 'none';
+      }, 300);
+    }
+  }
+
+  function renderCartDrawer() {
+    var items = getCartItems();
+    var list = document.getElementById('cart-drawer-items-list');
+    var countEl = document.getElementById('cart-drawer-count');
+    var subtotalEl = document.getElementById('cart-drawer-subtotal');
+    if (!list) return;
+
+    var totalQty = items.reduce(function(acc, it) { return acc + (parseInt(it.quantity || it.qty) || 1); }, 0);
+    if (countEl) countEl.textContent = totalQty;
+
+    if (!items || items.length === 0) {
+      list.innerHTML = `
+        <div style="text-align: center; padding: 48px 16px; color: var(--color-text-muted);">
+          <div style="font-size: 36px; margin-bottom: 12px; color: var(--color-gold-label);">🛍</div>
+          <div style="font-size: 15px; font-weight: 600; color: var(--color-text-main); margin-bottom: 6px;">Your bag is empty</div>
+          <p style="font-size: 12px; margin: 0 0 20px;">Explore calibrated gems, matched pairs and layouts.</p>
+          <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-square-dark" onclick="closeCartDrawer();" style="display: inline-block; padding: 10px 20px; font-size: 11px;">EXPLORE STONES →</a>
+        </div>
+      `;
+      if (subtotalEl) subtotalEl.textContent = '₹ 0';
+      return;
+    }
+
+    var grandTotal = 0;
+    var html = '';
+
+    items.forEach(function(item, idx) {
+      var qty = parseInt(item.quantity || item.qty) || 1;
+      var unitPrice = parseInt(String(item.unitPrice || item.price || '105').replace(/[^0-9]/g, '')) || 105;
+      
+      // Tier pricing ladder: 1-9 pcs: 120, 10-49 pcs: 105, 50+ pcs: 92
+      var tierPrice = unitPrice;
+      var tierNote = '';
+      if (qty >= 50) {
+        tierPrice = item.tier50 || 92;
+        tierNote = '50+ tier price';
+      } else if (qty >= 10) {
+        tierPrice = item.tier10 || 105;
+        tierNote = '10+ tier price';
+      } else {
+        tierPrice = item.tier1 || 120;
+        tierNote = '1–9 tier price';
+      }
+      var itemTotal = qty * tierPrice;
+      grandTotal += itemTotal;
+
+      var img = item.img || item.image || '<?php echo esc_url(vivaaz_get_img_url("moonstone.jpg")); ?>';
+      var title = item.title || item.name || 'Rainbow Moonstone Oval Cabochon';
+      var size = item.size || '6×8 mm';
+
+      html += `
+        <div class="cart-drawer-item-row" style="display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--color-border-light);">
+          <div style="width: 64px; height: 64px; background: #FAF7F2; border: 1px solid var(--color-border-light); flex-shrink: 0;">
+            <img src="${img}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-size: 13px; font-weight: 600; color: var(--color-text-main); margin-bottom: 2px; line-height: 1.3;">
+              ${title}
+            </div>
+            <div style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 8px;">
+              ${size} · AAA
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <div style="display: flex; align-items: center; border: 1px solid var(--color-border-light);">
+                <button type="button" onclick="updateCartItemQty(${idx}, -1);" style="width: 26px; height: 26px; background: #FAF7F2; border: none; font-weight: 700; cursor: pointer;">−</button>
+                <span style="width: 32px; text-align: center; font-size: 12px; font-weight: 700;">${qty}</span>
+                <button type="button" onclick="updateCartItemQty(${idx}, 1);" style="width: 26px; height: 26px; background: #FAF7F2; border: none; font-weight: 700; cursor: pointer;">+</button>
+              </div>
+              <div style="font-size: 14px; font-weight: 700; color: var(--color-text-main);">
+                ₹ ${itemTotal.toLocaleString('en-IN')}
+              </div>
+            </div>
+
+            <div style="font-size: 10px; color: var(--color-gold-label); margin-bottom: 8px;">
+              ₹${tierPrice} each · ${tierNote}
+            </div>
+
+            <div style="display: flex; gap: 12px; font-size: 11px;">
+              <a href="javascript:void(0);" onclick="changeCartItemSize(${idx});" style="color: var(--color-text-muted); text-decoration: underline;">Change size</a>
+              <a href="javascript:void(0);" onclick="removeCartItem(${idx});" style="color: #C0392B; text-decoration: underline;">Remove</a>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    list.innerHTML = html;
+    if (subtotalEl) subtotalEl.textContent = '₹ ' + grandTotal.toLocaleString('en-IN');
+  }
+
+  function updateCartItemQty(index, delta) {
+    var items = getCartItems();
+    if (!items[index]) return;
+    var newQty = (parseInt(items[index].quantity || items[index].qty) || 1) + delta;
+    if (newQty <= 0) {
+      removeCartItem(index);
+      return;
+    }
+    items[index].quantity = newQty;
+    items[index].qty = newQty;
+    setCartItems(items);
+    renderCartDrawer();
+  }
+
+  function changeCartItemSize(index) {
+    var items = getCartItems();
+    if (!items[index]) return;
+    var sizes = ['3×4 mm', '3×5 mm', '4×5 mm', '4×6 mm', '5×7 mm', '6×8 mm', '7×9 mm', '8×10 mm', '10×12 mm'];
+    var current = items[index].size || '6×8 mm';
+    var nextSize = prompt('Select new size for ' + items[index].title + ':\nAvailable: ' + sizes.join(', '), current);
+    if (nextSize && sizes.indexOf(nextSize.trim()) > -1) {
+      items[index].size = nextSize.trim();
+      setCartItems(items);
+      renderCartDrawer();
+      showWishlistToast('Size updated to ' + nextSize.trim());
+    }
+  }
+
+  function removeCartItem(index) {
+    var items = getCartItems();
+    if (!items[index]) return;
+    _lastRemovedCartItem = items[index];
+    _lastRemovedIndex = index;
+    var title = items[index].title || 'Item';
+
+    items.splice(index, 1);
+    setCartItems(items);
+    renderCartDrawer();
+
+    var undoBar = document.getElementById('cart-drawer-undo-bar');
+    var undoMsg = document.getElementById('cart-drawer-undo-msg');
+    if (undoBar && undoMsg) {
+      undoMsg.textContent = title + ' removed.';
+      undoBar.style.display = 'flex';
+      clearTimeout(window._cartUndoTimer);
+      window._cartUndoTimer = setTimeout(function() {
+        undoBar.style.display = 'none';
+      }, 6000);
+    }
+  }
+
+  function undoRemoveCartItem() {
+    if (!_lastRemovedCartItem) return;
+    var items = getCartItems();
+    items.splice(_lastRemovedIndex >= 0 ? _lastRemovedIndex : items.length, 0, _lastRemovedCartItem);
+    _lastRemovedCartItem = null;
+    _lastRemovedIndex = -1;
+    setCartItems(items);
+    renderCartDrawer();
+    var undoBar = document.getElementById('cart-drawer-undo-bar');
+    if (undoBar) undoBar.style.display = 'none';
+    showWishlistToast('Item restored to your bag');
+  }
+
+  // CONSULTATION MODAL FUNCTIONS (POINT 13 SPEC)
+  function openConsultationModal() {
+    var modal = document.getElementById('vivaaz-consultation-modal');
+    if (modal) {
+      modal.style.display = 'flex';
+      setTimeout(function() { modal.classList.add('open'); }, 10);
+    }
+  }
+
+  function closeConsultationModal() {
+    var modal = document.getElementById('vivaaz-consultation-modal');
+    if (modal) {
+      modal.classList.remove('open');
+      setTimeout(function() { modal.style.display = 'none'; }, 200);
+    }
+  }
+
+  var _consultTopic = 'Career';
+  var _consultBudget = '₹10,000–50,000';
+
+  function selectConsultTopic(topic, btn) {
+    _consultTopic = topic;
+    var pills = btn.parentElement.querySelectorAll('.consult-pill');
+    pills.forEach(function(p) { p.classList.remove('active'); });
+    btn.classList.add('active');
+  }
+
+  function selectConsultBudget(budget, btn) {
+    _consultBudget = budget;
+    var pills = btn.parentElement.querySelectorAll('.consult-pill');
+    pills.forEach(function(p) { p.classList.remove('active'); });
+    btn.classList.add('active');
+  }
+
+  function handleConsultationSubmit(e) {
+    e.preventDefault();
+    var name = document.getElementById('consult-name').value || '';
+    var wa = document.getElementById('consult-wa').value || '';
+    var email = document.getElementById('consult-email').value || '';
+    var dob = document.getElementById('consult-dob').value || '';
+    var tob = document.getElementById('consult-tob').value || '';
+    var pob = document.getElementById('consult-pob').value || '';
+
+    var text = 'Namaste, I want to book an Astrology Consultation.\n' +
+      'Name: ' + name + '\n' +
+      'WhatsApp: ' + wa + '\n' +
+      (email ? ('Email: ' + email + '\n') : '') +
+      'DOB: ' + dob + '\n' +
+      'Time: ' + tob + '\n' +
+      'Place: ' + pob + '\n' +
+      'Topic: ' + _consultTopic + '\n' +
+      'Budget: ' + _consultBudget;
+
+    closeConsultationModal();
+    window.open('https://wa.me/919680552270?text=' + encodeURIComponent(text), '_blank');
+  }
+
   document.addEventListener("DOMContentLoaded", function() {
     closeLiveSearchModal();
     updateWishlistCountBadge();
     updateAllWishlistButtons();
-    try {
-      var badge = document.getElementById('header-bag-count');
-      if (badge && (badge.textContent.trim() === '0' || badge.textContent.trim() === '')) {
-        var saved = JSON.parse(localStorage.getItem('vivaaz_local_cart') || '[]');
-        if (saved && saved.length > 0) {
-          var totalQty = saved.reduce(function(acc, item) { return acc + (parseInt(item.quantity || item.qty) || 1); }, 0);
-          badge.textContent = totalQty;
-        }
-      }
-    } catch(e) {}
+    updateHeaderBagCount();
   });
 </script>

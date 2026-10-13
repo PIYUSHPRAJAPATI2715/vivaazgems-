@@ -73,17 +73,20 @@ $default_tab = (isset($_GET['action']) && $_GET['action'] === 'register') || (!e
           Don't have an account? <a href="#register" onclick="switchAccountTab('register'); return false;" class="switch-link">Create an Account</a>
         </div>
 
-        <!-- Social Login Buttons -->
+        <!-- Social Login Buttons (Point 10 Spec) -->
         <div class="social-login-divider">
           <span>OR CONTINUE WITH</span>
         </div>
-        <div class="social-btn-group">
-          <button type="button" class="btn-social-item google-btn">
+        <div class="social-btn-group" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px;">
+          <button type="button" class="btn-social-item google-btn" style="padding: 10px 4px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--color-border-light); background: #FFFFFF; cursor: pointer;">
             <span>🌐</span> Google
           </button>
-          <button type="button" class="btn-social-item fb-btn">
-            <span>📘</span> Facebook
+          <button type="button" class="btn-social-item fb-btn" style="padding: 10px 4px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--color-border-light); background: #FFFFFF; cursor: pointer;">
+            <span style="color: #1877F2;">📘</span> Facebook
           </button>
+          <a href="https://wa.me/919680552270?text=Hi%20Vivaaz%20Gems,%20I%20would%20like%20to%20sign%20in%20with%20WhatsApp" target="_blank" class="btn-social-item wa-btn" style="padding: 10px 4px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid #25D366; background: #FFFFFF; color: #1C1A17; text-decoration: none; cursor: pointer;">
+            <span style="color: #25D366; font-size: 14px;">💬</span> WhatsApp
+          </a>
         </div>
 
         <?php do_action('woocommerce_login_form_end'); ?>
@@ -125,6 +128,22 @@ $default_tab = (isset($_GET['action']) && $_GET['action'] === 'register') || (!e
 
         <div class="account-switch-prompt">
           Already have an account? <a href="#login" onclick="switchAccountTab('login'); return false;" class="switch-link">Sign In</a>
+        </div>
+
+        <!-- Social Register Buttons (Point 10 Spec) -->
+        <div class="social-login-divider" style="margin-top: 18px;">
+          <span>OR CONTINUE WITH</span>
+        </div>
+        <div class="social-btn-group" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px;">
+          <button type="button" class="btn-social-item google-btn" style="padding: 10px 4px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--color-border-light); background: #FFFFFF; cursor: pointer;">
+            <span>🌐</span> Google
+          </button>
+          <button type="button" class="btn-social-item fb-btn" style="padding: 10px 4px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--color-border-light); background: #FFFFFF; cursor: pointer;">
+            <span style="color: #1877F2;">📘</span> Facebook
+          </button>
+          <a href="https://wa.me/919680552270?text=Hi%20Vivaaz%20Gems,%20I%20would%20like%20to%20register%20with%20WhatsApp" target="_blank" class="btn-social-item wa-btn" style="padding: 10px 4px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid #25D366; background: #FFFFFF; color: #1C1A17; text-decoration: none; cursor: pointer;">
+            <span style="color: #25D366; font-size: 14px;">💬</span> WhatsApp
+          </a>
         </div>
 
         <p style="font-size: 11px; color: var(--color-text-muted); margin-top: 14px; text-align: center; line-height: 1.5;">

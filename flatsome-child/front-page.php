@@ -161,9 +161,20 @@ get_header();
     </div>
   </section>
 
-  <!-- 3. LAYOUTS SECTION (BUILD BOOK PAGE 10 & 22) -->
+  <!-- 3. LAYOUTS SECTION (BUILD BOOK PAGE 10 & 22 - POINT 1 SPEC) -->
   <section class="layouts-section" id="layouts" style="background: var(--color-page-bg); padding: 70px 20px; border-top: 1px solid var(--color-border-light);">
     <div class="layouts-container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+      <!-- Photo on Left -->
+      <div>
+        <a href="<?php echo esc_url(home_url('/layouts/')); ?>" style="display: block; border: 1px solid var(--color-border-light); background: #FFFFFF; padding: 20px; text-decoration: none;">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby Layout" style="width: 100%; height: auto; object-fit: contain;">
+          <div style="text-align: center; margin-top: 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-main);">
+            Ruby Graduated Necklace Line · Matched in Jaipur
+          </div>
+        </a>
+      </div>
+
+      <!-- Text on Right -->
       <div>
         <span class="section-tag-divider" style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--color-gold-label); text-transform: uppercase;">FOR JEWELLERS</span>
         <h2 class="layouts-title" style="font-family: var(--font-family-serif); font-size: 36px; font-weight: 400; line-height: 1.25; margin: 10px 0 16px; color: var(--color-text-main);">
@@ -197,15 +208,6 @@ get_header();
             Send your design →
           </a>
         </div>
-      </div>
-
-      <div>
-        <a href="<?php echo esc_url(home_url('/layouts/')); ?>" style="display: block; border: 1px solid var(--color-border-light); background: #FFFFFF; padding: 20px; text-decoration: none;">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby Layout" style="width: 100%; height: auto; object-fit: contain;">
-          <div style="text-align: center; margin-top: 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
-            Ruby Graduated Necklace Line · Matched in Jaipur
-          </div>
-        </a>
       </div>
     </div>
   </section>
@@ -394,7 +396,7 @@ get_header();
     </div>
   </section>
 
-  <!-- 7. SEEN ON INSTAGRAM SECTION (BUILD BOOK PAGE 10) -->
+  <!-- 7. SEEN ON INSTAGRAM SECTION (POINT 2 & POINT 21 SPEC) -->
   <section class="instagram-section" style="background: var(--color-page-bg); padding: 60px 20px; border-top: 1px solid var(--color-border-light);">
     <div style="max-width: 1200px; margin: 0 auto;">
       <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 12px;">
@@ -405,62 +407,88 @@ get_header();
         <a href="<?php echo esc_url(home_url('/reels/')); ?>" class="btn-underline-link" style="font-size: 12px; font-weight: 700; text-transform: uppercase;">Follow us →</a>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px;">
-        <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 12px; text-decoration: none; text-align: center;">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Reel 1" style="width: 100%; height: 160px; object-fit: cover;">
-          <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Blue Sapphire</div>
-          <div style="font-size: 10px; color: var(--color-text-muted);">₹ 1,450</div>
-        </a>
-        <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 12px; text-decoration: none; text-align: center;">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Reel 2" style="width: 100%; height: 160px; object-fit: cover;">
-          <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Ruby Oval Lot</div>
-          <div style="font-size: 10px; color: var(--color-text-muted);">₹ 2,900</div>
-        </a>
-        <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 12px; text-decoration: none; text-align: center;">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Reel 3" style="width: 100%; height: 160px; object-fit: cover;">
-          <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Emerald Octagon</div>
-          <div style="font-size: 10px; color: var(--color-text-muted);">₹ 24,500</div>
-        </a>
-        <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 12px; text-decoration: none; text-align: center;">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Reel 4" style="width: 100%; height: 160px; object-fit: cover;">
-          <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Swiss Blue Topaz</div>
-          <div style="font-size: 10px; color: var(--color-text-muted);">₹ 92</div>
-        </a>
-        <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" style="display: block; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 12px; text-decoration: none; text-align: center;">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Reel 5" style="width: 100%; height: 160px; object-fit: cover;">
-          <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Rainbow Moonstone</div>
-          <div style="font-size: 10px; color: var(--color-text-muted);">₹ 105</div>
-        </a>
-        <a href="<?php echo esc_url(home_url('/layouts/')); ?>" style="display: block; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 12px; text-decoration: none; text-align: center;">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Reel 6" style="width: 100%; height: 160px; object-fit: cover; filter: hue-rotate(280deg);">
-          <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Pink Spinel Layout</div>
-          <div style="font-size: 10px; color: var(--color-text-muted);">₹ 24,800</div>
-        </a>
+      <!-- Reels Cards Grid (4 cards matching Reels page, horizontal swipe on phone) -->
+      <div class="instagram-reels-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        <!-- Card 1 -->
+        <div class="reel-card-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 16px; text-align: center; display: flex; flex-direction: column;">
+          <div style="background: #FAF7F2; height: 250px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 14px; position: relative; border: 1px solid var(--color-border-light);">
+            <span style="font-size: 36px; color: var(--color-text-main);">▶</span>
+            <span style="font-size: 10px; color: var(--color-text-muted); margin-top: 8px;">Macro Video · 0:45</span>
+          </div>
+          <div style="font-weight: 700; font-size: 13px; color: var(--color-text-main); margin-bottom: 2px;">Ceylon Blue Sapphire Lot</div>
+          <div style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 6px;">Code: VG-SPH-0705</div>
+          <div style="font-size: 13px; font-weight: 700; color: var(--color-gold-label); margin-bottom: 14px;">₹ 105 / pc</div>
+          <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" class="btn-square-dark" style="margin-top: auto; display: block; padding: 10px 14px; background: #1C1A17; color: #FFFFFF; text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
+            SEE STONE →
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="reel-card-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 16px; text-align: center; display: flex; flex-direction: column;">
+          <div style="background: #FAF7F2; height: 250px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 14px; position: relative; border: 1px solid var(--color-border-light);">
+            <span style="font-size: 36px; color: var(--color-text-main);">▶</span>
+            <span style="font-size: 10px; color: var(--color-text-muted); margin-top: 8px;">Loupe Inspection · 0:32</span>
+          </div>
+          <div style="font-weight: 700; font-size: 13px; color: var(--color-text-main); margin-bottom: 2px;">Burma Spinel Matched Pair</div>
+          <div style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 6px;">Code: VG-SPN-PR01</div>
+          <div style="font-size: 13px; font-weight: 700; color: var(--color-gold-label); margin-bottom: 14px;">₹ 280 / pc</div>
+          <a href="<?php echo esc_url(home_url('/shop/?s=VG-SPN-PR01')); ?>" class="btn-square-dark" style="margin-top: auto; display: block; padding: 10px 14px; background: #1C1A17; color: #FFFFFF; text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
+            SEE STONE →
+          </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="reel-card-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 16px; text-align: center; display: flex; flex-direction: column;">
+          <div style="background: #FAF7F2; height: 250px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 14px; position: relative; border: 1px solid var(--color-border-light);">
+            <span style="font-size: 36px; color: var(--color-text-main);">▶</span>
+            <span style="font-size: 10px; color: var(--color-text-muted); margin-top: 8px;">Daylight Video · 0:50</span>
+          </div>
+          <div style="font-weight: 700; font-size: 13px; color: var(--color-text-main); margin-bottom: 2px;">Zambian Emerald Octagon</div>
+          <div style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 6px;">Code: VG-EMR-OCT8</div>
+          <div style="font-size: 13px; font-weight: 700; color: var(--color-gold-label); margin-bottom: 14px;">₹ 450 / pc</div>
+          <a href="<?php echo esc_url(home_url('/shop/?s=VG-EMR-OCT8')); ?>" class="btn-square-dark" style="margin-top: auto; display: block; padding: 10px 14px; background: #1C1A17; color: #FFFFFF; text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
+            SEE STONE →
+          </a>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="reel-card-item" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 16px; text-align: center; display: flex; flex-direction: column;">
+          <div style="background: #FAF7F2; height: 250px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 14px; position: relative; border: 1px solid var(--color-border-light);">
+            <span style="font-size: 36px; color: var(--color-text-main);">▶</span>
+            <span style="font-size: 10px; color: var(--color-text-muted); margin-top: 8px;">Flash Sheen · 0:28</span>
+          </div>
+          <div style="font-weight: 700; font-size: 13px; color: var(--color-text-main); margin-bottom: 2px;">Rainbow Moonstone Oval 6x8</div>
+          <div style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 6px;">Code: VG-RMS-OV68</div>
+          <div style="font-size: 13px; font-weight: 700; color: var(--color-gold-label); margin-bottom: 14px;">₹ 92 / pc</div>
+          <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" class="btn-square-dark" style="margin-top: auto; display: block; padding: 10px 14px; background: #1C1A17; color: #FFFFFF; text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
+            SEE STONE →
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 8. REVIEWS & TALK TO AN EXPERT (BUILD BOOK PAGE 10) -->
+  <!-- 8. REVIEWS & TALK TO AN EXPERT (POINT 22 SPEC) -->
   <section class="reviews-section" style="background: #FFFFFF; padding: 70px 20px; border-top: 1px solid var(--color-border-light);">
     <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; align-items: start;">
       <div>
         <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--color-gold-label); text-transform: uppercase;">GOOGLE REVIEWS</span>
         <h2 class="font-serif" style="font-size: 32px; font-weight: 400; margin: 6px 0 24px;">What buyers say.</h2>
         
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
-          <div style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px; font-size: 12px;">
+        <div class="reviews-grid-wrapper" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+          <div class="review-card-item" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px; font-size: 12px;">
             <div style="color: #F1C40F; margin-bottom: 6px;">★★★★★</div>
             <p style="margin: 0 0 10px; color: var(--color-text-main); line-height: 1.5;">"Exceptional quality blue sapphires. Precision calibrated lot made setting completely seamless."</p>
             <strong style="font-size: 11px;">Sophie M.</strong> · <span style="font-size: 10px; color: var(--color-text-muted);">UK</span>
           </div>
 
-          <div style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px; font-size: 12px;">
+          <div class="review-card-item" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px; font-size: 12px;">
             <div style="color: #F1C40F; margin-bottom: 6px;">★★★★★</div>
             <p style="margin: 0 0 10px; color: var(--color-text-main); line-height: 1.5;">"The ruby layout arrived exactly matching the video call. Outstanding colour grading."</p>
             <strong style="font-size: 11px;">Rajesh P.</strong> · <span style="font-size: 10px; color: var(--color-text-muted);">Mumbai</span>
           </div>
 
-          <div style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px; font-size: 12px;">
+          <div class="review-card-item" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px; font-size: 12px;">
             <div style="color: #F1C40F; margin-bottom: 6px;">★★★★★</div>
             <p style="margin: 0 0 10px; color: var(--color-text-main); line-height: 1.5;">"Prompt insured delivery to Germany with lab report. Trustworthy family merchant."</p>
             <strong style="font-size: 11px;">Klaus H.</strong> · <span style="font-size: 10px; color: var(--color-text-muted);">Germany</span>
@@ -471,6 +499,7 @@ get_header();
           <a href="<?php echo esc_url(home_url('/reviews/')); ?>" class="btn-underline-link" style="font-size: 12px; font-weight: 700;">Read all reviews →</a>
         </div>
       </div>
+
 
       <!-- Expert Box (Build Book Page 10) -->
       <div style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 30px;">
