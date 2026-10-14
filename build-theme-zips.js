@@ -244,6 +244,83 @@ const themeZipBuffer = createZip(themeEntries);
 fs.writeFileSync(path.join(__dirname, 'vivaazgems-theme.zip'), themeZipBuffer);
 verifyZip(path.join(__dirname, 'vivaazgems-theme.zip'), 'vivaazgems-theme', 'Vivaaz Gems Theme');
 
+// 3b. Build vivaazgems-luxury.zip (fresh slug to bypass any stuck theme locks)
+console.log('\n--> Building vivaazgems-luxury.zip...');
+const luxuryHeader = `/*
+Theme Name: Vivaaz Gems Luxury
+Theme URI: https://vivaazgems.com
+Description: Custom Luxury Standalone & WooCommerce Theme for Vivaaz Gems & Jewellery.
+Author: Google Antigravity & Vivaaz Gems
+Version: 4.5.0
+Text Domain: vivaazgems-luxury
+*/`;
+const luxuryStyleContent = rawStyleContent.replace(/\/\*[\s\S]*?\*\//, luxuryHeader);
+const luxuryEntries = assembleEntries('vivaazgems-luxury', luxuryStyleContent);
+const luxuryZipBuffer = createZip(luxuryEntries);
+fs.writeFileSync(path.join(__dirname, 'vivaazgems-luxury.zip'), luxuryZipBuffer);
+verifyZip(path.join(__dirname, 'vivaazgems-luxury.zip'), 'vivaazgems-luxury', 'Vivaaz Gems Luxury');
+
+// 3c. Build vivaaz-theme-cleaner.zip (Utility plugin to remove stuck old theme folders directly from WP admin)
+console.log('\n--> Building vivaaz-theme-cleaner.zip...');
+const cleanerPluginPhp = `<?php
+/**
+ * Plugin Name: Vivaaz Theme Cleanup Utility
+ * Description: One-click utility to safely delete stuck or locked theme directories on InfinityFree / shared hosts.
+ * Version: 1.0.0
+ * Author: Vivaaz Gems
+ */
+
+if (!defined('ABSPATH')) exit;
+
+function vivaaz_clean_stuck_themes() {
+    $targets = array(
+        WP_CONTENT_DIR . '/themes/vivaazgems-theme-standalone'
+    );
+    
+    function vivaaz_force_rmdir($dir) {
+        if (!is_dir($dir)) return;
+        @chmod($dir, 0777);
+        $items = @scandir($dir);
+        if (!$items) return;
+        foreach ($items as $item) {
+            if ($item === '.' || $item === '..') continue;
+            $path = $dir . DIRECTORY_SEPARATOR . $item;
+            if (is_dir($path)) {
+                vivaaz_force_rmdir($path);
+            } else {
+                @chmod($path, 0777);
+                @unlink($path);
+            }
+        }
+        @rmdir($dir);
+    }
+
+    $cleaned = array();
+    foreach ($targets as $target) {
+        if (is_dir($target)) {
+            vivaaz_force_rmdir($target);
+            if (!is_dir($target)) {
+                $cleaned[] = basename($target);
+            }
+        }
+    }
+}
+register_activation_hook(__FILE__, 'vivaaz_clean_stuck_themes');
+add_action('admin_notices', function() {
+    $dir = WP_CONTENT_DIR . '/themes/vivaazgems-theme-standalone';
+    if (!is_dir($dir)) {
+        echo '<div class="notice notice-success is-dismissible"><p><strong>Vivaaz Cleaner:</strong> The stuck old theme folder has been successfully removed! You can now safely upload your new theme.</p></div>';
+    }
+});
+`;
+const cleanerEntries = [
+  { name: 'vivaaz-theme-cleaner/', isDir: true },
+  { name: 'vivaaz-theme-cleaner/vivaaz-theme-cleaner.php', data: Buffer.from(cleanerPluginPhp, 'utf8') }
+];
+const cleanerZipBuffer = createZip(cleanerEntries);
+fs.writeFileSync(path.join(__dirname, 'vivaaz-theme-cleaner.zip'), cleanerZipBuffer);
+console.log('vivaaz-theme-cleaner.zip built successfully.');
+
 // 4. Build vivaazgems_full_team_backup.zip
 console.log('\n--> Building vivaazgems_full_team_backup.zip...');
 const backupEntries = [];
