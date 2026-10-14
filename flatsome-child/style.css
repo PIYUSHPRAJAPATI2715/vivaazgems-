@@ -311,6 +311,9 @@ body.admin-bar .site-header-wrapper {
 .has-mega-dropdown {
   position: relative !important;
 }
+.has-mega-dropdown.mega-item-fullwidth {
+  position: static !important;
+}
 .mega-dropdown-panel {
   display: none;
   position: absolute !important;
@@ -323,6 +326,15 @@ body.admin-bar .site-header-wrapper {
   box-shadow: 0 12px 36px rgba(0,0,0,0.08) !important;
   padding: 30px !important;
   z-index: 99999 !important;
+}
+.mega-dropdown-panel.mega-dropdown-fullwidth {
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  transform: none !important;
+  box-sizing: border-box !important;
+  padding: 32px clamp(24px, 4vw, 60px) !important;
 }
 .has-mega-dropdown:hover .mega-dropdown-panel {
   display: block !important;
@@ -623,12 +635,40 @@ body.admin-bar .site-header-wrapper {
   .nav-menu-center {
     display: none !important;
   }
+  .main-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    position: relative !important;
+    padding: 10px 16px !important;
+    height: 65px !important;
+  }
   .mobile-hamburger-btn {
     display: flex !important;
+    order: 1 !important;
+    z-index: 2 !important;
+    margin: 0 !important;
   }
-  .main-header {
-    padding: 12px 20px !important;
-    height: 65px !important;
+  .brand-logo-container {
+    order: 2 !important;
+    margin: 0 auto !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    text-align: center !important;
+    z-index: 1 !important;
+  }
+  .header-action-group {
+    order: 3 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+    margin-left: auto !important;
+    z-index: 2 !important;
+  }
+  .header-action-group .has-account-dropdown,
+  .header-action-group .icon-action-btn[title="Wishlist"] {
+    display: none !important;
   }
 }
 
@@ -1183,11 +1223,29 @@ body.admin-bar .site-header-wrapper {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  transition: transform 0.4s ease !important;
+  transition: opacity 0.35s ease, transform 0.4s ease !important;
 }
 
-.product-card-luxury:hover .product-card-media img {
-  transform: scale(1.05) !important;
+.product-card-media img.hover-secondary-img {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+
+.product-card-luxury:hover .product-card-media img.hover-secondary-img {
+  opacity: 1 !important;
+  transform: scale(1.04) !important;
+}
+
+.product-card-luxury:hover .product-card-media img:not(.hover-secondary-img) {
+  transform: scale(1.04) !important;
+}
+
+.parallax-section {
+  background-attachment: fixed !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
 
 .wishlist-heart-btn {
@@ -3521,27 +3579,261 @@ html, body {
     display: none !important;
   }
 
+  /* Point 17: Homepage photo first, headline second, remove grey strip on left */
+  html, body, #wrapper, #main, .content-area {
+    overflow-x: hidden !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    border-left: none !important;
+  }
+  .hero-banner-section {
+    padding: 24px 16px 36px !important;
+    overflow-x: hidden !important;
+    margin-left: 0 !important;
+  }
+  .hero-banner-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .hero-visual-card {
+    order: 1 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .hero-banner-container > div:first-child {
+    order: 2 !important;
+    width: 100% !important;
+  }
+  .hero-heading {
+    font-size: 30px !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Point 18: Find your colour: strictly 2 tiles per row, inside screen */
+  .colour-grid,
+  #tab-content-colour,
+  #tab-content-stone {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .colour-item {
+    padding: 16px 10px !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+  .colour-gem-img {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  /* Point 19: Product cards: strictly 2 equal per row */
+  .products-grid-4,
+  .products-grid-3col,
+  .shop-products-grid,
+  .archive-products-grid,
+  .strands-grid,
+  .layouts-grid,
+  .jewelry-designs-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .product-card-luxury {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Point 20: Instagram: one swipe row */
+  .instagram-reels-row {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 14px !important;
+    padding-bottom: 14px !important;
+    margin: 0 -16px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .reel-card-item {
+    flex: 0 0 75vw !important;
+    max-width: 280px !important;
+    scroll-snap-align: start !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Point 21: Reviews: swipe one by one, "Ask us" box below */
+  .reviews-section > div {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 28px !important;
+  }
+  .reviews-grid-wrapper {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 14px !important;
+    padding-bottom: 12px !important;
+    margin: 0 -16px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .review-card-item {
+    flex: 0 0 85vw !important;
+    scroll-snap-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Point 22: Product page: name and price under the photo, then sizes, buttons, details */
+  .single-product-grid-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  .single-product-gallery-col {
+    order: 1 !important;
+    width: 100% !important;
+  }
+  .single-product-info-col {
+    order: 2 !important;
+    width: 100% !important;
+  }
+  .stone-passport-box {
+    margin-top: 24px !important;
+  }
+
+  /* Point 23: Cart drawer: items one under another */
+  .cart-drawer-items-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+  .cart-drawer-item-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Point 24: Stone page: one neat Filter · Sort line */
+  .shop-filter-bar-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    background: #FFFFFF !important;
+    border: 1px solid var(--color-border-light) !important;
+    padding: 8px 14px !important;
+    margin-bottom: 20px !important;
+  }
   .mobile-filter-btn-wrap {
     display: block !important;
   }
-
-  .products-grid-3col {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
+  .btn-mobile-filter-trigger {
+    background: none !important;
+    border: none !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: var(--color-text-main) !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 0 !important;
+  }
+  .shop-sort-select {
+    border: none !important;
+    background: transparent !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: var(--color-text-main) !important;
+    padding: 0 !important;
+  }
+  .active-badges-flex {
+    display: none !important;
   }
 
-  /* Point 11: Beads page on phone */
+  /* Point 25: Beads: strands first, filters behind a button */
   .beads-catalog-grid {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .beads-strands-main {
+    order: 1 !important;
+    width: 100% !important;
+  }
+  .beads-sidebar {
+    order: 2 !important;
+    display: none;
+  }
+  .bead-shapes-tiles-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* Point 26: Contact form and How it works fit the screen */
+  .luxury-contact-page-wrapper,
+  .luxury-page-wrapper {
+    padding: 30px 14px 60px !important;
+    overflow-x: hidden !important;
+  }
+  .contact-details-box,
+  .contact-form-box,
+  .how-it-works-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .luxury-contact-page-wrapper > .container > div:nth-child(3) {
     grid-template-columns: 1fr !important;
   }
 
-  .bead-shapes-tiles-grid {
-    grid-template-columns: repeat(4, 1fr) !important;
+  /* Point 27: Shorter footer, thin bottom-bar icons, text 12 px+ */
+  .main-footer {
+    padding: 32px 16px 20px !important;
   }
-
-  .strands-grid {
+  .footer-brand-title {
+    font-size: 26px !important;
+    letter-spacing: 0.18em !important;
+  }
+  .footer-5col-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
+    gap: 20px 16px !important;
+    margin-bottom: 24px !important;
+  }
+  .footer-5col-grid .footer-col-item:last-child {
+    grid-column: span 2 !important;
+  }
+  .footer-col-title {
+    margin-bottom: 8px !important;
+    font-size: 11px !important;
+  }
+  .footer-col-links li {
+    margin-bottom: 4px !important;
+  }
+  .footer-col-links a,
+  .footer-updates-line,
+  .footer-bottom-bar,
+  .mobile-bar-btn,
+  .mobile-bar-btn .bar-text {
+    font-size: 12px !important;
+  }
+  .mobile-fixed-bottom-bar {
+    height: 58px !important;
+  }
+  .mobile-bar-btn .bar-icon svg {
+    stroke-width: 1.5 !important;
   }
 
   /* Point 12: Astrology page on phone */

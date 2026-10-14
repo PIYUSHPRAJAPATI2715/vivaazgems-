@@ -41,6 +41,11 @@ $vivaaz_header_rendered = true;
 
   <!-- MAIN HEADER (LOGO LEFT, CENTRED 5 MENUS, CLEAN ICONS RIGHT) -->
   <header class="main-header">
+    <!-- Mobile Hamburger Button (Placed Left on Mobile - Point 15 Spec) -->
+    <button type="button" class="mobile-hamburger-btn" onclick="toggleMobileMenuDrawer();" aria-label="Open Menu">
+      <span></span><span></span><span></span>
+    </button>
+
     <!-- Brand Logo & Name (Always VIVAAZ GEMS, Capitals, Wide Spacing) -->
     <a href="<?php echo esc_url(home_url('/')); ?>" class="brand-logo-container">
       <img src="<?php echo esc_url(vivaaz_get_img_url('vivaaz-logo.png')); ?>" alt="Vivaaz Gems" class="brand-logo-img" style="height: 38px; width: auto; object-fit: contain; display: block;" onerror="this.style.display='none';">
@@ -53,7 +58,7 @@ $vivaaz_header_rendered = true;
     <!-- Centered Navigation Menu with 5 Mega Dropdowns (Step 2) -->
     <ul class="nav-menu-center">
       
-      <!-- 1. GEMSTONES MEGA DROPDOWN (POINT 3 SPEC: FULL WIDTH, PHOTO RIGHT, ALL STONES) -->
+      <!-- 1. GEMSTONES MEGA DROPDOWN (POINT 1 & 3 SPEC: FULL WIDTH, PHOTO RIGHT, ALL STONES) -->
       <li class="has-mega-dropdown mega-item-fullwidth">
         <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="nav-link">GEMSTONES ▾</a>
         <div class="mega-dropdown-panel mega-dropdown-fullwidth">
@@ -124,7 +129,7 @@ $vivaaz_header_rendered = true;
             <div>
               <h4 class="mega-col-title">SHOP BY</h4>
               <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/#colour')); ?>">Colour</a></li>
+                <li><a href="<?php echo esc_url(home_url('/shop/?filter_by=colour')); ?>">Colour</a></li>
                 <li><a href="<?php echo esc_url(home_url('/shop/?filter_by=shape')); ?>">Shape</a></li>
                 <li><a href="<?php echo esc_url(home_url('/shop/?filter_by=price')); ?>">Price</a></li>
                 <li><a href="<?php echo esc_url(home_url('/astrology/#birthstones')); ?>">Birthstones</a></li>
@@ -152,10 +157,10 @@ $vivaaz_header_rendered = true;
             <div>
               <h4 class="mega-col-title">BY STONE</h4>
               <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/layouts/#ruby')); ?>">Ruby Layouts</a></li>
-                <li><a href="<?php echo esc_url(home_url('/layouts/#spinel')); ?>">Spinel Layouts</a></li>
-                <li><a href="<?php echo esc_url(home_url('/layouts/#blue-topaz')); ?>">Blue Topaz Layouts</a></li>
-                <li><a href="<?php echo esc_url(home_url('/layouts/#other')); ?>">Other Layouts</a></li>
+                <li><a href="<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>">Ruby Layouts</a></li>
+                <li><a href="<?php echo esc_url(home_url('/layouts/?stone=spinel')); ?>">Spinel Layouts</a></li>
+                <li><a href="<?php echo esc_url(home_url('/layouts/?stone=blue-topaz')); ?>">Blue Topaz Layouts</a></li>
+                <li><a href="<?php echo esc_url(home_url('/layouts/?stone=other')); ?>">Other Layouts</a></li>
                 <li><a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="text-gold font-bold">All layouts</a></li>
               </ul>
             </div>
@@ -315,7 +320,7 @@ $vivaaz_header_rendered = true;
               </ul>
             </div>
 
-            <!-- Dark Consultation Panel -->
+            <!-- Dark Consultation Panel (Point 9: Book a consultation opens the form) -->
             <div style="background: #1C1A17; color: #FFFFFF; padding: 22px; display: flex; flex-direction: column; justify-content: space-between;">
               <div>
                 <h5 style="font-size: 13px; font-weight: 700; color: #FFFFFF; margin-bottom: 8px;">Astrology consultation</h5>
@@ -323,7 +328,7 @@ $vivaaz_header_rendered = true;
                   Talk to our astrologer. Share your birth details; our astrologer reads your chart and suggests the right stone and weight. Then we find the stone for you.
                 </p>
               </div>
-              <a href="<?php echo esc_url(home_url('/astrology-consultation/')); ?>" class="btn-square-dark" style="background: #FFFFFF; color: #1C1A17; padding: 10px 14px; font-size: 11px; text-align: center; margin-top: 14px; border: none; font-weight: 700;">BOOK A CONSULTATION</a>
+              <a href="javascript:void(0);" onclick="openConsultationModal();" class="btn-square-dark" style="background: #FFFFFF; color: #1C1A17; padding: 10px 14px; font-size: 11px; text-align: center; margin-top: 14px; border: none; font-weight: 700;">BOOK A CONSULTATION</a>
             </div>
           </div>
         </div>
@@ -377,11 +382,6 @@ $vivaaz_header_rendered = true;
           <?php echo (function_exists('WC') && WC()->cart) ? WC()->cart->get_cart_contents_count() : '0'; ?>
         </span>
       </a>
-
-      <!-- Mobile Hamburger Button -->
-      <button type="button" class="mobile-hamburger-btn" onclick="toggleMobileMenuDrawer();" aria-label="Open Menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </header>
 </div>
@@ -404,21 +404,21 @@ $vivaaz_header_rendered = true;
     <div class="mobile-acc-item">
       <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
         <span>Gemstones</span>
-        <span class="acc-chevron">⌄</span>
+        <span class="acc-chevron">›</span>
       </div>
       <div class="mobile-acc-body" style="display: none;">
-        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-acc-sublink-top">Shop all gemstones →</a>
+        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-acc-sublink-top">All Gemstones →</a>
         
-        <div class="mobile-acc-cat-label">PRECIOUS</div>
+        <div class="mobile-acc-cat-label">Precious Gemstones</div>
         <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="mobile-acc-sublink">Ruby</a>
         <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="mobile-acc-sublink">Sapphire</a>
         <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="mobile-acc-sublink">Emerald</a>
 
-        <div class="mobile-acc-cat-label" onclick="event.stopPropagation(); toggleMobileSemi(this);" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 8px 0;">
-          <span>Semi-precious A–Z</span>
-          <span style="font-size: 11px;">⌄</span>
+        <div class="mobile-acc-cat-label" onclick="event.stopPropagation(); toggleMobileSemi(this);" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 10px 0;">
+          <span>Semi-Precious Gemstones (A–Z)</span>
+          <span style="font-size: 13px; color: var(--color-text-muted);">›</span>
         </div>
-        <div class="mobile-acc-semi-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; margin-bottom: 10px;">
+        <div class="mobile-acc-semi-grid" style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px;">
           <a href="<?php echo esc_url(home_url('/shop/?filter_stone=agate')); ?>" class="mobile-acc-sublink">Agate</a>
           <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amazonite')); ?>" class="mobile-acc-sublink">Amazonite</a>
           <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amber')); ?>" class="mobile-acc-sublink">Amber</a>
@@ -433,16 +433,33 @@ $vivaaz_header_rendered = true;
           <a href="<?php echo esc_url(home_url('/shop/?filter_stone=labradorite')); ?>" class="mobile-acc-sublink">Labradorite</a>
           <a href="<?php echo esc_url(home_url('/shop/?filter_stone=lapis-lazuli')); ?>" class="mobile-acc-sublink">Lapis Lazuli</a>
           <a href="<?php echo esc_url(home_url('/shop/?filter_stone=larimar')); ?>" class="mobile-acc-sublink">Larimar</a>
-          <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-acc-sublink" style="color: var(--color-gold-label); grid-column: span 2;">… to Turquoise</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=malachite')); ?>" class="mobile-acc-sublink">Malachite</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=onyx')); ?>" class="mobile-acc-sublink">Onyx</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=opal')); ?>" class="mobile-acc-sublink">Opal</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=peridot')); ?>" class="mobile-acc-sublink">Peridot</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=prehnite')); ?>" class="mobile-acc-sublink">Prehnite</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" class="mobile-acc-sublink">Rainbow Moonstone</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rose-quartz')); ?>" class="mobile-acc-sublink">Rose Quartz</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=spinel')); ?>" class="mobile-acc-sublink">Spinel</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tanzanite')); ?>" class="mobile-acc-sublink">Tanzanite</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tiger-eye')); ?>" class="mobile-acc-sublink">Tiger Eye</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" class="mobile-acc-sublink">Topaz</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tourmaline')); ?>" class="mobile-acc-sublink">Tourmaline</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=turquoise')); ?>" class="mobile-acc-sublink">Turquoise</a>
         </div>
 
-        <div class="mobile-acc-cat-label">BY CUT</div>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_cut=faceted')); ?>" class="mobile-acc-sublink">Faceted</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_cut=cabochon')); ?>" class="mobile-acc-sublink">Cabochon</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_cut=rose-cut')); ?>" class="mobile-acc-sublink">Rose cut</a>
+        <div class="mobile-acc-cat-label" style="margin-top: 14px;">Cuts as Buttons</div>
+        <div class="mobile-cuts-pills" style="display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 16px;">
+          <a href="<?php echo esc_url(home_url('/shop/?filter_cut=faceted')); ?>" class="filter-pill-btn" style="padding: 7px 14px; background: #FAF7F2; border: 1px solid var(--color-border-light); color: var(--color-text-main); font-size: 12px; font-weight: 600; text-decoration: none;">Faceted</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_cut=cabochon')); ?>" class="filter-pill-btn" style="padding: 7px 14px; background: #FAF7F2; border: 1px solid var(--color-border-light); color: var(--color-text-main); font-size: 12px; font-weight: 600; text-decoration: none;">Cabochon</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_cut=rose-cut')); ?>" class="filter-pill-btn" style="padding: 7px 14px; background: #FAF7F2; border: 1px solid var(--color-border-light); color: var(--color-text-main); font-size: 12px; font-weight: 600; text-decoration: none;">Rose Cut</a>
+          <a href="<?php echo esc_url(home_url('/shop/?filter_cut=briolette')); ?>" class="filter-pill-btn" style="padding: 7px 14px; background: #FAF7F2; border: 1px solid var(--color-border-light); color: var(--color-text-main); font-size: 12px; font-weight: 600; text-decoration: none;">Briolette</a>
+        </div>
         
-        <div class="mobile-acc-cat-label" style="margin-top: 10px;">SHOP BY</div>
-        <a href="<?php echo esc_url(home_url('/#colour')); ?>" class="mobile-acc-sublink">By colour, shape, price</a>
+        <div class="mobile-acc-cat-label" style="margin-top: 10px;">Shop By</div>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_by=colour')); ?>" class="mobile-acc-sublink">By Colour</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_by=shape')); ?>" class="mobile-acc-sublink">By Shape</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_by=price')); ?>" class="mobile-acc-sublink">By Price</a>
       </div>
     </div>
 
@@ -450,15 +467,15 @@ $vivaaz_header_rendered = true;
     <div class="mobile-acc-item">
       <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
         <span>Layouts</span>
-        <span class="acc-chevron">⌄</span>
+        <span class="acc-chevron">›</span>
       </div>
       <div class="mobile-acc-body" style="display: none;">
-        <a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="mobile-acc-sublink-top">Shop all layouts →</a>
-        <a href="<?php echo esc_url(home_url('/layouts/#ruby')); ?>" class="mobile-acc-sublink">Ruby layouts</a>
-        <a href="<?php echo esc_url(home_url('/layouts/#spinel')); ?>" class="mobile-acc-sublink">Spinel layouts</a>
-        <a href="<?php echo esc_url(home_url('/layouts/?type=necklace-lines')); ?>" class="mobile-acc-sublink">Necklace lines</a>
-        <a href="<?php echo esc_url(home_url('/layouts/?type=bracelet-lines')); ?>" class="mobile-acc-sublink">Bracelet lines</a>
-        <a href="<?php echo esc_url(home_url('/layouts/#match')); ?>" class="mobile-acc-sublink" style="color: var(--color-gold-label); font-weight: 600;">Send your design or CAD →</a>
+        <a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="mobile-acc-sublink-top">All Layouts →</a>
+        <a href="<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>" class="mobile-acc-sublink">Ruby Layouts</a>
+        <a href="<?php echo esc_url(home_url('/layouts/?stone=spinel')); ?>" class="mobile-acc-sublink">Spinel Layouts</a>
+        <a href="<?php echo esc_url(home_url('/layouts/?type=necklace-lines')); ?>" class="mobile-acc-sublink">Necklace Lines</a>
+        <a href="<?php echo esc_url(home_url('/layouts/?type=bracelet-lines')); ?>" class="mobile-acc-sublink">Bracelet Lines</a>
+        <a href="<?php echo esc_url(home_url('/layouts/#match')); ?>" class="mobile-acc-sublink" style="color: var(--color-gold-label); font-weight: 600;">Send Your Design or CAD →</a>
       </div>
     </div>
 
@@ -466,13 +483,13 @@ $vivaaz_header_rendered = true;
     <div class="mobile-acc-item">
       <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
         <span>Beads</span>
-        <span class="acc-chevron">⌄</span>
+        <span class="acc-chevron">›</span>
       </div>
       <div class="mobile-acc-body" style="display: none;">
-        <a href="<?php echo esc_url(home_url('/beads/')); ?>" class="mobile-acc-sublink-top">Shop all beads →</a>
-        <a href="<?php echo esc_url(home_url('/beads/?shape=round')); ?>" class="mobile-acc-sublink">Round beads</a>
+        <a href="<?php echo esc_url(home_url('/beads/')); ?>" class="mobile-acc-sublink-top">All Beads →</a>
+        <a href="<?php echo esc_url(home_url('/beads/?shape=round')); ?>" class="mobile-acc-sublink">Round Beads</a>
         <a href="<?php echo esc_url(home_url('/beads/?shape=rondelle')); ?>" class="mobile-acc-sublink">Rondelle</a>
-        <a href="<?php echo esc_url(home_url('/beads/?shape=faceted-rondelle')); ?>" class="mobile-acc-sublink">Faceted rondelle</a>
+        <a href="<?php echo esc_url(home_url('/beads/?shape=faceted-rondelle')); ?>" class="mobile-acc-sublink">Faceted Rondelle</a>
         <a href="<?php echo esc_url(home_url('/beads/?shape=nugget')); ?>" class="mobile-acc-sublink">Nugget</a>
         <a href="<?php echo esc_url(home_url('/beads/?shape=chips')); ?>" class="mobile-acc-sublink">Chips</a>
         <a href="<?php echo esc_url(home_url('/beads/?shape=heishi')); ?>" class="mobile-acc-sublink">Heishi</a>
@@ -483,13 +500,13 @@ $vivaaz_header_rendered = true;
     <div class="mobile-acc-item">
       <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
         <span>Jewelry</span>
-        <span class="acc-chevron">⌄</span>
+        <span class="acc-chevron">›</span>
       </div>
       <div class="mobile-acc-body" style="display: none;">
-        <a href="<?php echo esc_url(home_url('/jewelry/')); ?>" class="mobile-acc-sublink-top">Shop jewelry →</a>
-        <a href="<?php echo esc_url(home_url('/jewelry/tennis-bracelets/')); ?>" class="mobile-acc-sublink">Tennis bracelets</a>
-        <a href="<?php echo esc_url(home_url('/jewelry/tennis-necklaces/')); ?>" class="mobile-acc-sublink">Tennis necklaces</a>
-        <a href="<?php echo esc_url(home_url('/make-it-into-jewelry/')); ?>" class="mobile-acc-sublink" style="color: var(--color-gold-label); font-weight: 600;">Make it into jewelry (Custom) →</a>
+        <a href="<?php echo esc_url(home_url('/jewelry/')); ?>" class="mobile-acc-sublink-top">All Jewelry →</a>
+        <a href="<?php echo esc_url(home_url('/jewelry/tennis-bracelets/')); ?>" class="mobile-acc-sublink">Tennis Bracelets</a>
+        <a href="<?php echo esc_url(home_url('/jewelry/tennis-necklaces/')); ?>" class="mobile-acc-sublink">Tennis Necklaces</a>
+        <a href="<?php echo esc_url(home_url('/make-it-into-jewelry/')); ?>" class="mobile-acc-sublink" style="color: var(--color-gold-label); font-weight: 600;">Make It into Jewelry (Custom) →</a>
       </div>
     </div>
 
@@ -497,13 +514,13 @@ $vivaaz_header_rendered = true;
     <div class="mobile-acc-item">
       <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
         <span>Astrology</span>
-        <span class="acc-chevron">⌄</span>
+        <span class="acc-chevron">›</span>
       </div>
       <div class="mobile-acc-body" style="display: none;">
-        <a href="<?php echo esc_url(home_url('/astrology/')); ?>" class="mobile-acc-sublink-top">Gemstones and astrology →</a>
-        <a href="<?php echo esc_url(home_url('/astrology/#sun')); ?>" class="mobile-acc-sublink">Stones for nine planets</a>
-        <a href="<?php echo esc_url(home_url('/astrology/#birthstones')); ?>" class="mobile-acc-sublink">Birthstones by month</a>
-        <a href="javascript:void(0);" onclick="openConsultationModal(); toggleMobileMenuDrawer();" class="mobile-acc-sublink" style="color: var(--color-gold-label); font-weight: 600;">Book a consultation →</a>
+        <a href="<?php echo esc_url(home_url('/astrology/')); ?>" class="mobile-acc-sublink-top">Gemstones and Astrology →</a>
+        <a href="<?php echo esc_url(home_url('/astrology/#sun')); ?>" class="mobile-acc-sublink">Stones for Nine Planets</a>
+        <a href="<?php echo esc_url(home_url('/astrology/#birthstones')); ?>" class="mobile-acc-sublink">Birthstones by Month</a>
+        <a href="javascript:void(0);" onclick="openConsultationModal(); toggleMobileMenuDrawer();" class="mobile-acc-sublink" style="color: var(--color-gold-label); font-weight: 600;">Book a Consultation →</a>
       </div>
     </div>
 
@@ -661,10 +678,14 @@ $vivaaz_header_rendered = true;
       <button type="button" aria-label="Close search" onclick="closeLiveSearchModal();" class="search-modal-close-btn">&times;</button>
     </div>
     <form action="<?php echo esc_url(home_url('/shop/')); ?>" method="get" onsubmit="closeLiveSearchModal();">
-      <input type="text" name="s" id="live-search-input" placeholder="Search a stone, shape or code (e.g. moonstone 6x8 or RMCOC)..." style="width: 100%; padding: 14px; font-size: 14px; border: 1px solid var(--color-border-light); outline: none; margin-bottom: 14px;" />
+      <input type="text" name="s" id="live-search-input" placeholder="Search a stone, shape or code (e.g. moonstone 6x8 or RMCOC)..." style="width: 100%; padding: 14px; font-size: 14px; border: 1px solid var(--color-border-light); outline: none; margin-bottom: 14px;" onkeyup="handleLiveSearch(this.value);" autocomplete="off" />
       <button type="submit" class="btn-square-dark-full" style="padding: 12px;">SEARCH CATALOG →</button>
     </form>
-    <div style="margin-top: 16px; font-size: 11px; color: var(--color-text-muted);">
+    
+    <!-- Real-time Live Search Results Container (Point 10 Spec) -->
+    <div id="live-search-results" style="display: none; max-height: 280px; overflow-y: auto; margin-top: 14px; border: 1px solid var(--color-border-light); background: #FAF7F2; padding: 6px;"></div>
+
+    <div id="popular-searches-box" style="margin-top: 16px; font-size: 11px; color: var(--color-text-muted);">
       <strong>POPULAR SEARCHES:</strong>
       <a href="<?php echo esc_url(home_url('/shop/?s=sapphire')); ?>" style="text-decoration: underline; margin: 0 4px;">Sapphire</a> ·
       <a href="<?php echo esc_url(home_url('/shop/?s=ruby')); ?>" style="text-decoration: underline; margin: 0 4px;">Ruby</a> ·
@@ -676,6 +697,53 @@ $vivaaz_header_rendered = true;
 </div>
 
 <script>
+  var _vivaazCatalog = [
+    { name: "Ceylon Blue Sapphire Oval Faceted", code: "VG-SPH-0705", price: "₹ 1,450", shape: "Oval", size: "7×5 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
+    { name: "Ruby Oval Matched Pair", code: "VG-RBY-0705", price: "₹ 6,800", shape: "Oval", size: "7×5 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
+    { name: "Zambian Emerald Octagon Faceted", code: "VG-EMR-OCT8", price: "₹ 24,500", shape: "Octagon", size: "8×6 mm", img: "<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
+    { name: "Rainbow Moonstone Oval Cabochon", code: "RMCOC68", price: "₹ 95", shape: "Oval", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
+    { name: "Swiss Blue Topaz Round Faceted", code: "VG-TPZ-RD04", price: "₹ 92", shape: "Round", size: "4 mm", img: "<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
+    { name: "Burma Spinel Matched Pair", code: "VG-SPN-PR01", price: "₹ 280", shape: "Cushion", size: "5 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=spinel')); ?>" },
+    { name: "Ruby Graduated Necklace Line Layout", code: "VG-LAY-RBY", price: "₹ 38,000", shape: "Graduated", size: "17 stones", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>" },
+    { name: "Rainbow Moonstone Plain Rondelle Strand", code: "VG-BD-RMS", price: "₹ 1,450", shape: "Rondelle", size: "6–7 mm", img: "<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>", url: "<?php echo esc_url(home_url('/beads/?shape=rondelle')); ?>" }
+  ];
+
+  function handleLiveSearch(query) {
+    var resultsBox = document.getElementById('live-search-results');
+    var popularBox = document.getElementById('popular-searches-box');
+    if (!resultsBox) return;
+    var q = (query || '').toLowerCase().trim();
+    if (!q || q.length < 2) {
+      resultsBox.style.display = 'none';
+      resultsBox.innerHTML = '';
+      if (popularBox) popularBox.style.display = 'block';
+      return;
+    }
+    var matches = _vivaazCatalog.filter(function(item) {
+      return item.name.toLowerCase().indexOf(q) > -1 ||
+             item.code.toLowerCase().indexOf(q) > -1 ||
+             item.shape.toLowerCase().indexOf(q) > -1 ||
+             item.size.toLowerCase().indexOf(q) > -1;
+    });
+    if (matches.length === 0) {
+      resultsBox.innerHTML = '<div style="padding: 12px; font-size: 12px; color: var(--color-text-muted); text-align: center;">No exact stones found for "' + q + '". Press search to view all matches.</div>';
+      resultsBox.style.display = 'block';
+      return;
+    }
+    var html = '';
+    matches.forEach(function(item) {
+      html += '<a href="' + item.url + '" style="display: flex; align-items: center; gap: 12px; padding: 8px 10px; background: #FFFFFF; border-bottom: 1px solid var(--color-border-light); text-decoration: none; color: inherit; margin-bottom: 4px;">' +
+        '<img src="' + item.img + '" style="width: 44px; height: 44px; object-fit: contain; background: #FAF7F2; border: 1px solid var(--color-border-light); flex-shrink: 0;" />' +
+        '<div style="flex: 1; min-width: 0;">' +
+          '<div style="font-size: 12px; font-weight: 700; color: var(--color-text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">' + item.name + '</div>' +
+          '<div style="font-size: 10px; color: var(--color-text-muted);">' + item.size + ' · ' + item.code + '</div>' +
+        '</div>' +
+        '<div style="font-size: 12px; font-weight: 700; color: var(--color-gold-label); white-space: nowrap;">' + item.price + '</div>' +
+      '</a>';
+    });
+    resultsBox.innerHTML = html;
+    resultsBox.style.display = 'block';
+  }
   function updateMegaPhoto(imgFile, titleText) {
     var promoImg = document.getElementById('gem-promo-img');
     var promoTitle = document.getElementById('gem-promo-title');

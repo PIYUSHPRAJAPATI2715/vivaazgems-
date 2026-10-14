@@ -120,7 +120,28 @@ get_header('shop');
 
     </div>
 
-    <!-- Quick Links Under the Page (Word Spec) -->
+    <!-- POINT 14 & 26 SPEC: GOOGLE MAP BELOW THE FORM -->
+    <div class="contact-map-section" style="background: #FFFFFF; border: 1px solid #EBE7DF; padding: 24px; margin-bottom: 32px; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+        <div>
+          <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #9C7C4C; text-transform: uppercase;">LOCATION</span>
+          <h3 class="font-serif" style="font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 400; margin: 4px 0 0; color: #1C1A17;">Our Jaipur Johari Bazar Office on the Map</h3>
+        </div>
+        <a href="https://maps.google.com/?q=Johari+Bazar+Jaipur+Rajasthan+302003" target="_blank" style="font-size: 11px; font-weight: 700; color: #9C7C4C; text-decoration: underline; text-transform: uppercase;">Open in Google Maps ↗</a>
+      </div>
+      <div style="width: 100%; height: 360px; overflow: hidden; border: 1px solid #EBE7DF;">
+        <iframe 
+          title="Vivaaz Gems Location Map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.514418652932!2d75.82348577583685!3d26.918919676644265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db6b5b5b5b5b5%3A0x4a4a4a4a4a4a4a4a!2sJohari%20Bazar%2C%20Jaipur%2C%20Rajasthan%20302003!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
     <div style="background: #FFFFFF; border: 1px solid #EBE7DF; padding: 24px; text-align: center;">
       <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #76706A; margin-bottom: 12px;">HELPFUL LINKS</div>
       <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13px;">

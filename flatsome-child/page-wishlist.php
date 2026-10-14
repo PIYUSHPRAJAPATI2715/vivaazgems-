@@ -56,13 +56,18 @@ get_header();
     }
 
     var html = `
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 14px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 14px; flex-wrap: wrap; gap: 12px;">
         <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
           ${items.length} SAVED ITEM${items.length === 1 ? '' : 'S'}
         </span>
-        <button type="button" onclick="clearAllWishlist();" style="background: none; border: none; font-size: 11px; font-weight: 600; color: #C0392B; cursor: pointer; text-decoration: underline; letter-spacing: 0.05em;">
-          CLEAR ENTIRE WISHLIST
-        </button>
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <button type="button" onclick="shareWishlistOnWhatsApp();" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: #25D366; color: #FFFFFF; border: none; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">
+            <span>💬</span> Share on WhatsApp
+          </button>
+          <button type="button" onclick="clearAllWishlist();" style="background: none; border: none; font-size: 11px; font-weight: 600; color: #C0392B; cursor: pointer; text-decoration: underline; letter-spacing: 0.05em;">
+            Clear all
+          </button>
+        </div>
       </div>
       
       <div class="wishlist-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px;">
@@ -129,6 +134,25 @@ get_header();
       renderWishlistPage();
       if (typeof showWishlistToast === 'function') showWishlistToast('Wishlist cleared');
     }
+  }
+
+  function shareWishlistOnWhatsApp() {
+    var items = [];
+    try {
+      items = JSON.parse(localStorage.getItem('vivaaz_wishlist') || '[]');
+    } catch(e) {}
+    if (!items || items.length === 0) {
+      alert('Your wishlist is empty. Please save some items first.');
+      return;
+    }
+    var msg = "Hello Vivaaz Gems, here is my saved gemstone wishlist from your website:\n\n";
+    items.forEach(function(it, idx) {
+      msg += (idx + 1) + ". " + it.title + " (" + (it.price || '') + ")\n";
+      if (it.url) msg += "   " + it.url + "\n";
+    });
+    msg += "\nCould you please check availability and live photos for these?";
+    var waUrl = "https://wa.me/919680552270?text=" + encodeURIComponent(msg);
+    window.open(waUrl, '_blank');
   }
 
   document.addEventListener("DOMContentLoaded", function() {

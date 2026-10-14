@@ -132,24 +132,44 @@ $vivaaz_footer_rendered = true;
     </div>
   </footer>
 
-  <!-- PHONE BOTTOM BAR (FIXED ON PHONE, HIDDEN ON DESKTOP - POINT 4, 6, 23 SPEC) -->
-  <div class="mobile-fixed-bottom-bar" id="mobile-fixed-bottom-bar">
-    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-bar-btn" title="Shop">
-      <span class="bar-icon">⊞</span>
-      <span class="bar-text">Shop</span>
+  <!-- PHONE BOTTOM BAR (FIXED ON PHONE, HIDDEN ON DESKTOP - POINT 4, 6, 23, 27 SPEC) -->
+  <div class="mobile-fixed-bottom-bar" id="mobile-fixed-bottom-bar" style="font-size: 12px;">
+    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-bar-btn" title="Shop" style="font-size: 12px;">
+      <span class="bar-icon" style="display: flex; justify-content: center; align-items: center; margin-bottom: 2px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+      </span>
+      <span class="bar-text" style="font-size: 12px;">Shop</span>
     </a>
-    <a href="https://wa.me/919680552270" target="_blank" class="mobile-bar-btn" title="WhatsApp">
-      <span class="bar-icon">💬</span>
-      <span class="bar-text">WhatsApp</span>
+    <a href="https://wa.me/919680552270" target="_blank" class="mobile-bar-btn" title="WhatsApp" style="font-size: 12px;">
+      <span class="bar-icon" style="display: flex; justify-content: center; align-items: center; margin-bottom: 2px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+      </span>
+      <span class="bar-text" style="font-size: 12px;">WhatsApp</span>
     </a>
-    <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="mobile-bar-btn" title="Wishlist">
-      <span class="bar-icon">♡</span>
-      <span class="bar-text">Wishlist</span>
+    <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="mobile-bar-btn" title="Wishlist" style="font-size: 12px; position: relative;">
+      <span class="bar-icon" style="display: flex; justify-content: center; align-items: center; margin-bottom: 2px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </span>
+      <span class="bar-text" style="font-size: 12px;">Wishlist</span>
       <span class="cart-badge-count" id="mobile-bar-wishlist-count" style="display: none;">0</span>
     </a>
-    <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="mobile-bar-btn" title="Account">
-      <span class="bar-icon">👤</span>
-      <span class="bar-text">Account</span>
+    <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="mobile-bar-btn" title="Account" style="font-size: 12px;">
+      <span class="bar-icon" style="display: flex; justify-content: center; align-items: center; margin-bottom: 2px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </span>
+      <span class="bar-text" style="font-size: 12px;">Account</span>
     </a>
   </div>
 

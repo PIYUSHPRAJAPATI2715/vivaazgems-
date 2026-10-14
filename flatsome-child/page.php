@@ -7,6 +7,32 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+$request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+
+// 1. Cart Route Guard
+if ((function_exists('is_cart') && is_cart()) || is_page('cart') || strpos($request_uri, '/cart') !== false) {
+    include get_stylesheet_directory() . '/page-cart.php';
+    return;
+}
+
+// 2. Checkout Route Guard
+if ((function_exists('is_checkout') && is_checkout()) || is_page('checkout') || strpos($request_uri, '/checkout') !== false) {
+    include get_stylesheet_directory() . '/page-checkout.php';
+    return;
+}
+
+// 3. My Account Route Guard
+if ((function_exists('is_account_page') && is_account_page()) || is_page('my-account') || strpos($request_uri, '/my-account') !== false) {
+    include get_stylesheet_directory() . '/page-my-account.php';
+    return;
+}
+
+// 4. Wishlist Route Guard
+if (is_page('wishlist') || strpos($request_uri, '/wishlist') !== false) {
+    include get_stylesheet_directory() . '/page-wishlist.php';
+    return;
+}
+
 get_header('shop');
 ?>
 

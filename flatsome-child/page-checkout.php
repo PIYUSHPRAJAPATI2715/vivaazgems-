@@ -46,11 +46,18 @@ get_header('shop');
             </script>
             <?php
         } else {
-            if (have_posts()) :
+            $rendered = '';
+            if (have_posts()) {
+                ob_start();
                 while (have_posts()) : the_post();
                     the_content();
                 endwhile;
-            else :
+                $rendered = trim(ob_get_clean());
+            }
+
+            if (!empty($rendered) && strlen(strip_tags($rendered)) > 20) {
+                echo $rendered;
+            } else {
                 $chk_file = get_stylesheet_directory() . '/woocommerce/checkout/form-checkout.php';
                 if (file_exists($chk_file)) {
                     include $chk_file;
@@ -60,7 +67,7 @@ get_header('shop');
                     $template = locate_template('woocommerce/checkout/form-checkout.php');
                     if (!empty($template) && file_exists($template)) include $template;
                 }
-            endif;
+            }
         }
         ?>
     </div>

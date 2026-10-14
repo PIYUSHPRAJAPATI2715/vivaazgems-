@@ -75,42 +75,85 @@ get_header('shop');
           </ul>
         </div>
 
-        <!-- 2. Filter by Strand Length -->
+        <!-- 2. Filter by Sold by (Point 5 Spec) -->
         <div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
-          <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #9C7C4C; text-transform: uppercase; margin: 0 0 10px;">STRAND LENGTH</h4>
-          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
-            <label style="cursor: pointer;"><input type="checkbox" /> 13 inches <span style="color: var(--color-text-muted);">(12)</span></label>
-            <label style="cursor: pointer;"><input type="checkbox" checked /> 15–16 inches <span style="color: var(--color-text-muted);">(48)</span></label>
-            <label style="cursor: pointer;"><input type="checkbox" /> 18 inches <span style="color: var(--color-text-muted);">(6)</span></label>
+          <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #9C7C4C; text-transform: uppercase; margin: 0 0 10px;">SOLD BY <span style="font-size: 11px; color: var(--color-text-muted); float: right;">▾</span></h4>
+          <div class="filter-buttons-wrap" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <button type="button" class="filter-pill-btn active" onclick="this.classList.toggle('active')">Full Strand (15-16")</button>
+            <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">Half Strand (8")</button>
+            <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">By Weight / Gram</button>
+            <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">Loose Beads (Lot)</button>
           </div>
         </div>
 
-        <!-- 3. Filter by Bead Size -->
+        <!-- 3. Filter by Quality (Point 5 Spec) -->
         <div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
-          <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #9C7C4C; text-transform: uppercase; margin: 0 0 10px;">BEAD SIZE (MM)</h4>
-          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
-            <label style="cursor: pointer;"><input type="checkbox" /> 2 to 3 mm <span style="color: var(--color-text-muted);">(18)</span></label>
-            <label style="cursor: pointer;"><input type="checkbox" checked /> 3 to 4 mm <span style="color: var(--color-text-muted);">(24)</span></label>
-            <label style="cursor: pointer;"><input type="checkbox" /> 4 to 5 mm <span style="color: var(--color-text-muted);">(15)</span></label>
-            <label style="cursor: pointer;"><input type="checkbox" /> 6 to 8 mm <span style="color: var(--color-text-muted);">(20)</span></label>
+          <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #9C7C4C; text-transform: uppercase; margin: 0 0 10px;">QUALITY <span style="font-size: 11px; color: var(--color-text-muted); float: right;">▾</span></h4>
+          <div class="filter-buttons-wrap" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <button type="button" class="filter-pill-btn active" onclick="this.classList.toggle('active')">AAA+ (Top Gem)</button>
+            <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">AAA (Fine)</button>
+            <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">AA (Commercial)</button>
+            <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">Natural Untreated</button>
           </div>
         </div>
 
-        <!-- 4. Filter by Hole Size -->
+        <!-- 4. Filter by Price (Point 5 Spec) -->
+        <div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
+          <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #9C7C4C; text-transform: uppercase; margin: 0 0 10px;">PRICE RANGE <span style="font-size: 11px; color: var(--color-text-muted); float: right;">▾</span></h4>
+          <div style="padding: 4px 0;">
+            <input type="range" min="300" max="25000" step="200" value="10000" id="beads-price-slider" style="width: 100%; accent-color: var(--color-gold-accent, #9C7C4C); cursor: pointer;" oninput="document.getElementById('beads-price-display').textContent = 'Up to ₹' + Number(this.value).toLocaleString('en-IN');">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--color-text-muted); margin-top: 6px;">
+              <span>₹300</span>
+              <span id="beads-price-display" style="font-weight: 600; color: #1C1A17;">Up to ₹10,000</span>
+              <span>₹25,000+</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Filter by Strand Length -->
+        <div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
+          <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #9C7C4C; text-transform: uppercase; margin: 0 0 10px;">STRAND LENGTH <span style="font-size: 11px; color: var(--color-text-muted); float: right;">▾</span></h4>
+          <div class="filter-buttons-wrap" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">13 inches</button>
+            <button type="button" class="filter-pill-btn active" onclick="this.classList.toggle('active')">15–16 inches</button>
+            <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">18 inches</button>
+          </div>
+        </div>
+
+        <!-- 6. Filter by Bead Size -->
+        <div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
+          <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #9C7C4C; text-transform: uppercase; margin: 0 0 10px;">BEAD SIZE (MM) <span style="font-size: 11px; color: var(--color-text-muted); float: right;">▾</span></h4>
+          <div class="filter-buttons-wrap" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">2 to 3 mm</button>
+            <button type="button" class="filter-pill-btn active" onclick="this.classList.toggle('active')">3 to 4 mm</button>
+            <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">4 to 5 mm</button>
+            <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">6 to 8 mm</button>
+          </div>
+        </div>
+
+        <!-- 7. Filter by Hole Size -->
         <div style="margin-bottom: 24px;">
-          <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #9C7C4C; text-transform: uppercase; margin: 0 0 10px;">HOLE SIZE</h4>
-          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
-            <label style="cursor: pointer;"><input type="checkbox" checked /> 0.4 – 0.5 mm standard</label>
-            <label style="cursor: pointer;"><input type="checkbox" /> 0.8 mm thicker stringing</label>
+          <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #9C7C4C; text-transform: uppercase; margin: 0 0 10px;">HOLE SIZE <span style="font-size: 11px; color: var(--color-text-muted); float: right;">▾</span></h4>
+          <div class="filter-buttons-wrap" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <button type="button" class="filter-pill-btn active" onclick="this.classList.toggle('active')">0.4 – 0.5 mm standard</button>
+            <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">0.8 mm thick</button>
           </div>
         </div>
 
       </aside>
 
-      <!-- RIGHT COLUMN: STRANDS GRID (POINT 11 SPEC) -->
+      <!-- RIGHT COLUMN: STRANDS GRID (POINT 11 & POINT 25 SPEC: STRANDS FIRST ON PHONE) -->
       <main class="beads-strands-main">
         
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border-light);">
+        <!-- Point 25: Mobile Filter Trigger Bar (Filters behind a button) -->
+        <div class="beads-mobile-filter-bar" style="display: none; justify-content: space-between; align-items: center; margin-bottom: 16px; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 8px 14px;">
+          <button type="button" class="btn-mobile-filter-trigger" onclick="openBeadsFilterDrawer()" style="background: none; border: none; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #1C1A17; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+            <span>⚡</span> FILTER · SORT ▾
+          </button>
+          <span style="font-size: 11px; color: var(--color-text-muted);">6 strands</span>
+        </div>
+
+        <div class="beads-desktop-sort-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border-light);">
           <div style="font-size: 13px; color: var(--color-text-muted);">
             Showing <strong style="color: #1C1A17;">6 matched strands</strong> · Ready to dispatch
           </div>
@@ -307,6 +350,69 @@ get_header('shop');
 
   </div>
 </div>
+
+<!-- POINT 25 SPEC: MOBILE BEADS FILTER DRAWER -->
+<div id="vivaaz-beads-filter-drawer-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 99998;" onclick="closeBeadsFilterDrawer()"></div>
+<div id="vivaaz-beads-filter-drawer" style="position: fixed; top: 0; left: -100%; width: 85%; max-width: 320px; height: 100%; background: #FFFFFF; z-index: 99999; box-shadow: 2px 0 16px rgba(0,0,0,0.2); transition: left 0.3s ease; overflow-y: auto; padding: 24px; box-sizing: border-box;">
+  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border-light); padding-bottom: 14px; margin-bottom: 20px;">
+    <h3 style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 0;">Bead Filters</h3>
+    <button type="button" onclick="closeBeadsFilterDrawer()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #1C1A17;">✕</button>
+  </div>
+  
+  <div class="mobile-beads-drawer-content">
+    <!-- Sold By in drawer -->
+    <div style="margin-bottom: 20px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 16px;">
+      <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Sold By</h4>
+      <div class="filter-buttons-wrap" style="display: flex; flex-wrap: wrap; gap: 6px;">
+        <button type="button" class="filter-pill-btn active" onclick="this.classList.toggle('active')">Full Strand</button>
+        <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">Half Strand</button>
+        <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">By Gram</button>
+      </div>
+    </div>
+
+    <!-- Quality in drawer -->
+    <div style="margin-bottom: 20px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 16px;">
+      <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Quality</h4>
+      <div class="filter-buttons-wrap" style="display: flex; flex-wrap: wrap; gap: 6px;">
+        <button type="button" class="filter-pill-btn active" onclick="this.classList.toggle('active')">AAA+ (Top)</button>
+        <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">AAA (Fine)</button>
+        <button type="button" class="filter-pill-btn" onclick="this.classList.toggle('active')">AA Standard</button>
+      </div>
+    </div>
+
+    <!-- Price range in drawer -->
+    <div style="margin-bottom: 24px;">
+      <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Price Range</h4>
+      <input type="range" min="300" max="25000" step="200" value="10000" style="width: 100%; accent-color: var(--color-gold-accent, #9C7C4C);" oninput="document.getElementById('m-beads-price').textContent = 'Up to ₹' + Number(this.value).toLocaleString('en-IN');">
+      <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--color-text-muted); margin-top: 6px;">
+        <span>₹300</span>
+        <span id="m-beads-price" style="font-weight: 600; color: #1C1A17;">Up to ₹10,000</span>
+        <span>₹25,000+</span>
+      </div>
+    </div>
+
+    <button type="button" onclick="closeBeadsFilterDrawer()" style="width: 100%; padding: 12px; background: #1C1A17; color: #FFFFFF; border: none; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;">
+      Apply Filters
+    </button>
+  </div>
+</div>
+
+<script>
+function openBeadsFilterDrawer() {
+  var overlay = document.getElementById('vivaaz-beads-filter-drawer-overlay');
+  var drawer = document.getElementById('vivaaz-beads-filter-drawer');
+  if (overlay) overlay.style.display = 'block';
+  if (drawer) drawer.style.left = '0';
+  document.body.style.overflow = 'hidden';
+}
+function closeBeadsFilterDrawer() {
+  var overlay = document.getElementById('vivaaz-beads-filter-drawer-overlay');
+  var drawer = document.getElementById('vivaaz-beads-filter-drawer');
+  if (overlay) overlay.style.display = 'none';
+  if (drawer) drawer.style.left = '-100%';
+  document.body.style.overflow = '';
+}
+</script>
 
 <?php
 get_footer('shop');

@@ -105,6 +105,17 @@ do_action('woocommerce_before_single_product');
 
 <div id="product-<?php echo esc_attr($product_id ?: '0'); ?>" class="product single-product-custom-layout vivaaz-gem-product-page">
   
+  <!-- POINT 6 SPEC: Home / Gemstones line on top with thin arrows -->
+  <div class="product-breadcrumbs-top" style="margin-bottom: 24px; font-size: 12px; color: var(--color-text-muted);">
+    <a href="<?php echo esc_url(home_url('/')); ?>" style="color: inherit; text-decoration: none;">Home</a>
+    <span class="thin-arrow" style="margin: 0 8px; color: #9C7C4C;">›</span>
+    <a href="<?php echo esc_url(home_url('/shop/')); ?>" style="color: inherit; text-decoration: none;">Gemstones</a>
+    <span class="thin-arrow" style="margin: 0 8px; color: #9C7C4C;">›</span>
+    <a href="<?php echo esc_url(home_url('/shop/?filter_stone=' . strtolower(urlencode($stone_name)))); ?>" style="color: inherit; text-decoration: none;"><?php echo esc_html($stone_name); ?></a>
+    <span class="thin-arrow" style="margin: 0 8px; color: #9C7C4C;">›</span>
+    <span style="color: var(--color-text-main); font-weight: 600;"><?php echo esc_html($title); ?></span>
+  </div>
+
   <div class="single-product-grid-wrapper">
     
     <!-- LEFT COLUMN: GALLERY (BUILD BOOK PAGE 14 SPEC) -->
@@ -383,10 +394,117 @@ do_action('woocommerce_before_single_product');
 
   </div>
 
-  <!-- 9. PAIRS WELL WITH (PAGE 14 SPEC) -->
-  <div class="pairs-well-with-section" style="margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--color-border-light);">
+  <!-- 8. SIMILAR STONES (POINT 6 & 8 SPEC) -->
+  <div class="product-related-shelf" style="margin-top: 50px; padding-top: 36px; border-top: 1px solid var(--color-border-light);">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px;">
+      <h3 class="font-serif" style="font-size: 22px; font-weight: 400; margin: 0; color: #1C1A17;">Similar stones</h3>
+      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=' . strtolower(urlencode($stone_name)))); ?>" style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #9C7C4C; text-decoration: none;">View all <?php echo esc_html($stone_name); ?> ›</a>
+    </div>
+    <div class="products-grid-4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+      
+      <div class="product-card-luxury">
+        <div class="product-card-media">
+          <img src="<?php echo esc_url($main_img); ?>" alt="Rainbow Moonstone Pear Cabochon">
+        </div>
+        <div class="product-card-body">
+          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Rainbow Moonstone Pear Cabochon</h4>
+          <div style="font-size: 11px; color: var(--color-text-muted);">8×10 mm · AAA</div>
+          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 180 <span style="font-size: 10px; font-weight: 400; color: var(--color-text-muted);">/ pc</span></div>
+        </div>
+      </div>
+
+      <div class="product-card-luxury">
+        <div class="product-card-media">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Round Cabochon">
+        </div>
+        <div class="product-card-body">
+          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Rainbow Moonstone Round Cabochon</h4>
+          <div style="font-size: 11px; color: var(--color-text-muted);">6 mm · AAA</div>
+          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 85 <span style="font-size: 10px; font-weight: 400; color: var(--color-text-muted);">/ pc</span></div>
+        </div>
+      </div>
+
+      <div class="product-card-luxury">
+        <div class="product-card-media">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Cushion Cabochon" style="filter: hue-rotate(15deg);">
+        </div>
+        <div class="product-card-body">
+          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Rainbow Moonstone Cushion Cabochon</h4>
+          <div style="font-size: 11px; color: var(--color-text-muted);">10×10 mm · AAA</div>
+          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 220 <span style="font-size: 10px; font-weight: 400; color: var(--color-text-muted);">/ pc</span></div>
+        </div>
+      </div>
+
+      <div class="product-card-luxury">
+        <div class="product-card-media">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Freeform Slice" style="filter: brightness(1.05);">
+        </div>
+        <div class="product-card-body">
+          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Rainbow Moonstone Freeform Slice</h4>
+          <div style="font-size: 11px; color: var(--color-text-muted);">15×20 mm · Untreated</div>
+          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 650 <span style="font-size: 10px; font-weight: 400; color: var(--color-text-muted);">/ pc</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 9. RECENTLY VIEWED (POINT 6 & 8 SPEC) -->
+  <div class="product-related-shelf" style="margin-top: 40px; padding-top: 36px; border-top: 1px solid var(--color-border-light);">
+    <h3 class="font-serif" style="font-size: 22px; font-weight: 400; margin: 0 0 20px 0; color: #1C1A17;">Recently viewed</h3>
+    <div class="products-grid-4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+      
+      <div class="product-card-luxury">
+        <div class="product-card-media">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Ceylon Blue Sapphire Oval">
+        </div>
+        <div class="product-card-body">
+          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Ceylon Blue Sapphire Oval Faceted</h4>
+          <div style="font-size: 11px; color: var(--color-text-muted);">7×5 mm · Natural</div>
+          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 12,500</div>
+        </div>
+      </div>
+
+      <div class="product-card-luxury">
+        <div class="product-card-media">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Zambian Emerald Octagon Cut">
+        </div>
+        <div class="product-card-body">
+          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Zambian Emerald Octagon Cut</h4>
+          <div style="font-size: 11px; color: var(--color-text-muted);">6×4 mm · Calibrated</div>
+          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 8,200</div>
+        </div>
+      </div>
+
+      <div class="product-card-luxury">
+        <div class="product-card-media">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Burmese Red Ruby Oval">
+        </div>
+        <div class="product-card-body">
+          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Burmese Red Ruby Oval Faceted</h4>
+          <div style="font-size: 11px; color: var(--color-text-muted);">7×5 mm · Unheated</div>
+          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 14,000</div>
+        </div>
+      </div>
+
+      <div class="product-card-luxury">
+        <div class="product-card-media">
+          <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Swiss Blue Topaz Trillion">
+        </div>
+        <div class="product-card-body">
+          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Swiss Blue Topaz Trillion Cut</h4>
+          <div style="font-size: 11px; color: var(--color-text-muted);">8×8 mm · AAA</div>
+          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 950</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10. PAIRS WELL WITH (PAGE 14 SPEC) -->
+  <div class="pairs-well-with-section" style="margin-top: 40px; padding-top: 36px; border-top: 1px solid var(--color-border-light);">
     <h3 class="font-serif" style="font-size: 22px; font-weight: 400; margin-bottom: 20px;">Pairs well with</h3>
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+    <div class="products-grid-4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
       
       <div class="product-card-luxury">
         <div class="product-card-media">
@@ -566,8 +684,9 @@ do_action('woocommerce_before_single_product');
     var total = qty * unitPrice;
 
     // Backup to localStorage for 100% persistence on free hosting
+    var cartData = [];
     try {
-      var cartData = JSON.parse(localStorage.getItem('vivaaz_local_cart') || '[]');
+      cartData = JSON.parse(localStorage.getItem('vivaaz_local_cart') || '[]');
       var item = {
         key: 'cart_' + Date.now(),
         product_id: <?php echo intval($product_id); ?>,
@@ -589,13 +708,25 @@ do_action('woocommerce_before_single_product');
     } catch(e) {}
 
     if (buyNow === '1') {
-      form.action = '<?php echo esc_url(function_exists("wc_get_checkout_url") ? wc_get_checkout_url() : home_url("/checkout/")); ?>';
+      window.location.href = '<?php echo esc_url(function_exists("wc_get_checkout_url") ? wc_get_checkout_url() : home_url("/checkout/")); ?>';
+      return false;
     } else {
-      form.action = '<?php echo esc_url(function_exists("wc_get_cart_url") ? wc_get_cart_url() : home_url("/cart/")); ?>';
-    }
+      // Point 7: Add to cart opens a side drawer smoothly without reloading
+      var totalCount = 0;
+      cartData.forEach(function(i) { totalCount += (parseInt(i.qty || i.quantity) || 1); });
+      var badges = document.querySelectorAll('.cart-badge-count, #header-bag-count, .bag-count-pill, .cart-count, .header-cart-count');
+      badges.forEach(function(b) {
+        b.textContent = totalCount;
+        b.style.display = 'inline-flex';
+      });
 
-    // Form continues to submit to backend
-    return true;
+      if (typeof openCartDrawer === 'function') {
+        openCartDrawer();
+      } else if (typeof toggleCartDrawer === 'function') {
+        toggleCartDrawer();
+      }
+      return false;
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function() {
