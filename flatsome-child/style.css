@@ -6,24 +6,43 @@ Author: Google Antigravity
 Version: 4.5.0
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 /* ==========================================================================
-   1. BRAND DESIGN TOKENS & COLOR PALETTE (PDF SPEC 1:1)
+   1. BRAND DESIGN TOKENS & COLOR PALETTE (CLIENT DEMO & BUILD BOOK 1:1)
    ========================================================================== */
 :root {
+  /* Demo exact design tokens */
+  --bg: #FAF7F2;
+  --paper: #FFFFFF;
+  --ink: #1C1A17;
+  --mute: #76706A;
+  --soft: #9A9186;
+  --line: #E8E1D6;
+  --line2: #DDD3C5;
+  --gold: #9B7C4E;
+  --gold2: #B8955F;
+  --sand: #F1EBE1;
+  --ok: #3E7B4F;
+  --warn: #C2412D;
+  --wa-green: #1E9E52;
+  --display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --body: 'Manrope', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light;
+
+  /* Legacy variable mappings for complete backward compatibility */
   --color-page-bg: #FAF7F2;      /* Warm Ivory */
   --color-tile-bg: #FFFFFF;      /* Pure White Tiles */
   --color-footer-bg: #F1EBE1;    /* Warm Greige Footer */
   --color-text-main: #1C1A17;    /* Deep Charcoal/Black */
   --color-text-muted: #76706A;   /* Muted Warm Grey */
-  --color-gold-label: #9C7C4C;   /* Warm Gold Labels */
-  --color-gold-accent: #C59B27;  /* Accent Gold */
-  --color-border-light: #EBE5DC; /* Subtle Warm Border */
-  --color-whatsapp-green: #25D366;
+  --color-gold-label: #9B7C4E;   /* Warm Gold Labels */
+  --color-gold-accent: #B8955F;  /* Accent Gold */
+  --color-border-light: #E8E1D6; /* Subtle Warm Border */
+  --color-whatsapp-green: #1E9E52;
   
   --font-family-serif: 'Playfair Display', Georgia, serif;
-  --font-family-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-family-sans: 'Manrope', 'Plus Jakarta Sans', -apple-system, sans-serif;
   --transition-smooth: all 0.25s ease-in-out;
 }
 
@@ -3841,4 +3860,359 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ==========================================================================
+   STYLE GUIDE MASTER RULES (CLIENT DEMO SPEC 1:1)
+   ========================================================================== */
+
+/* 1. BUTTONS: Square corners (radius 0), CAPITAL letters, Manrope 700, 12px, letter-spacing 0.16em */
+button,
+.btn,
+.woocommerce button.button,
+.woocommerce a.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.btn-square-dark,
+.btn-square-dark-full,
+.btn-action-add-cart,
+.single_add_to_cart_button {
+  border-radius: 0 !important;
+  font-family: var(--body) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.16em !important;
+}
+
+/* Main button: Black #1C1A17, white text, padding 14x26px */
+.btn,
+.btn-main,
+.woocommerce button.button.alt,
+.btn-square-dark,
+.btn-square-dark-full,
+.btn-action-add-cart,
+.single_add_to_cart_button {
+  background: var(--ink) !important;
+  color: #FFFFFF !important;
+  border: 1px solid var(--ink) !important;
+  padding: 14px 26px !important;
+  font-size: 12px !important;
+  box-shadow: none !important;
+  transition: background 0.2s ease, border-color 0.2s ease !important;
+}
+.btn:hover,
+.btn-main:hover,
+.woocommerce button.button.alt:hover,
+.btn-square-dark:hover,
+.btn-square-dark-full:hover,
+.btn-action-add-cart:hover,
+.single_add_to_cart_button:hover {
+  background: #3A352F !important;
+  border-color: #3A352F !important;
+  color: #FFFFFF !important;
+}
+
+/* Second button: Transparent with 1px black border, fills black on hover */
+.btn.o,
+.btn-secondary,
+.btn-action-buy-now,
+.woocommerce a.button.checkout-button {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--ink) !important;
+  border-radius: 0 !important;
+  padding: 14px 26px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  transition: background 0.2s ease, color 0.2s ease !important;
+}
+.btn.o:hover,
+.btn-secondary:hover,
+.btn-action-buy-now:hover,
+.woocommerce a.button.checkout-button:hover {
+  background: var(--ink) !important;
+  color: #FFFFFF !important;
+}
+
+/* WhatsApp + Video Call pair (act2): Two equal white buttons side by side under main buttons */
+.act2 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px !important;
+  margin-top: 10px !important;
+}
+.act2 button,
+.act2 a {
+  border: 1px solid var(--line2) !important;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  padding: 12px 10px !important;
+  display: flex !important;
+  gap: 8px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 11.5px !important;
+  letter-spacing: 0.14em !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  border-radius: 0 !important;
+  transition: border-color 0.2s, background 0.2s !important;
+}
+.act2 button:hover,
+.act2 a:hover {
+  border-color: var(--ink) !important;
+}
+.act2 .wa-icon,
+.act2 a:first-child .i,
+.act2 button:first-child .i {
+  color: var(--wa-green) !important;
+}
+
+/* Wishlist Button: Square 52px box desktop, 44px phone, 1px light border, thin heart icon */
+.wl,
+.pbtns .wl,
+.btn-action-wishlist {
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  border: 1px solid var(--line2) !important;
+  border-radius: 0 !important;
+  background: var(--paper) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: border-color 0.2s !important;
+}
+.wl:hover,
+.btn-action-wishlist:hover {
+  border-color: var(--ink) !important;
+}
+.wl.on svg,
+.btn-action-wishlist.on svg {
+  fill: var(--warn) !important;
+  stroke: var(--warn) !important;
+}
+
+/* Small button (for cards): padding 10x16px, 11px text */
+.btn.sm {
+  padding: 10px 16px !important;
+  font-size: 11px !important;
+}
+
+/* Full-width button: Forms, cart, checkout, phone */
+.btn.wide {
+  width: 100% !important;
+}
+
+/* 2. CHIPS:
+   - Filter chips: rounded pill (999px), 1px light border, white, 12.5px, count in grey em. Chosen = black with white text.
+   - Size chips: square (border-radius: 0), chosen = black with white text.
+*/
+.chip {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border: 1px solid var(--line2) !important;
+  border-radius: 999px !important;
+  padding: 6px 13px !important;
+  font-size: 12.5px !important;
+  background: var(--paper) !important;
+  color: #3B362F !important;
+  transition: all 0.15s ease !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+.chip em {
+  font-style: normal !important;
+  color: var(--soft) !important;
+  font-size: 11.5px !important;
+}
+.chip:hover {
+  border-color: var(--ink) !important;
+}
+.chip.on,
+.chip.active {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+  border-color: var(--ink) !important;
+}
+.chip.on em,
+.chip.active em {
+  color: #CFC6B8 !important;
+}
+
+/* Square Chips for Sizes, Metal, Length */
+.chips.sq .chip,
+.chip.sq,
+.size-pill-btn,
+.size-pill {
+  border-radius: 0 !important;
+}
+.size-pill-btn.active,
+.size-pill.active {
+  background: var(--ink) !important;
+  color: #FFFFFF !important;
+  border-color: var(--ink) !important;
+}
+
+/* 3. QUICK VIEW BUTTON: white bar across bottom of photo on card hover (desktop only) */
+.qv {
+  position: absolute !important;
+  left: 14px !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: var(--ink) !important;
+  text-align: center !important;
+  padding: 10px !important;
+  font-size: 11px !important;
+  letter-spacing: 0.16em !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  border-radius: 0 !important;
+  border: 1px solid rgba(232, 225, 214, 0.6) !important;
+  opacity: 0 !important;
+  transform: translateY(8px) !important;
+  transition: all 0.25s ease !important;
+  cursor: pointer !important;
+  z-index: 5 !important;
+}
+.card:hover .qv,
+.product-card-luxury:hover .qv {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* 4. ICONS: Thin outline vector icons (1.4px stroke, round ends, no fill) */
+.i,
+svg.i {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.4px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* 5. PHONE BOTTOM BAR: 62px, 4 equal items (Shop, Search, WhatsApp, Wishlist) */
+.mobile-fixed-bottom-bar,
+.bb {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  height: 62px !important;
+  background: var(--paper) !important;
+  border-top: 1px solid var(--line) !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  z-index: 99999 !important;
+  padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+}
+.mobile-bar-btn {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  font-size: 12px !important;
+  color: var(--mute) !important;
+  text-decoration: none !important;
+}
+.mobile-bar-btn .bar-icon svg,
+.mobile-bar-btn .i {
+  width: 20px !important;
+  height: 20px !important;
+  color: var(--ink) !important;
+}
+
+/* Responsive switches for Footer and Buybar */
+@media (max-width: 768px) {
+  .mobile-product-buybar,
+  .buybar {
+    display: grid !important;
+  }
+  .footer-desktop-cols {
+    display: none !important;
+  }
+  .footer-mobile-rows {
+    display: block !important;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-fixed-bottom-bar,
+  .mobile-product-buybar {
+    display: none !important;
+  }
+  .footer-mobile-rows {
+    display: none !important;
+  }
+  .footer-desktop-cols {
+    display: grid !important;
+  }
+}
+
+/* ==========================================================================
+   CART DRAWER & HOVER SWAP STYLES (100% DEMO FIDELITY)
+   ========================================================================== */
+.vivaaz-cart-drawer {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: min(440px, 100%) !important;
+  background: var(--paper, #FFFFFF) !important;
+  z-index: 100000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transform: translateX(100%);
+  transition: transform 0.3s ease !important;
+  box-shadow: -6px 0 35px rgba(28, 26, 23, 0.12) !important;
+  padding-top: env(safe-area-inset-top, 0px) !important;
+  padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+}
+
+.vivaaz-cart-drawer.open {
+  transform: translateX(0) !important;
+}
+
+.cart-drawer-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(28, 26, 23, 0.45) !important;
+  z-index: 99998 !important;
+  opacity: 0;
+  transition: opacity 0.3s ease !important;
+}
+
+.cart-drawer-backdrop.open {
+  opacity: 1 !important;
+}
+
+/* Secondary Photo Swap on Product Card Hover (Point 10 Spec) */
+.card .ph .secondary-img {
+  position: absolute !important;
+  inset: 0 !important;
+  margin: auto !important;
+  opacity: 0 !important;
+  transform: scale(1) !important;
+  transition: opacity 0.4s ease, transform 0.6s ease !important;
+  pointer-events: none !important;
+}
+
+.card:hover .ph .secondary-img {
+  opacity: 1 !important;
+  transform: scale(1.08) !important;
+}
+
+.card:hover .ph .primary-img {
+  opacity: 0.15 !important;
+}
+
 

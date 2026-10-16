@@ -311,33 +311,51 @@ do_action('woocommerce_before_single_product');
           </div>
         </div>
 
-        <!-- 3. ACTION BUTTONS: ADD TO CART & BUY NOW & WISHLIST (PAGE 14 SPEC) -->
-        <div class="action-buttons-grid" style="display: flex !important; align-items: stretch !important; gap: 12px !important; margin-bottom: 16px !important; width: 100% !important; box-sizing: border-box !important;">
-          <button type="submit" class="btn-action-add-cart" onclick="document.getElementById('form-buy-now-flag').value='0';" style="flex: 1 1 0 !important; height: 48px !important; padding: 0 16px !important; background: #1C1A17 !important; color: #FFFFFF !important; border: 1px solid #1C1A17 !important; font-size: 12px !important; font-weight: 700 !important; letter-spacing: 0.1em !important; text-transform: uppercase !important; cursor: pointer !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; border-radius: 0 !important; transition: all 0.2s ease !important;">
+        <!-- 3. ACTION BUTTONS: ADD TO CART (BLACK), BUY NOW (TRANSPARENT/BLACK BORDER), WISHLIST (SQUARE 52PX) -->
+        <div class="pbtns action-buttons-grid" style="display: grid !important; grid-template-columns: 1fr 1fr 52px !important; gap: 10px !important; margin-top: 20px !important; margin-bottom: 12px !important; width: 100% !important;">
+          <button type="submit" class="btn btn-action-add-cart" onclick="document.getElementById('form-buy-now-flag').value='0';" style="height: 48px !important; padding: 0 16px !important; font-size: 12px !important; letter-spacing: 0.16em !important; font-weight: 700 !important; text-transform: uppercase !important; border-radius: 0 !important;">
             ADD TO CART
           </button>
           
-          <button type="submit" class="btn-action-buy-now" onclick="document.getElementById('form-buy-now-flag').value='1';" style="flex: 1 1 0 !important; height: 48px !important; padding: 0 16px !important; background: #9C7C4C !important; color: #FFFFFF !important; border: 1px solid #9C7C4C !important; font-size: 12px !important; font-weight: 700 !important; letter-spacing: 0.1em !important; text-transform: uppercase !important; cursor: pointer !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; border-radius: 0 !important; transition: all 0.2s ease !important;">
+          <button type="submit" class="btn o btn-action-buy-now" onclick="document.getElementById('form-buy-now-flag').value='1';" style="height: 48px !important; padding: 0 16px !important; background: transparent !important; color: #1C1A17 !important; border: 1px solid #1C1A17 !important; font-size: 12px !important; font-weight: 700 !important; letter-spacing: 0.16em !important; text-transform: uppercase !important; border-radius: 0 !important;">
             BUY NOW
           </button>
 
-          <button type="button" class="btn-action-wishlist" id="single-wishlist-btn" data-wishlist-id="<?php echo esc_attr($product_id); ?>" onclick="toggleProductWishlist(<?php echo intval($product_id); ?>, <?php echo json_encode($title); ?>, <?php echo json_encode($main_img); ?>, '₹ <?php echo number_format($tier_10); ?>', <?php echo json_encode(get_permalink($product_id) ?: home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>, this);" title="Save to Wishlist" style="flex: 0 0 48px !important; width: 48px !important; height: 48px !important; background: #FFFFFF !important; border: 1px solid var(--color-border-light) !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; cursor: pointer !important; font-size: 20px !important; color: var(--color-text-main) !important; border-radius: 0 !important; box-sizing: border-box !important; transition: all 0.2s ease !important;">
-            <span class="wishlist-heart-symbol" id="single-heart-symbol">♡</span>
+          <button type="button" class="wl btn-action-wishlist" id="single-wishlist-btn" data-wishlist-id="<?php echo esc_attr($product_id); ?>" onclick="toggleProductWishlist(<?php echo intval($product_id); ?>, <?php echo json_encode($title); ?>, <?php echo json_encode($main_img); ?>, '₹ <?php echo number_format($tier_10); ?>', <?php echo json_encode(get_permalink($product_id) ?: home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>, this);" title="Save to Wishlist" style="width: 52px !important; height: 48px !important; min-width: 52px !important; background: #FFFFFF !important; border: 1px solid var(--line2) !important; border-radius: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; cursor: pointer !important;">
+            <svg class="i" style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/>
+            </svg>
           </button>
         </div>
 
-        <!-- 4. QUIET TRUST LINE (PAGE 14 SPEC) -->
-        <div class="quiet-trust-line" style="font-size: 11px !important; color: var(--color-text-muted) !important; margin-bottom: 12px !important; text-align: center !important; width: 100% !important; display: block !important;">
-          Ships in 1–2 days · Insured worldwide · <a href="<?php echo esc_url(home_url('/guarantee/')); ?>" style="text-decoration: underline; color: inherit;">Our guarantee</a>
-        </div>
-
-        <!-- 5. WHATSAPP LIVE LOT LINK (PAGE 14 SPEC) -->
-        <div class="whatsapp-lot-link-wrap" style="text-align: center !important; margin-bottom: 24px !important; width: 100% !important; display: block !important;">
-          <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" style="font-size: 12px; color: #1E9E52; font-weight: 600; text-decoration: underline; display: inline-block;">
-            See this exact lot live on WhatsApp →
+        <!-- 4. WHATSAPP + VIDEO CALL PAIR (EXACT TWO EQUAL WHITE BUTTONS SIDE BY SIDE) -->
+        <div class="act2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; margin-bottom: 14px;">
+          <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" style="border: 1px solid var(--line2); background: var(--paper); color: var(--ink); padding: 12px 10px; display: flex; gap: 8px; align-items: center; justify-content: center; font-size: 11.5px; letter-spacing: 0.14em; font-weight: 700; text-transform: uppercase; text-decoration: none; border-radius: 0;">
+            <svg class="i" style="width: 17px; height: 17px; color: #1E9E52;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4.5 19.5l1.2-3.6A7.8 7.8 0 1 1 8.6 18.6z"/><path d="M9.3 9.2c.3 2.4 2.6 4.8 5.4 5.4l1.1-1.1-1.7-.9-.7.7c-1.1-.5-2-1.4-2.5-2.5l.7-.7-.9-1.7z"/></svg>
+            SEE THIS EXACT LOT LIVE
+          </a>
+          <a href="javascript:void(0);" onclick="openVideoCallModal();" style="border: 1px solid var(--line2); background: var(--paper); color: var(--ink); padding: 12px 10px; display: flex; gap: 8px; align-items: center; justify-content: center; font-size: 11.5px; letter-spacing: 0.14em; font-weight: 700; text-transform: uppercase; text-decoration: none; border-radius: 0;">
+            <svg class="i" style="width: 17px; height: 17px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3.5" y="6.5" width="12" height="11" rx="2"/><path d="M15.5 10.5l5-3v9l-5-3"/></svg>
+            REQUEST VIDEO CALL
           </a>
         </div>
+
+        <!-- 5. QUIET TRUST ROW -->
+        <div class="trow" style="display: flex; gap: 8px 20px; justify-content: center; flex-wrap: wrap; font-size: 12.5px; color: var(--mute); margin: 14px 0 24px; padding-top: 14px; border-top: 1px solid var(--line);">
+          <span>✓ Ships in 1–2 days</span>
+          <span>✓ Insured worldwide</span>
+          <span>✓ <a href="<?php echo esc_url(home_url('/guarantee/')); ?>" style="color: inherit; text-decoration: underline;">Our guarantee</a></span>
+        </div>
       </form>
+
+      <!-- STICKY MOBILE BUY BAR (ABOVE 62PX PHONE BOTTOM BAR) -->
+      <div class="buybar mobile-product-buybar" id="mobile-product-buybar" style="display: none; position: fixed; left: 0; right: 0; bottom: 62px; background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 12px; z-index: 99998; grid-template-columns: 1.4fr 1fr; gap: 8px;">
+        <button type="button" class="btn" onclick="document.getElementById('vivaaz-product-form').submit();" style="width: 100%; height: 44px; padding: 0 10px; font-size: 11px; letter-spacing: 0.08em; white-space: nowrap; border-radius: 0;">ADD TO CART</button>
+        <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" class="btn o" style="display: flex; align-items: center; justify-content: center; gap: 6px; height: 44px; padding: 0 10px; font-size: 11px; letter-spacing: 0.08em; white-space: nowrap; text-decoration: none; border: 1px solid var(--ink); color: var(--ink); background: var(--paper); border-radius: 0;">
+          <svg class="i" style="width: 16px; height: 16px; color: #1E9E52;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4.5 19.5l1.2-3.6A7.8 7.8 0 1 1 8.6 18.6z"/><path d="M9.3 9.2c.3 2.4 2.6 4.8 5.4 5.4l1.1-1.1-1.7-.9-.7.7c-1.1-.5-2-1.4-2.5-2.5l.7-.7-.9-1.7z"/></svg>
+          WHATSAPP
+        </a>
+      </div>
 
       <!-- 6. ACCORDION (PAGE 14 SPEC & PAGE 26 WORD UPDATES) -->
       <div class="product-accordion-wrapper" style="margin-bottom: 24px;">

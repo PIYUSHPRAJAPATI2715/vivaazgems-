@@ -670,53 +670,69 @@ $vivaaz_header_rendered = true;
   </div>
 </div>
 
-<!-- POPUP LIVE SEARCH MODAL (BUILD BOOK PAGE 13) -->
-<div id="live-search-modal" class="live-search-modal" style="display: none !important;" onclick="if(event.target === this) closeLiveSearchModal();">
-  <div class="search-modal-box" onclick="event.stopPropagation();">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-      <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">SEARCH VIVAAZ GEMS</span>
-      <button type="button" aria-label="Close search" onclick="closeLiveSearchModal();" class="search-modal-close-btn">&times;</button>
+<!-- POPUP LIVE SEARCH MODAL (BUILD BOOK PAGE 13 & DEMO) -->
+<div id="live-search-modal" class="live-search-modal" style="display: none !important; position: fixed; inset: 0; background: rgba(28,26,23,.6); z-index: 99999; align-items: flex-start; justify-content: center; padding-top: 40px;" onclick="if(event.target === this) closeLiveSearchModal();">
+  <div class="search-modal-box" onclick="event.stopPropagation();" style="width: min(680px, calc(100% - 24px)); background: #FFFFFF; border: 1px solid var(--line); padding: 26px 30px; box-shadow: 0 30px 60px rgba(0,0,0,.2);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+      <span class="cap" style="font-size: 10.5px; letter-spacing: 0.2em; color: var(--gold); font-weight: 700; text-transform: uppercase;">SEARCH VIVAAZ GEMS</span>
+      <button type="button" aria-label="Close search" onclick="closeLiveSearchModal();" style="background: none; border: 0; font-size: 24px; cursor: pointer; color: var(--soft); line-height: 1;">&times;</button>
     </div>
-    <form action="<?php echo esc_url(home_url('/shop/')); ?>" method="get" onsubmit="closeLiveSearchModal();">
-      <input type="text" name="s" id="live-search-input" placeholder="Search a stone, shape or code (e.g. moonstone 6x8 or RMCOC)..." style="width: 100%; padding: 14px; font-size: 14px; border: 1px solid var(--color-border-light); outline: none; margin-bottom: 14px;" onkeyup="handleLiveSearch(this.value);" autocomplete="off" />
-      <button type="submit" class="btn-square-dark-full" style="padding: 12px;">SEARCH CATALOG →</button>
+    <form action="<?php echo esc_url(home_url('/shop/')); ?>" method="get" onsubmit="closeLiveSearchModal();" style="margin-bottom: 12px;">
+      <div style="display: flex; align-items: center; gap: 10px; border-bottom: 1.5px solid var(--ink); padding-bottom: 8px;">
+        <svg class="i" style="width: 20px; height: 20px; color: var(--soft);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        <input type="text" name="s" id="live-search-input" placeholder="Search a stone, shape or reel code (e.g. RMCOC68)..." style="flex: 1; border: 0; font-size: 18px; font-family: var(--display); background: transparent; outline: none; padding: 4px 0;" onkeyup="handleLiveSearch(this.value);" autocomplete="off" />
+        <button type="submit" class="btn sm" style="padding: 8px 16px; font-size: 11px;">SEARCH</button>
+      </div>
     </form>
     
-    <!-- Real-time Live Search Results Container (Point 10 Spec) -->
-    <div id="live-search-results" style="display: none; max-height: 280px; overflow-y: auto; margin-top: 14px; border: 1px solid var(--color-border-light); background: #FAF7F2; padding: 6px;"></div>
-
-    <div id="popular-searches-box" style="margin-top: 16px; font-size: 11px; color: var(--color-text-muted);">
-      <strong>POPULAR SEARCHES:</strong>
-      <a href="<?php echo esc_url(home_url('/shop/?s=sapphire')); ?>" style="text-decoration: underline; margin: 0 4px;">Sapphire</a> ·
-      <a href="<?php echo esc_url(home_url('/shop/?s=ruby')); ?>" style="text-decoration: underline; margin: 0 4px;">Ruby</a> ·
-      <a href="<?php echo esc_url(home_url('/shop/?s=moonstone')); ?>" style="text-decoration: underline; margin: 0 4px;">Moonstone</a> ·
-      <a href="<?php echo esc_url(home_url('/shop/?s=emerald')); ?>" style="text-decoration: underline; margin: 0 4px;">Emerald</a> ·
-      <a href="<?php echo esc_url(home_url('/layouts/')); ?>" style="text-decoration: underline; margin: 0 4px;">Layouts</a>
+    <!-- Quick Search Chips -->
+    <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 10px;">
+      <span style="font-size: 11px; color: var(--soft); margin-right: 4px;">Quick:</span>
+      <button type="button" class="chip" onclick="setLiveSearchValue('Ruby');">Ruby</button>
+      <button type="button" class="chip" onclick="setLiveSearchValue('Rainbow moonstone 6x8');">Rainbow moonstone 6x8</button>
+      <button type="button" class="chip" onclick="setLiveSearchValue('Blue sapphire');">Blue sapphire</button>
+      <button type="button" class="chip" onclick="setLiveSearchValue('Spinel');">Spinel</button>
+      <button type="button" class="chip on" onclick="setLiveSearchValue('RMCOC68');" style="font-weight: 700;">RMCOC68</button>
+      <button type="button" class="chip" onclick="setLiveSearchValue('Emerald');">Emerald</button>
     </div>
+
+    <!-- Real-time Live Search Results Container -->
+    <div id="live-search-results" style="display: none; max-height: 320px; overflow-y: auto; margin-top: 14px; border: 1px solid var(--line); background: var(--bg); padding: 8px;"></div>
+
+    <p style="font-size: 12px; color: var(--mute); margin: 14px 0 0; line-height: 1.5;">
+      Saw a stone in a reel? Type the code from the reel, e.g. <b style="color: var(--ink);">RMCOC68</b>.
+    </p>
   </div>
 </div>
 
 <script>
   var _vivaazCatalog = [
-    { name: "Ceylon Blue Sapphire Oval Faceted", code: "VG-SPH-0705", price: "₹ 1,450", shape: "Oval", size: "7×5 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
-    { name: "Ruby Oval Matched Pair", code: "VG-RBY-0705", price: "₹ 6,800", shape: "Oval", size: "7×5 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
-    { name: "Zambian Emerald Octagon Faceted", code: "VG-EMR-OCT8", price: "₹ 24,500", shape: "Octagon", size: "8×6 mm", img: "<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
-    { name: "Rainbow Moonstone Oval Cabochon", code: "RMCOC68", price: "₹ 95", shape: "Oval", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
-    { name: "Swiss Blue Topaz Round Faceted", code: "VG-TPZ-RD04", price: "₹ 92", shape: "Round", size: "4 mm", img: "<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
-    { name: "Burma Spinel Matched Pair", code: "VG-SPN-PR01", price: "₹ 280", shape: "Cushion", size: "5 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=spinel')); ?>" },
-    { name: "Ruby Graduated Necklace Line Layout", code: "VG-LAY-RBY", price: "₹ 38,000", shape: "Graduated", size: "17 stones", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>" },
-    { name: "Rainbow Moonstone Plain Rondelle Strand", code: "VG-BD-RMS", price: "₹ 1,450", shape: "Rondelle", size: "6–7 mm", img: "<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>", url: "<?php echo esc_url(home_url('/beads/?shape=rondelle')); ?>" }
+    { name: "Rainbow Moonstone Oval Cabochon", code: "RMCOC68", price: "₹ 120 / pc", shape: "Oval", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=RMCOC68')); ?>" },
+    { name: "Ceylon Blue Sapphire Oval Faceted", code: "BSFOV", price: "₹ 1,450 / pc", shape: "Oval", size: "5×7 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=BSFOV')); ?>" },
+    { name: "Matched Ruby Pear Pair", code: "RBFPR", price: "₹ 6,800 / pair", shape: "Pear", size: "4×6 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=RBFPR')); ?>" },
+    { name: "Zambian Emerald Octagon Faceted", code: "EMFOC", price: "₹ 24,500", shape: "Octagon", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=EMFOC')); ?>" },
+    { name: "Swiss Blue Topaz Round Lot", code: "TPFRD", price: "₹ 45 / pc", shape: "Round", size: "2–8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=TPFRD')); ?>" },
+    { name: "Amethyst Oval Calibrated Lot", code: "AMFOV", price: "₹ 95 / pc", shape: "Oval", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=AMFOV')); ?>" },
+    { name: "Burma Spinel Matched Cushion Pair", code: "SPNPR", price: "₹ 280 / pc", shape: "Cushion", size: "5 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=spinel')); ?>" },
+    { name: "Ruby Graduated Line Layout", code: "LAYRBY", price: "₹ 38,000", shape: "Graduated", size: "17 stones", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>" }
   ];
+
+  function setLiveSearchValue(val) {
+    var inp = document.getElementById('live-search-input');
+    if (inp) {
+      inp.value = val;
+      inp.focus();
+      handleLiveSearch(val);
+    }
+  }
 
   function handleLiveSearch(query) {
     var resultsBox = document.getElementById('live-search-results');
-    var popularBox = document.getElementById('popular-searches-box');
     if (!resultsBox) return;
     var q = (query || '').toLowerCase().trim();
     if (!q || q.length < 2) {
       resultsBox.style.display = 'none';
       resultsBox.innerHTML = '';
-      if (popularBox) popularBox.style.display = 'block';
       return;
     }
     var matches = _vivaazCatalog.filter(function(item) {
@@ -726,19 +742,19 @@ $vivaaz_header_rendered = true;
              item.size.toLowerCase().indexOf(q) > -1;
     });
     if (matches.length === 0) {
-      resultsBox.innerHTML = '<div style="padding: 12px; font-size: 12px; color: var(--color-text-muted); text-align: center;">No exact stones found for "' + q + '". Press search to view all matches.</div>';
+      resultsBox.innerHTML = '<div style="padding: 12px; font-size: 12px; color: var(--mute); text-align: center;">No exact stones found for "' + q + '". Press search to view all catalog matches.</div>';
       resultsBox.style.display = 'block';
       return;
     }
     var html = '';
     matches.forEach(function(item) {
-      html += '<a href="' + item.url + '" style="display: flex; align-items: center; gap: 12px; padding: 8px 10px; background: #FFFFFF; border-bottom: 1px solid var(--color-border-light); text-decoration: none; color: inherit; margin-bottom: 4px;">' +
-        '<img src="' + item.img + '" style="width: 44px; height: 44px; object-fit: contain; background: #FAF7F2; border: 1px solid var(--color-border-light); flex-shrink: 0;" />' +
+      html += '<a href="' + item.url + '" style="display: flex; align-items: center; gap: 12px; padding: 10px; background: #FFFFFF; border: 1px solid var(--line); text-decoration: none; color: inherit; margin-bottom: 6px;">' +
+        '<img src="' + item.img + '" style="width: 48px; height: 48px; object-fit: contain; background: #F1F0EE; flex-shrink: 0;" />' +
         '<div style="flex: 1; min-width: 0;">' +
-          '<div style="font-size: 12px; font-weight: 700; color: var(--color-text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">' + item.name + '</div>' +
-          '<div style="font-size: 10px; color: var(--color-text-muted);">' + item.size + ' · ' + item.code + '</div>' +
+          '<div style="font-size: 13px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">' + item.name + '</div>' +
+          '<div style="font-size: 11px; color: var(--soft);">' + item.size + ' · <strong style="color: var(--ink);">' + item.code + '</strong></div>' +
         '</div>' +
-        '<div style="font-size: 12px; font-weight: 700; color: var(--color-gold-label); white-space: nowrap;">' + item.price + '</div>' +
+        '<div style="font-size: 13px; font-weight: 700; color: var(--ink); white-space: nowrap;">' + item.price + '</div>' +
       '</a>';
     });
     resultsBox.innerHTML = html;
@@ -972,6 +988,42 @@ $vivaaz_header_rendered = true;
     var count = items.reduce(function(acc, it) { return acc + (parseInt(it.quantity || it.qty) || 1); }, 0);
     var badge = document.getElementById('header-bag-count');
     if (badge) badge.textContent = count;
+  }
+
+  function addProductToCartAndOpenDrawer(productId, title, img, priceHtml, size, qty) {
+    var items = getCartItems();
+    var quantity = parseInt(qty) || 12;
+    var rawPrice = parseInt(String(priceHtml || '105').replace(/[^0-9]/g, '')) || 105;
+    var selectedSize = size || '6×8 mm';
+    
+    var existingIndex = items.findIndex(function(it) {
+      return (it.product_id === productId || it.title === title) && (it.size === selectedSize);
+    });
+
+    if (existingIndex > -1) {
+      items[existingIndex].quantity = (parseInt(items[existingIndex].quantity || items[existingIndex].qty) || 1) + quantity;
+      items[existingIndex].qty = items[existingIndex].quantity;
+    } else {
+      items.push({
+        key: 'cart_' + Date.now(),
+        product_id: productId,
+        title: title || 'Gemstone',
+        sku: 'VG-' + productId,
+        size: selectedSize,
+        quality: 'AAA',
+        qty: quantity,
+        quantity: quantity,
+        unitPrice: rawPrice,
+        basePrice: Math.round(rawPrice * 1.14),
+        tier10: rawPrice,
+        tier50: Math.round(rawPrice * 0.88),
+        total: quantity * rawPrice,
+        image: img || '<?php echo esc_url(vivaaz_get_img_url("moonstone.jpg")); ?>'
+      });
+    }
+
+    setCartItems(items);
+    openCartDrawer();
   }
 
   function openCartDrawer() {
