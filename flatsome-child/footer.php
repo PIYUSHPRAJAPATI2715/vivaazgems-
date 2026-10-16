@@ -194,8 +194,8 @@ $vivaaz_footer_rendered = true;
     </div>
   </footer>
 
-  <!-- PHONE BOTTOM BAR (FIXED ON PHONE, EXACT 4 ITEMS: SHOP, SEARCH, WHATSAPP, WISHLIST - 62PX HEIGHT) -->
-  <div class="mobile-fixed-bottom-bar bb" id="mobile-fixed-bottom-bar" style="height: 62px !important; display: grid !important; grid-template-columns: repeat(4, 1fr) !important; background: var(--paper) !important; border-top: 1px solid var(--line) !important; z-index: 99999 !important;">
+  <!-- PHONE BOTTOM BAR (FIXED ON PHONE ONLY, EXACT 4 ITEMS: SHOP, SEARCH, WHATSAPP, WISHLIST - 62PX HEIGHT) -->
+  <div class="mobile-fixed-bottom-bar bb" id="mobile-fixed-bottom-bar">
     <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-bar-btn" title="Shop" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: var(--mute); text-decoration: none;">
       <span class="bar-icon" style="display: flex; justify-content: center; align-items: center;">
         <svg class="i" style="width: 20px; height: 20px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">

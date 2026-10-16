@@ -4100,21 +4100,22 @@ svg.i {
   stroke-linejoin: round;
 }
 
-/* 5. PHONE BOTTOM BAR: 62px, 4 equal items (Shop, Search, WhatsApp, Wishlist) */
+/* 5. PHONE BOTTOM BAR: 62px, 4 equal items (Shop, Search, WhatsApp, Wishlist) - PHONE ONLY */
 .mobile-fixed-bottom-bar,
-.bb {
+.bb,
+#mobile-fixed-bottom-bar {
+  display: none !important;
   position: fixed !important;
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
   height: 62px !important;
-  background: var(--paper) !important;
-  border-top: 1px solid var(--line) !important;
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
+  background: var(--paper, #FFFFFF) !important;
+  border-top: 1px solid var(--line, #EFE9E0) !important;
   z-index: 99999 !important;
   padding-bottom: env(safe-area-inset-bottom, 0px) !important;
 }
+
 .mobile-bar-btn {
   display: flex !important;
   flex-direction: column !important;
@@ -4132,8 +4133,14 @@ svg.i {
   color: var(--ink) !important;
 }
 
-/* Responsive switches for Footer and Buybar */
+/* Responsive switches for Footer, Bottom Bar, and Buybar */
 @media (max-width: 768px) {
+  .mobile-fixed-bottom-bar,
+  .bb,
+  #mobile-fixed-bottom-bar {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
   .mobile-product-buybar,
   .buybar {
     display: grid !important;
@@ -4145,10 +4152,19 @@ svg.i {
     display: block !important;
   }
 }
+
 @media (min-width: 769px) {
   .mobile-fixed-bottom-bar,
-  .mobile-product-buybar {
+  .bb,
+  #mobile-fixed-bottom-bar,
+  .mobile-product-buybar,
+  .buybar {
     display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    opacity: 0 !important;
   }
   .footer-mobile-rows {
     display: none !important;
