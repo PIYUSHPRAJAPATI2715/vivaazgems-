@@ -84,17 +84,17 @@ get_header('shop');
         <form action="https://wa.me/919680552270" method="get" target="_blank" style="display: flex; flex-direction: column; gap: 16px;">
           <div>
             <label style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #1C1A17; margin-bottom: 6px;">Name <span style="color: #9C7C4C;">*</span></label>
-            <input type="text" name="name" required placeholder="Your full name" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+            <input type="text" name="name" required placeholder="Your full name" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none; border-radius: 0;">
           </div>
 
           <div>
-            <label style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #1C1A17; margin-bottom: 6px;">Email <span style="color: #9C7C4C;">*</span></label>
-            <input type="email" name="email" required placeholder="your.email@example.com" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+            <label style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #1C1A17; margin-bottom: 6px;">WhatsApp number (with country code) <span style="color: #9C7C4C;">*</span></label>
+            <input type="tel" name="phone" required placeholder="+91 98765 43210" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none; border-radius: 0;">
           </div>
 
           <div>
-            <label style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #1C1A17; margin-bottom: 6px;">WhatsApp number (with country code)</label>
-            <input type="tel" name="phone" placeholder="+91 98765 43210" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+            <label style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #1C1A17; margin-bottom: 6px;">Email (optional)</label>
+            <input type="email" name="email" placeholder="your.email@example.com" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none; border-radius: 0;">
           </div>
 
           <div>

@@ -1,344 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vivaaz Gems & Jewellery | Natural Gemstones, Chosen by Hand</title>
-  <link rel="stylesheet" href="flatsome-child/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Vivaaz Gems & Jewellery · Complete Interactive Experience</title>
   <style>
-    body {
-      background: var(--color-page-bg, #FAF7F2);
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #FAF7F2; font-family: 'Manrope', -apple-system, sans-serif; }
+    #demo-frame { width: 100%; height: 100%; border: none; display: block; }
+    
+    /* Floating Switcher Pill */
+    .view-switcher-pill {
+      position: fixed;
+      top: 10px;
+      right: 18px;
+      z-index: 999999;
+      display: flex;
+      background: #1C1A17;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 30px;
+      padding: 3px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(8px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+    .view-switcher-pill:hover {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .view-switcher-btn {
+      background: transparent;
+      border: none;
+      color: #D5CEC4;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .view-switcher-btn.active {
+      background: #FAF7F2;
+      color: #1C1A17;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .view-switcher-btn:hover:not(.active) {
+      color: #FFFFFF;
+    }
+    
+    @media (max-width: 600px) {
+      .view-switcher-pill {
+        top: auto;
+        bottom: 12px;
+        right: 12px;
+        left: 12px;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Announcement Bar -->
-  <div class="top-bar-notice">
-    <div class="top-bar-flex">
-      <div>
-        WhatsApp +91 96805 52270 · Insured shipping worldwide · NEW ARRIVALS ARE IN. <a href="#shop" style="color: #FFFFFF; text-decoration: underline; margin-left: 6px;">SHOP NOW →</a>
-      </div>
-      <div style="display: flex; gap: 20px; align-items: center;">
-        <a href="#our-story" style="color: rgba(255,255,255,0.85); text-decoration: none;">OUR STORY</a>
-        <a href="#contact" style="color: rgba(255,255,255,0.85); text-decoration: none;">CONTACT</a>
-        <a href="#track" style="color: rgba(255,255,255,0.85); text-decoration: none;">TRACK ORDER</a>
-        <select class="currency-switch-select">
-          <option value="INR">₹ INR</option>
-          <option value="USD">$ USD</option>
-          <option value="EUR">€ EUR</option>
-          <option value="GBP">£ GBP</option>
-        </select>
-      </div>
-    </div>
+  <!-- Floating Switcher -->
+  <div class="view-switcher-pill" id="switcher">
+    <button type="button" class="view-switcher-btn active" id="btn-desktop" onclick="setView('desktop')">
+      <span>🖥️</span> Desktop Demo
+    </button>
+    <button type="button" class="view-switcher-btn" id="btn-phone" onclick="setView('phone')">
+      <span>📱</span> Phone Demo
+    </button>
   </div>
 
-  <!-- Sticky Header Wrapper -->
-  <div class="site-header-wrapper">
-    <header class="main-header">
-      <!-- Brand Logo & Name -->
-      <a href="#" class="brand-logo-container">
-        <img src="assets/images/vivaaz-logo.png" alt="Vivaaz Gems & Jewellery" class="brand-logo-img" style="height: 38px; width: auto; object-fit: contain; display: block;">
-        <div class="brand-logo-text-block">
-          <span class="brand-logo-text">V I V A A Z</span>
-          <span class="brand-logo-subtitle">GEMS & JEWELLERY · JAIPUR</span>
-        </div>
-      </a>
+  <!-- Primary Interactive View Frame -->
+  <iframe id="demo-frame" src="Vivaaz-Website-Desktop-Demo.html" title="Vivaaz Gems Demo"></iframe>
 
-      <!-- Centered Navigation Menu with Mega Dropdowns -->
-      <ul class="nav-menu-center">
-        <li class="has-mega-dropdown">
-          <a href="#gemstones" class="nav-link">Gemstones ▾</a>
-          <div class="mega-dropdown-panel">
-            <div class="mega-dropdown-grid">
-              <div>
-                <h4 class="mega-col-title">PRECIOUS</h4>
-                <ul class="mega-link-list">
-                  <li><a href="#">Sapphire</a></li>
-                  <li><a href="#">Ruby</a></li>
-                  <li><a href="#">Emerald</a></li>
-                  <li><a href="#">Spinel</a></li>
-                  <li><a href="#">Tanzanite</a></li>
-                  <li><a href="#">Alexandrite</a></li>
-                  <li><a href="#" class="text-gold font-bold">View all →</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 class="mega-col-title">SEMI-PRECIOUS</h4>
-                <ul class="mega-link-list">
-                  <li><a href="#">Topaz</a></li>
-                  <li><a href="#">Garnet</a></li>
-                  <li><a href="#">Amethyst</a></li>
-                  <li><a href="#">Peridot</a></li>
-                  <li><a href="#">Citrine</a></li>
-                  <li><a href="#">Tourmaline</a></li>
-                  <li><a href="#">Aquamarine</a></li>
-                  <li><a href="#">Moonstone</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 class="mega-col-title">BY CUT</h4>
-                <ul class="mega-link-list">
-                  <li><a href="#">Faceted</a></li>
-                  <li><a href="#">Cabochon</a></li>
-                  <li><a href="#">Rose cut</a></li>
-                  <li><a href="#">Rough</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 class="mega-col-title">SHOP BY</h4>
-                <ul class="mega-link-list">
-                  <li><a href="#">Colour</a></li>
-                  <li><a href="#">Shape</a></li>
-                  <li><a href="#">Price</a></li>
-                  <li><a href="#">Birthstones</a></li>
-                  <li><a href="#">Gifts under ₹5,000</a></li>
-                </ul>
-              </div>
-              <div style="background: #FDFBF7; border: 1px solid var(--color-border-light); padding: 18px; text-align: left;">
-                <h5 style="font-family: var(--font-family-serif); font-size: 15px; margin: 0 0 4px; font-weight: 400;">New this week</h5>
-                <p style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 12px;">Fresh loose stones, added every week.</p>
-                <a href="#" class="btn-underline-link">See what is new →</a>
-              </div>
-            </div>
-          </div>
-        </li>
+  <script>
+    function setView(mode) {
+      const frame = document.getElementById('demo-frame');
+      const btnDesktop = document.getElementById('btn-desktop');
+      const btnPhone = document.getElementById('btn-phone');
+      
+      if (mode === 'desktop') {
+        frame.src = 'Vivaaz-Website-Desktop-Demo.html';
+        btnDesktop.classList.add('active');
+        btnPhone.classList.remove('active');
+        localStorage.setItem('vivaaz_demo_pref', 'desktop');
+      } else {
+        frame.src = 'Vivaaz-Website-Phone-Demo.html';
+        btnPhone.classList.add('active');
+        btnDesktop.classList.remove('active');
+        localStorage.setItem('vivaaz_demo_pref', 'phone');
+      }
+    }
 
-        <li><a href="#layouts" class="nav-link">Layouts</a></li>
-        <li><a href="#beads" class="nav-link">Beads</a></li>
-        <li><a href="#jewelry" class="nav-link">Jewelry</a></li>
-        <li><a href="#astrology" class="nav-link">Astrology</a></li>
-      </ul>
-
-      <!-- Header Action Icons (Account, Wishlist, Cart) -->
-      <div class="header-action-group">
-        <a href="#search" class="icon-action-btn" title="Search">
-          <svg width="16" height="16" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; overflow: visible; display: inline-block;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </a>
-        <a href="#account" class="icon-action-btn" title="Sign In / Sign Up">
-          <svg width="16" height="16" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 3px; overflow: visible; display: inline-block;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-          account
-        </a>
-        <a href="#wishlist" class="icon-action-btn" title="Wishlist">
-          <svg width="16" height="16" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; overflow: visible; display: inline-block;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-        </a>
-        <a href="#cart" class="icon-action-btn" title="Cart Bag">
-          <svg width="16" height="16" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 3px; overflow: visible; display: inline-block;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-          bag
-          <span class="cart-badge-count">0</span>
-        </a>
-      </div>
-    </header>
-  </div>
-
-  <!-- SECTION 1: HERO BANNER SECTION -->
-  <section class="hero-banner-section">
-    <div class="hero-banner-container">
-      <div>
-        <span class="section-tag-divider">JAIPUR · SINCE 1993</span>
-        <h1 class="hero-heading">
-          Natural Gemstones,<br>
-          Chosen by <span class="font-italic text-gold">Hand</span>
-        </h1>
-        <p class="hero-subtitle">
-          Authentic, certified and carefully selected gemstones for your better tomorrow.
-        </p>
-        
-        <div class="hero-search-wrapper">
-          <span class="search-icon-inside">🔍</span>
-          <input type="text" class="hero-search-input" placeholder="Search a stone, size or code..." />
-          <button type="button" class="hero-search-btn">Search →</button>
-        </div>
-
-        <div class="hero-cta-group">
-          <a href="#gemstones" class="btn-navy-pill">
-            <span>💎</span> SHOP GEMSTONES →
-          </a>
-          <a href="#jewelry" class="btn-white-pill">
-            <span>💎</span> TENNIS JEWELRY →
-          </a>
-        </div>
-
-        <div class="hero-trust-flex">
-          <div class="trust-item">🎒 Lab certified</div>
-          <div class="trust-divider"></div>
-          <div class="trust-item">🚚 Insured shipping</div>
-          <div class="trust-divider"></div>
-          <div class="trust-item">⏱ 7-day returns</div>
-          <div class="trust-divider"></div>
-          <div class="trust-item">⭐ Google rating</div>
-        </div>
-      </div>
-
-      <a href="#sapphire" class="hero-visual-card">
-        <div class="hero-visual-pedestal">
-          <img src="assets/images/ceylon-sapphire.jpg" alt="Natural Ceylon Sapphire" class="hero-gem-img">
-        </div>
-        <div class="hero-caption-text">
-          <span class="font-italic text-gold" style="font-weight: 600;">Premium Quality</span><br>
-          <span>Natural Sapphire</span>
-          <div class="hero-caption-line"></div>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- SECTION 2: EXPLORE BY COLOUR SECTION -->
-  <section class="explore-colour-section">
-    <div class="explore-colour-container">
-      <div class="section-header-tabs-flex">
-        <div>
-          <span class="section-tag-divider">EXPLORE GEMSTONES</span>
-          <h2 class="font-serif" style="font-size: 32px; font-weight: 400;">Explore by <span class="font-italic text-gold">colour.</span></h2>
-        </div>
-      </div>
-
-      <div class="colour-grid">
-        <a href="#blue" class="colour-item">
-          <img src="assets/images/ceylon-sapphire.jpg" alt="Blue" class="colour-gem-img">
-          <span class="colour-name">Blue</span>
-          <span class="colour-subtext">Sapphire, Topaz, Tanzanite</span>
-        </a>
-        <a href="#red" class="colour-item">
-          <img src="assets/images/ruby.jpg" alt="Red" class="colour-gem-img">
-          <span class="colour-name">Red</span>
-          <span class="colour-subtext">Ruby, Garnet, Spinel</span>
-        </a>
-        <a href="#green" class="colour-item">
-          <img src="assets/images/emerald.jpg" alt="Green" class="colour-gem-img">
-          <span class="colour-name">Green</span>
-          <span class="colour-subtext">Emerald, Tourmaline, Tsavorite</span>
-        </a>
-        <a href="#yellow" class="colour-item">
-          <img src="assets/images/swiss-topaz.jpg" alt="Yellow" class="colour-gem-img" style="filter: hue-rotate(60deg);">
-          <span class="colour-name">Yellow</span>
-          <span class="colour-subtext">Yellow Sapphire, Citrine</span>
-        </a>
-        <a href="#pink" class="colour-item">
-          <img src="assets/images/ruby.jpg" alt="Pink" class="colour-gem-img" style="filter: hue-rotate(280deg);">
-          <span class="colour-name">Pink</span>
-          <span class="colour-subtext">Pink Sapphire, Tourmaline</span>
-        </a>
-        <a href="#white" class="colour-item">
-          <img src="assets/images/moonstone.jpg" alt="White" class="colour-gem-img">
-          <span class="colour-name">White</span>
-          <span class="colour-subtext">Moonstone, White Sapphire</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 3: LAYOUTS SECTION -->
-  <section id="layouts" class="layouts-section">
-    <div class="layouts-container">
-      <div>
-        <img src="assets/images/true-size-grid.jpg" alt="Matched Gemstone Layouts" class="layouts-img">
-      </div>
-      <div>
-        <span class="section-tag-divider">FOR JEWELLERS</span>
-        <h2 class="layouts-title">Layouts, matched <span class="font-italic text-gold">stone by stone.</span></h2>
-        <p class="text-muted" style="font-size: 13px;">
-          Graduated lines and matched suites in ruby, sapphire, emerald and spinel. Send us your design and we match colour, cut and size to it.
-        </p>
-
-        <div class="layouts-stats-grid">
-          <div>
-            <div class="stat-box-val">1.5–10</div>
-            <div class="stat-box-lbl">mm calibrated</div>
-          </div>
-          <div>
-            <div class="stat-box-val">±0.1</div>
-            <div class="stat-box-lbl">mm size match</div>
-          </div>
-          <div>
-            <div class="stat-box-val">Any</div>
-            <div class="stat-box-lbl">drawing or CAD</div>
-          </div>
-        </div>
-
-        <div style="display: flex; align-items: center; gap: 20px;">
-          <a href="#contact" class="btn-square-dark">SEE LAYOUTS</a>
-          <a href="#contact" class="btn-underline-link">Send your design →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 4: LUXURY FOOTER -->
-  <footer class="main-footer">
-    <div class="footer-container">
-      <div class="footer-brand-header">
-        <a href="#" style="display: inline-flex; align-items: center; justify-content: center; gap: 14px; text-decoration: none;">
-          <img src="assets/images/vivaaz-logo.png" alt="Vivaaz Gems & Jewellery" style="height: 44px; width: auto; object-fit: contain;">
-          <div style="text-align: left;">
-            <h2 class="footer-brand-title" style="margin: 0; line-height: 1; font-size: 32px; letter-spacing: 0.3em;">V I V A A Z</h2>
-            <p class="footer-brand-sub" style="margin: 4px 0 0 0; font-size: 10px; letter-spacing: 0.25em;">GEMS & JEWELLERY · JAIPUR · BANGKOK</p>
-          </div>
-        </a>
-      </div>
-
-      <div class="footer-5col-grid">
-        <div>
-          <h4 class="footer-col-title">Shop</h4>
-          <ul class="footer-col-links">
-            <li><a href="#">Gemstones</a></li>
-            <li><a href="#">Layouts</a></li>
-            <li><a href="#">Beads</a></li>
-            <li><a href="#">Jewelry</a></li>
-            <li><a href="#">Astrology</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-col-title">The Trade</h4>
-          <ul class="footer-col-links">
-            <li><a href="#">Bulk / B2B enquiry</a></li>
-            <li><a href="#">Calibrated lots</a></li>
-            <li><a href="#">Matched layouts</a></li>
-            <li><a href="#">Custom sizes</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-col-title">Company</h4>
-          <ul class="footer-col-links">
-            <li><a href="#">Our Story</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Jaipur Workshop</a></li>
-            <li><a href="#">Bangkok Office</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-col-title">Customer Care</h4>
-          <ul class="footer-col-links">
-            <li><a href="#">Track Order</a></li>
-            <li><a href="#">Shipping Policy</a></li>
-            <li><a href="#">Returns & Refunds</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-col-title">Connect</h4>
-          <ul class="footer-col-links">
-            <li><a href="https://wa.me/919680552270" target="_blank">WhatsApp Inquiry</a></li>
-            <li><a href="https://instagram.com/vivaazgems" target="_blank">Instagram (@vivaazgems)</a></li>
-            <li><a href="#">Google Reviews</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom-bar">
-        <div>© 2026 Vivaaz Gems & Jewellery. All rights reserved.</div>
-        <div class="payment-badges-row">
-          <span class="pay-badge-item">VISA</span>
-          <span class="pay-badge-item">MASTERCARD</span>
-          <span class="pay-badge-item">AMEX</span>
-          <span class="pay-badge-item">UPI</span>
-          <span class="pay-badge-item">PAYPAL</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
+    // Auto-detect based on screen width or previous preference
+    (function init() {
+      const saved = localStorage.getItem('vivaaz_demo_pref');
+      if (saved === 'phone' || (!saved && window.innerWidth < 768)) {
+        setView('phone');
+      } else {
+        setView('desktop');
+      }
+    })();
+  </script>
 </body>
 </html>

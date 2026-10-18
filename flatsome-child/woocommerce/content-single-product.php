@@ -1,8 +1,8 @@
 <?php
 /**
  * Vivaaz Gems - Custom WooCommerce Single Product Template
- * Matches Pages 14-15 of the 35-page Build Book
- * 100% Dynamic, Fully Interactive, Tiered Pricing, Size Pills, Pieces Stepper, Cart & Checkout.
+ * 100% Exact Implementation of Client Desktop & Phone Demos and Build Book.
+ * Both Columns End Level (.pd.pd2g: .q1, .q2, .q3, .q4).
  */
 
 if (!defined('ABSPATH')) {
@@ -20,391 +20,314 @@ if (!$sku) $sku = 'RMCOC68';
 
 $title = get_the_title() ?: 'Rainbow Moonstone Oval Cabochon';
 
-// Stone Name detection from title / terms
+// Stone Name detection from title
 $stone_name = 'Rainbow Moonstone';
+$stone_key = 'moonstone';
 if (stripos($title, 'sapphire') !== false) {
-    $stone_name = 'Ceylon Blue Sapphire';
+    $stone_name = 'Sapphire';
+    $stone_key = 'ceylon-sapphire';
 } elseif (stripos($title, 'ruby') !== false) {
     $stone_name = 'Ruby';
+    $stone_key = 'ruby';
 } elseif (stripos($title, 'emerald') !== false) {
     $stone_name = 'Emerald';
-} elseif (stripos($title, 'tourmaline') !== false) {
-    $stone_name = 'Tourmaline';
-} elseif (stripos($title, 'garnet') !== false) {
-    $stone_name = 'Garnet';
-} elseif (stripos($title, 'tanzanite') !== false) {
-    $stone_name = 'Tanzanite';
+    $stone_key = 'emerald';
 } elseif (stripos($title, 'topaz') !== false) {
     $stone_name = 'Topaz';
-} elseif (stripos($title, 'opal') !== false) {
-    $stone_name = 'Opal';
-} elseif (!empty($title)) {
-    $stone_name = esc_html($title);
+    $stone_key = 'swiss-topaz';
+} elseif (stripos($title, 'spinel') !== false) {
+    $stone_name = 'Spinel';
+    $stone_key = 'ruby';
 }
 
-// Categories & stone subtitle
-$categories = ($product_id && !is_wp_error(wp_get_post_terms($product_id, 'product_cat'))) ? wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names')) : array();
-$cat_subtitle = esc_html($sku . ' · CALIBRATED LOT · AAA');
-if (!empty($categories) && is_array($categories)) {
-    $cat_subtitle = esc_html(strtoupper(implode(' · ', array_slice($categories, 0, 3))));
-}
+$is_single = (stripos($title, 'pair') !== false || stripos($title, 'single') !== false || stripos($title, 'only 1') !== false);
+$unit_label = (stripos($title, 'pair') !== false) ? 'for the pair' : ($is_single ? 'single stone' : 'per piece');
+$sold_as_tag = (stripos($title, 'pair') !== false) ? 'MATCHED PAIR' : ($is_single ? 'ONLY 1' : 'CALIBRATED LOT');
 
-// Short tagline
-$short_desc = ($product && $product->get_short_description()) ? wp_strip_all_tags($product->get_short_description()) : '';
-if (!$short_desc) {
-    if (stripos($title, 'sapphire') !== false) {
-        $short_desc = 'Pure Ceylon royal blue color, precision calibrated. For rings, pendants and fine jewelry.';
-    } elseif (stripos($title, 'ruby') !== false) {
-        $short_desc = 'Rich pigeon blood red color, natural unheated. For rings, earrings and fine jewelry.';
-    } elseif (stripos($title, 'emerald') !== false) {
-        $short_desc = 'Vivid Zambian green luster, clean precision cut. For rings, pendants and luxury jewelry.';
-    } else {
-        $short_desc = 'White with a soft blue flash. For rings, pendants and earrings.';
-    }
+// Base Price calculation
+$base_price = 106;
+if ($product && $product->get_regular_price()) {
+    $p_val = floatval($product->get_regular_price());
+    if ($p_val > 0) $base_price = round($p_val);
 }
+$tier_1_price = round($base_price * 1.15);
+$tier_10_price = $base_price;
+$tier_50_price = round($base_price * 0.88);
 
-// Images
+// Default images
 $main_img = get_the_post_thumbnail_url($product_id, 'large');
 if (!$main_img) {
-    if (stripos($title, 'sapphire') !== false) {
-        $main_img = vivaaz_get_img_url('ceylon-sapphire.jpg');
-    } elseif (stripos($title, 'ruby') !== false) {
-        $main_img = vivaaz_get_img_url('ruby.jpg');
-    } elseif (stripos($title, 'emerald') !== false) {
-        $main_img = vivaaz_get_img_url('emerald.jpg');
-    } else {
-        $main_img = vivaaz_get_img_url('moonstone.jpg');
-    }
-}
-
-$daylight_img    = (stripos($title, 'sapphire') !== false) ? vivaaz_get_img_url('ceylon-sapphire.jpg') : vivaaz_get_img_url('ceylon-sapphire.jpg');
-$lamp_img        = (stripos($title, 'ruby') !== false) ? vivaaz_get_img_url('ruby.jpg') : vivaaz_get_img_url('ruby.jpg');
-$loupe_img       = (stripos($title, 'emerald') !== false) ? vivaaz_get_img_url('emerald.jpg') : vivaaz_get_img_url('emerald.jpg');
-$actual_size_img = vivaaz_get_img_url('true-size-grid.jpg');
-
-$whatsapp_url = 'https://wa.me/919680552270?text=' . rawurlencode("Hello Vivaaz Gems, I am looking at " . $title . " (code " . $sku . "). Could you send live photos?");
-$videocall_url = 'https://wa.me/919680552270?text=' . rawurlencode("Hello Vivaaz Gems, could you show me " . $title . " (code " . $sku . ") on a video call?");
-
-// Pricing tiers
-$tier_1 = 120;
-$tier_10 = 105;
-$tier_50 = 92;
-
-// Check if product has custom price
-if ($product && $product->get_regular_price()) {
-    $base_p = floatval($product->get_regular_price());
-    if ($base_p > 0) {
-        $tier_1 = round($base_p * 1.15);
-        $tier_10 = round($base_p);
-        $tier_50 = round($base_p * 0.88);
-    }
+    $main_img = vivaaz_get_img_url($stone_key . '.jpg');
 }
 
 do_action('woocommerce_before_single_product');
 ?>
 
-<div id="product-<?php echo esc_attr($product_id ?: '0'); ?>" class="product single-product-custom-layout vivaaz-gem-product-page">
+<div class="wrap" style="padding-top: 18px; padding-bottom: 72px;">
   
-  <!-- POINT 6 SPEC: Home / Gemstones line on top with thin arrows -->
-  <div class="product-breadcrumbs-top" style="margin-bottom: 24px; font-size: 12px; color: var(--color-text-muted);">
+  <!-- Breadcrumbs (Point 6 Spec: Ends with cut, thin arrows) -->
+  <div class="crumb" style="font-size: 12.5px; color: var(--soft); display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
     <a href="<?php echo esc_url(home_url('/')); ?>" style="color: inherit; text-decoration: none;">Home</a>
-    <span class="thin-arrow" style="margin: 0 8px; color: #9C7C4C;">›</span>
+    <span>›</span>
     <a href="<?php echo esc_url(home_url('/shop/')); ?>" style="color: inherit; text-decoration: none;">Gemstones</a>
-    <span class="thin-arrow" style="margin: 0 8px; color: #9C7C4C;">›</span>
+    <span>›</span>
+    <a href="<?php echo esc_url(home_url('/shop/?filter_group=precious')); ?>" style="color: inherit; text-decoration: none;">Precious</a>
+    <span>›</span>
     <a href="<?php echo esc_url(home_url('/shop/?filter_stone=' . strtolower(urlencode($stone_name)))); ?>" style="color: inherit; text-decoration: none;"><?php echo esc_html($stone_name); ?></a>
-    <span class="thin-arrow" style="margin: 0 8px; color: #9C7C4C;">›</span>
-    <span style="color: var(--color-text-main); font-weight: 600;"><?php echo esc_html($title); ?></span>
+    <span>›</span>
+    <b style="color: var(--ink); font-weight: 500;">Cabochon</b>
   </div>
 
-  <div class="single-product-grid-wrapper">
+  <!-- 4-QUADRANT PRODUCT GRID: BOTH COLUMNS END ON THE EXACT SAME LEVEL -->
+  <div class="pd pd2g" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 60px; row-gap: 26px; align-items: start;">
     
-    <!-- LEFT COLUMN: GALLERY (BUILD BOOK PAGE 14 SPEC) -->
-    <div class="single-product-gallery-col">
-      
-      <!-- Top Gallery Light Tabs -->
-      <div class="gallery-light-tabs">
-        <button type="button" class="gal-tab-btn active" onclick="switchGalleryView('video', '<?php echo esc_url($main_img); ?>', this)">▶ Video</button>
-        <button type="button" class="gal-tab-btn" onclick="switchGalleryView('image', '<?php echo esc_url($daylight_img); ?>', this)">Daylight</button>
-        <button type="button" class="gal-tab-btn" onclick="switchGalleryView('image', '<?php echo esc_url($lamp_img); ?>', this)">Lamp</button>
-        <button type="button" class="gal-tab-btn" onclick="switchGalleryView('image', '<?php echo esc_url($loupe_img); ?>', this)">Under the loupe</button>
-        <button type="button" class="gal-tab-btn" onclick="switchGalleryView('image', '<?php echo esc_url($actual_size_img); ?>', this)">Actual size</button>
+    <!-- Q1: TOP LEFT - GALLERY & VIEWS -->
+    <div class="q1">
+      <div class="views" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;">
+        <button type="button" class="gal-view-btn on" onclick="switchProdView('video', this)" style="border: 1px solid var(--ink); background: var(--ink); color: #fff; padding: 7px 12px; font-size: 12px; cursor: pointer;">▶ Video</button>
+        <button type="button" class="gal-view-btn" onclick="switchProdView('daylight', this)" style="border: 1px solid var(--line2); background: var(--paper); color: var(--ink); padding: 7px 12px; font-size: 12px; cursor: pointer;">Daylight</button>
+        <button type="button" class="gal-view-btn" onclick="switchProdView('lamp', this)" style="border: 1px solid var(--line2); background: var(--paper); color: var(--ink); padding: 7px 12px; font-size: 12px; cursor: pointer;">Lamp</button>
+        <button type="button" class="gal-view-btn" onclick="switchProdView('loupe', this)" style="border: 1px solid var(--line2); background: var(--paper); color: var(--ink); padding: 7px 12px; font-size: 12px; cursor: pointer;">Under the loupe</button>
+        <button type="button" class="gal-view-btn" onclick="switchProdView('size', this)" style="border: 1px solid var(--line2); background: var(--paper); color: var(--ink); padding: 7px 12px; font-size: 12px; cursor: pointer;">Actual size</button>
       </div>
 
-      <!-- Main Featured Image / Video Display Box -->
-      <div class="main-featured-image-box" id="gallery-display-container">
-        <span class="video-badge-overlay" id="gallery-badge-overlay">▶ 0:08</span>
-        <img id="main-gallery-view" src="<?php echo esc_url($main_img); ?>" alt="<?php echo esc_attr($title); ?>" class="main-gallery-img" />
+      <div class="mainimg" id="prod-mainimg-box" style="aspect-ratio: 1/1; background: #F1F0EE; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line);">
+        <img id="prod-main-img" src="<?php echo esc_url($main_img); ?>" alt="<?php echo esc_attr($title); ?>" style="width: 72%; object-fit: contain; transition: transform .3s;">
+        <span class="play" id="prod-video-tag" style="position: absolute; bottom: 12px; left: 12px; background: rgba(28,26,23,.85); color: #fff; font-size: 11px; letter-spacing: 0.12em; padding: 6px 10px; font-weight: 600;">▶ 0:08 · <?php echo esc_html($sku); ?></span>
+        <span class="ruler" id="prod-ruler-tag" style="display: none; position: absolute; bottom: 12px; left: 12px; right: 12px; background: rgba(28,26,23,.85); color: #fff; font-size: 11.5px; text-align: center; padding: 6px;">Grid squares are 1 mm · 6×8 mm</span>
       </div>
 
-      <!-- Gallery Thumbnails Row -->
-      <div class="light-photos-row">
-        <div class="light-thumb-item active" onclick="switchGalleryView('video', '<?php echo esc_url($main_img); ?>', this)">
-          <img src="<?php echo esc_url($main_img); ?>" alt="Video">
-          <span>Video</span>
-        </div>
-        <div class="light-thumb-item" onclick="switchGalleryView('image', '<?php echo esc_url($daylight_img); ?>', this)">
-          <img src="<?php echo esc_url($daylight_img); ?>" alt="Daylight">
-          <span>Daylight</span>
-        </div>
-        <div class="light-thumb-item" onclick="switchGalleryView('image', '<?php echo esc_url($lamp_img); ?>', this)">
-          <img src="<?php echo esc_url($lamp_img); ?>" alt="Lamp">
-          <span>Lamp</span>
-        </div>
-        <div class="light-thumb-item" onclick="switchGalleryView('image', '<?php echo esc_url($loupe_img); ?>', this)">
-          <img src="<?php echo esc_url($loupe_img); ?>" alt="Loupe">
-          <span>Loupe</span>
-        </div>
-        <div class="light-thumb-item" onclick="switchGalleryView('image', '<?php echo esc_url($actual_size_img); ?>', this)">
-          <img src="<?php echo esc_url($actual_size_img); ?>" alt="Actual size">
-          <span>Actual size</span>
-        </div>
-      </div>
-      
-      <p class="light-photos-hint" style="font-size: 11px; color: var(--color-text-muted); margin: 8px 0 24px;">Photos and video are of our own stones from this lot.</p>
-
-      <!-- THE STONE (PASSPORT BLOCK - UNDER PHOTOS ON LEFT PER POINT 8 SPEC) -->
-      <div class="stone-passport-box" style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 24px; margin-bottom: 24px;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 10px;">
-          <span style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">The stone</span>
-          <span style="font-size: 11px; color: var(--color-text-muted); letter-spacing: 0.05em;">PASSPORT · <?php echo esc_html($sku ?: 'RMCOC68'); ?></span>
-        </div>
-
-        <!-- 4 Large Stat Numbers -->
-        <div class="passport-4stats-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 22px; text-align: center;">
-          <div style="background: #FAF7F2; padding: 12px 6px;">
-            <div id="passport-size-large" style="font-size: 16px; font-weight: 700; color: var(--color-text-main);">6×8 mm</div>
-            <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-top: 4px;">SIZE</div>
-          </div>
-          <div style="background: #FAF7F2; padding: 12px 6px;">
-            <div style="font-size: 16px; font-weight: 700; color: var(--color-text-main);">≈1.2 ct</div>
-            <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-top: 4px;">EACH PIECE</div>
-          </div>
-          <div style="background: #FAF7F2; padding: 12px 6px;">
-            <div style="font-size: 16px; font-weight: 700; color: var(--color-text-main);">±0.1 mm</div>
-            <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-top: 4px;">CALIBRATED</div>
-          </div>
-          <div style="background: #FAF7F2; padding: 12px 6px;">
-            <div style="font-size: 16px; font-weight: 700; color: var(--color-text-main);">None</div>
-            <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-top: 4px;">TREATMENT</div>
-          </div>
-        </div>
-
-        <!-- 6 Stone Facts Table -->
-        <table class="passport-facts-table" style="width: 100%; border-collapse: collapse; font-size: 12px;">
-          <tr>
-            <td style="padding: 6px 0; color: var(--color-text-muted); width: 40%;">STONE</td>
-            <td style="padding: 6px 0; font-weight: 600;">Rainbow Moonstone</td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 0; color: var(--color-text-muted);">CUT AND SHAPE</td>
-            <td style="padding: 6px 0; font-weight: 600;">Cabochon, oval</td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 0; color: var(--color-text-muted);">COLOUR</td>
-            <td style="padding: 6px 0; font-weight: 600;">White, blue flash</td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 0; color: var(--color-text-muted);">QUALITY</td>
-            <td style="padding: 6px 0; font-weight: 600;">AAA, matched calibrated lot</td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 0; color: var(--color-text-muted);">ORIGIN</td>
-            <td style="padding: 6px 0; font-weight: 600;">India</td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 0; color: var(--color-text-muted);">HARDNESS</td>
-            <td style="padding: 6px 0; font-weight: 600;">6 – 6.5 Mohs</td>
-          </tr>
-        </table>
+      <!-- Thumbnails -->
+      <div class="thumbs" style="display: flex; gap: 8px; margin-top: 10px;">
+        <button type="button" class="thumb-btn on" onclick="switchProdThumb(0, this)" style="width: 58px; height: 58px; border: 1px solid var(--ink); background: #F1F0EE; padding: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 11px; font-weight: 700;">▶ 0:08</span>
+        </button>
+        <button type="button" class="thumb-btn" onclick="switchProdThumb(1, this)" style="width: 58px; height: 58px; border: 1px solid var(--line2); background: #F1F0EE; padding: 4px; cursor: pointer;">
+          <img src="<?php echo esc_url($main_img); ?>" alt="Thumb" style="width: 100%; height: 100%; object-fit: contain;">
+        </button>
+        <button type="button" class="thumb-btn" onclick="switchProdThumb(2, this)" style="width: 58px; height: 58px; border: 1px solid var(--line2); background: #F1F0EE; padding: 4px; cursor: pointer;">
+          <img src="<?php echo esc_url($main_img); ?>" alt="Thumb" style="width: 100%; height: 100%; object-fit: contain; filter: brightness(1.15);">
+        </button>
+        <button type="button" class="thumb-btn" onclick="switchProdThumb(3, this)" style="width: 58px; height: 58px; border: 1px solid var(--line2); background: #F1F0EE; padding: 4px; cursor: pointer;">
+          <img src="<?php echo esc_url($main_img); ?>" alt="Thumb" style="width: 100%; height: 100%; object-fit: contain; transform: scale(1.3);">
+        </button>
       </div>
 
-      <!-- MAKE IT INTO JEWELRY (BELOW THE STONE BOX ON LEFT PER POINT 8 SPEC) -->
-      <div class="make-jewelry-left-card" style="background: #1C1A17; color: #FFFFFF; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <div>
-          <h4 style="font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin: 0 0 4px; color: #FFFFFF;">Make it into jewelry</h4>
-          <p style="font-size: 12px; color: #D5D0C8; margin: 0;">We set this stone in silver or gold.</p>
-        </div>
-        <a href="<?php echo esc_url(home_url('/make-it-into-jewelry/')); ?>" style="color: #FFFFFF; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: underline; white-space: nowrap;">
-          ASK FOR A QUOTE →
-        </a>
-      </div>
-
+      <p class="capt" style="font-size: 12px; color: var(--soft); margin: 8px 0 0;">Photos and video are of our own stones from this lot.</p>
     </div>
 
-    <!-- RIGHT COLUMN: PRODUCT DETAILS & PURCHASING (BUILD BOOK PAGE 14 SPEC) -->
-    <div class="single-product-info-col">
-      <div class="product-category-tag"><?php echo esc_html($cat_subtitle); ?></div>
-      <h1 class="single-product-title"><?php echo esc_html($title); ?></h1>
+    <!-- Q2: TOP RIGHT - TITLE, PRICE, TIERS, SIZES, ACTIONS -->
+    <div class="q2" style="display: flex; flex-direction: column;">
+      <span class="eye" style="font-size: 11px; letter-spacing: 0.16em; color: var(--gold); font-weight: 700; text-transform: uppercase;">
+        <?php echo esc_html($sku); ?> · <?php echo esc_html($sold_as_tag); ?> · AAA
+      </span>
       
-      <p class="product-short-tagline" style="font-size: 13px; color: var(--color-text-muted); margin: 6px 0 16px;">
-        <?php echo esc_html($short_desc); ?>
+      <h1 class="pt" style="font-family: var(--display); font-weight: 400; font-size: 34px; line-height: 1.15; margin: 6px 0 10px; color: var(--ink);">
+        <?php echo esc_html($title); ?>
+      </h1>
+      
+      <p style="color: var(--mute); font-size: 14.5px; margin: 0 0 16px; line-height: 1.5;">
+        Natural Ceylon gemstone, sorted and calibrated in Jaipur. For rings, pendants and earrings.
       </p>
 
-      <!-- Active Tier Price Display -->
-      <div class="single-price-row" style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px;">
-        <span class="single-price-amount" id="active-unit-price-display" style="font-size: 26px; font-weight: 700; color: var(--color-text-main);">₹ <?php echo number_format($tier_10); ?></span>
-        <span class="single-price-unit" id="active-tier-note-display" style="font-size: 13px; color: var(--color-text-muted);">per piece · 10+ price</span>
+      <!-- Price line -->
+      <div class="price" style="font-size: 26px; font-weight: 600; color: var(--ink); margin-bottom: 12px;">
+        <span id="prod-price-display">₹ <?php echo number_format($tier_10_price); ?></span> 
+        <span style="font-size: 13.5px; font-weight: 400; color: var(--mute);">
+          <?php echo esc_html($unit_label); ?> <?php echo !$is_single ? '· <span id="tier-badge-label">10+ price</span>' : ''; ?>
+        </span>
       </div>
 
-      <!-- Tiered Price Ladder (Page 14 Spec) -->
-      <div class="price-discount-table" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 12px; margin-bottom: 24px; text-align: center;">
-        <div class="discount-col" id="tier-col-1" onclick="selectPieceQty(5)" style="cursor: pointer; padding: 6px;">
-          <div style="font-size: 11px; color: var(--color-text-muted);">1–9 pcs</div>
-          <strong style="font-size: 14px;">₹ <?php echo number_format($tier_1); ?></strong>
+      <?php if (!$is_single): ?>
+      <!-- 3 Tier Blocks (Point 8 Spec: Active is filled black) -->
+      <div class="tiers" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 18px;">
+        <div class="tier-block" id="tier-box-1" onclick="setProductQty(1)" style="border: 1px solid var(--line2); padding: 10px 12px; text-align: left; cursor: pointer; background: var(--paper);">
+          <span style="display: block; font-size: 11px; color: var(--mute);">1–9 pcs</span>
+          <b style="font-size: 15px; color: var(--ink);">₹ <?php echo number_format($tier_1_price); ?></b>
         </div>
-        <div class="discount-col active" id="tier-col-10" onclick="selectPieceQty(12)" style="cursor: pointer; padding: 6px; border: 1px solid var(--color-gold-label); background: #FAF7F2;">
-          <div style="font-size: 11px; color: var(--color-gold-label); font-weight: 600;">10+ pcs</div>
-          <strong style="font-size: 14px; color: var(--color-gold-label);">₹ <?php echo number_format($tier_10); ?></strong>
+        <div class="tier-block on" id="tier-box-10" onclick="setProductQty(10)" style="border: 1px solid var(--ink); padding: 10px 12px; text-align: left; cursor: pointer; background: var(--ink); color: #fff;">
+          <span style="display: block; font-size: 11px; color: #cfc6b8;">10+ pcs</span>
+          <b style="font-size: 15px; color: #fff;">₹ <?php echo number_format($tier_10_price); ?></b>
         </div>
-        <div class="discount-col" id="tier-col-50" onclick="selectPieceQty(50)" style="cursor: pointer; padding: 6px;">
-          <div style="font-size: 11px; color: var(--color-text-muted);">50+ pcs</div>
-          <strong style="font-size: 14px;">₹ <?php echo number_format($tier_50); ?></strong>
+        <div class="tier-block" id="tier-box-50" onclick="setProductQty(50)" style="border: 1px solid var(--line2); padding: 10px 12px; text-align: left; cursor: pointer; background: var(--paper);">
+          <span style="display: block; font-size: 11px; color: var(--mute);">50+ pcs</span>
+          <b style="font-size: 15px; color: var(--ink);">₹ <?php echo number_format($tier_50_price); ?></b>
         </div>
       </div>
+      <?php endif; ?>
 
-      <!-- Add To Cart Form Wrapper -->
-      <form id="vivaaz-product-form" class="cart vivaaz-buy-form" method="post" action="<?php echo esc_url(function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_url('/cart/')); ?>" onsubmit="return handleProductFormSubmit(this);" style="display: block !important; width: 100% !important; margin: 0 0 24px 0 !important; clear: both !important;">
-        <input type="hidden" name="vivaaz_add_to_cart" value="1" />
-        <input type="hidden" name="product_id" value="<?php echo esc_attr($product_id); ?>" />
-        <input type="hidden" name="selected_size" id="form-selected-size" value="6×8 mm" />
-        <input type="hidden" name="buy_now" id="form-buy-now-flag" value="0" />
+      <!-- Size Selector (Square Chips - Style Guide Spec) -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span class="lbl" style="font-size: 10.5px; letter-spacing: 0.16em; font-weight: 700; text-transform: uppercase; color: var(--soft);">SIZE (MM)</span>
+        <a href="javascript:void(0);" onclick="switchProdView('size', document.querySelectorAll('.gal-view-btn')[4]);" style="font-size: 12px; color: var(--gold); text-decoration: underline; font-weight: 600;">See actual size</a>
+      </div>
+      <div class="chips sq" style="display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 18px;">
+        <button type="button" class="chip size-chip" onclick="selectProdSize('5×7', this)" style="border-radius: 0; padding: 7px 14px; font-size: 12.5px; border: 1px solid var(--line2); background: var(--paper); cursor: pointer;">5×7 mm</button>
+        <button type="button" class="chip size-chip on" onclick="selectProdSize('6×8', this)" style="border-radius: 0; padding: 7px 14px; font-size: 12.5px; border: 1px solid var(--ink); background: var(--ink); color: #fff; cursor: pointer;">6×8 mm</button>
+        <button type="button" class="chip size-chip" onclick="selectProdSize('7×9', this)" style="border-radius: 0; padding: 7px 14px; font-size: 12.5px; border: 1px solid var(--line2); background: var(--paper); cursor: pointer;">7×9 mm</button>
+        <button type="button" class="chip size-chip" onclick="selectProdSize('8×10', this)" style="border-radius: 0; padding: 7px 14px; font-size: 12.5px; border: 1px solid var(--line2); background: var(--paper); cursor: pointer;">8×10 mm</button>
+      </div>
 
-        <!-- 1. SIZE SELECTION (BUTTONS) -->
-        <div class="product-option-group" style="display: block !important; width: 100% !important; margin-bottom: 22px !important; clear: both !important;">
-          <div class="option-label-flex" style="display: flex !important; justify-content: space-between !important; align-items: center !important; margin-bottom: 8px !important; width: 100% !important;">
-            <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">SIZE</span>
-            <a href="javascript:void(0);" onclick="switchGalleryView('image', '<?php echo esc_url($actual_size_img); ?>', null)" class="btn-underline-link" style="font-size: 11px; text-decoration: underline;">See actual size</a>
-          </div>
-          <div class="pill-buttons-row" style="display: flex !important; flex-wrap: wrap !important; gap: 8px !important; width: 100% !important;">
-            <button type="button" class="size-pill-btn" onclick="selectProductSize('3×4 mm', this)">3×4 mm</button>
-            <button type="button" class="size-pill-btn" onclick="selectProductSize('3×5 mm', this)">3×5 mm</button>
-            <button type="button" class="size-pill-btn" onclick="selectProductSize('4×5 mm', this)">4×5 mm</button>
-            <button type="button" class="size-pill-btn" onclick="selectProductSize('4×6 mm', this)">4×6 mm</button>
-            <button type="button" class="size-pill-btn" onclick="selectProductSize('5×7 mm', this)">5×7 mm</button>
-            <button type="button" class="size-pill-btn active" onclick="selectProductSize('6×8 mm', this)">6×8 mm</button>
-            <button type="button" class="size-pill-btn" onclick="selectProductSize('7×9 mm', this)">7×9 mm</button>
-            <button type="button" class="size-pill-btn" onclick="selectProductSize('7×11 mm', this)">7×11 mm</button>
-            <button type="button" class="size-pill-btn" onclick="selectProductSize('7×12 mm', this)">7×12 mm</button>
-            <button type="button" class="size-pill-btn" onclick="selectProductSize('8×10 mm', this)">8×10 mm</button>
-          </div>
+      <!-- Quantity Stepper -->
+      <div class="lbl" style="font-size: 10.5px; letter-spacing: 0.16em; font-weight: 700; text-transform: uppercase; color: var(--soft); margin-bottom: 8px;">
+        PIECES <span style="letter-spacing: 0; font-weight: 400; color: var(--mute);">62 ready · more in 1–3 weeks</span>
+      </div>
+      <div class="qty" style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+        <div class="step" style="display: flex; border: 1px solid var(--line2); background: var(--paper); width: 120px; height: 44px;">
+          <button type="button" onclick="adjustQty(-1)" style="width: 36px; height: 100%; border: 0; background: transparent; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">−</button>
+          <input type="text" id="prod-qty-input" value="<?php echo $is_single ? '1' : '10'; ?>" readonly style="flex: 1; border: 0; background: transparent; text-align: center; font-size: 14px; font-weight: 700; outline: none;" />
+          <button type="button" onclick="adjustQty(1)" style="width: 36px; height: 100%; border: 0; background: transparent; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;">+</button>
         </div>
+        <span style="font-size: 13.5px; color: var(--mute);">Total <b id="prod-total-display" style="color: var(--ink);">₹ <?php echo number_format($tier_10_price * ($is_single ? 1 : 10)); ?></b></span>
+      </div>
 
-        <!-- 2. PIECES SELECTION (STEPPER + STOCK + TOTAL) -->
-        <div class="product-option-group" style="display: block !important; width: 100% !important; margin-bottom: 24px !important; clear: both !important;">
-          <div class="option-label-flex" style="display: flex !important; justify-content: space-between !important; align-items: center !important; margin-bottom: 8px !important; width: 100% !important;">
-            <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">PIECES</span>
-            <span style="font-size: 11px; color: var(--color-text-muted);">62 ready · more in 1–3 weeks</span>
-          </div>
-          
-          <div class="stepper-total-container" style="display: flex !important; align-items: center !important; justify-content: space-between !important; background: #FFFFFF !important; border: 1px solid var(--color-border-light) !important; padding: 10px 16px !important; width: 100% !important; box-sizing: border-box !important;">
-            <!-- Stepper − / + -->
-            <div class="stepper-control-box" style="display: flex !important; align-items: center !important; gap: 8px !important;">
-              <button type="button" class="btn-stepper" onclick="adjustPieces(-1)" style="width: 32px; height: 32px; background: #FAF7F2; border: 1px solid var(--color-border-light); font-size: 16px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; border-radius: 0;">−</button>
-              <input type="number" name="quantity" id="pieces-number-input" value="12" min="1" max="9999" onchange="calculateLiveTotal()" onkeyup="calculateLiveTotal()" style="width: 60px; height: 32px; text-align: center; border: 1px solid var(--color-border-light); font-size: 14px; font-weight: 700; margin: 0; padding: 0; border-radius: 0; background: #FFFFFF;" />
-              <button type="button" class="btn-stepper" onclick="adjustPieces(1)" style="width: 32px; height: 32px; background: #FAF7F2; border: 1px solid var(--color-border-light); font-size: 16px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; border-radius: 0;">+</button>
-            </div>
+      <!-- Action Buttons Row: Black ADD TO CART + White Outline BUY NOW + Square 52px Heart Box -->
+      <div class="pbtns" style="display: grid; grid-template-columns: 1fr 1fr 52px; gap: 10px; margin-bottom: 14px;">
+        <button type="button" class="btn" onclick="triggerAddToCart();" style="height: 49px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;">
+          ADD TO CART
+        </button>
+        <button type="button" class="btn o" onclick="triggerBuyNow();" style="height: 49px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;">
+          BUY NOW
+        </button>
+        <button type="button" class="wl" id="prod-heart-btn" onclick="toggleProductWishlist('<?php echo esc_js($sku); ?>', '<?php echo esc_js($title); ?>', '<?php echo esc_url($main_img); ?>', '₹ <?php echo esc_js($tier_10_price); ?>', window.location.href, this);" aria-label="Save to wishlist" style="height: 49px; width: 52px; border: 1px solid var(--line2); background: var(--paper); display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          <svg class="i" style="width: 20px; height: 20px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </button>
+      </div>
 
-            <!-- Total Price Display -->
-            <div style="text-align: right;">
-              <span id="calculated-total-display" style="font-size: 18px; font-weight: 700; color: var(--color-text-main);">Total ₹ 1,260</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3. ACTION BUTTONS: ADD TO CART (BLACK), BUY NOW (TRANSPARENT/BLACK BORDER), WISHLIST (SQUARE 52PX) -->
-        <div class="pbtns action-buttons-grid" style="display: grid !important; grid-template-columns: 1fr 1fr 52px !important; gap: 10px !important; margin-top: 20px !important; margin-bottom: 12px !important; width: 100% !important;">
-          <button type="submit" class="btn btn-action-add-cart" onclick="document.getElementById('form-buy-now-flag').value='0';" style="height: 48px !important; padding: 0 16px !important; font-size: 12px !important; letter-spacing: 0.16em !important; font-weight: 700 !important; text-transform: uppercase !important; border-radius: 0 !important;">
-            ADD TO CART
-          </button>
-          
-          <button type="submit" class="btn o btn-action-buy-now" onclick="document.getElementById('form-buy-now-flag').value='1';" style="height: 48px !important; padding: 0 16px !important; background: transparent !important; color: #1C1A17 !important; border: 1px solid #1C1A17 !important; font-size: 12px !important; font-weight: 700 !important; letter-spacing: 0.16em !important; text-transform: uppercase !important; border-radius: 0 !important;">
-            BUY NOW
-          </button>
-
-          <button type="button" class="wl btn-action-wishlist" id="single-wishlist-btn" data-wishlist-id="<?php echo esc_attr($product_id); ?>" onclick="toggleProductWishlist(<?php echo intval($product_id); ?>, <?php echo json_encode($title); ?>, <?php echo json_encode($main_img); ?>, '₹ <?php echo number_format($tier_10); ?>', <?php echo json_encode(get_permalink($product_id) ?: home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>, this);" title="Save to Wishlist" style="width: 52px !important; height: 48px !important; min-width: 52px !important; background: #FFFFFF !important; border: 1px solid var(--line2) !important; border-radius: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; cursor: pointer !important;">
-            <svg class="i" style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/>
-            </svg>
-          </button>
-        </div>
-
-        <!-- 4. WHATSAPP + VIDEO CALL PAIR (EXACT TWO EQUAL WHITE BUTTONS SIDE BY SIDE) -->
-        <div class="act2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; margin-bottom: 14px;">
-          <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" style="border: 1px solid var(--line2); background: var(--paper); color: var(--ink); padding: 12px 10px; display: flex; gap: 8px; align-items: center; justify-content: center; font-size: 11.5px; letter-spacing: 0.14em; font-weight: 700; text-transform: uppercase; text-decoration: none; border-radius: 0;">
-            <svg class="i" style="width: 17px; height: 17px; color: #1E9E52;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4.5 19.5l1.2-3.6A7.8 7.8 0 1 1 8.6 18.6z"/><path d="M9.3 9.2c.3 2.4 2.6 4.8 5.4 5.4l1.1-1.1-1.7-.9-.7.7c-1.1-.5-2-1.4-2.5-2.5l.7-.7-.9-1.7z"/></svg>
-            SEE THIS EXACT LOT LIVE
-          </a>
-          <a href="javascript:void(0);" onclick="openVideoCallModal();" style="border: 1px solid var(--line2); background: var(--paper); color: var(--ink); padding: 12px 10px; display: flex; gap: 8px; align-items: center; justify-content: center; font-size: 11.5px; letter-spacing: 0.14em; font-weight: 700; text-transform: uppercase; text-decoration: none; border-radius: 0;">
-            <svg class="i" style="width: 17px; height: 17px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3.5" y="6.5" width="12" height="11" rx="2"/><path d="M15.5 10.5l5-3v9l-5-3"/></svg>
-            REQUEST VIDEO CALL
-          </a>
-        </div>
-
-        <!-- 5. QUIET TRUST ROW -->
-        <div class="trow" style="display: flex; gap: 8px 20px; justify-content: center; flex-wrap: wrap; font-size: 12.5px; color: var(--mute); margin: 14px 0 24px; padding-top: 14px; border-top: 1px solid var(--line);">
-          <span>✓ Ships in 1–2 days</span>
-          <span>✓ Insured worldwide</span>
-          <span>✓ <a href="<?php echo esc_url(home_url('/guarantee/')); ?>" style="color: inherit; text-decoration: underline;">Our guarantee</a></span>
-        </div>
-      </form>
-
-      <!-- STICKY MOBILE BUY BAR (ABOVE 62PX PHONE BOTTOM BAR) -->
-      <div class="buybar mobile-product-buybar" id="mobile-product-buybar" style="display: none; position: fixed; left: 0; right: 0; bottom: 62px; background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 12px; z-index: 99998; grid-template-columns: 1.4fr 1fr; gap: 8px;">
-        <button type="button" class="btn" onclick="document.getElementById('vivaaz-product-form').submit();" style="width: 100%; height: 44px; padding: 0 10px; font-size: 11px; letter-spacing: 0.08em; white-space: nowrap; border-radius: 0;">ADD TO CART</button>
-        <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" class="btn o" style="display: flex; align-items: center; justify-content: center; gap: 6px; height: 44px; padding: 0 10px; font-size: 11px; letter-spacing: 0.08em; white-space: nowrap; text-decoration: none; border: 1px solid var(--ink); color: var(--ink); background: var(--paper); border-radius: 0;">
-          <svg class="i" style="width: 16px; height: 16px; color: #1E9E52;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4.5 19.5l1.2-3.6A7.8 7.8 0 1 1 8.6 18.6z"/><path d="M9.3 9.2c.3 2.4 2.6 4.8 5.4 5.4l1.1-1.1-1.7-.9-.7.7c-1.1-.5-2-1.4-2.5-2.5l.7-.7-.9-1.7z"/></svg>
-          WHATSAPP
+      <!-- WhatsApp + Video Call pair (.act2) -->
+      <div class="act2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+        <a href="https://wa.me/919680552270?text=Hello%20Vivaaz%20Gems,%20I%20would%20like%20to%20see%20this%20exact%20lot%20live:%20<?php echo urlencode($title); ?>%20(<?php echo urlencode($sku); ?>)" target="_blank" style="text-decoration: none; border: 1px solid var(--line2); background: var(--paper); padding: 12px 10px; display: flex; gap: 8px; align-items: center; justify-content: center; font-size: 11.5px; letter-spacing: 0.14em; font-weight: 700; text-transform: uppercase; color: var(--ink);">
+          <svg class="i" style="width: 17px; height: 17px; fill: #1E9E52;" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          SEE THIS EXACT LOT LIVE
+        </a>
+        <a href="javascript:void(0);" onclick="openConsultationModal();" style="text-decoration: none; border: 1px solid var(--line2); background: var(--paper); padding: 12px 10px; display: flex; gap: 8px; align-items: center; justify-content: center; font-size: 11.5px; letter-spacing: 0.14em; font-weight: 700; text-transform: uppercase; color: var(--ink);">
+          <svg class="i" style="width: 17px; height: 17px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+          BOOK A VIDEO CALL
         </a>
       </div>
 
-      <!-- 6. ACCORDION (PAGE 14 SPEC & PAGE 26 WORD UPDATES) -->
-      <div class="product-accordion-wrapper" style="margin-bottom: 24px;">
-        <details style="border-bottom: 1px solid var(--color-border-light); padding: 12px 0;">
-          <summary style="font-size: 13px; font-weight: 600; cursor: pointer;">Shipping and export</summary>
-          <div style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0; line-height: 1.6;">
-            Dispatched within 1–2 days. Insured express delivery: India 2–3 days, worldwide 4–7 days. Tracking link provided by email and WhatsApp.
+      <!-- Quiet Trust Line (.trow) -->
+      <div class="trow" style="display: flex; gap: 8px 20px; justify-content: center; flex-wrap: wrap; font-size: 12.5px; color: var(--mute); padding-top: 14px; border-top: 1px solid var(--line);">
+        <span>Ships in 1–2 days</span>
+        <span>·</span>
+        <span>Insured worldwide</span>
+        <span>·</span>
+        <a href="<?php echo esc_url(home_url('/guarantee/')); ?>" class="link" style="color: var(--gold); text-decoration: underline;">Our guarantee</a>
+      </div>
+
+    </div>
+
+    <!-- Q3: BOTTOM LEFT - THE STONE PASSPORT BOX -->
+    <div class="q3" style="align-self: stretch; display: flex;">
+      <div class="stonebox" style="margin: 0; flex: 1; background: var(--paper); border: 1px solid var(--line); padding: 22px;">
+        <div class="sbh" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; border-bottom: 1px solid var(--line); padding-bottom: 12px;">
+          <h4 style="font-family: var(--display); font-size: 18px; font-weight: 400; margin: 0; color: var(--ink);">The stone</h4>
+          <span style="font-size: 10.5px; letter-spacing: 0.18em; color: var(--gold); font-weight: 700; text-transform: uppercase;">PASSPORT · <?php echo esc_html($sku); ?></span>
+        </div>
+
+        <div class="keys" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--line);">
+          <div>
+            <b id="passport-size-val" style="display: block; font-size: 16px; color: var(--ink);">6×8 mm</b>
+            <span style="font-size: 10.5px; letter-spacing: 0.14em; color: var(--soft); text-transform: uppercase;">SIZE</span>
+          </div>
+          <div>
+            <b style="display: block; font-size: 16px; color: var(--ink);">≈ 0.8 ct</b>
+            <span style="font-size: 10.5px; letter-spacing: 0.14em; color: var(--soft); text-transform: uppercase;">EACH PIECE</span>
+          </div>
+          <div>
+            <b style="display: block; font-size: 16px; color: var(--ink);">±0.1 mm</b>
+            <span style="font-size: 10.5px; letter-spacing: 0.14em; color: var(--soft); text-transform: uppercase;">CALIBRATED</span>
+          </div>
+          <div>
+            <b style="display: block; font-size: 16px; color: var(--ink);">None</b>
+            <span style="font-size: 10.5px; letter-spacing: 0.14em; color: var(--soft); text-transform: uppercase;">TREATMENT</span>
+          </div>
+        </div>
+
+        <div class="spec" style="display: flex; flex-direction: column; gap: 8px; font-size: 13.5px;">
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
+            <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">STONE</span>
+            <span style="font-weight: 600; color: var(--ink);"><?php echo esc_html($stone_name); ?></span>
+          </div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
+            <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">CUT AND SHAPE</span>
+            <span>Cabochon, oval</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
+            <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">COLOUR</span>
+            <span>White with blue flash</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
+            <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">QUALITY</span>
+            <span>AAA, matched lot</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
+            <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">COLOUR MATCH</span>
+            <span>Within the lot</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding-top: 2px;">
+            <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">PRICE PER CARAT</span>
+            <span style="font-weight: 600; color: var(--ink);">₹ 445</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4: BOTTOM RIGHT - ACCORDIONS, MAKE IT INTO JEWELRY, BUYING IN BULK -->
+    <div class="q4" style="display: flex; flex-direction: column; gap: 14px;">
+      
+      <!-- Accordions -->
+      <div class="acc-wrapper" style="border-top: 1px solid var(--line);">
+        <details style="border-bottom: 1px solid var(--line);">
+          <summary style="list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 14px 0; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--ink);">
+            Shipping and export
+            <span style="font-size: 14px; color: var(--soft);">▾</span>
+          </summary>
+          <div style="padding-bottom: 14px; font-size: 13px; color: var(--mute); line-height: 1.6;">
+            India: insured courier, about 2–3 days. Outside India: insured express, about 4–7 days. Shipped directly from our Jaipur sorting workshop.
           </div>
         </details>
-        
-        <details style="border-bottom: 1px solid var(--color-border-light); padding: 12px 0;">
-          <summary style="font-size: 13px; font-weight: 600; cursor: pointer;">Our guarantee</summary>
-          <div style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0; line-height: 1.6;">
-            Natural gemstones only, honestly described. If a stone arrives damaged or not as described, tell us within 48 hours with photos for a full replacement or refund.
+
+        <details style="border-bottom: 1px solid var(--line);">
+          <summary style="list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 14px 0; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--ink);">
+            Our guarantee
+            <span style="font-size: 14px; color: var(--soft);">▾</span>
+          </summary>
+          <div style="padding-bottom: 14px; font-size: 13px; color: var(--mute); line-height: 1.6;">
+            Every parcel is inspected by hand. Replaced or refunded if any stone arrives damaged, off-size, or not matching the approved specifications.
           </div>
         </details>
-        
-        <details style="border-bottom: 1px solid var(--color-border-light); padding: 12px 0;">
-          <summary style="font-size: 13px; font-weight: 600; cursor: pointer;">Certificates on request</summary>
-          <div style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0; line-height: 1.6;">
-            Need a lab certificate? Ask us on WhatsApp or write it in your order note. We confirm the laboratory, cost, and timeline before sending the stone.
-          </div>
-        </details>
-        
-        <details style="border-bottom: 1px solid var(--color-border-light); padding: 12px 0;">
-          <summary style="font-size: 13px; font-weight: 600; cursor: pointer;">Care and setting</summary>
-          <div style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0; line-height: 1.6;">
-            Clean gently with warm water, mild soap, and a soft cloth. Keep away from harsh chemicals and hard knocks. Ideal for bezel and protective prong settings.
-          </div>
-        </details>
-        
-        <details style="border-bottom: 1px solid var(--color-border-light); padding: 12px 0;">
-          <summary style="font-size: 13px; font-weight: 600; cursor: pointer;">About rainbow moonstone</summary>
-          <div style="font-size: 12px; color: var(--color-text-muted); padding: 10px 0; line-height: 1.6;">
-            Rainbow moonstone is a transparent to translucent feldspar gemstone celebrated for its mesmerizing adularescence—a glowing blue and rainbow sheen that dances across the dome.
+
+        <details style="border-bottom: 1px solid var(--line);">
+          <summary style="list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 14px 0; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--ink);">
+            Matching and certificates
+            <span style="font-size: 14px; color: var(--soft);">▾</span>
+          </summary>
+          <div style="padding-bottom: 14px; font-size: 13px; color: var(--mute); line-height: 1.6;">
+            Lab reports and certificates available on request for any stone or lot. All stones are 100% natural and tested in our laboratory.
           </div>
         </details>
       </div>
 
-      <!-- 7. BUYING IN BULK (DEDICATED BOX BELOW ACCORDION - POINT 8 SPEC) -->
-      <div class="buying-in-bulk-card" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px;">
+      <!-- Make it into jewelry Card -->
+      <div class="make" style="background: #1C1A17; color: #FFFFFF; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
         <div>
-          <h4 style="font-size: 13px; font-weight: 700; margin: 0 0 6px; color: var(--color-text-main);">Buying in bulk?</h4>
-          <p style="font-size: 12px; color: var(--color-text-muted); margin: 0; line-height: 1.5;">
-            1,000+ pieces, another size or a matched lot for your workshop. Asking is free.
-          </p>
+          <h4 style="font-size: 13.5px; font-weight: 700; color: #FFFFFF; margin: 0 0 4px;">Make it into jewelry</h4>
+          <p style="font-size: 12px; color: #CCCCCC; margin: 0;">We set this stone in silver or gold. Asking is free.</p>
         </div>
-        <a href="<?php echo esc_url(home_url('/bulk-enquiry/')); ?>" class="btn-square-dark" style="padding: 12px 18px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; text-decoration: none; background: #FFFFFF; color: #1C1A17; border: 1px solid var(--color-border-light); display: inline-block;">
-          BULK / B2B ENQUIRY
+        <a href="<?php echo esc_url(home_url('/make-it-into-jewelry/')); ?>" class="ul" style="color: #FFFFFF; font-size: 11.5px; font-weight: 700; text-decoration: underline; white-space: nowrap; margin-left: 14px;">
+          Ask for a quote →
+        </a>
+      </div>
+
+      <!-- Buying in bulk? Card -->
+      <div class="bulk" style="background: var(--sand); border: 1px solid var(--line); padding: 18px 22px; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h4 style="font-size: 13.5px; font-weight: 700; color: var(--ink); margin: 0 0 4px;">Buying in bulk?</h4>
+          <p style="font-size: 12px; color: var(--mute); margin: 0;">Many pieces, another size or a matched set. Asking is free.</p>
+        </div>
+        <a href="<?php echo esc_url(home_url('/bulk-enquiry/')); ?>" class="btn o sm" style="text-decoration: none; font-size: 11px; white-space: nowrap; margin-left: 14px;">
+          Bulk / B2B enquiry
         </a>
       </div>
 
@@ -412,344 +335,193 @@ do_action('woocommerce_before_single_product');
 
   </div>
 
-  <!-- 8. SIMILAR STONES (POINT 6 & 8 SPEC) -->
-  <div class="product-related-shelf" style="margin-top: 50px; padding-top: 36px; border-top: 1px solid var(--color-border-light);">
-    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px;">
-      <h3 class="font-serif" style="font-size: 22px; font-weight: 400; margin: 0; color: #1C1A17;">Similar stones</h3>
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=' . strtolower(urlencode($stone_name)))); ?>" style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #9C7C4C; text-decoration: none;">View all <?php echo esc_html($stone_name); ?> ›</a>
+  <!-- SIMILAR STONES SECTION (POINT 6 SPEC) -->
+  <section class="sec wrap" style="padding-block: 56px 0;">
+    <div class="sech" style="margin-bottom: 24px; border-bottom: 1px solid var(--line); padding-bottom: 12px;">
+      <h2 class="h2">Similar stones</h2>
     </div>
-    <div class="products-grid-4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
-      
-      <div class="product-card-luxury">
-        <div class="product-card-media">
-          <img src="<?php echo esc_url($main_img); ?>" alt="Rainbow Moonstone Pear Cabochon">
-        </div>
-        <div class="product-card-body">
-          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Rainbow Moonstone Pear Cabochon</h4>
-          <div style="font-size: 11px; color: var(--color-text-muted);">8×10 mm · AAA</div>
-          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 180 <span style="font-size: 10px; font-weight: 400; color: var(--color-text-muted);">/ pc</span></div>
-        </div>
-      </div>
-
-      <div class="product-card-luxury">
-        <div class="product-card-media">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Round Cabochon">
-        </div>
-        <div class="product-card-body">
-          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Rainbow Moonstone Round Cabochon</h4>
-          <div style="font-size: 11px; color: var(--color-text-muted);">6 mm · AAA</div>
-          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 85 <span style="font-size: 10px; font-weight: 400; color: var(--color-text-muted);">/ pc</span></div>
-        </div>
-      </div>
-
-      <div class="product-card-luxury">
-        <div class="product-card-media">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Cushion Cabochon" style="filter: hue-rotate(15deg);">
-        </div>
-        <div class="product-card-body">
-          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Rainbow Moonstone Cushion Cabochon</h4>
-          <div style="font-size: 11px; color: var(--color-text-muted);">10×10 mm · AAA</div>
-          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 220 <span style="font-size: 10px; font-weight: 400; color: var(--color-text-muted);">/ pc</span></div>
-        </div>
-      </div>
-
-      <div class="product-card-luxury">
-        <div class="product-card-media">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Freeform Slice" style="filter: brightness(1.05);">
-        </div>
-        <div class="product-card-body">
-          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Rainbow Moonstone Freeform Slice</h4>
-          <div style="font-size: 11px; color: var(--color-text-muted);">15×20 mm · Untreated</div>
-          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 650 <span style="font-size: 10px; font-weight: 400; color: var(--color-text-muted);">/ pc</span></div>
-        </div>
-      </div>
-
+    <div class="grid g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 22px;">
+      <?php
+      $sim_args = array(
+          'post_type'      => 'product',
+          'posts_per_page' => 4,
+          'post__not_in'   => array($product_id),
+      );
+      $sim_query = new WP_Query($sim_args);
+      if ($sim_query->have_posts()) :
+          while ($sim_query->have_posts()) : $sim_query->the_post();
+              wc_get_template_part('content', 'product');
+          endwhile;
+          wp_reset_postdata();
+      endif;
+      ?>
     </div>
-  </div>
-
-  <!-- 9. RECENTLY VIEWED (POINT 6 & 8 SPEC) -->
-  <div class="product-related-shelf" style="margin-top: 40px; padding-top: 36px; border-top: 1px solid var(--color-border-light);">
-    <h3 class="font-serif" style="font-size: 22px; font-weight: 400; margin: 0 0 20px 0; color: #1C1A17;">Recently viewed</h3>
-    <div class="products-grid-4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
-      
-      <div class="product-card-luxury">
-        <div class="product-card-media">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Ceylon Blue Sapphire Oval">
-        </div>
-        <div class="product-card-body">
-          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Ceylon Blue Sapphire Oval Faceted</h4>
-          <div style="font-size: 11px; color: var(--color-text-muted);">7×5 mm · Natural</div>
-          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 12,500</div>
-        </div>
-      </div>
-
-      <div class="product-card-luxury">
-        <div class="product-card-media">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Zambian Emerald Octagon Cut">
-        </div>
-        <div class="product-card-body">
-          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Zambian Emerald Octagon Cut</h4>
-          <div style="font-size: 11px; color: var(--color-text-muted);">6×4 mm · Calibrated</div>
-          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 8,200</div>
-        </div>
-      </div>
-
-      <div class="product-card-luxury">
-        <div class="product-card-media">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Burmese Red Ruby Oval">
-        </div>
-        <div class="product-card-body">
-          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Burmese Red Ruby Oval Faceted</h4>
-          <div style="font-size: 11px; color: var(--color-text-muted);">7×5 mm · Unheated</div>
-          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 14,000</div>
-        </div>
-      </div>
-
-      <div class="product-card-luxury">
-        <div class="product-card-media">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Swiss Blue Topaz Trillion">
-        </div>
-        <div class="product-card-body">
-          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Swiss Blue Topaz Trillion Cut</h4>
-          <div style="font-size: 11px; color: var(--color-text-muted);">8×8 mm · AAA</div>
-          <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin-top: 4px;">₹ 950</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- 10. PAIRS WELL WITH (PAGE 14 SPEC) -->
-  <div class="pairs-well-with-section" style="margin-top: 40px; padding-top: 36px; border-top: 1px solid var(--color-border-light);">
-    <h3 class="font-serif" style="font-size: 22px; font-weight: 400; margin-bottom: 20px;">Pairs well with</h3>
-    <div class="products-grid-4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
-      
-      <div class="product-card-luxury">
-        <div class="product-card-media">
-          <img src="<?php echo esc_url($main_img); ?>" alt="Rainbow Moonstone Pear Cabochon">
-        </div>
-        <div class="product-card-body">
-          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Rainbow Moonstone Pear Cabochon</h4>
-          <span style="font-size: 11px; color: var(--color-text-muted);">12 sizes</span>
-        </div>
-      </div>
-
-      <div class="product-card-luxury">
-        <div class="product-card-media">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Round Cabochon">
-        </div>
-        <div class="product-card-body">
-          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Rainbow Moonstone Round Cabochon</h4>
-          <span style="font-size: 11px; color: var(--color-text-muted);">14 sizes</span>
-        </div>
-      </div>
-
-      <div class="product-card-luxury">
-        <div class="product-card-media">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="White Topaz Round Faceted">
-        </div>
-        <div class="product-card-body">
-          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">White Topaz Round Faceted</h4>
-          <span style="font-size: 11px; color: var(--color-text-muted);">9 sizes</span>
-        </div>
-      </div>
-
-      <div class="product-card-luxury">
-        <div class="product-card-media">
-          <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Amethyst Oval Cabochon">
-        </div>
-        <div class="product-card-body">
-          <h4 style="font-size: 13px; font-weight: 600; margin: 0 0 4px;">Amethyst Oval Cabochon</h4>
-          <span style="font-size: 11px; color: var(--color-text-muted);">11 sizes</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- MOBILE STICKY BOTTOM BAR (PAGE 15 SPEC) -->
-  <div class="mobile-sticky-product-bar" id="mobile-sticky-bar">
-    <button type="button" class="sticky-add-cart-btn" onclick="document.querySelector('#vivaaz-product-form button[type=submit]').click();">
-      ADD TO CART · <span id="mobile-sticky-qty">12</span> PCS
-    </button>
-    <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" class="sticky-whatsapp-btn" title="Chat on WhatsApp">✆</a>
-  </div>
+  </section>
 
 </div>
 
-<!-- EMBEDDED DYNAMIC JAVASCRIPT FOR 100% BULLETPROOF INTERACTION -->
+<!-- STICKY MOBILE BUY BAR (POINT 22 & PHONE DEMO SPEC) -->
+<div class="mobile-product-buybar buybar" id="mobile-product-buybar">
+  <button type="button" class="btn" onclick="triggerAddToCart();" style="width: 100%; padding: 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">
+    ADD TO CART · <span id="bar-pcs-count"><?php echo $is_single ? '1 PC' : '10 PCS'; ?></span>
+  </button>
+  <a href="https://wa.me/919680552270?text=Hello%20Vivaaz%20Gems,%20I%20am%20interested%20in%20<?php echo urlencode($title); ?>" target="_blank" class="btn o w" style="width: 56px; padding: 0; display: flex; align-items: center; justify-content: center;" title="Ask on WhatsApp">
+    <svg class="i" style="width: 20px; height: 20px; color: #1E9E52; fill: currentColor;" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  </a>
+</div>
+
+<!-- Interactive Product Page Scripts -->
 <script>
-  var currentTier1 = <?php echo json_encode($tier_1); ?>;
-  var currentTier10 = <?php echo json_encode($tier_10); ?>;
-  var currentTier50 = <?php echo json_encode($tier_50); ?>;
-  var currentTitle = <?php echo json_encode($title); ?>;
-  var currentSku = <?php echo json_encode($sku); ?>;
-  window.currentProductId = <?php echo json_encode(strval($product_id)); ?>;
+  var currentUnitPrice = <?php echo $tier_10_price; ?>;
+  var currentQty = <?php echo $is_single ? 1 : 10; ?>;
+  var currentSize = '6×8';
 
-  function switchGalleryView(type, src, element) {
-    var displayImg = document.getElementById('main-gallery-view');
-    var badge = document.getElementById('gallery-badge-overlay');
-    if (displayImg) displayImg.src = src;
-
-    if (badge) {
-      if (type === 'video') {
-        badge.style.display = 'block';
-        badge.innerText = '▶ 0:08';
-      } else {
-        badge.style.display = 'none';
-      }
-    }
-
-    if (element) {
-      document.querySelectorAll('.gal-tab-btn, .light-thumb-item').forEach(function(el) {
-        el.classList.remove('active');
-      });
-      element.classList.add('active');
-    }
-  }
-
-  function selectProductSize(sizeStr, btn) {
-    document.querySelectorAll('.size-pill-btn').forEach(function(b) {
-      b.classList.remove('active');
+  function switchProdView(view, btn) {
+    document.querySelectorAll('.gal-view-btn').forEach(b => {
+      b.classList.remove('on');
+      b.style.background = 'var(--paper)';
+      b.style.color = 'var(--ink)';
+      b.style.borderColor = 'var(--line2)';
     });
-    btn.classList.add('active');
+    btn.classList.add('on');
+    btn.style.background = 'var(--ink)';
+    btn.style.color = '#fff';
+    btn.style.borderColor = 'var(--ink)';
 
-    // Update form input
-    var sizeInput = document.getElementById('form-selected-size');
-    if (sizeInput) sizeInput.value = sizeStr;
+    var videoTag = document.getElementById('prod-video-tag');
+    var rulerTag = document.getElementById('prod-ruler-tag');
+    var mainImg = document.getElementById('prod-main-img');
 
-    // Update passport stat
-    var passportSize = document.getElementById('passport-size-large');
-    if (passportSize) passportSize.innerText = sizeStr;
-  }
-
-  function adjustPieces(delta) {
-    var input = document.getElementById('pieces-number-input');
-    if (!input) return;
-    var val = parseInt(input.value) || 1;
-    val += delta;
-    if (val < 1) val = 1;
-    input.value = val;
-    calculateLiveTotal();
-  }
-
-  function selectPieceQty(qty) {
-    var input = document.getElementById('pieces-number-input');
-    if (input) {
-      input.value = qty;
-      calculateLiveTotal();
-    }
-  }
-
-  function calculateLiveTotal() {
-    var input = document.getElementById('pieces-number-input');
-    if (!input) return;
-    var qty = parseInt(input.value) || 1;
-    if (qty < 1) {
-      qty = 1;
-      input.value = 1;
-    }
-
-    // Determine active tier price
-    var unitPrice = currentTier1;
-    var tierLabel = 'per piece · 1–9 price';
-    var tierCol1 = document.getElementById('tier-col-1');
-    var tierCol10 = document.getElementById('tier-col-10');
-    var tierCol50 = document.getElementById('tier-col-50');
-
-    if (tierCol1) { tierCol1.classList.remove('active'); tierCol1.style.borderColor = 'transparent'; tierCol1.style.background = '#FFFFFF'; }
-    if (tierCol10) { tierCol10.classList.remove('active'); tierCol10.style.borderColor = 'transparent'; tierCol10.style.background = '#FFFFFF'; }
-    if (tierCol50) { tierCol50.classList.remove('active'); tierCol50.style.borderColor = 'transparent'; tierCol50.style.background = '#FFFFFF'; }
-
-    if (qty >= 50) {
-      unitPrice = currentTier50;
-      tierLabel = 'per piece · 50+ price reached';
-      if (tierCol50) { tierCol50.classList.add('active'); tierCol50.style.borderColor = '#9C7C4C'; tierCol50.style.background = '#FAF7F2'; }
-    } else if (qty >= 10) {
-      unitPrice = currentTier10;
-      tierLabel = 'per piece · 10+ price reached';
-      if (tierCol10) { tierCol10.classList.add('active'); tierCol10.style.borderColor = '#9C7C4C'; tierCol10.style.background = '#FAF7F2'; }
+    if (view === 'video') {
+      if (videoTag) videoTag.style.display = 'block';
+      if (rulerTag) rulerTag.style.display = 'none';
+      if (mainImg) mainImg.style.transform = 'scale(1)';
+    } else if (view === 'size') {
+      if (videoTag) videoTag.style.display = 'none';
+      if (rulerTag) rulerTag.style.display = 'block';
+      if (mainImg) mainImg.style.transform = 'scale(0.85)';
+    } else if (view === 'loupe') {
+      if (videoTag) videoTag.style.display = 'none';
+      if (rulerTag) rulerTag.style.display = 'none';
+      if (mainImg) mainImg.style.transform = 'scale(1.4)';
     } else {
-      unitPrice = currentTier1;
-      tierLabel = 'per piece · 1–9 price';
-      if (tierCol1) { tierCol1.classList.add('active'); tierCol1.style.borderColor = '#9C7C4C'; tierCol1.style.background = '#FAF7F2'; }
+      if (videoTag) videoTag.style.display = 'none';
+      if (rulerTag) rulerTag.style.display = 'none';
+      if (mainImg) mainImg.style.transform = 'scale(1)';
     }
-
-    var total = qty * unitPrice;
-
-    // Update displays
-    var unitDisplay = document.getElementById('active-unit-price-display');
-    if (unitDisplay) unitDisplay.innerText = '₹ ' + unitPrice.toLocaleString('en-IN');
-
-    var tierDisplay = document.getElementById('active-tier-note-display');
-    if (tierDisplay) tierDisplay.innerText = tierLabel;
-
-    var totalDisplay = document.getElementById('calculated-total-display');
-    if (totalDisplay) totalDisplay.innerText = 'Total ₹ ' + total.toLocaleString('en-IN');
-
-    var mobileQty = document.getElementById('mobile-sticky-qty');
-    if (mobileQty) mobileQty.innerText = qty;
   }
 
-  function handleProductFormSubmit(form) {
-    var sizeInput = document.getElementById('form-selected-size');
-    var size = sizeInput ? sizeInput.value : '6×8 mm';
-    var qtyInput = document.getElementById('pieces-number-input');
-    var qty = parseInt(qtyInput ? qtyInput.value : 12) || 12;
-    var buyNow = document.getElementById('form-buy-now-flag').value;
+  function switchProdThumb(idx, btn) {
+    document.querySelectorAll('.thumb-btn').forEach(b => {
+      b.classList.remove('on');
+      b.style.borderColor = 'var(--line2)';
+    });
+    btn.classList.add('on');
+    btn.style.borderColor = 'var(--ink)';
+  }
 
-    var unitPrice = (qty >= 50) ? currentTier50 : ((qty >= 10) ? currentTier10 : currentTier1);
-    var total = qty * unitPrice;
+  function selectProdSize(size, btn) {
+    currentSize = size;
+    document.querySelectorAll('.size-chip').forEach(b => {
+      b.classList.remove('on');
+      b.style.background = 'var(--paper)';
+      b.style.color = 'var(--ink)';
+      b.style.borderColor = 'var(--line2)';
+    });
+    btn.classList.add('on');
+    btn.style.background = 'var(--ink)';
+    btn.style.color = '#fff';
+    btn.style.borderColor = 'var(--ink)';
+    var pSize = document.getElementById('passport-size-val');
+    if (pSize) pSize.textContent = size + ' mm';
+  }
 
-    // Backup to localStorage for 100% persistence on free hosting
-    var cartData = [];
-    try {
-      cartData = JSON.parse(localStorage.getItem('vivaaz_local_cart') || '[]');
-      var item = {
-        key: 'cart_' + Date.now(),
-        product_id: <?php echo intval($product_id); ?>,
-        title: currentTitle,
-        sku: currentSku,
-        size: size,
-        quality: 'AAA',
-        qty: qty,
-        quantity: qty,
-        unitPrice: unitPrice,
-        basePrice: currentTier1,
-        tier1: currentTier10,
-        tier2: currentTier50,
-        total: total,
-        image: document.getElementById('main-gallery-view') ? document.getElementById('main-gallery-view').src : ''
-      };
-      cartData.push(item);
-      localStorage.setItem('vivaaz_local_cart', JSON.stringify(cartData));
-    } catch(e) {}
+  function setProductQty(qty) {
+    currentQty = qty;
+    var inp = document.getElementById('prod-qty-input');
+    if (inp) inp.value = qty;
+    updateTierBoxes();
+    recalcTotal();
+  }
 
-    if (buyNow === '1') {
-      window.location.href = '<?php echo esc_url(function_exists("wc_get_checkout_url") ? wc_get_checkout_url() : home_url("/checkout/")); ?>';
-      return false;
+  function adjustQty(delta) {
+    currentQty = Math.max(1, currentQty + delta);
+    var inp = document.getElementById('prod-qty-input');
+    if (inp) inp.value = currentQty;
+    updateTierBoxes();
+    recalcTotal();
+  }
+
+  function updateTierBoxes() {
+    var t1 = document.getElementById('tier-box-1');
+    var t10 = document.getElementById('tier-box-10');
+    var t50 = document.getElementById('tier-box-50');
+    var tBadge = document.getElementById('tier-badge-label');
+
+    if (!t1 || !t10 || !t50) return;
+
+    [t1, t10, t50].forEach(b => {
+      b.classList.remove('on');
+      b.style.background = 'var(--paper)';
+      b.style.color = 'var(--ink)';
+      b.style.borderColor = 'var(--line2)';
+      var bld = b.querySelector('b');
+      if (bld) bld.style.color = 'var(--ink)';
+    });
+
+    if (currentQty >= 50) {
+      currentUnitPrice = <?php echo $tier_50_price; ?>;
+      t50.classList.add('on');
+      t50.style.background = 'var(--ink)';
+      t50.style.color = '#fff';
+      t50.style.borderColor = 'var(--ink)';
+      if (t50.querySelector('b')) t50.querySelector('b').style.color = '#fff';
+      if (tBadge) tBadge.textContent = '50+ price';
+    } else if (currentQty >= 10) {
+      currentUnitPrice = <?php echo $tier_10_price; ?>;
+      t10.classList.add('on');
+      t10.style.background = 'var(--ink)';
+      t10.style.color = '#fff';
+      t10.style.borderColor = 'var(--ink)';
+      if (t10.querySelector('b')) t10.querySelector('b').style.color = '#fff';
+      if (tBadge) tBadge.textContent = '10+ price';
     } else {
-      // Point 7: Add to cart opens a side drawer smoothly without reloading
-      var totalCount = 0;
-      cartData.forEach(function(i) { totalCount += (parseInt(i.qty || i.quantity) || 1); });
-      var badges = document.querySelectorAll('.cart-badge-count, #header-bag-count, .bag-count-pill, .cart-count, .header-cart-count');
-      badges.forEach(function(b) {
-        b.textContent = totalCount;
-        b.style.display = 'inline-flex';
-      });
+      currentUnitPrice = <?php echo $tier_1_price; ?>;
+      t1.classList.add('on');
+      t1.style.background = 'var(--ink)';
+      t1.style.color = '#fff';
+      t1.style.borderColor = 'var(--ink)';
+      if (t1.querySelector('b')) t1.querySelector('b').style.color = '#fff';
+      if (tBadge) tBadge.textContent = '1–9 price';
+    }
 
-      if (typeof openCartDrawer === 'function') {
-        openCartDrawer();
-      } else if (typeof toggleCartDrawer === 'function') {
-        toggleCartDrawer();
-      }
-      return false;
+    var pDisplay = document.getElementById('prod-price-display');
+    if (pDisplay) pDisplay.textContent = '₹ ' + currentUnitPrice.toLocaleString();
+  }
+
+  function recalcTotal() {
+    var total = currentUnitPrice * currentQty;
+    var tDisplay = document.getElementById('prod-total-display');
+    if (tDisplay) tDisplay.textContent = '₹ ' + total.toLocaleString();
+    var barCount = document.getElementById('bar-pcs-count');
+    if (barCount) barCount.textContent = currentQty + ' PCS';
+  }
+
+  function triggerAddToCart() {
+    if (typeof addToCartAjax === 'function') {
+      addToCartAjax('<?php echo esc_js($sku); ?>', currentSize + ' mm', currentQty);
+    } else if (typeof openCartDrawer === 'function') {
+      openCartDrawer();
     }
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
-    calculateLiveTotal();
-  });
+  function triggerBuyNow() {
+    triggerAddToCart();
+    setTimeout(function() {
+      window.location.href = '<?php echo esc_url(home_url('/checkout/')); ?>';
+    }, 400);
+  }
 </script>
 
-<?php do_action('woocommerce_after_single_product'); ?>
+<?php
+do_action('woocommerce_after_single_product');
