@@ -454,8 +454,496 @@ function vivaaz_get_sample_product_url() {
     }
     return home_url('/product/ceylon-blue-sapphire-7x5mm/');
 }
+/**
+ * 11. Stone Metadata & Passport Dynamic Resolver
+ * Extracts gemstone details from WooCommerce product or URL slug
+ */
+function vivaaz_resolve_stone_from_request($product_id = 0) {
+    global $product;
+    if (!$product && $product_id && function_exists('wc_get_product')) {
+        $product = wc_get_product($product_id);
+    }
 
+    $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+    $slug = '';
+    if (preg_match('#/product/([^/?#]+)#i', $uri, $m)) {
+        $slug = strtolower(sanitize_title($m[1]));
+    }
 
+    // Default parameters
+    $title = '';
+    $sku = '';
+    $price = 105;
+    $stone_name = 'Rainbow Moonstone';
+    $stone_key = 'moonstone';
+    $cut_shape = 'Cabochon, oval';
+    $origin = 'Jaipur / Bihar, India';
+    $treatment = 'None (100% Natural)';
+    $color_clarity = 'White with bright blue flash · Eye-clean';
+    $quality = 'AAA · calibrated lot';
+    $size = '6×8 mm';
+    $weight = '≈ 0.85 ct per piece';
+    $tolerance = '± 0.1 mm';
+    $is_single = false;
 
+    if ($product) {
+        $title = $product->get_name();
+        $sku = $product->get_sku();
+        $reg_p = floatval($product->get_regular_price());
+        if ($reg_p > 0) $price = round($reg_p);
+    }
 
+    // Comprehensive Stone Detection dictionary
+    $stone_catalog = array(
+        'sapphire' => array(
+            'name'      => 'Ceylon Blue Sapphire',
+            'title'     => 'Ceylon Blue Sapphire Oval Cabochon',
+            'key'       => 'ceylon-sapphire',
+            'sku'       => 'CBSOC75',
+            'cut'       => 'Cabochon, oval',
+            'origin'    => 'Sri Lanka (Ceylon)',
+            'treatment' => 'Heated (traditional)',
+            'color'     => 'Royal blue · Eye-clean',
+            'quality'   => 'AAA · colour matched across lot',
+            'size'      => '7×5 mm',
+            'weight'    => '≈ 1.05 ct per piece',
+            'price'     => 4200,
+        ),
+        'ruby' => array(
+            'name'      => 'Burmese Ruby',
+            'title'     => 'Burmese Ruby Oval Cabochon',
+            'key'       => 'ruby',
+            'sku'       => 'BRR06',
+            'cut'       => 'Cabochon, oval',
+            'origin'    => 'Myanmar (Burma)',
+            'treatment' => 'Heated (traditional)',
+            'color'     => 'Pigeon blood red · Transparent',
+            'quality'   => 'AAA · vibrant saturation',
+            'size'      => '6×8 mm',
+            'weight'    => '≈ 1.45 ct per piece',
+            'price'     => 3800,
+        ),
+        'emerald' => array(
+            'name'      => 'Colombian Emerald',
+            'title'     => 'Colombian Emerald Octagon Step Cut',
+            'key'       => 'emerald',
+            'sku'       => 'CEO08',
+            'cut'       => 'Faceted, octagon',
+            'origin'    => 'Muzo, Colombia',
+            'treatment' => 'Minor cedarwood oil (standard)',
+            'color'     => 'Vivid green · Fine crystal',
+            'quality'   => 'AAA · bright lustre',
+            'size'      => '8×6 mm',
+            'weight'    => '≈ 1.20 ct per piece',
+            'price'     => 5400,
+        ),
+        'moonstone' => array(
+            'name'      => 'Rainbow Moonstone',
+            'title'     => 'Rainbow Moonstone Oval Cabochon',
+            'key'       => 'moonstone',
+            'sku'       => 'RMCOC68',
+            'cut'       => 'Cabochon, oval',
+            'origin'    => 'Bihar / Rajasthan, India',
+            'treatment' => 'None (100% natural)',
+            'color'     => 'White with bright blue flash',
+            'quality'   => 'AAA · matched lot',
+            'size'      => '6×8 mm',
+            'weight'    => '≈ 0.85 ct per piece',
+            'price'     => 105,
+        ),
+        'topaz' => array(
+            'name'      => 'Swiss Blue Topaz',
+            'title'     => 'Swiss Blue Topaz Oval Faceted',
+            'key'       => 'swiss-topaz',
+            'sku'       => 'SBTO68',
+            'cut'       => 'Faceted, oval',
+            'origin'    => 'Minas Gerais, Brazil',
+            'treatment' => 'Irradiated & heated (standard)',
+            'color'     => 'Vivid electric Swiss blue',
+            'quality'   => 'AAA · flawless eye-clean',
+            'size'      => '7×9 mm',
+            'weight'    => '≈ 1.80 ct per piece',
+            'price'     => 420,
+        ),
+        'tanzanite' => array(
+            'name'      => 'Tanzanite',
+            'title'     => 'Merelani Tanzanite Trillion Cut',
+            'key'       => 'tanzanite',
+            'sku'       => 'TZT70',
+            'cut'       => 'Faceted, trillion',
+            'origin'    => 'Merelani Hills, Tanzania',
+            'treatment' => 'Heated (standard)',
+            'color'     => 'Intense blue-violet',
+            'quality'   => 'AAA · top saturation',
+            'size'      => '7×7 mm',
+            'weight'    => '≈ 1.35 ct per piece',
+            'price'     => 6500,
+        ),
+        'spinel' => array(
+            'name'      => 'Red Spinel',
+            'title'     => 'Mahenge Red Spinel Cushion Cut',
+            'key'       => 'ruby',
+            'sku'       => 'SPN66',
+            'cut'       => 'Faceted, cushion',
+            'origin'    => 'Mahenge, Tanzania',
+            'treatment' => 'None (Unheated)',
+            'color'     => 'Neon red-pink · Eye-clean',
+            'quality'   => 'AAA · gem quality',
+            'size'      => '6×6 mm',
+            'weight'    => '≈ 1.10 ct per piece',
+            'price'     => 4800,
+        ),
+        'amethyst' => array(
+            'name'      => 'Amethyst',
+            'title'     => 'Zambian Deep Purple Amethyst Oval',
+            'key'       => 'amethyst',
+            'sku'       => 'AMEC75',
+            'cut'       => 'Faceted, oval',
+            'origin'    => 'Zambia',
+            'treatment' => 'None',
+            'color'     => 'Deep velvety violet',
+            'quality'   => 'AAA · eye-clean',
+            'size'      => '8×10 mm',
+            'weight'    => '≈ 2.20 ct per piece',
+            'price'     => 350,
+        ),
+        'opal' => array(
+            'name'      => 'Ethiopian Opal',
+            'title'     => 'Ethiopian Welo Opal Oval Cabochon',
+            'key'       => 'opal',
+            'sku'       => 'OPL86',
+            'cut'       => 'Cabochon, oval',
+            'origin'    => 'Welo, Ethiopia',
+            'treatment' => 'None',
+            'color'     => 'Multicolor rainbow pinfire play',
+            'quality'   => 'AAA · high dome',
+            'size'      => '8×10 mm',
+            'weight'    => '≈ 1.50 ct per piece',
+            'price'     => 950,
+        ),
+        'garnet' => array(
+            'name'      => 'Rhodolite Garnet',
+            'title'     => 'Rhodolite Garnet Pear Cut',
+            'key'       => 'garnet',
+            'sku'       => 'GAR75',
+            'cut'       => 'Faceted, pear',
+            'origin'    => 'Madagascar',
+            'treatment' => 'None',
+            'color'     => 'Raspberry purple-red',
+            'quality'   => 'AAA · clean',
+            'size'      => '7×5 mm',
+            'weight'    => '≈ 0.90 ct per piece',
+            'price'     => 680,
+        ),
+        'aquamarine' => array(
+            'name'      => 'Aquamarine',
+            'title'     => 'Santa Maria Aquamarine Octagon',
+            'key'       => 'aquamarine',
+            'sku'       => 'AQM86',
+            'cut'       => 'Faceted, octagon',
+            'origin'    => 'Minas Gerais, Brazil',
+            'treatment' => 'None',
+            'color'     => 'Intense ocean blue',
+            'quality'   => 'AAA · eye-clean',
+            'size'      => '8×6 mm',
+            'weight'    => '≈ 1.40 ct per piece',
+            'price'     => 2400,
+        ),
+        'citrine' => array(
+            'name'      => 'Citrine',
+            'title'     => 'Madeira Citrine Round Brilliant',
+            'key'       => 'citrine',
+            'sku'       => 'CIT80',
+            'cut'       => 'Faceted, round',
+            'origin'    => 'Brazil',
+            'treatment' => 'Heated',
+            'color'     => 'Golden Madeira honey amber',
+            'quality'   => 'AAA · brilliant sparkle',
+            'size'      => '8 mm',
+            'weight'    => '≈ 1.85 ct per piece',
+            'price'     => 320,
+        ),
+        'peridot' => array(
+            'name'      => 'Peridot',
+            'title'     => 'Burmese Peridot Cushion Cut',
+            'key'       => 'peridot',
+            'sku'       => 'PER77',
+            'cut'       => 'Faceted, cushion',
+            'origin'    => 'Mogok, Myanmar',
+            'treatment' => 'None',
+            'color'     => 'Bright apple olive green',
+            'quality'   => 'AAA · transparent',
+            'size'      => '7×7 mm',
+            'weight'    => '≈ 1.60 ct per piece',
+            'price'     => 750,
+        ),
+        'tourmaline' => array(
+            'name'      => 'Pink Tourmaline',
+            'title'     => 'Pink Tourmaline Emerald Cut',
+            'key'       => 'tourmaline',
+            'sku'       => 'PTM86',
+            'cut'       => 'Faceted, emerald cut',
+            'origin'    => 'Nigeria',
+            'treatment' => 'None',
+            'color'     => 'Raspberry pink · Lustrous',
+            'quality'   => 'AAA · eye-clean',
+            'size'      => '8×6 mm',
+            'weight'    => '≈ 1.30 ct per piece',
+            'price'     => 1850,
+        ),
+        'turquoise' => array(
+            'name'      => 'Turquoise',
+            'title'     => 'Sleeping Beauty Turquoise Oval Cabochon',
+            'key'       => 'turquoise',
+            'sku'       => 'TRQ108',
+            'cut'       => 'Cabochon, oval',
+            'origin'    => 'Arizona, USA',
+            'treatment' => 'Stabilized (natural)',
+            'color'     => 'Robins egg sky blue',
+            'quality'   => 'AAA · matrix-free',
+            'size'      => '10×8 mm',
+            'weight'    => '≈ 2.50 ct per piece',
+            'price'     => 850,
+        ),
+        'labradorite' => array(
+            'name'      => 'Labradorite',
+            'title'     => 'Spectrolite Labradorite Freeform Cabochon',
+            'key'       => 'labradorite',
+            'sku'       => 'LAB12',
+            'cut'       => 'Cabochon, freeform',
+            'origin'    => 'Madagascar',
+            'treatment' => 'None',
+            'color'     => 'Peacock blue and golden fire',
+            'quality'   => 'AAA · full flash',
+            'size'      => '12×16 mm',
+            'weight'    => '≈ 8.50 ct per piece',
+            'price'     => 280,
+        ),
+    );
 
+    // Search query haystack: slug + title
+    $haystack = strtolower($slug . ' ' . $title);
+
+    // Find best match in catalog
+    $found_info = null;
+    foreach ($stone_catalog as $keyword => $info) {
+        if (strpos($haystack, $keyword) !== false) {
+            $found_info = $info;
+            break;
+        }
+    }
+
+    if ($found_info) {
+        $stone_name    = $found_info['name'];
+        $stone_key     = $found_info['key'];
+        $sku           = $found_info['sku'];
+        $cut_shape     = $found_info['cut'];
+        $origin        = $found_info['origin'];
+        $treatment     = $found_info['treatment'];
+        $color_clarity = $found_info['color'];
+        $quality       = $found_info['quality'];
+        $size          = $found_info['size'];
+        $weight        = $found_info['weight'];
+        if (!$title) {
+            $title = $found_info['title'];
+        }
+        if ($price == 105 && $found_info['price'] != 105) {
+            $price = $found_info['price'];
+        }
+    } elseif (!$title && $slug) {
+        // Fallback: pretty slug
+        $clean_words = str_replace(array('-', '_'), ' ', $slug);
+        $title = ucwords($clean_words);
+        $words = explode(' ', $title);
+        $stone_name = $words[0] . (isset($words[1]) ? ' ' . $words[1] : '');
+        $sku = 'VG-' . strtoupper(substr(md5($slug), 0, 6));
+        $price = 1200;
+    } elseif (!$title) {
+        $title = 'Rainbow Moonstone Oval Cabochon';
+    }
+
+    $is_single = (stripos($title, 'pair') !== false || stripos($title, 'single') !== false || stripos($title, 'only 1') !== false || stripos($slug, 'single') !== false || stripos($slug, 'pair') !== false);
+    $unit_label = (stripos($title, 'pair') !== false || stripos($slug, 'pair') !== false) ? 'for the pair' : ($is_single ? 'single stone' : 'per piece');
+    $sold_as_tag = (stripos($title, 'pair') !== false || stripos($slug, 'pair') !== false) ? 'MATCHED PAIR' : ($is_single ? 'ONLY 1' : 'CALIBRATED LOT');
+
+    // Images
+    $main_img = '';
+    if ($product_id) {
+        $main_img = get_the_post_thumbnail_url($product_id, 'large');
+    }
+    if (!$main_img) {
+        $main_img = vivaaz_get_img_url($stone_key . '.jpg');
+    }
+
+    return array(
+        'product_id'    => $product_id,
+        'title'         => $title,
+        'stone_name'    => $stone_name,
+        'stone_key'     => $stone_key,
+        'sku'           => $sku,
+        'base_price'    => $price,
+        'cut_shape'     => $cut_shape,
+        'origin'        => $origin,
+        'treatment'     => $treatment,
+        'color_clarity' => $color_clarity,
+        'quality'       => $quality,
+        'size'          => $size,
+        'weight'        => $weight,
+        'tolerance'     => $tolerance,
+        'is_single'     => $is_single,
+        'unit_label'    => $unit_label,
+        'sold_as_tag'   => $sold_as_tag,
+        'main_img'      => $main_img,
+    );
+}
+
+/**
+ * 12. Universal Template Router & 404 Prevention Guard
+ * Strictly ensures every client demo route loads its dedicated template
+ * even if WordPress pages/posts have not been created in the database.
+ */
+function vivaaz_universal_route_dispatcher($template) {
+    $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+    $path = trim(parse_url($request_uri, PHP_URL_PATH), '/');
+
+    // 1. Single Product Route (/product/*)
+    if (strpos($request_uri, '/product/') !== false || preg_match('#^product/#i', $path)) {
+        global $wp_query;
+        if (isset($wp_query)) {
+            $wp_query->is_404 = false;
+            $wp_query->is_page = false;
+            $wp_query->is_single = true;
+            $wp_query->is_singular = true;
+        }
+        status_header(200);
+        $sp = get_stylesheet_directory() . '/single-product.php';
+        if (file_exists($sp)) return $sp;
+    }
+
+    // 2. Core Shop / Gemstones (/shop, /gemstones)
+    if ($path === 'shop' || $path === 'gemstones' || strpos($path, 'shop/') === 0) {
+        global $wp_query;
+        if (isset($wp_query) && $wp_query->is_404) {
+            $wp_query->is_404 = false;
+            $wp_query->is_archive = true;
+        }
+        status_header(200);
+        $ap = get_stylesheet_directory() . '/archive-product.php';
+        if (file_exists($ap)) return $ap;
+    }
+
+    // 3. Cart / Bag Page (/cart, /bag)
+    if ($path === 'cart' || $path === 'bag') {
+        global $wp_query;
+        if (isset($wp_query)) { $wp_query->is_404 = false; $wp_query->is_page = true; }
+        status_header(200);
+        $cp = get_stylesheet_directory() . '/page-cart.php';
+        if (file_exists($cp)) return $cp;
+    }
+
+    // 4. Checkout Page (/checkout)
+    if ($path === 'checkout') {
+        global $wp_query;
+        if (isset($wp_query)) { $wp_query->is_404 = false; $wp_query->is_page = true; }
+        status_header(200);
+        $co = get_stylesheet_directory() . '/page-checkout.php';
+        if (file_exists($co)) return $co;
+    }
+
+    // 5. Wishlist Page (/wishlist)
+    if ($path === 'wishlist') {
+        global $wp_query;
+        if (isset($wp_query)) { $wp_query->is_404 = false; $wp_query->is_page = true; }
+        status_header(200);
+        $wl = get_stylesheet_directory() . '/page-wishlist.php';
+        if (file_exists($wl)) return $wl;
+    }
+
+    // 6. Layouts (/layouts)
+    if ($path === 'layouts') {
+        global $wp_query;
+        if (isset($wp_query)) { $wp_query->is_404 = false; $wp_query->is_page = true; }
+        status_header(200);
+        $lo = get_stylesheet_directory() . '/page-layouts.php';
+        if (file_exists($lo)) return $lo;
+    }
+
+    // 7. Beads (/beads, /gemstone-beads)
+    if ($path === 'beads' || $path === 'gemstone-beads') {
+        global $wp_query;
+        if (isset($wp_query)) { $wp_query->is_404 = false; $wp_query->is_page = true; }
+        status_header(200);
+        $bd = get_stylesheet_directory() . '/page-beads.php';
+        if (file_exists($bd)) return $bd;
+    }
+
+    // 8. Jewelry (/jewelry, /jewellery)
+    if ($path === 'jewelry' || $path === 'jewellery') {
+        global $wp_query;
+        if (isset($wp_query)) { $wp_query->is_404 = false; $wp_query->is_page = true; }
+        status_header(200);
+        $jw = get_stylesheet_directory() . '/page-jewelry.php';
+        if (file_exists($jw)) return $jw;
+    }
+
+    // 9. Astrology (/astrology)
+    if ($path === 'astrology') {
+        global $wp_query;
+        if (isset($wp_query)) { $wp_query->is_404 = false; $wp_query->is_page = true; }
+        status_header(200);
+        $as = get_stylesheet_directory() . '/page-astrology.php';
+        if (file_exists($as)) return $as;
+    }
+
+    // 10. Astrology Consultation (/astrology-consultation)
+    if ($path === 'astrology-consultation') {
+        global $wp_query;
+        if (isset($wp_query)) { $wp_query->is_404 = false; $wp_query->is_page = true; }
+        status_header(200);
+        $ac = get_stylesheet_directory() . '/page-astrology-consultation.php';
+        if (file_exists($ac)) return $ac;
+    }
+
+    // 11. My Account (/my-account, /account)
+    if ($path === 'my-account' || $path === 'account' || strpos($path, 'my-account/') === 0) {
+        global $wp_query;
+        if (isset($wp_query)) { $wp_query->is_404 = false; $wp_query->is_page = true; }
+        status_header(200);
+        $ma = get_stylesheet_directory() . '/page-my-account.php';
+        if (file_exists($ma)) return $ma;
+    }
+
+    // 12. Other Custom Pages
+    $routes = array(
+        'contact'               => 'page-contact.php',
+        'track-order'           => 'page-track-order.php',
+        'reels'                 => 'page-reels.php',
+        'reviews'               => 'page-reviews.php',
+        'style-guide'           => 'page-style-guide.php',
+        'about'                 => 'page-about.php',
+        'faq'                   => 'page-faq.php',
+        'shipping'              => 'page-shipping.php',
+        'guarantee'             => 'page-guarantee.php',
+        'certificates'          => 'page-certificates.php',
+        'treatments'            => 'page-treatments.php',
+        'terms'                 => 'page-terms.php',
+        'privacy'               => 'page-privacy.php',
+        'bulk-enquiry'          => 'page-bulk-enquiry.php',
+        'make-it-into-jewelry'  => 'page-make-it-into-jewelry.php',
+        'custom-sizes'          => 'page-custom-sizes.php',
+        'gem-guide'             => 'page-gem-guide.php',
+    );
+
+    foreach ($routes as $route_slug => $tpl_file) {
+        if ($path === $route_slug) {
+            global $wp_query;
+            if (isset($wp_query)) { $wp_query->is_404 = false; $wp_query->is_page = true; }
+            status_header(200);
+            $target = get_stylesheet_directory() . '/' . $tpl_file;
+            if (file_exists($target)) return $target;
+        }
+    }
+
+    return $template;
+}
+add_filter('template_include', 'vivaaz_universal_route_dispatcher', 999);

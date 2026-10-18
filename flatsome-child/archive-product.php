@@ -296,117 +296,118 @@ if ($active_stone && isset($stone_display_titles[strtolower($active_stone)])) {
         <?php else : ?>
           
           <!-- Fallback Showcase Products matching Page 10 Spec -->
-          <?php $sample_prod_url = function_exists('vivaaz_get_sample_product_url') ? vivaaz_get_sample_product_url() : home_url('/product/ceylon-blue-sapphire-7x5mm/'); ?>
+          <?php
+          $showcase_stones = array(
+              array(
+                  'title'    => 'Rainbow Moonstone Oval Cabochon',
+                  'sub'      => '6×8 to 12×16 mm · 4 sizes',
+                  'price'    => '₹ 105',
+                  'unit'     => ' per piece',
+                  'url'      => home_url('/product/rainbow-moonstone-oval-cabochon/'),
+                  'img'      => vivaaz_get_img_url('moonstone.jpg'),
+                  'badge'    => 'CALIBRATED · 10+ PIECES',
+                  'badge_cl' => 'badge-gold',
+                  'id'       => 'rmcoc-1'
+              ),
+              array(
+                  'title'    => 'Rainbow Moonstone Single Piece',
+                  'sub'      => '18×25 mm · 32 ct · single',
+                  'price'    => '₹ 4,800',
+                  'unit'     => '',
+                  'url'      => home_url('/product/rainbow-moonstone-single-piece/'),
+                  'img'      => vivaaz_get_img_url('moonstone.jpg'),
+                  'badge'    => 'ONLY 1',
+                  'badge_cl' => 'badge-blue',
+                  'id'       => 'rmcoc-2'
+              ),
+              array(
+                  'title'    => 'Ceylon Blue Sapphire 7×5mm',
+                  'sub'      => '7×5 mm · 2.1 ct · pair',
+                  'price'    => '₹ 4,200',
+                  'unit'     => ' for the pair',
+                  'url'      => home_url('/product/ceylon-blue-sapphire-7x5mm/'),
+                  'img'      => vivaaz_get_img_url('ceylon-sapphire.jpg'),
+                  'badge'    => 'MATCHED PAIR',
+                  'badge_cl' => 'badge-green',
+                  'id'       => 'cbs-3'
+              ),
+              array(
+                  'title'    => 'Burmese Ruby Oval Cabochon',
+                  'sub'      => '15×20 mm · 19 ct',
+                  'price'    => '₹ 3,800',
+                  'unit'     => '',
+                  'url'      => home_url('/product/burmese-ruby-round-cabochon/'),
+                  'img'      => vivaaz_get_img_url('ruby.jpg'),
+                  'badge'    => 'ONLY 1',
+                  'badge_cl' => 'badge-gold',
+                  'id'       => 'ruby-4'
+              ),
+              array(
+                  'title'    => 'Colombian Emerald Octagon',
+                  'sub'      => '8×6 mm · 1.4 ct · step cut',
+                  'price'    => '₹ 5,400',
+                  'unit'     => '',
+                  'url'      => home_url('/product/colombian-emerald-octagon/'),
+                  'img'      => vivaaz_get_img_url('emerald.jpg'),
+                  'badge'    => 'CALIBRATED LOT',
+                  'badge_cl' => 'badge-green',
+                  'id'       => 'em-5'
+              ),
+              array(
+                  'title'    => 'Swiss Blue Topaz Oval Faceted',
+                  'sub'      => '7×9 mm · AAA eye clean',
+                  'price'    => '₹ 420',
+                  'unit'     => ' per piece',
+                  'url'      => home_url('/product/swiss-blue-topaz-oval/'),
+                  'img'      => vivaaz_get_img_url('swiss-topaz.jpg'),
+                  'badge'    => 'CALIBRATED LOT',
+                  'badge_cl' => 'badge-blue',
+                  'id'       => 'topaz-6'
+              ),
+          );
+          ?>
           <div class="products-grid-3col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-            
-            <!-- Card 1 -->
-            <div class="product-card-luxury">
-              <div class="product-card-media">
-                <span class="category-card-badge badge-gold">CALIBRATED · 10+ PIECES</span>
-                <button type="button" class="wishlist-heart-btn" data-wishlist-id="rmcoc-1" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmcoc-1', 'Rainbow Moonstone Oval Cabochon', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹95', '<?php echo esc_url($sample_prod_url); ?>', this);" title="Add to Wishlist">♡</button>
-                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
-                  <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon">
-                </a>
-                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-title-heading" style="font-size: 13px;">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Rainbow Moonstone Oval Cabochon</a>
-                </h3>
-                <div class="product-meta-sub">6×8 to 12×16 mm · 4 sizes</div>
-                <div class="product-price-row">
-                  <div>
-                    <span class="product-price-unit">from </span>
-                    <span class="product-price-val">₹95</span>
-                    <span class="product-price-unit"> per piece</span>
+            <?php foreach ($showcase_stones as $st) : ?>
+              <div class="product-card-luxury card" style="position: relative; background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column;">
+                <div class="product-card-media ph" style="position: relative; aspect-ratio: 1/1; background: #F1F0EE; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                  <span class="category-card-badge <?php echo esc_attr($st['badge_cl']); ?>"><?php echo esc_html($st['badge']); ?></span>
+                  
+                  <!-- Wishlist Heart -->
+                  <button type="button" class="wishlist-heart-btn" data-wishlist-id="<?php echo esc_attr($st['id']); ?>" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('<?php echo esc_js($st['id']); ?>', '<?php echo esc_js($st['title']); ?>', '<?php echo esc_url($st['img']); ?>', '<?php echo esc_js($st['price']); ?>', '<?php echo esc_url($st['url']); ?>', this);" title="Add to Wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line2); display: flex; align-items: center; justify-content: center; z-index: 4; cursor: pointer;">
+                    <svg class="i" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/></svg>
+                  </button>
+
+                  <a href="<?php echo esc_url($st['url']); ?>" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                    <img src="<?php echo esc_url($st['img']); ?>" alt="<?php echo esc_attr($st['title']); ?>" style="width: 68%; object-fit: contain; transition: transform .3s;">
+                  </a>
+
+                  <!-- Quick View Button -->
+                  <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); openQuickView('<?php echo esc_js($st['title']); ?>', '<?php echo esc_js($st['price']); ?>', '<?php echo esc_url($st['img']); ?>', '<?php echo esc_url($st['url']); ?>');">QUICK VIEW</button>
+                </div>
+
+                <div class="product-card-body cb" style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 4px; flex: 1;">
+                  <h3 class="product-title-heading nm" style="font-family: var(--display); font-size: 16px; line-height: 1.25; margin: 0; font-weight: 400;">
+                    <a href="<?php echo esc_url($st['url']); ?>" style="color: inherit; text-decoration: none;"><?php echo esc_html($st['title']); ?></a>
+                  </h3>
+                  <div class="product-meta-sub dt" style="font-size: 12px; color: var(--soft);"><?php echo esc_html($st['sub']); ?></div>
+                  
+                  <div class="product-price-row pr" style="margin-top: 6px; font-size: 15px; font-weight: 700; color: var(--ink);">
+                    <span><?php echo esc_html($st['price']); ?></span>
+                    <?php if ($st['unit']): ?>
+                      <span style="font-size: 12px; font-weight: 400; color: var(--mute);"><?php echo esc_html($st['unit']); ?></span>
+                    <?php endif; ?>
+                  </div>
+
+                  <div class="act" style="margin-top: auto; padding-top: 14px; display: flex; gap: 10px; align-items: center; justify-content: space-between;">
+                    <button type="button" class="btn sm" onclick="event.preventDefault(); event.stopPropagation(); addProductToCartAndOpenDrawer(0, '<?php echo esc_js($st['title']); ?>', '<?php echo esc_url($st['img']); ?>', '<?php echo esc_js($st['price']); ?>', '6×8 mm', 10);" style="padding: 8px 14px; font-size: 11px; text-decoration: none; border-radius: 0; cursor: pointer;">
+                      ADD TO CART
+                    </button>
+                    <a href="<?php echo esc_url($st['url']); ?>" class="ul" style="font-size: 11.5px; text-decoration: underline;">See stone →</a>
                   </div>
                 </div>
-                <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">SELECT OPTIONS</a>
-                </div>
               </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="product-card-luxury">
-              <div class="product-card-media">
-                <span class="category-card-badge badge-blue">ONLY 1</span>
-                <button type="button" class="wishlist-heart-btn" data-wishlist-id="rmcoc-2" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmcoc-2', 'Rainbow Moonstone Oval Cabochon 18×25mm', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹4,800', '<?php echo esc_url($sample_prod_url); ?>', this);" title="Add to Wishlist">♡</button>
-                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
-                  <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon" style="filter: hue-rotate(20deg);">
-                </a>
-                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-title-heading" style="font-size: 13px;">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Rainbow Moonstone Oval Cabochon</a>
-                </h3>
-                <div class="product-meta-sub">18×25 mm · 32 ct · single</div>
-                <div class="product-price-row">
-                  <div>
-                    <span class="product-price-val">₹4,800</span>
-                  </div>
-                </div>
-                <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">VIEW DETAILS</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="product-card-luxury">
-              <div class="product-card-media">
-                <span class="category-card-badge badge-green">MATCHED PAIR</span>
-                <button type="button" class="wishlist-heart-btn" data-wishlist-id="rmcoc-3" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmcoc-3', 'Ceylon Sapphire Oval Pair', '<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>', '₹2,600', '<?php echo esc_url($sample_prod_url); ?>', this);" title="Add to Wishlist">♡</button>
-                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
-                  <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon Pair">
-                </a>
-                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-title-heading" style="font-size: 13px;">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Rainbow Moonstone Oval Cabochon Pair</a>
-                </h3>
-                <div class="product-meta-sub">8×10 mm · 2 pieces</div>
-                <div class="product-price-row">
-                  <div>
-                    <span class="product-price-val">₹2,600</span>
-                  </div>
-                </div>
-                <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">VIEW DETAILS</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="product-card-luxury">
-              <div class="product-card-media">
-                <span class="category-card-badge badge-gold">ONLY 1</span>
-                <button type="button" class="wishlist-heart-btn" data-wishlist-id="rmcoc-4" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmcoc-4', 'Ruby Oval Cabochon', '<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>', '₹3,200', '<?php echo esc_url($sample_prod_url); ?>', this);" title="Add to Wishlist">♡</button>
-                <a href="<?php echo esc_url($sample_prod_url); ?>" style="display: block; width: 100%; height: 100%;">
-                  <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon">
-                </a>
-                <div class="quick-view-hover-bar"><a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">QUICK VIEW</a></div>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-title-heading" style="font-size: 13px;">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" style="color: inherit; text-decoration: none;">Rainbow Moonstone Oval Cabochon</a>
-                </h3>
-                <div class="product-meta-sub">15×20 mm · 19 ct</div>
-                <div class="product-price-row">
-                  <div>
-                    <span class="product-price-val">₹3,200</span>
-                  </div>
-                </div>
-                <div style="margin-top: 12px;">
-                  <a href="<?php echo esc_url($sample_prod_url); ?>" class="btn-underline-link">VIEW DETAILS</a>
-                </div>
-              </div>
-            </div>
-
+            <?php endforeach; ?>
           </div>
-
         <?php endif; ?>
       </main>
 

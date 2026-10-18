@@ -256,7 +256,7 @@ $vivaaz_footer_rendered = true;
           <button type="button" class="chip" style="border-radius: 0;">7×9</button>
         </div>
         <div style="display: flex; gap: 10px; margin-bottom: 14px;">
-          <a id="qv-add-btn" href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn wide" style="flex: 1; text-align: center;">ADD TO CART</a>
+          <button type="button" id="qv-add-btn" class="btn wide" onclick="triggerQuickViewAddToCart();" style="flex: 1; text-align: center; height: 44px; border: none; cursor: pointer;">ADD TO CART</button>
         </div>
         <div class="act2" style="margin-top: 10px;">
           <a href="https://wa.me/919680552270" target="_blank" style="padding: 10px; font-size: 11px;">
@@ -295,6 +295,16 @@ $vivaaz_footer_rendered = true;
   <div id="vivaaz-scrim" class="scrim" style="display: none; position: fixed; inset: 0; background: rgba(28,26,23,.5); z-index: 9998;" onclick="closeAllModals();"></div>
 
   <script>
+  function triggerQuickViewAddToCart() {
+    var title = document.getElementById('qv-title') ? document.getElementById('qv-title').innerText : 'Gemstone';
+    var price = document.getElementById('qv-price') ? document.getElementById('qv-price').innerText : '120';
+    var img = document.getElementById('qv-img') ? document.getElementById('qv-img').src : '';
+    if (typeof addProductToCartAndOpenDrawer === 'function') {
+      addProductToCartAndOpenDrawer(0, title, img, price, '6×8 mm', 10);
+    }
+    closeQuickView();
+  }
+
   function openQuickView(title, price, img, url) {
     var modal = document.getElementById('vivaaz-quickview-modal');
     var scrim = document.getElementById('vivaaz-scrim');
