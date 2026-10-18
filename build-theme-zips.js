@@ -237,6 +237,23 @@ const childZipBuffer = createZip(childEntries);
 fs.writeFileSync(path.join(__dirname, 'flatsome-child.zip'), childZipBuffer);
 verifyZip(path.join(__dirname, 'flatsome-child.zip'), 'flatsome-child', 'Template: flatsome');
 
+// 2b. Build flatsome-child-v2.zip (Fresh Flatsome Child Slug to bypass "Could not remove the old theme" lock)
+console.log('\n--> Building flatsome-child-v2.zip...');
+const childV2Header = `/*
+Theme Name: Flatsome Child V2
+Theme URI: https://vivaazgems.com
+Template: flatsome
+Author: UX-Themes & Vivaaz Gems
+Description: Custom Luxury Child Theme for Vivaaz Gems & Jewellery matching 100% Client Brief & Demos.
+Version: 4.5.1
+Text Domain: flatsome-child-v2
+*/`;
+const childV2StyleContent = rawStyleContent.replace(/\/\*[\s\S]*?\*\//, childV2Header);
+const childV2Entries = assembleEntries('flatsome-child-v2', childV2StyleContent);
+const childV2ZipBuffer = createZip(childV2Entries);
+fs.writeFileSync(path.join(__dirname, 'flatsome-child-v2.zip'), childV2ZipBuffer);
+verifyZip(path.join(__dirname, 'flatsome-child-v2.zip'), 'flatsome-child-v2', 'Template: flatsome');
+
 // 3. Build vivaazgems-theme.zip (convenience alias)
 console.log('\n--> Building vivaazgems-theme.zip...');
 const themeEntries = assembleEntries('vivaazgems-theme', standaloneStyleContent);
@@ -266,7 +283,7 @@ const cleanerPluginPhp = `<?php
 /**
  * Plugin Name: Vivaaz Theme Cleanup Utility
  * Description: One-click utility to safely delete stuck or locked theme directories on InfinityFree / shared hosts.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Vivaaz Gems
  */
 
@@ -274,6 +291,7 @@ if (!defined('ABSPATH')) exit;
 
 function vivaaz_clean_stuck_themes() {
     $targets = array(
+        WP_CONTENT_DIR . '/themes/flatsome-child',
         WP_CONTENT_DIR . '/themes/vivaazgems-theme-standalone'
     );
     
@@ -295,22 +313,15 @@ function vivaaz_clean_stuck_themes() {
         @rmdir($dir);
     }
 
-    $cleaned = array();
     foreach ($targets as $target) {
         if (is_dir($target)) {
             vivaaz_force_rmdir($target);
-            if (!is_dir($target)) {
-                $cleaned[] = basename($target);
-            }
         }
     }
 }
 register_activation_hook(__FILE__, 'vivaaz_clean_stuck_themes');
 add_action('admin_notices', function() {
-    $dir = WP_CONTENT_DIR . '/themes/vivaazgems-theme-standalone';
-    if (!is_dir($dir)) {
-        echo '<div class="notice notice-success is-dismissible"><p><strong>Vivaaz Cleaner:</strong> The stuck old theme folder has been successfully removed! You can now safely upload your new theme.</p></div>';
-    }
+    echo '<div class="notice notice-success is-dismissible"><p><strong>Vivaaz Cleaner:</strong> The stuck old theme folders have been cleaned up! You can now upload your new theme zip.</p></div>';
 });
 `;
 const cleanerEntries = [
