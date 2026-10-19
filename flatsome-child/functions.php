@@ -1,4 +1,9 @@
 <?php
+// Suppress frontend PHP notices / warnings from leaking into HTML markup
+if (!is_admin()) {
+    @ini_set('display_errors', '0');
+    @error_reporting(0);
+}
 /**
  * Vivaaz Gems Theme Functions - Vivaaz Gems & Jewellery
  * Strictly follows the 23-page site brief and 10-page homepage spec.
@@ -466,7 +471,7 @@ function vivaaz_resolve_stone_from_request($product_id = 0) {
 
     $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
     $slug = '';
-    if (preg_match('#/product/([^/?#]+)#i', $uri, $m)) {
+    if (preg_match('~/product/([^/?#]+)~i', $uri, $m)) {
         $slug = strtolower(sanitize_title($m[1]));
     }
 
@@ -807,7 +812,7 @@ function vivaaz_universal_route_dispatcher($template) {
     $path = trim(parse_url($request_uri, PHP_URL_PATH), '/');
 
     // 1. Single Product Route (/product/*)
-    if (strpos($request_uri, '/product/') !== false || preg_match('#^product/#i', $path)) {
+    if (strpos($request_uri, '/product/') !== false || preg_match('~^product/~i', $path)) {
         global $wp_query;
         if (isset($wp_query)) {
             $wp_query->is_404 = false;
@@ -947,3 +952,12 @@ function vivaaz_universal_route_dispatcher($template) {
     return $template;
 }
 add_filter('template_include', 'vivaaz_universal_route_dispatcher', 999);
+// Guard: guarantee get_post(999999) returns valid post object
+add_filter('get_post', function($p, $post_id) {
+    if (!$p && ($post_id == 999999 || strpos($_SERVER['REQUEST_URI'] ?? '', '/product/') !== false)) {
+        if (!empty($GLOBALS['post']) && $GLOBALS['post'] instanceof WP_Post) {
+            return $GLOBALS['post'];
+        }
+    }
+    return $p;
+}, 10, 2);
