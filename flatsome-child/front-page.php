@@ -6,60 +6,50 @@
 get_header();
 ?>
 
-<!-- 1. HERO SECTION (EXACT DEMO HERO2 / HERO WITH PLAYFAIR 68PX REGULAR & FLOATING STONES) -->
-<section class="hero-banner-section" style="background: linear-gradient(135deg, #F1EBE1, #F7F3EC); padding: 56px 0; min-height: 500px; border-bottom: 1px solid var(--line);">
-  <div class="wrap" style="display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; align-items: center;">
+<!-- 1. HERO SECTION (100% EXACT MATCH FOR CLIENT DEMO IMAGE 1) -->
+<section class="hero">
+  <div class="wrap">
     
     <div class="rv hero-left-content">
-      <span class="cap" style="display: block; margin-bottom: 8px;">NATURAL COLOURED GEMSTONES · JAIPUR</span>
-      <h1 class="h1" style="font-family: var(--display); font-weight: 400; font-size: clamp(38px, 4.8vw, 68px); line-height: 1.04; margin: 12px 0 16px; color: var(--ink); text-wrap: balance;">
-        Loose gemstones,<br>calibrated and matched.
-      </h1>
-      <p class="lead" style="font-size: 15px; color: var(--mute); max-width: 54ch; margin: 0 0 24px; line-height: 1.6;">
-        Rubies, sapphires, emeralds and semi-precious stones such as spinel, in calibrated sizes, matched pairs and layouts. Sorted by hand in Jaipur and shipped insured to your door.
-      </p>
-
-      <!-- Action Buttons (Main Black + Outline Underline Link) -->
-      <div style="display: flex; gap: 22px; align-items: center; margin-top: 24px; flex-wrap: wrap;">
-        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn" style="text-decoration: none;">
-          SHOP GEMSTONES
-        </a>
-        <a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="ul2" style="font-size: 13px; font-weight: 600; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px;">
-          Layouts for jewellers →
-        </a>
+      <span class="cap">NATURAL COLOURED GEMSTONES · JAIPUR</span>
+      <h1>Loose gemstones,<br>calibrated and matched.</h1>
+      <p class="lead">Rubies, sapphires, emeralds and semi-precious stones such as spinel, in calibrated sizes, matched pairs and layouts. Sorted by hand in Jaipur and shipped insured to your door.</p>
+      
+      <div style="display: flex; gap: 22px; align-items: center; margin-top: 26px; flex-wrap: wrap;">
+        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn">Shop gemstones</a>
+        <a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="ul2">Layouts for jewellers →</a>
       </div>
 
-      <!-- Live Search Box (Directly Under Buttons - Point 14 Spec) -->
-      <form action="<?php echo esc_url(home_url('/shop/')); ?>" method="get" class="hsearch2" style="display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--line2); max-width: 440px; margin-top: 28px; padding: 8px 0;">
-        <svg class="i" style="width: 16px; height: 16px; color: var(--soft);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input type="text" id="hs" name="s" placeholder="Search a stone, shape or reel code (e.g. RMCOC68)" aria-label="Search" style="flex: 1; border: 0; background: transparent; min-width: 0; font-size: 14px; outline: none;" />
+      <form action="<?php echo esc_url(home_url('/shop/')); ?>" method="get" class="hsearch">
+        <input type="text" id="hs" name="s" placeholder="Search a stone, shape or reel code (e.g. RMCOC68)" aria-label="Search" />
+        <button type="submit" aria-label="Search">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        </button>
       </form>
     </div>
 
-    <!-- Right Hero Visual with Macro Tag and Layered Square Tiles (MATCHING DEMO IMAGE 1 & 3) -->
-    <div class="hart" id="para" style="position: relative; height: 400px;">
-      <a href="javascript:void(0);" onclick="openVideoModal('emerald');" class="vtag" style="position: absolute; right: 0; top: 0; background: var(--paper); font-size: 11px; letter-spacing: 0.12em; padding: 7px 12px; color: var(--mute); text-decoration: none; border: 1px solid var(--line); z-index: 4; font-weight: 600; cursor: pointer;">
-        ▶ Macro video plays here
-      </a>
+    <!-- Right Hero Visual with Macro Tag and Layered Square Tiles (MATCHING DEMO IMAGE 1) -->
+    <div class="art" id="para">
+      <span class="vtag2" onclick="if(typeof openVideoModal === 'function'){ openVideoModal('emerald'); }">▶ Macro video plays here</span>
       
-      <!-- 1. Sapphire (Large Square Tile) -->
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="tile" style="left: 14%; top: 6%; width: 280px; height: 280px; position: absolute; background: #F1F0EE; display: flex; align-items: center; justify-content: center; box-shadow: 0 24px 50px rgba(28,26,23,.14); border: 1px solid rgba(0,0,0,0.04); text-decoration: none; z-index: 2;">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Ceylon Blue Sapphire" style="width: 78%; height: auto; object-fit: contain;">
+      <!-- 1. Sapphire (Large Square Tile: left 14%, top 6%, 280x280) -->
+      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="tile" style="left: 14%; top: 6%; width: 280px; height: 280px; z-index: 2;" data-depth="0.200">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Ceylon Blue Sapphire">
       </a>
 
-      <!-- 2. Ruby (Top-Right Square Tile) -->
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="tile" style="left: 66%; top: 0%; width: 170px; height: 170px; position: absolute; background: #F1F0EE; display: flex; align-items: center; justify-content: center; box-shadow: 0 24px 50px rgba(28,26,23,.14); border: 1px solid rgba(0,0,0,0.04); text-decoration: none; z-index: 3;">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby" style="width: 78%; height: auto; object-fit: contain;">
+      <!-- 2. Ruby (Top-Right Square Tile: left 66%, top 0%, 170x170) -->
+      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="tile" style="left: 66%; top: 0%; width: 170px; height: 170px; z-index: 3;" data-depth="0.121">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby">
       </a>
 
-      <!-- 3. Rainbow Moonstone (Bottom-Right Square Tile) -->
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" class="tile" style="left: 54%; top: 48%; width: 210px; height: 210px; position: absolute; background: #F1F0EE; display: flex; align-items: center; justify-content: center; box-shadow: 0 24px 50px rgba(28,26,23,.14); border: 1px solid rgba(0,0,0,0.04); text-decoration: none; z-index: 1;">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone" style="width: 78%; height: auto; object-fit: contain;">
+      <!-- 3. Rainbow Moonstone (Bottom-Right Square Tile: left 54%, top 48%, 210x210) -->
+      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" class="tile" style="left: 54%; top: 48%; width: 210px; height: 210px; z-index: 1;" data-depth="0.150">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone">
       </a>
 
-      <!-- 4. Emerald (Bottom-Left Square Tile) -->
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="tile" style="left: 2%; top: 64%; width: 140px; height: 140px; position: absolute; background: #F1F0EE; display: flex; align-items: center; justify-content: center; box-shadow: 0 24px 50px rgba(28,26,23,.14); border: 1px solid rgba(0,0,0,0.04); text-decoration: none; z-index: 2;">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald" style="width: 78%; height: auto; object-fit: contain;">
+      <!-- 4. Emerald (Bottom-Left Square Tile: left 2%, top 64%, 140x140) -->
+      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="tile" style="left: 2%; top: 64%; width: 140px; height: 140px; z-index: 2;" data-depth="0.100">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald">
       </a>
     </div>
 
@@ -647,6 +637,18 @@ get_header();
       openCartDrawer();
     }
   }
+
+  // Parallax floating stones on hero scroll (100% demo match)
+  window.addEventListener('scroll', function() {
+    var p = document.getElementById('para');
+    if (!p || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    var y = window.scrollY;
+    var tiles = p.querySelectorAll('[data-depth]');
+    tiles.forEach(function(el) {
+      var d = parseFloat(el.getAttribute('data-depth')) || 0;
+      el.style.transform = 'translateY(' + (y * d) + 'px)';
+    });
+  }, { passive: true });
 </script>
 
 <?php
