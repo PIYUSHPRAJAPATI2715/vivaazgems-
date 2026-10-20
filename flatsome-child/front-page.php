@@ -303,75 +303,75 @@ get_header();
 
   <div class="grid g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 22px;">
     
-    <!-- Product 1 -->
+    <!-- Product 1: Rainbow Moonstone Oval Cabochon (Calibrated Lot) -->
     <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
       <span class="tag" style="position: absolute; left: 12px; top: 12px; background: var(--paper); padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid var(--line);">CALIBRATED LOT</span>
       <button type="button" class="heart-btn-circle" onclick="toggleWishlistBtn('rmcoc68', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
         <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
-      <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Ceylon Sapphire" style="width: 70%; object-fit: contain;">
+      <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone" style="width: 70%; object-fit: contain;">
         <div class="qv-bar" onclick="event.stopPropagation(); openQuickViewModal('rmcoc68');" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); padding: 9px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">QUICK VIEW</div>
       </div>
       <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
-        <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">Ceylon Blue Sapphire Oval</div>
-        <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">7×5 mm · AAA Calibrated</div>
-        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">₹ 1,450 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
-        <button type="button" class="btn sm" onclick="addToCartAjax('rmcoc68', '7×5 mm', 10);" style="width: 100%;">Add to cart</button>
+        <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">Rainbow Moonstone Oval Cabochon</div>
+        <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Cabochon · 3×4 to 12×16 mm · 8 sizes</div>
+        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">from ₹94 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
+        <button type="button" class="btn sm" onclick="addToCartAjax('rmcoc68', '3×4 mm', 10);" style="width: 100%; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em;">ADD TO CART</button>
       </div>
     </div>
 
-    <!-- Product 2 -->
-    <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
-      <span class="tag" style="position: absolute; left: 12px; top: 12px; background: var(--paper); padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid var(--line);">MATCHED PAIR</span>
-      <button type="button" class="heart-btn-circle" onclick="toggleWishlistBtn('rbpair', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
-        <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-      </button>
-      <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby Pair" style="width: 70%; object-fit: contain;">
-        <div class="qv-bar" onclick="event.stopPropagation(); openQuickViewModal('rbpair');" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); padding: 9px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">QUICK VIEW</div>
-      </div>
-      <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
-        <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">Burma Ruby Oval Matched Pair</div>
-        <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">6×4 mm · 2 Stones Matched</div>
-        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">₹ 6,800 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">for the pair</span></div>
-        <button type="button" class="btn sm" onclick="addToCartAjax('rbpair', '6×4 mm', 1);" style="width: 100%;">Add to cart</button>
-      </div>
-    </div>
-
-    <!-- Product 3 -->
-    <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
-      <span class="tag" style="position: absolute; left: 12px; top: 12px; background: var(--paper); padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid var(--line);">ONLY 1</span>
-      <button type="button" class="heart-btn-circle" onclick="toggleWishlistBtn('emroct', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
-        <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-      </button>
-      <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald" style="width: 70%; object-fit: contain;">
-        <div class="qv-bar" onclick="event.stopPropagation(); openQuickViewModal('emroct');" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); padding: 9px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">QUICK VIEW</div>
-      </div>
-      <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
-        <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">Zambian Emerald Octagon</div>
-        <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">8×6 mm · 1.85 Carat Single</div>
-        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">₹ 24,500 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">single stone</span></div>
-        <button type="button" class="btn sm" onclick="addToCartAjax('emroct', '8×6 mm', 1);" style="width: 100%;">Add to cart</button>
-      </div>
-    </div>
-
-    <!-- Product 4 -->
+    <!-- Product 2: Sapphire Oval Faceted (Calibrated Lot) -->
     <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
       <span class="tag" style="position: absolute; left: 12px; top: 12px; background: var(--paper); padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid var(--line);">CALIBRATED LOT</span>
-      <button type="button" class="heart-btn-circle" onclick="toggleWishlistBtn('swtopaz', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
+      <button type="button" class="heart-btn-circle" onclick="toggleWishlistBtn('bsfov', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
         <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
       <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Topaz" style="width: 70%; object-fit: contain;">
-        <div class="qv-bar" onclick="event.stopPropagation(); openQuickViewModal('swtopaz');" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); padding: 9px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">QUICK VIEW</div>
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Sapphire" style="width: 70%; object-fit: contain;">
+        <div class="qv-bar" onclick="event.stopPropagation(); openQuickViewModal('bsfov');" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); padding: 9px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">QUICK VIEW</div>
       </div>
       <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
-        <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">Swiss Blue Topaz Round Faceted</div>
-        <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">4 mm · Calibrated AAA</div>
-        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">₹ 92 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
-        <button type="button" class="btn sm" onclick="addToCartAjax('swtopaz', '4 mm', 25);" style="width: 100%;">Add to cart</button>
+        <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">Sapphire Oval Faceted</div>
+        <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Faceted · 3×5 to 7×9 mm · 5 sizes</div>
+        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">from ₹1,131 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
+        <button type="button" class="btn sm" onclick="addToCartAjax('bsfov', '3×5 mm', 5);" style="width: 100%; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em;">ADD TO CART</button>
+      </div>
+    </div>
+
+    <!-- Product 3: Rainbow Moonstone Oval Cabochon Pair (Pair) -->
+    <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
+      <span class="tag" style="position: absolute; left: 12px; top: 12px; background: var(--paper); padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid var(--line);">PAIR</span>
+      <button type="button" class="heart-btn-circle" onclick="toggleWishlistBtn('rmcpr', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
+        <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+      <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Pair" style="width: 70%; object-fit: contain;">
+        <div class="qv-bar" onclick="event.stopPropagation(); openQuickViewModal('rmcpr');" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); padding: 9px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">QUICK VIEW</div>
+      </div>
+      <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
+        <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">Rainbow Moonstone Oval Cabochon Pair</div>
+        <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Cabochon · 10×12 mm · 1 pair</div>
+        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">₹2,600 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per pair</span></div>
+        <button type="button" class="btn sm" onclick="addToCartAjax('rmcpr', '10×12 mm', 1);" style="width: 100%; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em;">ADD TO CART</button>
+      </div>
+    </div>
+
+    <!-- Product 4: Rainbow Moonstone Oval Cabochon Single (Only 1) -->
+    <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
+      <span class="tag" style="position: absolute; left: 12px; top: 12px; background: #1C1A17; color: #FFFFFF; padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid #1C1A17;">ONLY 1</span>
+      <button type="button" class="heart-btn-circle" onclick="toggleWishlistBtn('rmc1825', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
+        <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+      <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone 32ct" style="width: 70%; object-fit: contain;">
+        <div class="qv-bar" onclick="event.stopPropagation(); openQuickViewModal('rmc1825');" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); padding: 9px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">QUICK VIEW</div>
+      </div>
+      <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
+        <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">Rainbow Moonstone Oval Cabochon</div>
+        <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Cabochon · 18×25 mm · 32 ct</div>
+        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">₹4,800 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">one stone</span></div>
+        <button type="button" class="btn sm" onclick="addToCartAjax('rmc1825', '18×25 mm', 1);" style="width: 100%; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em;">ADD TO CART</button>
       </div>
     </div>
 
@@ -379,13 +379,13 @@ get_header();
 </section>
 
 <!-- 7. OUR STORY SECTION (EXACT DEMO STORY2 WITH VIDEO PREVIEW & OUTLINE BUTTON) -->
-<section class="wrap story2" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 50px; align-items: center; padding-bottom: 72px;">
+<section class="wrap story2" style="display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; align-items: center; padding-bottom: 72px;">
   
-  <button type="button" class="rv vid" onclick="openVideoModal('emerald');" style="position: relative; aspect-ratio: 16/11; background: #151311; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--line); cursor: pointer; padding: 0;">
-    <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald Under Loupe" style="width: 100%; height: 100%; object-fit: cover;">
-    <span class="vg" style="position: absolute; inset: 0; background: radial-gradient(circle, transparent 20%, #151311 75%);"></span>
-    <span class="pl" style="position: absolute; width: 44px; height: 44px; border-radius: 50%; background: rgba(28,26,23,.75); display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 18px;">▶</span>
-    <span class="vc" style="position: absolute; left: 16px; bottom: 14px; font-size: 11px; letter-spacing: 0.16em; color: #F3EEE6; font-weight: 700; text-transform: uppercase;">UNDER THE LOUPE · 0:40</span>
+  <button type="button" class="rv vid" onclick="openVideoModal('emerald');" style="position: relative; aspect-ratio: 16/11; background: #151311; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 0; cursor: pointer; padding: 0;">
+    <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald Under Loupe" style="width: 70%; max-height: 85%; object-fit: contain;">
+    <span class="vg" style="position: absolute; inset: 0; background: radial-gradient(circle, transparent 20%, #151311 75%); pointer-events: none;"></span>
+    <span class="pl" style="position: absolute; left: 18px; bottom: 16px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #CFC6B8; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px;">▶</span>
+    <span class="vc" style="position: absolute; left: 68px; bottom: 28px; color: #CFC6B8; font-size: 12px; letter-spacing: 0.14em; font-weight: 700; text-transform: uppercase;">UNDER THE LOUPE · 0:40</span>
   </button>
 
   <div>
@@ -407,7 +407,7 @@ get_header();
     </div>
 
     <!-- Outline Button .btn.o (PDF Spec: Never Solid Black!) -->
-    <a href="<?php echo esc_url(home_url('/about/')); ?>" class="btn o" style="text-decoration: none;">
+    <a href="<?php echo esc_url(home_url('/about/')); ?>" class="btn o" style="border: 1px solid var(--ink); background: transparent; color: var(--ink); padding: 12px 24px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.12em; font-weight: 700; text-decoration: none; display: inline-block;">
       READ OUR STORY
     </a>
   </div>
@@ -416,7 +416,7 @@ get_header();
 
 <!-- 8. INSTAGRAM REELS SECTION (EXACT DEMO REELS5 ROW) -->
 <section class="sec wrap" style="padding-top: 0; padding-bottom: 72px;">
-  <div class="sech" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; border-bottom: 1px solid var(--line); padding-bottom: 12px;">
+  <div class="sech" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
     <div>
       <span class="cap">@VIVAAZGEMS</span>
       <h2 class="h2">Seen on Instagram.</h2>
@@ -513,48 +513,48 @@ get_header();
   <div class="rev2" style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 48px; align-items: start;">
     
     <div>
-      <span class="cap">GOOGLE REVIEWS</span>
-      <h2 class="h2" style="margin-top: 8px;">What buyers say.</h2>
+      <span class="cap" style="font-size: 10.5px; letter-spacing: 0.2em; color: var(--gold); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px;">GOOGLE REVIEWS</span>
+      <h2 class="h2" style="font-size: 38px; font-family: var(--display); font-weight: 400; color: var(--ink); margin: 0 0 24px;">What buyers say.</h2>
 
-      <div class="rv3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0 20px;">
+      <div class="rv3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-bottom: 24px;">
         
-        <div class="rv" style="background: var(--paper); border: 1px solid var(--line); padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-          <span style="color: var(--gold2); letter-spacing: 3px;">★★★★★</span>
-          <p style="font-size: 13px; line-height: 1.5; margin: 0; color: var(--ink);">"Exceptional quality blue sapphires. Precision calibrated lot made setting completely seamless."</p>
-          <small style="font-size: 11.5px; color: var(--soft); margin-top: auto;">Sophie M. · UK</small>
+        <div class="rv" style="border-top: 1px solid var(--ink); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; background: transparent; border-left: 0; border-right: 0; border-bottom: 0;">
+          <span style="color: var(--gold2); letter-spacing: 3px; font-size: 13px;">★★★★★</span>
+          <p style="font-size: 13.5px; line-height: 1.55; margin: 0; color: var(--ink);">The calibrated lot matched perfectly. Every stone was the same size and colour, and the video before packing helped a lot.</p>
+          <small style="font-size: 12px; color: var(--soft); margin-top: auto;">Anita R. · Mumbai</small>
         </div>
 
-        <div class="rv" style="background: var(--paper); border: 1px solid var(--line); padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-          <span style="color: var(--gold2); letter-spacing: 3px;">★★★★★</span>
-          <p style="font-size: 13px; line-height: 1.5; margin: 0; color: var(--ink);">"The ruby layout arrived exactly matching the video call. Outstanding colour grading."</p>
-          <small style="font-size: 11.5px; color: var(--soft); margin-top: auto;">Rajesh P. · Mumbai</small>
+        <div class="rv" style="border-top: 1px solid var(--ink); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; background: transparent; border-left: 0; border-right: 0; border-bottom: 0;">
+          <span style="color: var(--gold2); letter-spacing: 3px; font-size: 13px;">★★★★★</span>
+          <p style="font-size: 13.5px; line-height: 1.55; margin: 0; color: var(--ink);">Ordered a ruby pair for earrings. Live photos on WhatsApp, insured courier, no surprises at delivery.</p>
+          <small style="font-size: 12px; color: var(--soft); margin-top: auto;">James W. · London</small>
         </div>
 
-        <div class="rv" style="background: var(--paper); border: 1px solid var(--line); padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-          <span style="color: var(--gold2); letter-spacing: 3px;">★★★★★</span>
-          <p style="font-size: 13px; line-height: 1.5; margin: 0; color: var(--ink);">"Prompt insured delivery to Germany with lab report. Trustworthy family merchant."</p>
-          <small style="font-size: 11.5px; color: var(--soft); margin-top: auto;">Klaus H. · Germany</small>
+        <div class="rv" style="border-top: 1px solid var(--ink); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; background: transparent; border-left: 0; border-right: 0; border-bottom: 0;">
+          <span style="color: var(--gold2); letter-spacing: 3px; font-size: 13px;">★★★★★</span>
+          <p style="font-size: 13.5px; line-height: 1.55; margin: 0; color: var(--ink);">The astrologer explained everything calmly. The ruby they suggested was within my budget and came with a certificate.</p>
+          <small style="font-size: 12px; color: var(--soft); margin-top: auto;">Priya S. · Jaipur</small>
         </div>
 
       </div>
 
-      <a href="<?php echo esc_url(home_url('/reviews/')); ?>" class="ul2" style="text-decoration: none; border-bottom: 1px solid currentColor;">Read all reviews →</a>
+      <a href="<?php echo esc_url(home_url('/reviews/')); ?>" class="ul2" style="text-decoration: none; border-bottom: 1px solid currentColor; font-size: 13px; font-weight: 600; color: var(--ink);">Read all reviews →</a>
     </div>
 
-    <!-- Talk to a Gem Expert Box (Exact WhatsApp + Video Call Buttons Pair) -->
-    <div class="askbox" style="background: var(--sand); border: 1px solid var(--line); padding: 32px; display: flex; flex-direction: column; gap: 12px;">
-      <span class="cap">TALK TO A GEM EXPERT</span>
-      <b style="font-size: 20px; font-family: var(--display); font-weight: 400; color: var(--ink);">Not sure what to choose? Ask us.</b>
-      <p style="font-size: 13.5px; color: var(--mute); line-height: 1.6; margin: 0 0 10px;">
+    <!-- Talk to a Gem Expert Box (Exact Image 5 Askbox) -->
+    <div class="askbox" style="background: #FFFFFF; border: 1px solid var(--line); padding: 32px 30px; display: flex; flex-direction: column; gap: 10px;">
+      <span class="cap" style="font-size: 10.5px; letter-spacing: 0.2em; color: var(--gold); font-weight: 700; text-transform: uppercase;">TALK TO A GEM EXPERT</span>
+      <b style="font-size: 24px; font-family: var(--display); font-weight: 400; color: var(--ink); line-height: 1.25; margin: 4px 0 0;">Not sure what to choose? Ask us.</b>
+      <p style="font-size: 13.5px; color: var(--mute); line-height: 1.55; margin: 0 0 12px;">
         We send live photos and videos of the exact stones, and help with sizes, matching and certificates.
       </p>
 
       <div style="display: flex; flex-direction: column; gap: 10px;">
-        <a href="https://wa.me/919680552270?text=Hello,%20I%20would%20like%20to%20inquire%20about%20your%20gemstones." target="_blank" class="btn wa" style="text-decoration: none; width: 100%;">
+        <a href="https://wa.me/919680552270?text=Hello,%20I%20would%20like%20to%20inquire%20about%20your%20gemstones." target="_blank" class="btn wa" style="background: #25D366; color: #FFFFFF; border: none; padding: 13px 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; border-radius: 0;">
           <svg class="i" style="width: 17px; height: 17px; fill: currentColor;" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           WHATSAPP
         </a>
-        <a href="javascript:void(0);" onclick="openConsultationModal();" class="btn o" style="text-decoration: none; width: 100%;">
+        <a href="javascript:void(0);" onclick="openConsultationModal();" class="btn o" style="background: transparent; border: 1px solid var(--ink); color: var(--ink); padding: 13px 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; border-radius: 0;">
           <svg class="i" style="width: 17px; height: 17px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
           BOOK A VIDEO CALL
         </a>

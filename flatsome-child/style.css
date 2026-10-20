@@ -4947,6 +4947,47 @@ main{min-height:60vh}
   font-weight: 700 !important;
 }
 
+/* Tabs2 (New arrivals / Best sellers) - Exact demo serif headings */
+.tabs.tabs2,
+.tabs2 {
+  border: 0 !important;
+  border-bottom: 0 !important;
+  gap: 24px !important;
+}
+.tabs.tabs2 button,
+.tabs.tabs2 .tab-btn,
+.tabs2 button,
+.tabs2 .tab-btn {
+  font-family: var(--display) !important;
+  font-size: 26px !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  font-weight: 400 !important;
+  color: var(--soft) !important;
+  padding: 0 0 6px !important;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  background: transparent !important;
+}
+.tabs.tabs2 button:hover,
+.tabs.tabs2 .tab-btn:hover,
+.tabs2 button:hover,
+.tabs2 .tab-btn:hover {
+  color: var(--ink) !important;
+}
+.tabs.tabs2 button.on,
+.tabs.tabs2 button.active,
+.tabs.tabs2 .tab-btn.on,
+.tabs.tabs2 .tab-btn.active,
+.tabs2 button.on,
+.tabs2 button.active,
+.tabs2 .tab-btn.on,
+.tabs2 .tab-btn.active {
+  color: var(--ink) !important;
+  border-bottom: 2px solid var(--ink) !important;
+  font-weight: 400 !important;
+}
+
 /* hero - 100% exact demo match */
 .hero {
   position: relative !important;
