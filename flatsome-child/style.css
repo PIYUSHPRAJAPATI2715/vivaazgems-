@@ -211,8 +211,14 @@ a:hover { opacity: 0.85; }
 .site-header-wrapper {
   position: sticky !important;
   top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
   z-index: 99999 !important;
   background: #FFFFFF !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
 }
 body.admin-bar .site-header-wrapper {
   top: 32px !important;
@@ -222,7 +228,6 @@ body.admin-bar .site-header-wrapper {
     top: 46px !important;
   }
 }
-
 /* ==========================================================================
    VIVAAZ DEMO HEADER & FULL-WIDTH MEGA MENUS (1:1 DEMO REPLICA)
    ========================================================================== */

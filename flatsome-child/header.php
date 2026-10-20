@@ -345,9 +345,9 @@ if (!function_exists('vivaaz_render_tennis_art')) {
         </div>
       </div>
 
-      <!-- 4. JEWELRY MEGA PANEL -->
+      <!-- 4. JEWELRY MEGA PANEL (EXACT MATCH FOR CLIENT IMAGE 1!) -->
       <div class="mega-panel" id="mega-panel-jewelry" data-m="jewelry" style="display: none;">
-        <div class="wrap">
+        <div class="wrap" style="grid-template-columns: 180px 180px 180px 1fr; gap: 34px; align-items: start;">
           <div class="col">
             <h6>BY STONE</h6>
             <a href="<?php echo esc_url(home_url('/jewelry/?stone=ruby')); ?>">Ruby</a>
@@ -370,35 +370,35 @@ if (!function_exists('vivaaz_render_tennis_art')) {
             <a href="<?php echo esc_url(home_url('/jewelry/?metal=18K+Gold')); ?>">18K Gold</a>
           </div>
 
-          <div class="mph mk" style="grid-column: span 2;">
-            <div class="pi" style="background: #F4F2EE; min-height: 140px; display: flex; align-items: center; justify-content: center;">
+          <div class="mph mk" style="background: #FAF7F2; border: 1px solid #E2D7C6; padding: 22px; display: grid; grid-template-columns: 1fr 1.25fr; gap: 20px; align-items: center;">
+            <div class="pi" style="background: #FFFFFF; border: 1px solid #E2D7C6; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; min-height: 140px;">
               <?php echo vivaaz_render_tennis_art('spinel', '#D6D6D6', 0.55); ?>
             </div>
-            <div>
-              <b>Make it into jewelry</b>
-              <small>Choose any stone from our shop and we set it in a ring, pendant or earrings, in silver or gold. Send us your idea; we send a sketch and a price.</small>
-              <button type="button" class="btn sm" onclick="window.open('https://wa.me/919680552270?text=Hi%20Vivaaz%20Gems,%20I%20would%20like%20to%20make%20a%20stone%20into%20custom%20jewelry.', '_blank');" style="background: #1C1A17; color: #fff; padding: 8px 14px; font-size: 11px; font-weight: 700; border: none; cursor: pointer; align-self: flex-start; text-transform: uppercase;">Ask for a quote</button>
+            <div style="display: flex; flex-direction: column; gap: 10px; justify-content: center;">
+              <b style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; color: #1C1A17; line-height: 1.2;">Make it into jewelry</b>
+              <p style="margin: 0; font-size: 13px; line-height: 1.55; color: #7A7267;">
+                Choose any stone from our shop and we set it in a ring, pendant or earrings, in silver or gold. Send us your idea; we send a sketch and a price.
+              </p>
+              <button type="button" onclick="window.open('https://wa.me/919680552270?text=Hi%20Vivaaz%20Gems,%20I%20would%20like%20to%20make%20a%20stone%20into%20custom%20jewelry.', '_blank');" style="background: #1C1A17; color: #FFFFFF; padding: 11px 22px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; align-self: flex-start;">ASK FOR A QUOTE</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 5. ASTROLOGY MEGA PANEL -->
+      <!-- 5. ASTROLOGY MEGA PANEL (EXACT MATCH FOR CLIENT IMAGE 3!) -->
       <div class="mega-panel" id="mega-panel-astro" data-m="astro" style="display: none;">
-        <div class="wrap">
-          <div class="col two">
+        <div class="wrap" style="grid-template-columns: 280px 240px 1fr; gap: 40px; align-items: start;">
+          <div class="col">
             <h6>STONES FOR THE NINE PLANETS</h6>
-            <div class="ls">
-              <a href="<?php echo esc_url(home_url('/astrology/#sun')); ?>">Sun · Ruby (Manik)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#moon')); ?>">Moon · Pearl (Moti)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#mars')); ?>">Mars · Red Coral (Moonga)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#mercury')); ?>">Mercury · Emerald (Panna)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#jupiter')); ?>">Jupiter · Yellow Sapphire (Pukhraj)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#venus')); ?>">Venus · White Sapphire (Safed Pukhraj)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#saturn')); ?>">Saturn · Blue Sapphire (Neelam)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#rahu')); ?>">Rahu · Hessonite (Gomed)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#ketu')); ?>">Ketu · Cat's Eye (Lehsunia)</a>
-            </div>
+            <a href="<?php echo esc_url(home_url('/astrology/#sun')); ?>">Sun · Ruby (Manik)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#moon')); ?>">Moon · Pearl (Moti)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#mars')); ?>">Mars · Red coral (Moonga)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#mercury')); ?>">Mercury · Emerald (Panna)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#jupiter')); ?>">Jupiter · Yellow sapphire (Pukhraj)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#venus')); ?>">Venus · White sapphire (Safed pukhraj)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#saturn')); ?>">Saturn · Blue sapphire (Neelam)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#rahu')); ?>">Rahu · Hessonite (Gomed)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#ketu')); ?>">Ketu · Cat's eye (Lehsunia)</a>
           </div>
 
           <div class="col">
@@ -409,10 +409,12 @@ if (!function_exists('vivaaz_render_tennis_art')) {
             <a href="<?php echo esc_url(home_url('/astrology/#navratna')); ?>">Navratna set (on request)</a>
           </div>
 
-          <div class="dark" style="grid-column: span 2;">
-            <span>Astrology consultation</span>
-            <p>Talk to our astrologer. Share your birth details; our astrologer reads your chart and suggests the right stone and weight. Then we find the stone for you.</p>
-            <button type="button" class="btn sm lt" onclick="openConsultationModal();">Book a consultation</button>
+          <div class="dark" style="max-width: 440px; justify-self: end; width: 100%; padding: 32px 28px; display: flex; flex-direction: column; gap: 14px; justify-content: center;">
+            <span style="color: #D9B66F; font-size: 15px; font-weight: 600;">Astrology consultation</span>
+            <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: #CFC6B8;">
+              Talk to our astrologer. Share your birth details; our astrologer reads your chart and suggests the right stone and weight. Then we find the stone for you.
+            </p>
+            <button type="button" class="btn sm lt" onclick="openConsultationModal();" style="background: #F1EBE1; color: #1C1A17; border: 1px solid #F1EBE1; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 20px; width: 100%; text-align: center; cursor: pointer;">BOOK A CONSULTATION</button>
           </div>
         </div>
       </div>

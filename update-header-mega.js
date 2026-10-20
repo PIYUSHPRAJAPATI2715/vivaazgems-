@@ -12,34 +12,22 @@ if (!headerContent.includes('function vivaaz_render_lay_art')) {
   const phpHelpers = `
 if (!function_exists('vivaaz_render_lay_art')) {
     function vivaaz_render_lay_art($stone = 'ruby', $scale = 0.8) {
-        $stone_map = array(
-            'ruby'        => 'ruby.jpg',
-            'spinel'      => 'ruby.jpg',
-            'blue-topaz'  => 'swiss-topaz.jpg',
-            'other'       => 'ceylon-sapphire.jpg',
-            'sapphire'    => 'ceylon-sapphire.jpg',
-            'emerald'     => 'emerald.jpg',
-        );
-        $img_file = isset($stone_map[$stone]) ? $stone_map[$stone] : 'ruby.jpg';
-        $img_url = vivaaz_get_img_url($img_file);
+        $w = 280;
+        $h = 140;
         $n = 15;
-        $html = '<div class="lay" style="height:100%; min-height:140px; position:relative; width:100%;">';
+        $c = '';
         for ($k = 0; $k < $n; $k++) {
             $t = $k / ($n - 1);
             $a = M_PI * (0.15 + 0.7 * $t);
-            $x = 50 - 42 * cos($a);
-            $y = 24 + 42 * sin($a);
-            $z = (16 + 22 * sin(M_PI * $t)) * $scale;
-            $w = round($z);
-            $h = round($z * 0.8);
-            $left = "calc({$x}% - " . ($z / 2) . "px)";
-            $top = "calc({$y}% - " . ($z / 2) . "px)";
-            $html .= '<div class="gm" style="left:' . $left . '; top:' . $top . '; width:' . $w . 'px; height:' . $h . 'px; position:absolute; border-radius:50%; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,.2);">';
-            $html .= '<img src="' . esc_url($img_url) . '" style="width:100%; height:100%; object-fit:cover; transform:scale(2.3); display:block;" alt="">';
-            $html .= '</div>';
+            $x = 140 - 115 * cos($a);
+            $y = 35 + 85 * sin($a);
+            $size = (8 + 14 * sin(M_PI * $t)) * 0.9;
+            $rx = round($size / 2, 1);
+            $ry = round($size * 0.42, 1);
+            $c .= '<ellipse cx="' . round($x, 1) . '" cy="' . round($y, 1) . '" rx="' . $rx . '" ry="' . $ry . '" fill="#A3122E" stroke="#7A0C22" stroke-width="0.8"/>';
+            $c .= '<ellipse cx="' . round($x - $rx * 0.25, 1) . '" cy="' . round($y - $ry * 0.25, 1) . '" rx="' . round($rx * 0.4, 1) . '" ry="' . round($ry * 0.4, 1) . '" fill="#E84865" opacity="0.6"/>';
         }
-        $html .= '</div>';
-        return $html;
+        return '<svg viewBox="0 0 ' . $w . ' ' . $h . '" width="85%" style="max-width:260px; display:block; margin:0 auto;"><path d="M25 50 Q140 135 255 50" fill="none" stroke="#C9BFB1" stroke-width="0.8" stroke-dasharray="2,2"/>' . $c . '</svg>';
     }
 }
 
@@ -65,24 +53,23 @@ if (!function_exists('vivaaz_render_bead_strand')) {
 
 if (!function_exists('vivaaz_render_tennis_art')) {
     function vivaaz_render_tennis_art($stone = 'spinel', $metal = '#D6D6D6', $scale = 0.55) {
-        $img_url = vivaaz_get_img_url('ruby.jpg');
-        $n = 30;
-        $html = '<div class="lay" style="height:100%; min-height:140px; position:relative; width:100%;">';
+        $w = 240;
+        $h = 160;
+        $cx = 120;
+        $cy = 80;
+        $rx = 85;
+        $ry = 50;
+        $n = 28;
+        $c = '';
         for ($k = 0; $k < $n; $k++) {
             $a = 2 * M_PI * $k / $n;
-            $x = 50 + 36 * cos($a);
-            $y = 50 + 25 * sin($a);
-            $z = 18 * $scale;
-            $border_w = round(1.6 * $scale, 1);
-            $w = round($z);
-            $left = "calc({$x}% - " . ($z / 2) . "px)";
-            $top = "calc({$y}% - " . ($z / 2) . "px)";
-            $html .= '<div class="gm" style="left:' . $left . '; top:' . $top . '; width:' . $w . 'px; height:' . $w . 'px; border:' . $border_w . 'px solid ' . $metal . '; position:absolute; border-radius:50%; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,.2);">';
-            $html .= '<img src="' . esc_url($img_url) . '" style="width:100%; height:100%; object-fit:cover; transform:scale(2.3); display:block;" alt="">';
-            $html .= '</div>';
+            $x = $cx + $rx * cos($a);
+            $y = $cy + $ry * sin($a);
+            $r = 5;
+            $c .= '<circle cx="' . round($x, 1) . '" cy="' . round($y, 1) . '" r="' . $r . '" fill="#FFFFFF" stroke="#CFC6B8" stroke-width="1.2"/>';
+            $c .= '<circle cx="' . round($x - 1.2, 1) . '" cy="' . round($y - 1.2, 1) . '" r="1.5" fill="#E8E2D8"/>';
         }
-        $html .= '</div>';
-        return $html;
+        return '<svg viewBox="0 0 ' . $w . ' ' . $h . '" width="85%" style="max-width:210px; display:block; margin:0 auto;"><ellipse cx="' . $cx . '" cy="' . $cy . '" rx="' . $rx . '" ry="' . $ry . '" fill="none" stroke="#E2D7C6" stroke-width="1.2"/>' . $c . '</svg>';
     }
 }
 `;
@@ -352,9 +339,9 @@ const newHeaderMarkup = `<div class="site-header-wrapper">
         </div>
       </div>
 
-      <!-- 4. JEWELRY MEGA PANEL -->
+      <!-- 4. JEWELRY MEGA PANEL (EXACT MATCH FOR CLIENT IMAGE 1!) -->
       <div class="mega-panel" id="mega-panel-jewelry" data-m="jewelry" style="display: none;">
-        <div class="wrap">
+        <div class="wrap" style="grid-template-columns: 180px 180px 180px 1fr; gap: 34px; align-items: start;">
           <div class="col">
             <h6>BY STONE</h6>
             <a href="<?php echo esc_url(home_url('/jewelry/?stone=ruby')); ?>">Ruby</a>
@@ -377,35 +364,35 @@ const newHeaderMarkup = `<div class="site-header-wrapper">
             <a href="<?php echo esc_url(home_url('/jewelry/?metal=18K+Gold')); ?>">18K Gold</a>
           </div>
 
-          <div class="mph mk" style="grid-column: span 2;">
-            <div class="pi" style="background: #F4F2EE; min-height: 140px; display: flex; align-items: center; justify-content: center;">
+          <div class="mph mk" style="background: #FAF7F2; border: 1px solid #E2D7C6; padding: 22px; display: grid; grid-template-columns: 1fr 1.25fr; gap: 20px; align-items: center;">
+            <div class="pi" style="background: #FFFFFF; border: 1px solid #E2D7C6; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; min-height: 140px;">
               <?php echo vivaaz_render_tennis_art('spinel', '#D6D6D6', 0.55); ?>
             </div>
-            <div>
-              <b>Make it into jewelry</b>
-              <small>Choose any stone from our shop and we set it in a ring, pendant or earrings, in silver or gold. Send us your idea; we send a sketch and a price.</small>
-              <button type="button" class="btn sm" onclick="window.open('https://wa.me/919680552270?text=Hi%20Vivaaz%20Gems,%20I%20would%20like%20to%20make%20a%20stone%20into%20custom%20jewelry.', '_blank');" style="background: #1C1A17; color: #fff; padding: 8px 14px; font-size: 11px; font-weight: 700; border: none; cursor: pointer; align-self: flex-start; text-transform: uppercase;">Ask for a quote</button>
+            <div style="display: flex; flex-direction: column; gap: 10px; justify-content: center;">
+              <b style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; color: #1C1A17; line-height: 1.2;">Make it into jewelry</b>
+              <p style="margin: 0; font-size: 13px; line-height: 1.55; color: #7A7267;">
+                Choose any stone from our shop and we set it in a ring, pendant or earrings, in silver or gold. Send us your idea; we send a sketch and a price.
+              </p>
+              <button type="button" onclick="window.open('https://wa.me/919680552270?text=Hi%20Vivaaz%20Gems,%20I%20would%20like%20to%20make%20a%20stone%20into%20custom%20jewelry.', '_blank');" style="background: #1C1A17; color: #FFFFFF; padding: 11px 22px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; align-self: flex-start;">ASK FOR A QUOTE</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 5. ASTROLOGY MEGA PANEL -->
+      <!-- 5. ASTROLOGY MEGA PANEL (EXACT MATCH FOR CLIENT IMAGE 3!) -->
       <div class="mega-panel" id="mega-panel-astro" data-m="astro" style="display: none;">
-        <div class="wrap">
-          <div class="col two">
+        <div class="wrap" style="grid-template-columns: 280px 240px 1fr; gap: 40px; align-items: start;">
+          <div class="col">
             <h6>STONES FOR THE NINE PLANETS</h6>
-            <div class="ls">
-              <a href="<?php echo esc_url(home_url('/astrology/#sun')); ?>">Sun · Ruby (Manik)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#moon')); ?>">Moon · Pearl (Moti)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#mars')); ?>">Mars · Red Coral (Moonga)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#mercury')); ?>">Mercury · Emerald (Panna)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#jupiter')); ?>">Jupiter · Yellow Sapphire (Pukhraj)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#venus')); ?>">Venus · White Sapphire (Safed Pukhraj)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#saturn')); ?>">Saturn · Blue Sapphire (Neelam)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#rahu')); ?>">Rahu · Hessonite (Gomed)</a>
-              <a href="<?php echo esc_url(home_url('/astrology/#ketu')); ?>">Ketu · Cat's Eye (Lehsunia)</a>
-            </div>
+            <a href="<?php echo esc_url(home_url('/astrology/#sun')); ?>">Sun · Ruby (Manik)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#moon')); ?>">Moon · Pearl (Moti)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#mars')); ?>">Mars · Red coral (Moonga)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#mercury')); ?>">Mercury · Emerald (Panna)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#jupiter')); ?>">Jupiter · Yellow sapphire (Pukhraj)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#venus')); ?>">Venus · White sapphire (Safed pukhraj)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#saturn')); ?>">Saturn · Blue sapphire (Neelam)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#rahu')); ?>">Rahu · Hessonite (Gomed)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#ketu')); ?>">Ketu · Cat's eye (Lehsunia)</a>
           </div>
 
           <div class="col">
@@ -416,10 +403,12 @@ const newHeaderMarkup = `<div class="site-header-wrapper">
             <a href="<?php echo esc_url(home_url('/astrology/#navratna')); ?>">Navratna set (on request)</a>
           </div>
 
-          <div class="dark" style="grid-column: span 2;">
-            <span>Astrology consultation</span>
-            <p>Talk to our astrologer. Share your birth details; our astrologer reads your chart and suggests the right stone and weight. Then we find the stone for you.</p>
-            <button type="button" class="btn sm lt" onclick="openConsultationModal();">Book a consultation</button>
+          <div class="dark" style="max-width: 440px; justify-self: end; width: 100%; padding: 32px 28px; display: flex; flex-direction: column; gap: 14px; justify-content: center;">
+            <span style="color: #D9B66F; font-size: 15px; font-weight: 600;">Astrology consultation</span>
+            <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: #CFC6B8;">
+              Talk to our astrologer. Share your birth details; our astrologer reads your chart and suggests the right stone and weight. Then we find the stone for you.
+            </p>
+            <button type="button" class="btn sm lt" onclick="openConsultationModal();" style="background: #F1EBE1; color: #1C1A17; border: 1px solid #F1EBE1; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 20px; width: 100%; text-align: center; cursor: pointer;">BOOK A CONSULTATION</button>
           </div>
         </div>
       </div>
@@ -570,508 +559,31 @@ console.log('Successfully updated flatsome-child/header.php');
 // 2. UPDATE flatsome-child/style.css
 let styleContent = fs.readFileSync(stylePath, 'utf8');
 
-// Find the header section in style.css:
-const styleStartMarker = '.top-bar-notice {';
-const styleEndMarker = '.account-hover-menu a {';
-
-const sStartIndex = styleContent.indexOf(styleStartMarker);
-const sEndIndex = styleContent.indexOf(styleEndMarker);
-
-if (sStartIndex === -1 || sEndIndex === -1) {
-  console.error("Could not find style markers in style.css");
-  process.exit(1);
-}
-
-const newStyleMarkup = `/* ==========================================================================
-   VIVAAZ DEMO HEADER & FULL-WIDTH MEGA MENUS (1:1 DEMO REPLICA)
-   ========================================================================== */
-
-/* Top bar */
-.tb {
-  background: #1C1A17 !important;
-  color: #F3EEE6 !important;
-  font-size: 11px !important;
-  letter-spacing: 0.14em !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-.tb .wrap {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  height: 36px !important;
-  gap: 16px !important;
-  max-width: 1280px !important;
-  margin: 0 auto !important;
-  padding-left: max(24px, env(safe-area-inset-left, 0px)) !important;
-  padding-right: max(24px, env(safe-area-inset-right, 0px)) !important;
-  box-sizing: border-box !important;
-}
-.tb .r {
-  display: flex !important;
-  gap: 22px !important;
-  align-items: center !important;
-}
-.tb a {
-  color: #F3EEE6 !important;
-  text-decoration: none !important;
-  transition: color 0.2s ease !important;
-}
-.tb a:hover {
-  color: #D9B66F !important;
-}
-.cur {
-  position: relative !important;
-}
-.cur > button {
-  font-weight: 700 !important;
-  letter-spacing: 0.1em !important;
-  color: #fff !important;
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  font-size: 11px !important;
-  padding: 0 !important;
-}
-.curm {
-  position: absolute !important;
-  right: 0 !important;
-  top: 26px !important;
-  background: #fff !important;
-  color: #1C1A17 !important;
-  border: 1px solid #E2D7C6 !important;
-  min-width: 170px !important;
-  z-index: 99999 !important;
-  box-shadow: 0 16px 40px rgba(28,26,23,.12) !important;
-  padding: 6px 0 !important;
-  letter-spacing: 0.04em !important;
-}
-.curm button {
-  display: block !important;
-  width: 100% !important;
-  text-align: left !important;
-  padding: 8px 16px !important;
-  font-size: 12.5px !important;
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  color: #1C1A17 !important;
-}
-.curm button:hover {
-  background: #FAF7F2 !important;
-}
-
-/* Header Container */
-header.hd {
+// Ensure .site-header-wrapper and header.hd are overflow visible and correct widths
+const siteWrapperCSS = `.site-header-wrapper {
   position: sticky !important;
   top: 0 !important;
-  z-index: 50 !important;
-  background: #FFFFFF !important;
-  border-bottom: 1px solid #E2D7C6 !important;
+  left: 0 !important;
+  right: 0 !important;
   width: 100% !important;
+  max-width: 100% !important;
+  z-index: 99999 !important;
+  background: #FFFFFF !important;
+  overflow: visible !important;
   box-sizing: border-box !important;
 }
-.admin-bar header.hd {
+body.admin-bar .site-header-wrapper {
   top: 32px !important;
 }
 @media screen and (max-width: 782px) {
-  .admin-bar header.hd {
+  body.admin-bar .site-header-wrapper {
     top: 46px !important;
   }
 }
-
-.hd > .wrap {
-  display: grid !important;
-  grid-template-columns: 1fr auto 1fr !important;
-  align-items: center !important;
-  height: 78px !important;
-  gap: 20px !important;
-  max-width: 1280px !important;
-  margin: 0 auto !important;
-  padding-left: max(24px, env(safe-area-inset-left, 0px)) !important;
-  padding-right: max(24px, env(safe-area-inset-right, 0px)) !important;
-  box-sizing: border-box !important;
-}
-
-/* Mobile Hamburger Button */
-.mobile-hamburger-btn {
-  display: none !important;
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  padding: 8px !important;
-  color: #1C1A17 !important;
-}
-@media (max-width: 991px) {
-  .mobile-hamburger-btn {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  .hd > .wrap {
-    grid-template-columns: auto 1fr auto !important;
-    height: 64px !important;
-  }
-  nav.mn {
-    display: none !important;
-  }
-}
-
-/* Logo: Playfair Display 500, Wide Kerning */
-.logo {
-  display: flex !important;
-  flex-direction: column !important;
-  line-height: 1.1 !important;
-  text-decoration: none !important;
-}
-.logo b {
-  font-family: 'Playfair Display', serif !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.32em !important;
-  font-size: 21px !important;
-  color: #1C1A17 !important;
-  text-transform: uppercase !important;
-}
-.logo span {
-  font-size: 9.5px !important;
-  letter-spacing: 0.34em !important;
-  color: #9A9186 !important;
-  margin-top: 4px !important;
-  text-transform: uppercase !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-}
-
-/* Nav Menu */
-nav.mn {
-  display: flex !important;
-  gap: 6px !important;
-  height: 78px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-.mi {
-  display: flex !important;
-  align-items: center !important;
-  gap: 4px !important;
-  padding: 0 16px !important;
-  font-size: 12.5px !important;
-  letter-spacing: 0.2em !important;
-  font-weight: 600 !important;
-  position: relative !important;
-  height: 100% !important;
-  color: #1C1A17 !important;
-  text-decoration: none !important;
-  text-transform: uppercase !important;
-  cursor: pointer !important;
-}
-.mi .i {
-  width: 13px !important;
-  height: 13px !important;
-  color: #9A9186 !important;
-  transition: transform 0.2s ease !important;
-}
-.mi::after {
-  content: '' !important;
-  position: absolute !important;
-  left: 16px !important;
-  right: 16px !important;
-  bottom: 22px !important;
-  height: 1.5px !important;
-  background: #1C1A17 !important;
-  transform: scaleX(0) !important;
-  transition: transform 0.25s ease !important;
-  transform-origin: left !important;
-}
-.mi:hover::after,
-.mi.open::after,
-.mi.cur::after {
-  transform: scaleX(1) !important;
-}
-.mi.open .i {
-  transform: rotate(180deg) !important;
-}
-
-/* Header Icons */
-.icons {
-  display: flex !important;
-  justify-content: flex-end !important;
-  gap: 20px !important;
-  align-items: center !important;
-}
-.icons button,
-.icons a {
-  position: relative !important;
-  display: flex !important;
-  background: transparent !important;
-  border: none !important;
-  color: #1C1A17 !important;
-  cursor: pointer !important;
-  padding: 0 !important;
-  text-decoration: none !important;
-}
-.icons .i {
-  width: 21px !important;
-  height: 21px !important;
-}
-.badge {
-  position: absolute !important;
-  top: -7px !important;
-  right: -9px !important;
-  background: #1C1A17 !important;
-  color: #fff !important;
-  font-size: 9.5px !important;
-  font-weight: 700 !important;
-  min-width: 16px !important;
-  height: 16px !important;
-  border-radius: 8px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 4px !important;
-}
-.badge:empty {
-  display: none !important;
-}
-
-/* Account Dropdown */
-.has-account-dropdown {
-  position: relative !important;
-}
-.account-hover-menu {
-  display: none;
-  position: absolute !important;
-  top: 100% !important;
-  right: 0 !important;
-  width: 190px !important;
-  background: #FFFFFF !important;
-  border: 1px solid #E2D7C6 !important;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08) !important;
-  padding: 8px 0 !important;
-  z-index: 99999 !important;
-}
-.has-account-dropdown:hover .account-hover-menu {
-  display: block !important;
-}
-
-/* ==========================================================================
-   FULL WIDTH MEGA MENUS (.mega) - 100% IDENTICAL TO DEMO
-   ========================================================================== */
-.mega {
-  position: absolute !important;
-  left: 0 !important;
-  right: 0 !important;
-  top: 100% !important;
-  width: 100% !important;
-  background: #FFFFFF !important;
-  border-top: 1px solid #E2D7C6 !important;
-  border-bottom: 1px solid #E2D7C6 !important;
-  box-shadow: 0 30px 50px rgba(28,26,23,.08) !important;
-  z-index: 49 !important;
-  box-sizing: border-box !important;
-}
-.mega[hidden] {
-  display: none !important;
-}
-.mega .wrap {
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) 300px !important;
-  gap: 34px !important;
-  padding-block: 32px 36px !important;
-  max-width: 1280px !important;
-  margin: 0 auto !important;
-  padding-left: max(24px, env(safe-area-inset-left, 0px)) !important;
-  padding-right: max(24px, env(safe-area-inset-right, 0px)) !important;
-  box-sizing: border-box !important;
-  align-items: start !important;
-}
-.mega .col h6 {
-  margin: 0 0 14px !important;
-  font-size: 10.5px !important;
-  letter-spacing: 0.2em !important;
-  color: #A37E3A !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  border-bottom: none !important;
-  padding-bottom: 0 !important;
-}
-.mega .col a {
-  display: block !important;
-  padding: 5px 0 !important;
-  font-size: 14px !important;
-  color: #3B362F !important;
-  text-decoration: none !important;
-  line-height: 1.4 !important;
-}
-.mega .col a:hover {
-  color: #A37E3A !important;
-}
-.mega .col.two {
-  grid-column: span 2 !important;
-}
-.mega .col.two .ls {
-  columns: 2 !important;
-  column-gap: 28px !important;
-}
-.mega .col.three {
-  grid-column: span 2 !important;
-}
-.mega .col.three .ls {
-  columns: 3 !important;
-  column-gap: 22px !important;
-}
-.mega .col a.hi {
-  font-weight: 700 !important;
-  color: #1C1A17 !important;
-  margin-top: 8px !important;
-}
-.mega .col a.lk {
-  color: #9A9186 !important;
-  font-size: 13px !important;
-  margin-top: 8px !important;
-  display: inline-block !important;
-}
-.mega .col a.lk:hover {
-  color: #1C1A17 !important;
-}
-
-/* Light Card Panel (.mph) */
-.mph {
-  background: #FAF7F2 !important;
-  padding: 18px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 10px !important;
-  border: 1px solid #E2D7C6 !important;
-  box-sizing: border-box !important;
-}
-.mph .cap {
-  font-size: 10.5px !important;
-  letter-spacing: 0.2em !important;
-  color: #A37E3A !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-}
-.mph .pi {
-  aspect-ratio: 4/3 !important;
-  background: #FFFFFF !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  overflow: hidden !important;
-  border: 1px solid #E2D7C6 !important;
-  position: relative !important;
-}
-.mph .pi img {
-  width: 70% !important;
-  height: auto !important;
-  object-fit: contain !important;
-  transition: transform 0.4s ease !important;
-}
-.mph b {
-  font-family: 'Playfair Display', serif !important;
-  font-weight: 400 !important;
-  font-size: 20px !important;
-  color: #1C1A17 !important;
-  line-height: 1.2 !important;
-  margin: 0 !important;
-}
-.mph small {
-  color: #7A7267 !important;
-  font-size: 12.5px !important;
-  line-height: 1.4 !important;
-}
-.mph a.link {
-  font-size: 12.5px !important;
-  font-weight: 700 !important;
-  color: #1C1A17 !important;
-  text-decoration: underline !important;
-  margin-top: 4px !important;
-}
-
-/* Dark Promo Panel (.mega .dark) - EXACT MATCH FOR CLIENT IMAGE 1 */
-.mega .dark {
-  background: #1C1A17 !important;
-  color: #E9E2D6 !important;
-  padding: 24px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 10px !important;
-  justify-content: center !important;
-  box-sizing: border-box !important;
-}
-.mega .dark span {
-  color: #D9B66F !important;
-  font-weight: 600 !important;
-  font-size: 14px !important;
-}
-.mega .dark p {
-  margin: 0 !important;
-  font-size: 13.5px !important;
-  line-height: 1.6 !important;
-  color: #CFC6B8 !important;
-}
-.btn.sm.lt {
-  background: #F1EBE1 !important;
-  color: #1C1A17 !important;
-  border: 1px solid #F1EBE1 !important;
-  padding: 10px 16px !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.1em !important;
-  text-transform: uppercase !important;
-  cursor: pointer !important;
-  align-self: flex-start !important;
-  transition: background 0.2s ease, color 0.2s ease !important;
-}
-.btn.sm.lt:hover {
-  background: #FFFFFF !important;
-  color: #1C1A17 !important;
-}
-
-/* Horizontal MPH in Jewelry (.mph.mk) */
-.mph.mk {
-  flex-direction: row !important;
-  align-items: stretch !important;
-  gap: 16px !important;
-}
-.mph.mk .pi {
-  width: 44% !important;
-  aspect-ratio: auto !important;
-}
-.mph.mk > div:last-child {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 8px !important;
-  justify-content: center !important;
-  flex: 1 !important;
-}
-
-/* Layout Art (.lay) & Gem Art (.gm) */
-.lay {
-  position: relative !important;
-  width: 100% !important;
-  height: 100% !important;
-  min-height: 140px !important;
-}
-.gm {
-  position: absolute !important;
-  border-radius: 50% !important;
-  overflow: hidden !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
-}
-.gm img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  transform: scale(2.3) !important;
-}
-
 `;
 
-styleContent = styleContent.slice(0, sStartIndex) + newStyleMarkup + styleContent.slice(sEndIndex);
-
-// Also remove any conflicting overrides of .mega in style.css:
-styleContent = styleContent.replace(/\/\* STRICT MEGA DROPDOWN PROTECTION[\s\S]*?\.mi\.open > \.mega \{[\s\S]*?\}/g, '/* Mega menu display handled dynamically */');
+// Replace .site-header-wrapper section in style.css:
+styleContent = styleContent.replace(/\.site-header-wrapper\s*\{[\s\S]*?body\.admin-bar \.site-header-wrapper\s*\{[\s\S]*?\}\s*\}\s*/g, siteWrapperCSS);
 
 fs.writeFileSync(stylePath, styleContent, 'utf8');
 console.log('Successfully updated flatsome-child/style.css');
