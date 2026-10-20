@@ -8,6 +8,82 @@ if (!empty($vivaaz_header_rendered)) {
     return;
 }
 $vivaaz_header_rendered = true;
+if (!function_exists('vivaaz_render_lay_art')) {
+    function vivaaz_render_lay_art($stone = 'ruby', $scale = 0.8) {
+        $stone_map = array(
+            'ruby'        => 'ruby.jpg',
+            'spinel'      => 'ruby.jpg',
+            'blue-topaz'  => 'swiss-topaz.jpg',
+            'other'       => 'ceylon-sapphire.jpg',
+            'sapphire'    => 'ceylon-sapphire.jpg',
+            'emerald'     => 'emerald.jpg',
+        );
+        $img_file = isset($stone_map[$stone]) ? $stone_map[$stone] : 'ruby.jpg';
+        $img_url = vivaaz_get_img_url($img_file);
+        $n = 15;
+        $html = '<div class="lay" style="height:100%; min-height:140px; position:relative; width:100%;">';
+        for ($k = 0; $k < $n; $k++) {
+            $t = $k / ($n - 1);
+            $a = M_PI * (0.15 + 0.7 * $t);
+            $x = 50 - 42 * cos($a);
+            $y = 24 + 42 * sin($a);
+            $z = (16 + 22 * sin(M_PI * $t)) * $scale;
+            $w = round($z);
+            $h = round($z * 0.8);
+            $left = "calc({$x}% - " . ($z / 2) . "px)";
+            $top = "calc({$y}% - " . ($z / 2) . "px)";
+            $html .= '<div class="gm" style="left:' . $left . '; top:' . $top . '; width:' . $w . 'px; height:' . $h . 'px; position:absolute; border-radius:50%; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,.2);">';
+            $html .= '<img src="' . esc_url($img_url) . '" style="width:100%; height:100%; object-fit:cover; transform:scale(2.3); display:block;" alt="">';
+            $html .= '</div>';
+        }
+        $html .= '</div>';
+        return $html;
+    }
+}
+
+if (!function_exists('vivaaz_render_bead_strand')) {
+    function vivaaz_render_bead_strand($color = '#6b3fa0', $w = 260) {
+        $n = 26;
+        $R = 110;
+        $cx = $w / 2;
+        $cy = 20;
+        $c = '';
+        for ($k = 0; $k < $n; $k++) {
+            $a = M_PI * (0.12 + 0.76 * $k / ($n - 1));
+            $x = $cx - $R * cos($a);
+            $y = $cy + $R * 0.8 * sin($a);
+            $r = 6.5;
+            $c .= '<ellipse cx="' . round($x, 1) . '" cy="' . round($y, 1) . '" rx="' . $r . '" ry="' . $r . '" fill="' . $color . '"/>';
+            $c .= '<ellipse cx="' . round($x - $r * 0.3, 1) . '" cy="' . round($y - $r * 0.35, 1) . '" rx="' . ($r * 0.3) . '" ry="' . ($r * 0.22) . '" fill="#fff" opacity=".45"/>';
+        }
+        $h = round($w * 0.62);
+        return '<svg viewBox="0 0 ' . $w . ' ' . $h . '" width="82%" style="max-width:100%; display:block; margin:0 auto;"><path d="M' . ($cx - $R) . ' ' . $cy . ' q0 -14 ' . $R . ' -16 q' . $R . ' 2 ' . $R . ' 16" stroke="#C9BFB1" fill="none" stroke-width="1.2"/>' . $c . '</svg>';
+    }
+}
+
+if (!function_exists('vivaaz_render_tennis_art')) {
+    function vivaaz_render_tennis_art($stone = 'spinel', $metal = '#D6D6D6', $scale = 0.55) {
+        $img_url = vivaaz_get_img_url('ruby.jpg');
+        $n = 30;
+        $html = '<div class="lay" style="height:100%; min-height:140px; position:relative; width:100%;">';
+        for ($k = 0; $k < $n; $k++) {
+            $a = 2 * M_PI * $k / $n;
+            $x = 50 + 36 * cos($a);
+            $y = 50 + 25 * sin($a);
+            $z = 18 * $scale;
+            $border_w = round(1.6 * $scale, 1);
+            $w = round($z);
+            $left = "calc({$x}% - " . ($z / 2) . "px)";
+            $top = "calc({$y}% - " . ($z / 2) . "px)";
+            $html .= '<div class="gm" style="left:' . $left . '; top:' . $top . '; width:' . $w . 'px; height:' . $w . 'px; border:' . $border_w . 'px solid ' . $metal . '; position:absolute; border-radius:50%; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,.2);">';
+            $html .= '<img src="' . esc_url($img_url) . '" style="width:100%; height:100%; object-fit:cover; transform:scale(2.3); display:block;" alt="">';
+            $html .= '</div>';
+        }
+        $html .= '</div>';
+        return $html;
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -19,372 +95,464 @@ $vivaaz_header_rendered = true;
 <body <?php body_class(); ?>>
 
 <div class="site-header-wrapper">
-  <!-- TOP BAR (BUILD BOOK PAGE 3 & 4) -->
-  <div class="top-bar-notice">
-    <div class="top-bar-left">
-      NATURAL GEMSTONES · INSURED SHIPPING WORLDWIDE
-    </div>
-    <div class="top-bar-right">
-      <a href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT</a>
-      <a href="<?php echo esc_url(home_url('/track-order/')); ?>">TRACK ORDER</a>
-      <div class="currency-select-wrapper">
-        <select aria-label="Currency Selector" onchange="switchCurrency(this.value)">
-          <option value="INR">IN | ₹ INR ▾</option>
-          <option value="USD">US | $ USD</option>
-          <option value="EUR">EU | € EUR</option>
-          <option value="GBP">UK | £ GBP</option>
-          <option value="AED">AE | AED</option>
-        </select>
+  <!-- TOP BAR (EXACT DEMO SPEC: HEIGHT 36px, COLOR #1C1A17, TEXT #F3EEE6) -->
+  <div class="tb">
+    <div class="wrap">
+      <span>NATURAL GEMSTONES · INSURED SHIPPING WORLDWIDE</span>
+      <div class="r">
+        <a href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT</a>
+        <a href="<?php echo esc_url(home_url('/track-order/')); ?>">TRACK ORDER</a>
+        <div class="cur">
+          <button type="button" id="curb" onclick="toggleCurrencyMenu(event)">IN | ₹ INR ▾</button>
+          <div class="curm" id="curm" hidden>
+            <button type="button" onclick="switchCurrency('INR')">IN | ₹ INR</button>
+            <button type="button" onclick="switchCurrency('USD')">US | $ USD</button>
+            <button type="button" onclick="switchCurrency('EUR')">EU | € EUR</button>
+            <button type="button" onclick="switchCurrency('GBP')">UK | £ GBP</button>
+            <button type="button" onclick="switchCurrency('AED')">AE | AED</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- MAIN HEADER (LOGO LEFT, CENTRED 5 MENUS, CLEAN ICONS RIGHT) -->
-  <header class="main-header">
-    <!-- Mobile Hamburger Button (Placed Left on Mobile - Point 15 Spec) -->
-    <button type="button" class="mobile-hamburger-btn" onclick="toggleMobileMenuDrawer();" aria-label="Open Menu">
-      <span></span><span></span><span></span>
-    </button>
+  <!-- MAIN HEADER (STICKY, LOGO LEFT, 5 MENUS CENTER, ICONS RIGHT) -->
+  <header class="hd" id="hd">
+    <div class="wrap">
+      <!-- Mobile Hamburger Button -->
+      <button type="button" class="mobile-hamburger-btn" onclick="toggleMobileMenuDrawer();" aria-label="Open Menu">
+        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7.5h16M4 12h16M4 16.5h16"/></svg>
+      </button>
 
-    <!-- Brand Logo & Name (Always VIVAAZ GEMS, Capitals, Wide Spacing) -->
-    <a href="<?php echo esc_url(home_url('/')); ?>" class="brand-logo-container">
-      <img src="<?php echo esc_url(vivaaz_get_img_url('vivaaz-logo.png')); ?>" alt="Vivaaz Gems" class="brand-logo-img" style="height: 38px; width: auto; object-fit: contain; display: block;" onerror="this.style.display='none';">
-      <div class="brand-logo-text-block">
-        <span class="brand-logo-text">VIVAAZ GEMS</span>
-        <span class="brand-logo-subtitle">JAIPUR · BANGKOK</span>
-      </div>
-    </a>
-
-    <!-- Centered Navigation Menu with 5 Mega Dropdowns (Step 2) -->
-    <ul class="nav-menu-center">
-      
-      <!-- 1. GEMSTONES MEGA DROPDOWN (POINT 1 & 3 SPEC: FULL WIDTH, PHOTO RIGHT, ALL STONES) -->
-      <li class="has-mega-dropdown mega-item-fullwidth">
-        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="nav-link">GEMSTONES ▾</a>
-        <div class="mega-dropdown-panel mega-dropdown-fullwidth">
-          <div class="mega-dropdown-grid" style="grid-template-columns: 140px 1fr 130px 170px 220px; gap: 28px; max-width: 1240px; margin: 0 auto; align-items: start;">
-            <!-- Col 1: Precious -->
-            <div>
-              <h4 class="mega-col-title">PRECIOUS</h4>
-              <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" onmouseenter="updateMegaPhoto('ruby.jpg', 'Ruby', 'Deep pigeon blood red')">Ruby</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" onmouseenter="updateMegaPhoto('ceylon-sapphire.jpg', 'Sapphire', 'Ceylon blue & fancy')">Sapphire</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" onmouseenter="updateMegaPhoto('emerald.jpg', 'Emerald', 'Colombian & Zambian')">Emerald</a></li>
-                <li style="margin-top: 14px;"><a href="<?php echo esc_url(home_url('/shop/?filter_group=precious')); ?>" class="text-gold font-bold">All precious stones →</a></li>
-              </ul>
-            </div>
-
-            <!-- Col 2: Semi-Precious A to Z (3 columns showing all 27 stones cleanly without scroll) -->
-            <div>
-              <h4 class="mega-col-title">SEMI-PRECIOUS · A TO Z</h4>
-              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px 18px;">
-                <ul class="mega-link-list">
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=agate')); ?>" onmouseenter="updateMegaPhoto('moonstone.jpg', 'Agate', 'Banded chalcedony')">Agate</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=amazonite')); ?>">Amazonite</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=amber')); ?>">Amber</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" onmouseenter="updateMegaPhoto('ruby.jpg', 'Amethyst', 'Lilac to deep purple')">Amethyst</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=aquamarine')); ?>" onmouseenter="updateMegaPhoto('ceylon-sapphire.jpg', 'Aquamarine', 'Sea blue beryl')">Aquamarine</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=aventurine')); ?>">Aventurine</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=carnelian')); ?>">Carnelian</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=citrine')); ?>">Citrine</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>">Garnet</a></li>
-                </ul>
-                <ul class="mega-link-list">
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=green-jade')); ?>">Green Jade</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=iolite')); ?>">Iolite</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=labradorite')); ?>">Labradorite</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=lapis-lazuli')); ?>">Lapis Lazuli</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=larimar')); ?>">Larimar</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=malachite')); ?>">Malachite</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=onyx')); ?>">Onyx</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=opal')); ?>">Opal</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=peridot')); ?>">Peridot</a></li>
-                </ul>
-                <ul class="mega-link-list">
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=prehnite')); ?>">Prehnite</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" onmouseenter="updateMegaPhoto('moonstone.jpg', 'Rainbow Moonstone', 'Blue adularescence')">Rainbow Moonstone</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=rose-quartz')); ?>">Rose Quartz</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=spinel')); ?>" onmouseenter="updateMegaPhoto('ruby.jpg', 'Spinel', 'Red, pink & cobalt blue')">Spinel</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=tanzanite')); ?>">Tanzanite</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=tiger-eye')); ?>">Tiger Eye</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" onmouseenter="updateMegaPhoto('swiss-topaz.jpg', 'Topaz', 'Sky, Swiss & London blue')">Topaz</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=tourmaline')); ?>">Tourmaline</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=turquoise')); ?>">Turquoise</a></li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- Col 3: By Cut -->
-            <div>
-              <h4 class="mega-col-title">BY CUT</h4>
-              <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_cut=faceted')); ?>">Faceted</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_cut=cabochon')); ?>">Cabochon</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_cut=rose-cut')); ?>">Rose cut</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_cut=briolette')); ?>">Briolette</a></li>
-              </ul>
-            </div>
-
-            <!-- Col 4: Shop By -->
-            <div>
-              <h4 class="mega-col-title">SHOP BY</h4>
-              <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_by=colour')); ?>">Colour</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_by=shape')); ?>">Shape</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_by=price')); ?>">Price</a></li>
-                <li><a href="<?php echo esc_url(home_url('/astrology/#birthstones')); ?>">Birthstones</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?max_price=5000')); ?>">Gifts under ₹5,000</a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/?filter_sold_as=calibrated')); ?>">Pairs & calibrated lots</a></li>
-              </ul>
-            </div>
-
-            <!-- Col 5: Photo Panel (Right side) -->
-            <div class="mega-promo-box" id="gem-mega-promo" style="text-align: center; background: #FAF7F2; padding: 16px; border: 1px solid var(--color-border-light);">
-              <img id="gem-promo-img" src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Featured Gemstone" style="width: 100%; height: 150px; object-fit: contain; margin-bottom: 10px; display: block;">
-              <div id="gem-promo-title" style="font-size: 13px; font-weight: 700; color: var(--color-text-main);">Amethyst</div>
-              <p id="gem-promo-sub" style="font-size: 11px; color: var(--color-text-muted); margin: 4px 0 10px;">Lilac to deep purple</p>
-              <a id="gem-promo-link" href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" class="btn-underline-link" style="font-size: 11px; font-weight: 700;">Shop amethyst →</a>
-            </div>
-          </div>
-        </div>
-      </li>
-
-      <!-- 2. LAYOUTS MEGA DROPDOWN (BUILD BOOK PAGE 4) -->
-      <li class="has-mega-dropdown">
-        <a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="nav-link">LAYOUTS ▾</a>
-        <div class="mega-dropdown-panel" style="width: 780px;">
-          <div class="mega-dropdown-grid" style="grid-template-columns: 180px 180px 190px 210px; gap: 20px;">
-            <div>
-              <h4 class="mega-col-title">BY STONE</h4>
-              <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>">Ruby Layouts</a></li>
-                <li><a href="<?php echo esc_url(home_url('/layouts/?stone=spinel')); ?>">Spinel Layouts</a></li>
-                <li><a href="<?php echo esc_url(home_url('/layouts/?stone=blue-topaz')); ?>">Blue Topaz Layouts</a></li>
-                <li><a href="<?php echo esc_url(home_url('/layouts/?stone=other')); ?>">Other Layouts</a></li>
-                <li><a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="text-gold font-bold">All layouts</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 class="mega-col-title">BY TYPE</h4>
-              <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/layouts/?type=necklace-lines')); ?>">Necklace lines</a></li>
-                <li><a href="<?php echo esc_url(home_url('/layouts/?type=bracelet-lines')); ?>">Bracelet lines</a></li>
-                <li><a href="<?php echo esc_url(home_url('/layouts/?type=pairs')); ?>">Pairs</a></li>
-                <li><a href="<?php echo esc_url(home_url('/layouts/?type=sets')); ?>">Sets</a></li>
-              </ul>
-            </div>
-
-            <div class="mega-promo-box">
-              <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby Layouts">
-              <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Ruby Layouts</div>
-              <p style="font-size: 10px; color: var(--color-text-muted);">Graduated lines and matched pairs.</p>
-              <a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="btn-underline-link" style="font-size: 10px;">See ruby layouts →</a>
-            </div>
-
-            <!-- Matching Card -->
-            <div style="background: #1C1A17; color: #FFFFFF; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
-              <div>
-                <h5 style="font-size: 12px; font-weight: 700; color: #FFFFFF; margin-bottom: 8px;">Have a stone or a design?</h5>
-                <p style="font-size: 11px; color: #CCCCCC; line-height: 1.5; margin: 0;">We match it. Send a photo and size, or your design, and we match it from stock.</p>
-              </div>
-              <a href="<?php echo esc_url(home_url('/layouts/#match')); ?>" class="btn-square-dark" style="background: #FFFFFF; color: #1C1A17; padding: 10px 14px; font-size: 10px; text-align: center; margin-top: 14px; border: none; font-weight: 700;">SEND YOUR DESIGN</a>
-            </div>
-          </div>
-        </div>
-      </li>
-
-      <!-- 3. BEADS MEGA DROPDOWN (BUILD BOOK PAGE 5) -->
-      <li class="has-mega-dropdown">
-        <a href="<?php echo esc_url(home_url('/beads/')); ?>" class="nav-link">BEADS ▾</a>
-        <div class="mega-dropdown-panel" style="width: 780px;">
-          <div class="mega-dropdown-grid" style="grid-template-columns: 160px 200px 180px 220px; gap: 20px;">
-            <div>
-              <h4 class="mega-col-title">BY STONE</h4>
-              <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/beads/?stone=amethyst')); ?>">Amethyst</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?stone=garnet')); ?>">Garnet</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?stone=labradorite')); ?>">Labradorite</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?stone=rose-quartz')); ?>">Rose Quartz</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?stone=turquoise')); ?>">Turquoise</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/')); ?>" class="text-gold font-bold">All stones</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 class="mega-col-title">BY BEAD SHAPE</h4>
-              <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/beads/?shape=round')); ?>">Round</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?shape=rondelle')); ?>">Rondelle</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?shape=faceted-rondelle')); ?>">Faceted rondelle</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?shape=nugget')); ?>">Nugget</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?shape=chips')); ?>">Chips</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?shape=heishi')); ?>">Heishi</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?shape=briolette')); ?>">Briolette & drops</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?shape=coin-cube')); ?>">Coin & cube</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 class="mega-col-title">BY SIZE & UNIT</h4>
-              <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/beads/?size=2-4mm')); ?>">2–4 mm</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?size=5-9mm')); ?>">5–9 mm</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?size=10mm-plus')); ?>">10 mm and more</a></li>
-                <li style="margin-top: 10px;"><a href="<?php echo esc_url(home_url('/beads/?unit=strand')); ?>" style="font-weight: 600;">Strands</a></li>
-                <li><a href="<?php echo esc_url(home_url('/beads/?unit=loose')); ?>" style="font-weight: 600;">Loose pieces</a></li>
-              </ul>
-            </div>
-
-            <div class="mega-promo-box">
-              <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Gemstone Beads">
-              <div style="font-size: 11px; font-weight: 700; margin-top: 8px;">Gemstone Beads</div>
-              <p style="font-size: 10px; color: var(--color-text-muted);">Drilled and matched in Jaipur.</p>
-              <a href="<?php echo esc_url(home_url('/beads/')); ?>" class="btn-underline-link" style="font-size: 10px;">View all beads →</a>
-            </div>
-          </div>
-        </div>
-      </li>
-
-      <!-- 4. JEWELRY MEGA DROPDOWN (BUILD BOOK PAGE 5) -->
-      <li class="has-mega-dropdown">
-        <a href="<?php echo esc_url(home_url('/jewelry/')); ?>" class="nav-link">JEWELRY ▾</a>
-        <div class="mega-dropdown-panel" style="width: 740px;">
-          <div class="mega-dropdown-grid" style="grid-template-columns: 150px 180px 150px 240px; gap: 20px;">
-            <div>
-              <h4 class="mega-col-title">BY STONE</h4>
-              <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/jewelry/?stone=ruby')); ?>">Ruby</a></li>
-                <li><a href="<?php echo esc_url(home_url('/jewelry/?stone=spinel')); ?>">Spinel</a></li>
-                <li><a href="<?php echo esc_url(home_url('/jewelry/?stone=sapphire')); ?>">Sapphire</a></li>
-                <li><a href="<?php echo esc_url(home_url('/jewelry/?stone=emerald')); ?>">Emerald</a></li>
-                <li><a href="<?php echo esc_url(home_url('/jewelry/')); ?>">Other stones</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 class="mega-col-title">BY TYPE</h4>
-              <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/jewelry/tennis-bracelets/')); ?>">Tennis bracelets</a></li>
-                <li><a href="<?php echo esc_url(home_url('/jewelry/tennis-necklaces/')); ?>">Tennis necklaces</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 class="mega-col-title">BY METAL</h4>
-              <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/jewelry/?metal=silver')); ?>">925 Silver</a></li>
-                <li><a href="<?php echo esc_url(home_url('/jewelry/?metal=14k')); ?>">14K Gold</a></li>
-                <li><a href="<?php echo esc_url(home_url('/jewelry/?metal=18k')); ?>">18K Gold</a></li>
-              </ul>
-            </div>
-
-            <div class="mega-promo-box" style="background: #FAF7F2; border: 1px solid var(--color-border-light); padding: 18px; text-align: left;">
-              <h5 style="font-size: 12px; font-weight: 700; margin: 0 0 6px;">Make it into jewelry</h5>
-              <p style="font-size: 11px; color: var(--color-text-muted); line-height: 1.5; margin: 0 0 14px;">
-                Choose any stone from our shop and we set it in a ring, pendant or earrings, in silver or gold. Send your idea; we send a sketch and a price.
-              </p>
-              <a href="<?php echo esc_url(home_url('/make-it-into-jewelry/')); ?>" class="btn-square-dark" style="display: block; text-align: center; padding: 10px; font-size: 11px; font-weight: 700;">ASK FOR A QUOTE</a>
-            </div>
-          </div>
-        </div>
-      </li>
-
-      <!-- 5. ASTROLOGY MEGA DROPDOWN (BUILD BOOK PAGE 6) -->
-      <li class="has-mega-dropdown">
-        <a href="<?php echo esc_url(home_url('/astrology/')); ?>" class="nav-link">ASTROLOGY ▾</a>
-        <div class="mega-dropdown-panel" style="width: 780px;">
-          <div class="mega-dropdown-grid" style="grid-template-columns: 240px 220px 280px; gap: 24px;">
-            <div>
-              <h4 class="mega-col-title">STONES FOR THE NINE PLANETS</h4>
-              <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/astrology/#sun')); ?>">Sun · Ruby (Manik)</a></li>
-                <li><a href="<?php echo esc_url(home_url('/astrology/#moon')); ?>">Moon · Pearl (Moti)</a></li>
-                <li><a href="<?php echo esc_url(home_url('/astrology/#mars')); ?>">Mars · Red Coral (Moonga)</a></li>
-                <li><a href="<?php echo esc_url(home_url('/astrology/#mercury')); ?>">Mercury · Emerald (Panna)</a></li>
-                <li><a href="<?php echo esc_url(home_url('/astrology/#jupiter')); ?>">Jupiter · Yellow Sapphire (Pukhraj)</a></li>
-                <li><a href="<?php echo esc_url(home_url('/astrology/#venus')); ?>">Venus · White Sapphire (Safed Pukhraj)</a></li>
-                <li><a href="<?php echo esc_url(home_url('/astrology/#saturn')); ?>">Saturn · Blue Sapphire (Neelam)</a></li>
-                <li><a href="<?php echo esc_url(home_url('/astrology/#rahu')); ?>">Rahu · Hessonite (Gomed)</a></li>
-                <li><a href="<?php echo esc_url(home_url('/astrology/#ketu')); ?>">Ketu · Cat's Eye (Lehsunia)</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 class="mega-col-title">GUIDES</h4>
-              <ul class="mega-link-list">
-                <li><a href="<?php echo esc_url(home_url('/astrology/#birthstones')); ?>">Birthstones by month</a></li>
-                <li><a href="<?php echo esc_url(home_url('/astrology/#substitutes')); ?>">Substitute stones (upratna)</a></li>
-                <li><a href="<?php echo esc_url(home_url('/astrology/#weight')); ?>">Weight: carat and ratti</a></li>
-                <li><a href="<?php echo esc_url(home_url('/astrology/#navratna')); ?>">Navratna set (on request)</a></li>
-              </ul>
-            </div>
-
-            <!-- Dark Consultation Panel (Point 9: Book a consultation opens the form) -->
-            <div style="background: #1C1A17; color: #FFFFFF; padding: 22px; display: flex; flex-direction: column; justify-content: space-between;">
-              <div>
-                <h5 style="font-size: 13px; font-weight: 700; color: #FFFFFF; margin-bottom: 8px;">Astrology consultation</h5>
-                <p style="font-size: 11px; color: #CCCCCC; line-height: 1.5; margin: 0;">
-                  Talk to our astrologer. Share your birth details; our astrologer reads your chart and suggests the right stone and weight. Then we find the stone for you.
-                </p>
-              </div>
-              <a href="javascript:void(0);" onclick="openConsultationModal();" class="btn-square-dark" style="background: #FFFFFF; color: #1C1A17; padding: 10px 14px; font-size: 11px; text-align: center; margin-top: 14px; border: none; font-weight: 700;">BOOK A CONSULTATION</a>
-            </div>
-          </div>
-        </div>
-      </li>
-
-    </ul>
-
-    <!-- Header Action Icons (Clean SVG Icons Only - No Text Labels) -->
-    <div class="header-action-group">
-      <!-- Search -->
-      <a href="javascript:void(0);" onclick="toggleLiveSearchModal();" class="icon-action-btn" title="Search">
-        <svg width="18" height="18" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; overflow: visible; display: inline-block;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <!-- Logo: Pure Typography, Wide Letter Spacing (Demo 1:1, No Image Icon) -->
+      <a href="<?php echo esc_url(home_url('/')); ?>" class="logo">
+        <b>VIVAAZ GEMS</b>
+        <span>JAIPUR · BANGKOK</span>
       </a>
-      
-      <!-- Account with Hover Dropdown -->
-      <div class="has-account-dropdown">
-        <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="icon-action-btn" title="My Account">
-          <svg width="18" height="18" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; overflow: visible; display: inline-block;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+
+      <!-- Desktop Centered Navigation (5 Menus with Thin Chevrons) -->
+      <nav class="mn" aria-label="Main">
+        <a class="mi" data-m="gems" href="<?php echo esc_url(home_url('/shop/')); ?>">GEMSTONES <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 10l5 5 5-5"/></svg></a>
+        <a class="mi" data-m="layouts" href="<?php echo esc_url(home_url('/layouts/')); ?>">LAYOUTS <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 10l5 5 5-5"/></svg></a>
+        <a class="mi" data-m="beads" href="<?php echo esc_url(home_url('/beads/')); ?>">BEADS <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 10l5 5 5-5"/></svg></a>
+        <a class="mi" data-m="jewelry" href="<?php echo esc_url(home_url('/jewelry/')); ?>">JEWELRY <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 10l5 5 5-5"/></svg></a>
+        <a class="mi" data-m="astro" href="<?php echo esc_url(home_url('/astrology/')); ?>">ASTROLOGY <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 10l5 5 5-5"/></svg></a>
+      </nav>
+
+      <!-- Right Action Icons (1.4px Stroke Width, Clean Thin Geometric SVGs) -->
+      <div class="icons">
+        <button type="button" onclick="toggleLiveSearchModal();" aria-label="Search">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+
+        <div class="has-account-dropdown">
+          <a href="<?php echo esc_url(home_url('/my-account/')); ?>" aria-label="Account">
+            <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+          </a>
+          <div class="account-hover-menu">
+            <?php if (is_user_logged_in()) : 
+              $current_user = wp_get_current_user();
+            ?>
+              <div style="padding: 10px 16px; font-size: 11px; font-weight: 700; color: #A37E3A; border-bottom: 1px solid #E2D7C6;">
+                Hello, <?php echo esc_html($current_user->first_name ?: $current_user->display_name); ?>
+              </div>
+              <a href="<?php echo esc_url(home_url('/my-account/')); ?>">Dashboard</a>
+              <a href="<?php echo esc_url(home_url('/my-account/orders/')); ?>">Orders</a>
+              <a href="<?php echo esc_url(home_url('/wishlist/')); ?>">Wishlist</a>
+              <div style="height: 1px; background: #E2D7C6; margin: 4px 0;"></div>
+              <a href="<?php echo esc_url(wp_logout_url(home_url('/'))); ?>" style="color: #A3122E;">Sign Out / Logout →</a>
+            <?php else : ?>
+              <a href="<?php echo esc_url(home_url('/my-account/')); ?>">Sign In / Login</a>
+              <a href="<?php echo esc_url(home_url('/my-account/?action=register')); ?>">Create an Account</a>
+              <a href="<?php echo esc_url(home_url('/track-order/')); ?>">Track Order</a>
+              <a href="<?php echo esc_url(home_url('/wishlist/')); ?>">Wishlist</a>
+            <?php endif; ?>
+          </div>
+        </div>
+
+        <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" aria-label="Wishlist">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/></svg>
+          <span class="badge" id="wb"></span>
         </a>
-        <div class="account-hover-menu">
-          <?php if (is_user_logged_in()) : 
-            $current_user = wp_get_current_user();
-          ?>
-            <div style="padding: 10px 16px; font-size: 11px; font-weight: 700; color: var(--color-gold-label); border-bottom: 1px solid var(--color-border-light);">
-              Hello, <?php echo esc_html($current_user->first_name ?: $current_user->display_name); ?>
+
+        <button type="button" onclick="openCartDrawer();" aria-label="Bag">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5.5 8.5h13l-1 11.5h-11z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></svg>
+          <span class="badge" id="cb"><?php echo (function_exists('WC') && WC()->cart && WC()->cart->get_cart_contents_count() > 0) ? WC()->cart->get_cart_contents_count() : ''; ?></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- FULL WIDTH MEGA MENU CONTAINER (EDGE-TO-EDGE, EXACT DEMO SPEC) -->
+    <div class="mega" id="mega" style="display: none;">
+      
+      <!-- 1. GEMSTONES MEGA PANEL -->
+      <div class="mega-panel" id="mega-panel-gems" data-m="gems" style="display: none;">
+        <div class="wrap">
+          <div class="col">
+            <h6>PRECIOUS</h6>
+            <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" data-ph="ruby" onmouseenter="updateGemsMegaPhoto('ruby')">Ruby</a>
+            <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" data-ph="sapphire" onmouseenter="updateGemsMegaPhoto('sapphire')">Sapphire</a>
+            <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" data-ph="emerald" onmouseenter="updateGemsMegaPhoto('emerald')">Emerald</a>
+            <a class="lk" href="<?php echo esc_url(home_url('/shop/?filter_group=precious')); ?>">All precious stones →</a>
+          </div>
+
+          <div class="col three">
+            <h6>SEMI-PRECIOUS · A TO Z</h6>
+            <div class="ls">
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=agate')); ?>" data-ph="agate" onmouseenter="updateGemsMegaPhoto('agate')">Agate</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amazonite')); ?>" data-ph="amazonite" onmouseenter="updateGemsMegaPhoto('amazonite')">Amazonite</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amber')); ?>" data-ph="amber" onmouseenter="updateGemsMegaPhoto('amber')">Amber</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" data-ph="amethyst" onmouseenter="updateGemsMegaPhoto('amethyst')">Amethyst</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=aquamarine')); ?>" data-ph="aquamarine" onmouseenter="updateGemsMegaPhoto('aquamarine')">Aquamarine</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=aventurine')); ?>" data-ph="aventurine" onmouseenter="updateGemsMegaPhoto('aventurine')">Aventurine</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=carnelian')); ?>" data-ph="carnelian" onmouseenter="updateGemsMegaPhoto('carnelian')">Carnelian</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=citrine')); ?>" data-ph="citrine" onmouseenter="updateGemsMegaPhoto('citrine')">Citrine</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>" data-ph="garnet" onmouseenter="updateGemsMegaPhoto('garnet')">Garnet</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=green-jade')); ?>" data-ph="green-jade" onmouseenter="updateGemsMegaPhoto('green-jade')">Green Jade</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=iolite')); ?>" data-ph="iolite" onmouseenter="updateGemsMegaPhoto('iolite')">Iolite</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=labradorite')); ?>" data-ph="labradorite" onmouseenter="updateGemsMegaPhoto('labradorite')">Labradorite</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=lapis-lazuli')); ?>" data-ph="lapis-lazuli" onmouseenter="updateGemsMegaPhoto('lapis-lazuli')">Lapis Lazuli</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=larimar')); ?>" data-ph="larimar" onmouseenter="updateGemsMegaPhoto('larimar')">Larimar</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=malachite')); ?>" data-ph="malachite" onmouseenter="updateGemsMegaPhoto('malachite')">Malachite</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=onyx')); ?>" data-ph="onyx" onmouseenter="updateGemsMegaPhoto('onyx')">Onyx</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=opal')); ?>" data-ph="opal" onmouseenter="updateGemsMegaPhoto('opal')">Opal</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=peridot')); ?>" data-ph="peridot" onmouseenter="updateGemsMegaPhoto('peridot')">Peridot</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=prehnite')); ?>" data-ph="prehnite" onmouseenter="updateGemsMegaPhoto('prehnite')">Prehnite</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" data-ph="rainbow-moonstone" onmouseenter="updateGemsMegaPhoto('rainbow-moonstone')">Rainbow Moonstone</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rose-quartz')); ?>" data-ph="rose-quartz" onmouseenter="updateGemsMegaPhoto('rose-quartz')">Rose Quartz</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=spinel')); ?>" data-ph="spinel" onmouseenter="updateGemsMegaPhoto('spinel')">Spinel</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tanzanite')); ?>" data-ph="tanzanite" onmouseenter="updateGemsMegaPhoto('tanzanite')">Tanzanite</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tiger-eye')); ?>" data-ph="tiger-eye" onmouseenter="updateGemsMegaPhoto('tiger-eye')">Tiger Eye</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" data-ph="topaz" onmouseenter="updateGemsMegaPhoto('topaz')">Topaz</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tourmaline')); ?>" data-ph="tourmaline" onmouseenter="updateGemsMegaPhoto('tourmaline')">Tourmaline</a>
+              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=turquoise')); ?>" data-ph="turquoise" onmouseenter="updateGemsMegaPhoto('turquoise')">Turquoise</a>
             </div>
-            <a href="<?php echo esc_url(home_url('/my-account/')); ?>">Dashboard</a>
-            <a href="<?php echo esc_url(home_url('/my-account/orders/')); ?>">Orders</a>
-            <a href="<?php echo esc_url(home_url('/wishlist/')); ?>">Wishlist</a>
-            <div class="account-menu-divider"></div>
-            <a href="<?php echo esc_url(wp_logout_url(home_url('/'))); ?>" class="logout-link">Sign Out / Logout →</a>
-          <?php else : ?>
-            <a href="<?php echo esc_url(home_url('/my-account/')); ?>">Sign In / Login</a>
-            <a href="<?php echo esc_url(home_url('/my-account/?action=register')); ?>">Create an Account</a>
-            <a href="<?php echo esc_url(home_url('/track-order/')); ?>">Track Order</a>
-            <a href="<?php echo esc_url(home_url('/wishlist/')); ?>">Wishlist</a>
-          <?php endif; ?>
+            <a class="lk" href="<?php echo esc_url(home_url('/shop/?filter_group=semi')); ?>">Other stones →</a>
+          </div>
+
+          <div class="col">
+            <h6>BY CUT</h6>
+            <a href="<?php echo esc_url(home_url('/shop/?filter_cut=faceted')); ?>">Faceted</a>
+            <a href="<?php echo esc_url(home_url('/shop/?filter_cut=cabochon')); ?>">Cabochon</a>
+            <a href="<?php echo esc_url(home_url('/shop/?filter_cut=rose-cut')); ?>">Rose cut</a>
+            <a href="<?php echo esc_url(home_url('/shop/?filter_cut=briolette')); ?>">Briolette</a>
+            <h6 style="margin-top: 22px;">SHOP BY</h6>
+            <a href="<?php echo esc_url(home_url('/shop/?filter_by=colour')); ?>">Colour</a>
+            <a href="<?php echo esc_url(home_url('/shop/?filter_by=shape')); ?>">Shape</a>
+            <a href="<?php echo esc_url(home_url('/shop/?filter_by=price')); ?>">Price</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#birthstones')); ?>">Birthstones</a>
+            <a href="<?php echo esc_url(home_url('/shop/?max_price=5000')); ?>">Gifts under ₹5,000</a>
+            <a href="<?php echo esc_url(home_url('/shop/?filter_sold_as=calibrated')); ?>">Pairs &amp; calibrated lots</a>
+          </div>
+
+          <!-- Light Photo Box on the Right -->
+          <div class="mph" id="mph">
+            <span class="cap">NEW THIS WEEK</span>
+            <div class="pi">
+              <img id="mph-img" src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone">
+            </div>
+            <b id="mph-name">Rainbow Moonstone</b>
+            <small id="mph-desc">Cabochon lots from 3×4 mm, AAA</small>
+            <a class="link" id="mph-link" href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>">Shop new arrivals →</a>
+          </div>
         </div>
       </div>
 
-      <!-- Wishlist -->
-      <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="icon-action-btn" title="Wishlist" style="position: relative;">
-        <svg width="18" height="18" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; overflow: visible; display: inline-block;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-        <span class="cart-badge-count" id="header-wishlist-count" style="display: none;">0</span>
-      </a>
+      <!-- 2. LAYOUTS MEGA PANEL (EXACT MATCH FOR CLIENT IMAGE 1!) -->
+      <div class="mega-panel" id="mega-panel-layouts" data-m="layouts" style="display: none;">
+        <div class="wrap">
+          <div class="col">
+            <h6>BY STONE</h6>
+            <a href="<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>" data-lph="ruby" onmouseenter="updateLayoutsMegaPhoto('ruby')">Ruby Layouts</a>
+            <a href="<?php echo esc_url(home_url('/layouts/?stone=spinel')); ?>" data-lph="spinel" onmouseenter="updateLayoutsMegaPhoto('spinel')">Spinel Layouts</a>
+            <a href="<?php echo esc_url(home_url('/layouts/?stone=blue-topaz')); ?>" data-lph="blue-topaz" onmouseenter="updateLayoutsMegaPhoto('blue-topaz')">Blue Topaz Layouts</a>
+            <a href="<?php echo esc_url(home_url('/layouts/?stone=other')); ?>" data-lph="other" onmouseenter="updateLayoutsMegaPhoto('other')">Other Layouts</a>
+            <a class="hi" href="<?php echo esc_url(home_url('/layouts/')); ?>">All layouts</a>
+          </div>
 
-      <!-- Shopping Bag -->
-      <a href="javascript:void(0);" onclick="openCartDrawer();" class="icon-action-btn" title="Shopping Bag">
-        <svg width="18" height="18" viewBox="-1 -1 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; overflow: visible; display: inline-block;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-        <span class="cart-badge-count" id="header-bag-count">
-          <?php echo (function_exists('WC') && WC()->cart) ? WC()->cart->get_cart_contents_count() : '0'; ?>
-        </span>
-      </a>
+          <div class="col">
+            <h6>BY TYPE</h6>
+            <a href="<?php echo esc_url(home_url('/layouts/?type=Necklace+lines')); ?>">Necklace lines</a>
+            <a href="<?php echo esc_url(home_url('/layouts/?type=Bracelet+lines')); ?>">Bracelet lines</a>
+            <a href="<?php echo esc_url(home_url('/layouts/?type=Pairs')); ?>">Pairs</a>
+            <a href="<?php echo esc_url(home_url('/layouts/?type=Sets')); ?>">Sets</a>
+          </div>
+
+          <!-- Photo Card (Spans 2 Columns, light sand background, curved ruby layout art) -->
+          <div class="mph" id="lph" style="grid-column: span 2;">
+            <div class="pi" id="lph-pi" style="background: #F4F2EE; min-height: 160px; display: flex; align-items: center; justify-content: center;">
+              <?php echo vivaaz_render_lay_art('ruby', 0.8); ?>
+            </div>
+            <b id="lph-name">Ruby Layouts</b>
+            <small id="lph-desc">Graduated lines and matched pairs</small>
+            <a class="link" id="lph-link" href="<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>">See ruby layouts →</a>
+          </div>
+
+          <!-- Dark Card on Right (Black background, gold title, SEND YOUR DESIGN button) -->
+          <div class="dark">
+            <span>Have a stone or a design?</span>
+            <p>We match it. Send a photo and the size of your stone, or your design, and we match it from our stock.</p>
+            <button type="button" class="btn sm lt" onclick="window.open('https://wa.me/919680552270?text=Hi%20Vivaaz%20Gems,%20I%20have%20a%20stone%20or%20design%20to%20match.', '_blank');">SEND YOUR DESIGN</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. BEADS MEGA PANEL (EXACT MATCH FOR CLIENT IMAGE 3!) -->
+      <div class="mega-panel" id="mega-panel-beads" data-m="beads" style="display: none;">
+        <div class="wrap">
+          <div class="col">
+            <h6>BY STONE</h6>
+            <a href="<?php echo esc_url(home_url('/beads/?stone=Amethyst')); ?>">Amethyst</a>
+            <a href="<?php echo esc_url(home_url('/beads/?stone=Garnet')); ?>">Garnet</a>
+            <a href="<?php echo esc_url(home_url('/beads/?stone=Labradorite')); ?>">Labradorite</a>
+            <a href="<?php echo esc_url(home_url('/beads/?stone=Rose+Quartz')); ?>">Rose Quartz</a>
+            <a href="<?php echo esc_url(home_url('/beads/?stone=Turquoise')); ?>">Turquoise</a>
+            <a class="hi" href="<?php echo esc_url(home_url('/beads/')); ?>">All stones</a>
+          </div>
+
+          <div class="col">
+            <h6>BY BEAD SHAPE</h6>
+            <a href="<?php echo esc_url(home_url('/beads/?shape=Round')); ?>">Round</a>
+            <a href="<?php echo esc_url(home_url('/beads/?shape=Rondelle')); ?>">Rondelle</a>
+            <a href="<?php echo esc_url(home_url('/beads/?shape=Faceted+rondelle')); ?>">Faceted rondelle</a>
+            <a href="<?php echo esc_url(home_url('/beads/?shape=Nugget')); ?>">Nugget</a>
+            <a href="<?php echo esc_url(home_url('/beads/?shape=Chips')); ?>">Chips</a>
+            <a href="<?php echo esc_url(home_url('/beads/?shape=Heishi')); ?>">Heishi</a>
+            <a href="<?php echo esc_url(home_url('/beads/?shape=Briolette+%26+drops')); ?>">Briolette &amp; drops</a>
+            <a href="<?php echo esc_url(home_url('/beads/?shape=Coin+%26+cube')); ?>">Coin &amp; cube</a>
+          </div>
+
+          <div class="col">
+            <h6>BY SIZE &amp; UNIT</h6>
+            <a href="<?php echo esc_url(home_url('/beads/?size=2-4')); ?>">2–4 mm</a>
+            <a href="<?php echo esc_url(home_url('/beads/?size=5-9')); ?>">5–9 mm</a>
+            <a href="<?php echo esc_url(home_url('/beads/?size=10+')); ?>">10 mm and more</a>
+            <a href="<?php echo esc_url(home_url('/beads/?sold=Strand')); ?>">Strands</a>
+            <a href="<?php echo esc_url(home_url('/beads/?sold=Loose+pieces')); ?>">Loose pieces</a>
+          </div>
+
+          <div class="col"></div>
+
+          <!-- Bead Strands Graphic Card -->
+          <div class="mph">
+            <div class="pi" style="background: #FAF7F2; min-height: 160px; display: flex; align-items: center; justify-content: center;">
+              <?php echo vivaaz_render_bead_strand('#6b3fa0', 260); ?>
+            </div>
+            <b>Bead strands</b>
+            <small>By the strand or as loose pieces</small>
+            <a class="link" href="<?php echo esc_url(home_url('/beads/')); ?>">See all beads →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. JEWELRY MEGA PANEL -->
+      <div class="mega-panel" id="mega-panel-jewelry" data-m="jewelry" style="display: none;">
+        <div class="wrap">
+          <div class="col">
+            <h6>BY STONE</h6>
+            <a href="<?php echo esc_url(home_url('/jewelry/?stone=ruby')); ?>">Ruby</a>
+            <a href="<?php echo esc_url(home_url('/jewelry/?stone=spinel')); ?>">Spinel</a>
+            <a href="<?php echo esc_url(home_url('/jewelry/?stone=sapphire')); ?>">Sapphire</a>
+            <a href="<?php echo esc_url(home_url('/jewelry/?stone=emerald')); ?>">Emerald</a>
+            <a href="<?php echo esc_url(home_url('/jewelry/?stone=other')); ?>">Other stones</a>
+          </div>
+
+          <div class="col">
+            <h6>BY TYPE</h6>
+            <a href="<?php echo esc_url(home_url('/jewelry/?type=Tennis+bracelets')); ?>">Tennis bracelets</a>
+            <a href="<?php echo esc_url(home_url('/jewelry/?type=Tennis+necklaces')); ?>">Tennis necklaces</a>
+          </div>
+
+          <div class="col">
+            <h6>BY METAL</h6>
+            <a href="<?php echo esc_url(home_url('/jewelry/?metal=925+Silver')); ?>">925 Silver</a>
+            <a href="<?php echo esc_url(home_url('/jewelry/?metal=14K+Gold')); ?>">14K Gold</a>
+            <a href="<?php echo esc_url(home_url('/jewelry/?metal=18K+Gold')); ?>">18K Gold</a>
+          </div>
+
+          <div class="mph mk" style="grid-column: span 2;">
+            <div class="pi" style="background: #F4F2EE; min-height: 140px; display: flex; align-items: center; justify-content: center;">
+              <?php echo vivaaz_render_tennis_art('spinel', '#D6D6D6', 0.55); ?>
+            </div>
+            <div>
+              <b>Make it into jewelry</b>
+              <small>Choose any stone from our shop and we set it in a ring, pendant or earrings, in silver or gold. Send us your idea; we send a sketch and a price.</small>
+              <button type="button" class="btn sm" onclick="window.open('https://wa.me/919680552270?text=Hi%20Vivaaz%20Gems,%20I%20would%20like%20to%20make%20a%20stone%20into%20custom%20jewelry.', '_blank');" style="background: #1C1A17; color: #fff; padding: 8px 14px; font-size: 11px; font-weight: 700; border: none; cursor: pointer; align-self: flex-start; text-transform: uppercase;">Ask for a quote</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. ASTROLOGY MEGA PANEL -->
+      <div class="mega-panel" id="mega-panel-astro" data-m="astro" style="display: none;">
+        <div class="wrap">
+          <div class="col two">
+            <h6>STONES FOR THE NINE PLANETS</h6>
+            <div class="ls">
+              <a href="<?php echo esc_url(home_url('/astrology/#sun')); ?>">Sun · Ruby (Manik)</a>
+              <a href="<?php echo esc_url(home_url('/astrology/#moon')); ?>">Moon · Pearl (Moti)</a>
+              <a href="<?php echo esc_url(home_url('/astrology/#mars')); ?>">Mars · Red Coral (Moonga)</a>
+              <a href="<?php echo esc_url(home_url('/astrology/#mercury')); ?>">Mercury · Emerald (Panna)</a>
+              <a href="<?php echo esc_url(home_url('/astrology/#jupiter')); ?>">Jupiter · Yellow Sapphire (Pukhraj)</a>
+              <a href="<?php echo esc_url(home_url('/astrology/#venus')); ?>">Venus · White Sapphire (Safed Pukhraj)</a>
+              <a href="<?php echo esc_url(home_url('/astrology/#saturn')); ?>">Saturn · Blue Sapphire (Neelam)</a>
+              <a href="<?php echo esc_url(home_url('/astrology/#rahu')); ?>">Rahu · Hessonite (Gomed)</a>
+              <a href="<?php echo esc_url(home_url('/astrology/#ketu')); ?>">Ketu · Cat's Eye (Lehsunia)</a>
+            </div>
+          </div>
+
+          <div class="col">
+            <h6>GUIDES</h6>
+            <a href="<?php echo esc_url(home_url('/astrology/#birthstones')); ?>">Birthstones by month</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#substitutes')); ?>">Substitute stones (upratna)</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#weight')); ?>">Weight: carat and ratti</a>
+            <a href="<?php echo esc_url(home_url('/astrology/#navratna')); ?>">Navratna set (on request)</a>
+          </div>
+
+          <div class="dark" style="grid-column: span 2;">
+            <span>Astrology consultation</span>
+            <p>Talk to our astrologer. Share your birth details; our astrologer reads your chart and suggests the right stone and weight. Then we find the stone for you.</p>
+            <button type="button" class="btn sm lt" onclick="openConsultationModal();">Book a consultation</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </header>
 </div>
+
+<!-- MEGA MENU DESKTOP HOVER ENGINE SCRIPT -->
+<script>
+(function() {
+  var hd = document.getElementById('hd');
+  var mega = document.getElementById('mega');
+  var miList = document.querySelectorAll('.mn .mi');
+  var panels = document.querySelectorAll('.mega-panel');
+  var closeTimer = null;
+
+  window.openMegaPanel = function(key) {
+    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+    if (!mega) return;
+    var found = false;
+    panels.forEach(function(p) {
+      if (p.getAttribute('data-m') === key) {
+        p.style.display = 'block';
+        found = true;
+      } else {
+        p.style.display = 'none';
+      }
+    });
+    miList.forEach(function(m) {
+      if (m.getAttribute('data-m') === key) {
+        m.classList.add('open');
+      } else {
+        m.classList.remove('open');
+      }
+    });
+    if (found) {
+      mega.style.display = 'block';
+    } else {
+      mega.style.display = 'none';
+    }
+  };
+
+  window.closeMegaPanel = function() {
+    if (closeTimer) clearTimeout(closeTimer);
+    closeTimer = setTimeout(function() {
+      if (mega) mega.style.display = 'none';
+      panels.forEach(function(p) { p.style.display = 'none'; });
+      miList.forEach(function(m) { m.classList.remove('open'); });
+    }, 120);
+  };
+
+  miList.forEach(function(m) {
+    var k = m.getAttribute('data-m');
+    m.addEventListener('mouseenter', function() {
+      if (window.innerWidth > 991) window.openMegaPanel(k);
+    });
+  });
+
+  if (hd) {
+    hd.addEventListener('mouseleave', function() {
+      if (window.innerWidth > 991) window.closeMegaPanel();
+    });
+    hd.addEventListener('mouseenter', function() {
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+    });
+  }
+  if (mega) {
+    mega.addEventListener('mouseenter', function() {
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+    });
+    mega.addEventListener('mouseleave', function() {
+      if (window.innerWidth > 991) window.closeMegaPanel();
+    });
+  }
+
+  // Interactive photo updating
+  var gemData = {
+    'ruby': { name: 'Ruby', desc: 'Deep pigeon blood red', file: 'ruby.jpg' },
+    'sapphire': { name: 'Sapphire', desc: 'Ceylon blue & fancy', file: 'ceylon-sapphire.jpg' },
+    'emerald': { name: 'Emerald', desc: 'Colombian & Zambian', file: 'emerald.jpg' },
+    'amethyst': { name: 'Amethyst', desc: 'Lilac to deep purple', file: 'ruby.jpg' },
+    'rainbow-moonstone': { name: 'Rainbow Moonstone', desc: 'Cabochon lots from 3×4 mm, AAA', file: 'moonstone.jpg' },
+    'topaz': { name: 'Topaz', desc: 'Sky, Swiss & London blue', file: 'swiss-topaz.jpg' },
+    'agate': { name: 'Agate', desc: 'Banded chalcedony', file: 'moonstone.jpg' }
+  };
+
+  window.updateGemsMegaPhoto = function(id) {
+    var d = gemData[id];
+    if (!d) return;
+    var img = document.getElementById('mph-img');
+    var nm = document.getElementById('mph-name');
+    var ds = document.getElementById('mph-desc');
+    var lk = document.getElementById('mph-link');
+    if (img && d.file) img.src = '<?php echo esc_url(get_stylesheet_directory_uri() . "/assets/images/"); ?>' + d.file;
+    if (nm) nm.textContent = d.name;
+    if (ds) ds.textContent = d.desc;
+    if (lk) {
+      lk.textContent = 'Shop ' + d.name.toLowerCase() + ' →';
+      lk.href = '<?php echo esc_url(home_url("/shop/?filter_stone=")); ?>' + id;
+    }
+  };
+
+  window.updateLayoutsMegaPhoto = function(key) {
+    var lnames = {
+      'ruby': { name: 'Ruby Layouts', desc: 'Graduated lines and matched pairs' },
+      'spinel': { name: 'Spinel Layouts', desc: 'Red, pink and hot pink, matched in colour' },
+      'blue-topaz': { name: 'Blue Topaz Layouts', desc: 'Sky, Swiss and London blue lines' },
+      'other': { name: 'Other Layouts', desc: 'Tanzanite, emerald and more' }
+    };
+    var d = lnames[key];
+    if (!d) return;
+    var nm = document.getElementById('lph-name');
+    var ds = document.getElementById('lph-desc');
+    var lk = document.getElementById('lph-link');
+    if (nm) nm.textContent = d.name;
+    if (ds) ds.textContent = d.desc;
+    if (lk) {
+      lk.textContent = 'See ' + d.name.toLowerCase() + ' →';
+      lk.href = '<?php echo esc_url(home_url("/layouts/?stone=")); ?>' + key;
+    }
+  };
+
+  window.toggleCurrencyMenu = function(e) {
+    if (e) e.stopPropagation();
+    var curm = document.getElementById('curm');
+    if (curm) {
+      curm.hidden = !curm.hidden;
+    }
+  };
+
+  document.addEventListener('click', function(e) {
+    var cur = document.querySelector('.cur');
+    var curm = document.getElementById('curm');
+    if (curm && cur && !cur.contains(e.target)) {
+      curm.hidden = true;
+    }
+  });
+})();
+</script>
 
 <!-- MOBILE SLIDE-IN MENU DRAWER (POINT 4, 5 SPEC: CLEAN ACCORDIONS, SOFT EXPANSION) -->
 <div class="mobile-menu-drawer" id="mobile-menu-drawer" style="display: none;">
