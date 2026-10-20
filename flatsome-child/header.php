@@ -431,19 +431,28 @@ if (!function_exists('vivaaz_render_tennis_art')) {
   var miList = document.querySelectorAll('.mn .mi');
   var panels = document.querySelectorAll('.mega-panel');
   var closeTimer = null;
+  var currentKey = null;
 
   window.openMegaPanel = function(key) {
     if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+    currentKey = key;
+    if (!mega) mega = document.getElementById('mega');
     if (!mega) return;
+
     var found = false;
     panels.forEach(function(p) {
       if (p.getAttribute('data-m') === key) {
-        p.style.display = 'block';
+        p.classList.add('active');
+        p.setAttribute('data-active', 'true');
+        p.style.setProperty('display', 'block', 'important');
         found = true;
       } else {
-        p.style.display = 'none';
+        p.classList.remove('active');
+        p.removeAttribute('data-active');
+        p.style.setProperty('display', 'none', 'important');
       }
     });
+
     miList.forEach(function(m) {
       if (m.getAttribute('data-m') === key) {
         m.classList.add('open');
@@ -451,43 +460,93 @@ if (!function_exists('vivaaz_render_tennis_art')) {
         m.classList.remove('open');
       }
     });
+
     if (found) {
-      mega.style.display = 'block';
+      mega.classList.add('open');
+      mega.setAttribute('data-open', 'true');
+      mega.style.setProperty('display', 'block', 'important');
+      mega.removeAttribute('hidden');
     } else {
-      mega.style.display = 'none';
+      window.closeMegaPanel();
     }
   };
 
   window.closeMegaPanel = function() {
-    if (closeTimer) clearTimeout(closeTimer);
-    closeTimer = setTimeout(function() {
-      if (mega) mega.style.display = 'none';
-      panels.forEach(function(p) { p.style.display = 'none'; });
-      miList.forEach(function(m) { m.classList.remove('open'); });
-    }, 120);
+    currentKey = null;
+    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+    if (!mega) mega = document.getElementById('mega');
+    if (mega) {
+      mega.classList.remove('open');
+      mega.removeAttribute('data-open');
+      mega.style.setProperty('display', 'none', 'important');
+    }
+    panels.forEach(function(p) {
+      p.classList.remove('active');
+      p.removeAttribute('data-active');
+      p.style.setProperty('display', 'none', 'important');
+    });
+    miList.forEach(function(m) {
+      m.classList.remove('open');
+    });
   };
 
+  // 1. Mouseover delegation matching Demo exactly:
+  document.addEventListener('mouseover', function(e) {
+    var m = e.target.closest('.mn .mi');
+    if (m) {
+      var k = m.getAttribute('data-m');
+      if (k && k !== currentKey) {
+        window.openMegaPanel(k);
+      }
+    }
+    var ph = e.target.closest('[data-ph]');
+    if (ph) {
+      var gemKey = ph.getAttribute('data-ph');
+      if (gemKey && typeof window.updateGemsMegaPhoto === 'function') {
+        window.updateGemsMegaPhoto(gemKey);
+      }
+    }
+    var lph = e.target.closest('[data-lph]');
+    if (lph) {
+      var layKey = lph.getAttribute('data-lph');
+      if (layKey && typeof window.updateLayoutsMegaPhoto === 'function') {
+        window.updateLayoutsMegaPhoto(layKey);
+      }
+    }
+  });
+
+  // 2. Mouseout delegation matching Demo exactly:
+  document.addEventListener('mouseout', function(e) {
+    var h = document.getElementById('hd');
+    if (h && !h.contains(e.relatedTarget)) {
+      window.closeMegaPanel();
+    }
+  });
+
+  // 3. Direct mouseenter and click handlers on all nav links:
   miList.forEach(function(m) {
     var k = m.getAttribute('data-m');
     m.addEventListener('mouseenter', function() {
-      if (window.innerWidth > 991) window.openMegaPanel(k);
+      window.openMegaPanel(k);
+    });
+    m.addEventListener('click', function(e) {
+      if (!mega || mega.style.display !== 'block' || currentKey !== k) {
+        e.preventDefault();
+        window.openMegaPanel(k);
+      }
     });
   });
 
-  if (hd) {
-    hd.addEventListener('mouseleave', function() {
-      if (window.innerWidth > 991) window.closeMegaPanel();
-    });
-    hd.addEventListener('mouseenter', function() {
-      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
-    });
-  }
+  // 4. Hovering the mega menu itself keeps it open:
   if (mega) {
     mega.addEventListener('mouseenter', function() {
       if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
     });
-    mega.addEventListener('mouseleave', function() {
-      if (window.innerWidth > 991) window.closeMegaPanel();
+    mega.addEventListener('mouseleave', function(e) {
+      var h = document.getElementById('hd');
+      if (h && !h.contains(e.relatedTarget)) {
+        window.closeMegaPanel();
+      }
     });
   }
 
