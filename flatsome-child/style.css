@@ -5196,6 +5196,31 @@ main{min-height:60vh}
 .circ:hover .c{box-shadow:0 10px 24px rgba(28,26,23,.1)}.circ:hover .c img{transform:scale(1.1)}
 .circ .c.sw2{border:0}
 
+@media (max-width: 991px) {
+  .circs {
+    display: flex !important;
+    gap: 16px !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 16px !important;
+    scrollbar-width: none;
+  }
+  .circs::-webkit-scrollbar {
+    display: none;
+  }
+  .circ {
+    flex-shrink: 0 !important;
+    width: 88px !important;
+    font-size: 12px !important;
+  }
+  .circ .c {
+    width: 78px !important;
+    height: 78px !important;
+  }
+}
+
+
 /* cards */
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 22px}
 .grid.g4{grid-template-columns:repeat(4,minmax(0,1fr))}

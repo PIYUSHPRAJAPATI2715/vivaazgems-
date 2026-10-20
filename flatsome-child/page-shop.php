@@ -100,22 +100,65 @@ if ($active_stone && isset($stone_display_titles[strtolower($active_stone)])) {
       <h1 class="shop-main-title" style="font-family: var(--font-family-serif); font-size: 32px; font-weight: 400; margin-bottom: 8px;">
         <?php echo esc_html($page_heading); ?>
       </h1>
-      <p class="shop-description-sub" style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 16px;">
-        Natural, calibrated and single gemstones cut in Jaipur. Direct from the cutters.
-        <a href="https://wa.me/919680552270" target="_blank" class="text-gold" style="font-weight: 600; text-decoration: underline; margin-left: 6px;">Get new stock on WhatsApp →</a>
-      </p>
+      <?php if (!$active_stone) : ?>
+        <p class="shop-description-sub" style="font-size: 14px; color: var(--color-text-muted, #76706A); line-height: 1.6; max-width: 860px; margin-bottom: 24px;">
+          Loose natural gemstones, chosen by hand in Jaipur. Choose by stone, cut, shape, size or colour, and buy single stones, matched pairs or calibrated lots. Everything is sorted and matched by us before it is listed.
+        </p>
 
-      <!-- POINT 7 SPEC: Cut Buttons at Top (All · Cabochon · Faceted · Rose cut) -->
-      <div class="cut-pills-row" style="display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap;">
-        <a href="<?php echo esc_url(add_query_arg('filter_cut', 'all')); ?>" class="cut-pill-item active" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid #1C1A17; background: #1C1A17; color: #FFFFFF; text-decoration: none;">All <span>(18)</span></a>
-        <a href="<?php echo esc_url(add_query_arg('filter_cut', 'cabochon')); ?>" class="cut-pill-item" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid var(--color-border-light); background: #FFFFFF; color: var(--color-text-main); text-decoration: none;">Cabochon <span>(8)</span></a>
-        <a href="<?php echo esc_url(add_query_arg('filter_cut', 'faceted')); ?>" class="cut-pill-item" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid var(--color-border-light); background: #FFFFFF; color: var(--color-text-main); text-decoration: none;">Faceted <span>(7)</span></a>
-        <a href="<?php echo esc_url(add_query_arg('filter_cut', 'rose-cut')); ?>" class="cut-pill-item" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid var(--color-border-light); background: #FFFFFF; color: var(--color-text-main); text-decoration: none;">Rose cut <span>(3)</span></a>
-      </div>
+        <!-- 9 Circular Stone Filters Row matching Client Demo 100% -->
+        <div class="circs" style="display: flex; gap: 24px; flex-wrap: wrap; margin-top: 24px; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--color-border-light, #E8E1D6);">
+          <?php
+          $gem_circles = array(
+            array('id' => 'ruby',              'name' => 'Ruby',                 'img' => 'ruby.jpg',            'filter' => ''),
+            array('id' => 'sapphire',          'name' => 'Sapphire',             'img' => 'ceylon-sapphire.jpg', 'filter' => ''),
+            array('id' => 'emerald',           'name' => 'Emerald',              'img' => 'emerald.jpg',         'filter' => ''),
+            array('id' => 'rainbow-moonstone', 'name' => "Rainbow<br>Moonstone", 'img' => 'moonstone.jpg',       'filter' => ''),
+            array('id' => 'topaz',             'name' => 'Topaz',                'img' => 'swiss-topaz.jpg',     'filter' => ''),
+            array('id' => 'amethyst',          'name' => 'Amethyst',             'img' => 'ceylon-sapphire.jpg', 'filter' => 'hue-rotate(270deg) saturate(1.2)'),
+            array('id' => 'garnet',            'name' => 'Garnet',               'img' => 'ruby.jpg',            'filter' => 'contrast(1.5) saturate(1.1) brightness(.98)'),
+            array('id' => 'peridot',           'name' => 'Peridot',              'img' => 'emerald.jpg',         'filter' => 'hue-rotate(-38deg) saturate(1.3) brightness(1.15)'),
+            array('id' => 'spinel',            'name' => 'Spinel',               'img' => 'ruby.jpg',            'filter' => 'hue-rotate(-18deg) saturate(.75) brightness(1.2)'),
+          );
+          foreach ($gem_circles as $gc) :
+            $link = add_query_arg('filter_stone', $gc['id'], home_url('/shop/'));
+          ?>
+            <a class="circ" href="<?php echo esc_url($link); ?>" style="display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 13.5px; width: 104px; text-align: center; text-decoration: none; color: var(--color-text-main, #1C1A17);">
+              <span class="c" style="width: 96px; height: 96px; border-radius: 50%; background: #FFFFFF; border: 1px solid var(--color-border-light, #E8E1D6); display: flex; align-items: center; justify-content: center; overflow: hidden; transition: transform .3s, box-shadow .3s;">
+                <img src="<?php echo esc_url(vivaaz_get_img_url($gc['img'])); ?>" alt="<?php echo esc_attr(strip_tags($gc['name'])); ?>" style="width: 76%; height: 76%; object-fit: contain;<?php echo $gc['filter'] ? ' filter: ' . $gc['filter'] . ';' : ''; ?>">
+              </span>
+              <span style="font-size: 13px; line-height: 1.25; color: var(--color-text-main, #1C1A17);"><?php echo $gc['name']; ?></span>
+            </a>
+          <?php endforeach; ?>
+        </div>
+      <?php else : ?>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; margin-bottom: 20px;">
+          <div>
+            <p class="shop-description-sub" style="font-size: 14px; color: var(--color-text-muted, #76706A); line-height: 1.6; max-width: 720px; margin-bottom: 0;">
+              Natural <?php echo esc_html(strtolower($page_heading)); ?>, sorted by hand in Jaipur. Calibrated lots, singles and pairs in every cut we have.
+            </p>
+          </div>
+          <div class="nsbox" style="background: #FFFFFF; border: 1px solid var(--color-border-light, #E8E1D6); padding: 14px 18px; font-size: 12px;">
+            <span style="font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--color-text-muted, #76706A); display: block; margin-bottom: 4px;">New stock first</span>
+            <div>
+              <a href="<?php echo esc_url(home_url('/guide/')); ?>" style="color: var(--color-gold, #9B7C4E); font-weight: 600; text-decoration: underline;">Stone guide →</a>
+              <span style="margin: 0 4px; color: var(--color-text-muted, #76706A);">•</span>
+              <a href="https://wa.me/919680552270?text=<?php echo rawurlencode('Hi Vivaaz Gems, I am looking for new stock of ' . $page_heading); ?>" target="_blank" style="color: var(--color-gold, #9B7C4E); font-weight: 600; text-decoration: underline;">Get new <?php echo esc_html($page_heading); ?> on WhatsApp →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cut Buttons at Top when stone is active (All · Cabochon · Faceted · Rose cut) -->
+        <div class="cut-pills-row" style="display: flex; gap: 8px; margin-top: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+          <a href="<?php echo esc_url(remove_query_arg('filter_cut')); ?>" class="cut-pill-item <?php echo empty($_GET['filter_cut']) || $_GET['filter_cut'] === 'all' ? 'active' : ''; ?>" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid #1C1A17; <?php echo (empty($_GET['filter_cut']) || $_GET['filter_cut'] === 'all') ? 'background: #1C1A17; color: #FFFFFF;' : 'background: #FFFFFF; color: var(--color-text-main, #1C1A17);'; ?> text-decoration: none;">All</a>
+          <a href="<?php echo esc_url(add_query_arg('filter_cut', 'cabochon')); ?>" class="cut-pill-item <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'cabochon') ? 'active' : ''; ?>" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'cabochon') ? '#1C1A17' : 'var(--color-border-light, #E8E1D6)'; ?>; <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'cabochon') ? 'background: #1C1A17; color: #FFFFFF;' : 'background: #FFFFFF; color: var(--color-text-main, #1C1A17);'; ?> text-decoration: none;">Cabochon</a>
+          <a href="<?php echo esc_url(add_query_arg('filter_cut', 'faceted')); ?>" class="cut-pill-item <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'faceted') ? 'active' : ''; ?>" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'faceted') ? '#1C1A17' : 'var(--color-border-light, #E8E1D6)'; ?>; <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'faceted') ? 'background: #1C1A17; color: #FFFFFF;' : 'background: #FFFFFF; color: var(--color-text-main, #1C1A17);'; ?> text-decoration: none;">Faceted</a>
+          <a href="<?php echo esc_url(add_query_arg('filter_cut', 'rose-cut')); ?>" class="cut-pill-item <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'rose-cut') ? 'active' : ''; ?>" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'rose-cut') ? '#1C1A17' : 'var(--color-border-light, #E8E1D6)'; ?>; <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'rose-cut') ? 'background: #1C1A17; color: #FFFFFF;' : 'background: #FFFFFF; color: var(--color-text-main, #1C1A17);'; ?> text-decoration: none;">Rose cut</a>
+        </div>
+      <?php endif; ?>
     </div>
 
     <!-- Active Filter Badges Bar + Mobile Filter Trigger (Point 17 & 24: One neat Filter · Sort line on mobile) -->
-    <div class="shop-filter-bar-header" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--color-border-light); font-size: 12px;">
+    <div class="shop-filter-bar-header" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--color-border-light, #E8E1D6); font-size: 12px;">
       
       <!-- Mobile Filter Button (Point 24: Single neat Filter · Sort line on phone) -->
       <div class="mobile-filter-btn-wrap" style="display: none;">
@@ -125,13 +168,26 @@ if ($active_stone && isset($stone_display_titles[strtolower($active_stone)])) {
       </div>
 
       <div class="active-badges-flex" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-        <?php if ($active_stone) : ?>
-          <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; font-size: 11px;"><?php echo esc_html($page_heading); ?> <a href="<?php echo esc_url(remove_query_arg(array('stone', 'filter_stone'))); ?>" style="text-decoration: none; color: inherit;">✕</a></span>
-        <?php else : ?>
-          <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; font-size: 11px;">Cabochon ✕</span>
-          <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; font-size: 11px;">Oval ✕</span>
+        <?php 
+        $has_active_filter = false;
+        if ($active_stone) : 
+          $has_active_filter = true;
+        ?>
+          <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; font-size: 11px; border-radius: 999px;"><?php echo esc_html($page_heading); ?> <a href="<?php echo esc_url(remove_query_arg(array('stone', 'filter_stone'))); ?>" style="text-decoration: none; color: inherit; margin-left: 4px;">✕</a></span>
         <?php endif; ?>
-        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="clear-all-link" style="text-decoration: underline; color: var(--color-text-muted); font-size: 11px;">Clear all</a>
+        <?php if (!empty($_GET['filter_cut']) && $_GET['filter_cut'] !== 'all') : 
+          $has_active_filter = true;
+        ?>
+          <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; font-size: 11px; border-radius: 999px;"><?php echo esc_html(ucwords(str_replace('-', ' ', $_GET['filter_cut']))); ?> <a href="<?php echo esc_url(remove_query_arg('filter_cut')); ?>" style="text-decoration: none; color: inherit; margin-left: 4px;">✕</a></span>
+        <?php endif; ?>
+        <?php if (!empty($_GET['filter_shape'])) : 
+          $has_active_filter = true;
+        ?>
+          <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; font-size: 11px; border-radius: 999px;"><?php echo esc_html(ucwords($_GET['filter_shape'])); ?> <a href="<?php echo esc_url(remove_query_arg('filter_shape')); ?>" style="text-decoration: none; color: inherit; margin-left: 4px;">✕</a></span>
+        <?php endif; ?>
+        <?php if ($has_active_filter) : ?>
+          <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="clear-all-link" style="text-decoration: underline; color: var(--color-text-muted); font-size: 11px; margin-left: 4px;">Clear all</a>
+        <?php endif; ?>
       </div>
 
       <div class="result-count-sort-flex" style="display: flex; align-items: center; gap: 14px; margin-left: auto;">
