@@ -1627,18 +1627,22 @@ nav.mn {
 .tab-btn {
   background: transparent !important;
   border: none !important;
-  border-bottom: 2px solid transparent !important;
+  border-bottom: 1.5px solid transparent !important;
   font-size: 13px !important;
   font-weight: 600 !important;
-  letter-spacing: 0.05em !important;
-  color: var(--color-text-muted) !important;
+  letter-spacing: .12em !important;
+  color: var(--soft) !important;
   cursor: pointer !important;
-  padding: 6px 12px !important;
-  transition: all 0.25s ease !important;
+  padding: 0 0 10px !important;
+  margin-bottom: -1px !important;
+  text-transform: uppercase !important;
+  transition: color 0.2s ease, border-color 0.2s ease !important;
 }
-.tab-btn.active {
-  color: var(--color-text-main) !important;
-  border-bottom-color: var(--color-text-main) !important;
+.tab-btn.active,
+.tab-btn.on {
+  color: var(--ink) !important;
+  border-bottom: 1.5px solid var(--ink) !important;
+  border-bottom-color: var(--ink) !important;
 }
 
 .colour-grid {
@@ -4869,10 +4873,79 @@ main{min-height:60vh}
 .crumb{font-size:12.5px;color:var(--soft);display:flex;gap:8px;flex-wrap:wrap;padding-top:28px}
 .crumb a:hover{color:var(--ink)}.crumb b{color:var(--ink);font-weight:500}
 .sec{padding-block:72px}
-.sech{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:28px;flex-wrap:wrap}
-.tabs{display:flex;gap:24px;border-bottom:1px solid var(--line)}
-.tabs button{padding:0 0 10px;font-size:13px;letter-spacing:.12em;font-weight:600;color:var(--soft);border-bottom:1.5px solid transparent;margin-bottom:-1px;text-transform:uppercase}
-.tabs button.on{color:var(--ink);border-color:var(--ink)}
+/* Section header & tabs - 100% exact demo match */
+.sech {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  gap: 20px !important;
+  margin-bottom: 28px !important;
+  flex-wrap: wrap !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+.sech > div:first-child .cap {
+  font-size: 10.5px !important;
+  letter-spacing: .2em !important;
+  color: var(--gold) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  display: block !important;
+  margin-bottom: 4px !important;
+}
+.sech > div:first-child h2,
+.sech > div:first-child .h2 {
+  font-family: var(--display) !important;
+  font-weight: 400 !important;
+  font-size: clamp(28px, 3.2vw, 40px) !important;
+  line-height: 1.1 !important;
+  color: var(--ink) !important;
+  margin: 0 !important;
+}
+.tabs {
+  display: flex !important;
+  gap: 24px !important;
+  border-bottom: 1px solid var(--line) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+.tabs button,
+.tabs .tab-btn {
+  padding: 0 0 10px !important;
+  font-size: 13px !important;
+  letter-spacing: .12em !important;
+  font-weight: 600 !important;
+  color: var(--soft) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 1.5px solid transparent !important;
+  margin: 0 0 -1px 0 !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  line-height: normal !important;
+  height: auto !important;
+  min-height: 0 !important;
+  outline: none !important;
+  transition: color 0.2s ease, border-color 0.2s ease !important;
+}
+.tabs button:hover,
+.tabs .tab-btn:hover {
+  color: var(--ink) !important;
+  background: transparent !important;
+}
+.tabs button.on,
+.tabs button.active,
+.tabs .tab-btn.on,
+.tabs .tab-btn.active {
+  color: var(--ink) !important;
+  border-bottom: 1.5px solid var(--ink) !important;
+  border-bottom-color: var(--ink) !important;
+  font-weight: 700 !important;
+}
 
 /* hero - 100% exact demo match */
 .hero {

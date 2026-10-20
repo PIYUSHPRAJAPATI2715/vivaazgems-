@@ -63,16 +63,16 @@ get_header();
   <span><span style="color: var(--gold2); margin-right: 6px;">◆</span> TRADE FAIR EXHIBITOR</span>
 </div>
 
-<!-- 3. FIND YOUR COLOUR / BY STONE TABS SECTION -->
-<section class="sec wrap" style="padding-block: 72px;">
-  <div class="sech" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin-bottom: 28px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 12px;">
+<!-- 3. FIND YOUR COLOUR / BY STONE TABS SECTION (100% MATCH FOR DEMO IMAGE 1 & 3) -->
+<section class="sec wrap">
+  <div class="sech">
     <div>
       <span class="cap">SHOP GEMSTONES</span>
       <h2 class="h2" id="home-gem-heading">Find your colour.</h2>
     </div>
-    <div class="tabs" style="display: flex; gap: 24px;">
-      <button type="button" class="tab-btn on" id="btn-col-colour" onclick="setGemTab('colour')" style="background: none; border: none; padding-bottom: 10px; font-size: 13px; letter-spacing: 0.12em; font-weight: 700; color: var(--ink); border-bottom: 2px solid var(--ink); cursor: pointer; text-transform: uppercase;">By colour</button>
-      <button type="button" class="tab-btn" id="btn-col-stone" onclick="setGemTab('stone')" style="background: none; border: none; padding-bottom: 10px; font-size: 13px; letter-spacing: 0.12em; font-weight: 600; color: var(--soft); border-bottom: 2px solid transparent; cursor: pointer; text-transform: uppercase;">By stone</button>
+    <div class="tabs">
+      <button type="button" class="tab-btn on" id="btn-col-colour" onclick="setGemTab('colour')">By colour</button>
+      <button type="button" class="tab-btn" id="btn-col-stone" onclick="setGemTab('stone')">By stone</button>
     </div>
   </div>
 
@@ -296,12 +296,12 @@ get_header();
 
 <!-- 6. NEW ARRIVALS / BEST SELLERS SECTION (EXACT DEMO 4-CARD GRID WITH QUICK VIEW) -->
 <section class="wrap" style="padding-bottom: 72px;">
-  <div class="sech" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; border-bottom: 1px solid var(--line); padding-bottom: 12px;">
-    <div class="tabs tabs2" style="display: flex; gap: 24px;">
-      <button type="button" class="tab-btn on" id="btn-na-new" onclick="setNaTab('new')" style="background: none; border: none; padding-bottom: 10px; font-size: 13px; letter-spacing: 0.12em; font-weight: 700; color: var(--ink); border-bottom: 2px solid var(--ink); cursor: pointer; text-transform: uppercase;">New arrivals</button>
-      <button type="button" class="tab-btn" id="btn-na-best" onclick="setNaTab('best')" style="background: none; border: none; padding-bottom: 10px; font-size: 13px; letter-spacing: 0.12em; font-weight: 600; color: var(--soft); border-bottom: 2px solid transparent; cursor: pointer; text-transform: uppercase;">Best sellers</button>
+  <div class="sech">
+    <div class="tabs tabs2">
+      <button type="button" class="tab-btn on" id="btn-na-new" onclick="setNaTab('new')">New arrivals</button>
+      <button type="button" class="tab-btn" id="btn-na-best" onclick="setNaTab('best')">Best sellers</button>
     </div>
-    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="ul2" style="text-decoration: none; border-bottom: 1px solid currentColor;">View all →</a>
+    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="ul2">View all →</a>
   </div>
 
   <div class="grid g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 22px;">
@@ -578,25 +578,37 @@ get_header();
     var allStonesLink = document.getElementById('all-stones-link');
 
     if (tab === 'colour') {
-      btnColour.classList.add('on');
-      btnColour.style.color = 'var(--ink)';
-      btnColour.style.borderBottomColor = 'var(--ink)';
-      btnStone.classList.remove('on');
-      btnStone.style.color = 'var(--soft)';
-      btnStone.style.borderBottomColor = 'transparent';
-      panelColour.style.display = 'grid';
-      panelStone.style.display = 'none';
+      if (btnColour) {
+        btnColour.classList.add('on');
+        btnColour.classList.add('active');
+        btnColour.style.color = '#1C1A17';
+        btnColour.style.borderBottomColor = '#1C1A17';
+      }
+      if (btnStone) {
+        btnStone.classList.remove('on');
+        btnStone.classList.remove('active');
+        btnStone.style.color = '#9A9186';
+        btnStone.style.borderBottomColor = 'transparent';
+      }
+      if (panelColour) panelColour.style.display = 'grid';
+      if (panelStone) panelStone.style.display = 'none';
       if (heading) heading.textContent = 'Find your colour.';
       if (allStonesLink) allStonesLink.style.display = 'none';
     } else {
-      btnStone.classList.add('on');
-      btnStone.style.color = 'var(--ink)';
-      btnStone.style.borderBottomColor = 'var(--ink)';
-      btnColour.classList.remove('on');
-      btnColour.style.color = 'var(--soft)';
-      btnColour.style.borderBottomColor = 'transparent';
-      panelStone.style.display = 'grid';
-      panelColour.style.display = 'none';
+      if (btnStone) {
+        btnStone.classList.add('on');
+        btnStone.classList.add('active');
+        btnStone.style.color = '#1C1A17';
+        btnStone.style.borderBottomColor = '#1C1A17';
+      }
+      if (btnColour) {
+        btnColour.classList.remove('on');
+        btnColour.classList.remove('active');
+        btnColour.style.color = '#9A9186';
+        btnColour.style.borderBottomColor = 'transparent';
+      }
+      if (panelStone) panelStone.style.display = 'grid';
+      if (panelColour) panelColour.style.display = 'none';
       if (heading) heading.textContent = 'Find your stone.';
       if (allStonesLink) allStonesLink.style.display = 'block';
     }
@@ -606,19 +618,31 @@ get_header();
     var btnNew = document.getElementById('btn-na-new');
     var btnBest = document.getElementById('btn-na-best');
     if (tab === 'new') {
-      btnNew.classList.add('on');
-      btnNew.style.color = 'var(--ink)';
-      btnNew.style.borderBottomColor = 'var(--ink)';
-      btnBest.classList.remove('on');
-      btnBest.style.color = 'var(--soft)';
-      btnBest.style.borderBottomColor = 'transparent';
+      if (btnNew) {
+        btnNew.classList.add('on');
+        btnNew.classList.add('active');
+        btnNew.style.color = '#1C1A17';
+        btnNew.style.borderBottomColor = '#1C1A17';
+      }
+      if (btnBest) {
+        btnBest.classList.remove('on');
+        btnBest.classList.remove('active');
+        btnBest.style.color = '#9A9186';
+        btnBest.style.borderBottomColor = 'transparent';
+      }
     } else {
-      btnBest.classList.add('on');
-      btnBest.style.color = 'var(--ink)';
-      btnBest.style.borderBottomColor = 'var(--ink)';
-      btnNew.classList.remove('on');
-      btnNew.style.color = 'var(--soft)';
-      btnNew.style.borderBottomColor = 'transparent';
+      if (btnBest) {
+        btnBest.classList.add('on');
+        btnBest.classList.add('active');
+        btnBest.style.color = '#1C1A17';
+        btnBest.style.borderBottomColor = '#1C1A17';
+      }
+      if (btnNew) {
+        btnNew.classList.remove('on');
+        btnNew.classList.remove('active');
+        btnNew.style.color = '#9A9186';
+        btnNew.style.borderBottomColor = 'transparent';
+      }
     }
   }
 
