@@ -438,29 +438,87 @@ nav.mn {
   color: #1C1A17 !important;
 }
 
-/* Header Icons */
+/* Header Icons - 100% Exact Horizontal Alignment */
 .icons {
   display: flex !important;
   justify-content: flex-end !important;
-  gap: 20px !important;
   align-items: center !important;
+  gap: 20px !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
+
+.icons > *,
+.icons .has-account-dropdown,
+.icons .hdr-icon-btn,
 .icons button,
 .icons a {
   position: relative !important;
-  display: flex !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  max-width: 24px !important;
+  max-height: 24px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
   background: transparent !important;
-  border: none !important;
+  background-color: transparent !important;
   color: #1C1A17 !important;
   cursor: pointer !important;
-  padding: 0 !important;
   text-decoration: none !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+  box-sizing: border-box !important;
+  transform: none !important;
+  top: auto !important;
+  bottom: auto !important;
 }
-.icons .i {
+
+.icons button:hover,
+.icons a:hover,
+.icons .hdr-icon-btn:hover,
+.has-account-dropdown > a:hover {
+  background: transparent !important;
+  color: #9B7C4E !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+.icons .hdr-icon-btn svg,
+.icons button svg,
+.icons a svg,
+.icons .i,
+.icons svg.i {
   width: 21px !important;
   height: 21px !important;
+  min-width: 21px !important;
+  min-height: 21px !important;
+  max-width: 21px !important;
+  max-height: 21px !important;
+  display: block !important;
+  margin: 0 auto !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  transform: none !important;
 }
-.badge {
+
+.icons .badge {
   position: absolute !important;
   top: -7px !important;
   right: -9px !important;
@@ -475,16 +533,20 @@ nav.mn {
   align-items: center !important;
   justify-content: center !important;
   padding: 0 4px !important;
+  line-height: 1 !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
 }
-.badge:empty {
+
+.icons .badge:empty {
   display: none !important;
 }
 
 /* Account Dropdown */
-.has-account-dropdown {
+.icons .has-account-dropdown {
   position: relative !important;
 }
-.account-hover-menu {
+.icons .account-hover-menu {
   display: none;
   position: absolute !important;
   top: 100% !important;
@@ -496,8 +558,29 @@ nav.mn {
   padding: 8px 0 !important;
   z-index: 99999 !important;
 }
-.has-account-dropdown:hover .account-hover-menu {
+.icons .has-account-dropdown:hover .account-hover-menu {
   display: block !important;
+}
+.icons .account-hover-menu a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+  padding: 8px 16px !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  color: #1C1A17 !important;
+  text-decoration: none !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+.icons .account-hover-menu a:hover {
+  background: #FAF7F2 !important;
+  color: #9B7C4E !important;
 }
 
 /* ==========================================================================
@@ -593,10 +676,49 @@ nav.mn {
   white-space: nowrap !important;
 }
 
-/* 2. LAYOUTS PANEL */
+/* 2. LAYOUTS PANEL (4 COLUMNS: BY STONE, BY TYPE, RUBY CARD, DARK CARD) */
 #mega-panel-layouts .wrap {
-  grid-template-columns: 150px 150px minmax(320px, 1fr) minmax(300px, 340px) !important;
+  grid-template-columns: 160px 160px minmax(360px, 1fr) 320px !important;
   gap: 32px !important;
+  align-items: stretch !important;
+}
+#mega-panel-layouts #lph {
+  grid-column: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  background: #FAF7F2 !important;
+  padding: 18px !important;
+  border: 1px solid #E2D7C6 !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+#mega-panel-layouts #lph-pi {
+  background: #F4F2EE !important;
+  height: 160px !important;
+  min-height: 160px !important;
+  max-height: 160px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  position: relative !important;
+  border: 1px solid #E2D7C6 !important;
+  width: 100% !important;
+}
+#mega-panel-layouts .dark {
+  grid-column: auto !important;
+  background: #1C1A17 !important;
+  color: #E9E2D6 !important;
+  padding: 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 320px !important;
 }
 
 /* 3. BEADS PANEL */
@@ -4736,11 +4858,6 @@ nav.mn{display:flex;gap:6px;height:78px}
 .mi::after{content:'';position:absolute;left:16px;right:16px;bottom:22px;height:1.5px;background:var(--ink);transform:scaleX(0);transition:transform .25s;transform-origin:left}
 .mi:hover::after,.mi.cur::after{transform:scaleX(1)}
 .mi.open .i{transform:rotate(180deg)}
-.icons{display:flex;justify-content:flex-end;gap:20px;align-items:center}
-.icons button{position:relative;display:flex}
-.icons .i{width:21px;height:21px}
-.badge{position:absolute;top:-7px;right:-9px;background:var(--ink);color:#fff;font-size:9.5px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 4px}
-.badge:empty{display:none}
 .mph{background:var(--sand);padding:18px;display:flex;flex-direction:column;gap:10px}
 .mph .pi{aspect-ratio:4/3;background:var(--paper);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .mph .pi img{width:70%;transition:transform .4s}

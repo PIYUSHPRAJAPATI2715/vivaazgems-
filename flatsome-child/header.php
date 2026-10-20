@@ -139,15 +139,15 @@ if (!function_exists('vivaaz_render_tennis_art')) {
         <a class="mi" data-m="astro" href="<?php echo esc_url(home_url('/astrology/')); ?>">ASTROLOGY <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 10l5 5 5-5"/></svg></a>
       </nav>
 
-      <!-- Right Action Icons (1.4px Stroke Width, Clean Thin Geometric SVGs) -->
+      <!-- Right Action Icons (Exact Demo SVGs & 100% Level Horizontal Alignment) -->
       <div class="icons">
-        <button type="button" onclick="toggleLiveSearchModal();" aria-label="Search">
-          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        <button type="button" class="hdr-icon-btn" onclick="toggleLiveSearchModal();" aria-label="Search">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
         </button>
 
         <div class="has-account-dropdown">
-          <a href="<?php echo esc_url(home_url('/my-account/')); ?>" aria-label="Account">
-            <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+          <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="hdr-icon-btn" aria-label="Account">
+            <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5c1.2-3.8 4-5.6 7.5-5.6s6.3 1.8 7.5 5.6"/></svg>
           </a>
           <div class="account-hover-menu">
             <?php if (is_user_logged_in()) : 
@@ -170,13 +170,13 @@ if (!function_exists('vivaaz_render_tennis_art')) {
           </div>
         </div>
 
-        <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" aria-label="Wishlist">
-          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/></svg>
+        <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="hdr-icon-btn" aria-label="Wishlist">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/></svg>
           <span class="badge" id="wb"></span>
         </a>
 
-        <button type="button" onclick="openCartDrawer();" aria-label="Bag">
-          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5.5 8.5h13l-1 11.5h-11z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></svg>
+        <button type="button" class="hdr-icon-btn" onclick="openCartDrawer();" aria-label="Bag">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 8.5h13l-1 11.5h-11z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></svg>
           <span class="badge" id="cb"><?php echo (function_exists('WC') && WC()->cart && WC()->cart->get_cart_contents_count() > 0) ? WC()->cart->get_cart_contents_count() : ''; ?></span>
         </button>
       </div>
@@ -278,9 +278,9 @@ if (!function_exists('vivaaz_render_tennis_art')) {
             <a href="<?php echo esc_url(home_url('/layouts/?type=Sets')); ?>">Sets</a>
           </div>
 
-          <!-- Photo Card (Spans 2 Columns, light sand background, curved ruby layout art) -->
-          <div class="mph" id="lph" style="grid-column: span 2;">
-            <div class="pi" id="lph-pi" style="background: #F4F2EE; min-height: 160px; display: flex; align-items: center; justify-content: center;">
+          <!-- Photo Card (Ruby Layouts Preview Card) -->
+          <div class="mph" id="lph">
+            <div class="pi" id="lph-pi">
               <?php echo vivaaz_render_lay_art('ruby', 0.8); ?>
             </div>
             <b id="lph-name">Ruby Layouts</b>
@@ -579,10 +579,10 @@ if (!function_exists('vivaaz_render_tennis_art')) {
 
   window.updateLayoutsMegaPhoto = function(key) {
     var lnames = {
-      'ruby': { name: 'Ruby Layouts', desc: 'Graduated lines and matched pairs' },
-      'spinel': { name: 'Spinel Layouts', desc: 'Red, pink and hot pink, matched in colour' },
-      'blue-topaz': { name: 'Blue Topaz Layouts', desc: 'Sky, Swiss and London blue lines' },
-      'other': { name: 'Other Layouts', desc: 'Tanzanite, emerald and more' }
+      'ruby': { name: 'Ruby Layouts', desc: 'Graduated lines and matched pairs', img: '<?php echo esc_url(vivaaz_get_img_url("ruby.jpg")); ?>' },
+      'spinel': { name: 'Spinel Layouts', desc: 'Red, pink and hot pink, matched in colour', img: '<?php echo esc_url(vivaaz_get_img_url("ruby.jpg")); ?>' },
+      'blue-topaz': { name: 'Blue Topaz Layouts', desc: 'Sky, Swiss and London blue lines', img: '<?php echo esc_url(vivaaz_get_img_url("swiss-topaz.jpg")); ?>' },
+      'other': { name: 'Other Layouts', desc: 'Tanzanite, emerald and more', img: '<?php echo esc_url(vivaaz_get_img_url("ceylon-sapphire.jpg")); ?>' }
     };
     var d = lnames[key];
     if (!d) return;
@@ -594,6 +594,12 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     if (lk) {
       lk.textContent = 'See ' + d.name.toLowerCase() + ' →';
       lk.href = '<?php echo esc_url(home_url("/layouts/?stone=")); ?>' + key;
+    }
+    var imgs = document.querySelectorAll('#lph-pi .gm img');
+    if (imgs && imgs.length) {
+      imgs.forEach(function(img) {
+        img.src = d.img;
+      });
     }
   };
 
