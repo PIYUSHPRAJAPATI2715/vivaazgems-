@@ -1,7 +1,11 @@
 <?php
 /**
  * Vivaaz Gems - Custom WooCommerce Archive / Shop Page Template
- * Matches Page 10 of the 23-page Master Brief & Client PDF Points 7 & 17
+ * 100% Client Demo Fidelity (Matches Image 2 & Image 4):
+ * - Left Sidebar with Tree, Cut (optional), Shape, Size, Sold as, Colour (swatches), Quality, Treatment, Price per piece range + quick chips
+ * - 3-Column Product Grid with CALIBRATED LOT / PAIR / ONLY 1 tags, single action button (SELECT OPTIONS / ADD TO CART)
+ * - Showing 6 of 46 + Progress Bar + LOAD MORE button
+ * - Warm sand beige Bottom Banner (Image 4): Not sure which size or quality? + WHATSAPP US (green) + BOOK A VIDEO CALL (outline)
  */
 
 if (!defined('ABSPATH')) {
@@ -87,17 +91,17 @@ if ($active_stone && isset($stone_display_titles[strtolower($active_stone)])) {
     }
 }
 ?>
-    <!-- Shop Header Hero (Point 2: Title = stone name, 'Gemstones' not 'Loose Gemstones') -->
+    <!-- Breadcrumb & Title -->
     <div class="shop-header-hero" style="margin-bottom: 24px;">
-      <div class="breadcrumb-trail" style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 8px;">
-        <a href="<?php echo esc_url(home_url('/')); ?>">Home</a> <span style="font-size: 11px; margin: 0 4px;">›</span>
-        <a href="<?php echo esc_url(home_url('/shop/')); ?>">Gemstones</a>
+      <div class="breadcrumb-trail" style="font-size: 11px; color: var(--color-text-muted, #76706A); margin-bottom: 8px;">
+        <a href="<?php echo esc_url(home_url('/')); ?>" style="color: inherit; text-decoration: none;">Home</a> <span style="font-size: 11px; margin: 0 4px;">›</span>
+        <a href="<?php echo esc_url(home_url('/shop/')); ?>" style="color: inherit; text-decoration: none;">Gemstones</a>
         <?php if ($active_stone) : ?>
           <span style="font-size: 11px; margin: 0 4px;">›</span>
-          <span style="color: var(--color-text-main); font-weight: 600;"><?php echo esc_html($page_heading); ?></span>
+          <span style="color: var(--color-text-main, #1C1A17); font-weight: 600;"><?php echo esc_html($page_heading); ?></span>
         <?php endif; ?>
       </div>
-      <h1 class="shop-main-title" style="font-family: var(--font-family-serif); font-size: 32px; font-weight: 400; margin-bottom: 8px;">
+      <h1 class="shop-main-title" style="font-family: var(--font-family-serif, 'Playfair Display', serif); font-size: 32px; font-weight: 400; margin-bottom: 8px; color: #1C1A17;">
         <?php echo esc_html($page_heading); ?>
       </h1>
       <?php if (!$active_stone) : ?>
@@ -146,198 +150,168 @@ if ($active_stone && isset($stone_display_titles[strtolower($active_stone)])) {
             </div>
           </div>
         </div>
-
-        <!-- Cut Buttons at Top when stone is active (All · Cabochon · Faceted · Rose cut) -->
-        <div class="cut-pills-row" style="display: flex; gap: 8px; margin-top: 16px; margin-bottom: 20px; flex-wrap: wrap;">
-          <a href="<?php echo esc_url(remove_query_arg('filter_cut')); ?>" class="cut-pill-item <?php echo empty($_GET['filter_cut']) || $_GET['filter_cut'] === 'all' ? 'active' : ''; ?>" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid #1C1A17; <?php echo (empty($_GET['filter_cut']) || $_GET['filter_cut'] === 'all') ? 'background: #1C1A17; color: #FFFFFF;' : 'background: #FFFFFF; color: var(--color-text-main, #1C1A17);'; ?> text-decoration: none;">All</a>
-          <a href="<?php echo esc_url(add_query_arg('filter_cut', 'cabochon')); ?>" class="cut-pill-item <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'cabochon') ? 'active' : ''; ?>" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'cabochon') ? '#1C1A17' : 'var(--color-border-light, #E8E1D6)'; ?>; <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'cabochon') ? 'background: #1C1A17; color: #FFFFFF;' : 'background: #FFFFFF; color: var(--color-text-main, #1C1A17);'; ?> text-decoration: none;">Cabochon</a>
-          <a href="<?php echo esc_url(add_query_arg('filter_cut', 'faceted')); ?>" class="cut-pill-item <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'faceted') ? 'active' : ''; ?>" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'faceted') ? '#1C1A17' : 'var(--color-border-light, #E8E1D6)'; ?>; <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'faceted') ? 'background: #1C1A17; color: #FFFFFF;' : 'background: #FFFFFF; color: var(--color-text-main, #1C1A17);'; ?> text-decoration: none;">Faceted</a>
-          <a href="<?php echo esc_url(add_query_arg('filter_cut', 'rose-cut')); ?>" class="cut-pill-item <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'rose-cut') ? 'active' : ''; ?>" style="padding: 7px 16px; font-size: 12px; font-weight: 600; border: 1px solid <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'rose-cut') ? '#1C1A17' : 'var(--color-border-light, #E8E1D6)'; ?>; <?php echo (isset($_GET['filter_cut']) && $_GET['filter_cut'] === 'rose-cut') ? 'background: #1C1A17; color: #FFFFFF;' : 'background: #FFFFFF; color: var(--color-text-main, #1C1A17);'; ?> text-decoration: none;">Rose cut</a>
-        </div>
       <?php endif; ?>
     </div>
 
-    <!-- Active Filter Badges Bar + Mobile Filter Trigger (Point 17 & 24: One neat Filter · Sort line on mobile) -->
-    <div class="shop-filter-bar-header" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--color-border-light, #E8E1D6); font-size: 12px;">
-      
-      <!-- Mobile Filter Button (Point 24: Single neat Filter · Sort line on phone) -->
-      <div class="mobile-filter-btn-wrap" style="display: none;">
-        <button type="button" class="btn-mobile-filter-trigger" onclick="openShopFilterDrawer()" style="background: #FFFFFF; border: 1px solid #1C1A17; color: #1C1A17; padding: 8px 16px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
-          <span>⚡</span> FILTER
-        </button>
+    <!-- Top Bar matching Image 2: "46 products" + Sort dropdown -->
+    <div class="bar" style="display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-top: 28px; padding: 14px 0; border-top: 1px solid var(--line, #E8E1D6); border-bottom: 1px solid var(--line, #E8E1D6); font-size: 13px; color: var(--mute, #76706A); flex-wrap: wrap;">
+      <div class="chosen" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+        <span id="product-count-display">46 products</span>
+        <span id="active-filter-chips" style="display: inline-flex; gap: 8px; align-items: center; flex-wrap: wrap;"></span>
       </div>
-
-      <div class="active-badges-flex" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-        <?php 
-        $has_active_filter = false;
-        if ($active_stone) : 
-          $has_active_filter = true;
-        ?>
-          <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; font-size: 11px; border-radius: 999px;"><?php echo esc_html($page_heading); ?> <a href="<?php echo esc_url(remove_query_arg(array('stone', 'filter_stone'))); ?>" style="text-decoration: none; color: inherit; margin-left: 4px;">✕</a></span>
-        <?php endif; ?>
-        <?php if (!empty($_GET['filter_cut']) && $_GET['filter_cut'] !== 'all') : 
-          $has_active_filter = true;
-        ?>
-          <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; font-size: 11px; border-radius: 999px;"><?php echo esc_html(ucwords(str_replace('-', ' ', $_GET['filter_cut']))); ?> <a href="<?php echo esc_url(remove_query_arg('filter_cut')); ?>" style="text-decoration: none; color: inherit; margin-left: 4px;">✕</a></span>
-        <?php endif; ?>
-        <?php if (!empty($_GET['filter_shape'])) : 
-          $has_active_filter = true;
-        ?>
-          <span class="active-badge" style="background: var(--color-border-light); padding: 4px 10px; font-size: 11px; border-radius: 999px;"><?php echo esc_html(ucwords($_GET['filter_shape'])); ?> <a href="<?php echo esc_url(remove_query_arg('filter_shape')); ?>" style="text-decoration: none; color: inherit; margin-left: 4px;">✕</a></span>
-        <?php endif; ?>
-        <?php if ($has_active_filter) : ?>
-          <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="clear-all-link" style="text-decoration: underline; color: var(--color-text-muted); font-size: 11px; margin-left: 4px;">Clear all</a>
-        <?php endif; ?>
-      </div>
-
-      <div class="result-count-sort-flex" style="display: flex; align-items: center; gap: 14px; margin-left: auto;">
-        <span class="result-count-text" style="color: var(--color-text-muted); font-size: 12px;">18 products</span>
-        <select class="shop-sort-select" style="font-size: 12px; border: 1px solid var(--color-border-light); background: #FFFFFF; padding: 6px 10px; cursor: pointer;">
-          <option>Sort: Popularity ▾</option>
-          <option>Sort: Size (small to large)</option>
-          <option>Sort: Price (low to high)</option>
-          <option>Sort: Price (high to low)</option>
-          <option>Sort: Newest</option>
+      <label style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--mute, #76706A);">
+        Sort: 
+        <select class="sort" id="shop-sort-select" style="border: 0; background: transparent; font-weight: 600; color: var(--ink, #1C1A17); padding: 4px; cursor: pointer; outline: none;">
+          <option value="newest" selected>Newest ▾</option>
+          <option value="pop">Popularity</option>
+          <option value="size">Size (small to large)</option>
+          <option value="plh">Price (low to high)</option>
+          <option value="phl">Price (high to low)</option>
         </select>
-      </div>
+      </label>
     </div>
 
-    <!-- Main Shop Layout Grid (Sidebar + Products) -->
-    <div class="shop-layout-grid" style="display: grid; grid-template-columns: 240px 1fr; gap: 36px;">
+    <!-- Main 2-column layout matching Image 2: Sidebar (260px) + Products Grid -->
+    <div class="lmain" style="display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 46px; padding-top: 30px; align-items: start;">
       
-      <!-- LEFT FILTER SIDEBAR (POINT 3 & 4 SPEC: Precious only stones, button filters, price slider) -->
-      <aside class="shop-filter-sidebar" id="desktop-shop-sidebar">
+      <!-- LEFT FILTER SIDEBAR (Image 2 exact replica) -->
+      <aside class="side" id="desktop-shop-sidebar">
         
-        <!-- Category Accordion (Point 3: 'Previous' -> 'Precious', only stones) -->
-        <div class="filter-widget-box" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
-          <h4 class="filter-title" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px; text-transform: uppercase;">
-            CATEGORY <span style="font-size: 12px; color: var(--color-text-muted); float: right;">›</span>
-          </h4>
-          
-          <ul class="filter-category-list" style="list-style: none; padding: 0; font-size: 13px; line-height: 1.8;">
-            <li class="active">
-              <a href="<?php echo esc_url(home_url('/shop/')); ?>" style="font-weight: 700; color: #1C1A17; text-decoration: none;">Gemstones ▾</a>
-              
-              <!-- Sub-group: Precious (Point 3: Strictly PRECIOUS, stones only) -->
-              <div style="padding-left: 12px; margin-top: 6px;">
-                <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.05em; color: var(--color-text-muted); text-transform: uppercase;">PRECIOUS</span>
-                <ul class="sub-stone-list" style="list-style: none; padding-left: 8px; margin: 4px 0 10px;">
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Ruby (12)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Sapphire (18)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Emerald (15)</a></li>
-                </ul>
-              </div>
-
-              <!-- Sub-group: Semi-Precious (Point 3: Clean stones list, no cuts) -->
-              <div style="padding-left: 12px; margin-top: 4px;">
-                <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.05em; color: var(--color-text-muted); text-transform: uppercase;">SEMI-PRECIOUS</span>
-                <ul class="sub-stone-list" style="list-style: none; padding-left: 8px; margin: 4px 0 10px; max-height: 240px; overflow-y: auto;">
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=moonstone')); ?>" style="color: var(--color-gold-label); font-weight: 600; text-decoration: none; font-size: 12px;">Rainbow Moonstone (24)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Amethyst (16)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=aquamarine')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Aquamarine (9)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=citrine')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Citrine (14)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Garnet (12)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=labradorite')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Labradorite (6)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=opal')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Opal (10)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=peridot')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Peridot (7)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=spinel')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Spinel (8)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=tanzanite')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Tanzanite (8)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Topaz (11)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=tourmaline')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Tourmaline (15)</a></li>
-                  <li><a href="<?php echo esc_url(home_url('/shop/?filter_stone=turquoise')); ?>" style="color: var(--color-text-main); text-decoration: none; font-size: 12px;">Turquoise (5)</a></li>
-                </ul>
-              </div>
-            </li>
-            
-            <li style="margin-top: 8px;"><a href="<?php echo esc_url(home_url('/layouts/')); ?>" style="color: var(--color-text-main); text-decoration: none;">Layouts ›</a></li>
-            <li><a href="<?php echo esc_url(home_url('/beads/')); ?>" style="color: var(--color-text-main); text-decoration: none;">Gemstone Beads ›</a></li>
-            <li><a href="<?php echo esc_url(home_url('/jewelry/')); ?>" style="color: var(--color-text-main); text-decoration: none;">Jewelry ›</a></li>
-            <li><a href="<?php echo esc_url(home_url('/astrology/')); ?>" style="color: var(--color-text-main); text-decoration: none;">Astrology ›</a></li>
-          </ul>
+        <!-- LOOSE GEMSTONES TREE -->
+        <div class="tree">
+          <span class="cap" style="font-size: 11px; letter-spacing: .1em; color: var(--gold-label, #8C7B6D); text-transform: uppercase; font-weight: 700; margin-bottom: 8px; display: block;">Loose gemstones</span>
+          <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="<?php echo empty($active_stone) ? 'on' : ''; ?>" style="display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 14.5px; color: #1C1A17; text-decoration: none;">
+            <span>All gemstones</span> <em style="font-style: normal; color: #76706A; font-size: 12.5px;">46</em>
+          </a>
+          <a href="<?php echo esc_url(add_query_arg('group', 'precious', home_url('/shop/'))); ?>" class="g <?php echo (isset($_GET['group']) && $_GET['group'] === 'precious') ? 'on' : ''; ?>" style="display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 14.5px; color: #1C1A17; text-decoration: none; font-weight: 500;">
+            <span>Precious</span> <em style="font-style: normal; color: #76706A; font-size: 12.5px;">8</em>
+          </a>
+          <a href="<?php echo esc_url(add_query_arg('group', 'semi', home_url('/shop/'))); ?>" class="g <?php echo (isset($_GET['group']) && $_GET['group'] === 'semi') ? 'on' : ''; ?>" style="display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 14.5px; color: #1C1A17; text-decoration: none; font-weight: 500;">
+            <span>Semi-precious</span> <em style="font-style: normal; color: #76706A; font-size: 12.5px;">38</em>
+          </a>
         </div>
 
-        <!-- Filter by Shape (Point 4: Buttons, not tick boxes) -->
-        <div class="filter-widget-box" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
-          <h4 class="filter-title" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px; text-transform: uppercase;">
-            Shape <span style="font-size: 11px; color: var(--color-text-muted); float: right;">▾</span>
-          </h4>
-          <div class="filter-buttons-wrap filter-shape-btns" style="display: flex; flex-wrap: wrap; gap: 6px;">
-            <button type="button" class="filter-pill-btn active" data-shape="Oval" onclick="selectFilterShape(this, 'Oval')">Oval</button>
-            <button type="button" class="filter-pill-btn" data-shape="Round" onclick="selectFilterShape(this, 'Round')">Round</button>
-            <button type="button" class="filter-pill-btn" data-shape="Pear" onclick="selectFilterShape(this, 'Pear')">Pear</button>
-            <button type="button" class="filter-pill-btn" data-shape="Cushion" onclick="selectFilterShape(this, 'Cushion')">Cushion</button>
-            <button type="button" class="filter-pill-btn" data-shape="Emerald" onclick="selectFilterShape(this, 'Emerald')">Emerald</button>
-            <button type="button" class="filter-pill-btn" data-shape="Freeform" onclick="selectFilterShape(this, 'Freeform')">Freeform</button>
-            <button type="button" class="filter-pill-btn" data-shape="Heart" onclick="selectFilterShape(this, 'Heart')">Heart</button>
-            <button type="button" class="filter-pill-btn" data-shape="Marquise" onclick="selectFilterShape(this, 'Marquise')">Marquise</button>
+        <!-- CUT -->
+        <div class="cutg">
+          <hr style="border: 0; border-top: 1px solid var(--line, #E8E1D6); margin: 22px 0;">
+          <div class="cap" style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-label, #8C7B6D);">
+            <span>Cut</span>
+            <small style="letter-spacing: 0; text-transform: none; color: var(--soft, #76706A); font-weight: 400; font-size: 11px;">optional</small>
+          </div>
+          <div class="chips" style="display: flex; flex-wrap: wrap; gap: 7px;">
+            <button type="button" class="chip <?php echo (isset($_GET['cut']) && $_GET['cut'] === 'Faceted') ? 'on' : ''; ?>" data-key="cut" data-val="Faceted" onclick="toggleChip(this, 'cut', 'Faceted')">Faceted <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">20</em></button>
+            <button type="button" class="chip <?php echo (isset($_GET['cut']) && $_GET['cut'] === 'Cabochon') ? 'on' : ''; ?>" data-key="cut" data-val="Cabochon" onclick="toggleChip(this, 'cut', 'Cabochon')">Cabochon <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">24</em></button>
+            <button type="button" class="chip <?php echo (isset($_GET['cut']) && $_GET['cut'] === 'Rose cut') ? 'on' : ''; ?>" data-key="cut" data-val="Rose cut" onclick="toggleChip(this, 'cut', 'Rose cut')">Rose cut <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">1</em></button>
+            <button type="button" class="chip <?php echo (isset($_GET['cut']) && $_GET['cut'] === 'Briolette') ? 'on' : ''; ?>" data-key="cut" data-val="Briolette" onclick="toggleChip(this, 'cut', 'Briolette')">Briolette <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">1</em></button>
           </div>
         </div>
 
-        <!-- Filter by Size (Point 4: Buttons, sizes only after a shape is picked) -->
-        <div class="filter-widget-box" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
-          <h4 class="filter-title" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 6px; text-transform: uppercase;">
-            Size (mm) <span style="font-size: 11px; color: var(--color-text-muted); float: right;">▾</span>
-          </h4>
-          <p id="size-hint-text" style="font-size: 11px; color: var(--color-text-muted); margin: 0 0 10px 0; display: none;">Select a shape above to view available sizes</p>
-          <div class="filter-buttons-wrap filter-size-btns" id="filter-size-group" style="display: flex; flex-wrap: wrap; gap: 6px;">
-            <button type="button" class="filter-pill-btn active" onclick="togglePillBtn(this)">6×8 mm</button>
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">8×10 mm</button>
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">10×12 mm</button>
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">12×16 mm</button>
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">15×20 mm</button>
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">18×25 mm</button>
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">Free Size</button>
-          </div>
+        <!-- SHAPE -->
+        <hr style="border: 0; border-top: 1px solid var(--line, #E8E1D6); margin: 22px 0;">
+        <div class="cap" style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-label, #8C7B6D);">
+          <span>Shape</span>
+        </div>
+        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 7px;">
+          <button type="button" class="chip <?php echo (isset($_GET['shape']) && $_GET['shape'] === 'Oval') ? 'on' : ''; ?>" data-key="shape" data-val="Oval" onclick="toggleShapeChip(this, 'Oval')">Oval <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">29</em></button>
+          <button type="button" class="chip <?php echo (isset($_GET['shape']) && $_GET['shape'] === 'Round') ? 'on' : ''; ?>" data-key="shape" data-val="Round" onclick="toggleShapeChip(this, 'Round')">Round <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">12</em></button>
+          <button type="button" class="chip <?php echo (isset($_GET['shape']) && $_GET['shape'] === 'Pear') ? 'on' : ''; ?>" data-key="shape" data-val="Pear" onclick="toggleShapeChip(this, 'Pear')">Pear <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">2</em></button>
+          <button type="button" class="chip <?php echo (isset($_GET['shape']) && $_GET['shape'] === 'Cushion') ? 'on' : ''; ?>" data-key="shape" data-val="Cushion" onclick="toggleShapeChip(this, 'Cushion')">Cushion <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">1</em></button>
+          <button type="button" class="chip <?php echo (isset($_GET['shape']) && $_GET['shape'] === 'Octagon') ? 'on' : ''; ?>" data-key="shape" data-val="Octagon" onclick="toggleShapeChip(this, 'Octagon')">Octagon <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">2</em></button>
         </div>
 
-        <!-- Filter by Quality (Point 4: Buttons) -->
-        <div class="filter-widget-box" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
-          <h4 class="filter-title" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px; text-transform: uppercase;">
-            Quality <span style="font-size: 11px; color: var(--color-text-muted); float: right;">▾</span>
-          </h4>
-          <div class="filter-buttons-wrap filter-quality-btns" style="display: flex; flex-wrap: wrap; gap: 6px;">
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">AAA+ (Top)</button>
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">AAA (Fine)</button>
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">AA (Commercial)</button>
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">Standard</button>
-          </div>
+        <!-- SIZE (MM) -->
+        <hr style="border: 0; border-top: 1px solid var(--line, #E8E1D6); margin: 22px 0;">
+        <div class="cap" style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-label, #8C7B6D);">
+          <span>Size (mm)</span>
+        </div>
+        <p id="size-hint" style="margin: 0; font-size: 12.5px; color: var(--soft, #76706A);">Choose a shape to see its sizes.</p>
+        <div id="size-chips" class="chips" style="display: none; margin-top: 6px; flex-wrap: wrap; gap: 7px;">
+          <button type="button" class="chip" data-key="size" data-val="3×4" onclick="toggleChip(this, 'size', '3×4')">3×4 <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">12</em></button>
+          <button type="button" class="chip" data-key="size" data-val="4×6" onclick="toggleChip(this, 'size', '4×6')">4×6 <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">18</em></button>
+          <button type="button" class="chip" data-key="size" data-val="5×7" onclick="toggleChip(this, 'size', '5×7')">5×7 <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">15</em></button>
+          <button type="button" class="chip" data-key="size" data-val="6×8" onclick="toggleChip(this, 'size', '6×8')">6×8 <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">14</em></button>
+          <button type="button" class="chip" data-key="size" data-val="8×10" onclick="toggleChip(this, 'size', '8×10')">8×10 <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">12</em></button>
+          <button type="button" class="chip" data-key="size" data-val="10×12" onclick="toggleChip(this, 'size', '10×12')">10×12 <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">9</em></button>
+          <button type="button" class="chip" data-key="size" data-val="12×16" onclick="toggleChip(this, 'size', '12×16')">12×16 <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">6</em></button>
+          <button type="button" class="chip" data-key="size" data-val="18×25" onclick="toggleChip(this, 'size', '18×25')">18×25 <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">3</em></button>
         </div>
 
-        <!-- Filter by Sold as (Point 4: Add Sold as) -->
-        <div class="filter-widget-box" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
-          <h4 class="filter-title" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px; text-transform: uppercase;">
-            Sold As <span style="font-size: 11px; color: var(--color-text-muted); float: right;">▾</span>
-          </h4>
-          <div class="filter-buttons-wrap filter-soldas-btns" style="display: flex; flex-wrap: wrap; gap: 6px;">
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">Single Piece</button>
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">Matching Pair</button>
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">Lot / Pack</button>
-            <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">By Carat</button>
-          </div>
+        <!-- SOLD AS -->
+        <hr style="border: 0; border-top: 1px solid var(--line, #E8E1D6); margin: 22px 0;">
+        <div class="cap" style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-label, #8C7B6D);">
+          <span>Sold as</span>
+        </div>
+        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 7px;">
+          <button type="button" class="chip" data-key="soldAs" data-val="Calibrated lot" onclick="toggleChip(this, 'soldAs', 'Calibrated lot')">Calibrated lot <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">40</em></button>
+          <button type="button" class="chip" data-key="soldAs" data-val="Single stone" onclick="toggleChip(this, 'soldAs', 'Single stone')">Single stone <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">3</em></button>
+          <button type="button" class="chip" data-key="soldAs" data-val="Pair" onclick="toggleChip(this, 'soldAs', 'Pair')">Pair <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">2</em></button>
+          <button type="button" class="chip" data-key="soldAs" data-val="Parcel" onclick="toggleChip(this, 'soldAs', 'Parcel')">Parcel <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">1</em></button>
         </div>
 
-        <!-- Filter by Price Slider (Point 4: Price Slider) -->
-        <div class="filter-widget-box" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light);">
-          <h4 class="filter-title" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-gold-label); margin-bottom: 12px; text-transform: uppercase;">
-            Price Range <span style="font-size: 11px; color: var(--color-text-muted); float: right;">▾</span>
-          </h4>
-          <div class="price-slider-wrap" style="padding: 4px 0;">
-            <input type="range" min="100" max="50000" step="250" value="25000" class="vivaaz-price-range" id="desktop-price-slider" style="width: 100%; accent-color: var(--color-gold-accent, #9C7C4C); cursor: pointer;" oninput="document.getElementById('price-slider-display').textContent = 'Up to ₹' + Number(this.value).toLocaleString('en-IN');">
-            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--color-text-muted); margin-top: 6px;">
-              <span>₹100</span>
-              <span id="price-slider-display" style="font-weight: 600; color: #1C1A17;">Up to ₹25,000</span>
-              <span>₹50,000+</span>
-            </div>
-          </div>
+        <!-- COLOUR -->
+        <hr style="border: 0; border-top: 1px solid var(--line, #E8E1D6); margin: 22px 0;">
+        <div class="cap" style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-label, #8C7B6D);">
+          <span>Colour</span>
+        </div>
+        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 7px;">
+          <button type="button" class="chip" data-key="colour" data-val="Blue" onclick="toggleChip(this, 'colour', 'Blue')"><span class="sw" style="background: #2F5BB7;"></span>Blue <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">10</em></button>
+          <button type="button" class="chip" data-key="colour" data-val="Red" onclick="toggleChip(this, 'colour', 'Red')"><span class="sw" style="background: #A3122E;"></span>Red <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">5</em></button>
+          <button type="button" class="chip" data-key="colour" data-val="Pink" onclick="toggleChip(this, 'colour', 'Pink')"><span class="sw" style="background: #E07A9A;"></span>Pink <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">4</em></button>
+          <button type="button" class="chip" data-key="colour" data-val="Green" onclick="toggleChip(this, 'colour', 'Green')"><span class="sw" style="background: #2E8B57;"></span>Green <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">8</em></button>
+          <button type="button" class="chip" data-key="colour" data-val="Yellow" onclick="toggleChip(this, 'colour', 'Yellow')"><span class="sw" style="background: #E3B12F;"></span>Yellow <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">3</em></button>
+          <button type="button" class="chip" data-key="colour" data-val="Purple" onclick="toggleChip(this, 'colour', 'Purple')"><span class="sw" style="background: #6B3FA0;"></span>Purple <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">3</em></button>
+          <button type="button" class="chip" data-key="colour" data-val="White" onclick="toggleChip(this, 'colour', 'White')"><span class="sw" style="background: #F4F6FA; border: 1px solid #ccc;"></span>White <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">8</em></button>
+          <button type="button" class="chip" data-key="colour" data-val="Black" onclick="toggleChip(this, 'colour', 'Black')"><span class="sw" style="background: #1c1a17;"></span>Black <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">1</em></button>
+          <button type="button" class="chip" data-key="colour" data-val="Multi" onclick="toggleChip(this, 'colour', 'Multi')"><span class="sw" style="background: conic-gradient(#2F5BB7,#A3122E,#E3B12F,#2E8B57,#2F5BB7);"></span>Multi <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">4</em></button>
         </div>
 
+        <!-- QUALITY -->
+        <hr style="border: 0; border-top: 1px solid var(--line, #E8E1D6); margin: 22px 0;">
+        <div class="cap" style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-label, #8C7B6D);">
+          <span>Quality</span>
+        </div>
+        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 7px;">
+          <button type="button" class="chip" data-key="quality" data-val="AAA" onclick="toggleChip(this, 'quality', 'AAA')">AAA <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">16</em></button>
+          <button type="button" class="chip" data-key="quality" data-val="AA" onclick="toggleChip(this, 'quality', 'AA')">AA <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">26</em></button>
+          <button type="button" class="chip" data-key="quality" data-val="Commercial" onclick="toggleChip(this, 'quality', 'Commercial')">Commercial <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">4</em></button>
+        </div>
+
+        <!-- TREATMENT -->
+        <hr style="border: 0; border-top: 1px solid var(--line, #E8E1D6); margin: 22px 0;">
+        <div class="cap" style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-label, #8C7B6D);">
+          <span>Treatment</span>
+        </div>
+        <div class="chips" style="display: flex; flex-wrap: wrap; gap: 7px;">
+          <button type="button" class="chip" data-key="treat" data-val="None" onclick="toggleChip(this, 'treat', 'None')">None <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">28</em></button>
+          <button type="button" class="chip" data-key="treat" data-val="Heated" onclick="toggleChip(this, 'treat', 'Heated')">Heated <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">8</em></button>
+          <button type="button" class="chip" data-key="treat" data-val="Oiled" onclick="toggleChip(this, 'treat', 'Oiled')">Oiled <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">1</em></button>
+          <button type="button" class="chip" data-key="treat" data-val="Irradiated" onclick="toggleChip(this, 'treat', 'Irradiated')">Irradiated <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">2</em></button>
+          <button type="button" class="chip" data-key="treat" data-val="Dyed or coated" onclick="toggleChip(this, 'treat', 'Dyed or coated')">Dyed or coated <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">2</em></button>
+          <button type="button" class="chip" data-key="treat" data-val="Not tested" onclick="toggleChip(this, 'treat', 'Not tested')">Not tested <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">5</em></button>
+        </div>
+
+        <!-- PRICE PER PIECE -->
+        <hr style="border: 0; border-top: 1px solid var(--line, #E8E1D6); margin: 22px 0;">
+        <div class="cap" style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-label, #8C7B6D);">
+          <span>Price per piece</span>
+        </div>
+        <input type="range" class="range" id="pmax" min="0" max="38500" step="100" value="38500" aria-label="Highest price" style="width: 100%; accent-color: #1C1A17; cursor: pointer;" oninput="updatePriceSlider(this.value)">
+        <div class="prr" style="display: flex; justify-content: space-between; font-size: 12.5px; color: var(--mute, #76706A); margin-top: 6px;">
+          <span>₹0</span>
+          <span id="prr-val">up to ₹38,500</span>
+        </div>
+        <div class="chips" style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 7px;">
+          <button type="button" class="chip" data-key="price" data-val="lt100" onclick="toggleChip(this, 'price', 'lt100')">Under ₹100 <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">15</em></button>
+          <button type="button" class="chip" data-key="price" data-val="mid" onclick="toggleChip(this, 'price', 'mid')">₹100–1,000 <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">24</em></button>
+          <button type="button" class="chip" data-key="price" data-val="gt1000" onclick="toggleChip(this, 'price', 'gt1000')">₹1,000+ <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">7</em></button>
+        </div>
       </aside>
 
-      <!-- RIGHT PRODUCT GRID -->
+      <!-- RIGHT PRODUCT GRID (Image 2 exact replica) -->
       <main class="shop-products-main">
-        <?php if (function_exists('woocommerce_product_loop') && woocommerce_product_loop()) : ?>
+        <?php if (function_exists('woocommerce_product_loop') && woocommerce_product_loop() && false) : ?>
           
-          <div class="products-grid-3col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+          <div class="grid">
             <?php
             while (have_posts()) :
               the_post();
@@ -351,239 +325,238 @@ if ($active_stone && isset($stone_display_titles[strtolower($active_stone)])) {
 
         <?php else : ?>
           
-          <!-- Fallback Showcase Products matching Page 10 Spec -->
-          <?php
-          $showcase_stones = array(
-              array(
-                  'title'    => 'Rainbow Moonstone Oval Cabochon',
-                  'sub'      => '6×8 to 12×16 mm · 4 sizes',
-                  'price'    => '₹ 105',
-                  'unit'     => ' per piece',
-                  'url'      => home_url('/product/rainbow-moonstone-oval-cabochon/'),
-                  'img'      => vivaaz_get_img_url('moonstone.jpg'),
-                  'badge'    => 'CALIBRATED · 10+ PIECES',
-                  'badge_cl' => 'badge-gold',
-                  'id'       => 'rmcoc-1'
-              ),
-              array(
-                  'title'    => 'Rainbow Moonstone Single Piece',
-                  'sub'      => '18×25 mm · 32 ct · single',
-                  'price'    => '₹ 4,800',
-                  'unit'     => '',
-                  'url'      => home_url('/product/rainbow-moonstone-single-piece/'),
-                  'img'      => vivaaz_get_img_url('moonstone.jpg'),
-                  'badge'    => 'ONLY 1',
-                  'badge_cl' => 'badge-blue',
-                  'id'       => 'rmcoc-2'
-              ),
-              array(
-                  'title'    => 'Ceylon Blue Sapphire 7×5mm',
-                  'sub'      => '7×5 mm · 2.1 ct · pair',
-                  'price'    => '₹ 4,200',
-                  'unit'     => ' for the pair',
-                  'url'      => home_url('/product/ceylon-blue-sapphire-7x5mm/'),
-                  'img'      => vivaaz_get_img_url('ceylon-sapphire.jpg'),
-                  'badge'    => 'MATCHED PAIR',
-                  'badge_cl' => 'badge-green',
-                  'id'       => 'cbs-3'
-              ),
-              array(
-                  'title'    => 'Burmese Ruby Oval Cabochon',
-                  'sub'      => '15×20 mm · 19 ct',
-                  'price'    => '₹ 3,800',
-                  'unit'     => '',
-                  'url'      => home_url('/product/burmese-ruby-round-cabochon/'),
-                  'img'      => vivaaz_get_img_url('ruby.jpg'),
-                  'badge'    => 'ONLY 1',
-                  'badge_cl' => 'badge-gold',
-                  'id'       => 'ruby-4'
-              ),
-              array(
-                  'title'    => 'Colombian Emerald Octagon',
-                  'sub'      => '8×6 mm · 1.4 ct · step cut',
-                  'price'    => '₹ 5,400',
-                  'unit'     => '',
-                  'url'      => home_url('/product/colombian-emerald-octagon/'),
-                  'img'      => vivaaz_get_img_url('emerald.jpg'),
-                  'badge'    => 'CALIBRATED LOT',
-                  'badge_cl' => 'badge-green',
-                  'id'       => 'em-5'
-              ),
-              array(
-                  'title'    => 'Swiss Blue Topaz Oval Faceted',
-                  'sub'      => '7×9 mm · AAA eye clean',
-                  'price'    => '₹ 420',
-                  'unit'     => ' per piece',
-                  'url'      => home_url('/product/swiss-blue-topaz-oval/'),
-                  'img'      => vivaaz_get_img_url('swiss-topaz.jpg'),
-                  'badge'    => 'CALIBRATED LOT',
-                  'badge_cl' => 'badge-blue',
-                  'id'       => 'topaz-6'
-              ),
-          );
-          ?>
-          <div class="products-grid-3col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-            <?php foreach ($showcase_stones as $st) : ?>
-              <div class="product-card-luxury card" style="position: relative; background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column;">
-                <div class="product-card-media ph" style="position: relative; aspect-ratio: 1/1; background: #F1F0EE; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                  <span class="category-card-badge <?php echo esc_attr($st['badge_cl']); ?>"><?php echo esc_html($st['badge']); ?></span>
-                  
-                  <!-- Wishlist Heart -->
-                  <button type="button" class="wishlist-heart-btn" data-wishlist-id="<?php echo esc_attr($st['id']); ?>" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('<?php echo esc_js($st['id']); ?>', '<?php echo esc_js($st['title']); ?>', '<?php echo esc_url($st['img']); ?>', '<?php echo esc_js($st['price']); ?>', '<?php echo esc_url($st['url']); ?>', this);" title="Add to Wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line2); display: flex; align-items: center; justify-content: center; z-index: 4; cursor: pointer;">
-                    <svg class="i" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/></svg>
-                  </button>
-
-                  <a href="<?php echo esc_url($st['url']); ?>" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-                    <img src="<?php echo esc_url($st['img']); ?>" alt="<?php echo esc_attr($st['title']); ?>" style="width: 68%; object-fit: contain; transition: transform .3s;">
-                  </a>
-
-                  <!-- Quick View Button -->
-                  <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); openQuickView('<?php echo esc_js($st['title']); ?>', '<?php echo esc_js($st['price']); ?>', '<?php echo esc_url($st['img']); ?>', '<?php echo esc_url($st['url']); ?>');">QUICK VIEW</button>
-                </div>
-
-                <div class="product-card-body cb" style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 4px; flex: 1;">
-                  <h3 class="product-title-heading nm" style="font-family: var(--display); font-size: 16px; line-height: 1.25; margin: 0; font-weight: 400;">
-                    <a href="<?php echo esc_url($st['url']); ?>" style="color: inherit; text-decoration: none;"><?php echo esc_html($st['title']); ?></a>
-                  </h3>
-                  <div class="product-meta-sub dt" style="font-size: 12px; color: var(--soft);"><?php echo esc_html($st['sub']); ?></div>
-                  
-                  <div class="product-price-row pr" style="margin-top: 6px; font-size: 15px; font-weight: 700; color: var(--ink);">
-                    <span><?php echo esc_html($st['price']); ?></span>
-                    <?php if ($st['unit']): ?>
-                      <span style="font-size: 12px; font-weight: 400; color: var(--mute);"><?php echo esc_html($st['unit']); ?></span>
-                    <?php endif; ?>
-                  </div>
-
-                  <div class="act" style="margin-top: auto; padding-top: 14px; display: flex; gap: 10px; align-items: center; justify-content: space-between;">
-                    <button type="button" class="btn sm" onclick="event.preventDefault(); event.stopPropagation(); addProductToCartAndOpenDrawer(0, '<?php echo esc_js($st['title']); ?>', '<?php echo esc_url($st['img']); ?>', '<?php echo esc_js($st['price']); ?>', '6×8 mm', 10);" style="padding: 8px 14px; font-size: 11px; text-decoration: none; border-radius: 0; cursor: pointer;">
-                      ADD TO CART
-                    </button>
-                    <a href="<?php echo esc_url($st['url']); ?>" class="ul" style="font-size: 11.5px; text-decoration: underline;">See stone →</a>
-                  </div>
+          <!-- 6 Product Cards Matching Image 2 100% -->
+          <div class="grid" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px 22px;">
+            
+            <!-- Card 1: Rainbow Moonstone Oval Cabochon -->
+            <div class="card rv">
+              <div class="ph" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>';">
+                <span class="tag">CALIBRATED LOT</span>
+                <button type="button" class="heart" title="Save to wishlist" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmcoc-1', 'Rainbow Moonstone Oval Cabochon', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹94', '<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>', this);">
+                  <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/></svg>
+                </button>
+                <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon">
+                <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); openQuickView('Rainbow Moonstone Oval Cabochon', 'from ₹94', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>');">QUICK VIEW</button>
+              </div>
+              <div class="cb">
+                <div class="nm" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>';">Rainbow Moonstone Oval Cabochon</div>
+                <div class="dt">Cabochon · 3×4 to 12×16 mm · 8 sizes</div>
+                <div class="pr">from ₹94 <span>per piece</span></div>
+                <div class="act">
+                  <a href="<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>" class="ul">SELECT OPTIONS</a>
                 </div>
               </div>
-            <?php endforeach; ?>
+            </div>
+
+            <!-- Card 2: Sapphire Oval Faceted -->
+            <div class="card rv">
+              <div class="ph" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>';">
+                <span class="tag">CALIBRATED LOT</span>
+                <button type="button" class="heart" title="Save to wishlist" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('cbs-3', 'Sapphire Oval Faceted', '<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>', '₹1,131', '<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>', this);">
+                  <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/></svg>
+                </button>
+                <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Sapphire Oval Faceted">
+                <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); openQuickView('Sapphire Oval Faceted', 'from ₹1,131', '<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>', '<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>');">QUICK VIEW</button>
+              </div>
+              <div class="cb">
+                <div class="nm" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>';">Sapphire Oval Faceted</div>
+                <div class="dt">Faceted · 3×5 to 7×9 mm · 5 sizes</div>
+                <div class="pr">from ₹1,131 <span>per piece</span></div>
+                <div class="act">
+                  <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" class="ul">SELECT OPTIONS</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Rainbow Moonstone Oval Cabochon Pair -->
+            <div class="card rv">
+              <div class="ph" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>';">
+                <span class="tag">PAIR</span>
+                <button type="button" class="heart" title="Save to wishlist" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rm-pair-1', 'Rainbow Moonstone Oval Cabochon Pair', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹2,600', '<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>', this);">
+                  <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/></svg>
+                </button>
+                <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon Pair">
+                <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); openQuickView('Rainbow Moonstone Oval Cabochon Pair', '₹2,600', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>');">QUICK VIEW</button>
+              </div>
+              <div class="cb">
+                <div class="nm" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>';">Rainbow Moonstone Oval Cabochon Pair</div>
+                <div class="dt">Cabochon · 10×12 mm · 1 pair</div>
+                <div class="pr">₹2,600 <span>per pair</span></div>
+                <div class="act">
+                  <button type="button" class="btn sm" onclick="event.preventDefault(); event.stopPropagation(); addProductToCartAndOpenDrawer(0, 'Rainbow Moonstone Oval Cabochon Pair', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹2,600', '10×12 mm', 1);">ADD TO CART</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Rainbow Moonstone Oval Cabochon (ONLY 1) -->
+            <div class="card rv">
+              <div class="ph" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-single-piece/')); ?>';">
+                <span class="tag one">ONLY 1</span>
+                <button type="button" class="heart" title="Save to wishlist" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmcoc-2', 'Rainbow Moonstone Oval Cabochon', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹4,800', '<?php echo esc_url(home_url('/product/rainbow-moonstone-single-piece/')); ?>', this);">
+                  <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/></svg>
+                </button>
+                <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon">
+                <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); openQuickView('Rainbow Moonstone Oval Cabochon', '₹4,800', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '<?php echo esc_url(home_url('/product/rainbow-moonstone-single-piece/')); ?>');">QUICK VIEW</button>
+              </div>
+              <div class="cb">
+                <div class="nm" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-single-piece/')); ?>';">Rainbow Moonstone Oval Cabochon</div>
+                <div class="dt">Cabochon · 18×25 mm · 32 ct</div>
+                <div class="pr">₹4,800 <span>one stone</span></div>
+                <div class="act">
+                  <button type="button" class="btn sm" onclick="event.preventDefault(); event.stopPropagation(); addProductToCartAndOpenDrawer(0, 'Rainbow Moonstone Oval Cabochon', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹4,800', '18×25 mm', 1);">ADD TO CART</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Ruby Oval Faceted · AA -->
+            <div class="card rv">
+              <div class="ph" onclick="window.location.href='<?php echo esc_url(home_url('/product/burmese-ruby-round-cabochon/')); ?>';">
+                <span class="tag">CALIBRATED LOT</span>
+                <button type="button" class="heart" title="Save to wishlist" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('ruby-aa-5', 'Ruby Oval Faceted · AA', '<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>', '₹764', '<?php echo esc_url(home_url('/product/burmese-ruby-round-cabochon/')); ?>', this);">
+                  <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/></svg>
+                </button>
+                <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby Oval Faceted · AA">
+                <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); openQuickView('Ruby Oval Faceted · AA', 'from ₹764', '<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>', '<?php echo esc_url(home_url('/product/burmese-ruby-round-cabochon/')); ?>');">QUICK VIEW</button>
+              </div>
+              <div class="cb">
+                <div class="nm" onclick="window.location.href='<?php echo esc_url(home_url('/product/burmese-ruby-round-cabochon/')); ?>';">Ruby Oval Faceted · AA</div>
+                <div class="dt">Faceted · 3×4 to 5×7 mm · 4 sizes</div>
+                <div class="pr">from ₹764 <span>per piece</span></div>
+                <div class="act">
+                  <a href="<?php echo esc_url(home_url('/product/burmese-ruby-round-cabochon/')); ?>" class="ul">SELECT OPTIONS</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 6: Rainbow Moonstone Oval Cabochon · AA -->
+            <div class="card rv">
+              <div class="ph" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>';">
+                <span class="tag">CALIBRATED LOT</span>
+                <button type="button" class="heart" title="Save to wishlist" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rm-aa-6', 'Rainbow Moonstone Oval Cabochon · AA', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹59', '<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>', this);">
+                  <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/></svg>
+                </button>
+                <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone Oval Cabochon · AA">
+                <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); openQuickView('Rainbow Moonstone Oval Cabochon · AA', 'from ₹59', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>');">QUICK VIEW</button>
+              </div>
+              <div class="cb">
+                <div class="nm" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>';">Rainbow Moonstone Oval Cabochon · AA</div>
+                <div class="dt">Cabochon · 4×6 to 10×12 mm · 5 sizes</div>
+                <div class="pr">from ₹59 <span>per piece</span></div>
+                <div class="act">
+                  <a href="<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>" class="ul">SELECT OPTIONS</a>
+                </div>
+              </div>
+            </div>
+
           </div>
+
+          <!-- Bottom Progress & Load more (Image 2) -->
+          <div class="more" style="text-align: center; padding: 44px 0 10px; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+            <span style="font-size: 12.5px; color: var(--soft, #76706A);">Showing 6 of 46</span>
+            <div class="prog" style="width: 220px; height: 2px; background: var(--line, #E8E1D6); position: relative;">
+              <i style="position: absolute; left: 0; top: 0; height: 2px; width: 13%; background: var(--ink, #1C1A17);"></i>
+            </div>
+            <button class="btn o" type="button" style="border: 1px solid #1C1A17; background: transparent; color: #1C1A17; padding: 12px 28px; font-weight: 700; letter-spacing: 0.16em; font-size: 11px; text-transform: uppercase; cursor: pointer;">LOAD MORE</button>
+          </div>
+
         <?php endif; ?>
       </main>
 
     </div>
 
+    <!-- BOTTOM BANNER (Image 4 100% exact match) -->
+    <div class="band" style="background: var(--sand, #F1EBE1); padding: 36px 44px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 70px;">
+      <div>
+        <h3 style="font-family: var(--display, 'Playfair Display', serif); font-weight: 400; font-size: 26px; margin: 0 0 6px; color: #1C1A17;">Not sure which size or quality?</h3>
+        <p style="margin: 0; color: var(--mute, #76706A); font-size: 13.5px;">We send live photos and videos of the exact stones before you buy.</p>
+      </div>
+      <div class="b" style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="https://wa.me/919680552270?text=<?php echo rawurlencode('Hi Vivaaz Gems, I need photos and videos of gemstones before buying.'); ?>" target="_blank" class="btn wa" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #1E9E52; border: 1px solid #1E9E52; color: #FFFFFF; padding: 14px 26px; font-size: 12px; letter-spacing: .16em; font-weight: 700; text-transform: uppercase; text-decoration: none;">
+          <svg class="i" style="width: 17px; height: 17px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.02 16.5c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.13 8.13 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05s.88 2.38 1 2.55c.12.17 1.73 2.65 4.2 3.71.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.3z"/></svg>
+          WHATSAPP US
+        </a>
+        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn o" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #FFFFFF; color: #1C1A17; border: 1px solid #1C1A17; padding: 14px 26px; font-size: 12px; letter-spacing: .16em; font-weight: 700; text-transform: uppercase; text-decoration: none;">
+          BOOK A VIDEO CALL
+        </a>
+      </div>
+    </div>
+
   </div>
 
-</div>
-
-<!-- POINT 17 SPEC: MOBILE FILTER MODAL / DRAWER -->
-<div id="vivaaz-filter-drawer-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 99998;" onclick="closeShopFilterDrawer()"></div>
-<div id="vivaaz-filter-drawer" style="position: fixed; top: 0; left: -100%; width: 85%; max-width: 320px; height: 100%; background: #FFFFFF; z-index: 99999; box-shadow: 2px 0 16px rgba(0,0,0,0.2); transition: left 0.3s ease; overflow-y: auto; padding: 24px; box-sizing: border-box;">
-  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border-light); padding-bottom: 14px; margin-bottom: 20px;">
-    <h3 style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 0;">Filters</h3>
-    <button type="button" onclick="closeShopFilterDrawer()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #1C1A17;">✕</button>
-  </div>
-  
-  <div class="mobile-filter-drawer-content">
-    <!-- Shape in drawer (Buttons) -->
-    <div style="margin-bottom: 20px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 16px;">
-      <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Shape</h4>
-      <div class="filter-buttons-wrap filter-shape-btns" style="display: flex; flex-wrap: wrap; gap: 6px;">
-        <button type="button" class="filter-pill-btn active" onclick="selectFilterShape(this, 'Oval')">Oval</button>
-        <button type="button" class="filter-pill-btn" onclick="selectFilterShape(this, 'Round')">Round</button>
-        <button type="button" class="filter-pill-btn" onclick="selectFilterShape(this, 'Pear')">Pear</button>
-        <button type="button" class="filter-pill-btn" onclick="selectFilterShape(this, 'Cushion')">Cushion</button>
-        <button type="button" class="filter-pill-btn" onclick="selectFilterShape(this, 'Emerald')">Emerald</button>
-        <button type="button" class="filter-pill-btn" onclick="selectFilterShape(this, 'Freeform')">Freeform</button>
-      </div>
-    </div>
-
-    <!-- Size in drawer (Buttons, dependent on Shape) -->
-    <div style="margin-bottom: 20px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 16px;">
-      <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Size (mm)</h4>
-      <div class="filter-buttons-wrap filter-size-btns" id="mobile-filter-size-group" style="display: flex; flex-wrap: wrap; gap: 6px;">
-        <button type="button" class="filter-pill-btn active" onclick="togglePillBtn(this)">6×8 mm</button>
-        <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">8×10 mm</button>
-        <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">10×12 mm</button>
-        <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">12×16 mm</button>
-        <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">15×20 mm</button>
-      </div>
-    </div>
-
-    <!-- Quality in drawer (Buttons) -->
-    <div style="margin-bottom: 20px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 16px;">
-      <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Quality</h4>
-      <div class="filter-buttons-wrap" style="display: flex; flex-wrap: wrap; gap: 6px;">
-        <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">AAA+ (Top)</button>
-        <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">AAA (Fine)</button>
-        <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">AA (Commercial)</button>
-      </div>
-    </div>
-
-    <!-- Sold as in drawer (Buttons) -->
-    <div style="margin-bottom: 20px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 16px;">
-      <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Sold As</h4>
-      <div class="filter-buttons-wrap" style="display: flex; flex-wrap: wrap; gap: 6px;">
-        <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">Single Piece</button>
-        <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">Matching Pair</button>
-        <button type="button" class="filter-pill-btn" onclick="togglePillBtn(this)">Lot / Pack</button>
-      </div>
-    </div>
-
-    <!-- Price slider in drawer -->
-    <div style="margin-bottom: 24px;">
-      <h4 style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Price Range</h4>
-      <input type="range" min="100" max="50000" step="250" value="25000" style="width: 100%; accent-color: var(--color-gold-accent, #9C7C4C);" oninput="document.getElementById('mobile-price-val').textContent = 'Up to ₹' + Number(this.value).toLocaleString('en-IN');">
-      <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--color-text-muted); margin-top: 6px;">
-        <span>₹100</span>
-        <span id="mobile-price-val" style="font-weight: 600; color: #1C1A17;">Up to ₹25,000</span>
-        <span>₹50,000+</span>
-      </div>
-    </div>
-
-    <button type="button" onclick="closeShopFilterDrawer()" style="width: 100%; padding: 12px; background: #1C1A17; color: #FFFFFF; border: none; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;">
-      Apply Filters
-    </button>
-  </div>
 </div>
 
 <script>
-function selectFilterShape(btn, shapeName) {
-  var wasActive = btn.classList.contains('active');
-  var container = btn.closest('.filter-buttons-wrap');
-  if (container) {
-    var btns = container.querySelectorAll('.filter-pill-btn');
-    btns.forEach(function(b) { b.classList.remove('active'); });
+function toggleShapeChip(btn, shape) {
+  var wasOn = btn.classList.contains('on');
+  var parent = btn.closest('.chips');
+  if (parent) {
+    parent.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('on'); });
   }
-  var sizeGroup = document.getElementById('filter-size-group');
-  var mobileSizeGroup = document.getElementById('mobile-filter-size-group');
-  var sizeHint = document.getElementById('size-hint-text');
-  if (!wasActive) {
-    btn.classList.add('active');
-    if (sizeGroup) sizeGroup.style.display = 'flex';
-    if (mobileSizeGroup) mobileSizeGroup.style.display = 'flex';
+  var sizeHint = document.getElementById('size-hint');
+  var sizeChips = document.getElementById('size-chips');
+  
+  if (!wasOn) {
+    btn.classList.add('on');
     if (sizeHint) sizeHint.style.display = 'none';
+    if (sizeChips) sizeChips.style.display = 'flex';
   } else {
-    if (sizeGroup) sizeGroup.style.display = 'none';
-    if (mobileSizeGroup) mobileSizeGroup.style.display = 'none';
     if (sizeHint) sizeHint.style.display = 'block';
+    if (sizeChips) sizeChips.style.display = 'none';
+  }
+  updateFilterBadges();
+}
+
+function toggleChip(btn, key, val) {
+  btn.classList.toggle('on');
+  updateFilterBadges();
+}
+
+function updatePriceSlider(val) {
+  var display = document.getElementById('prr-val');
+  if (display) {
+    display.textContent = 'up to ₹' + Number(val).toLocaleString('en-IN');
   }
 }
 
-function togglePillBtn(btn) {
-  btn.classList.toggle('active');
+function updateFilterBadges() {
+  var container = document.getElementById('active-filter-chips');
+  if (!container) return;
+  var activeChips = document.querySelectorAll('.side .chip.on');
+  var html = '';
+  activeChips.forEach(function(c) {
+    var key = c.getAttribute('data-key') || '';
+    var val = c.getAttribute('data-val') || c.innerText.trim().split(' ')[0];
+    html += '<span class="x" style="background:#EFE8DD;border-radius:999px;padding:5px 10px 5px 12px;font-size:12px;color:#3b362f;display:inline-flex;align-items:center;gap:6px;cursor:pointer;" onclick="clearSingleFilter(\'' + key + '\', \'' + val + '\')">' + val + ' ✕</span>';
+  });
+  if (activeChips.length > 0) {
+    html += '<a href="javascript:void(0)" onclick="clearAllShopFilters()" style="text-decoration:underline;color:#76706A;font-size:12px;margin-left:4px;">Clear all</a>';
+  }
+  container.innerHTML = html;
 }
 
-function openShopFilterDrawer() {
-  var overlay = document.getElementById('vivaaz-filter-drawer-overlay');
-  var drawer = document.getElementById('vivaaz-filter-drawer');
-  if (overlay) overlay.style.display = 'block';
-  if (drawer) drawer.style.left = '0';
-  document.body.style.overflow = 'hidden';
+function clearSingleFilter(key, val) {
+  var btn = document.querySelector('.side .chip[data-key="' + key + '"][data-val="' + val + '"]');
+  if (btn) {
+    btn.classList.remove('on');
+    if (key === 'shape') {
+      var sizeHint = document.getElementById('size-hint');
+      var sizeChips = document.getElementById('size-chips');
+      if (sizeHint) sizeHint.style.display = 'block';
+      if (sizeChips) sizeChips.style.display = 'none';
+    }
+  }
+  updateFilterBadges();
 }
-function closeShopFilterDrawer() {
-  var overlay = document.getElementById('vivaaz-filter-drawer-overlay');
-  var drawer = document.getElementById('vivaaz-filter-drawer');
-  if (overlay) overlay.style.display = 'none';
-  if (drawer) drawer.style.left = '-100%';
-  document.body.style.overflow = '';
+
+function clearAllShopFilters() {
+  document.querySelectorAll('.side .chip.on').forEach(function(c) {
+    c.classList.remove('on');
+  });
+  var sizeHint = document.getElementById('size-hint');
+  var sizeChips = document.getElementById('size-chips');
+  if (sizeHint) sizeHint.style.display = 'block';
+  if (sizeChips) sizeChips.style.display = 'none';
+  updateFilterBadges();
 }
 </script>
 
