@@ -36,25 +36,30 @@ get_header();
       </form>
     </div>
 
-    <!-- Right Hero Visual with Macro Tag and Layered Parallax Gemstones -->
-    <div class="hart" id="para" style="position: relative; height: 420px; overflow: hidden;">
-      <a href="javascript:void(0);" onclick="openVideoModal('emerald');" class="vtag2" style="position: absolute; right: 0; top: 0; background: var(--paper); font-size: 11px; letter-spacing: 0.12em; padding: 7px 12px; color: var(--mute); text-decoration: none; border: 1px solid var(--line); z-index: 4; font-weight: 600;">
+    <!-- Right Hero Visual with Macro Tag and Layered Square Tiles (MATCHING DEMO IMAGE 1 & 3) -->
+    <div class="hart" id="para" style="position: relative; height: 400px;">
+      <a href="javascript:void(0);" onclick="openVideoModal('emerald');" class="vtag" style="position: absolute; right: 0; top: 0; background: var(--paper); font-size: 11px; letter-spacing: 0.12em; padding: 7px 12px; color: var(--mute); text-decoration: none; border: 1px solid var(--line); z-index: 4; font-weight: 600; cursor: pointer;">
         ▶ Macro video plays here
       </a>
       
-      <!-- Big Center Stone -->
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="big" style="position: absolute; left: 10%; top: 12%; width: 66%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; box-shadow: 0 30px 60px rgba(28,26,23,.15); display: block;">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Ceylon Blue Sapphire" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.2);">
-      </a>
-      
-      <!-- Small Floating 1 -->
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="sm1" style="position: absolute; right: 6%; top: 8%; width: 22%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; box-shadow: 0 10px 20px rgba(28,26,23,.15); display: block;">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.2);">
+      <!-- 1. Sapphire (Large Square Tile) -->
+      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="tile" style="left: 14%; top: 6%; width: 280px; height: 280px; position: absolute; background: #F1F0EE; display: flex; align-items: center; justify-content: center; box-shadow: 0 24px 50px rgba(28,26,23,.14); border: 1px solid rgba(0,0,0,0.04); text-decoration: none; z-index: 2;">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Ceylon Blue Sapphire" style="width: 78%; height: auto; object-fit: contain;">
       </a>
 
-      <!-- Small Floating 2 -->
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="sm2" style="position: absolute; right: 2%; bottom: 6%; width: 26%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; box-shadow: 0 10px 20px rgba(28,26,23,.15); display: block;">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.2);">
+      <!-- 2. Ruby (Top-Right Square Tile) -->
+      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="tile" style="left: 66%; top: 0%; width: 170px; height: 170px; position: absolute; background: #F1F0EE; display: flex; align-items: center; justify-content: center; box-shadow: 0 24px 50px rgba(28,26,23,.14); border: 1px solid rgba(0,0,0,0.04); text-decoration: none; z-index: 3;">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby" style="width: 78%; height: auto; object-fit: contain;">
+      </a>
+
+      <!-- 3. Rainbow Moonstone (Bottom-Right Square Tile) -->
+      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" class="tile" style="left: 54%; top: 48%; width: 210px; height: 210px; position: absolute; background: #F1F0EE; display: flex; align-items: center; justify-content: center; box-shadow: 0 24px 50px rgba(28,26,23,.14); border: 1px solid rgba(0,0,0,0.04); text-decoration: none; z-index: 1;">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone" style="width: 78%; height: auto; object-fit: contain;">
+      </a>
+
+      <!-- 4. Emerald (Bottom-Left Square Tile) -->
+      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="tile" style="left: 2%; top: 64%; width: 140px; height: 140px; position: absolute; background: #F1F0EE; display: flex; align-items: center; justify-content: center; box-shadow: 0 24px 50px rgba(28,26,23,.14); border: 1px solid rgba(0,0,0,0.04); text-decoration: none; z-index: 2;">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald" style="width: 78%; height: auto; object-fit: contain;">
       </a>
     </div>
 
