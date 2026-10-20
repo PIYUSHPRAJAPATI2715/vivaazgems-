@@ -197,11 +197,8 @@ get_header();
 <section class="wrap" style="padding-bottom: 72px;">
   <div class="lay2" style="display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; align-items: center;">
     
-    <div class="lp rv" style="background: var(--paper); aspect-ratio: 4/3; position: relative; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; overflow: hidden;">
-      <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby Matched Layout" style="width: 75%; height: auto; object-fit: contain;">
-      <div style="position: absolute; bottom: 14px; left: 16px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute);">
-        Graduated Line · 29 Stones · 3.5–6.0 mm
-      </div>
+    <div class="lp rv" style="background: var(--paper); aspect-ratio: 4/3; position: relative; overflow: hidden;">
+      <?php echo vivaaz_render_lay_art('ruby', 1.5); ?>
     </div>
 
     <div>
@@ -239,7 +236,7 @@ get_header();
 
 <!-- 5. SHOP BEADS BY SHAPE SECTION -->
 <section class="sec wrap" style="padding-top: 0; padding-bottom: 72px;">
-  <div class="sech" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; border-bottom: 1px solid var(--line); padding-bottom: 12px;">
+  <div class="sech" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px;">
     <div>
       <span class="cap">SHOP BEADS</span>
       <h2 class="h2">Beads, by shape.</h2>
@@ -250,43 +247,43 @@ get_header();
   <div class="tiles6" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px;">
     
     <a href="<?php echo esc_url(home_url('/beads/?shape=Round')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; border: 1px solid var(--line);">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Round Beads" style="width: 70%; object-fit: contain;">
+      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+        <?php echo vivaaz_render_bead_strand('Round', '#3c9ad6', 260); ?>
       </span>
       <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Round</b>
     </a>
 
     <a href="<?php echo esc_url(home_url('/beads/?shape=Rondelle')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; border: 1px solid var(--line);">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Rondelle Beads" style="width: 70%; object-fit: contain;">
+      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+        <?php echo vivaaz_render_bead_strand('Rondelle', '#b02a3a', 260); ?>
       </span>
       <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Rondelle</b>
     </a>
 
     <a href="<?php echo esc_url(home_url('/beads/?shape=Faceted%20rondelle')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; border: 1px solid var(--line);">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Faceted Rondelle" style="width: 70%; object-fit: contain;">
+      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+        <?php echo vivaaz_render_bead_strand('Faceted rondelle', '#8e1b2c', 260); ?>
       </span>
       <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Faceted rondelle</b>
     </a>
 
     <a href="<?php echo esc_url(home_url('/beads/?shape=Nugget')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; border: 1px solid var(--line);">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Nugget Beads" style="width: 70%; object-fit: contain;">
+      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+        <?php echo vivaaz_render_bead_strand('Nugget', '#7d4fb5', 260); ?>
       </span>
       <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Nugget</b>
     </a>
 
     <a href="<?php echo esc_url(home_url('/beads/?shape=Chips')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; border: 1px solid var(--line);">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Chips Beads" style="width: 70%; object-fit: contain;">
+      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+        <?php echo vivaaz_render_bead_strand('Chips', '#8fae3a', 260); ?>
       </span>
       <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Chips</b>
     </a>
 
     <a href="<?php echo esc_url(home_url('/beads/?shape=Heishi')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; border: 1px solid var(--line);">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Heishi Beads" style="width: 70%; object-fit: contain; filter: hue-rotate(300deg);">
+      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+        <?php echo vivaaz_render_bead_strand('Heishi', '#2f9d9d', 260); ?>
       </span>
       <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Heishi</b>
     </a>

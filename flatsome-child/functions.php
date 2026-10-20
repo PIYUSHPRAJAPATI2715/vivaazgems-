@@ -142,6 +142,84 @@ function vivaaz_custom_woocommerce_placeholder($image_url) {
 }
 add_filter('woocommerce_placeholder_img_src', 'vivaaz_custom_woocommerce_placeholder');
 
+if (!function_exists('vivaaz_render_lay_art')) {
+    function vivaaz_render_lay_art($stone = 'ruby', $scale = 0.8) {
+        $stone_map = array(
+            'ruby'        => 'ruby.jpg',
+            'spinel'      => 'ruby.jpg',
+            'blue-topaz'  => 'swiss-topaz.jpg',
+            'other'       => 'ceylon-sapphire.jpg',
+            'sapphire'    => 'ceylon-sapphire.jpg',
+            'emerald'     => 'emerald.jpg',
+        );
+        $img_file = isset($stone_map[$stone]) ? $stone_map[$stone] : 'ruby.jpg';
+        $img_url = vivaaz_get_img_url($img_file);
+        $n = 15;
+        $html = '<div class="lay" style="height:100%; position:relative; width:100%;">';
+        for ($k = 0; $k < $n; $k++) {
+            $t = $k / ($n - 1);
+            $a = M_PI * (0.15 + 0.7 * $t);
+            $x = 50 - 42 * cos($a);
+            $y = 24 + 42 * sin($a);
+            $z = (16 + 22 * sin(M_PI * $t)) * $scale;
+            $w = round($z);
+            $h = round($z * 0.8);
+            $left = "calc({$x}% - " . ($z / 2) . "px)";
+            $top = "calc({$y}% - " . ($z / 2) . "px)";
+            $html .= '<div class="gm" style="left:' . $left . '; top:' . $top . '; width:' . $w . 'px; height:' . $h . 'px; position:absolute; border-radius:50%; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,.2);">';
+            $html .= '<img src="' . esc_url($img_url) . '" style="width:100%; height:100%; object-fit:cover; transform:scale(2.3); display:block;" alt="">';
+            $html .= '</div>';
+        }
+        $html .= '</div>';
+        return $html;
+    }
+}
+
+if (!function_exists('vivaaz_render_bead_strand')) {
+    function vivaaz_render_bead_strand($shape = 'Round', $color = '#6b3fa0', $w = 260) {
+        if (strpos($shape, '#') === 0 || strpos($shape, 'rgb') === 0) {
+            $color = $shape;
+            $shape = 'Round';
+        }
+        $n = ($w > 100) ? 26 : 12;
+        $R = ($w > 100) ? 110 : 24;
+        $cx = $w / 2;
+        $cy = ($w > 100) ? 20 : 6;
+        $c = '';
+        for ($k = 0; $k < $n; $k++) {
+            $a = M_PI * (0.12 + 0.76 * $k / ($n - 1));
+            $x = $cx - $R * cos($a);
+            $y = $cy + $R * 0.8 * sin($a);
+            
+            if ($shape === 'Chips') {
+                $r = ($w > 100) ? 6 : 2.6;
+            } elseif ($shape === 'Heishi' || $shape === 'Coin & cube') {
+                $r = ($w > 100) ? 4 : 2.6;
+            } elseif ($shape === 'Nugget') {
+                $r = ($w > 100) ? 8 : 2.6;
+            } elseif ($shape === 'Coin & cube') {
+                $r = ($w > 100) ? 7 : 2.6;
+            } else {
+                $r = ($w > 100) ? 6.5 : 2.6;
+            }
+
+            if ($shape === 'Heishi' || $shape === 'Coin & cube') {
+                $c .= '<rect x="' . round($x - $r, 1) . '" y="' . round($y - $r * 0.55, 1) . '" width="' . round($r * 2, 1) . '" height="' . round($r * 1.1, 1) . '" rx="1.5" fill="' . esc_attr($color) . '"/>';
+            } else {
+                $is_rondelle = (stripos($shape, 'rondelle') !== false || $shape === 'Rondelle');
+                $rx = $r * ($is_rondelle ? 1.2 : 1.0);
+                $ry = $r * ($is_rondelle ? 0.75 : 1.0);
+                $c .= '<ellipse cx="' . round($x, 1) . '" cy="' . round($y, 1) . '" rx="' . round($rx, 1) . '" ry="' . round($ry, 1) . '" fill="' . esc_attr($color) . '"/>';
+                $c .= '<ellipse cx="' . round($x - $r * 0.3, 1) . '" cy="' . round($y - $r * 0.35, 1) . '" rx="' . round($r * 0.3, 1) . '" ry="' . round($r * 0.22, 1) . '" fill="#fff" opacity=".45"/>';
+            }
+        }
+        $h = ($w > 100) ? round($w * 0.62) : $w;
+        $stroke_w = ($w > 100) ? 1.2 : 0.6;
+        $width_val = ($w > 100) ? '82%' : $w . 'px';
+        return '<svg viewBox="0 0 ' . $w . ' ' . $h . '" width="' . $width_val . '" style="max-width:100%; display:block; margin:0 auto;"><path d="M' . ($cx - $R) . ' ' . $cy . ' q0 -14 ' . $R . ' -16 q' . $R . ' 2 ' . $R . ' 16" stroke="#C9BFB1" fill="none" stroke-width="' . $stroke_w . '"/>' . $c . '</svg>';
+    }
+}
+
 /**
  * 6. Shortcode for Stone Passport Box
  */
