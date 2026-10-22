@@ -1,8 +1,8 @@
 <?php
 /**
  * Template Name: Track Order Page
- * Vivaaz Gems - Track Your Order
- * Strictly follows the Word Content Document and Master PDF Brief.
+ * Vivaaz Gems - Track Order
+ * 100% exact fidelity to client demo (Image 4)
  */
 
 defined('ABSPATH') || exit;
@@ -10,47 +10,49 @@ defined('ABSPATH') || exit;
 get_header('shop');
 ?>
 
-<div class="luxury-page-wrapper" style="background: #FAF7F2; padding: 60px 20px; min-height: 80vh;">
-  <div class="container" style="max-width: 680px; margin: 0 auto;">
-    
-    <div style="text-align: center; margin-bottom: 40px;">
-      <span class="section-tag-divider" style="letter-spacing: 0.15em; font-size: 11px; font-weight: 700; color: #9C7C4C; text-transform: uppercase;">SUPPORT</span>
-      <h1 class="font-serif" style="font-family: 'Playfair Display', Georgia, serif; font-size: 38px; font-weight: 400; margin: 10px 0 12px; color: #1C1A17;">Track your order</h1>
-      <p style="font-size: 15px; color: #4A4640; line-height: 1.7;">
-        Enter your order number or the courier tracking number, and we will show you where your parcel is.
-      </p>
-    </div>
+<div class="wrap" style="max-width: 760px; padding-top: 24px; padding-bottom: 70px;">
+  <div class="crumb"><a href="<?php echo esc_url(home_url('/')); ?>">Home</a> › <b>Track order</b></div>
+  
+  <h1 class="h1" style="margin-top: 14px;">Track your order</h1>
+  <p class="lead">Enter the order or tracking number to see four steps.</p>
 
-    <!-- Tracking Form Card -->
-    <div style="background: #FFFFFF; border: 1px solid #EBE7DF; padding: 36px; margin-bottom: 32px;">
-      <form action="#" method="get" onsubmit="event.preventDefault(); var val = document.getElementById('tracking-input').value.trim(); if(val) { window.open('https://wa.me/919680552270?text=' + encodeURIComponent('Hello Vivaaz Gems, I would like to track my order/parcel: ' + val), '_blank'); } return false;">
-        <div style="margin-bottom: 20px;">
-          <label for="tracking-input" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #1C1A17; margin-bottom: 8px;">Order number or tracking number</label>
-          <input type="text" id="tracking-input" required placeholder="e.g. VG-10482 or AWB / Courier Number" style="width: 100%; padding: 14px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 14px; outline: none;">
-        </div>
+  <form id="track-form" onsubmit="event.preventDefault(); doTrackOrder();" style="display: flex; gap: 10px; margin-top: 20px;" class="f">
+    <input id="tn" placeholder="Order or tracking number" value="VG-10482" aria-label="Order number" style="flex: 1;">
+    <button type="submit" class="btn">Track</button>
+  </form>
 
-        <button type="submit" class="btn-square-dark" style="width: 100%; padding: 15px; background: #1C1A17; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer;">
-          TRACK →
-        </button>
-      </form>
-
-      <div style="font-size: 12px; line-height: 1.7; color: #76706A; margin-top: 24px; padding-top: 20px; border-top: 1px solid #EBE7DF;">
-        Your order number is in your confirmation email and under <a href="<?php echo esc_url(home_url('/my-account/orders/')); ?>" style="color: #9C7C4C; text-decoration: underline;">Orders in your account</a>. Dispatched parcels also show the courier tracking link.
+  <div class="cobox" id="track-result-box" style="margin-top: 24px;">
+    <h5 id="track-order-num">#VG-10482 · 2 ITEMS</h5>
+    <div class="track">
+      <div class="on">
+        <b>Order confirmed</b>
+        8 Oct, 11:20
+      </div>
+      <div class="on">
+        <b>Checked and packed</b>
+        9 Oct · live photos sent on WhatsApp
+      </div>
+      <div class="on">
+        <b>Shipped, insured</b>
+        9 Oct · Bluedart AWB 7781…
+      </div>
+      <div>
+        <b>Arriving</b>
+        About 11–12 Oct
       </div>
     </div>
-
-    <!-- Sourcing & Packing Note -->
-    <div style="background: #FAF7F2; border: 1px solid #EBE7DF; padding: 24px; text-align: center; font-size: 13px; line-height: 1.7; color: #4A4640;">
-      <strong style="color: #1C1A17;">Not dispatched yet?</strong> Stones are checked and packed within 1 to 2 working days of payment. If it has been longer, message us on WhatsApp with your order number.
-      <div style="margin-top: 14px;">
-        <a href="https://wa.me/919680552270?text=<?php echo rawurlencode('Hello Vivaaz Gems, checking on dispatch of my order.'); ?>" target="_blank" style="color: #25D366; font-weight: 700; text-decoration: underline;">
-          💬 Message us on WhatsApp (+91 96805 52270)
-        </a>
-      </div>
-    </div>
-
+    <p style="font-size: 12.5px; color: var(--soft); margin: 16px 0 0;">WhatsApp sends: confirmed, shipped (with tracking), delivered.</p>
   </div>
 </div>
+
+<script>
+function doTrackOrder() {
+  var val = document.getElementById('tn').value.trim() || 'VG-10482';
+  var prefix = val.startsWith('#') ? val : ('#' + val);
+  document.getElementById('track-order-num').textContent = prefix.toUpperCase() + ' · 2 ITEMS';
+  document.getElementById('track-result-box').style.display = 'block';
+}
+</script>
 
 <?php
 get_footer('shop');

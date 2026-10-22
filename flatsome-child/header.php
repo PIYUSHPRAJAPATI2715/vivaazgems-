@@ -880,7 +880,9 @@ if (!function_exists('vivaaz_render_tennis_art')) {
 <aside class="drawer" id="vivaaz-cart-drawer" role="dialog" aria-label="Your bag" style="display:none;">
   <div class="drh">
     <b>Your bag · <span id="cart-drawer-count">0</span> <span id="cart-drawer-items-suffix">items</span></b>
-    <button type="button" onclick="closeCartDrawer();" aria-label="Close" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);line-height:1;">&times;</button>
+    <button type="button" onclick="closeCartDrawer();" aria-label="Close" style="background:none;border:none;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg>
+    </button>
   </div>
   <div id="cart-drawer-undo-bar" class="undo" style="display:none;">
     <span id="cart-drawer-undo-msg">Item removed.</span>
@@ -1524,9 +1526,8 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     if (!items || items.length === 0) {
       list.innerHTML = `
         <div style="padding: 48px 0; text-align: center; color: var(--mute);">
-          <div style="font-size: 32px; margin-bottom: 12px; color: var(--gold);">🛍</div>
-          <p style="font-size: 15px; font-weight: 500; color: var(--ink); margin: 0 0 16px;">Your bag is empty.</p>
-          <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn o sm" onclick="closeCartDrawer();" style="text-decoration:none; display:inline-block; padding: 10px 20px; font-size: 11px;">SHOP GEMSTONES</a>
+          <p style="font-size: 15px; font-weight: 500; color: var(--ink); margin: 0 0 20px;">Your bag is empty.</p>
+          <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn o sm" onclick="closeCartDrawer();" style="border: 1px solid var(--ink); background: transparent; color: var(--ink); font-weight: 700; letter-spacing: 0.16em; font-size: 11px; padding: 12px 26px; text-transform: uppercase; text-decoration: none; display: inline-block;">SHOP GEMSTONES</a>
         </div>
       `;
       if (footerEl) footerEl.style.display = 'none';
