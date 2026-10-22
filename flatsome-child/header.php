@@ -116,6 +116,28 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     </div>
   </div>
 
+  <!-- PHONE MOBILE HEADER (STICKY 58PX, 100% EXACT TO PHONE DEMO: HAMBURGER LEFT, TYPOGRAPHY CENTER, SEARCH + BAG RIGHT) -->
+  <div class="ph-h" id="ph-h">
+    <button type="button" onclick="toggleMobileMenuDrawer();" aria-label="Menu">
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7.5h16M4 12h16M4 16.5h16"/></svg>
+    </button>
+    <a href="<?php echo esc_url(home_url('/')); ?>" style="text-decoration:none; color:inherit; text-align:center;">
+      <b style="font-family:var(--display); font-weight:500; letter-spacing:.28em; font-size:16px;">VIVAAZ GEMS</b>
+    </a>
+    <div class="r">
+      <button type="button" onclick="openSignInModal();" aria-label="Account">
+        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5c1.2-3.8 4-5.6 7.5-5.6s6.3 1.8 7.5 5.6"/></svg>
+      </button>
+      <button type="button" onclick="openLiveSearchModal();" aria-label="Search">
+        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+      </button>
+      <button type="button" onclick="openCartDrawer();" aria-label="Bag">
+        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5.5 8.5h13l-1 11.5h-11z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></svg>
+        <span class="badge" id="cb-mobile"><?php echo (function_exists('WC') && WC()->cart && WC()->cart->get_cart_contents_count() > 0) ? WC()->cart->get_cart_contents_count() : ''; ?></span>
+      </button>
+    </div>
+  </div>
+
   <!-- MAIN HEADER (STICKY, LOGO LEFT, 5 MENUS CENTER, ICONS RIGHT) -->
   <header class="hd" id="hd">
     <div class="wrap">
@@ -141,34 +163,13 @@ if (!function_exists('vivaaz_render_tennis_art')) {
 
       <!-- Right Action Icons (Exact Demo SVGs & 100% Level Horizontal Alignment) -->
       <div class="icons">
-        <button type="button" class="hdr-icon-btn" onclick="toggleLiveSearchModal();" aria-label="Search">
+        <button type="button" class="hdr-icon-btn" onclick="openLiveSearchModal();" aria-label="Search">
           <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
         </button>
 
-        <div class="has-account-dropdown">
-          <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="hdr-icon-btn" aria-label="Account">
-            <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5c1.2-3.8 4-5.6 7.5-5.6s6.3 1.8 7.5 5.6"/></svg>
-          </a>
-          <div class="account-hover-menu">
-            <?php if (is_user_logged_in()) : 
-              $current_user = wp_get_current_user();
-            ?>
-              <div style="padding: 10px 16px; font-size: 11px; font-weight: 700; color: #A37E3A; border-bottom: 1px solid #E2D7C6;">
-                Hello, <?php echo esc_html($current_user->first_name ?: $current_user->display_name); ?>
-              </div>
-              <a href="<?php echo esc_url(home_url('/my-account/')); ?>">Dashboard</a>
-              <a href="<?php echo esc_url(home_url('/my-account/orders/')); ?>">Orders</a>
-              <a href="<?php echo esc_url(home_url('/wishlist/')); ?>">Wishlist</a>
-              <div style="height: 1px; background: #E2D7C6; margin: 4px 0;"></div>
-              <a href="<?php echo esc_url(wp_logout_url(home_url('/'))); ?>" style="color: #A3122E;">Sign Out / Logout →</a>
-            <?php else : ?>
-              <a href="<?php echo esc_url(home_url('/my-account/')); ?>">Sign In / Login</a>
-              <a href="<?php echo esc_url(home_url('/my-account/?action=register')); ?>">Create an Account</a>
-              <a href="<?php echo esc_url(home_url('/track-order/')); ?>">Track Order</a>
-              <a href="<?php echo esc_url(home_url('/wishlist/')); ?>">Wishlist</a>
-            <?php endif; ?>
-          </div>
-        </div>
+        <button type="button" class="hdr-icon-btn" onclick="openSignInModal();" aria-label="Account">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5c1.2-3.8 4-5.6 7.5-5.6s6.3 1.8 7.5 5.6"/></svg>
+        </button>
 
         <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="hdr-icon-btn" aria-label="Wishlist">
           <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/></svg>
@@ -621,216 +622,282 @@ if (!function_exists('vivaaz_render_tennis_art')) {
 })();
 </script>
 
-<!-- MOBILE SLIDE-IN MENU DRAWER (POINT 4, 5 SPEC: CLEAN ACCORDIONS, SOFT EXPANSION) -->
-<div class="mobile-menu-drawer" id="mobile-menu-drawer" style="display: none;">
-  <div class="mobile-drawer-header">
-    <div style="font-weight: 700; letter-spacing: 0.15em; font-size: 13px;">VIVAAZ GEMS</div>
-    <button type="button" class="mobile-drawer-close" onclick="toggleMobileMenuDrawer();" aria-label="Close menu">&times;</button>
+<!-- MOBILE SLIDE-IN MENU DRAWER (100% SAME-TO-SAME AS PHONE DEMO: .mdr, .top, .acct, .it, .opn, .sb, .leaf, .two, .mcard, .mh, .mchips) -->
+<aside class="mdr" id="mobile-menu-drawer" role="dialog" aria-label="Menu" style="display: none;">
+  <div class="top">
+    <b>VIVAAZ GEMS</b>
+    <button type="button" onclick="toggleMobileMenuDrawer();" aria-label="Close" style="background:none; border:0; font-size:24px; cursor:pointer; color:var(--soft); line-height:1;">&times;</button>
   </div>
   
-  <div class="mobile-drawer-content">
-    <!-- Top Account Line (Point 4 & 5 Spec) -->
-    <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="mobile-drawer-link" style="background: #FAF7F2; border-bottom: 1px solid var(--color-border-light); font-weight: 600; display: flex; justify-content: space-between; align-items: center; padding: 14px 16px;">
-      <span>Sign in / My account</span>
-      <span style="color: var(--color-text-muted); font-size: 14px;">›</span>
-    </a>
+  <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="acct" style="text-decoration:none; color:inherit;">
+    <span>Sign in / My account</span>
+    <svg class="i" style="width:14px; height:14px; color:var(--soft);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
 
-    <!-- Accordion 1: Gemstones -->
-    <div class="mobile-acc-item">
-      <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
-        <span>Gemstones</span>
-        <span class="acc-chevron">›</span>
-      </div>
-      <div class="mobile-acc-body" style="display: none;">
-        <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-acc-sublink-top">All Gemstones →</a>
-        
-        <div class="mobile-acc-cat-label">Precious Gemstones</div>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="mobile-acc-sublink">Ruby</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="mobile-acc-sublink">Sapphire</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="mobile-acc-sublink">Emerald</a>
-
-        <div class="mobile-acc-cat-label" onclick="event.stopPropagation(); toggleMobileSemi(this);" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 10px 0;">
-          <span>Semi-Precious Gemstones (A–Z)</span>
-          <span style="font-size: 13px; color: var(--color-text-muted);">›</span>
-        </div>
-        <div class="mobile-acc-semi-grid" style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px;">
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=agate')); ?>" class="mobile-acc-sublink">Agate</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amazonite')); ?>" class="mobile-acc-sublink">Amazonite</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amber')); ?>" class="mobile-acc-sublink">Amber</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" class="mobile-acc-sublink">Amethyst</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=aquamarine')); ?>" class="mobile-acc-sublink">Aquamarine</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=aventurine')); ?>" class="mobile-acc-sublink">Aventurine</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=carnelian')); ?>" class="mobile-acc-sublink">Carnelian</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=citrine')); ?>" class="mobile-acc-sublink">Citrine</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>" class="mobile-acc-sublink">Garnet</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=green-jade')); ?>" class="mobile-acc-sublink">Green Jade</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=iolite')); ?>" class="mobile-acc-sublink">Iolite</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=labradorite')); ?>" class="mobile-acc-sublink">Labradorite</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=lapis-lazuli')); ?>" class="mobile-acc-sublink">Lapis Lazuli</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=larimar')); ?>" class="mobile-acc-sublink">Larimar</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=malachite')); ?>" class="mobile-acc-sublink">Malachite</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=onyx')); ?>" class="mobile-acc-sublink">Onyx</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=opal')); ?>" class="mobile-acc-sublink">Opal</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=peridot')); ?>" class="mobile-acc-sublink">Peridot</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=prehnite')); ?>" class="mobile-acc-sublink">Prehnite</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" class="mobile-acc-sublink">Rainbow Moonstone</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rose-quartz')); ?>" class="mobile-acc-sublink">Rose Quartz</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=spinel')); ?>" class="mobile-acc-sublink">Spinel</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tanzanite')); ?>" class="mobile-acc-sublink">Tanzanite</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tiger-eye')); ?>" class="mobile-acc-sublink">Tiger Eye</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" class="mobile-acc-sublink">Topaz</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tourmaline')); ?>" class="mobile-acc-sublink">Tourmaline</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_stone=turquoise')); ?>" class="mobile-acc-sublink">Turquoise</a>
-        </div>
-
-        <div class="mobile-acc-cat-label" style="margin-top: 14px;">Cuts as Buttons</div>
-        <div class="mobile-cuts-pills" style="display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 16px;">
-          <a href="<?php echo esc_url(home_url('/shop/?filter_cut=faceted')); ?>" class="filter-pill-btn" style="padding: 7px 14px; background: #FAF7F2; border: 1px solid var(--color-border-light); color: var(--color-text-main); font-size: 12px; font-weight: 600; text-decoration: none;">Faceted</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_cut=cabochon')); ?>" class="filter-pill-btn" style="padding: 7px 14px; background: #FAF7F2; border: 1px solid var(--color-border-light); color: var(--color-text-main); font-size: 12px; font-weight: 600; text-decoration: none;">Cabochon</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_cut=rose-cut')); ?>" class="filter-pill-btn" style="padding: 7px 14px; background: #FAF7F2; border: 1px solid var(--color-border-light); color: var(--color-text-main); font-size: 12px; font-weight: 600; text-decoration: none;">Rose Cut</a>
-          <a href="<?php echo esc_url(home_url('/shop/?filter_cut=briolette')); ?>" class="filter-pill-btn" style="padding: 7px 14px; background: #FAF7F2; border: 1px solid var(--color-border-light); color: var(--color-text-main); font-size: 12px; font-weight: 600; text-decoration: none;">Briolette</a>
-        </div>
-        
-        <div class="mobile-acc-cat-label" style="margin-top: 10px;">Shop By</div>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_by=colour')); ?>" class="mobile-acc-sublink">By Colour</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_by=shape')); ?>" class="mobile-acc-sublink">By Shape</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_by=price')); ?>" class="mobile-acc-sublink">By Price</a>
-      </div>
+  <!-- 1. GEMSTONES -->
+  <button type="button" class="it" onclick="toggleMdrTop('gems', this);">
+    <span>Gemstones</span>
+    <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+  </button>
+  <div class="opn" id="mdr-gems" style="display:none;">
+    <button type="button" class="sb" onclick="toggleMdrSub('prec', this);">
+      <span>Precious</span>
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+    </button>
+    <div id="mdr-sub-prec" style="display:none;">
+      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="leaf">Ruby</a>
+      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="leaf">Sapphire</a>
+      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="leaf">Emerald</a>
+      <a href="<?php echo esc_url(home_url('/shop/?filter_group=precious')); ?>" class="leaf hi">All precious</a>
     </div>
 
-    <!-- Accordion 2: Layouts -->
-    <div class="mobile-acc-item">
-      <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
-        <span>Layouts</span>
-        <span class="acc-chevron">›</span>
+    <button type="button" class="sb" onclick="toggleMdrSub('semi', this);">
+      <span>Semi-precious</span>
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+    </button>
+    <div id="mdr-sub-semi" style="display:none;">
+      <div class="two">
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=agate')); ?>" class="leaf">Agate</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amazonite')); ?>" class="leaf">Amazonite</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amber')); ?>" class="leaf">Amber</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" class="leaf">Amethyst</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=aquamarine')); ?>" class="leaf">Aquamarine</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=aventurine')); ?>" class="leaf">Aventurine</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=carnelian')); ?>" class="leaf">Carnelian</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=citrine')); ?>" class="leaf">Citrine</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>" class="leaf">Garnet</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=green-jade')); ?>" class="leaf">Green Jade</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=iolite')); ?>" class="leaf">Iolite</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=labradorite')); ?>" class="leaf">Labradorite</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=lapis-lazuli')); ?>" class="leaf">Lapis Lazuli</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=larimar')); ?>" class="leaf">Larimar</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=malachite')); ?>" class="leaf">Malachite</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=onyx')); ?>" class="leaf">Onyx</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=opal')); ?>" class="leaf">Opal</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=peridot')); ?>" class="leaf">Peridot</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=prehnite')); ?>" class="leaf">Prehnite</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" class="leaf">Rainbow Moonstone</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rose-quartz')); ?>" class="leaf">Rose Quartz</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=spinel')); ?>" class="leaf">Spinel</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tanzanite')); ?>" class="leaf">Tanzanite</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tiger-eye')); ?>" class="leaf">Tiger Eye</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" class="leaf">Topaz</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tourmaline')); ?>" class="leaf">Tourmaline</a>
+        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=turquoise')); ?>" class="leaf">Turquoise</a>
       </div>
-      <div class="mobile-acc-body" style="display: none;">
-        <a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="mobile-acc-sublink-top">All Layouts →</a>
-        <a href="<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>" class="mobile-acc-sublink">Ruby Layouts</a>
-        <a href="<?php echo esc_url(home_url('/layouts/?stone=spinel')); ?>" class="mobile-acc-sublink">Spinel Layouts</a>
-        <a href="<?php echo esc_url(home_url('/layouts/?type=necklace-lines')); ?>" class="mobile-acc-sublink">Necklace Lines</a>
-        <a href="<?php echo esc_url(home_url('/layouts/?type=bracelet-lines')); ?>" class="mobile-acc-sublink">Bracelet Lines</a>
-        <a href="<?php echo esc_url(home_url('/layouts/#match')); ?>" class="mobile-acc-sublink" style="color: var(--color-gold-label); font-weight: 600;">Send Your Design or CAD →</a>
-      </div>
+      <a href="<?php echo esc_url(home_url('/shop/?filter_group=semi')); ?>" class="leaf hi">All semi-precious</a>
     </div>
 
-    <!-- Accordion 3: Beads -->
-    <div class="mobile-acc-item">
-      <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
-        <span>Beads</span>
-        <span class="acc-chevron">›</span>
-      </div>
-      <div class="mobile-acc-body" style="display: none;">
-        <a href="<?php echo esc_url(home_url('/beads/')); ?>" class="mobile-acc-sublink-top">All Beads →</a>
-        <a href="<?php echo esc_url(home_url('/beads/?shape=round')); ?>" class="mobile-acc-sublink">Round Beads</a>
-        <a href="<?php echo esc_url(home_url('/beads/?shape=rondelle')); ?>" class="mobile-acc-sublink">Rondelle</a>
-        <a href="<?php echo esc_url(home_url('/beads/?shape=faceted-rondelle')); ?>" class="mobile-acc-sublink">Faceted Rondelle</a>
-        <a href="<?php echo esc_url(home_url('/beads/?shape=nugget')); ?>" class="mobile-acc-sublink">Nugget</a>
-        <a href="<?php echo esc_url(home_url('/beads/?shape=chips')); ?>" class="mobile-acc-sublink">Chips</a>
-        <a href="<?php echo esc_url(home_url('/beads/?shape=heishi')); ?>" class="mobile-acc-sublink">Heishi</a>
-      </div>
+    <button type="button" class="sb" onclick="toggleMdrSub('cut', this);">
+      <span>By cut</span>
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+    </button>
+    <div id="mdr-sub-cut" style="display:none;">
+      <a href="<?php echo esc_url(home_url('/shop/?filter_cut=faceted')); ?>" class="leaf">Faceted</a>
+      <a href="<?php echo esc_url(home_url('/shop/?filter_cut=cabochon')); ?>" class="leaf">Cabochon</a>
+      <a href="<?php echo esc_url(home_url('/shop/?filter_cut=rose-cut')); ?>" class="leaf">Rose cut</a>
+      <a href="<?php echo esc_url(home_url('/shop/?filter_cut=briolette')); ?>" class="leaf">Briolette</a>
     </div>
 
-    <!-- Accordion 4: Jewelry -->
-    <div class="mobile-acc-item">
-      <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
-        <span>Jewelry</span>
-        <span class="acc-chevron">›</span>
-      </div>
-      <div class="mobile-acc-body" style="display: none;">
-        <a href="<?php echo esc_url(home_url('/jewelry/')); ?>" class="mobile-acc-sublink-top">All Jewelry →</a>
-        <a href="<?php echo esc_url(home_url('/jewelry/tennis-bracelets/')); ?>" class="mobile-acc-sublink">Tennis Bracelets</a>
-        <a href="<?php echo esc_url(home_url('/jewelry/tennis-necklaces/')); ?>" class="mobile-acc-sublink">Tennis Necklaces</a>
-        <a href="<?php echo esc_url(home_url('/make-it-into-jewelry/')); ?>" class="mobile-acc-sublink" style="color: var(--color-gold-label); font-weight: 600;">Make It into Jewelry (Custom) →</a>
-      </div>
+    <button type="button" class="sb" onclick="toggleMdrSub('by', this);">
+      <span>Shop by</span>
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+    </button>
+    <div id="mdr-sub-by" style="display:none;">
+      <a href="<?php echo esc_url(home_url('/shop/?filter_color=blue')); ?>" class="leaf">Colour</a>
+      <a href="<?php echo esc_url(home_url('/shop/?filter_shape=oval')); ?>" class="leaf">Shape</a>
+      <a href="<?php echo esc_url(home_url('/shop/?max_price=5000')); ?>" class="leaf">Price</a>
+      <a href="<?php echo esc_url(home_url('/astrology/#birthstones')); ?>" class="leaf">Birthstones</a>
+      <a href="<?php echo esc_url(home_url('/shop/?max_price=15000')); ?>" class="leaf">Gifts under ₹15,000</a>
+      <a href="<?php echo esc_url(home_url('/shop/?filter_sold_as=calibrated')); ?>" class="leaf">Pairs & calibrated lots</a>
     </div>
 
-    <!-- Accordion 5: Astrology -->
-    <div class="mobile-acc-item">
-      <div class="mobile-acc-header" onclick="toggleMobileAcc(this);">
-        <span>Astrology</span>
-        <span class="acc-chevron">›</span>
-      </div>
-      <div class="mobile-acc-body" style="display: none;">
-        <a href="<?php echo esc_url(home_url('/astrology/')); ?>" class="mobile-acc-sublink-top">Gemstones and Astrology →</a>
-        <a href="<?php echo esc_url(home_url('/astrology/#sun')); ?>" class="mobile-acc-sublink">Stones for Nine Planets</a>
-        <a href="<?php echo esc_url(home_url('/astrology/#birthstones')); ?>" class="mobile-acc-sublink">Birthstones by Month</a>
-        <a href="javascript:void(0);" onclick="openConsultationModal(); toggleMobileMenuDrawer();" class="mobile-acc-sublink" style="color: var(--color-gold-label); font-weight: 600;">Book a Consultation →</a>
-      </div>
+    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="leaf hi" style="padding-top:12px;">All gemstones</a>
+  </div>
+
+  <!-- 2. LAYOUTS -->
+  <button type="button" class="it" onclick="toggleMdrTop('layouts', this);">
+    <span>Layouts</span>
+    <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+  </button>
+  <div class="opn" id="mdr-layouts" style="display:none;">
+    <button type="button" class="sb" onclick="toggleMdrSub('lay-stone', this);">
+      <span>By stone</span>
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+    </button>
+    <div id="mdr-sub-lay-stone" style="display:none;">
+      <a href="<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>" class="leaf">Ruby layouts</a>
+      <a href="<?php echo esc_url(home_url('/layouts/?stone=spinel')); ?>" class="leaf">Spinel layouts</a>
+      <a href="<?php echo esc_url(home_url('/layouts/?stone=blue-topaz')); ?>" class="leaf">Blue topaz layouts</a>
+      <a href="<?php echo esc_url(home_url('/layouts/?stone=other')); ?>" class="leaf">Other stones</a>
     </div>
 
-    <!-- Wishlist Link -->
-    <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="mobile-drawer-link" style="display: flex; justify-content: space-between; align-items: center;">
-      <span>Wishlist</span>
-      <span id="mobile-wishlist-count" style="font-size: 11px; color: var(--color-gold-label);"></span>
-    </a>
+    <button type="button" class="sb" onclick="toggleMdrSub('lay-type', this);">
+      <span>By type</span>
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+    </button>
+    <div id="mdr-sub-lay-type" style="display:none;">
+      <a href="<?php echo esc_url(home_url('/layouts/?type=Necklace+lines')); ?>" class="leaf">Necklace lines</a>
+      <a href="<?php echo esc_url(home_url('/layouts/?type=Bracelet+lines')); ?>" class="leaf">Bracelet lines</a>
+      <a href="<?php echo esc_url(home_url('/layouts/?type=Pairs')); ?>" class="leaf">Pairs</a>
+      <a href="<?php echo esc_url(home_url('/layouts/?type=Sets')); ?>" class="leaf">Sets</a>
+    </div>
 
-    <!-- Help Group -->
-    <div style="margin-top: 24px; padding: 16px 20px 24px; border-top: 1px solid var(--color-border-light);">
-      <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 10px;">HELP</div>
-      <a href="<?php echo esc_url(home_url('/track-order/')); ?>" class="mobile-drawer-sublink" style="display: block; padding: 6px 0; color: var(--color-text-main); text-decoration: none; font-size: 13px;">Track my order</a>
-      <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="mobile-drawer-sublink" style="display: block; padding: 6px 0; color: var(--color-text-main); text-decoration: none; font-size: 13px;">Contact us</a>
-      
-      <div style="margin-top: 14px;">
-        <a href="https://wa.me/919680552270" target="_blank" class="btn-whatsapp-green-full" style="padding: 10px 16px; font-size: 11px; display: block; text-align: center; text-decoration: none;">
-          WHATSAPP US
-        </a>
-      </div>
+    <a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="leaf hi" style="padding-top:12px;">All layouts</a>
+  </div>
 
-      <div style="margin-top: 14px;">
-        <select onchange="switchCurrency(this.value)" style="width: 100%; padding: 8px; border: 1px solid var(--color-border-light); background: #FAF7F2; font-size: 12px;">
-          <option value="INR">IN | ₹ INR ▾</option>
-          <option value="USD">US | $ USD</option>
-          <option value="EUR">EU | € EUR</option>
-          <option value="GBP">UK | £ GBP</option>
-          <option value="AED">AE | AED</option>
-        </select>
-      </div>
+  <!-- 3. BEADS -->
+  <button type="button" class="it" onclick="toggleMdrTop('beads', this);">
+    <span>Beads</span>
+    <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+  </button>
+  <div class="opn" id="mdr-beads" style="display:none;">
+    <button type="button" class="sb" onclick="toggleMdrSub('bd-stone', this);">
+      <span>By stone</span>
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+    </button>
+    <div id="mdr-sub-bd-stone" style="display:none;">
+      <a href="<?php echo esc_url(home_url('/beads/?stone=Amethyst')); ?>" class="leaf">Amethyst</a>
+      <a href="<?php echo esc_url(home_url('/beads/?stone=Garnet')); ?>" class="leaf">Garnet</a>
+      <a href="<?php echo esc_url(home_url('/beads/?stone=Labradorite')); ?>" class="leaf">Labradorite</a>
+      <a href="<?php echo esc_url(home_url('/beads/?stone=Rose+Quartz')); ?>" class="leaf">Rose Quartz</a>
+      <a href="<?php echo esc_url(home_url('/beads/?stone=Turquoise')); ?>" class="leaf">Turquoise</a>
+    </div>
+
+    <button type="button" class="sb" onclick="toggleMdrSub('bd-shape', this);">
+      <span>By shape</span>
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+    </button>
+    <div id="mdr-sub-bd-shape" style="display:none;">
+      <a href="<?php echo esc_url(home_url('/beads/?shape=Round')); ?>" class="leaf">Round</a>
+      <a href="<?php echo esc_url(home_url('/beads/?shape=Rondelle')); ?>" class="leaf">Rondelle</a>
+      <a href="<?php echo esc_url(home_url('/beads/?shape=Faceted+rondelle')); ?>" class="leaf">Faceted rondelle</a>
+      <a href="<?php echo esc_url(home_url('/beads/?shape=Nugget')); ?>" class="leaf">Nugget</a>
+      <a href="<?php echo esc_url(home_url('/beads/?shape=Chips')); ?>" class="leaf">Chips</a>
+      <a href="<?php echo esc_url(home_url('/beads/?shape=Heishi')); ?>" class="leaf">Heishi</a>
+    </div>
+
+    <button type="button" class="sb" onclick="toggleMdrSub('bd-size', this);">
+      <span>By size & unit</span>
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+    </button>
+    <div id="mdr-sub-bd-size" style="display:none;">
+      <a href="<?php echo esc_url(home_url('/beads/?size=2-4')); ?>" class="leaf">2–4 mm</a>
+      <a href="<?php echo esc_url(home_url('/beads/?size=5-9')); ?>" class="leaf">5–9 mm</a>
+      <a href="<?php echo esc_url(home_url('/beads/?size=10+')); ?>" class="leaf">10 mm and more</a>
+      <a href="<?php echo esc_url(home_url('/beads/?sold=Strand')); ?>" class="leaf">Strands</a>
+      <a href="<?php echo esc_url(home_url('/beads/?sold=Loose+pieces')); ?>" class="leaf">Loose pieces</a>
+    </div>
+
+    <a href="<?php echo esc_url(home_url('/beads/')); ?>" class="leaf hi" style="padding-top:12px;">All beads</a>
+  </div>
+
+  <!-- 4. JEWELRY -->
+  <button type="button" class="it" onclick="toggleMdrTop('jewelry', this);">
+    <span>Jewelry</span>
+    <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+  </button>
+  <div class="opn" id="mdr-jewelry" style="display:none;">
+    <div class="mcard lt">
+      <b>Make it into jewelry</b>
+      <span>Any stone, set in silver or gold for you.</span>
+      <a href="<?php echo esc_url(home_url('/make-it-into-jewelry/')); ?>" class="btn sm" style="text-decoration:none; text-align:center; padding:9px 16px; font-size:11px;">Ask for a quote</a>
+    </div>
+    <div class="mh">BY TYPE</div>
+    <a href="<?php echo esc_url(home_url('/jewelry/?type=Tennis+bracelets')); ?>" class="leaf">Tennis bracelets</a>
+    <a href="<?php echo esc_url(home_url('/jewelry/?type=Tennis+necklaces')); ?>" class="leaf">Tennis necklaces</a>
+
+    <div class="mh">BY STONE</div>
+    <div class="mchips">
+      <a href="<?php echo esc_url(home_url('/jewelry/?stone=ruby')); ?>" class="chip" style="text-decoration:none;">Ruby</a>
+      <a href="<?php echo esc_url(home_url('/jewelry/?stone=spinel')); ?>" class="chip" style="text-decoration:none;">Spinel</a>
+      <a href="<?php echo esc_url(home_url('/jewelry/?stone=sapphire')); ?>" class="chip" style="text-decoration:none;">Sapphire</a>
+      <a href="<?php echo esc_url(home_url('/jewelry/?stone=emerald')); ?>" class="chip" style="text-decoration:none;">Emerald</a>
+      <a href="<?php echo esc_url(home_url('/jewelry/?stone=other')); ?>" class="chip" style="text-decoration:none;">Other</a>
+    </div>
+
+    <div class="mh">BY METAL</div>
+    <div class="mchips">
+      <a href="<?php echo esc_url(home_url('/jewelry/?metal=925+Silver')); ?>" class="chip" style="text-decoration:none;">925 Silver</a>
+      <a href="<?php echo esc_url(home_url('/jewelry/?metal=14K+Gold')); ?>" class="chip" style="text-decoration:none;">14K Gold</a>
+      <a href="<?php echo esc_url(home_url('/jewelry/?metal=18K+Gold')); ?>" class="chip" style="text-decoration:none;">18K Gold</a>
     </div>
   </div>
-</div>
-<div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop" onclick="toggleMobileMenuDrawer();" style="display: none;"></div>
 
-
-
-<!-- LUXURY SLIDE-IN CART DRAWER (POINT 9 & 19 SPEC: CHANGE SIZE, REMOVE WITH UNDO, NO COUPON) -->
-<div class="vivaaz-cart-drawer" id="vivaaz-cart-drawer" style="display: none;">
-  <div class="cart-drawer-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid var(--color-border-light);">
-    <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">
-      Your bag (<span id="cart-drawer-count">0</span>)
+  <!-- 5. ASTROLOGY -->
+  <button type="button" class="it" onclick="toggleMdrTop('astro', this);">
+    <span>Astrology</span>
+    <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+  </button>
+  <div class="opn" id="mdr-astro" style="display:none;">
+    <div class="mcard">
+      <b>Astrology consultation</b>
+      <span>Our astrologer reads your chart and suggests the right stone.</span>
+      <button type="button" class="btn sm lt" onclick="toggleMobileMenuDrawer(); openConsultationModal();" style="padding:9px 16px; font-size:11px;">Book a consultation</button>
     </div>
-    <button type="button" class="cart-drawer-close" onclick="closeCartDrawer();" style="background: none; border: none; font-size: 24px; cursor: pointer; color: var(--color-text-main);">&times;</button>
+    <div class="mh">STONES FOR THE NINE PLANETS</div>
+    <a href="<?php echo esc_url(home_url('/astrology/#sun')); ?>" class="leaf">Sun · Ruby (Manik)</a>
+    <a href="<?php echo esc_url(home_url('/astrology/#moon')); ?>" class="leaf">Moon · Pearl (Moti)</a>
+    <a href="<?php echo esc_url(home_url('/astrology/#mars')); ?>" class="leaf">Mars · Red coral (Moonga)</a>
+    <a href="<?php echo esc_url(home_url('/astrology/#mercury')); ?>" class="leaf">Mercury · Emerald (Panna)</a>
+    <a href="<?php echo esc_url(home_url('/astrology/#jupiter')); ?>" class="leaf">Jupiter · Yellow sapphire (Pukhraj)</a>
+    <a href="<?php echo esc_url(home_url('/astrology/#venus')); ?>" class="leaf">Venus · White sapphire (Safed pukhraj)</a>
+    <a href="<?php echo esc_url(home_url('/astrology/#saturn')); ?>" class="leaf">Saturn · Blue sapphire (Neelam)</a>
+    <a href="<?php echo esc_url(home_url('/astrology/#rahu')); ?>" class="leaf">Rahu · Hessonite (Gomed)</a>
+    <a href="<?php echo esc_url(home_url('/astrology/#ketu')); ?>" class="leaf">Ketu · Cat's eye (Lehsunia)</a>
+
+    <div class="mh">GUIDES</div>
+    <div class="mchips">
+      <a href="<?php echo esc_url(home_url('/astrology/#birthstones')); ?>" class="chip" style="text-decoration:none;">Birthstones by month</a>
+      <a href="<?php echo esc_url(home_url('/astrology/#substitutes')); ?>" class="chip" style="text-decoration:none;">Substitute stones (upratna)</a>
+      <a href="<?php echo esc_url(home_url('/astrology/#weight')); ?>" class="chip" style="text-decoration:none;">Weight: carat and ratti</a>
+      <a href="<?php echo esc_url(home_url('/astrology/#navratna')); ?>" class="chip" style="text-decoration:none;">Navratna set (on request)</a>
+    </div>
   </div>
-  
-  <!-- Undo Bar Container -->
-  <div id="cart-drawer-undo-bar" style="display: none; background: #FAF7F2; border-bottom: 1px solid var(--color-border-light); padding: 10px 20px; font-size: 12px; justify-content: space-between; align-items: center;">
+
+  <div class="help">HELP</div>
+  <a href="<?php echo esc_url(home_url('/track-order/')); ?>" class="hl">Track my order</a>
+  <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hl">Contact us</a>
+  <div style="padding: 12px 20px 0;">
+    <a href="https://wa.me/919680552270" target="_blank" class="btn o wide" style="text-decoration:none; text-align:center; display:block;">WhatsApp us</a>
+  </div>
+
+  <div class="help">CURRENCY</div>
+  <div class="chips" style="padding: 4px 20px 30px; display:flex; gap:6px; flex-wrap:wrap;">
+    <button type="button" class="chip on" onclick="switchCurrency('INR')">IN | ₹ INR</button>
+    <button type="button" class="chip" onclick="switchCurrency('USD')">US | $ USD</button>
+    <button type="button" class="chip" onclick="switchCurrency('EUR')">EU | € EUR</button>
+    <button type="button" class="chip" onclick="switchCurrency('GBP')">UK | £ GBP</button>
+    <button type="button" class="chip" onclick="switchCurrency('AED')">AE | AED</button>
+  </div>
+</aside>
+<div class="scrim" id="mobile-drawer-backdrop" onclick="toggleMobileMenuDrawer();" style="display: none; position: fixed; inset: 0; background: rgba(28,26,23,.5); z-index: 99998;"></div>
+
+
+
+<!-- LUXURY SLIDE-IN CART DRAWER (POINT 9 & 19 SPEC / EXACT DEMO IMAGE 1 FIDELITY) -->
+<div class="scrim" id="cart-drawer-backdrop" style="display:none;" onclick="closeCartDrawer();"></div>
+<aside class="drawer" id="vivaaz-cart-drawer" role="dialog" aria-label="Your bag" style="display:none;">
+  <div class="drh">
+    <b>Your bag · <span id="cart-drawer-count">0</span> <span id="cart-drawer-items-suffix">items</span></b>
+    <button type="button" onclick="closeCartDrawer();" aria-label="Close" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);line-height:1;">&times;</button>
+  </div>
+  <div id="cart-drawer-undo-bar" class="undo" style="display:none;">
     <span id="cart-drawer-undo-msg">Item removed.</span>
-    <button type="button" onclick="undoRemoveCartItem();" style="background: none; border: none; font-size: 12px; font-weight: 700; color: #1C1A17; text-decoration: underline; cursor: pointer;">Undo</button>
+    <button type="button" onclick="undoRemoveCartItem();">Undo</button>
   </div>
-
-  <div class="cart-drawer-items-wrap" id="cart-drawer-items-list" style="flex: 1; overflow-y: auto; padding: 20px;">
+  <div class="drb" id="cart-drawer-items-list">
     <!-- Items rendered dynamically by JS -->
-    <div style="text-align: center; padding: 40px 10px; color: var(--color-text-muted); font-size: 13px;">Your bag is currently empty.</div>
   </div>
-
-  <div class="cart-drawer-footer" style="border-top: 1px solid var(--color-border-light); padding: 20px; background: #FFFFFF;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-      <span style="font-size: 13px; font-weight: 600;">Subtotal</span>
-      <span id="cart-drawer-subtotal" style="font-size: 18px; font-weight: 700;">₹ 0</span>
-    </div>
-    <p style="font-size: 11px; color: var(--color-text-muted); margin: 0 0 16px; line-height: 1.5;">
-      Shipping is added at checkout. Outside India, import duties are paid on delivery.
-    </p>
-    <div style="display: flex; gap: 10px; margin-bottom: 12px;">
-      <a href="<?php echo esc_url(home_url('/cart/')); ?>" class="btn-square-dark" style="flex: 1; padding: 12px; font-size: 11px; text-align: center; text-decoration: none; background: #FFFFFF; color: #1C1A17; border: 1px solid #1C1A17;">VIEW BAG</a>
-      <a href="<?php echo esc_url(home_url('/checkout/')); ?>" class="btn-square-dark" style="flex: 1; padding: 12px; font-size: 11px; text-align: center; text-decoration: none; background: #1C1A17; color: #FFFFFF;">CHECKOUT</a>
-    </div>
-    <div style="text-align: center; font-size: 10px; color: var(--color-text-muted); letter-spacing: 0.05em;">
-      Insured shipping · Our guarantee
+  <div class="drf" id="cart-drawer-footer" style="display:none;">
+    <div class="st"><span>Subtotal</span><span id="cart-drawer-subtotal">₹ 0</span></div>
+    <small>Shipping shown at checkout, before you pay. Outside India, import duties are paid on delivery.</small>
+    <div class="b2">
+      <a href="<?php echo esc_url(home_url('/cart/')); ?>" class="btn o" style="display:flex;align-items:center;justify-content:center;text-decoration:none;">VIEW BAG</a>
+      <a href="<?php echo esc_url(home_url('/checkout/')); ?>" class="btn" style="display:flex;align-items:center;justify-content:center;text-decoration:none;">CHECKOUT</a>
     </div>
   </div>
-</div>
-<div class="cart-drawer-backdrop" id="cart-drawer-backdrop" onclick="closeCartDrawer();" style="display: none;"></div>
+</aside>
 
 <!-- CONSULTATION MODAL POPUP (POINT 13 SPEC) -->
 <div class="consultation-modal-backdrop" id="vivaaz-consultation-modal" style="display: none;" onclick="if(event.target === this) closeConsultationModal();">
@@ -905,55 +972,64 @@ if (!function_exists('vivaaz_render_tennis_art')) {
   </div>
 </div>
 
-<!-- POPUP LIVE SEARCH MODAL (BUILD BOOK PAGE 13 & DEMO) -->
-<div id="live-search-modal" class="live-search-modal" style="display: none !important; position: fixed; inset: 0; background: rgba(28,26,23,.6); z-index: 99999; align-items: flex-start; justify-content: center; padding-top: 40px;" onclick="if(event.target === this) closeLiveSearchModal();">
-  <div class="search-modal-box" onclick="event.stopPropagation();" style="width: min(680px, calc(100% - 24px)); background: #FFFFFF; border: 1px solid var(--line); padding: 26px 30px; box-shadow: 0 30px 60px rgba(0,0,0,.2);">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-      <span class="cap" style="font-size: 10.5px; letter-spacing: 0.2em; color: var(--gold); font-weight: 700; text-transform: uppercase;">SEARCH VIVAAZ GEMS</span>
-      <button type="button" aria-label="Close search" onclick="closeLiveSearchModal();" style="background: none; border: 0; font-size: 24px; cursor: pointer; color: var(--soft); line-height: 1;">&times;</button>
+<!-- POPUP LIVE SEARCH OVERLAY (EXACT CLIENT DEMO IMAGE 4 FIDELITY) -->
+<div class="scrim" id="live-search-backdrop" style="display:none;" onclick="closeLiveSearchModal();"></div>
+<div class="srch" id="live-search-modal" role="dialog" aria-label="Search" style="display:none;">
+  <div class="wrap">
+    <div class="in">
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+      <input type="text" id="sq" placeholder="Search a stone, shape or reel code (e.g. moonstone 6x8 or RMCOC68)" onkeyup="handleLiveSearch(this.value);" autocomplete="off" />
+      <button type="button" onclick="closeLiveSearchModal();" aria-label="Close" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);line-height:1;">&times;</button>
     </div>
-    <form action="<?php echo esc_url(home_url('/shop/')); ?>" method="get" onsubmit="closeLiveSearchModal();" style="margin-bottom: 12px;">
-      <div style="display: flex; align-items: center; gap: 10px; border-bottom: 1.5px solid var(--ink); padding-bottom: 8px;">
-        <svg class="i" style="width: 20px; height: 20px; color: var(--soft);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
-        <input type="text" name="s" id="live-search-input" placeholder="Search a stone, shape or reel code (e.g. RMCOC68)..." style="flex: 1; border: 0; font-size: 18px; font-family: var(--display); background: transparent; outline: none; padding: 4px 0;" onkeyup="handleLiveSearch(this.value);" autocomplete="off" />
-        <button type="submit" class="btn sm" style="padding: 8px 16px; font-size: 11px;">SEARCH</button>
+    <div id="live-search-popular" style="margin-top:18px;">
+      <span class="cap" style="font-size:10.5px;letter-spacing:0.2em;color:var(--gold);font-weight:700;text-transform:uppercase;">Popular searches</span>
+      <div class="chips sq" style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;">
+        <button type="button" class="chip" onclick="setLiveSearchValue('Ruby layouts');">Ruby layouts</button>
+        <button type="button" class="chip" onclick="setLiveSearchValue('Blue topaz 4 mm');">Blue topaz 4 mm</button>
+        <button type="button" class="chip" onclick="setLiveSearchValue('Emerald');">Emerald</button>
+        <button type="button" class="chip" onclick="setLiveSearchValue('Tennis bracelet');">Tennis bracelet</button>
+        <button type="button" class="chip" onclick="setLiveSearchValue('Spinel');">Spinel</button>
       </div>
-    </form>
-    
-    <!-- Quick Search Chips -->
-    <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 10px;">
-      <span style="font-size: 11px; color: var(--soft); margin-right: 4px;">Quick:</span>
-      <button type="button" class="chip" onclick="setLiveSearchValue('Ruby');">Ruby</button>
-      <button type="button" class="chip" onclick="setLiveSearchValue('Rainbow moonstone 6x8');">Rainbow moonstone 6x8</button>
-      <button type="button" class="chip" onclick="setLiveSearchValue('Blue sapphire');">Blue sapphire</button>
-      <button type="button" class="chip" onclick="setLiveSearchValue('Spinel');">Spinel</button>
-      <button type="button" class="chip on" onclick="setLiveSearchValue('RMCOC68');" style="font-weight: 700;">RMCOC68</button>
-      <button type="button" class="chip" onclick="setLiveSearchValue('Emerald');">Emerald</button>
+      <p style="font-size:13px;color:var(--mute);margin:12px 0 0;">Saw a stone in a reel? Type the code from the reel, e.g. <b style="color:var(--ink);">RMCOC68</b>.</p>
     </div>
+    <div id="live-search-results" class="sres" style="display:none;"></div>
+  </div>
+</div>
 
-    <!-- Real-time Live Search Results Container -->
-    <div id="live-search-results" style="display: none; max-height: 320px; overflow-y: auto; margin-top: 14px; border: 1px solid var(--line); background: var(--bg); padding: 8px;"></div>
-
-    <p style="font-size: 12px; color: var(--mute); margin: 14px 0 0; line-height: 1.5;">
-      Saw a stone in a reel? Type the code from the reel, e.g. <b style="color: var(--ink);">RMCOC68</b>.
-    </p>
+<!-- POPUP SIGN IN MODAL (EXACT CLIENT DEMO IMAGE 5 FIDELITY) -->
+<div class="scrim" id="signin-modal-backdrop" style="display:none;" onclick="closeSignInModal();"></div>
+<div class="modal sm" id="vivaaz-signin-modal" role="dialog" aria-label="Sign in" style="display:none;">
+  <button type="button" class="x" onclick="closeSignInModal();" aria-label="Close" style="background:none;border:none;font-size:24px;cursor:pointer;position:absolute;right:22px;top:22px;color:var(--ink);line-height:1;">&times;</button>
+  <h3>Sign in</h3>
+  <p class="sub">Or create an account. It takes one tap.</p>
+  <div id="signin-modal-content">
+    <div class="soc">
+      <button type="button" onclick="fakeSocialLogin('Google');"><span class="lg" style="background:#fff;color:#4285F4;border:1px solid var(--line2,#E2D7C6);">G</span>Google</button>
+      <button type="button" onclick="fakeSocialLogin('Facebook');"><span class="lg" style="background:#1877F2;">f</span>Facebook</button>
+      <button type="button" onclick="showWhatsAppSignIn();"><span class="lg" style="background:#25D366;"><svg class="i" style="width:14px;height:14px;vertical-align:middle;" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></span>WhatsApp</button>
+    </div>
+    <div class="or"><span>or</span></div>
+    <button type="button" class="btn o wide" style="width:100%;" onclick="showEmailSignIn();">CONTINUE WITH EMAIL</button>
+    <p style="font-size:12.5px;color:var(--soft);text-align:center;margin:14px 0 0;">New here? The same buttons create your account. Guest checkout always stays: no account is needed to buy.</p>
   </div>
 </div>
 
 <script>
   var _vivaazCatalog = [
     { name: "Rainbow Moonstone Oval Cabochon", code: "RMCOC68", price: "₹ 120 / pc", shape: "Oval", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=RMCOC68')); ?>" },
+    { name: "Agate Oval Cabochon · AA", code: "AGTOV68", price: "₹ 75 / pc", shape: "Oval", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=Agate')); ?>" },
     { name: "Ceylon Blue Sapphire Oval Faceted", code: "BSFOV", price: "₹ 1,450 / pc", shape: "Oval", size: "5×7 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=BSFOV')); ?>" },
     { name: "Matched Ruby Pear Pair", code: "RBFPR", price: "₹ 6,800 / pair", shape: "Pear", size: "4×6 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=RBFPR')); ?>" },
     { name: "Zambian Emerald Octagon Faceted", code: "EMFOC", price: "₹ 24,500", shape: "Octagon", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=EMFOC')); ?>" },
-    { name: "Swiss Blue Topaz Round Lot", code: "TPFRD", price: "₹ 45 / pc", shape: "Round", size: "2–8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=TPFRD')); ?>" },
+    { name: "Swiss Blue Topaz Round Lot", code: "TPFRD", price: "₹ 45 / pc", shape: "Round", size: "4 mm", img: "<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=TPFRD')); ?>" },
     { name: "Amethyst Oval Calibrated Lot", code: "AMFOV", price: "₹ 95 / pc", shape: "Oval", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=AMFOV')); ?>" },
     { name: "Burma Spinel Matched Cushion Pair", code: "SPNPR", price: "₹ 280 / pc", shape: "Cushion", size: "5 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=spinel')); ?>" },
-    { name: "Ruby Graduated Line Layout", code: "LAYRBY", price: "₹ 38,000", shape: "Graduated", size: "17 stones", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>" }
+    { name: "Ruby Graduated Line Layout", code: "LAYRBY", price: "₹ 38,000", shape: "Graduated", size: "17 stones", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>" },
+    { name: "Tennis Bracelet (Silver / Gold)", code: "TBRAC", price: "from ₹ 18,500", shape: "Line", size: "7 in", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/jewelry/?type=Tennis+bracelets')); ?>" }
   ];
 
   function setLiveSearchValue(val) {
-    var inp = document.getElementById('live-search-input');
+    var inp = document.getElementById('sq') || document.getElementById('live-search-input');
     if (inp) {
       inp.value = val;
       inp.focus();
@@ -963,37 +1039,36 @@ if (!function_exists('vivaaz_render_tennis_art')) {
 
   function handleLiveSearch(query) {
     var resultsBox = document.getElementById('live-search-results');
+    var popularBox = document.getElementById('live-search-popular');
     if (!resultsBox) return;
     var q = (query || '').toLowerCase().trim();
-    if (!q || q.length < 2) {
+    if (!q) {
       resultsBox.style.display = 'none';
       resultsBox.innerHTML = '';
+      if (popularBox) popularBox.style.display = 'block';
       return;
     }
     var matches = _vivaazCatalog.filter(function(item) {
-      return item.name.toLowerCase().indexOf(q) > -1 ||
+      var fullStr = (item.name + ' ' + item.code + ' ' + item.shape + ' ' + item.size).toLowerCase();
+      return fullStr.indexOf(q.replace('x', '×')) > -1 ||
              item.code.toLowerCase().indexOf(q) > -1 ||
-             item.shape.toLowerCase().indexOf(q) > -1 ||
-             item.size.toLowerCase().indexOf(q) > -1;
+             item.name.toLowerCase().indexOf(q) > -1;
     });
+    if (popularBox) popularBox.style.display = matches.length ? 'none' : 'block';
     if (matches.length === 0) {
-      resultsBox.innerHTML = '<div style="padding: 12px; font-size: 12px; color: var(--mute); text-align: center;">No exact stones found for "' + q + '". Press search to view all catalog matches.</div>';
-      resultsBox.style.display = 'block';
+      resultsBox.innerHTML = '<div style="grid-column: 1/-1; padding: 18px; font-size: 13px; color: var(--mute); text-align: center;">No exact stones found for “' + query + '”. <a href="<?php echo esc_url(home_url('/contact/')); ?>" style="color:var(--gold); text-decoration:underline;">Ask us on WhatsApp</a></div>';
+      resultsBox.style.display = 'grid';
       return;
     }
     var html = '';
     matches.forEach(function(item) {
-      html += '<a href="' + item.url + '" style="display: flex; align-items: center; gap: 12px; padding: 10px; background: #FFFFFF; border: 1px solid var(--line); text-decoration: none; color: inherit; margin-bottom: 6px;">' +
-        '<img src="' + item.img + '" style="width: 48px; height: 48px; object-fit: contain; background: #F1F0EE; flex-shrink: 0;" />' +
-        '<div style="flex: 1; min-width: 0;">' +
-          '<div style="font-size: 13px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">' + item.name + '</div>' +
-          '<div style="font-size: 11px; color: var(--soft);">' + item.size + ' · <strong style="color: var(--ink);">' + item.code + '</strong></div>' +
-        '</div>' +
-        '<div style="font-size: 13px; font-weight: 700; color: var(--ink); white-space: nowrap;">' + item.price + '</div>' +
+      html += '<a class="sr" href="' + item.url + '" style="text-decoration:none; color:inherit;">' +
+        '<span class="im"><img src="' + item.img + '" alt="' + item.name + '" style="width:70%; height:70%; object-fit:contain;"></span>' +
+        '<span><b>' + item.name + '</b><span>' + item.code + ' · ' + item.price + '</span></span>' +
       '</a>';
     });
     resultsBox.innerHTML = html;
-    resultsBox.style.display = 'block';
+    resultsBox.style.display = 'grid';
   }
   function updateMegaPhoto(imgFile, titleText) {
     var promoImg = document.getElementById('gem-promo-img');
@@ -1005,50 +1080,79 @@ if (!function_exists('vivaaz_render_tennis_art')) {
   function toggleMobileMenuDrawer() {
     var drawer = document.getElementById('mobile-menu-drawer');
     var backdrop = document.getElementById('mobile-drawer-backdrop');
-    if (drawer && backdrop) {
+    if (drawer) {
       var isOpening = (drawer.style.display === 'none' || !drawer.classList.contains('open'));
       if (isOpening) {
-        drawer.style.display = 'flex';
-        backdrop.style.display = 'block';
+        drawer.style.display = 'block';
+        if (backdrop) backdrop.style.display = 'block';
         setTimeout(function() {
           drawer.classList.add('open');
-          backdrop.classList.add('open');
+          if (backdrop) backdrop.classList.add('open');
         }, 10);
       } else {
         drawer.classList.remove('open');
-        backdrop.classList.remove('open');
+        if (backdrop) backdrop.classList.remove('open');
         setTimeout(function() {
           drawer.style.display = 'none';
-          backdrop.style.display = 'none';
+          if (backdrop) backdrop.style.display = 'none';
         }, 300);
       }
     }
   }
 
+  function toggleMdrTop(key, btn) {
+    var target = document.getElementById('mdr-' + key);
+    var isOpen = btn.classList.contains('op');
+    document.querySelectorAll('.mdr .it').forEach(function(b) {
+      b.classList.remove('op');
+    });
+    document.querySelectorAll('.mdr .opn').forEach(function(el) {
+      el.style.display = 'none';
+    });
+    if (!isOpen && target) {
+      btn.classList.add('op');
+      target.style.display = 'block';
+    }
+  }
+
+  function toggleMdrSub(subKey, btn) {
+    var target = document.getElementById('mdr-sub-' + subKey);
+    var isOpen = btn.classList.contains('op');
+    var parent = btn.closest('.opn');
+    if (parent) {
+      parent.querySelectorAll('.sb').forEach(function(b) { b.classList.remove('op'); });
+      parent.querySelectorAll('div[id^="mdr-sub-"]').forEach(function(el) { el.style.display = 'none'; });
+    }
+    if (!isOpen && target) {
+      btn.classList.add('op');
+      target.style.display = 'block';
+    }
+  }
+
   function openLiveSearchModal() {
     var modal = document.getElementById('live-search-modal');
+    var backdrop = document.getElementById('live-search-backdrop');
     if (modal) {
-      modal.classList.add('open');
-      modal.style.setProperty('display', 'flex', 'important');
-      var inp = document.getElementById('live-search-input');
+      modal.style.display = 'block';
+      if (backdrop) backdrop.style.display = 'block';
+      var inp = document.getElementById('sq') || document.getElementById('live-search-input');
       if (inp) {
-        setTimeout(function() { inp.focus(); }, 100);
+        setTimeout(function() { inp.focus(); }, 80);
       }
     }
   }
 
   function closeLiveSearchModal() {
     var modal = document.getElementById('live-search-modal');
-    if (modal) {
-      modal.classList.remove('open');
-      modal.style.setProperty('display', 'none', 'important');
-    }
+    var backdrop = document.getElementById('live-search-backdrop');
+    if (modal) modal.style.display = 'none';
+    if (backdrop) backdrop.style.display = 'none';
   }
 
   function toggleLiveSearchModal() {
     var modal = document.getElementById('live-search-modal');
     if (modal) {
-      if (modal.classList.contains('open') || modal.style.display === 'flex') {
+      if (modal.style.display === 'block') {
         closeLiveSearchModal();
       } else {
         openLiveSearchModal();
@@ -1056,12 +1160,128 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     }
   }
 
+  // SIGN IN MODAL ENGINE (EXACT CLIENT DEMO IMAGE 5 FIDELITY)
+  function openSignInModal() {
+    var modal = document.getElementById('vivaaz-signin-modal');
+    var backdrop = document.getElementById('signin-modal-backdrop');
+    if (modal) {
+      resetSignInModal();
+      modal.style.display = 'block';
+      if (backdrop) backdrop.style.display = 'block';
+    }
+  }
+
+  function closeSignInModal() {
+    var modal = document.getElementById('vivaaz-signin-modal');
+    var backdrop = document.getElementById('signin-modal-backdrop');
+    if (modal) modal.style.display = 'none';
+    if (backdrop) backdrop.style.display = 'none';
+  }
+
+  function resetSignInModal() {
+    var content = document.getElementById('signin-modal-content');
+    if (content) {
+      content.innerHTML = `
+        <div class="soc">
+          <button type="button" onclick="fakeSocialLogin('Google');"><span class="lg" style="background:#fff;color:#4285F4;border:1px solid var(--line2,#E2D7C6);">G</span>Google</button>
+          <button type="button" onclick="fakeSocialLogin('Facebook');"><span class="lg" style="background:#1877F2;">f</span>Facebook</button>
+          <button type="button" onclick="showWhatsAppSignIn();"><span class="lg" style="background:#25D366;"><svg class="i" style="width:14px;height:14px;vertical-align:middle;" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></span>WhatsApp</button>
+        </div>
+        <div class="or"><span>or</span></div>
+        <button type="button" class="btn o wide" style="width:100%;" onclick="showEmailSignIn();">CONTINUE WITH EMAIL</button>
+        <p style="font-size:12.5px;color:var(--soft);text-align:center;margin:14px 0 0;">New here? The same buttons create your account. Guest checkout always stays: no account is needed to buy.</p>
+      `;
+    }
+  }
+
+  function showEmailSignIn() {
+    var content = document.getElementById('signin-modal-content');
+    if (content) {
+      content.innerHTML = `
+        <form onsubmit="handleEmailSignInSubmit(event);">
+          <div class="fg" style="margin-bottom:14px;">
+            <div class="f full">
+              <label for="sie">Email</label>
+              <input id="sie" type="email" required placeholder="name@example.com" value="customer@vivaazgems.com" style="width:100%;height:44px;padding:0 12px;border:1px solid #D9CFC0;background:var(--paper);">
+            </div>
+            <div class="f full">
+              <label for="sip">Password</label>
+              <input id="sip" type="password" required value="demo-only" style="width:100%;height:44px;padding:0 12px;border:1px solid #D9CFC0;background:var(--paper);">
+            </div>
+          </div>
+          <button type="submit" class="btn wide" style="width:100%;padding:14px;">Sign in</button>
+          <p style="font-size:12.5px;text-align:center;margin:14px 0 0;">
+            <a href="javascript:void(0);" onclick="resetSignInModal();" style="color:var(--gold);text-decoration:underline;">← Back</a> · <a href="<?php echo esc_url(home_url('/my-account/lost-password/')); ?>" style="color:var(--soft);text-decoration:underline;">Forgot password?</a>
+          </p>
+        </form>
+      `;
+    }
+  }
+
+  function showWhatsAppSignIn() {
+    var content = document.getElementById('signin-modal-content');
+    if (content) {
+      content.innerHTML = `
+        <form onsubmit="handleWhatsAppCodeSubmit(event);">
+          <div class="f" style="margin-bottom:14px;">
+            <label for="sim">Mobile number</label>
+            <input id="sim" type="tel" required value="+91 98290 00000" style="width:100%;height:44px;padding:0 12px;border:1px solid #D9CFC0;background:var(--paper);">
+            <small style="color:var(--soft);font-size:11.5px;margin-top:5px;display:block;">We send a one-time code on WhatsApp (or SMS).</small>
+          </div>
+          <button type="submit" class="btn wide" style="width:100%;padding:14px;">Send code</button>
+          <p style="text-align:center;margin:14px 0 0;"><a href="javascript:void(0);" onclick="resetSignInModal();" style="color:var(--gold);text-decoration:underline;font-size:12.5px;">← Back</a></p>
+        </form>
+      `;
+    }
+  }
+
+  function handleEmailSignInSubmit(e) {
+    e.preventDefault();
+    closeSignInModal();
+    showWishlistToast('Signed in successfully.');
+  }
+
+  function handleWhatsAppCodeSubmit(e) {
+    e.preventDefault();
+    var content = document.getElementById('signin-modal-content');
+    if (content) {
+      content.innerHTML = `
+        <form onsubmit="handleVerifySubmit(event);">
+          <p style="margin:0 0 12px;font-size:13px;">Enter the 6-digit code sent to WhatsApp.</p>
+          <div class="otp" style="display:flex;gap:8px;justify-content:center;margin:14px 0;">
+            <input maxlength="1" value="4" style="width:46px;height:52px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
+            <input maxlength="1" value="8" style="width:46px;height:52px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
+            <input maxlength="1" value="2" style="width:46px;height:52px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
+            <input maxlength="1" value="6" style="width:46px;height:52px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
+            <input maxlength="1" value="1" style="width:46px;height:52px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
+            <input maxlength="1" value="9" style="width:46px;height:52px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
+          </div>
+          <button type="submit" class="btn wide" style="width:100%;padding:14px;">Verify and sign in</button>
+          <p style="font-size:12.5px;color:var(--soft);text-align:center;margin:12px 0 0;">Didn't get it? <a href="javascript:void(0);" onclick="showWishlistToast('New code sent.');" style="color:var(--gold);text-decoration:underline;">Send again</a></p>
+        </form>
+      `;
+    }
+  }
+
+  function handleVerifySubmit(e) {
+    e.preventDefault();
+    closeSignInModal();
+    showWishlistToast('Signed in successfully.');
+  }
+
+  function fakeSocialLogin(provider) {
+    closeSignInModal();
+    showWishlistToast('Signed in with ' + provider + '.');
+  }
+
   // Close modals on Escape key
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' || e.keyCode === 27) {
       closeLiveSearchModal();
+      closeSignInModal();
+      closeCartDrawer();
       var drawer = document.getElementById('mobile-menu-drawer');
-      if (drawer && (drawer.classList.contains('open') || drawer.style.display === 'flex')) {
+      if (drawer && (drawer.classList.contains('open') || drawer.style.display === 'flex' || drawer.style.display === 'block')) {
         toggleMobileMenuDrawer();
       }
     }
@@ -1292,84 +1512,83 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     var items = getCartItems();
     var list = document.getElementById('cart-drawer-items-list');
     var countEl = document.getElementById('cart-drawer-count');
+    var suffixEl = document.getElementById('cart-drawer-items-suffix');
     var subtotalEl = document.getElementById('cart-drawer-subtotal');
+    var footerEl = document.getElementById('cart-drawer-footer');
     if (!list) return;
 
     var totalQty = items.reduce(function(acc, it) { return acc + (parseInt(it.quantity || it.qty) || 1); }, 0);
     if (countEl) countEl.textContent = totalQty;
+    if (suffixEl) suffixEl.textContent = totalQty === 1 ? 'item' : 'items';
 
     if (!items || items.length === 0) {
       list.innerHTML = `
-        <div style="text-align: center; padding: 48px 16px; color: var(--color-text-muted);">
-          <div style="font-size: 36px; margin-bottom: 12px; color: var(--color-gold-label);">🛍</div>
-          <div style="font-size: 15px; font-weight: 600; color: var(--color-text-main); margin-bottom: 6px;">Your bag is empty</div>
-          <p style="font-size: 12px; margin: 0 0 20px;">Explore calibrated gems, matched pairs and layouts.</p>
-          <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn-square-dark" onclick="closeCartDrawer();" style="display: inline-block; padding: 10px 20px; font-size: 11px;">EXPLORE STONES →</a>
+        <div style="padding: 48px 0; text-align: center; color: var(--mute);">
+          <div style="font-size: 32px; margin-bottom: 12px; color: var(--gold);">🛍</div>
+          <p style="font-size: 15px; font-weight: 500; color: var(--ink); margin: 0 0 16px;">Your bag is empty.</p>
+          <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn o sm" onclick="closeCartDrawer();" style="text-decoration:none; display:inline-block; padding: 10px 20px; font-size: 11px;">SHOP GEMSTONES</a>
         </div>
       `;
+      if (footerEl) footerEl.style.display = 'none';
       if (subtotalEl) subtotalEl.textContent = '₹ 0';
       return;
     }
+
+    if (footerEl) footerEl.style.display = 'block';
 
     var grandTotal = 0;
     var html = '';
 
     items.forEach(function(item, idx) {
       var qty = parseInt(item.quantity || item.qty) || 1;
-      var unitPrice = parseInt(String(item.unitPrice || item.price || '105').replace(/[^0-9]/g, '')) || 105;
+      var rawPrice = parseInt(String(item.unitPrice || item.price || '75').replace(/[^0-9]/g, '')) || 75;
       
-      // Tier pricing ladder: 1-9 pcs: 120, 10-49 pcs: 105, 50+ pcs: 92
-      var tierPrice = unitPrice;
-      var tierNote = '';
+      var t1 = item.tier1 || item.basePrice || Math.round(rawPrice * 1.15);
+      var t10 = item.tier10 || rawPrice;
+      var t50 = item.tier50 || Math.round(rawPrice * 0.88);
+
+      var effectiveUnitPrice = rawPrice;
+      var tierNoteText = '';
       if (qty >= 50) {
-        tierPrice = item.tier50 || 92;
-        tierNote = '50+ tier price';
+        effectiveUnitPrice = t50;
+        tierNoteText = '₹' + t50.toLocaleString('en-IN') + ' each · 50+ price reached.';
       } else if (qty >= 10) {
-        tierPrice = item.tier10 || 105;
-        tierNote = '10+ tier price';
+        effectiveUnitPrice = t10;
+        tierNoteText = '₹' + t10.toLocaleString('en-IN') + ' each · 10+ price reached. 50+ pieces: ₹' + t50.toLocaleString('en-IN') + ' each';
       } else {
-        tierPrice = item.tier1 || 120;
-        tierNote = '1–9 tier price';
+        effectiveUnitPrice = t1;
+        tierNoteText = '₹' + t1.toLocaleString('en-IN') + ' each · 10+ pieces: ₹' + t10.toLocaleString('en-IN') + ' each';
       }
-      var itemTotal = qty * tierPrice;
+      var itemTotal = qty * effectiveUnitPrice;
       grandTotal += itemTotal;
 
       var img = item.img || item.image || '<?php echo esc_url(vivaaz_get_img_url("moonstone.jpg")); ?>';
-      var title = item.title || item.name || 'Rainbow Moonstone Oval Cabochon';
+      var title = item.title || item.name || 'Agate Oval Cabochon · AA';
       var size = item.size || '6×8 mm';
 
       html += `
-        <div class="cart-drawer-item-row" style="display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--color-border-light);">
-          <div style="width: 64px; height: 64px; background: #FAF7F2; border: 1px solid var(--color-border-light); flex-shrink: 0;">
-            <img src="${img}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <div class="dri">
+          <div class="im">
+            <img src="${img}" alt="${title}">
           </div>
-          <div style="flex: 1; min-width: 0;">
-            <div style="font-size: 13px; font-weight: 600; color: var(--color-text-main); margin-bottom: 2px; line-height: 1.3;">
-              ${title}
+          <div>
+            <div class="n">${title}</div>
+            <div class="m">
+              <span>${size}</span>
+              <button type="button" onclick="changeCartItemSize(${idx});">Change size</button>
             </div>
-            <div style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 8px;">
-              ${size} · AAA
+            <div class="step s">
+              <button type="button" onclick="updateCartItemQty(${idx}, -1);" aria-label="Fewer">−</button>
+              <input type="text" value="${qty}" onchange="setCartItemDirectQty(${idx}, this.value);" aria-label="Quantity">
+              <button type="button" onclick="updateCartItemQty(${idx}, 1);" aria-label="More">+</button>
             </div>
-            
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <div style="display: flex; align-items: center; border: 1px solid var(--color-border-light);">
-                <button type="button" onclick="updateCartItemQty(${idx}, -1);" style="width: 26px; height: 26px; background: #FAF7F2; border: none; font-weight: 700; cursor: pointer;">−</button>
-                <span style="width: 32px; text-align: center; font-size: 12px; font-weight: 700;">${qty}</span>
-                <button type="button" onclick="updateCartItemQty(${idx}, 1);" style="width: 26px; height: 26px; background: #FAF7F2; border: none; font-weight: 700; cursor: pointer;">+</button>
-              </div>
-              <div style="font-size: 14px; font-weight: 700; color: var(--color-text-main);">
-                ₹ ${itemTotal.toLocaleString('en-IN')}
-              </div>
+            <div class="note" style="color:var(--ok,#1E9E52); font-size:11.5px; margin-top:6px; background:none; padding:0;">
+              ${tierNoteText}
             </div>
-
-            <div style="font-size: 10px; color: var(--color-gold-label); margin-bottom: 8px;">
-              ₹${tierPrice} each · ${tierNote}
-            </div>
-
-            <div style="display: flex; gap: 12px; font-size: 11px;">
-              <a href="javascript:void(0);" onclick="changeCartItemSize(${idx});" style="color: var(--color-text-muted); text-decoration: underline;">Change size</a>
-              <a href="javascript:void(0);" onclick="removeCartItem(${idx});" style="color: #C0392B; text-decoration: underline;">Remove</a>
-            </div>
+          </div>
+          <div class="r">
+            <span>₹ ${itemTotal.toLocaleString('en-IN')}</span>
+            <button type="button" onclick="removeCartItem(${idx});">Remove</button>
           </div>
         </div>
       `;
@@ -1377,6 +1596,20 @@ if (!function_exists('vivaaz_render_tennis_art')) {
 
     list.innerHTML = html;
     if (subtotalEl) subtotalEl.textContent = '₹ ' + grandTotal.toLocaleString('en-IN');
+  }
+
+  function setCartItemDirectQty(index, val) {
+    var items = getCartItems();
+    if (!items[index]) return;
+    var q = parseInt(val) || 1;
+    if (q <= 0) {
+      removeCartItem(index);
+      return;
+    }
+    items[index].quantity = q;
+    items[index].qty = q;
+    setCartItems(items);
+    renderCartDrawer();
   }
 
   function updateCartItemQty(index, delta) {

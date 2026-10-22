@@ -20,45 +20,31 @@ if (!$sku) $sku = 'RMCOC68';
 
 $title = get_the_title() ?: 'Rainbow Moonstone Oval Cabochon';
 
-// Stone Name detection from title
-$stone_name = 'Rainbow Moonstone';
-$stone_key = 'moonstone';
-if (stripos($title, 'sapphire') !== false) {
-    $stone_name = 'Sapphire';
-    $stone_key = 'ceylon-sapphire';
-} elseif (stripos($title, 'ruby') !== false) {
-    $stone_name = 'Ruby';
-    $stone_key = 'ruby';
-} elseif (stripos($title, 'emerald') !== false) {
-    $stone_name = 'Emerald';
-    $stone_key = 'emerald';
-} elseif (stripos($title, 'topaz') !== false) {
-    $stone_name = 'Topaz';
-    $stone_key = 'swiss-topaz';
-} elseif (stripos($title, 'spinel') !== false) {
-    $stone_name = 'Spinel';
-    $stone_key = 'ruby';
-}
+// 1. Resolve Stone Details dynamically from post or URL slug
+$stone_info = function_exists('vivaaz_resolve_stone_from_request') ? vivaaz_resolve_stone_from_request($product_id) : array();
 
-$is_single = (stripos($title, 'pair') !== false || stripos($title, 'single') !== false || stripos($title, 'only 1') !== false);
-$unit_label = (stripos($title, 'pair') !== false) ? 'for the pair' : ($is_single ? 'single stone' : 'per piece');
-$sold_as_tag = (stripos($title, 'pair') !== false) ? 'MATCHED PAIR' : ($is_single ? 'ONLY 1' : 'CALIBRATED LOT');
+$title         = !empty($stone_info['title']) ? $stone_info['title'] : (get_the_title() ?: 'Rainbow Moonstone Oval Cabochon');
+$stone_name    = !empty($stone_info['stone_name']) ? $stone_info['stone_name'] : 'Rainbow Moonstone';
+$stone_key     = !empty($stone_info['stone_key']) ? $stone_info['stone_key'] : 'moonstone';
+$sku           = !empty($stone_info['sku']) ? $stone_info['sku'] : ($product ? $product->get_sku() : 'RMCOC68');
+$base_price    = !empty($stone_info['base_price']) ? $stone_info['base_price'] : 105;
+$cut_shape     = !empty($stone_info['cut_shape']) ? $stone_info['cut_shape'] : 'Cabochon, oval';
+$origin        = !empty($stone_info['origin']) ? $stone_info['origin'] : 'Sri Lanka / Jaipur';
+$treatment     = !empty($stone_info['treatment']) ? $stone_info['treatment'] : 'None';
+$color_clarity = !empty($stone_info['color_clarity']) ? $stone_info['color_clarity'] : 'Eye-clean';
+$quality       = !empty($stone_info['quality']) ? $stone_info['quality'] : 'AAA';
+$default_size  = !empty($stone_info['size']) ? $stone_info['size'] : '6×8 mm';
+$weight        = !empty($stone_info['weight']) ? $stone_info['weight'] : '≈ 0.85 ct per piece';
+$tolerance     = !empty($stone_info['tolerance']) ? $stone_info['tolerance'] : '± 0.1 mm';
+$is_single     = !empty($stone_info['is_single']) ? true : false;
+$unit_label    = !empty($stone_info['unit_label']) ? $stone_info['unit_label'] : ($is_single ? 'single stone' : 'per piece');
+$sold_as_tag   = !empty($stone_info['sold_as_tag']) ? $stone_info['sold_as_tag'] : ($is_single ? 'ONLY 1' : 'CALIBRATED LOT');
+$main_img      = !empty($stone_info['main_img']) ? $stone_info['main_img'] : vivaaz_get_img_url($stone_key . '.jpg');
 
-// Base Price calculation
-$base_price = 106;
-if ($product && $product->get_regular_price()) {
-    $p_val = floatval($product->get_regular_price());
-    if ($p_val > 0) $base_price = round($p_val);
-}
-$tier_1_price = round($base_price * 1.15);
+// Tiers calculation
+$tier_1_price  = round($base_price * 1.15);
 $tier_10_price = $base_price;
 $tier_50_price = round($base_price * 0.88);
-
-// Default images
-$main_img = get_the_post_thumbnail_url($product_id, 'large');
-if (!$main_img) {
-    $main_img = vivaaz_get_img_url($stone_key . '.jpg');
-}
 
 do_action('woocommerce_before_single_product');
 ?>
@@ -231,7 +217,7 @@ do_action('woocommerce_before_single_product');
             <span style="font-size: 10.5px; letter-spacing: 0.14em; color: var(--soft); text-transform: uppercase;">SIZE</span>
           </div>
           <div>
-            <b style="display: block; font-size: 16px; color: var(--ink);">≈ 0.8 ct</b>
+            <b style="display: block; font-size: 16px; color: var(--ink);"><?php echo esc_html($weight); ?></b>
             <span style="font-size: 10.5px; letter-spacing: 0.14em; color: var(--soft); text-transform: uppercase;">EACH PIECE</span>
           </div>
           <div>
@@ -239,7 +225,7 @@ do_action('woocommerce_before_single_product');
             <span style="font-size: 10.5px; letter-spacing: 0.14em; color: var(--soft); text-transform: uppercase;">CALIBRATED</span>
           </div>
           <div>
-            <b style="display: block; font-size: 16px; color: var(--ink);">None</b>
+            <b style="display: block; font-size: 16px; color: var(--ink);"><?php echo esc_html($treatment); ?></b>
             <span style="font-size: 10.5px; letter-spacing: 0.14em; color: var(--soft); text-transform: uppercase;">TREATMENT</span>
           </div>
         </div>
@@ -251,15 +237,15 @@ do_action('woocommerce_before_single_product');
           </div>
           <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
             <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">CUT AND SHAPE</span>
-            <span>Cabochon, oval</span>
+            <span><?php echo esc_html($cut_shape); ?></span>
           </div>
           <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
             <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">COLOUR</span>
-            <span>White with blue flash</span>
+            <span><?php echo esc_html($color_clarity); ?></span>
           </div>
           <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
             <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">QUALITY</span>
-            <span>AAA, matched lot</span>
+            <span><?php echo esc_html($quality); ?></span>
           </div>
           <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
             <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">COLOUR MATCH</span>
@@ -377,63 +363,90 @@ do_action('woocommerce_before_single_product');
   var currentSize = '6×8';
 
   function switchProdView(view, btn) {
-    document.querySelectorAll('.gal-view-btn').forEach(b => {
+    var btns = document.querySelectorAll('.gal-view-btn');
+    btns.forEach(function(b) {
       b.classList.remove('on');
       b.style.background = 'var(--paper)';
       b.style.color = 'var(--ink)';
       b.style.borderColor = 'var(--line2)';
     });
-    btn.classList.add('on');
-    btn.style.background = 'var(--ink)';
-    btn.style.color = '#fff';
-    btn.style.borderColor = 'var(--ink)';
+    if (btn) {
+      btn.classList.add('on');
+      btn.style.background = 'var(--ink)';
+      btn.style.color = '#fff';
+      btn.style.borderColor = 'var(--ink)';
+    }
 
     var videoTag = document.getElementById('prod-video-tag');
     var rulerTag = document.getElementById('prod-ruler-tag');
     var mainImg = document.getElementById('prod-main-img');
 
-    if (view === 'video') {
-      if (videoTag) videoTag.style.display = 'block';
-      if (rulerTag) rulerTag.style.display = 'none';
-      if (mainImg) mainImg.style.transform = 'scale(1)';
-    } else if (view === 'size') {
-      if (videoTag) videoTag.style.display = 'none';
-      if (rulerTag) rulerTag.style.display = 'block';
-      if (mainImg) mainImg.style.transform = 'scale(0.85)';
-    } else if (view === 'loupe') {
-      if (videoTag) videoTag.style.display = 'none';
-      if (rulerTag) rulerTag.style.display = 'none';
-      if (mainImg) mainImg.style.transform = 'scale(1.4)';
-    } else {
-      if (videoTag) videoTag.style.display = 'none';
-      if (rulerTag) rulerTag.style.display = 'none';
-      if (mainImg) mainImg.style.transform = 'scale(1)';
+    if (mainImg) {
+      if (view === 'video') {
+        if (videoTag) videoTag.style.display = 'block';
+        if (rulerTag) rulerTag.style.display = 'none';
+        mainImg.style.transform = 'scale(1)';
+        mainImg.style.filter = 'none';
+      } else if (view === 'daylight') {
+        if (videoTag) videoTag.style.display = 'none';
+        if (rulerTag) rulerTag.style.display = 'none';
+        mainImg.style.transform = 'scale(1)';
+        mainImg.style.filter = 'brightness(1.06) saturate(.9)';
+      } else if (view === 'lamp') {
+        if (videoTag) videoTag.style.display = 'none';
+        if (rulerTag) rulerTag.style.display = 'none';
+        mainImg.style.transform = 'scale(1)';
+        mainImg.style.filter = 'sepia(.25) saturate(1.2) brightness(.97)';
+      } else if (view === 'loupe') {
+        if (videoTag) videoTag.style.display = 'none';
+        if (rulerTag) rulerTag.style.display = 'none';
+        mainImg.style.transform = 'scale(1.4)';
+        mainImg.style.filter = 'none';
+      } else if (view === 'size') {
+        if (videoTag) videoTag.style.display = 'none';
+        if (rulerTag) rulerTag.style.display = 'block';
+        mainImg.style.transform = 'scale(0.85)';
+        mainImg.style.filter = 'none';
+      }
     }
   }
 
   function switchProdThumb(idx, btn) {
-    document.querySelectorAll('.thumb-btn').forEach(b => {
+    var thumbBtns = document.querySelectorAll('.thumb-btn');
+    thumbBtns.forEach(function(b) {
       b.classList.remove('on');
       b.style.borderColor = 'var(--line2)';
     });
-    btn.classList.add('on');
-    btn.style.borderColor = 'var(--ink)';
+    if (btn) {
+      btn.classList.add('on');
+      btn.style.borderColor = 'var(--ink)';
+    }
+    var viewNames = ['video', 'daylight', 'lamp', 'loupe'];
+    var viewBtns = document.querySelectorAll('.gal-view-btn');
+    if (viewBtns[idx]) {
+      switchProdView(viewNames[idx], viewBtns[idx]);
+    }
   }
 
   function selectProdSize(size, btn) {
     currentSize = size;
-    document.querySelectorAll('.size-chip').forEach(b => {
+    var sizeBtns = document.querySelectorAll('.size-chip');
+    sizeBtns.forEach(function(b) {
       b.classList.remove('on');
       b.style.background = 'var(--paper)';
       b.style.color = 'var(--ink)';
       b.style.borderColor = 'var(--line2)';
     });
-    btn.classList.add('on');
-    btn.style.background = 'var(--ink)';
-    btn.style.color = '#fff';
-    btn.style.borderColor = 'var(--ink)';
+    if (btn) {
+      btn.classList.add('on');
+      btn.style.background = 'var(--ink)';
+      btn.style.color = '#fff';
+      btn.style.borderColor = 'var(--ink)';
+    }
     var pSize = document.getElementById('passport-size-val');
     if (pSize) pSize.textContent = size + ' mm';
+    var rulerTag = document.getElementById('prod-ruler-tag');
+    if (rulerTag) rulerTag.textContent = 'Grid squares are 1 mm · ' + size + ' mm';
   }
 
   function setProductQty(qty) {
@@ -460,7 +473,7 @@ do_action('woocommerce_before_single_product');
 
     if (!t1 || !t10 || !t50) return;
 
-    [t1, t10, t50].forEach(b => {
+    [t1, t10, t50].forEach(function(b) {
       b.classList.remove('on');
       b.style.background = 'var(--paper)';
       b.style.color = 'var(--ink)';
@@ -496,30 +509,40 @@ do_action('woocommerce_before_single_product');
     }
 
     var pDisplay = document.getElementById('prod-price-display');
-    if (pDisplay) pDisplay.textContent = '₹ ' + currentUnitPrice.toLocaleString();
+    if (pDisplay) pDisplay.textContent = '₹ ' + currentUnitPrice.toLocaleString('en-IN');
   }
 
   function recalcTotal() {
     var total = currentUnitPrice * currentQty;
     var tDisplay = document.getElementById('prod-total-display');
-    if (tDisplay) tDisplay.textContent = '₹ ' + total.toLocaleString();
+    if (tDisplay) tDisplay.textContent = '₹ ' + total.toLocaleString('en-IN');
     var barCount = document.getElementById('bar-pcs-count');
     if (barCount) barCount.textContent = currentQty + ' PCS';
   }
 
   function triggerAddToCart() {
-    if (typeof addToCartAjax === 'function') {
-      addToCartAjax('<?php echo esc_js($sku); ?>', currentSize + ' mm', currentQty);
+    var pTitle = <?php echo json_encode($title); ?>;
+    var pImg = <?php echo json_encode($main_img); ?>;
+    var pId = <?php echo intval($product_id ?: 1); ?>;
+    
+    if (typeof addProductToCartAndOpenDrawer === 'function') {
+      addProductToCartAndOpenDrawer(pId, pTitle, pImg, '₹ ' + currentUnitPrice, currentSize + ' mm', currentQty);
     } else if (typeof openCartDrawer === 'function') {
       openCartDrawer();
     }
   }
 
   function triggerBuyNow() {
-    triggerAddToCart();
+    var pTitle = <?php echo json_encode($title); ?>;
+    var pImg = <?php echo json_encode($main_img); ?>;
+    var pId = <?php echo intval($product_id ?: 1); ?>;
+    
+    if (typeof addProductToCartAndOpenDrawer === 'function') {
+      addProductToCartAndOpenDrawer(pId, pTitle, pImg, '₹ ' + currentUnitPrice, currentSize + ' mm', currentQty);
+    }
     setTimeout(function() {
       window.location.href = '<?php echo esc_url(home_url('/checkout/')); ?>';
-    }, 400);
+    }, 200);
   }
 </script>
 

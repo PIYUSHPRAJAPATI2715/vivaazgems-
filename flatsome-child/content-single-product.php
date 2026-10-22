@@ -363,63 +363,90 @@ do_action('woocommerce_before_single_product');
   var currentSize = '6×8';
 
   function switchProdView(view, btn) {
-    document.querySelectorAll('.gal-view-btn').forEach(b => {
+    var btns = document.querySelectorAll('.gal-view-btn');
+    btns.forEach(function(b) {
       b.classList.remove('on');
       b.style.background = 'var(--paper)';
       b.style.color = 'var(--ink)';
       b.style.borderColor = 'var(--line2)';
     });
-    btn.classList.add('on');
-    btn.style.background = 'var(--ink)';
-    btn.style.color = '#fff';
-    btn.style.borderColor = 'var(--ink)';
+    if (btn) {
+      btn.classList.add('on');
+      btn.style.background = 'var(--ink)';
+      btn.style.color = '#fff';
+      btn.style.borderColor = 'var(--ink)';
+    }
 
     var videoTag = document.getElementById('prod-video-tag');
     var rulerTag = document.getElementById('prod-ruler-tag');
     var mainImg = document.getElementById('prod-main-img');
 
-    if (view === 'video') {
-      if (videoTag) videoTag.style.display = 'block';
-      if (rulerTag) rulerTag.style.display = 'none';
-      if (mainImg) mainImg.style.transform = 'scale(1)';
-    } else if (view === 'size') {
-      if (videoTag) videoTag.style.display = 'none';
-      if (rulerTag) rulerTag.style.display = 'block';
-      if (mainImg) mainImg.style.transform = 'scale(0.85)';
-    } else if (view === 'loupe') {
-      if (videoTag) videoTag.style.display = 'none';
-      if (rulerTag) rulerTag.style.display = 'none';
-      if (mainImg) mainImg.style.transform = 'scale(1.4)';
-    } else {
-      if (videoTag) videoTag.style.display = 'none';
-      if (rulerTag) rulerTag.style.display = 'none';
-      if (mainImg) mainImg.style.transform = 'scale(1)';
+    if (mainImg) {
+      if (view === 'video') {
+        if (videoTag) videoTag.style.display = 'block';
+        if (rulerTag) rulerTag.style.display = 'none';
+        mainImg.style.transform = 'scale(1)';
+        mainImg.style.filter = 'none';
+      } else if (view === 'daylight') {
+        if (videoTag) videoTag.style.display = 'none';
+        if (rulerTag) rulerTag.style.display = 'none';
+        mainImg.style.transform = 'scale(1)';
+        mainImg.style.filter = 'brightness(1.06) saturate(.9)';
+      } else if (view === 'lamp') {
+        if (videoTag) videoTag.style.display = 'none';
+        if (rulerTag) rulerTag.style.display = 'none';
+        mainImg.style.transform = 'scale(1)';
+        mainImg.style.filter = 'sepia(.25) saturate(1.2) brightness(.97)';
+      } else if (view === 'loupe') {
+        if (videoTag) videoTag.style.display = 'none';
+        if (rulerTag) rulerTag.style.display = 'none';
+        mainImg.style.transform = 'scale(1.4)';
+        mainImg.style.filter = 'none';
+      } else if (view === 'size') {
+        if (videoTag) videoTag.style.display = 'none';
+        if (rulerTag) rulerTag.style.display = 'block';
+        mainImg.style.transform = 'scale(0.85)';
+        mainImg.style.filter = 'none';
+      }
     }
   }
 
   function switchProdThumb(idx, btn) {
-    document.querySelectorAll('.thumb-btn').forEach(b => {
+    var thumbBtns = document.querySelectorAll('.thumb-btn');
+    thumbBtns.forEach(function(b) {
       b.classList.remove('on');
       b.style.borderColor = 'var(--line2)';
     });
-    btn.classList.add('on');
-    btn.style.borderColor = 'var(--ink)';
+    if (btn) {
+      btn.classList.add('on');
+      btn.style.borderColor = 'var(--ink)';
+    }
+    var viewNames = ['video', 'daylight', 'lamp', 'loupe'];
+    var viewBtns = document.querySelectorAll('.gal-view-btn');
+    if (viewBtns[idx]) {
+      switchProdView(viewNames[idx], viewBtns[idx]);
+    }
   }
 
   function selectProdSize(size, btn) {
     currentSize = size;
-    document.querySelectorAll('.size-chip').forEach(b => {
+    var sizeBtns = document.querySelectorAll('.size-chip');
+    sizeBtns.forEach(function(b) {
       b.classList.remove('on');
       b.style.background = 'var(--paper)';
       b.style.color = 'var(--ink)';
       b.style.borderColor = 'var(--line2)';
     });
-    btn.classList.add('on');
-    btn.style.background = 'var(--ink)';
-    btn.style.color = '#fff';
-    btn.style.borderColor = 'var(--ink)';
+    if (btn) {
+      btn.classList.add('on');
+      btn.style.background = 'var(--ink)';
+      btn.style.color = '#fff';
+      btn.style.borderColor = 'var(--ink)';
+    }
     var pSize = document.getElementById('passport-size-val');
     if (pSize) pSize.textContent = size + ' mm';
+    var rulerTag = document.getElementById('prod-ruler-tag');
+    if (rulerTag) rulerTag.textContent = 'Grid squares are 1 mm · ' + size + ' mm';
   }
 
   function setProductQty(qty) {
@@ -446,7 +473,7 @@ do_action('woocommerce_before_single_product');
 
     if (!t1 || !t10 || !t50) return;
 
-    [t1, t10, t50].forEach(b => {
+    [t1, t10, t50].forEach(function(b) {
       b.classList.remove('on');
       b.style.background = 'var(--paper)';
       b.style.color = 'var(--ink)';
@@ -482,13 +509,13 @@ do_action('woocommerce_before_single_product');
     }
 
     var pDisplay = document.getElementById('prod-price-display');
-    if (pDisplay) pDisplay.textContent = '₹ ' + currentUnitPrice.toLocaleString();
+    if (pDisplay) pDisplay.textContent = '₹ ' + currentUnitPrice.toLocaleString('en-IN');
   }
 
   function recalcTotal() {
     var total = currentUnitPrice * currentQty;
     var tDisplay = document.getElementById('prod-total-display');
-    if (tDisplay) tDisplay.textContent = '₹ ' + total.toLocaleString();
+    if (tDisplay) tDisplay.textContent = '₹ ' + total.toLocaleString('en-IN');
     var barCount = document.getElementById('bar-pcs-count');
     if (barCount) barCount.textContent = currentQty + ' PCS';
   }
@@ -515,8 +542,7 @@ do_action('woocommerce_before_single_product');
     }
     setTimeout(function() {
       window.location.href = '<?php echo esc_url(home_url('/checkout/')); ?>';
-    }, 250);
-  }, 400);
+    }, 200);
   }
 </script>
 

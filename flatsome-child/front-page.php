@@ -6,6 +6,30 @@
 get_header();
 ?>
 
+<!-- PHONE HERO SECTION (100% EXACT TO PHONE DEMO: .phero, .pvid, .vtag, 3 ROUND CUTOUTS, .phh, .hsearch2, .ptrust2) -->
+<section class="phero">
+  <button type="button" class="pvid" onclick="if(typeof openVideoModal === 'function') openVideoModal('sapphire');">
+    <span class="vtag">▶ Macro video plays here</span>
+    <span class="big"><img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Sapphire"></span>
+    <span class="sm1"><img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" style="filter: hue-rotate(190deg);" alt="Citrine"></span>
+    <span class="sm2"><img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" style="filter: hue-rotate(340deg);" alt="Spinel"></span>
+  </button>
+  <div class="wrap" style="padding-top:22px">
+    <span class="cap">Natural coloured gemstones · Jaipur</span>
+    <h1 class="h1 phh">Loose gemstones, calibrated and matched.</h1>
+    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="btn">Shop gemstones</a>
+    <form class="hsearch2" action="<?php echo esc_url(home_url('/shop/')); ?>" method="get">
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+      <input id="hs-mobile" name="s" placeholder="Stone, shape or reel code" aria-label="Search a stone, shape or reel code">
+    </form>
+    <div class="ptrust2">
+      <span>Certificates<br>on request</span>
+      <span>Insured<br>shipping</span>
+      <span>Trade fair<br>exhibitor</span>
+    </div>
+  </div>
+</section>
+
 <!-- 1. HERO SECTION (100% EXACT MATCH FOR CLIENT DEMO IMAGE 1) -->
 <section class="hero">
   <div class="wrap">
@@ -561,6 +585,19 @@ get_header();
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- 10. THE TRADE BANNER (EXACT MATCH FOR CLIENT PHONE DEMO) -->
+<section class="wrap mobile-trade-banner" style="padding-block: 30px;">
+  <div style="background: var(--sand, #EFE8DD); padding: 26px 20px;">
+    <span class="cap" style="font-size: 10.5px; letter-spacing: 0.2em; color: var(--gold, #9B7C4E); font-weight: 700; text-transform: uppercase;">THE TRADE</span>
+    <h2 class="h2" style="font-size: 26px; font-family: var(--display); font-weight: 400; margin: 6px 0 10px;">Buying for a workshop or brand?</h2>
+    <p style="color: var(--mute, #76706A); margin: 0 0 16px; font-size: 14px; line-height: 1.55;">Wholesale pricing from 50 pieces, custom cuts to your CAD, and matched layouts for collections.</p>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <a href="<?php echo esc_url(home_url('/bulk-enquiry/')); ?>" class="btn sm" style="text-decoration: none;">Bulk enquiry</a>
+      <a href="https://wa.me/919680552270" target="_blank" class="btn sm o" style="text-decoration: none;">WhatsApp the team</a>
+    </div>
   </div>
 </section>
 

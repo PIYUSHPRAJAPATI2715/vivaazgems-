@@ -32,11 +32,11 @@ $track_url = home_url('/track-order/');
         <!-- Guest Box -->
         <div class="guest" style="background: var(--paper, #FFFFFF); border: 1px solid var(--line, #EFE9E0); padding: 16px 20px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
           <div>
-            <b style="font-size: 13.5px; color: var(--ink, #1C1A17);">Check out as a guest. No account needed.</b>
+            <b style="font-size: 14px; color: var(--ink, #1C1A17); display: block;">Check out as a guest. No account needed.</b>
             <div style="font-size: 12.5px; color: var(--soft, #76706A); margin-top: 2px;">You can create an account after paying, if you like.</div>
           </div>
           <span style="font-size: 13px;">
-            <a href="<?php echo esc_url(home_url('/my-account/')); ?>" style="color: var(--ink, #1C1A17); text-decoration: underline; font-weight: 600;">Sign in</a>
+            <a href="javascript:void(0);" onclick="if(typeof openSignInModal === 'function'){ openSignInModal(); } else { window.location.href='<?php echo esc_url(home_url('/my-account/')); ?>'; }" style="color: var(--ink, #1C1A17); text-decoration: underline; font-weight: 600;">Sign in</a>
           </span>
         </div>
 
@@ -52,12 +52,12 @@ $track_url = home_url('/track-order/');
               <div class="f">
                 <label for="checkout-email" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">Email</label>
                 <input id="checkout-email" type="email" required value="anita@example.com" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
-                <small style="display: block; font-size: 11px; color: var(--soft, #76706A); margin-top: 4px;">For the order confirmation</small>
+                <small style="display: block; font-size: 11.5px; color: var(--soft, #76706A); margin-top: 4px;">For the order confirmation</small>
               </div>
               <div class="f">
                 <label for="checkout-wa" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">WhatsApp number</label>
                 <input id="checkout-wa" required value="+91 98290 00000" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
-                <small style="display: block; font-size: 11px; color: var(--soft, #76706A); margin-top: 4px;">Only for delivery updates and live photos</small>
+                <small style="display: block; font-size: 11.5px; color: var(--soft, #76706A); margin-top: 4px;">Only for delivery updates and live photos</small>
               </div>
             </div>
           </div>
@@ -88,6 +88,20 @@ $track_url = home_url('/track-order/');
               <input id="checkout-address" required placeholder="House, street, area" value="12 Civil Lines" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
             </div>
 
+            <div id="company-expander-link">
+              <a href="javascript:void(0);" onclick="toggleCompanyFields();" style="font-size: 13px; font-weight: 500; color: var(--gold, #A37E3A); text-decoration: underline;">+ Add company name, GSTIN or a second address line</a>
+            </div>
+            <div id="company-fields-wrap" style="display: none; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="f">
+                <label for="checkout-company" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">Company name</label>
+                <input id="checkout-company" placeholder="Optional" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
+              </div>
+              <div class="f" id="field-gstin-wrap">
+                <label for="checkout-gstin" id="label-gstin" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">GSTIN</label>
+                <input id="checkout-gstin" placeholder="For a GST invoice" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
+              </div>
+            </div>
+
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
               <div class="f">
                 <label for="checkout-city" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">City</label>
@@ -109,9 +123,11 @@ $track_url = home_url('/track-order/');
         <!-- 3. Shipping Method Box -->
         <div class="cobox" style="background: var(--paper, #FFFFFF); border: 1px solid var(--line, #EFE9E0); padding: 24px; margin-bottom: 24px;">
           <h5 style="font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 16px; color: var(--ink, #1C1A17);">SHIPPING</h5>
-          <div class="rad on" style="display: flex; gap: 12px; align-items: center; justify-content: space-between; border: 1px solid var(--line, #EFE9E0); padding: 14px 16px; background: #FAF7F2;">
+          <div class="rad on" style="display: flex; gap: 12px; align-items: center; justify-content: space-between; border: 1px solid var(--ink, #1C1A17); padding: 13px 14px; background: #FAF7F2;">
             <div style="display: flex; align-items: center; gap: 10px;">
-              <span style="display: inline-block; width: 16px; height: 16px; border-radius: 50%; border: 4px solid var(--ink, #1C1A17); background: #FFF;"></span>
+              <span style="display: inline-block; width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink, #1C1A17); position: relative;">
+                <span style="position: absolute; inset: 3px; border-radius: 50%; background: var(--ink, #1C1A17);"></span>
+              </span>
               <div>
                 <b id="shipping-method-title" style="font-size: 13.5px; color: var(--ink, #1C1A17); display: block;">Insured courier</b>
                 <span id="shipping-method-sub" style="font-size: 12px; color: var(--soft, #76706A);">Arrives in about 2–3 days</span>
@@ -124,16 +140,16 @@ $track_url = home_url('/track-order/');
           </div>
         </div>
 
-        <!-- 4. Payment Options Box (Switches by Country / Currency - Point 7 Spec) -->
+        <!-- 4. Payment Options Box (Switches by Country / Currency) -->
         <div class="cobox" style="background: var(--paper, #FFFFFF); border: 1px solid var(--line, #EFE9E0); padding: 24px; margin-bottom: 24px;">
           <h5 style="font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 16px; color: var(--ink, #1C1A17);">PAYMENT</h5>
-          <div id="payment-options-list" style="display: flex; flex-direction: column; gap: 10px;">
+          <div id="payment-options-list" style="display: flex; flex-direction: column; gap: 8px;">
             <!-- Dynamically populated based on Country (INR vs USD) -->
           </div>
         </div>
 
         <button type="submit" id="btn-place-order" class="btn wide" style="display: block; width: 100%; padding: 18px; background: #1C1A17; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; border: none; cursor: pointer; border-radius: 0;">
-          PLACE ORDER
+          PLACE ORDER · ₹ 13,194
         </button>
 
       </form>
@@ -142,28 +158,37 @@ $track_url = home_url('/track-order/');
       <aside class="sum" style="background: var(--paper, #FFFFFF); border: 1px solid var(--line, #EFE9E0); padding: 24px; position: sticky; top: 100px;">
         <h5 class="cap" style="font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 14px; color: var(--ink, #1C1A17);">YOUR ORDER</h5>
         
-        <div id="checkout-summary-items" style="margin-bottom: 16px; max-height: 300px; overflow-y: auto;">
+        <div id="checkout-summary-items" style="margin-bottom: 14px; max-height: 320px; overflow-y: auto;">
           <!-- Dynamically populated from LocalStorage or fallback -->
         </div>
 
-        <div class="row" style="display: flex; justify-content: space-between; font-size: 13.5px; padding: 6px 0;">
-          <span>Subtotal</span>
-          <span id="co-subtotal-val" style="font-weight: 600;">₹ 1,260</span>
+        <!-- Coupon code line -->
+        <div id="checkout-coupon-toggle" style="margin: 8px 0 12px; border-bottom: 1px solid var(--line, #EFE9E0); padding-bottom: 10px;">
+          <a href="javascript:void(0);" onclick="toggleCheckoutCoupon();" style="font-size: 12.5px; font-weight: 500; color: var(--gold, #A37E3A); text-decoration: underline;">Have a coupon?</a>
+        </div>
+        <div id="checkout-coupon-box" style="display: none; gap: 8px; margin: 10px 0 14px;">
+          <input type="text" id="checkout-coupon-input" placeholder="Coupon code" style="flex: 1; height: 38px; border: 1px solid var(--line, #EFE9E0); padding: 0 10px; font-size: 13px;">
+          <button type="button" class="btn sm" onclick="applyCheckoutCoupon();" style="padding: 0 14px; height: 38px; font-size: 11px;">APPLY</button>
         </div>
 
         <div class="row" style="display: flex; justify-content: space-between; font-size: 13.5px; padding: 6px 0;">
-          <span>Shipping, insured</span>
+          <span id="co-subtotal-label">Subtotal · 2 items</span>
+          <span id="co-subtotal-val" style="font-weight: 600;">₹ 13,044</span>
+        </div>
+
+        <div class="row" style="display: flex; justify-content: space-between; font-size: 13.5px; padding: 6px 0;">
+          <span>Shipping</span>
           <span id="co-shipping-val">₹ 150</span>
         </div>
 
         <div class="row" style="display: flex; justify-content: space-between; font-size: 13.5px; padding: 6px 0;">
-          <span id="co-tax-label">GST</span>
-          <span id="co-tax-val" style="color: var(--soft, #76706A);">included</span>
+          <span id="co-tax-label">Taxes</span>
+          <span id="co-tax-val" style="color: var(--soft, #76706A);">Included in price</span>
         </div>
 
         <div class="row t" style="display: flex; justify-content: space-between; font-size: 17px; font-weight: 700; border-top: 1px solid var(--line, #EFE9E0); margin-top: 10px; padding-top: 12px; color: var(--ink, #1C1A17);">
           <span>Total</span>
-          <span id="co-total-val" style="color: var(--ink, #1C1A17);">₹ 1,410</span>
+          <span id="co-total-val" style="color: var(--ink, #1C1A17);">₹ 13,194</span>
         </div>
 
         <p style="font-size: 12.5px; margin: 16px 0 0; line-height: 1.5; color: var(--ink, #1C1A17); border-top: 1px solid var(--line, #EFE9E0); padding-top: 14px;">
@@ -215,7 +240,41 @@ $track_url = home_url('/track-order/');
 <script>
   var _selectedCountry = 'India';
   var _selectedPayIndex = 0;
-  var _checkoutSubtotal = 1260;
+  var _checkoutSubtotal = 13044;
+  var _checkoutDiscount = 0;
+
+  function toggleCompanyFields() {
+    var wrap = document.getElementById('company-fields-wrap');
+    var link = document.getElementById('company-expander-link');
+    if (wrap) {
+      var isHidden = (wrap.style.display === 'none');
+      wrap.style.display = isHidden ? 'grid' : 'none';
+      if (link) link.style.display = isHidden ? 'none' : 'block';
+    }
+  }
+
+  function toggleCheckoutCoupon() {
+    var box = document.getElementById('checkout-coupon-box');
+    if (box) {
+      box.style.display = box.style.display === 'none' ? 'flex' : 'none';
+      if (box.style.display === 'flex') {
+        var inp = document.getElementById('checkout-coupon-input');
+        if (inp) inp.focus();
+      }
+    }
+  }
+
+  function applyCheckoutCoupon() {
+    var inp = document.getElementById('checkout-coupon-input');
+    var val = (inp ? inp.value : '').trim().toUpperCase();
+    if (val === 'VIVAAZ10' || val === 'WELCOME10') {
+      _checkoutDiscount = Math.round(_checkoutSubtotal * 0.1);
+      alert('Coupon ' + val + ' applied! 10% discount subtracted.');
+      calculateCheckoutTotals();
+    } else if (val) {
+      alert('Coupon code "' + val + '" is invalid or expired.');
+    }
+  }
 
   function getCheckoutCartItems() {
     var items = [];
@@ -223,17 +282,28 @@ $track_url = home_url('/track-order/');
       items = JSON.parse(localStorage.getItem('vivaaz_local_cart') || '[]');
     } catch(e) {}
     
-    // If empty, provide sample lot so checkout is NEVER blank!
+    // If empty, provide exact items matching client screenshot 2!
     if (!items || items.length === 0) {
-      items = [{
-        title: 'Rainbow Moonstone Oval Cabochon',
-        size: '6×8 mm',
-        qty: 12,
-        quantity: 12,
-        unitPrice: 105,
-        total: 1260,
-        image: '<?php echo esc_url(vivaaz_get_img_url("moonstone.jpg")); ?>'
-      }];
+      items = [
+        {
+          title: 'Agate Oval Cabochon · AA',
+          size: '6×8 mm',
+          qty: 36,
+          quantity: 36,
+          unitPrice: 75,
+          total: 2700,
+          image: '<?php echo esc_url(vivaaz_get_img_url("ruby.jpg")); ?>'
+        },
+        {
+          title: 'Rainbow Moonstone Oval Cabochon',
+          size: '6×8 mm',
+          qty: 80,
+          quantity: 80,
+          unitPrice: 129.3,
+          total: 10344,
+          image: '<?php echo esc_url(vivaaz_get_img_url("moonstone.jpg")); ?>'
+        }
+      ];
     }
     return items;
   }
@@ -257,13 +327,15 @@ $track_url = home_url('/track-order/');
     container.innerHTML = pays.map(function(p, i) {
       var isChecked = (i === _selectedPayIndex);
       return `
-        <label onclick="selectPayment(${i});" style="display: flex; gap: 12px; align-items: center; border: 1px solid ${isChecked ? 'var(--ink, #1C1A17)' : 'var(--line, #EFE9E0)'}; padding: 14px 16px; background: ${isChecked ? '#FAF7F2' : '#FFF'}; cursor: pointer;">
-          <input type="radio" name="checkout_pay_method" value="${i}" ${isChecked ? 'checked' : ''} style="accent-color: #1C1A17;">
+        <div class="rad ${isChecked ? 'on' : ''}" onclick="selectPayment(${i});" style="display: flex; gap: 12px; align-items: flex-start; border: 1px solid ${isChecked ? 'var(--ink, #1C1A17)' : 'var(--line2, #E2D7C6)'}; padding: 13px 14px; background: var(--paper, #FFF); cursor: pointer;">
+          <i style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink, #1C1A17); flex: none; margin-top: 2px; position: relative; display: inline-block;">
+            ${isChecked ? '<span style="position: absolute; inset: 3px; border-radius: 50%; background: var(--ink, #1C1A17); display: block;"></span>' : ''}
+          </i>
           <div>
             <b style="font-size: 13.5px; color: var(--ink, #1C1A17); display: block;">${p[0]}</b>
-            <span style="font-size: 12px; color: var(--soft, #76706A);">${p[1]}</span>
+            <span style="font-size: 12px; color: var(--soft, #76706A); display: block;">${p[1]}</span>
           </div>
-        </label>
+        </div>
       `;
     }).join('');
   }
@@ -288,6 +360,7 @@ $track_url = home_url('/track-order/');
     var taxLabel = document.getElementById('co-tax-label');
     var taxVal = document.getElementById('co-tax-val');
     var coShip = document.getElementById('co-shipping-val');
+    var gstinWrap = document.getElementById('field-gstin-wrap');
 
     if (isInd) {
       if (pinLabel) pinLabel.textContent = 'PIN code';
@@ -299,8 +372,9 @@ $track_url = home_url('/track-order/');
       if (shipCost) shipCost.textContent = '₹ 150';
       if (coShip) coShip.textContent = '₹ 150';
       if (dutyNote) dutyNote.style.display = 'none';
-      if (taxLabel) taxLabel.textContent = 'GST';
-      if (taxVal) taxVal.textContent = 'included';
+      if (taxLabel) taxLabel.textContent = 'Taxes';
+      if (taxVal) taxVal.textContent = 'Included in price';
+      if (gstinWrap) gstinWrap.style.display = 'block';
     } else {
       if (pinLabel) pinLabel.textContent = 'ZIP / postal code';
       if (pinInput) pinInput.value = '94103';
@@ -313,6 +387,7 @@ $track_url = home_url('/track-order/');
       if (dutyNote) dutyNote.style.display = 'block';
       if (taxLabel) taxLabel.textContent = 'Import duties';
       if (taxVal) taxVal.textContent = 'paid on delivery';
+      if (gstinWrap) gstinWrap.style.display = 'none';
     }
 
     _selectedPayIndex = 0;
@@ -323,22 +398,25 @@ $track_url = home_url('/track-order/');
   function calculateCheckoutTotals() {
     var items = getCheckoutCartItems();
     var sub = 0;
+    var totalItems = items.length;
     var isInd = (_selectedCountry === 'India');
     var ship = isInd ? 150 : 3780;
 
     items.forEach(function(it) {
       var qty = parseInt(it.quantity || it.qty) || 1;
-      var price = parseInt(String(it.unitPrice || it.price || '105').replace(/[^0-9]/g, '')) || 105;
-      sub += qty * price;
+      var price = parseInt(String(it.unitPrice || it.price || '75').replace(/[^0-9]/g, '')) || 75;
+      sub += (it.total ? parseInt(it.total) : (qty * price));
     });
 
     _checkoutSubtotal = sub;
-    var total = sub + ship;
+    var total = Math.max(0, sub - _checkoutDiscount) + ship;
 
+    var subLabel = document.getElementById('co-subtotal-label');
     var subEl = document.getElementById('co-subtotal-val');
     var totalEl = document.getElementById('co-total-val');
     var btn = document.getElementById('btn-place-order');
 
+    if (subLabel) subLabel.textContent = 'Subtotal · ' + totalItems + (totalItems === 1 ? ' item' : ' items');
     if (subEl) subEl.textContent = '₹ ' + sub.toLocaleString('en-IN');
     if (totalEl) totalEl.textContent = '₹ ' + total.toLocaleString('en-IN') + (isInd ? '' : ' (approx $ ' + Math.round(total / 84) + ')');
     if (btn) btn.textContent = 'PLACE ORDER · ₹ ' + total.toLocaleString('en-IN');

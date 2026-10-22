@@ -102,7 +102,7 @@ $vivaaz_footer_rendered = true;
       </div>
 
       <!-- PHONE FOOTER TAP ROWS (POINT 6 SPEC: ACCORDION TAP ROWS) -->
-      <div class="footer-mobile-rows frows" style="display: none; margin-bottom: 30px;">
+      <div class="footer-mobile-rows frows" style="margin-bottom: 30px;">
         <details style="border-top: 1px solid var(--line2);">
           <summary style="list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 14px 0; font-size: 12.5px; letter-spacing: 0.18em; font-weight: 700; cursor: pointer; text-transform: uppercase;">
             SHOP

@@ -153,6 +153,18 @@ if ($active_stone && isset($stone_display_titles[strtolower($active_stone)])) {
       <?php endif; ?>
     </div>
 
+    <!-- MOBILE STICKY FILTER + SORT BAR (EXACT MATCH FOR CLIENT PHONE DEMO: .fsl) -->
+    <div class="fsl" id="mobile-fsl">
+      <button type="button" onclick="openFilterSheet();">
+        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+        FILTER <span id="mobile-filter-badge-count"></span>
+      </button>
+      <button type="button" onclick="openSortSheet();">
+        SORT
+        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+      </button>
+    </div>
+
     <!-- Top Bar matching Image 2: "46 products" + Sort dropdown -->
     <div class="bar" style="display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-top: 28px; padding: 14px 0; border-top: 1px solid var(--line, #E8E1D6); border-bottom: 1px solid var(--line, #E8E1D6); font-size: 13px; color: var(--mute, #76706A); flex-wrap: wrap;">
       <div class="chosen" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
@@ -483,9 +495,88 @@ if ($active_stone && isset($stone_display_titles[strtolower($active_stone)])) {
 
   </div>
 
+  <!-- MOBILE BOTTOM SHEETS FOR FILTER & SORT (EXACT MATCH FOR CLIENT PHONE DEMO: .sheet) -->
+  <div class="scrim" id="mobile-sheet-scrim" style="display:none; position:fixed; inset:0; background:rgba(28,26,23,.5); z-index:99998;" onclick="closeMobileSheets();"></div>
+  
+  <!-- Filter Sheet -->
+  <section class="sheet" id="mobile-filter-sheet" role="dialog" aria-label="Filters" style="display:none;">
+    <div class="sh">
+      <b>Filter</b>
+      <button type="button" onclick="closeMobileSheets();" aria-label="Close" style="background:none; border:0; font-size:24px; cursor:pointer; color:var(--soft); line-height:1;">&times;</button>
+    </div>
+    <div class="sb2" id="mobile-filter-sheet-body">
+      <!-- Cloned from desktop sidebar -->
+    </div>
+    <div class="sf">
+      <button type="button" class="btn o" onclick="clearAllShopFilters();">Clear all</button>
+      <button type="button" class="btn" onclick="closeMobileSheets();">Show results</button>
+    </div>
+  </section>
+
+  <!-- Sort Sheet -->
+  <section class="sheet" id="mobile-sort-sheet" role="dialog" aria-label="Sort" style="display:none;">
+    <div class="sh">
+      <b>Sort</b>
+      <button type="button" onclick="closeMobileSheets();" aria-label="Close" style="background:none; border:0; font-size:24px; cursor:pointer; color:var(--soft); line-height:1;">&times;</button>
+    </div>
+    <div class="sb2">
+      <button type="button" class="opt on" onclick="selectMobileSort('newest', this);">Newest ✓</button>
+      <button type="button" class="opt" onclick="selectMobileSort('pop', this);">Best selling</button>
+      <button type="button" class="opt" onclick="selectMobileSort('plh', this);">Price low to high</button>
+      <button type="button" class="opt" onclick="selectMobileSort('phl', this);">Price high to low</button>
+    </div>
+  </section>
+
 </div>
 
 <script>
+function openFilterSheet() {
+  var sheet = document.getElementById('mobile-filter-sheet');
+  var scrim = document.getElementById('mobile-sheet-scrim');
+  var body = document.getElementById('mobile-filter-sheet-body');
+  var sidebar = document.getElementById('desktop-shop-sidebar');
+  if (sheet && scrim) {
+    if (sidebar && body && !body.hasChildNodes()) {
+      body.innerHTML = '<div class="side" style="display:block!important; width:auto;">' + sidebar.innerHTML + '</div>';
+    }
+    sheet.style.display = 'flex';
+    scrim.style.display = 'block';
+  }
+}
+
+function openSortSheet() {
+  var sheet = document.getElementById('mobile-sort-sheet');
+  var scrim = document.getElementById('mobile-sheet-scrim');
+  if (sheet && scrim) {
+    sheet.style.display = 'flex';
+    scrim.style.display = 'block';
+  }
+}
+
+function closeMobileSheets() {
+  var fSheet = document.getElementById('mobile-filter-sheet');
+  var sSheet = document.getElementById('mobile-sort-sheet');
+  var scrim = document.getElementById('mobile-sheet-scrim');
+  if (fSheet) fSheet.style.display = 'none';
+  if (sSheet) sSheet.style.display = 'none';
+  if (scrim) scrim.style.display = 'none';
+}
+
+function selectMobileSort(val, btn) {
+  document.querySelectorAll('#mobile-sort-sheet .opt').forEach(function(o) {
+    o.classList.remove('on');
+    o.innerHTML = o.innerText.replace(' ✓', '');
+  });
+  btn.classList.add('on');
+  btn.innerHTML = btn.innerText + ' ✓';
+  var sortSelect = document.getElementById('shop-sort-select');
+  if (sortSelect) {
+    sortSelect.value = val;
+    sortSelect.dispatchEvent(new Event('change'));
+  }
+  closeMobileSheets();
+}
+
 function toggleShapeChip(btn, shape) {
   var wasOn = btn.classList.contains('on');
   var parent = btn.closest('.chips');
@@ -520,8 +611,12 @@ function updatePriceSlider(val) {
 
 function updateFilterBadges() {
   var container = document.getElementById('active-filter-chips');
-  if (!container) return;
   var activeChips = document.querySelectorAll('.side .chip.on');
+  var badgeCount = document.getElementById('mobile-filter-badge-count');
+  if (badgeCount) {
+    badgeCount.textContent = activeChips.length > 0 ? '(' + activeChips.length + ')' : '';
+  }
+  if (!container) return;
   var html = '';
   activeChips.forEach(function(c) {
     var key = c.getAttribute('data-key') || '';
