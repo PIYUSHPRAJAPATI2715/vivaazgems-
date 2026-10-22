@@ -65,7 +65,7 @@ do_action('woocommerce_before_single_product');
   </div>
 
   <!-- 4-QUADRANT PRODUCT GRID: BOTH COLUMNS END ON THE EXACT SAME LEVEL -->
-  <div class="pd pd2g" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 60px; row-gap: 26px; align-items: start;">
+  <div class="pd pd2g">
     
     <!-- Q1: TOP LEFT - GALLERY & VIEWS -->
     <div class="q1">

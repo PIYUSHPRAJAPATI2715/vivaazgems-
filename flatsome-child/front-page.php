@@ -11,8 +11,8 @@ get_header();
   <button type="button" class="pvid" onclick="if(typeof openVideoModal === 'function') openVideoModal('sapphire');">
     <span class="vtag">▶ Macro video plays here</span>
     <span class="big"><img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Sapphire"></span>
-    <span class="sm1"><img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" style="filter: hue-rotate(190deg);" alt="Citrine"></span>
-    <span class="sm2"><img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" style="filter: hue-rotate(340deg);" alt="Spinel"></span>
+    <span class="sm1"><img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald"></span>
+    <span class="sm2"><img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby"></span>
   </button>
   <div class="wrap" style="padding-top:22px">
     <span class="cap">Natural coloured gemstones · Jaipur</span>
@@ -101,113 +101,113 @@ get_header();
   </div>
 
   <!-- TAB 1: BY COLOUR (6 TILES MATCHING DEMO COLOUR_TILES) -->
-  <div class="tiles6" id="panel-tab-colour" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px;">
+  <div class="tiles6" id="panel-tab-colour">
     
     <a href="<?php echo esc_url(home_url('/shop/?filter_color=blue')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp cl1" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; position: relative; border: 1px solid var(--line);">
+      <span class="tp cl1">
         <em class="dot" style="position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line2); background: #2B547E;"></em>
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Blue" style="width: 70%; object-fit: contain;">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Blue">
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Blue</b>
-      <small style="font-size: 12px; color: var(--soft);">Sapphire, topaz, tanzanite</small>
+      <b>Blue</b>
+      <small>Sapphire, topaz, tanzanite</small>
     </a>
 
     <a href="<?php echo esc_url(home_url('/shop/?filter_color=red')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp cl1" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; position: relative; border: 1px solid var(--line);">
+      <span class="tp cl1">
         <em class="dot" style="position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line2); background: #A81C28;"></em>
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Red" style="width: 70%; object-fit: contain;">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Red">
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Red</b>
-      <small style="font-size: 12px; color: var(--soft);">Ruby, garnet, spinel</small>
+      <b>Red</b>
+      <small>Ruby, garnet, spinel</small>
     </a>
 
     <a href="<?php echo esc_url(home_url('/shop/?filter_color=pink')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp cl1" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; position: relative; border: 1px solid var(--line);">
+      <span class="tp cl1">
         <em class="dot" style="position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line2); background: #E07A9A;"></em>
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Pink" style="width: 70%; object-fit: contain; filter: hue-rotate(330deg);">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Pink" style="filter: hue-rotate(330deg);">
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Pink</b>
-      <small style="font-size: 12px; color: var(--soft);">Pink sapphire, spinel, tourmaline</small>
+      <b>Pink</b>
+      <small>Pink sapphire, spinel, tourmaline</small>
     </a>
 
     <a href="<?php echo esc_url(home_url('/shop/?filter_color=green')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp cl1" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; position: relative; border: 1px solid var(--line);">
+      <span class="tp cl1">
         <em class="dot" style="position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line2); background: #2E8B57;"></em>
-        <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Green" style="width: 70%; object-fit: contain;">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Green">
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Green</b>
-      <small style="font-size: 12px; color: var(--soft);">Emerald, tsavorite, peridot</small>
+      <b>Green</b>
+      <small>Emerald, tsavorite, peridot</small>
     </a>
 
     <a href="<?php echo esc_url(home_url('/shop/?filter_color=yellow')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp cl1" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; position: relative; border: 1px solid var(--line);">
+      <span class="tp cl1">
         <em class="dot" style="position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line2); background: #D4A017;"></em>
-        <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Yellow" style="width: 70%; object-fit: contain; filter: hue-rotate(190deg);">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Yellow" style="filter: hue-rotate(190deg);">
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Yellow</b>
-      <small style="font-size: 12px; color: var(--soft);">Yellow sapphire, citrine</small>
+      <b>Yellow</b>
+      <small>Yellow sapphire, citrine</small>
     </a>
 
     <a href="<?php echo esc_url(home_url('/shop/?filter_color=purple')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp cl1" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; position: relative; border: 1px solid var(--line);">
+      <span class="tp cl1">
         <em class="dot" style="position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line2); background: #6A3B7B;"></em>
-        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Purple" style="width: 70%; object-fit: contain; filter: hue-rotate(260deg);">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Purple" style="filter: hue-rotate(260deg);">
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Purple</b>
-      <small style="font-size: 12px; color: var(--soft);">Amethyst, purple sapphire</small>
+      <b>Purple</b>
+      <small>Amethyst, purple sapphire</small>
     </a>
 
   </div>
 
   <!-- TAB 2: BY STONE (6 TILES MATCHING DEMO STONE_TILES) -->
-  <div class="tiles6" id="panel-tab-stone" style="display: none; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px;">
+  <div class="tiles6 is-hidden" id="panel-tab-stone">
     
     <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; border: 1px solid var(--line);">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby" style="width: 70%; object-fit: contain;">
+      <span class="tp">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby">
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Ruby</b>
-      <small style="font-size: 12px; color: var(--soft);">Pigeon blood & heated</small>
+      <b>Ruby</b>
+      <small>Pigeon blood & heated</small>
     </a>
 
     <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; border: 1px solid var(--line);">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Sapphire" style="width: 70%; object-fit: contain;">
+      <span class="tp">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Sapphire">
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Sapphire</b>
-      <small style="font-size: 12px; color: var(--soft);">Ceylon blue, yellow & fancy</small>
+      <b>Sapphire</b>
+      <small>Ceylon blue, yellow & fancy</small>
     </a>
 
     <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; border: 1px solid var(--line);">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald" style="width: 70%; object-fit: contain;">
+      <span class="tp">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald">
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Emerald</b>
-      <small style="font-size: 12px; color: var(--soft);">Zambian & Colombian</small>
+      <b>Emerald</b>
+      <small>Zambian & Colombian</small>
     </a>
 
     <a href="<?php echo esc_url(home_url('/shop/?filter_stone=spinel')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; border: 1px solid var(--line);">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Spinel" style="width: 70%; object-fit: contain; filter: hue-rotate(340deg);">
+      <span class="tp">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Spinel" style="filter: hue-rotate(340deg);">
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Spinel</b>
-      <small style="font-size: 12px; color: var(--soft);">Red, hot pink & cobalt blue</small>
+      <b>Spinel</b>
+      <small>Red, hot pink & cobalt blue</small>
     </a>
 
     <a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; border: 1px solid var(--line);">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Topaz" style="width: 70%; object-fit: contain;">
+      <span class="tp">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Topaz">
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Topaz</b>
-      <small style="font-size: 12px; color: var(--soft);">Sky, Swiss & London blue</small>
+      <b>Topaz</b>
+      <small>Sky, Swiss & London blue</small>
     </a>
 
     <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; border: 1px solid var(--line);">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone" style="width: 70%; object-fit: contain;">
+      <span class="tp">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone">
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Rainbow Moonstone</b>
-      <small style="font-size: 12px; color: var(--soft);">Blue flash & cabochon</small>
+      <b>Rainbow Moonstone</b>
+      <small>Blue flash & cabochon</small>
     </a>
 
   </div>
@@ -219,9 +219,9 @@ get_header();
 
 <!-- 4. LAYOUTS FOR JEWELLERS SECTION (EXACT DEMO LAY2) -->
 <section class="wrap" style="padding-bottom: 72px;">
-  <div class="lay2" style="display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; align-items: center;">
+  <div class="lay2">
     
-    <div class="lp rv" style="background: var(--paper); aspect-ratio: 4/3; position: relative; overflow: hidden;">
+    <div class="lp rv">
       <?php echo vivaaz_render_lay_art('ruby', 1.5); ?>
     </div>
 
@@ -268,48 +268,48 @@ get_header();
     <a href="<?php echo esc_url(home_url('/beads/')); ?>" class="ul2" style="text-decoration: none; border-bottom: 1px solid currentColor;">View all beads →</a>
   </div>
 
-  <div class="tiles6" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px;">
+  <div class="tiles6 beads-tiles">
     
     <a href="<?php echo esc_url(home_url('/beads/?shape=Round')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+      <span class="tp">
         <?php echo vivaaz_render_bead_strand('Round', '#3c9ad6', 260); ?>
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Round</b>
+      <b>Round</b>
     </a>
 
     <a href="<?php echo esc_url(home_url('/beads/?shape=Rondelle')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+      <span class="tp">
         <?php echo vivaaz_render_bead_strand('Rondelle', '#b02a3a', 260); ?>
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Rondelle</b>
+      <b>Rondelle</b>
     </a>
 
     <a href="<?php echo esc_url(home_url('/beads/?shape=Faceted%20rondelle')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+      <span class="tp">
         <?php echo vivaaz_render_bead_strand('Faceted rondelle', '#8e1b2c', 260); ?>
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Faceted rondelle</b>
+      <b>Faceted rondelle</b>
     </a>
 
     <a href="<?php echo esc_url(home_url('/beads/?shape=Nugget')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+      <span class="tp">
         <?php echo vivaaz_render_bead_strand('Nugget', '#7d4fb5', 260); ?>
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Nugget</b>
+      <b>Nugget</b>
     </a>
 
     <a href="<?php echo esc_url(home_url('/beads/?shape=Chips')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+      <span class="tp">
         <?php echo vivaaz_render_bead_strand('Chips', '#8fae3a', 260); ?>
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Chips</b>
+      <b>Chips</b>
     </a>
 
     <a href="<?php echo esc_url(home_url('/beads/?shape=Heishi')); ?>" class="tl2 rv" style="text-decoration: none;">
-      <span class="tp" style="aspect-ratio: 4/5; background: var(--paper); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+      <span class="tp">
         <?php echo vivaaz_render_bead_strand('Heishi', '#2f9d9d', 260); ?>
       </span>
-      <b style="font-size: 14px; font-weight: 600; color: var(--ink);">Heishi</b>
+      <b>Heishi</b>
     </a>
 
   </div>
@@ -325,7 +325,7 @@ get_header();
     <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="ul2">View all →</a>
   </div>
 
-  <div class="grid g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 22px;">
+  <div class="grid g4">
     
     <!-- Product 1: Rainbow Moonstone Oval Cabochon (Calibrated Lot) -->
     <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
@@ -403,7 +403,7 @@ get_header();
 </section>
 
 <!-- 7. OUR STORY SECTION (EXACT DEMO STORY2 WITH VIDEO PREVIEW & OUTLINE BUTTON) -->
-<section class="wrap story2" style="display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; align-items: center; padding-bottom: 72px;">
+<section class="wrap story2" style="padding-bottom: 72px;">
   
   <button type="button" class="rv vid" onclick="openVideoModal('emerald');" style="position: relative; aspect-ratio: 16/11; background: #151311; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 0; cursor: pointer; padding: 0;">
     <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald Under Loupe" style="width: 70%; max-height: 85%; object-fit: contain;">
@@ -452,7 +452,7 @@ get_header();
   </div>
   <p style="margin: -8px 0 18px; color: var(--mute); font-size: 14px;">Tap a reel to shop the exact stone in it.</p>
 
-  <div class="reels5" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px;">
+  <div class="reels5">
     
     <!-- Reel 1 -->
     <div class="reelc" style="display: flex; flex-direction: column; gap: 10px;">
@@ -534,27 +534,27 @@ get_header();
 
 <!-- 9. REVIEWS & TALK TO A GEM EXPERT (EXACT DEMO REV2 & ASKBOX) -->
 <section class="wrap" id="reviews" style="padding-bottom: 72px;">
-  <div class="rev2" style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 48px; align-items: start;">
+  <div class="rev2">
     
     <div>
       <span class="cap" style="font-size: 10.5px; letter-spacing: 0.2em; color: var(--gold); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px;">GOOGLE REVIEWS</span>
       <h2 class="h2" style="font-size: 38px; font-family: var(--display); font-weight: 400; color: var(--ink); margin: 0 0 24px;">What buyers say.</h2>
 
-      <div class="rv3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-bottom: 24px;">
+      <div class="rv3" id="revs">
         
-        <div class="rv" style="border-top: 1px solid var(--ink); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; background: transparent; border-left: 0; border-right: 0; border-bottom: 0;">
+        <div class="rv">
           <span style="color: var(--gold2); letter-spacing: 3px; font-size: 13px;">★★★★★</span>
           <p style="font-size: 13.5px; line-height: 1.55; margin: 0; color: var(--ink);">The calibrated lot matched perfectly. Every stone was the same size and colour, and the video before packing helped a lot.</p>
           <small style="font-size: 12px; color: var(--soft); margin-top: auto;">Anita R. · Mumbai</small>
         </div>
 
-        <div class="rv" style="border-top: 1px solid var(--ink); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; background: transparent; border-left: 0; border-right: 0; border-bottom: 0;">
+        <div class="rv">
           <span style="color: var(--gold2); letter-spacing: 3px; font-size: 13px;">★★★★★</span>
           <p style="font-size: 13.5px; line-height: 1.55; margin: 0; color: var(--ink);">Ordered a ruby pair for earrings. Live photos on WhatsApp, insured courier, no surprises at delivery.</p>
           <small style="font-size: 12px; color: var(--soft); margin-top: auto;">James W. · London</small>
         </div>
 
-        <div class="rv" style="border-top: 1px solid var(--ink); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; background: transparent; border-left: 0; border-right: 0; border-bottom: 0;">
+        <div class="rv">
           <span style="color: var(--gold2); letter-spacing: 3px; font-size: 13px;">★★★★★</span>
           <p style="font-size: 13.5px; line-height: 1.55; margin: 0; color: var(--ink);">The astrologer explained everything calmly. The ruby they suggested was within my budget and came with a certificate.</p>
           <small style="font-size: 12px; color: var(--soft); margin-top: auto;">Priya S. · Jaipur</small>
@@ -562,7 +562,9 @@ get_header();
 
       </div>
 
-      <a href="<?php echo esc_url(home_url('/reviews/')); ?>" class="ul2" style="text-decoration: none; border-bottom: 1px solid currentColor; font-size: 13px; font-weight: 600; color: var(--ink);">Read all reviews →</a>
+      <div class="dots" id="rdots"><i class="on"></i><i></i><i></i></div>
+
+      <a href="<?php echo esc_url(home_url('/reviews/')); ?>" class="ul2" style="text-decoration: none; border-bottom: 1px solid currentColor; font-size: 13px; font-weight: 600; color: var(--ink); margin-top: 14px; display: inline-block;">Read all reviews →</a>
     </div>
 
     <!-- Talk to a Gem Expert Box (Exact Image 5 Askbox) -->
@@ -624,8 +626,14 @@ get_header();
         btnStone.style.color = '#9A9186';
         btnStone.style.borderBottomColor = 'transparent';
       }
-      if (panelColour) panelColour.style.display = 'grid';
-      if (panelStone) panelStone.style.display = 'none';
+      if (panelColour) {
+        panelColour.classList.remove('is-hidden');
+        panelColour.style.display = '';
+      }
+      if (panelStone) {
+        panelStone.classList.add('is-hidden');
+        panelStone.style.display = 'none';
+      }
       if (heading) heading.textContent = 'Find your colour.';
       if (allStonesLink) allStonesLink.style.display = 'none';
     } else {
@@ -641,12 +649,30 @@ get_header();
         btnColour.style.color = '#9A9186';
         btnColour.style.borderBottomColor = 'transparent';
       }
-      if (panelStone) panelStone.style.display = 'grid';
-      if (panelColour) panelColour.style.display = 'none';
+      if (panelStone) {
+        panelStone.classList.remove('is-hidden');
+        panelStone.style.display = '';
+      }
+      if (panelColour) {
+        panelColour.classList.add('is-hidden');
+        panelColour.style.display = 'none';
+      }
       if (heading) heading.textContent = 'Find your stone.';
       if (allStonesLink) allStonesLink.style.display = 'block';
     }
   }
+
+  // Review dots indicator on horizontal swipe (exact demo match)
+  document.addEventListener('scroll', function(e) {
+    var r = e.target && e.target.id === 'revs' ? e.target : null;
+    if (!r) return;
+    var i = Math.round(r.scrollLeft / (r.clientWidth || 1));
+    var dots = document.querySelectorAll('#rdots i');
+    dots.forEach(function(d, k) {
+      if (k === i) d.classList.add('on');
+      else d.classList.remove('on');
+    });
+  }, true);
 
   function setNaTab(tab) {
     var btnNew = document.getElementById('btn-na-new');
