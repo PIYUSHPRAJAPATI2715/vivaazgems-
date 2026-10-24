@@ -103,7 +103,7 @@ do_action('woocommerce_before_single_product');
     </div>
 
     <!-- Q2: TOP RIGHT - TITLE, PRICE, TIERS, SIZES, ACTIONS -->
-    <div class="q2" style="display: flex; flex-direction: column;">
+    <div class="q2">
       <span class="eye" style="font-size: 11px; letter-spacing: 0.16em; color: var(--gold); font-weight: 700; text-transform: uppercase;">
         <?php echo esc_html($sku); ?> · <?php echo esc_html($sold_as_tag); ?> · AAA
       </span>
@@ -204,7 +204,7 @@ do_action('woocommerce_before_single_product');
     </div>
 
     <!-- Q3: BOTTOM LEFT - THE STONE PASSPORT BOX -->
-    <div class="q3" style="align-self: stretch; display: flex;">
+    <div class="q3">
       <div class="stonebox" style="margin: 0; flex: 1; background: var(--paper); border: 1px solid var(--line); padding: 22px;">
         <div class="sbh" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; border-bottom: 1px solid var(--line); padding-bottom: 12px;">
           <h4 style="font-family: var(--display); font-size: 18px; font-weight: 400; margin: 0; color: var(--ink);">The stone</h4>
@@ -278,7 +278,7 @@ do_action('woocommerce_before_single_product');
     </div>
 
     <!-- Q4: BOTTOM RIGHT - ACCORDIONS, MAKE IT INTO JEWELRY, BUYING IN BULK -->
-    <div class="q4" style="display: flex; flex-direction: column; gap: 14px;">
+    <div class="q4">
       
       <!-- Accordions -->
       <div class="acc-wrapper" style="border-top: 1px solid var(--line);">

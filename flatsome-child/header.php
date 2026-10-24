@@ -647,7 +647,9 @@ if (!function_exists('vivaaz_render_tennis_art')) {
 <aside class="mdr" id="mobile-menu-drawer" role="dialog" aria-label="Menu" style="display: none;">
   <div class="top">
     <b>VIVAAZ GEMS</b>
-    <button type="button" onclick="toggleMobileMenuDrawer();" aria-label="Close" style="background:none; border:0; font-size:24px; cursor:pointer; color:var(--soft); line-height:1;">&times;</button>
+    <button type="button" onclick="toggleMobileMenuDrawer();" aria-label="Close" style="background:none; border:0; cursor:pointer; color:var(--ink); display:flex; align-items:center; justify-content:center; padding:4px;">
+      <svg class="i" style="width:20px; height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg>
+    </button>
   </div>
   
   <a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="acct" style="text-decoration:none; color:inherit;">
@@ -992,13 +994,6 @@ if (!function_exists('vivaaz_render_tennis_art')) {
   </form>
 </div>
 
-      <button type="submit" class="btn-square-dark" style="width: 100%; padding: 14px; background: #1C1A17; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer;">
-        BOOK A CONSULTATION
-      </button>
-    </form>
-  </div>
-</div>
-
 <!-- POPUP LIVE SEARCH OVERLAY (EXACT CLIENT DEMO IMAGE 4 FIDELITY) -->
 <div class="scrim" id="live-search-backdrop" style="display:none;" onclick="closeLiveSearchModal();"></div>
 <div class="srch" id="live-search-modal" role="dialog" aria-label="Search" style="display:none;">
@@ -1193,6 +1188,7 @@ if (!function_exists('vivaaz_render_tennis_art')) {
       if (isOpening) {
         drawer.style.display = 'block';
         if (backdrop) backdrop.style.display = 'block';
+        document.body.style.overflow = 'hidden';
         setTimeout(function() {
           drawer.classList.add('open');
           if (backdrop) backdrop.classList.add('open');
@@ -1200,6 +1196,7 @@ if (!function_exists('vivaaz_render_tennis_art')) {
       } else {
         drawer.classList.remove('open');
         if (backdrop) backdrop.classList.remove('open');
+        document.body.style.overflow = '';
         setTimeout(function() {
           drawer.style.display = 'none';
           if (backdrop) backdrop.style.display = 'none';
