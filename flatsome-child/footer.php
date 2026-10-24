@@ -239,111 +239,13 @@ $vivaaz_footer_rendered = true;
     </a>
   </div>
 
-  <!-- QUICK VIEW MODAL (DESKTOP ONLY PER STYLE GUIDE SPEC) -->
-  <div id="vivaaz-quickview-modal" class="modal qvm" style="display: none; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(860px, calc(100% - 32px)); max-height: calc(100% - 48px); overflow: auto; background: #FFFDF9; z-index: 9999; padding: 34px 40px 30px; box-shadow: 0 30px 80px rgba(0,0,0,.3); border: 1px solid var(--line);">
-    <button type="button" onclick="closeQuickView();" aria-label="Close" style="position: absolute; right: 20px; top: 20px; background: none; border: 0; font-size: 24px; cursor: pointer; color: var(--soft); line-height: 1;">&times;</button>
-    <div class="qvg" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;">
-      <div class="qvi" style="background: #F4F2EE; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; overflow: hidden;">
-        <img id="qv-img" src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Product" style="width: 70%; object-fit: contain;">
-      </div>
-      <div>
-        <span class="cap" style="font-size: 10.5px; letter-spacing: 0.2em; color: var(--gold); font-weight: 700; text-transform: uppercase;">Natural gemstone</span>
-        <h3 id="qv-title" style="font-family: var(--display); font-size: 26px; margin: 6px 0; font-weight: 400;">Gemstone</h3>
-        <div id="qv-price" style="font-size: 22px; font-weight: 700; margin: 8px 0 14px;">₹ 120 / pc</div>
-        <div class="chips sq" style="margin-bottom: 16px;">
-          <button type="button" class="chip on" style="border-radius: 0;">5×7</button>
-          <button type="button" class="chip" style="border-radius: 0;">6×8</button>
-          <button type="button" class="chip" style="border-radius: 0;">7×9</button>
-        </div>
-        <div style="display: flex; gap: 10px; margin-bottom: 14px;">
-          <button type="button" id="qv-add-btn" class="btn wide" onclick="triggerQuickViewAddToCart();" style="flex: 1; text-align: center; height: 44px; border: none; cursor: pointer;">ADD TO CART</button>
-        </div>
-        <div class="act2" style="margin-top: 10px;">
-          <a href="https://wa.me/919680552270" target="_blank" style="padding: 10px; font-size: 11px;">
-            <svg class="i" style="width: 16px; height: 16px; color: #1E9E52;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4.5 19.5l1.2-3.6A7.8 7.8 0 1 1 8.6 18.6z"/><path d="M9.3 9.2c.3 2.4 2.6 4.8 5.4 5.4l1.1-1.1-1.7-.9-.7.7c-1.1-.5-2-1.4-2.5-2.5l.7-.7-.9-1.7z"/></svg>
-            WHATSAPP
-          </a>
-          <a href="javascript:void(0);" onclick="closeQuickView(); openVideoCallModal();" style="padding: 10px; font-size: 11px;">
-            <svg class="i" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3.5" y="6.5" width="12" height="11" rx="2"/><path d="M15.5 10.5l5-3v9l-5-3"/></svg>
-            VIDEO CALL
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- VIDEO CALL REQUEST MODAL (SPEC 3 & 4) -->
-  <div id="vivaaz-videocall-modal" class="modal sm" style="display: none; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(460px, calc(100% - 32px)); max-height: calc(100% - 48px); overflow: auto; background: #FFFDF9; z-index: 9999; padding: 34px 36px 30px; box-shadow: 0 30px 80px rgba(0,0,0,.3); border: 1px solid var(--line);">
-    <button type="button" onclick="closeVideoCallModal();" aria-label="Close" style="position: absolute; right: 20px; top: 20px; background: none; border: 0; font-size: 24px; cursor: pointer; color: var(--soft); line-height: 1;">&times;</button>
-    <span class="cap" style="font-size: 10.5px; letter-spacing: 0.2em; color: var(--gold); font-weight: 700; text-transform: uppercase;">Live from Jaipur warehouse</span>
-    <h3 style="font-family: var(--display); font-size: 26px; margin: 6px 0 10px; font-weight: 400;">Request a video call</h3>
-    <p class="sub" style="font-size: 13.5px; color: var(--mute); margin-bottom: 20px; line-height: 1.5;">See this exact stone or layout live under daylight and lamp before we dispatch.</p>
-    <form onsubmit="event.preventDefault(); window.open('https://wa.me/919680552270?text=' + encodeURIComponent('Hi Vivaaz Gems, I would like to schedule a video call for stone/lot. Name: ' + this.name.value + ', WhatsApp: ' + this.wa.value), '_blank'); closeVideoCallModal();">
-      <div class="f" style="margin-bottom: 12px;">
-        <label style="display: block; font-size: 10.5px; letter-spacing: 0.18em; font-weight: 700; margin-bottom: 6px; text-transform: uppercase;">Your Name</label>
-        <input name="name" required placeholder="Full Name" style="width: 100%; height: 44px; border: 1px solid #D9CFC0; padding: 0 13px; background: var(--paper);" />
-      </div>
-      <div class="f" style="margin-bottom: 16px;">
-        <label style="display: block; font-size: 10.5px; letter-spacing: 0.18em; font-weight: 700; margin-bottom: 6px; text-transform: uppercase;">WhatsApp Number</label>
-        <input name="wa" required placeholder="+91 or country code" style="width: 100%; height: 44px; border: 1px solid #D9CFC0; padding: 0 13px; background: var(--paper);" />
-      </div>
-      <button type="submit" class="btn wide" style="width: 100%; height: 44px;">SCHEDULE VIDEO CALL →</button>
-    </form>
-  </div>
-
   <!-- SCRIM OVERLAY -->
   <div id="vivaaz-scrim" class="scrim" style="display: none; position: fixed; inset: 0; background: rgba(28,26,23,.5); z-index: 9998;" onclick="closeAllModals();"></div>
 
   <script>
-  function triggerQuickViewAddToCart() {
-    var title = document.getElementById('qv-title') ? document.getElementById('qv-title').innerText : 'Gemstone';
-    var price = document.getElementById('qv-price') ? document.getElementById('qv-price').innerText : '120';
-    var img = document.getElementById('qv-img') ? document.getElementById('qv-img').src : '';
-    if (typeof addProductToCartAndOpenDrawer === 'function') {
-      addProductToCartAndOpenDrawer(0, title, img, price, '6×8 mm', 10);
-    }
-    closeQuickView();
-  }
-
-  function openQuickView(title, price, img, url) {
-    var modal = document.getElementById('vivaaz-quickview-modal');
-    var scrim = document.getElementById('vivaaz-scrim');
-    if (modal) {
-      document.getElementById('qv-title').innerText = title || 'Gemstone';
-      document.getElementById('qv-price').innerText = price || '₹ 120 / pc';
-      if (img) document.getElementById('qv-img').src = img;
-      if (url) document.getElementById('qv-add-btn').href = url;
-      modal.style.display = 'block';
-      if (scrim) scrim.style.display = 'block';
-    }
-  }
-
-  function closeQuickView() {
-    var modal = document.getElementById('vivaaz-quickview-modal');
-    var scrim = document.getElementById('vivaaz-scrim');
-    if (modal) modal.style.display = 'none';
-    if (scrim) scrim.style.display = 'none';
-  }
-
-  function openVideoCallModal() {
-    var modal = document.getElementById('vivaaz-videocall-modal');
-    var scrim = document.getElementById('vivaaz-scrim');
-    if (modal) {
-      modal.style.display = 'block';
-      if (scrim) scrim.style.display = 'block';
-    }
-  }
-
-  function closeVideoCallModal() {
-    var modal = document.getElementById('vivaaz-videocall-modal');
-    var scrim = document.getElementById('vivaaz-scrim');
-    if (modal) modal.style.display = 'none';
-    if (scrim) scrim.style.display = 'none';
-  }
-
   function closeAllModals() {
-    closeQuickView();
-    closeVideoCallModal();
+    if (typeof closeQuickViewModal === 'function') closeQuickViewModal();
+    if (typeof closeVideoCallModal === 'function') closeVideoCallModal();
     if (typeof closeConsultationModal === 'function') closeConsultationModal();
     if (typeof closeLiveSearchModal === 'function') closeLiveSearchModal();
   }

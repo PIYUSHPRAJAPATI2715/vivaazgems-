@@ -5835,10 +5835,42 @@ footer{margin-top:50px}
 .sheet .cutg{display:block!important}
 .sheet .cutg>hr{display:none}
 
-.pd.pd2g{display:flex;flex-direction:column;align-items:stretch}
-.pd.pd2g>div{display:contents}
-.pd.pd2g .q1 .mainimg{order:1}.pd.pd2g .q1 .views{order:2}.pd.pd2g .q1 .thumbs{order:3}.pd.pd2g .q1 .capt{order:4}
-.pd.pd2g .q2>*{order:10}.pd.pd2g .q3 .stonebox{order:25;margin-top:20px}.pd.pd2g .q4 .acc{order:30;margin-top:20px}.pd.pd2g .q4 .bulk{order:31}.pd.pd2g .q4 .make{order:40}
+.pd.pd2g{display:flex!important;flex-direction:column!important;align-items:stretch!important}
+.pd.pd2g > div.q1,
+.pd.pd2g > div.q2,
+.pd.pd2g > div.q3,
+.pd.pd2g > div.q4{display:contents!important}
+.pd.pd2g .q1 .mainimg{order:1!important;margin:0 -16px!important;border-left:0!important;border-right:0!important;aspect-ratio:1/1!important}
+.pd.pd2g .q1 .views{order:2!important;flex-wrap:nowrap!important;overflow-x:auto!important;margin:12px 0 0!important;scrollbar-width:none!important;-webkit-overflow-scrolling:touch!important}
+.pd.pd2g .q1 .views button{flex:none!important;padding:6px 10px!important;font-size:12px!important}
+.pd.pd2g .q1 .thumbs{order:3!important;margin-top:10px!important;overflow-x:auto!important;scrollbar-width:none!important}
+.pd.pd2g .q1 .capt{order:4!important;font-size:12px!important;color:var(--soft)!important;margin:8px 0 0!important}
+.pd.pd2g .q2{order:10!important}
+.pd.pd2g .q2 .eye{order:11!important;margin-top:20px!important;font-size:10px!important;letter-spacing:.16em!important}
+.pd.pd2g .q2 .pt{order:12!important;font-size:22px!important;line-height:1.22!important;margin:6px 0 6px!important}
+.pd.pd2g .q2 > p{order:13!important;font-size:13.5px!important;line-height:1.55!important;margin:0 0 4px!important}
+.pd.pd2g .q2 .price{order:14!important;font-size:22px!important;margin-top:12px!important}
+.pd.pd2g .q2 .price span{font-size:12.5px!important}
+.pd.pd2g .q2 .tiers{order:15!important;margin-top:10px!important}
+.pd.pd2g .q2 .tiers div{padding:8px 10px!important}
+.pd.pd2g .q2 .tiers b{font-size:14px!important}
+.pd.pd2g .q2 .lbl{order:16!important;margin:16px 0 8px!important}
+.pd.pd2g .q2 .chips{order:17!important}
+.pd.pd2g .q2 .chips .chip{padding:6px 11px!important;font-size:12px!important}
+.pd.pd2g .q2 .qty{order:18!important}
+.pd.pd2g .q2 .pbtns{order:19!important;grid-template-columns:1fr 1fr 44px!important;gap:8px!important;margin-top:16px!important}
+.pd.pd2g .q2 .pbtns .btn{padding:12px 8px!important;font-size:11px!important;letter-spacing:.12em!important;white-space:nowrap!important;min-height:44px!important}
+.pd.pd2g .q2 .pbtns .wl{width:44px!important;height:44px!important}
+.pd.pd2g .q2 .act2{order:20!important;gap:8px!important;margin-top:8px!important}
+.pd.pd2g .q2 .act2 button,
+.pd.pd2g .q2 .act2 a{padding:9px 6px!important;font-size:10px!important;letter-spacing:.08em!important;line-height:1.3!important;gap:6px!important;min-height:40px!important}
+.pd.pd2g .q2 .trow{order:21!important;font-size:11.5px!important;margin-top:12px!important;padding-top:10px!important}
+.pd.pd2g .q3{order:25!important}
+.pd.pd2g .q3 .stonebox{margin-top:24px!important;padding:18px!important}
+.pd.pd2g .q4{order:30!important}
+.pd.pd2g .q4 .acc{margin-top:22px!important}
+.pd.pd2g .q4 .bulk{margin-top:16px!important}
+.pd.pd2g .q4 .make{order:40!important;margin-top:16px!important}
 .act2 button{font-size:11px;letter-spacing:.1em}
 /* Mobile Swipe Containers: Gemstones, Beads, Reels, Reviews */
 .tiles6,
