@@ -23,6 +23,14 @@ $articles = array(
 
 <div class="luxury-page-wrapper" style="background: #FAF7F2; padding: 60px 20px; min-height: 80vh;">
   <div class="container" style="max-width: 900px; margin: 0 auto;">
+
+    <!-- Breadcrumb (12.5px #9A9186 - Point 6 & Brief Accordance) -->
+    <div class="crumb" style="font-size: 12.5px; color: #9A9186; margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+      <a href="<?php echo esc_url(home_url('/')); ?>" style="color: inherit; text-decoration: none;">Home</a>
+      <span>›</span>
+      <b style="color: #1C1A17; font-weight: 500;">Gem guide</b>
+    </div>
+
     
     <div style="text-align: center; margin-bottom: 48px;">
       <span class="section-tag-divider" style="letter-spacing: 0.15em; font-size: 11px; font-weight: 700; color: #9C7C4C; text-transform: uppercase;">LEARNING & EDUCATION</span>

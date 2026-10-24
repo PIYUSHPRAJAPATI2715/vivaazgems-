@@ -191,7 +191,7 @@ if (!function_exists('vivaaz_render_tennis_art')) {
             <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" data-ph="ruby" onmouseenter="updateGemsMegaPhoto('ruby')">Ruby</a>
             <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" data-ph="sapphire" onmouseenter="updateGemsMegaPhoto('sapphire')">Sapphire</a>
             <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" data-ph="emerald" onmouseenter="updateGemsMegaPhoto('emerald')">Emerald</a>
-            <a class="lk" href="<?php echo esc_url(home_url('/shop/?filter_group=precious')); ?>">All precious stones →</a>
+            <a class="lk" href="<?php echo esc_url(home_url('/shop/?filter_group=precious')); ?>" style="white-space: nowrap;">All precious stones →</a>
           </div>
 
           <div class="col three">
@@ -972,6 +972,8 @@ if (!function_exists('vivaaz_render_tennis_art')) {
         <button type="button" class="chip" onclick="selectConsultTopic('Marriage', this)">Marriage</button>
         <button type="button" class="chip" onclick="selectConsultTopic('Wealth', this)">Wealth</button>
         <button type="button" class="chip" onclick="selectConsultTopic('Studies', this)">Studies</button>
+        <button type="button" class="chip" onclick="selectConsultTopic('Peace of mind', this)">Peace of mind</button>
+        <button type="button" class="chip" onclick="selectConsultTopic('Other', this)">Other</button>
       </div>
     </div>
 
@@ -981,6 +983,7 @@ if (!function_exists('vivaaz_render_tennis_art')) {
         <button type="button" class="chip" onclick="selectConsultBudget('Under ₹10,000', this)">Under ₹10,000</button>
         <button type="button" class="chip on" onclick="selectConsultBudget('₹10,000–50,000', this)">₹10,000–50,000</button>
         <button type="button" class="chip" onclick="selectConsultBudget('₹50,000+', this)">₹50,000+</button>
+        <button type="button" class="chip" onclick="selectConsultBudget('Not sure yet', this)">Not sure yet</button>
       </div>
     </div>
 
@@ -1076,6 +1079,35 @@ if (!function_exists('vivaaz_render_tennis_art')) {
 <div class="modal qvm" id="vivaaz-quickview-modal" role="dialog" aria-label="Quick view" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99999;max-height:90vh;overflow-y:auto;width:min(860px,calc(100% - 32px));">
   <button type="button" onclick="closeQuickViewModal();" aria-label="Close" style="background:none;border:none;font-size:24px;cursor:pointer;position:absolute;right:22px;top:22px;color:var(--ink);line-height:1;z-index:2;">&times;</button>
   <div id="quickview-modal-body" style="padding:0;"></div>
+</div>
+
+<!-- MACRO VIDEO MODAL (HOMEPAGE MACRO & UNDER THE LOUPE) -->
+<div class="scrim" id="videomodal-backdrop" style="display:none;position:fixed;inset:0;background:rgba(28,26,23,.75);z-index:99998;" onclick="closeVideoModal();"></div>
+<div class="modal vm" id="vivaaz-video-modal" role="dialog" aria-label="Stone video" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99999;max-height:90vh;overflow-y:auto;width:min(680px,calc(100% - 32px));background:#1C1A17;color:#fff;padding:26px;border:1px solid #3B362F;box-sizing:border-box;">
+  <button type="button" onclick="closeVideoModal();" aria-label="Close" style="background:none;border:none;font-size:26px;cursor:pointer;position:absolute;right:20px;top:18px;color:#fff;line-height:1;z-index:2;">&times;</button>
+  <span class="cap" style="color:#9B7C4E;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;display:block;margin-bottom:6px;">4K MACRO GEMSTONE VIDEO</span>
+  <h3 id="video-modal-title" style="font-family:var(--display);font-size:22px;font-weight:400;margin:0 0 16px;color:#fff;">Ceylon Sapphire Oval Faceted</h3>
+  
+  <div style="aspect-ratio:16/10;background:#0F0E0C;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #333;margin-bottom:18px;">
+    <img id="video-modal-poster" src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Stone Video" style="max-width:85%;max-height:85%;object-fit:contain;transition:transform 3s ease;">
+    <div style="position:absolute;bottom:14px;left:14px;background:rgba(0,0,0,0.75);padding:6px 12px;font-size:11px;letter-spacing:0.12em;font-weight:600;color:#fff;">
+      ▶ 0:40 · 4K MACRO · JAIPUR WORKSHOP
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <div style="font-size:13px;color:#CFC6B8;max-width:320px;line-height:1.4;">
+      Exact lot photographed under natural daylight & loupe. No color enhancement.
+    </div>
+    <div style="display:flex;gap:10px;">
+      <a href="https://wa.me/919680552270?text=Hello%20Vivaaz%20Gems,%20I%20would%20like%20to%20see%20more%20macro%20videos%20of%20this%20stone" target="_blank" class="btn wa" style="padding:10px 18px;font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:#1E9E52;color:#fff;text-decoration:none;display:inline-flex;align-items:center;">
+        Ask on WhatsApp
+      </a>
+      <button type="button" class="btn" onclick="closeVideoModal();openVideoCallModal();" style="padding:10px 18px;font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:#fff;color:#1C1A17;border:1px solid #fff;cursor:pointer;">
+        Book a Video Call
+      </button>
+    </div>
+  </div>
 </div>
 
 <!-- DESIGN QUOTE / SEND YOUR DESIGN MODAL -->
@@ -1935,6 +1967,43 @@ if (!function_exists('vivaaz_render_tennis_art')) {
   function closeQuickViewModal() {
     var modal = document.getElementById('vivaaz-quickview-modal');
     var backdrop = document.getElementById('quickview-modal-backdrop');
+    if (modal) modal.style.display = 'none';
+    if (backdrop) backdrop.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  // MACRO VIDEO MODAL (Homepage & Loupe)
+  function openVideoModal(stoneKey, title) {
+    var modal = document.getElementById('vivaaz-video-modal');
+    var backdrop = document.getElementById('videomodal-backdrop');
+    var poster = document.getElementById('video-modal-poster');
+    var titleEl = document.getElementById('video-modal-title');
+    if (!modal) return;
+    
+    var stoneNames = {
+      'sapphire': 'Ceylon Blue Sapphire Oval Faceted · AAA',
+      'emerald': 'Zambian Emerald Octagon Step Cut · 0:40 Under Loupe',
+      'ruby': 'Burma Ruby Oval Faceted · Unheated',
+      'moonstone': 'Rainbow Moonstone Oval Cabochon · High Blue Flash',
+      'topaz': 'Swiss Blue Topaz Square Cushion'
+    };
+    
+    var key = (stoneKey || 'sapphire').toLowerCase();
+    if (poster) {
+      poster.src = '<?php echo esc_url(get_stylesheet_directory_uri() . "/assets/images/"); ?>' + (key.includes('sapph') ? 'ceylon-sapphire' : (key.includes('em') ? 'emerald' : (key.includes('rub') ? 'ruby' : (key.includes('topaz') ? 'swiss-topaz' : 'moonstone')))) + '.jpg';
+    }
+    if (titleEl) {
+      titleEl.textContent = title || stoneNames[key] || 'Coloured Gemstone Macro Video';
+    }
+    
+    modal.style.display = 'block';
+    if (backdrop) backdrop.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideoModal() {
+    var modal = document.getElementById('vivaaz-video-modal');
+    var backdrop = document.getElementById('videomodal-backdrop');
     if (modal) modal.style.display = 'none';
     if (backdrop) backdrop.style.display = 'none';
     document.body.style.overflow = '';

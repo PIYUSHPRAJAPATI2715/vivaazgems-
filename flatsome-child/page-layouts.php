@@ -273,14 +273,14 @@ $layouts_data = array(
                 </span>
 
                 <!-- Quick view button bar -->
-                <button type="button" class="qv-overlay-btn" onclick="openLayoutQuickView('<?php echo esc_js($l['name']); ?>', '<?php echo esc_js($l['d']); ?>', '<?php echo $l['price'] ? '₹' . number_format($l['price']) : esc_js($l['guide']); ?>')" style="position: absolute; left: 0; right: 0; bottom: 0; background: #1C1A17; color: #FFFFFF; border: 0; padding: 10px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; z-index: 3;">
+                <button type="button" class="qv-overlay-btn" onclick="openLayoutQuickView('<?php echo esc_js($l['name']); ?>', '<?php echo esc_js($l['d']); ?>', '<?php echo $l['price'] ? '₹' . number_format($l['price']) : 'Price guide ' . esc_js($l['guide']); ?>', '<?php echo esc_js($l['stone']); ?>', '<?php echo esc_url(vivaaz_get_img_url($l['stone'] . '.jpg')); ?>')" style="position: absolute; left: 0; right: 0; bottom: 0; background: #1C1A17; color: #FFFFFF; border: 0; padding: 10px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; z-index: 3;">
                   QUICK VIEW
                 </button>
               </div>
 
               <!-- Card Body -->
               <div style="padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1;">
-                <div style="font-size: 15px; font-weight: 500; color: #1C1A17; margin-bottom: 4px; line-height: 1.35;"><?php echo esc_html($l['name']); ?></div>
+                <div class="card-name" style="font-family: var(--display, 'Playfair Display', Georgia, serif); font-size: 19px; font-weight: 400; color: #1C1A17; margin-bottom: 4px; line-height: 1.35;"><?php echo esc_html($l['name']); ?></div>
                 <div style="font-size: 12.5px; color: #76706A; margin-bottom: 12px;"><?php echo esc_html($l['d']); ?></div>
                 
                 <div style="font-weight: 600; font-size: 14.5px; color: #1C1A17; margin-top: auto; margin-bottom: 14px;">
@@ -306,6 +306,7 @@ $layouts_data = array(
 
         <!-- Load more button (Point 17) -->
         <div style="text-align: center; margin-top: 36px;">
+          <div style="font-size: 13px; color: #76706A; margin-bottom: 12px; font-family: var(--body);">Showing 9 of 14</div>
           <button type="button" class="btn o" onclick="showWishlistToast('All 12 current layouts loaded. More layouts coming soon.');" style="padding: 13px 32px; border: 1px solid #1C1A17; background: transparent; color: #1C1A17; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;">
             LOAD MORE
           </button>
@@ -319,10 +320,10 @@ $layouts_data = array(
 
     <!-- Section: How it works (Image 3) -->
     <section style="margin-top: 60px; padding-top: 20px;">
-      <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 400; color: #1C1A17; margin: 0 0 24px;">How it works</h2>
+      <h2 class="h2 how-it-works-title" style="font-family: var(--display, 'Playfair Display', Georgia, serif); font-size: 32px; font-weight: 400; color: #1C1A17; margin: 0 0 24px;">How it works</h2>
       
-      <!-- 4 Cards Grid (Image 3) -->
-      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;">
+      <!-- 4 Cards Grid (2 per row on mobile) -->
+      <div class="hw-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;">
         <div style="background: #FFFFFF; border: 1px solid #E8E1D6; padding: 22px 20px;">
           <span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #9B7C4E; display: block; margin-bottom: 6px;">STEP 1</span>
           <h4 style="font-family: 'Playfair Display', Georgia, serif; font-size: 17px; font-weight: 400; margin: 0 0 8px; color: #1C1A17;">Choose or send</h4>
@@ -521,11 +522,41 @@ function resetAllLayoutFilters() {
 }
 
 function addToCartMock(name, price) {
-  alert(name + ' (' + price + ') added to bag!');
+  if (typeof addProductToCartAndOpenDrawer === 'function') {
+    addProductToCartAndOpenDrawer(1, name, '<?php echo esc_url(get_stylesheet_directory_uri() . "/assets/images/ruby.jpg"); ?>', price, 'Full Layout', 1);
+  } else if (typeof showWishlistToast === 'function') {
+    showWishlistToast(name + ' added to bag');
+  }
 }
 
-function openLayoutQuickView(name, details, price) {
-  alert('Quick View: ' + name + '\n' + details + '\n' + price);
+function openLayoutQuickView(name, details, price, stone, imgUrl) {
+  var modal = document.getElementById('vivaaz-quickview-modal');
+  var backdrop = document.getElementById('quickview-modal-backdrop');
+  var body = document.getElementById('quickview-modal-body');
+  if (!modal || !body) {
+    if (typeof showWishlistToast === 'function') {
+      showWishlistToast(name + ' · ' + price);
+    }
+    return;
+  }
+  var img = imgUrl || '<?php echo esc_url(get_stylesheet_directory_uri() . "/assets/images/ruby.jpg"); ?>';
+  var html = '<div class="qvg" style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;">' +
+    '<div class="qvi" style="background:#F6F4F0;display:flex;align-items:center;justify-content:center;aspect-ratio:1;overflow:hidden;">' +
+    '<img src="' + img + '" alt="' + name + '" style="width:80%;object-fit:contain;"></div>' +
+    '<div>' +
+    '<span style="font-size:10.5px;letter-spacing:0.2em;color:#9B7C4E;font-weight:700;text-transform:uppercase;">CALIBRATED LAYOUT</span>' +
+    '<h3 style="font-family:var(--display);font-size:22px;font-weight:400;margin:8px 0;color:#1C1A17;">' + name + '</h3>' +
+    '<div style="font-size:13px;color:#76706A;margin-bottom:12px;">' + details + '</div>' +
+    '<div style="font-size:20px;font-weight:600;margin:0 0 16px;color:#1C1A17;">' + price + '</div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">' +
+    '<a href="https://wa.me/919680552270?text=' + encodeURIComponent('Hello Vivaaz Gems, I would like to get a price and details for: ' + name) + '" target="_blank" class="btn wa" style="padding:12px;font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:#1E9E52;color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">WhatsApp</a>' +
+    '<a href="<?php echo esc_url(home_url('/layouts/')); ?>" class="btn" onclick="closeQuickViewModal();" style="padding:12px;font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:#1C1A17;color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">View layout</a>' +
+    '</div>' +
+    '</div></div>';
+  body.innerHTML = html;
+  modal.style.display = 'block';
+  if (backdrop) backdrop.style.display = 'block';
+  document.body.style.overflow = 'hidden';
 }
 
 document.addEventListener('DOMContentLoaded', function() {

@@ -156,7 +156,7 @@ $track_url = home_url('/track-order/');
 
       <!-- Right Column: Order Summary -->
       <aside class="sum" style="background: var(--paper, #FFFFFF); border: 1px solid var(--line, #EFE9E0); padding: 24px; position: sticky; top: 100px;">
-        <h5 class="cap" style="font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 14px; color: var(--ink, #1C1A17);">YOUR ORDER</h5>
+        <h5 class="cap your-order-label" style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin: 0 0 14px; color: #9B7C4E; font-family: var(--body);">YOUR ORDER</h5>
         
         <div id="checkout-summary-items" style="margin-bottom: 14px; max-height: 320px; overflow-y: auto;">
           <!-- Dynamically populated from LocalStorage or fallback -->
@@ -191,9 +191,10 @@ $track_url = home_url('/track-order/');
           <span id="co-total-val" style="color: var(--ink, #1C1A17);">₹ 13,194</span>
         </div>
 
-        <p style="font-size: 12.5px; margin: 16px 0 0; line-height: 1.5; color: var(--ink, #1C1A17); border-top: 1px solid var(--line, #EFE9E0); padding-top: 14px;">
-          <b>Our guarantee.</b> Replaced or refunded if a stone arrives damaged or not as described.
-        </p>
+        <div style="border-top: 1px solid var(--line, #EFE9E0); margin-top: 16px; padding-top: 14px; font-size: 12.5px; color: #76706A; display: flex; flex-direction: column; gap: 8px; line-height: 1.5;">
+          <div><b style="color: #1C1A17;">Ships in 1–2 days.</b> Insured express delivery from Jaipur workshop.</div>
+          <div><b style="color: #1C1A17;">Our guarantee.</b> Replaced or refunded if a stone arrives damaged or not as described. <a href="<?php echo esc_url(home_url('/guarantee/')); ?>" target="_blank" style="color: #9B7C4E; text-decoration: underline; font-weight: 600;">Read it →</a></div>
+        </div>
       </aside>
 
     </div>

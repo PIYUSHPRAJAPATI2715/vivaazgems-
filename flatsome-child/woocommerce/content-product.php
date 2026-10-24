@@ -2,7 +2,7 @@
 /**
  * Vivaaz Gems - Custom WooCommerce Product Loop Item (Shop Grid Card)
  * 100% Client Demo Fidelity (Image 2): Quick View, Wishlist heart, Tags (CALIBRATED LOT / PAIR / ONLY 1),
- * Subtitle spec, Proper pricing, Single action button (SELECT OPTIONS / ADD TO CART).
+ * Subtitle spec, Proper pricing, Single action button (SELECT OPTIONS / Add to cart → text link).
  */
 
 if (!defined('ABSPATH')) {
@@ -30,9 +30,9 @@ $tag_text = 'CALIBRATED LOT';
 $tag_class = '';
 if (stripos($title, 'pair') !== false) {
     $tag_text = 'PAIR';
-} elseif (stripos($title, 'single') !== false || stripos($title, 'piece') !== false) {
+} elseif (stripos($title, 'single') !== false || stripos($title, 'piece') !== false || stripos($title, 'only 1') !== false) {
     $tag_text = 'ONLY 1';
-    $tag_class = 'one';
+    $tag_class = 'only-1';
 }
 ?>
 
@@ -41,7 +41,7 @@ if (stripos($title, 'pair') !== false) {
     <span class="tag <?php echo esc_attr($tag_class); ?>"><?php echo esc_html($tag_text); ?></span>
     
     <!-- Wishlist Heart -->
-    <button type="button" class="heart" data-wishlist-id="<?php echo esc_attr($product_id); ?>" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist(<?php echo intval($product_id); ?>, <?php echo json_encode($title); ?>, <?php echo json_encode($img_url); ?>, <?php echo json_encode(wp_strip_all_tags($price_html)); ?>, <?php echo json_encode($link); ?>), this;" title="Add to Wishlist">
+    <button type="button" class="heart" data-wishlist-id="<?php echo esc_attr($product_id); ?>" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist(<?php echo intval($product_id); ?>, <?php echo json_encode($title); ?>, <?php echo json_encode($img_url); ?>, <?php echo json_encode(wp_strip_all_tags($price_html)); ?>, <?php echo json_encode($link); ?>, this);" title="Add to Wishlist">
       <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"/></svg>
     </button>
 
@@ -54,7 +54,7 @@ if (stripos($title, 'pair') !== false) {
     </a>
 
     <!-- Quick View on hover -->
-    <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); openQuickView(<?php echo json_encode($title); ?>, <?php echo json_encode(wp_strip_all_tags($price_html)); ?>, <?php echo json_encode($img_url); ?>, <?php echo json_encode($link); ?>);">QUICK VIEW</button>
+    <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); if(typeof openQuickViewModal==='function'){openQuickViewModal('<?php echo esc_js($product_id); ?>');}else if(typeof openQuickView==='function'){openQuickView(<?php echo json_encode($title); ?>, <?php echo json_encode(wp_strip_all_tags($price_html)); ?>, <?php echo json_encode($img_url); ?>, <?php echo json_encode($link); ?>);}">QUICK VIEW</button>
   </div>
 
   <div class="cb">
@@ -67,7 +67,7 @@ if (stripos($title, 'pair') !== false) {
       <?php if ($is_variable || $tag_text === 'CALIBRATED LOT') : ?>
         <a href="<?php echo esc_url($link); ?>" class="ul">SELECT OPTIONS</a>
       <?php else : ?>
-        <button type="button" class="btn sm" onclick="event.preventDefault(); event.stopPropagation(); addProductToCartAndOpenDrawer(<?php echo intval($product_id); ?>, <?php echo json_encode($title); ?>, <?php echo json_encode($img_url); ?>, <?php echo json_encode(wp_strip_all_tags($price_html)); ?>);">ADD TO CART</button>
+        <a href="javascript:void(0);" class="ul add-to-cart-link" onclick="event.preventDefault(); event.stopPropagation(); addProductToCartAndOpenDrawer(<?php echo intval($product_id); ?>, <?php echo json_encode($title); ?>, <?php echo json_encode($img_url); ?>, <?php echo json_encode(wp_strip_all_tags($price_html)); ?>);">Add to cart →</a>
       <?php endif; ?>
     </div>
   </div>

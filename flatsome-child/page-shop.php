@@ -93,15 +93,22 @@ if ($active_stone && isset($stone_display_titles[strtolower($active_stone)])) {
 ?>
     <!-- Breadcrumb & Title -->
     <div class="shop-header-hero" style="margin-bottom: 24px;">
-      <div class="breadcrumb-trail" style="font-size: 11px; color: var(--color-text-muted, #76706A); margin-bottom: 8px;">
-        <a href="<?php echo esc_url(home_url('/')); ?>" style="color: inherit; text-decoration: none;">Home</a> <span style="font-size: 11px; margin: 0 4px;">›</span>
+      <div class="crumb" style="font-size: 12.5px; color: #9A9186; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <a href="<?php echo esc_url(home_url('/')); ?>" style="color: inherit; text-decoration: none;">Home</a> <span>›</span>
         <a href="<?php echo esc_url(home_url('/shop/')); ?>" style="color: inherit; text-decoration: none;">Gemstones</a>
-        <?php if ($active_stone) : ?>
-          <span style="font-size: 11px; margin: 0 4px;">›</span>
-          <span style="color: var(--color-text-main, #1C1A17); font-weight: 600;"><?php echo esc_html($page_heading); ?></span>
+        <?php if ($active_stone) : 
+          $precious_slugs = array('ruby', 'sapphire', 'emerald');
+          $is_precious_stone = in_array(strtolower($active_stone), $precious_slugs);
+          $group_label = $is_precious_stone ? 'Precious' : 'Semi-precious';
+          $group_url = add_query_arg('group', $is_precious_stone ? 'precious' : 'semi', home_url('/shop/'));
+        ?>
+          <span>›</span>
+          <a href="<?php echo esc_url($group_url); ?>" style="color: inherit; text-decoration: none;"><?php echo esc_html($group_label); ?></a>
+          <span>›</span>
+          <b style="color: #1C1A17; font-weight: 500;"><?php echo esc_html($page_heading); ?></b>
         <?php endif; ?>
       </div>
-      <h1 class="shop-main-title" style="font-family: var(--font-family-serif, 'Playfair Display', serif); font-size: 32px; font-weight: 400; margin-bottom: 8px; color: #1C1A17;">
+      <h1 class="shop-main-title h1" style="font-family: var(--display, 'Playfair Display', serif); font-size: 48px; font-weight: 400; margin-bottom: 8px; color: #1C1A17; line-height: 1.15;">
         <?php echo esc_html($page_heading); ?>
       </h1>
       <?php if (!$active_stone) : ?>
@@ -199,6 +206,7 @@ if ($active_stone && isset($stone_display_titles[strtolower($active_stone)])) {
             <small style="letter-spacing: 0; text-transform: none; color: var(--soft, #76706A); font-weight: 400; font-size: 11px;">optional</small>
           </div>
           <div class="chips" style="display: flex; flex-wrap: wrap; gap: 7px;">
+            <button type="button" class="chip <?php echo (!isset($_GET['cut']) || empty($_GET['cut'])) ? 'on' : ''; ?>" data-key="cut" data-val="" onclick="toggleChip(this, 'cut', '')">All</button>
             <button type="button" class="chip <?php echo (isset($_GET['cut']) && $_GET['cut'] === 'Faceted') ? 'on' : ''; ?>" data-key="cut" data-val="Faceted" onclick="toggleChip(this, 'cut', 'Faceted')">Faceted <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">20</em></button>
             <button type="button" class="chip <?php echo (isset($_GET['cut']) && $_GET['cut'] === 'Cabochon') ? 'on' : ''; ?>" data-key="cut" data-val="Cabochon" onclick="toggleChip(this, 'cut', 'Cabochon')">Cabochon <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">24</em></button>
             <button type="button" class="chip <?php echo (isset($_GET['cut']) && $_GET['cut'] === 'Rose cut') ? 'on' : ''; ?>" data-key="cut" data-val="Rose cut" onclick="toggleChip(this, 'cut', 'Rose cut')">Rose cut <em style="font-style: normal; color: var(--soft, #76706A); font-size: 11.5px;">1</em></button>

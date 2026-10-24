@@ -105,6 +105,18 @@ $checkout_url = home_url('/checkout/');
       var title = item.title || item.name || 'Rainbow Moonstone Oval Cabochon';
       var size = item.size || '6×8 mm';
 
+      var stepLine = '';
+      if (item.tag === 'ONLY 1' || item.tag === 'PAIR' || (title && (title.includes('Pair') || title.includes('Only 1')))) {
+        stepLine = '<div style="font-size: 11px; color: #76706A; margin-top: 4px;">Only 1. This exact lot, as in the photos.</div>';
+      } else if (qty < 10) {
+        var t10P = item.tier10 || Math.round(unitPrice * 0.88);
+        stepLine = '<div style="font-size: 11px; color: #9B7C4E; margin-top: 4px; font-weight: 600;">Add ' + (10 - qty) + ' more for 10+ price (₹' + t10P + ' each)</div>';
+      } else if (qty >= 10 && qty < 50) {
+        stepLine = '<div style="font-size: 11px; color: #1E9E52; margin-top: 4px; font-weight: 600;">₹' + tierPrice + ' each · 10+ price step unlocked</div>';
+      } else {
+        stepLine = '<div style="font-size: 11px; color: #1E9E52; margin-top: 4px; font-weight: 600;">₹' + tierPrice + ' each · 50+ bulk tier unlocked</div>';
+      }
+
       return `
         <div class="dri" style="display: grid; grid-template-columns: 76px minmax(0, 1fr) auto; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--line, #EFE9E0); align-items: center;">
           <div class="im" style="width: 76px; height: 76px; background: #F1F0EE; display: flex; align-items: center; justify-content: center; overflow: hidden;">
@@ -121,7 +133,7 @@ $checkout_url = home_url('/checkout/');
               <input value="${qty}" onchange="onBagQtyChange(${idx}, this.value)" aria-label="Quantity" style="width: 40px; height: 30px; border: none; border-left: 1px solid var(--line, #EFE9E0); border-right: 1px solid var(--line, #EFE9E0); text-align: center; font-size: 13px; font-weight: 700;">
               <button type="button" onclick="stepBagQty(${idx}, 1)" aria-label="More" style="width: 30px; height: 30px; border: none; background: none; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center;">+</button>
             </div>
-            ${tierNoteText ? `<div style="font-size: 11px; color: #1E9E52; margin-top: 4px; font-weight: 600;">₹${tierPrice} each · ${tierNoteText}</div>` : ''}
+            ${stepLine}
           </div>
           <div class="r" style="text-align: right; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; font-weight: 700; height: 68px;">
             <span style="font-size: 15px; color: var(--ink, #1C1A17);">${formatMoney(lineTotal)}</span>
@@ -143,7 +155,7 @@ $checkout_url = home_url('/checkout/');
         </div>
 
         <div class="sum" style="background: var(--paper, #FFFFFF); border: 1px solid var(--line, #EFE9E0); padding: 24px; position: sticky; top: 100px;">
-          <h5 class="cap" style="font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 16px; color: var(--ink, #1C1A17);">ORDER SUMMARY</h5>
+          <h5 class="cap order-summary-label" style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin: 0 0 16px; color: #9B7C4E; font-family: var(--body);">ORDER SUMMARY</h5>
           
           <div class="row" style="display: flex; justify-content: space-between; font-size: 13.5px; padding: 6px 0;">
             <span>Subtotal · ${n} ${n === 1 ? 'item' : 'items'}</span>

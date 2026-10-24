@@ -341,7 +341,7 @@ get_header();
         <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">Rainbow Moonstone Oval Cabochon</div>
         <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Cabochon · 3×4 to 12×16 mm · 8 sizes</div>
         <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">from ₹94 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
-        <button type="button" class="btn sm" onclick="addToCartAjax('rmcoc68', '3×4 mm', 10);" style="width: 100%; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em;">ADD TO CART</button>
+        <button type="button" class="btn sm" onclick="addToCartAjax('rmcoc68', '3×4 mm', 10);" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center;">ADD TO CART</button>
       </div>
     </div>
 
@@ -359,7 +359,7 @@ get_header();
         <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">Sapphire Oval Faceted</div>
         <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Faceted · 3×5 to 7×9 mm · 5 sizes</div>
         <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">from ₹1,131 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
-        <button type="button" class="btn sm" onclick="addToCartAjax('bsfov', '3×5 mm', 5);" style="width: 100%; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em;">ADD TO CART</button>
+        <button type="button" class="btn sm" onclick="addToCartAjax('bsfov', '3×5 mm', 5);" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center;">ADD TO CART</button>
       </div>
     </div>
 
@@ -377,7 +377,7 @@ get_header();
         <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">Rainbow Moonstone Oval Cabochon Pair</div>
         <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Cabochon · 10×12 mm · 1 pair</div>
         <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">₹2,600 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per pair</span></div>
-        <button type="button" class="btn sm" onclick="addToCartAjax('rmcpr', '10×12 mm', 1);" style="width: 100%; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em;">ADD TO CART</button>
+        <button type="button" class="btn sm" onclick="addToCartAjax('rmcpr', '10×12 mm', 1);" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center;">ADD TO CART</button>
       </div>
     </div>
 
@@ -395,7 +395,7 @@ get_header();
         <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">Rainbow Moonstone Oval Cabochon</div>
         <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Cabochon · 18×25 mm · 32 ct</div>
         <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">₹4,800 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">one stone</span></div>
-        <button type="button" class="btn sm" onclick="addToCartAjax('rmc1825', '18×25 mm', 1);" style="width: 100%; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em;">ADD TO CART</button>
+        <button type="button" class="btn sm" onclick="addToCartAjax('rmc1825', '18×25 mm', 1);" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center;">ADD TO CART</button>
       </div>
     </div>
 

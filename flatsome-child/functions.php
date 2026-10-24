@@ -28,6 +28,26 @@ function vivaaz_setup_theme() {
 add_action('after_setup_theme', 'vivaaz_setup_theme');
 
 /**
+ * Maintenance / Coming Soon Mode Toggle (§6 Master Specification)
+ * Activate by setting define('VIVAAZ_MAINTENANCE_MODE', true); or visiting with ?coming_soon=1
+ */
+if (!defined('VIVAAZ_MAINTENANCE_MODE')) {
+    define('VIVAAZ_MAINTENANCE_MODE', false); // Set to true to activate for public visitors
+}
+
+function vivaaz_maintenance_mode() {
+    $is_preview = isset($_GET['coming_soon']) && $_GET['coming_soon'] === '1';
+    if ((VIVAAZ_MAINTENANCE_MODE || $is_preview) && !is_user_logged_in() && !is_admin()) {
+        $coming_soon_file = get_stylesheet_directory() . '/maintenance-coming-soon.php';
+        if (file_exists($coming_soon_file)) {
+            include $coming_soon_file;
+            exit;
+        }
+    }
+}
+add_action('template_redirect', 'vivaaz_maintenance_mode', 1);
+
+/**
  * 1. Enqueue Theme Stylesheet Directly with High Priority
  */
 function vivaaz_enqueue_styles() {

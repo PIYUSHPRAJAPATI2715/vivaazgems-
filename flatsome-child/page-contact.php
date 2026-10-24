@@ -66,8 +66,8 @@ get_header('shop');
             <input id="kn" name="name" required>
           </div>
           <div class="f full">
-            <label for="km">Email</label>
-            <input id="km" type="email" name="email" required>
+            <label for="km">Email <small style="color:var(--soft);font-weight:400;">(optional)</small></label>
+            <input id="km" type="email" name="email" placeholder="name@example.com">
           </div>
           <div class="f full">
             <label for="kw">WhatsApp number</label>

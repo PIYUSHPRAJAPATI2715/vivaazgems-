@@ -241,7 +241,7 @@ $beads_catalog = array(
   <div style="max-width: 1240px; margin: 0 auto;">
 
     <!-- Breadcrumb trail -->
-    <div class="crumb" style="font-size: 11px; color: #76706A; margin-bottom: 14px;">
+    <div class="crumb" style="font-size: 12.5px; color: #9A9186; margin-bottom: 24px;">
       <a href="<?php echo esc_url(home_url('/')); ?>" style="color: inherit; text-decoration: none;">Home</a> <span style="margin: 0 4px;">›</span>
       <span style="font-weight: 700; color: #1C1A17;">Beads</span>
     </div>
@@ -249,7 +249,7 @@ $beads_catalog = array(
     <!-- Header Hero (Image 1): Title + Intro on left, "How we name beads" Box on right -->
     <div class="lhead" style="display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 36px; align-items: start; margin-bottom: 24px;">
       <div>
-        <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 34px; font-weight: 400; line-height: 1.2; margin: 0 0 10px; color: #1C1A17;">Gemstone beads</h1>
+        <h1 style="font-family: var(--display, 'Playfair Display', Georgia, serif); font-size: 48px; font-weight: 400; line-height: 1.15; margin: 0 0 10px; color: #1C1A17;">Gemstone beads</h1>
         <p style="font-size: 14px; line-height: 1.65; color: #76706A; max-width: 680px; margin: 0;">
           Natural gemstone beads, by the strand or as loose pieces, drilled and matched in Jaipur. Choose by stone, then shape and size. Every strand shows its length, about how many beads it holds and the hole size.
         </p>
@@ -336,6 +336,41 @@ $beads_catalog = array(
           </div>
         </div>
 
+        <hr style="border: 0; border-top: 1px solid #E8E1D6; margin: 18px 0;">
+
+        <!-- Section: SOLD BY (§4 Spec) -->
+        <div style="margin-bottom: 20px;">
+          <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #76706A; margin-bottom: 10px;">SOLD BY</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <button type="button" class="bead-filter-pill" data-group="sold" data-val="Strand" onclick="toggleBeadFilter('sold', 'Strand', this)">Strand <em>8</em></button>
+            <button type="button" class="bead-filter-pill" data-group="sold" data-val="Loose pieces" onclick="toggleBeadFilter('sold', 'Loose pieces', this)">Loose pieces <em>4</em></button>
+          </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #E8E1D6; margin: 18px 0;">
+
+        <!-- Section: QUALITY (§4 Spec) -->
+        <div style="margin-bottom: 20px;">
+          <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #76706A; margin-bottom: 10px;">QUALITY</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <button type="button" class="bead-filter-pill" data-group="quality" data-val="AAA" onclick="toggleBeadFilter('quality', 'AAA', this)">AAA <em>6</em></button>
+            <button type="button" class="bead-filter-pill" data-group="quality" data-val="AA" onclick="toggleBeadFilter('quality', 'AA', this)">AA <em>4</em></button>
+            <button type="button" class="bead-filter-pill" data-group="quality" data-val="Commercial" onclick="toggleBeadFilter('quality', 'Commercial', this)">Commercial <em>2</em></button>
+          </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #E8E1D6; margin: 18px 0;">
+
+        <!-- Section: PRICE (§4 Spec) -->
+        <div style="margin-bottom: 20px;">
+          <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #76706A; margin-bottom: 10px;">PRICE</span>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <button type="button" class="price-pill-btn" data-group="price" data-val="under1k" onclick="toggleBeadFilter('price', 'under1k', this)" style="padding: 6px 12px; font-size: 12px; border-radius: 999px; border: 1px solid #E8E1D6; background: #FFFFFF; color: #1C1A17; text-align: left; display: flex; justify-content: space-between; cursor: pointer;"><span>Under ₹1,000</span> <em style="font-style: normal; color: #76706A;">5</em></button>
+            <button type="button" class="price-pill-btn" data-group="price" data-val="1k-3k" onclick="toggleBeadFilter('price', '1k-3k', this)" style="padding: 6px 12px; font-size: 12px; border-radius: 999px; border: 1px solid #E8E1D6; background: #FFFFFF; color: #1C1A17; text-align: left; display: flex; justify-content: space-between; cursor: pointer;"><span>₹1,000–3,000</span> <em style="font-style: normal; color: #76706A;">4</em></button>
+            <button type="button" class="price-pill-btn" data-group="price" data-val="above3k" onclick="toggleBeadFilter('price', 'above3k', this)" style="padding: 6px 12px; font-size: 12px; border-radius: 999px; border: 1px solid #E8E1D6; background: #FFFFFF; color: #1C1A17; text-align: left; display: flex; justify-content: space-between; cursor: pointer;"><span>₹3,000+</span> <em style="font-style: normal; color: #76706A;">3</em></button>
+          </div>
+        </div>
+
       </aside>
 
       <!-- Right 3-Column Grid of Bead Cards (Image 1) -->
@@ -367,7 +402,7 @@ $beads_catalog = array(
 
               <!-- Card Body (Image 1) -->
               <div style="padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1;">
-                <div style="font-size: 14.5px; font-weight: 500; color: #1C1A17; margin-bottom: 4px; line-height: 1.35;"><?php echo esc_html($card_title); ?></div>
+                <div class="card-name" style="font-family: var(--display, 'Playfair Display', Georgia, serif); font-size: 19px; font-weight: 400; color: #1C1A17; margin-bottom: 4px; line-height: 1.35;"><?php echo esc_html($card_title); ?></div>
                 <div style="font-size: 12px; color: #76706A; margin-bottom: 12px;"><?php echo esc_html($card_meta); ?></div>
                 
                 <div style="font-weight: 600; font-size: 14.5px; color: #1C1A17; margin-top: auto; margin-bottom: 14px;">
@@ -391,6 +426,7 @@ $beads_catalog = array(
 
         <!-- Load more button (Point 17) -->
         <div style="text-align: center; margin-top: 36px;">
+          <div style="font-size: 13px; color: #76706A; margin-bottom: 12px; font-family: var(--body);">Showing 9 of 14</div>
           <button type="button" class="btn o" onclick="showWishlistToast('All 12 current bead lines loaded. More strands arriving from Jaipur.');" style="padding: 13px 32px; border: 1px solid #1C1A17; background: transparent; color: #1C1A17; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;">
             LOAD MORE
           </button>
@@ -586,11 +622,34 @@ function toggleBeadWishlist(id, btn) {
 }
 
 function openBeadQuickView(title, meta, price) {
-  alert('Quick View: ' + title + '\n' + meta + '\n' + price);
+  var modal = document.getElementById('vivaaz-quickview-modal');
+  var backdrop = document.getElementById('quickview-modal-backdrop');
+  var body = document.getElementById('quickview-modal-body');
+  if (!modal || !body) {
+    if (typeof showWishlistToast === 'function') showWishlistToast(title + ' · ' + price);
+    return;
+  }
+  var html = '<div class="qvg" style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;">' +
+    '<div class="qvi" style="background:#F6F4F0;display:flex;align-items:center;justify-content:center;aspect-ratio:1;overflow:hidden;padding:20px;">' +
+    '<img src="<?php echo esc_url(get_stylesheet_directory_uri() . "/assets/images/emerald.jpg"); ?>" alt="' + title + '" style="width:75%;object-fit:contain;"></div>' +
+    '<div>' +
+    '<span style="font-size:10.5px;letter-spacing:0.2em;color:#9B7C4E;font-weight:700;text-transform:uppercase;">GEMSTONE BEADS</span>' +
+    '<h3 style="font-family:var(--display);font-size:22px;font-weight:400;margin:8px 0;color:#1C1A17;">' + title + '</h3>' +
+    '<div style="font-size:13px;color:#76706A;margin-bottom:12px;">' + meta + '</div>' +
+    '<div style="font-size:20px;font-weight:600;margin:0 0 16px;color:#1C1A17;">' + price + '</div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">' +
+    '<button type="button" class="btn" onclick="if(typeof addProductToCartAndOpenDrawer===\'function\'){addProductToCartAndOpenDrawer(1, \'' + title.replace(/'/g, "\\'") + '\', \'<?php echo esc_url(get_stylesheet_directory_uri() . "/assets/images/emerald.jpg"); ?>\', \'' + price + '\', \'Standard Strand\', 1);closeQuickViewModal();}else{closeQuickViewModal();}" style="padding:12px;font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:#1C1A17;color:#fff;border:none;cursor:pointer;">Add to bag</button>' +
+    '<a href="https://wa.me/919680552270?text=' + encodeURIComponent('Hello Vivaaz Gems, I would like to buy: ' + title) + '" target="_blank" class="btn wa" style="padding:12px;font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:#1E9E52;color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">WhatsApp</a>' +
+    '</div>' +
+    '</div></div>';
+  body.innerHTML = html;
+  modal.style.display = 'block';
+  if (backdrop) backdrop.style.display = 'block';
+  document.body.style.overflow = 'hidden';
 }
 
 function selectBeadOptions(title, price) {
-  alert(title + ' (' + price + ') selected! You can choose length or add to bag.');
+  openBeadQuickView(title, 'Standard Jaipur Drilled Bead Strand', price);
 }
 </script>
 

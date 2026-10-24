@@ -10,12 +10,19 @@ defined('ABSPATH') || exit;
 get_header('shop');
 ?>
 
-<div class="luxury-page-wrapper" style="background: #FAF7F2; padding: 60px 20px; min-height: 80vh;">
+<div class="luxury-page-wrapper" style="background: #FAF7F2; padding: 24px 20px 80px; min-height: 80vh;">
   <div class="container" style="max-width: 800px; margin: 0 auto;">
     
+    <!-- Breadcrumb (12.5px #9A9186) -->
+    <div class="crumb" style="font-size: 12.5px; color: #9A9186; margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+      <a href="<?php echo esc_url(home_url('/')); ?>" style="color: inherit; text-decoration: none;">Home</a>
+      <span>›</span>
+      <b style="color: #1C1A17; font-weight: 500;">Custom sizes</b>
+    </div>
+    
     <div style="text-align: center; margin-bottom: 40px;">
-      <span class="section-tag-divider" style="letter-spacing: 0.15em; font-size: 11px; font-weight: 700; color: #9C7C4C; text-transform: uppercase;">THE TRADE</span>
-      <h1 class="font-serif" style="font-family: 'Playfair Display', Georgia, serif; font-size: 38px; font-weight: 400; margin: 10px 0 14px; color: #1C1A17;">Custom sizes</h1>
+      <span class="cap section-tag-divider" style="letter-spacing: 0.2em; font-size: 10.5px; font-weight: 700; color: #9B7C4E; text-transform: uppercase;">THE TRADE</span>
+      <h1 class="font-serif h1" style="font-family: var(--display, 'Playfair Display', Georgia, serif); font-size: 48px; font-weight: 400; margin: 10px 0 14px; color: #1C1A17;">Custom sizes</h1>
       <p style="font-size: 16px; color: #4A4640; max-width: 680px; margin: 0 auto; line-height: 1.8;">
         If the size you need is not on the product page, we can usually cut or source it. Calibrated stones from 1 mm up, in any standard shape, and larger single stones on request.
       </p>
@@ -56,7 +63,12 @@ get_header('shop');
           <input type="number" name="pieces" required placeholder="e.g. 50" min="1" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
         </div>
 
-        <div style="grid-column: 1 / -1;">
+        <div>
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Your Name *</label>
+          <input type="text" name="name" required placeholder="Your name" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+        </div>
+
+        <div>
           <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Your WhatsApp *</label>
           <input type="tel" name="phone" required placeholder="+91 98765 43210" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
         </div>

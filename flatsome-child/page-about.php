@@ -13,6 +13,14 @@ get_header('shop');
 
 <div class="luxury-about-page-wrapper" style="background: #FAF7F2; padding: 60px 20px; min-height: 80vh;">
   <div class="container" style="max-width: 960px; margin: 0 auto;">
+
+    <!-- Breadcrumb (12.5px #9A9186 - Point 6 & Brief Accordance) -->
+    <div class="crumb" style="font-size: 12.5px; color: #9A9186; margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+      <a href="<?php echo esc_url(home_url('/')); ?>" style="color: inherit; text-decoration: none;">Home</a>
+      <span>›</span>
+      <b style="color: #1C1A17; font-weight: 500;">About us</b>
+    </div>
+
     
     <!-- Hero / Headline Section -->
     <div class="about-hero-header" style="text-align: center; margin-bottom: 48px;">
