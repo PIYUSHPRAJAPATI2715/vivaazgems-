@@ -186,7 +186,7 @@ do_action('woocommerce_before_single_product');
           <svg class="i" style="width: 17px; height: 17px; fill: #1E9E52;" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           SEE THIS EXACT LOT LIVE
         </a>
-        <a href="javascript:void(0);" onclick="openConsultationModal();" style="text-decoration: none; border: 1px solid var(--line2); background: var(--paper); padding: 12px 10px; display: flex; gap: 8px; align-items: center; justify-content: center; font-size: 11.5px; letter-spacing: 0.14em; font-weight: 700; text-transform: uppercase; color: var(--ink);">
+        <a href="javascript:void(0);" onclick="openVideoCallModal();" style="text-decoration: none; border: 1px solid var(--line2); background: var(--paper); padding: 12px 10px; display: flex; gap: 8px; align-items: center; justify-content: center; font-size: 11.5px; letter-spacing: 0.14em; font-weight: 700; text-transform: uppercase; color: var(--ink);">
           <svg class="i" style="width: 17px; height: 17px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
           BOOK A VIDEO CALL
         </a>
@@ -236,12 +236,20 @@ do_action('woocommerce_before_single_product');
             <span style="font-weight: 600; color: var(--ink);"><?php echo esc_html($stone_name); ?></span>
           </div>
           <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
+            <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">ORIGIN</span>
+            <span><?php echo esc_html($origin); ?></span>
+          </div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
             <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">CUT AND SHAPE</span>
             <span><?php echo esc_html($cut_shape); ?></span>
           </div>
           <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
             <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">COLOUR</span>
             <span><?php echo esc_html($color_clarity); ?></span>
+          </div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
+            <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">HARDNESS</span>
+            <span>6 – 6.5 Mohs</span>
           </div>
           <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
             <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">QUALITY</span>
@@ -251,9 +259,19 @@ do_action('woocommerce_before_single_product');
             <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">COLOUR MATCH</span>
             <span>Within the lot</span>
           </div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
+            <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">TREATMENT</span>
+            <span><?php echo esc_html($treatment); ?></span>
+          </div>
           <div style="display: flex; justify-content: space-between; padding-top: 2px;">
             <span style="color: var(--soft); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">PRICE PER CARAT</span>
             <span style="font-weight: 600; color: var(--ink);">₹ 445</span>
+          </div>
+          <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line);">
+            <a href="javascript:void(0);" onclick="document.getElementById('treatment-note').style.display=document.getElementById('treatment-note').style.display==='block'?'none':'block';" style="font-size: 12px; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold);">What does "<?php echo esc_html($treatment); ?>" mean? →</a>
+            <div id="treatment-note" style="display:none; margin-top:8px; font-size:12.5px; color:var(--mute); line-height:1.6; background:var(--sand); padding:12px; border-left:3px solid var(--gold);">
+              <b style="color:var(--ink);"><?php echo esc_html($treatment); ?></b> means this stone has not been heated, irradiated or treated in any way. The colour is completely natural. Vivaaz Gems discloses all treatments on every listing.
+            </div>
           </div>
         </div>
       </div>
@@ -341,6 +359,40 @@ do_action('woocommerce_before_single_product');
           wp_reset_postdata();
       endif;
       ?>
+    </div>
+  </section>
+
+  <!-- PAIRS WELL WITH SECTION (POINT 14) -->
+  <section class="sec wrap" style="padding-block: 48px 0;">
+    <div class="sech" style="margin-bottom: 24px; border-bottom: 1px solid var(--line); padding-bottom: 12px;">
+      <h2 class="h2">Pairs well with</h2>
+    </div>
+    <div class="grid g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 22px;">
+      <?php
+      $pairs_args = array(
+          'post_type'      => 'product',
+          'posts_per_page' => 4,
+          'post__not_in'   => array($product_id),
+          'orderby'        => 'rand',
+      );
+      $pairs_query = new WP_Query($pairs_args);
+      if ($pairs_query->have_posts()) :
+          while ($pairs_query->have_posts()) : $pairs_query->the_post();
+              wc_get_template_part('content', 'product');
+          endwhile;
+          wp_reset_postdata();
+      endif;
+      ?>
+    </div>
+  </section>
+
+  <!-- RECENTLY VIEWED SECTION (POINT 14) -->
+  <section class="sec wrap" style="padding-block: 48px 0;">
+    <div class="sech" style="margin-bottom: 24px; border-bottom: 1px solid var(--line); padding-bottom: 12px;">
+      <h2 class="h2">Recently viewed</h2>
+    </div>
+    <div id="recently-viewed-grid" class="grid g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 22px;">
+      <p style="color:var(--mute); font-size:13px; grid-column:1/-1;">You have not viewed any other stones yet.</p>
     </div>
   </section>
 

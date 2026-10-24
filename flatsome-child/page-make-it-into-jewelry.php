@@ -38,12 +38,22 @@ get_header('shop');
 
       <form action="https://wa.me/919680552270" method="get" target="_blank" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
         <div>
-          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Stone or Product Code *</label>
-          <input type="text" name="stone_code" required placeholder="e.g. Ceylon Blue Sapphire 7x5 mm or SKU" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Your Name *</label>
+          <input type="text" name="name" required placeholder="Your name" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
         </div>
 
         <div>
-          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Type of Jewelry *</label>
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Your WhatsApp *</label>
+          <input type="tel" name="phone" required placeholder="+91 98765 43210" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Stone or Product Code</label>
+          <input type="text" name="stone_code" placeholder="e.g. Ceylon Blue Sapphire 7x5 mm or SKU" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Type of Jewelry</label>
           <select name="jewelry_type" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
             <option value="Ring">Ring</option>
             <option value="Pendant">Pendant</option>
@@ -53,7 +63,7 @@ get_header('shop');
         </div>
 
         <div>
-          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Metal *</label>
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Metal</label>
           <select name="metal" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
             <option value="925 Silver">925 Silver</option>
             <option value="14K Yellow Gold">14K Yellow Gold</option>
@@ -69,8 +79,8 @@ get_header('shop');
         </div>
 
         <div style="grid-column: 1 / -1;">
-          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Your WhatsApp *</label>
-          <input type="tel" name="phone" required placeholder="+91 98765 43210" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Photo or sketch of design (optional)</label>
+          <input type="file" accept="image/*" style="width: 100%; padding: 10px 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
         </div>
 
         <div style="grid-column: 1 / -1;">

@@ -274,10 +274,15 @@ body.admin-bar .site-header-wrapper {
   letter-spacing: 0.1em !important;
   color: #fff !important;
   background: transparent !important;
-  border: none !important;
+  border: 0 !important;
   cursor: pointer !important;
-  font-size: 11px !important;
   padding: 0 !important;
+  margin: 0 !important;
+  line-height: inherit !important;
+  min-height: 0 !important;
+  font-size: inherit !important;
+  display: inline !important;
+  vertical-align: middle !important;
 }
 .curm {
   position: absolute !important;
@@ -5354,6 +5359,7 @@ select.sort{border:0;background:transparent;font-weight:600;color:var(--ink);pad
 .drf .b2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(640px,calc(100% - 32px));max-height:calc(100% - 48px);overflow:auto;background:#FFFDF9;z-index:99999 !important;padding:34px 40px 30px;box-shadow:0 30px 80px rgba(0,0,0,.3);animation:pop .25s ease}
 .modal.sm{width:min(460px,calc(100% - 32px))}
+.modal.qvm{width:min(860px,calc(100% - 32px));padding:30px 36px}
 @keyframes pop{from{opacity:0;transform:translate(-50%,-46%)}}
 .modal h3{font-family:var(--display);font-weight:400;font-size:32px;margin:0 0 4px;padding-right:30px}
 .modal .sub{color:var(--mute);margin-bottom:20px}
@@ -5697,7 +5703,7 @@ h1, h2, h3, .h1, .h2, .pt, .hero2 h1, .hero h1, .fnm b, .logo b, .ph-h b {
 .ph-h .r{display:flex;gap:16px;justify-content:flex-end}
 .ph-h button{display:flex;position:relative}
 .ph-h .i{width:22px;height:22px}
-.ph-h b{font-family:var(--display);font-weight:500;letter-spacing:.28em;font-size:16px}
+.ph-h b{font-family:var(--display);font-weight:500;letter-spacing:.28em;font-size:16px;white-space:nowrap}
 .wrap{padding-left:16px;padding-right:16px}
 
 /* bottom bars */
@@ -5709,7 +5715,7 @@ h1, h2, h3, .h1, .h2, .pt, .hero2 h1, .hero h1, .fnm b, .logo b, .ph-h b {
 .buybar .w{border:1px solid #1F3B2C;background:#1F3B2C;color:#fff;display:flex;align-items:center;justify-content:center}
 
 /* menu drawer (accordion) */
-.mdr{position:absolute;top:0;left:0;bottom:0;width:86%;background:var(--bg);z-index:81;overflow-y:auto;animation:slideL .3s ease}
+.mdr{position:fixed;top:0;left:0;bottom:0;width:86%;max-width:360px;background:var(--bg);z-index:100000;overflow-y:auto;animation:slideL .3s ease}
 @keyframes slideL{from{transform:translateX(-100%)}}
 .mdr .top{height:58px;display:flex;justify-content:space-between;align-items:center;padding:0 18px;background:var(--paper);border-bottom:1px solid var(--line)}
 .mdr .top b{font-family:var(--display);font-weight:500;letter-spacing:.24em;font-size:14px}
@@ -5816,6 +5822,13 @@ footer{margin-top:50px}
 .hart,.hero2{display:none}
 .reel .ri{aspect-ratio:9/15}
 .askbox{padding:20px}
+/* Quick View responsive on phone */
+.qvm .qvg{grid-template-columns:1fr!important}
+.qvm .qvi{max-height:300px}
+/* Grid 4→2 on phone */
+.grid.g4{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px 12px!important}
+/* Checkout email+whatsapp each on own line on phone */
+.co-ew{grid-template-columns:1fr!important}
 
 .pd{align-items:stretch}
 .sheet .tree{display:none}

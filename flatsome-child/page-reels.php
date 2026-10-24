@@ -17,20 +17,27 @@ $reels = array(
 );
 ?>
 
-<div class="luxury-page-wrapper" style="background: #FAF7F2; padding: 60px 20px; min-height: 80vh;">
-  <div class="container" style="max-width: 900px; margin: 0 auto;">
-    
-    <div style="text-align: center; margin-bottom: 48px;">
-      <span class="section-tag-divider" style="letter-spacing: 0.15em; font-size: 11px; font-weight: 700; color: #9C7C4C; text-transform: uppercase;">@VIVAAZGEMS</span>
-      <h1 class="font-serif" style="font-family: 'Playfair Display', Georgia, serif; font-size: 38px; font-weight: 400; margin: 10px 0 14px; color: #1C1A17;">Seen on Instagram</h1>
-      <p style="font-size: 16px; color: #4A4640; max-width: 720px; margin: 0 auto; line-height: 1.8;">
-        Our latest reels. Tap a reel to see the stone and buy it, or type the code from the reel in the search.
-      </p>
+<div class="luxury-page-wrapper" style="background: #FAF7F2; padding: 40px 20px 80px; min-height: 80vh;">
+  <div class="container" style="max-width: 1100px; margin: 0 auto;">
 
-      <div style="margin-top: 24px;">
-        <a href="https://instagram.com/vivaazgems" target="_blank" class="btn-square-dark" style="display: inline-block; padding: 14px 28px; background: #1C1A17; color: #FFFFFF; text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">
-          FOLLOW US ON INSTAGRAM →
-        </a>
+    <div class="crumb" style="font-size: 11px; color: #76706A; margin-bottom: 20px;">
+      <a href="<?php echo esc_url(home_url('/')); ?>" style="color: inherit; text-decoration: none;">Home</a> <span style="margin: 0 4px;">›</span>
+      <span style="font-weight: 700; color: #1C1A17;">Reels</span>
+    </div>
+    
+    <!-- Header with FROM INSTAGRAM box (Point 17) -->
+    <div class="lhead" style="display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 36px; align-items: start; margin-bottom: 36px;">
+      <div>
+        <span class="section-tag-divider" style="letter-spacing: 0.15em; font-size: 11px; font-weight: 700; color: #9C7C4C; text-transform: uppercase;">@VIVAAZGEMS</span>
+        <h1 class="font-serif" style="font-family: 'Playfair Display', Georgia, serif; font-size: 38px; font-weight: 400; margin: 8px 0 12px; color: #1C1A17;">Our latest reels</h1>
+        <p style="font-size: 15px; color: #4A4640; margin: 0; line-height: 1.7;">
+          Every stone you see in our reels is here. Tap a reel to open the exact stone, or type the code from the reel in search.
+        </p>
+      </div>
+
+      <div class="nsbox" style="background: #FFFFFF; border: 1px solid #E8E1D6; padding: 20px 24px;">
+        <span class="cap" style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #9C7C4C; display: block; margin-bottom: 6px;">FROM INSTAGRAM</span>
+        <p style="margin: 0; font-size: 13px; color: #4A4640; line-height: 1.5;">This page is the link in our Instagram bio: <b style="color: #1C1A17;">vivaazgems.com/reels</b></p>
       </div>
     </div>
 

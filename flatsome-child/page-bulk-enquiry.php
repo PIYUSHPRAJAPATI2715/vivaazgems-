@@ -45,23 +45,23 @@ get_header('shop');
 
       <form action="https://wa.me/919680552270" method="get" target="_blank" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
         <div>
-          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Company Name</label>
-          <input type="text" name="company" placeholder="Your brand or studio" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
-        </div>
-
-        <div>
           <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Name *</label>
           <input type="text" name="name" required placeholder="Your full name" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
         </div>
 
         <div>
-          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Email *</label>
-          <input type="email" name="email" required placeholder="you@company.com" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">WhatsApp Number *</label>
+          <input type="tel" name="phone" required placeholder="+91 98765 43210" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
         </div>
 
         <div>
-          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">WhatsApp Number *</label>
-          <input type="tel" name="phone" required placeholder="+91 98765 43210" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Company Name</label>
+          <input type="text" name="company" placeholder="Your brand or studio" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Email</label>
+          <input type="email" name="email" placeholder="you@company.com" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
         </div>
 
         <div style="grid-column: 1 / -1;">
@@ -70,8 +70,13 @@ get_header('shop');
         </div>
 
         <div style="grid-column: 1 / -1;">
-          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">What do you need? (Stone, shape, size, quantity) *</label>
-          <textarea name="text" rows="4" required placeholder="Describe your required gemstones, calibrated dimensions, estimated pieces or production timeline..." style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;"></textarea>
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Photo or specification file (optional)</label>
+          <input type="file" accept="image/*,.pdf" style="width: 100%; padding: 10px 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+        </div>
+
+        <div style="grid-column: 1 / -1;">
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">What do you need? (Stone, shape, size, quantity)</label>
+          <textarea name="text" rows="4" placeholder="Describe your required gemstones, calibrated dimensions, estimated pieces or production timeline..." style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;"></textarea>
         </div>
 
         <div style="grid-column: 1 / -1; margin-top: 8px;">

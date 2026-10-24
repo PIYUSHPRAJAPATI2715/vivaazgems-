@@ -14,7 +14,7 @@ get_header();
     <div class="wishlist-page-header" style="text-align: center; margin-bottom: 36px;">
       <span class="section-tag-divider" style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-label); display: block; margin-bottom: 6px;">SAVED GEMS</span>
       <h1 class="font-serif" style="font-size: 36px; font-weight: 400; color: var(--color-text-main); margin: 0 0 8px;">Your <span class="font-italic text-gold" style="color: var(--color-gold-label); font-style: italic;">Wishlist</span></h1>
-      <p class="text-muted" style="font-size: 13px; color: var(--color-text-muted); margin: 0;">Save your favorite gemstones, calibrated lots, and layouts to review or purchase anytime.</p>
+      <p class="text-muted" style="font-size: 13.5px; color: var(--color-text-muted); margin: 0 0 6px;">Saved on this device. <a href="javascript:void(0);" onclick="openSignInModal();" style="color: var(--color-text-main); text-decoration: underline; font-weight: 600;">Sign in</a> to keep it everywhere.</p>
     </div>
 
     <!-- Active Wishlist Container (Rendered dynamically by JavaScript) -->

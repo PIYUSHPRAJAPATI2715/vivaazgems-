@@ -125,9 +125,6 @@ if (!function_exists('vivaaz_render_tennis_art')) {
       <b style="font-family:var(--display); font-weight:500; letter-spacing:.28em; font-size:16px;">VIVAAZ GEMS</b>
     </a>
     <div class="r">
-      <button type="button" onclick="openSignInModal();" aria-label="Account">
-        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5c1.2-3.8 4-5.6 7.5-5.6s6.3 1.8 7.5 5.6"/></svg>
-      </button>
       <button type="button" onclick="openLiveSearchModal();" aria-label="Search">
         <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
       </button>
@@ -559,7 +556,31 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     'amethyst': { name: 'Amethyst', desc: 'Lilac to deep purple', file: 'ruby.jpg' },
     'rainbow-moonstone': { name: 'Rainbow Moonstone', desc: 'Cabochon lots from 3×4 mm, AAA', file: 'moonstone.jpg' },
     'topaz': { name: 'Topaz', desc: 'Sky, Swiss & London blue', file: 'swiss-topaz.jpg' },
-    'agate': { name: 'Agate', desc: 'Banded chalcedony', file: 'moonstone.jpg' }
+    'agate': { name: 'Agate', desc: 'Banded chalcedony', file: 'moonstone.jpg' },
+    'garnet': { name: 'Garnet', desc: 'Rhodolite, hessonite & tsavorite', file: 'ruby.jpg' },
+    'peridot': { name: 'Peridot', desc: 'Vivid yellow-green', file: 'emerald.jpg' },
+    'citrine': { name: 'Citrine', desc: 'Golden to Madeira orange', file: 'swiss-topaz.jpg' },
+    'tourmaline': { name: 'Tourmaline', desc: 'Pink, green & bi-colour', file: 'emerald.jpg' },
+    'aquamarine': { name: 'Aquamarine', desc: 'Pale sky-blue beryl', file: 'ceylon-sapphire.jpg' },
+    'tanzanite': { name: 'Tanzanite', desc: 'Violet-blue, trichroic', file: 'ceylon-sapphire.jpg' },
+    'spinel': { name: 'Spinel', desc: 'Red, pink & hot pink', file: 'ruby.jpg' },
+    'opal': { name: 'Opal', desc: 'Ethiopian play of colour', file: 'moonstone.jpg' },
+    'labradorite': { name: 'Labradorite', desc: 'Blue flash feldspar', file: 'moonstone.jpg' },
+    'lapis-lazuli': { name: 'Lapis Lazuli', desc: 'Deep royal blue', file: 'ceylon-sapphire.jpg' },
+    'onyx': { name: 'Onyx', desc: 'Jet black chalcedony', file: 'moonstone.jpg' },
+    'carnelian': { name: 'Carnelian', desc: 'Warm orange-red', file: 'ruby.jpg' },
+    'rose-quartz': { name: 'Rose Quartz', desc: 'Soft blush pink', file: 'moonstone.jpg' },
+    'smoky-quartz': { name: 'Smoky Quartz', desc: 'Warm brown to charcoal', file: 'moonstone.jpg' },
+    'prehnite': { name: 'Prehnite', desc: 'Translucent apple green', file: 'emerald.jpg' },
+    'iolite': { name: 'Iolite', desc: 'Blue-violet pleochroic', file: 'ceylon-sapphire.jpg' },
+    'morganite': { name: 'Morganite', desc: 'Peach to salmon pink beryl', file: 'moonstone.jpg' },
+    'kunzite': { name: 'Kunzite', desc: 'Lilac pink spodumene', file: 'moonstone.jpg' },
+    'chrysoprase': { name: 'Chrysoprase', desc: 'Apple-green chalcedony', file: 'emerald.jpg' },
+    'chalcedony': { name: 'Chalcedony', desc: 'Translucent lavender to aqua', file: 'ceylon-sapphire.jpg' },
+    'sunstone': { name: 'Sunstone', desc: 'Oregon & India aventurescence', file: 'ruby.jpg' },
+    'aventurine': { name: 'Aventurine', desc: 'Green with mica sparkle', file: 'emerald.jpg' },
+    'tigers-eye': { name: "Tiger's Eye", desc: 'Golden chatoyant quartz', file: 'swiss-topaz.jpg' },
+    'turquoise': { name: 'Turquoise', desc: 'Sky blue, matrix veins', file: 'ceylon-sapphire.jpg' }
   };
 
   window.updateGemsMegaPhoto = function(id) {
@@ -901,71 +922,75 @@ if (!function_exists('vivaaz_render_tennis_art')) {
   </div>
 </aside>
 
-<!-- CONSULTATION MODAL POPUP (POINT 13 SPEC) -->
-<div class="consultation-modal-backdrop" id="vivaaz-consultation-modal" style="display: none;" onclick="if(event.target === this) closeConsultationModal();">
-  <div class="consultation-modal-box">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-      <h3 style="font-family: var(--font-family-serif); font-size: 24px; font-weight: 400; margin: 0;">Book a consultation</h3>
-      <button type="button" onclick="closeConsultationModal();" style="background: none; border: none; font-size: 22px; cursor: pointer;">&times;</button>
+<!-- CONSULTATION MODAL POPUP (POINT 13 SPEC / CENTRED POP-UP) -->
+<div class="scrim" id="consultation-modal-scrim" style="display: none; position: fixed; inset: 0; background: rgba(28,26,23,.5); z-index: 99998;" onclick="closeConsultationModal();"></div>
+<div class="modal sm" id="vivaaz-consultation-modal" role="dialog" aria-label="Book a consultation" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 99999; max-height: 90vh; overflow-y: auto;">
+  <button type="button" class="x" onclick="closeConsultationModal();" aria-label="Close" style="background: none; border: none; font-size: 24px; cursor: pointer; position: absolute; right: 22px; top: 22px; color: var(--ink); line-height: 1;">&times;</button>
+  <h3 style="font-family: var(--display); font-size: 24px; font-weight: 400; margin: 0 0 6px;">Book a consultation</h3>
+  <p class="sub" style="font-size: 13px; color: var(--mute); margin: 0 0 20px;">We confirm the time of your call on WhatsApp.</p>
+  
+  <form id="consultation-popup-form" onsubmit="handleConsultationSubmit(event);">
+    <div style="margin-bottom: 14px;">
+      <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: var(--soft);">NAME *</label>
+      <input type="text" id="consult-name" placeholder="Your name" required style="width: 100%; padding: 10px 14px; border: 1px solid var(--line2); font-size: 13px; box-sizing: border-box; background: var(--paper);" />
     </div>
-    <p style="font-size: 12px; color: var(--color-text-muted); margin: 0 0 20px;">We confirm the time of your call on WhatsApp.</p>
-    
-    <form id="consultation-popup-form" onsubmit="handleConsultationSubmit(event);">
-      <div style="margin-bottom: 14px;">
-        <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">NAME</label>
-        <input type="text" id="consult-name" placeholder="Your name" required style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border-light); font-size: 13px; box-sizing: border-box;" />
-      </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
-        <div>
-          <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">WHATSAPP NUMBER</label>
-          <input type="text" id="consult-wa" placeholder="+91" required style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border-light); font-size: 13px; box-sizing: border-box;" />
-        </div>
-        <div>
-          <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">EMAIL</label>
-          <input type="email" id="consult-email" placeholder="Optional" style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border-light); font-size: 13px; box-sizing: border-box;" />
-        </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+      <div>
+        <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: var(--soft);">WHATSAPP *</label>
+        <input type="text" id="consult-wa" placeholder="+91" required style="width: 100%; padding: 10px 14px; border: 1px solid var(--line2); font-size: 13px; box-sizing: border-box; background: var(--paper);" />
       </div>
-
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
-        <div>
-          <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">DATE OF BIRTH</label>
-          <input type="text" id="consult-dob" placeholder="DD / MM / YYYY" required style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border-light); font-size: 13px; box-sizing: border-box;" />
-        </div>
-        <div>
-          <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">TIME OF BIRTH</label>
-          <input type="text" id="consult-tob" placeholder="If known" style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border-light); font-size: 13px; box-sizing: border-box;" />
-        </div>
+      <div>
+        <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: var(--soft);">EMAIL</label>
+        <input type="email" id="consult-email" placeholder="Optional" style="width: 100%; padding: 10px 14px; border: 1px solid var(--line2); font-size: 13px; box-sizing: border-box; background: var(--paper);" />
       </div>
+    </div>
 
-      <div style="margin-bottom: 14px;">
-        <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">PLACE OF BIRTH</label>
-        <input type="text" id="consult-pob" placeholder="City, country" required style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border-light); font-size: 13px; box-sizing: border-box;" />
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+      <div>
+        <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: var(--soft);">DATE OF BIRTH</label>
+        <input type="text" id="consult-dob" placeholder="DD / MM / YYYY" style="width: 100%; padding: 10px 14px; border: 1px solid var(--line2); font-size: 13px; box-sizing: border-box; background: var(--paper);" />
       </div>
-
-      <div style="margin-bottom: 14px;">
-        <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">I AM ASKING ABOUT</label>
-        <div class="consult-pills-row" style="display: flex; flex-wrap: wrap; gap: 6px;">
-          <button type="button" class="consult-pill active" onclick="selectConsultTopic('Career', this)">Career</button>
-          <button type="button" class="consult-pill" onclick="selectConsultTopic('Health', this)">Health</button>
-          <button type="button" class="consult-pill" onclick="selectConsultTopic('Marriage', this)">Marriage</button>
-          <button type="button" class="consult-pill" onclick="selectConsultTopic('Wealth', this)">Wealth</button>
-          <button type="button" class="consult-pill" onclick="selectConsultTopic('Studies', this)">Studies</button>
-        </div>
+      <div>
+        <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: var(--soft);">TIME OF BIRTH</label>
+        <input type="text" id="consult-tob" placeholder="If known" style="width: 100%; padding: 10px 14px; border: 1px solid var(--line2); font-size: 13px; box-sizing: border-box; background: var(--paper);" />
       </div>
+    </div>
 
-      <div style="margin-bottom: 18px;">
-        <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">BUDGET FOR THE STONE</label>
-        <div class="consult-pills-row" style="display: flex; flex-wrap: wrap; gap: 6px;">
-          <button type="button" class="consult-pill" onclick="selectConsultBudget('Under ₹10,000', this)">Under ₹10,000</button>
-          <button type="button" class="consult-pill active" onclick="selectConsultBudget('₹10,000–50,000', this)">₹10,000–50,000</button>
-          <button type="button" class="consult-pill" onclick="selectConsultBudget('₹50,000+', this)">₹50,000+</button>
-        </div>
+    <div style="margin-bottom: 14px;">
+      <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: var(--soft);">PLACE OF BIRTH</label>
+      <input type="text" id="consult-pob" placeholder="City, country" style="width: 100%; padding: 10px 14px; border: 1px solid var(--line2); font-size: 13px; box-sizing: border-box; background: var(--paper);" />
+    </div>
+
+    <div style="margin-bottom: 14px;">
+      <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: var(--soft);">I AM ASKING ABOUT</label>
+      <div class="consult-pills-row" style="display: flex; flex-wrap: wrap; gap: 6px;">
+        <button type="button" class="chip on" onclick="selectConsultTopic('Career', this)">Career</button>
+        <button type="button" class="chip" onclick="selectConsultTopic('Health', this)">Health</button>
+        <button type="button" class="chip" onclick="selectConsultTopic('Marriage', this)">Marriage</button>
+        <button type="button" class="chip" onclick="selectConsultTopic('Wealth', this)">Wealth</button>
+        <button type="button" class="chip" onclick="selectConsultTopic('Studies', this)">Studies</button>
       </div>
+    </div>
 
-      <p style="font-size: 11px; color: var(--color-text-muted); margin: 0 0 16px; line-height: 1.5;">
-        Paid consultation. You see the fee and pay online. Then we confirm the time of your call on WhatsApp.
-      </p>
+    <div style="margin-bottom: 18px;">
+      <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: var(--soft);">BUDGET FOR THE STONE</label>
+      <div class="consult-pills-row" style="display: flex; flex-wrap: wrap; gap: 6px;">
+        <button type="button" class="chip" onclick="selectConsultBudget('Under ₹10,000', this)">Under ₹10,000</button>
+        <button type="button" class="chip on" onclick="selectConsultBudget('₹10,000–50,000', this)">₹10,000–50,000</button>
+        <button type="button" class="chip" onclick="selectConsultBudget('₹50,000+', this)">₹50,000+</button>
+      </div>
+    </div>
+
+    <p style="font-size: 11.5px; color: var(--soft); margin: 0 0 16px; line-height: 1.5;">
+      Paid consultation. We confirm the time of your call on WhatsApp and guide you through natural, certified stones that fit your birth chart and budget.
+    </p>
+
+    <button type="submit" class="btn wide" style="width: 100%; padding: 14px; background: #1C1A17; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; border: none; cursor: pointer;">
+      REQUEST CONSULTATION
+    </button>
+  </form>
+</div>
 
       <button type="submit" class="btn-square-dark" style="width: 100%; padding: 14px; background: #1C1A17; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer;">
         BOOK A CONSULTATION
@@ -1014,6 +1039,87 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     <button type="button" class="btn o wide" style="width:100%;" onclick="showEmailSignIn();">CONTINUE WITH EMAIL</button>
     <p style="font-size:12.5px;color:var(--soft);text-align:center;margin:14px 0 0;">New here? The same buttons create your account. Guest checkout always stays: no account is needed to buy.</p>
   </div>
+</div>
+
+<!-- VIDEO CALL MODAL -->
+<div class="scrim" id="videocall-modal-backdrop" style="display:none;position:fixed;inset:0;background:rgba(28,26,23,.5);z-index:99998;" onclick="closeVideoCallModal();"></div>
+<div class="modal sm" id="vivaaz-videocall-modal" role="dialog" aria-label="Book a video call" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99999;max-height:90vh;overflow-y:auto;">
+  <button type="button" onclick="closeVideoCallModal();" aria-label="Close" style="background:none;border:none;font-size:24px;cursor:pointer;position:absolute;right:22px;top:22px;color:var(--ink);line-height:1;">&times;</button>
+  <h3 style="font-family:var(--display);font-size:24px;font-weight:400;margin:0 0 6px;">Book a video call</h3>
+  <p class="sub" style="font-size:13px;color:var(--mute);margin:0 0 20px;">See the exact stones live before you buy. Free.</p>
+  <div id="videocall-modal-sent" style="display:none;text-align:center;padding:20px 0;">
+    <div style="font-size:40px;margin-bottom:12px;">✓</div>
+    <h3 style="font-family:var(--display);font-size:22px;font-weight:400;margin:0 0 8px;">Video call requested.</h3>
+    <p style="font-size:13px;color:var(--mute);margin:0 0 20px;">We confirm the time on WhatsApp and show you the exact stones live.</p>
+    <button type="button" class="btn" onclick="closeVideoCallModal();" style="padding:12px 28px;">Done</button>
+  </div>
+  <form id="videocall-form" onsubmit="submitVideoCallForm(event);" style="display:block;">
+    <div style="margin-bottom:14px;">
+      <label style="display:block;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;color:var(--soft);">WHEN SUITS YOU</label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;" id="vc-time-chips">
+        <button type="button" class="chip on" onclick="selectVcTime('Today', this)" style="border-radius:999px;padding:8px 16px;font-size:12.5px;height:33px;">Today</button>
+        <button type="button" class="chip" onclick="selectVcTime('Tomorrow morning', this)" style="border-radius:999px;padding:8px 16px;font-size:12.5px;height:33px;">Tomorrow morning</button>
+        <button type="button" class="chip" onclick="selectVcTime('Tomorrow evening', this)" style="border-radius:999px;padding:8px 16px;font-size:12.5px;height:33px;">Tomorrow evening</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+      <div>
+        <label style="display:block;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;color:var(--soft);">NAME</label>
+        <input type="text" id="vc-name" placeholder="Your name" required style="width:100%;padding:10px 14px;border:1px solid var(--line2);font-size:13px;box-sizing:border-box;background:var(--paper);">
+      </div>
+      <div>
+        <label style="display:block;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;color:var(--soft);">WHATSAPP</label>
+        <input type="text" id="vc-wa" placeholder="+91" required style="width:100%;padding:10px 14px;border:1px solid var(--line2);font-size:13px;box-sizing:border-box;background:var(--paper);">
+      </div>
+    </div>
+    <button type="submit" style="width:100%;padding:14px;background:#1C1A17;color:#fff;border:none;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;">Request a video call</button>
+  </form>
+</div>
+
+<!-- QUICK VIEW MODAL -->
+<div class="scrim" id="quickview-modal-backdrop" style="display:none;position:fixed;inset:0;background:rgba(28,26,23,.5);z-index:99998;" onclick="closeQuickViewModal();"></div>
+<div class="modal qvm" id="vivaaz-quickview-modal" role="dialog" aria-label="Quick view" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99999;max-height:90vh;overflow-y:auto;width:min(860px,calc(100% - 32px));">
+  <button type="button" onclick="closeQuickViewModal();" aria-label="Close" style="background:none;border:none;font-size:24px;cursor:pointer;position:absolute;right:22px;top:22px;color:var(--ink);line-height:1;z-index:2;">&times;</button>
+  <div id="quickview-modal-body" style="padding:0;"></div>
+</div>
+
+<!-- DESIGN QUOTE / SEND YOUR DESIGN MODAL -->
+<div class="scrim" id="designquote-modal-backdrop" style="display:none;position:fixed;inset:0;background:rgba(28,26,23,.5);z-index:99998;" onclick="closeDesignQuoteModal();"></div>
+<div class="modal" id="vivaaz-designquote-modal" role="dialog" aria-label="Send your design" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99999;max-height:90vh;overflow-y:auto;">
+  <button type="button" onclick="closeDesignQuoteModal();" aria-label="Close" style="background:none;border:none;font-size:24px;cursor:pointer;position:absolute;right:22px;top:22px;color:var(--ink);line-height:1;">&times;</button>
+  <h3 style="font-family:var(--display);font-size:24px;font-weight:400;margin:0 0 6px;">Send your design</h3>
+  <p class="sub" style="font-size:13px;color:var(--mute);margin:0 0 20px;">A photo or sketch and the size is enough. We match it from our stock in Jaipur or Bangkok.</p>
+  <div id="designquote-sent" style="display:none;text-align:center;padding:20px 0;">
+    <div style="font-size:40px;margin-bottom:12px;">✓</div>
+    <h3 style="font-family:var(--display);font-size:22px;font-weight:400;margin:0 0 8px;">Request sent.</h3>
+    <p style="font-size:13px;color:var(--mute);margin:0 0 20px;">We will message you on WhatsApp. Asking is free and there is no obligation.</p>
+    <button type="button" class="btn" onclick="closeDesignQuoteModal();" style="padding:12px 28px;">Done</button>
+  </div>
+  <form id="designquote-form" onsubmit="submitDesignQuoteForm(event);">
+    <div style="margin-bottom:14px;">
+      <label style="display:block;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;color:var(--soft);">STONE & SHAPE / SIZE</label>
+      <input type="text" id="dq-stone" placeholder="e.g. Ruby oval, 5×7 mm" style="width:100%;padding:10px 14px;border:1px solid var(--line2);font-size:13px;box-sizing:border-box;background:var(--paper);">
+    </div>
+    <div style="margin-bottom:14px;">
+      <label style="display:block;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;color:var(--soft);">PHOTO OR SKETCH (OPTIONAL)</label>
+      <input type="file" id="dq-photo" accept="image/*" style="width:100%;padding:10px 14px;border:1px solid var(--line2);font-size:13px;box-sizing:border-box;background:var(--paper);height:auto;">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+      <div>
+        <label style="display:block;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;color:var(--soft);">NAME *</label>
+        <input type="text" id="dq-name" placeholder="Your name" required style="width:100%;padding:10px 14px;border:1px solid var(--line2);font-size:13px;box-sizing:border-box;background:var(--paper);">
+      </div>
+      <div>
+        <label style="display:block;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;color:var(--soft);">WHATSAPP *</label>
+        <input type="text" id="dq-wa" placeholder="+91" required style="width:100%;padding:10px 14px;border:1px solid var(--line2);font-size:13px;box-sizing:border-box;background:var(--paper);">
+      </div>
+    </div>
+    <div style="margin-bottom:18px;">
+      <label style="display:block;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;color:var(--soft);">NOTES (OPTIONAL)</label>
+      <textarea id="dq-notes" placeholder="Budget, number of stones, length, anything else" rows="3" style="width:100%;padding:10px 14px;border:1px solid var(--line2);font-size:13px;box-sizing:border-box;background:var(--paper);resize:vertical;"></textarea>
+    </div>
+    <button type="submit" style="width:100%;padding:14px;background:#1C1A17;color:#fff;border:none;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;">Send request</button>
+  </form>
 </div>
 
 <script>
@@ -1282,6 +1388,9 @@ if (!function_exists('vivaaz_render_tennis_art')) {
       closeLiveSearchModal();
       closeSignInModal();
       closeCartDrawer();
+      closeVideoCallModal();
+      closeQuickViewModal();
+      closeDesignQuoteModal();
       var drawer = document.getElementById('mobile-menu-drawer');
       if (drawer && (drawer.classList.contains('open') || drawer.style.display === 'flex' || drawer.style.display === 'block')) {
         toggleMobileMenuDrawer();
@@ -1680,18 +1789,26 @@ if (!function_exists('vivaaz_render_tennis_art')) {
   // CONSULTATION MODAL FUNCTIONS (POINT 13 SPEC)
   function openConsultationModal() {
     var modal = document.getElementById('vivaaz-consultation-modal');
+    var scrim = document.getElementById('consultation-modal-scrim');
     if (modal) {
-      modal.style.display = 'flex';
-      setTimeout(function() { modal.classList.add('open'); }, 10);
+      modal.style.display = 'block';
     }
+    if (scrim) {
+      scrim.style.display = 'block';
+    }
+    document.body.style.overflow = 'hidden';
   }
 
   function closeConsultationModal() {
     var modal = document.getElementById('vivaaz-consultation-modal');
+    var scrim = document.getElementById('consultation-modal-scrim');
     if (modal) {
-      modal.classList.remove('open');
-      setTimeout(function() { modal.style.display = 'none'; }, 200);
+      modal.style.display = 'none';
     }
+    if (scrim) {
+      scrim.style.display = 'none';
+    }
+    document.body.style.overflow = '';
   }
 
   var _consultTopic = 'Career';
@@ -1731,6 +1848,131 @@ if (!function_exists('vivaaz_render_tennis_art')) {
       'Budget: ' + _consultBudget;
 
     closeConsultationModal();
+    window.open('https://wa.me/919680552270?text=' + encodeURIComponent(text), '_blank');
+  }
+
+  // VIDEO CALL MODAL
+  var _vcTime = 'Today';
+  function selectVcTime(time, btn) {
+    _vcTime = time;
+    var chips = document.querySelectorAll('#vc-time-chips .chip');
+    chips.forEach(function(c) {
+      c.classList.remove('on');
+      c.style.background = 'var(--paper)';
+      c.style.color = 'var(--ink)';
+      c.style.borderColor = 'var(--line2)';
+    });
+    if (btn) {
+      btn.classList.add('on');
+      btn.style.background = 'var(--ink)';
+      btn.style.color = '#fff';
+      btn.style.borderColor = 'var(--ink)';
+    }
+  }
+  function openVideoCallModal() {
+    var modal = document.getElementById('vivaaz-videocall-modal');
+    var backdrop = document.getElementById('videocall-modal-backdrop');
+    var sent = document.getElementById('videocall-modal-sent');
+    var form = document.getElementById('videocall-form');
+    if (sent) sent.style.display = 'none';
+    if (form) form.style.display = 'block';
+    if (modal) { modal.style.display = 'block'; }
+    if (backdrop) { backdrop.style.display = 'block'; }
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVideoCallModal() {
+    var modal = document.getElementById('vivaaz-videocall-modal');
+    var backdrop = document.getElementById('videocall-modal-backdrop');
+    if (modal) modal.style.display = 'none';
+    if (backdrop) backdrop.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  function submitVideoCallForm(e) {
+    e.preventDefault();
+    var name = (document.getElementById('vc-name') || {}).value || '';
+    var wa = (document.getElementById('vc-wa') || {}).value || '';
+    var sent = document.getElementById('videocall-modal-sent');
+    var form = document.getElementById('videocall-form');
+    if (sent) sent.style.display = 'block';
+    if (form) form.style.display = 'none';
+    var text = 'Hello Vivaaz Gems, I would like to book a video call.\nName: ' + name + '\nWhatsApp: ' + wa + '\nWhen suits me: ' + _vcTime;
+    window.open('https://wa.me/919680552270?text=' + encodeURIComponent(text), '_blank');
+  }
+
+  // QUICK VIEW MODAL
+  var _qvCatalog = {
+    'rmcoc68': { name: 'Rainbow Moonstone Oval Cabochon · AAA', code: 'RMCOC68', price: '₹ 120', unit: 'per piece', sizes: ['4×6 mm','5×7 mm','6×8 mm','7×9 mm'], stone: 'moonstone', url: '<?php echo esc_url(home_url("/shop/")); ?>' },
+    'bsfov':   { name: 'Ceylon Blue Sapphire Oval Faceted', code: 'BSFOV', price: '₹ 1,450', unit: 'per piece', sizes: ['5×7 mm','6×8 mm','7×9 mm'], stone: 'ceylon-sapphire', url: '<?php echo esc_url(home_url("/shop/")); ?>' },
+    'rmcpr':   { name: 'Rainbow Moonstone Oval Matched Pair', code: 'RMCPR', price: '₹ 2,600', unit: 'for the pair', sizes: ['6×8 mm','7×9 mm'], stone: 'moonstone', url: '<?php echo esc_url(home_url("/shop/")); ?>' },
+    'rmc1825': { name: 'Rainbow Moonstone 32ct Collector Lot', code: 'RMC1825', price: '₹ 38,500', unit: 'for the lot', sizes: ['Mixed 3–9 mm'], stone: 'moonstone', url: '<?php echo esc_url(home_url("/shop/")); ?>' }
+  };
+  function openQuickViewModal(id) {
+    var p = _qvCatalog[id];
+    var modal = document.getElementById('vivaaz-quickview-modal');
+    var backdrop = document.getElementById('quickview-modal-backdrop');
+    var body = document.getElementById('quickview-modal-body');
+    if (!modal || !body) return;
+    var imgUrl = '<?php echo esc_url(get_stylesheet_directory_uri() . "/assets/images/"); ?>' + (p ? p.stone : 'moonstone') + '.jpg';
+    var html = '<div class="qvg" style="display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;">' +
+      '<div class="qvi" style="background:#F4F2EE;display:flex;align-items:center;justify-content:center;aspect-ratio:1;overflow:hidden;">' +
+      '<img src="' + imgUrl + '" alt="' + (p ? p.name : 'Stone') + '" style="width:72%;object-fit:contain;"></div>' +
+      '<div>' + (p ? (
+        '<span style="font-size:11px;letter-spacing:0.16em;color:#9B7C4E;font-weight:700;text-transform:uppercase;">' + p.code + '</span>' +
+        '<h3 style="font-family:var(--display);font-size:24px;font-weight:400;margin:8px 0;">' + p.name + '</h3>' +
+        '<div style="font-size:24px;font-weight:600;margin:0 0 16px;">' + p.price + ' <span style="font-size:13px;font-weight:400;color:var(--mute);">' + p.unit + '</span></div>' +
+        '<div style="font-size:10.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--soft);margin-bottom:8px;">SIZE (MM)</div>' +
+        '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;">' +
+        p.sizes.map(function(s, i) { return '<button class="chip' + (i===0?' on':'') + '" onclick="this.parentElement.querySelectorAll(\'.chip\').forEach(function(c){c.classList.remove(\'on\')});this.classList.add(\'on\')" style="border-radius:0;padding:7px 14px;font-size:12.5px;">' + s + '</button>'; }).join('') +
+        '</div>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">' +
+        '<button class="btn" onclick="closeQuickViewModal();showWishlistToast(\'Added to bag\')" style="padding:12px;">Add to cart</button>' +
+        '<a href="' + p.url + '" class="btn o" onclick="closeQuickViewModal();" style="padding:12px;text-decoration:none;display:flex;align-items:center;justify-content:center;">Full details</a>' +
+        '</div>'
+      ) : '<p>Stone not found.</p>') +
+      '</div></div>';
+    body.innerHTML = html;
+    modal.style.display = 'block';
+    if (backdrop) backdrop.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeQuickViewModal() {
+    var modal = document.getElementById('vivaaz-quickview-modal');
+    var backdrop = document.getElementById('quickview-modal-backdrop');
+    if (modal) modal.style.display = 'none';
+    if (backdrop) backdrop.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  // DESIGN QUOTE MODAL (Send your design / Match my stone)
+  function openDesignQuoteModal() {
+    var modal = document.getElementById('vivaaz-designquote-modal');
+    var backdrop = document.getElementById('designquote-modal-backdrop');
+    var sent = document.getElementById('designquote-sent');
+    var form = document.getElementById('designquote-form');
+    if (sent) sent.style.display = 'none';
+    if (form) form.style.display = 'block';
+    if (modal) modal.style.display = 'block';
+    if (backdrop) backdrop.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDesignQuoteModal() {
+    var modal = document.getElementById('vivaaz-designquote-modal');
+    var backdrop = document.getElementById('designquote-modal-backdrop');
+    if (modal) modal.style.display = 'none';
+    if (backdrop) backdrop.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  function submitDesignQuoteForm(e) {
+    e.preventDefault();
+    var name = (document.getElementById('dq-name') || {}).value || '';
+    var wa = (document.getElementById('dq-wa') || {}).value || '';
+    var stone = (document.getElementById('dq-stone') || {}).value || '';
+    var notes = (document.getElementById('dq-notes') || {}).value || '';
+    var sent = document.getElementById('designquote-sent');
+    var form = document.getElementById('designquote-form');
+    if (sent) sent.style.display = 'block';
+    if (form) form.style.display = 'none';
+    var text = 'Hello Vivaaz Gems, I want to send my design.' + (stone ? '\nStone/size: ' + stone : '') + '\nName: ' + name + '\nWhatsApp: ' + wa + (notes ? '\nNotes: ' + notes : '');
     window.open('https://wa.me/919680552270?text=' + encodeURIComponent(text), '_blank');
   }
 

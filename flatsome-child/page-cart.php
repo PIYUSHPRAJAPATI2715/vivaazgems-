@@ -114,6 +114,7 @@ $checkout_url = home_url('/checkout/');
             <div class="n" style="font-weight: 600; font-size: 14px; line-height: 1.35; color: var(--ink, #1C1A17);">${title}</div>
             <div class="m" style="font-size: 12px; color: var(--soft, #76706A); margin: 3px 0 8px; display: flex; gap: 8px; align-items: center;">
               <span>${size} · AAA</span>
+              <button type="button" onclick="changeBagItemSize(${idx});" style="background: none; border: none; font-size: 12px; color: var(--gold, #9C7C4C); text-decoration: underline; cursor: pointer; padding: 0;">Change size</button>
             </div>
             <div class="step s" style="display: inline-flex; align-items: center; border: 1px solid var(--ink, #1C1A17); background: #FFF; height: 30px;">
               <button type="button" onclick="stepBagQty(${idx}, -1)" aria-label="Fewer" style="width: 30px; height: 30px; border: none; background: none; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center;">−</button>
@@ -157,6 +158,18 @@ $checkout_url = home_url('/checkout/');
           <div class="row t" style="display: flex; justify-content: space-between; font-size: 17px; font-weight: 700; border-top: 1px solid var(--line, #EFE9E0); margin-top: 10px; padding-top: 12px; color: var(--ink, #1C1A17);">
             <span>Total before shipping</span>
             <span>${formatMoney(subtotal)}</span>
+          </div>
+
+          <!-- Ways to pay -->
+          <div class="payrow" style="margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line, #EFE9E0);">
+            <span class="cap" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink, #1C1A17); margin-bottom: 8px;">Ways to pay in India</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+              <span class="pchip" style="font-size: 11.5px; background: #FAF7F2; border: 1px solid var(--line, #EFE9E0); padding: 4px 10px; border-radius: 2px;">UPI</span>
+              <span class="pchip" style="font-size: 11.5px; background: #FAF7F2; border: 1px solid var(--line, #EFE9E0); padding: 4px 10px; border-radius: 2px;">Cards</span>
+              <span class="pchip" style="font-size: 11.5px; background: #FAF7F2; border: 1px solid var(--line, #EFE9E0); padding: 4px 10px; border-radius: 2px;">Net banking</span>
+              <span class="pchip" style="font-size: 11.5px; background: #FAF7F2; border: 1px solid var(--line, #EFE9E0); padding: 4px 10px; border-radius: 2px;">Bank transfer (NEFT / RTGS)</span>
+            </div>
+            <small style="display: block; font-size: 11.5px; color: var(--soft, #76706A); line-height: 1.4;">Prices in ₹ INR. Outside India: PayPal, international cards, Payoneer and SWIFT / TT.</small>
           </div>
 
           <a href="<?php echo esc_url($checkout_url); ?>" class="btn wide" style="display: block; width: 100%; margin-top: 18px; padding: 14px; background: #1C1A17; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; text-align: center; text-decoration: none; border-radius: 0;">CHECKOUT</a>
@@ -226,6 +239,21 @@ $checkout_url = home_url('/checkout/');
     if (banner) banner.style.display = 'none';
     renderBagPage();
     if (typeof renderCartDrawer === 'function') renderCartDrawer();
+  }
+
+  function changeBagItemSize(index) {
+    var items = getLocalBagItems();
+    if (!items[index]) return;
+    var sizes = ['3×4 mm', '3×5 mm', '4×5 mm', '4×6 mm', '5×7 mm', '6×8 mm', '7×9 mm', '8×10 mm', '10×12 mm'];
+    var current = items[index].size || '6×8 mm';
+    var nextSize = prompt('Select new size for ' + (items[index].title || 'gemstone') + ':\nAvailable: ' + sizes.join(', '), current);
+    if (nextSize && sizes.indexOf(nextSize.trim()) > -1) {
+      items[index].size = nextSize.trim();
+      setLocalBagItems(items);
+      renderBagPage();
+      if (typeof renderCartDrawer === 'function') renderCartDrawer();
+      if (typeof showWishlistToast === 'function') showWishlistToast('Size updated to ' + nextSize.trim());
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function() {

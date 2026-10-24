@@ -388,6 +388,13 @@ $beads_catalog = array(
         <div id="no-beads-msg" style="display: none; background: #FFFFFF; border: 1px solid #E8E1D6; padding: 40px; text-align: center; color: #76706A; font-size: 14px;">
           No beads match these filters. <a href="javascript:void(0)" onclick="resetAllBeadFilters()" style="color: #9B7C4E; text-decoration: underline; font-weight: 600; margin-left: 6px;">Clear all</a>
         </div>
+
+        <!-- Load more button (Point 17) -->
+        <div style="text-align: center; margin-top: 36px;">
+          <button type="button" class="btn o" onclick="showWishlistToast('All 12 current bead lines loaded. More strands arriving from Jaipur.');" style="padding: 13px 32px; border: 1px solid #1C1A17; background: transparent; color: #1C1A17; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;">
+            LOAD MORE
+          </button>
+        </div>
       </div>
 
     </div>

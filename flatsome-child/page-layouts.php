@@ -304,6 +304,13 @@ $layouts_data = array(
           <?php endforeach; ?>
         </div>
 
+        <!-- Load more button (Point 17) -->
+        <div style="text-align: center; margin-top: 36px;">
+          <button type="button" class="btn o" onclick="showWishlistToast('All 12 current layouts loaded. More layouts coming soon.');" style="padding: 13px 32px; border: 1px solid #1C1A17; background: transparent; color: #1C1A17; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;">
+            LOAD MORE
+          </button>
+        </div>
+
         <div id="no-layouts-msg" style="display: none; background: #FFFFFF; border: 1px solid #E8E1D6; padding: 40px; text-align: center; color: #76706A; font-size: 14px;">
           No layouts match these filters. <a href="javascript:void(0)" onclick="resetAllLayoutFilters()" style="color: #9B7C4E; text-decoration: underline; font-weight: 600; margin-left: 6px;">Clear filters</a>
         </div>
@@ -349,12 +356,12 @@ $layouts_data = array(
         <p style="font-size: 13.5px; color: #CFC6B8; line-height: 1.6; margin: 0;">Send a photo and the size of your stone, or your design. We match it from our stock in Jaipur or Bangkok and send you photos of the set before you decide.</p>
       </div>
       <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <a href="https://wa.me/919680552270?text=<?php echo rawurlencode('Hello Vivaaz Gems, I have a custom design to send.'); ?>" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; background: transparent; color: #FFFFFF; border: 1px solid #FFFFFF; padding: 13px 24px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; transition: background .2s;">
+        <button type="button" onclick="if(typeof openDesignQuoteModal==='function'){openDesignQuoteModal();}else{window.open('https://wa.me/919680552270?text=<?php echo rawurlencode('Hello Vivaaz Gems, I have a custom design to send.'); ?>','_blank');}" style="display: inline-flex; align-items: center; justify-content: center; background: transparent; color: #FFFFFF; border: 1px solid #FFFFFF; padding: 13px 24px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: background .2s;">
           SEND YOUR DESIGN
-        </a>
-        <a href="https://wa.me/919680552270?text=<?php echo rawurlencode('Hello Vivaaz Gems, I have a stone I would like to match.'); ?>" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; background: #F1EBE1; color: #1C1A17; border: 1px solid #F1EBE1; padding: 13px 24px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; transition: background .2s;">
+        </button>
+        <button type="button" onclick="if(typeof openDesignQuoteModal==='function'){openDesignQuoteModal();}else{window.open('https://wa.me/919680552270?text=<?php echo rawurlencode('Hello Vivaaz Gems, I have a stone I would like to match.'); ?>','_blank');}" style="display: inline-flex; align-items: center; justify-content: center; background: #F1EBE1; color: #1C1A17; border: 1px solid #F1EBE1; padding: 13px 24px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: background .2s;">
           MATCH MY STONE
-        </a>
+        </button>
       </div>
     </div>
 

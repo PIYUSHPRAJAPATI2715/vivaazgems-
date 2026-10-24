@@ -48,7 +48,7 @@ $track_url = home_url('/track-order/');
               <label for="checkout-name" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">Full name</label>
               <input id="checkout-name" required value="Anita Rao" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
             </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="co-ew" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
               <div class="f">
                 <label for="checkout-email" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">Email</label>
                 <input id="checkout-email" type="email" required value="anita@example.com" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
@@ -102,7 +102,7 @@ $track_url = home_url('/track-order/');
               </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="co-ew" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
               <div class="f">
                 <label for="checkout-city" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">City</label>
                 <input id="checkout-city" required value="Jaipur" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
