@@ -57,22 +57,22 @@ get_header();
       <span class="vtag2" onclick="if(typeof openVideoModal === 'function'){ openVideoModal('emerald'); }">▶ Macro video plays here</span>
       
       <!-- 1. Sapphire (Large Square Tile: left 14%, top 6%, 280x280) -->
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="tile" style="left: 14%; top: 6%; width: 280px; height: 280px; z-index: 2;" data-depth="0.200">
+      <a href="<?php echo esc_url(home_url('/gemstones/sapphire/')); ?>" class="tile" style="left: 14%; top: 6%; width: 280px; height: 280px; z-index: 2;" data-depth="0.200">
         <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Ceylon Blue Sapphire">
       </a>
 
       <!-- 2. Ruby (Top-Right Square Tile: left 66%, top 0%, 170x170) -->
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="tile" style="left: 66%; top: 0%; width: 170px; height: 170px; z-index: 3;" data-depth="0.121">
+      <a href="<?php echo esc_url(home_url('/gemstones/ruby/')); ?>" class="tile" style="left: 66%; top: 0%; width: 170px; height: 170px; z-index: 3;" data-depth="0.121">
         <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby">
       </a>
 
       <!-- 3. Rainbow Moonstone (Bottom-Right Square Tile: left 54%, top 48%, 210x210) -->
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" class="tile" style="left: 54%; top: 48%; width: 210px; height: 210px; z-index: 1;" data-depth="0.150">
+      <a href="<?php echo esc_url(home_url('/gemstones/rainbow-moonstone/')); ?>" class="tile" style="left: 54%; top: 48%; width: 210px; height: 210px; z-index: 1;" data-depth="0.150">
         <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone">
       </a>
 
       <!-- 4. Emerald (Bottom-Left Square Tile: left 2%, top 64%, 140x140) -->
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="tile" style="left: 2%; top: 64%; width: 140px; height: 140px; z-index: 2;" data-depth="0.100">
+      <a href="<?php echo esc_url(home_url('/gemstones/emerald/')); ?>" class="tile" style="left: 2%; top: 64%; width: 140px; height: 140px; z-index: 2;" data-depth="0.100">
         <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald">
       </a>
     </div>
@@ -151,7 +151,7 @@ get_header();
     <a href="<?php echo esc_url(home_url('/shop/?filter_color=purple')); ?>" class="tl2 rv" style="text-decoration: none;">
       <span class="tp cl1">
         <em class="dot" style="position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line2); background: #6A3B7B;"></em>
-        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Purple" style="filter: hue-rotate(260deg);">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Purple" style="filter: hue-rotate(270deg) saturate(2.4) brightness(0.85);">
       </span>
       <b>Purple</b>
       <small>Amethyst, purple sapphire</small>
@@ -162,7 +162,7 @@ get_header();
   <!-- TAB 2: BY STONE (6 TILES MATCHING DEMO STONE_TILES) -->
   <div class="tiles6 is-hidden" id="panel-tab-stone">
     
-    <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="tl2 rv" style="text-decoration: none;">
+    <a href="<?php echo esc_url(home_url('/gemstones/ruby/')); ?>" class="tl2 rv" style="text-decoration: none;">
       <span class="tp">
         <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby">
       </span>
@@ -170,7 +170,7 @@ get_header();
       <small>Pigeon blood & heated</small>
     </a>
 
-    <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="tl2 rv" style="text-decoration: none;">
+    <a href="<?php echo esc_url(home_url('/gemstones/sapphire/')); ?>" class="tl2 rv" style="text-decoration: none;">
       <span class="tp">
         <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Sapphire">
       </span>
@@ -178,7 +178,7 @@ get_header();
       <small>Ceylon blue, yellow & fancy</small>
     </a>
 
-    <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="tl2 rv" style="text-decoration: none;">
+    <a href="<?php echo esc_url(home_url('/gemstones/emerald/')); ?>" class="tl2 rv" style="text-decoration: none;">
       <span class="tp">
         <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald">
       </span>
@@ -186,15 +186,15 @@ get_header();
       <small>Zambian & Colombian</small>
     </a>
 
-    <a href="<?php echo esc_url(home_url('/shop/?filter_stone=spinel')); ?>" class="tl2 rv" style="text-decoration: none;">
+    <a href="<?php echo esc_url(home_url('/gemstones/garnet/')); ?>" class="tl2 rv" style="text-decoration: none;">
       <span class="tp">
-        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Spinel" style="filter: hue-rotate(340deg);">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Garnet">
       </span>
-      <b>Spinel</b>
-      <small>Red, hot pink & cobalt blue</small>
+      <b>Garnet</b>
+      <small>Deep red Mozambique & rhodolite</small>
     </a>
 
-    <a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" class="tl2 rv" style="text-decoration: none;">
+    <a href="<?php echo esc_url(home_url('/gemstones/topaz/')); ?>" class="tl2 rv" style="text-decoration: none;">
       <span class="tp">
         <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Topaz">
       </span>
@@ -202,7 +202,7 @@ get_header();
       <small>Sky, Swiss & London blue</small>
     </a>
 
-    <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" class="tl2 rv" style="text-decoration: none;">
+    <a href="<?php echo esc_url(home_url('/gemstones/rainbow-moonstone/')); ?>" class="tl2 rv" style="text-decoration: none;">
       <span class="tp">
         <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone">
       </span>
@@ -213,7 +213,7 @@ get_header();
   </div>
   
   <p id="all-stones-link" style="text-align: right; margin: 14px 0 0; display: none;">
-    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="ul2" style="text-decoration: none; font-size: 13px; font-weight: 600; border-bottom: 1px solid currentColor;">All stones →</a>
+    <a href="<?php echo esc_url(home_url('/gemstones/')); ?>" class="ul2" style="text-decoration: none; font-size: 13px; font-weight: 600; border-bottom: 1px solid currentColor;">All stones →</a>
   </p>
 </section>
 
@@ -322,15 +322,15 @@ get_header();
       <button type="button" class="tab-btn on" id="btn-na-new" onclick="setNaTab('new')">New arrivals</button>
       <button type="button" class="tab-btn" id="btn-na-best" onclick="setNaTab('best')">Best sellers</button>
     </div>
-    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="ul2">View all →</a>
+    <a id="na-view-all" href="<?php echo esc_url(home_url('/gemstones/')); ?>" class="ul2">View all →</a>
   </div>
 
-  <div class="grid g4">
+  <div id="na-grid-new" class="grid g4">
     
     <!-- Product 1: Rainbow Moonstone Oval Cabochon (Calibrated Lot) -->
     <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
       <span class="tag" style="position: absolute; left: 12px; top: 12px; background: var(--paper); padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid var(--line);">CALIBRATED LOT</span>
-      <button type="button" class="heart-btn-circle" onclick="toggleWishlistBtn('rmcoc68', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
+      <button type="button" class="heart-btn-circle" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmcoc68', 'Rainbow Moonstone Oval Cabochon', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹94', '<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
         <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
       <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">
@@ -340,15 +340,15 @@ get_header();
       <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
         <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">Rainbow Moonstone Oval Cabochon</div>
         <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Cabochon · 3×4 to 12×16 mm · 8 sizes</div>
-        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">from ₹94 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
-        <button type="button" class="btn sm" onclick="addToCartAjax('rmcoc68', '3×4 mm', 10);" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center;">ADD TO CART</button>
+        <div class="pr" data-inr-price="94" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">from ₹94 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
+        <a href="<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>" class="btn sm" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">ADD TO CART</a>
       </div>
     </div>
 
     <!-- Product 2: Sapphire Oval Faceted (Calibrated Lot) -->
     <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
       <span class="tag" style="position: absolute; left: 12px; top: 12px; background: var(--paper); padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid var(--line);">CALIBRATED LOT</span>
-      <button type="button" class="heart-btn-circle" onclick="toggleWishlistBtn('bsfov', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
+      <button type="button" class="heart-btn-circle" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('bsfov', 'Sapphire Oval Faceted', '<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>', '₹1,131', '<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
         <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
       <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">
@@ -358,15 +358,15 @@ get_header();
       <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
         <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">Sapphire Oval Faceted</div>
         <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Faceted · 3×5 to 7×9 mm · 5 sizes</div>
-        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">from ₹1,131 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
-        <button type="button" class="btn sm" onclick="addToCartAjax('bsfov', '3×5 mm', 5);" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center;">ADD TO CART</button>
+        <div class="pr" data-inr-price="1131" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">from ₹1,131 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
+        <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" class="btn sm" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">ADD TO CART</a>
       </div>
     </div>
 
     <!-- Product 3: Rainbow Moonstone Oval Cabochon Pair (Pair) -->
     <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
       <span class="tag" style="position: absolute; left: 12px; top: 12px; background: var(--paper); padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid var(--line);">PAIR</span>
-      <button type="button" class="heart-btn-circle" onclick="toggleWishlistBtn('rmcpr', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
+      <button type="button" class="heart-btn-circle" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmcpr', 'Rainbow Moonstone Oval Cabochon Pair', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹2,600', '<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
         <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
       <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">
@@ -376,15 +376,15 @@ get_header();
       <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
         <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">Rainbow Moonstone Oval Cabochon Pair</div>
         <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Cabochon · 10×12 mm · 1 pair</div>
-        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">₹2,600 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per pair</span></div>
-        <button type="button" class="btn sm" onclick="addToCartAjax('rmcpr', '10×12 mm', 1);" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center;">ADD TO CART</button>
+        <div class="pr" data-inr-price="2600" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">₹2,600 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per pair</span></div>
+        <a href="<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>" class="btn sm" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">ADD TO CART</a>
       </div>
     </div>
 
     <!-- Product 4: Rainbow Moonstone Oval Cabochon Single (Only 1) -->
     <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
       <span class="tag" style="position: absolute; left: 12px; top: 12px; background: #1C1A17; color: #FFFFFF; padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid #1C1A17;">ONLY 1</span>
-      <button type="button" class="heart-btn-circle" onclick="toggleWishlistBtn('rmc1825', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
+      <button type="button" class="heart-btn-circle" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmc1825', 'Rainbow Moonstone 32ct Collector Lot', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹4,800', '<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
         <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
       <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">
@@ -394,11 +394,85 @@ get_header();
       <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
         <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">Rainbow Moonstone Oval Cabochon</div>
         <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Cabochon · 18×25 mm · 32 ct</div>
-        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">₹4,800 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">one stone</span></div>
-        <button type="button" class="btn sm" onclick="addToCartAjax('rmc1825', '18×25 mm', 1);" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center;">ADD TO CART</button>
+        <div class="pr" data-inr-price="4800" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">₹4,800 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">one stone</span></div>
+        <a href="<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>" class="btn sm" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">ADD TO CART</a>
       </div>
     </div>
 
+  </div>
+
+  <div id="na-grid-best" class="grid g4" style="display: none;">
+    <!-- Best 1: Ceylon Blue Sapphire Oval Faceted -->
+    <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
+      <span class="tag" style="position: absolute; left: 12px; top: 12px; background: var(--paper); padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid var(--line);">TOP SELLER</span>
+      <button type="button" class="heart-btn-circle" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('bsfov', 'Ceylon Blue Sapphire Oval Faceted', '<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>', '₹1,131', '<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
+        <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+      <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Sapphire" style="width: 70%; object-fit: contain;">
+        <div class="qv-bar" onclick="event.stopPropagation(); openQuickViewModal('bsfov');" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); padding: 9px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">QUICK VIEW</div>
+      </div>
+      <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
+        <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>'">Ceylon Blue Sapphire Oval Faceted</div>
+        <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Faceted · 3×5 to 7×9 mm · 5 sizes</div>
+        <div class="pr" data-inr-price="1131" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">from ₹1,131 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
+        <a href="<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" class="btn sm" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">ADD TO CART</a>
+      </div>
+    </div>
+
+    <!-- Best 2: Burma Ruby Oval Faceted -->
+    <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
+      <span class="tag" style="position: absolute; left: 12px; top: 12px; background: var(--paper); padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid var(--line);">BEST SELLER</span>
+      <button type="button" class="heart-btn-circle" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('br-oval', 'Burma Ruby Oval Faceted', '<?php echo esc_url(vivaaz_get_img_url('burma-ruby.jpg')); ?>', '₹1,450', '<?php echo esc_url(home_url('/product/burma-ruby-oval-faceted/')); ?>', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
+        <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+      <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/burma-ruby-oval-faceted/')); ?>'">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('burma-ruby.jpg')); ?>" alt="Burma Ruby" style="width: 70%; object-fit: contain;">
+        <div class="qv-bar" onclick="event.stopPropagation(); openQuickViewModal('br-oval');" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); padding: 9px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">QUICK VIEW</div>
+      </div>
+      <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
+        <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/burma-ruby-oval-faceted/')); ?>'">Burma Ruby Oval Faceted</div>
+        <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Faceted · 4×6 to 8×10 mm · 6 sizes</div>
+        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">from ₹1,450 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
+        <a href="<?php echo esc_url(home_url('/product/burma-ruby-oval-faceted/')); ?>" class="btn sm" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">ADD TO CART</a>
+      </div>
+    </div>
+
+    <!-- Best 3: Zambian Emerald Emerald Cut -->
+    <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
+      <span class="tag" style="position: absolute; left: 12px; top: 12px; background: var(--paper); padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid var(--line);">TOP RATED</span>
+      <button type="button" class="heart-btn-circle" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('ze-oct', 'Zambian Emerald Emerald Cut', '<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>', '₹1,850', '<?php echo esc_url(home_url('/product/zambian-emerald-octagon/')); ?>', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
+        <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+      <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/zambian-emerald-octagon/')); ?>'">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Emerald" style="width: 70%; object-fit: contain;">
+        <div class="qv-bar" onclick="event.stopPropagation(); openQuickViewModal('ze-oct');" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); padding: 9px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">QUICK VIEW</div>
+      </div>
+      <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
+        <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/zambian-emerald-octagon/')); ?>'">Zambian Emerald Emerald Cut</div>
+        <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Octagon · 4×6 to 7×9 mm · 4 sizes</div>
+        <div class="pr" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">from ₹1,850 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
+        <a href="<?php echo esc_url(home_url('/product/zambian-emerald-octagon/')); ?>" class="btn sm" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">ADD TO CART</a>
+      </div>
+    </div>
+
+    <!-- Best 4: Rainbow Moonstone Oval Cabochon -->
+    <div class="card rv" style="background: var(--paper); border: 1px solid #EFE9E0; display: flex; flex-direction: column; position: relative;">
+      <span class="tag" style="position: absolute; left: 12px; top: 12px; background: var(--paper); padding: 5px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; border: 1px solid var(--line);">CALIBRATED LOT</span>
+      <button type="button" class="heart-btn-circle" onclick="event.preventDefault(); event.stopPropagation(); toggleProductWishlist('rmcoc68', 'Rainbow Moonstone Oval Cabochon', '<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>', '₹94', '<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>', this);" aria-label="Save to wishlist" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer;">
+        <svg class="i" style="width: 16px; height: 16px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+      <div class="ph" style="aspect-ratio: 1/1; background: #F1F0EE; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">
+        <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone" style="width: 70%; object-fit: contain;">
+        <div class="qv-bar" onclick="event.stopPropagation(); openQuickViewModal('rmcoc68');" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); padding: 9px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">QUICK VIEW</div>
+      </div>
+      <div class="cb" style="padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1;">
+        <div class="nm" style="font-family: var(--display); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 4px; cursor: pointer;" onclick="window.location.href='<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>'">Rainbow Moonstone Oval Cabochon</div>
+        <div class="dt" style="font-size: 12.5px; color: var(--soft); margin-bottom: 10px;">Cabochon · 3×4 to 12×16 mm · 8 sizes</div>
+        <div class="pr" data-inr-price="94" style="font-size: 16px; font-weight: 600; color: var(--ink); margin-top: auto; margin-bottom: 14px;">from ₹94 <span style="font-size: 12px; font-weight: 400; color: var(--mute);">per piece</span></div>
+        <a href="<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>" class="btn sm" style="width: 125px; max-width: 125px; height: 38px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">ADD TO CART</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -414,7 +488,7 @@ get_header();
 
   <div>
     <span class="cap">OUR STORY</span>
-    <h2 class="h2" style="font-size: 38px; margin-top: 8px;">A Jaipur family in gemstones for over thirty years.</h2>
+    <h2 class="h2" style="font-size: 32px; margin-top: 8px;">A Jaipur family in gemstones for over thirty years.</h2>
     <p class="lead" style="margin: 14px 0 22px; font-size: 15px; color: var(--mute); line-height: 1.6;">
       Vivaaz Gems began in 2018, built on a family trade in coloured stones that goes back more than three decades. We sort, calibrate and match every lot by hand in Jaipur, and source in Bangkok, so the stones you receive look like the stones you saw.
     </p>
@@ -538,7 +612,7 @@ get_header();
     
     <div>
       <span class="cap" style="font-size: 10.5px; letter-spacing: 0.2em; color: var(--gold); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px;">GOOGLE REVIEWS</span>
-      <h2 class="h2" style="font-size: 38px; font-family: var(--display); font-weight: 400; color: var(--ink); margin: 0 0 24px;">What buyers say.</h2>
+      <h2 class="h2" style="font-size: 32px; font-family: var(--display); font-weight: 400; color: var(--ink); margin: 0 0 24px;">What buyers say.</h2>
 
       <div class="rv3" id="revs">
         
@@ -564,7 +638,7 @@ get_header();
 
       <div class="dots" id="rdots"><i class="on"></i><i></i><i></i></div>
 
-      <a href="<?php echo esc_url(home_url('/reviews/')); ?>" class="ul2" style="text-decoration: none; border-bottom: 1px solid currentColor; font-size: 13px; font-weight: 600; color: var(--ink); margin-top: 14px; display: inline-block;">Read all reviews →</a>
+      <a href="<?php echo esc_url(home_url('/reviews/')); ?>" class="ul2" style="text-decoration: none; border-bottom: 1px solid currentColor; font-size: 13px; font-weight: 600; color: var(--ink); margin-top: 14px; margin-bottom: 24px; display: inline-block;">Read all reviews →</a>
     </div>
 
     <!-- Talk to a Gem Expert Box (Exact Image 5 Askbox) -->
@@ -577,10 +651,10 @@ get_header();
 
       <div style="display: flex; flex-direction: column; gap: 10px;">
         <a href="https://wa.me/919680552270?text=Hello,%20I%20would%20like%20to%20inquire%20about%20your%20gemstones." target="_blank" class="btn wa" style="background: #25D366; color: #FFFFFF; border: none; padding: 13px 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; border-radius: 0;">
-          <svg class="i" style="width: 17px; height: 17px; fill: currentColor;" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <svg class="i" style="width: 17px; height: 17px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.17 8.17 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.39-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.188 8.188 0 0 1-1.25-4.37c0-4.54 3.7-8.24 8.24-8.24zm-4.71 4.54c-.26 0-.67.1-1.02.48-.35.38-1.35 1.32-1.35 3.22 0 1.9 1.38 3.74 1.57 4 .19.26 2.68 4.25 6.64 5.8.94.37 1.68.59 2.25.77.95.3 1.82.26 2.51.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.91-.1-.17-.37-.27-.78-.47-.41-.2-2.43-1.2-2.81-1.34-.38-.14-.65-.2-.93.2-.27.4-.1.06-1.39 1.65-.17.2-.35.23-.76.03-.41-.2-1.73-.64-3.3-2.04-1.22-1.09-2.05-2.43-2.29-2.84-.24-.41-.03-.63.18-.83.18-.18.41-.47.62-.7.2-.24.27-.4.41-.67.14-.27.07-.5-.03-.7-.1-.2-.93-2.24-1.27-3.07-.34-.81-.68-.7-.93-.71z"/></svg>
           WHATSAPP
         </a>
-        <a href="javascript:void(0);" onclick="openConsultationModal();" class="btn o" style="background: transparent; border: 1px solid var(--ink); color: var(--ink); padding: 13px 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; border-radius: 0;">
+        <a href="javascript:void(0);" onclick="openVideoCallModal();" class="btn o" style="background: transparent; border: 1px solid var(--ink); color: var(--ink); padding: 13px 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; border-radius: 0;">
           <svg class="i" style="width: 17px; height: 17px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
           BOOK A VIDEO CALL
         </a>
@@ -595,7 +669,7 @@ get_header();
   <div style="background: var(--sand, #EFE8DD); padding: 26px 20px;">
     <span class="cap" style="font-size: 10.5px; letter-spacing: 0.2em; color: var(--gold, #9B7C4E); font-weight: 700; text-transform: uppercase;">THE TRADE</span>
     <h2 class="h2" style="font-size: 26px; font-family: var(--display); font-weight: 400; margin: 6px 0 10px;">Buying for a workshop or brand?</h2>
-    <p style="color: var(--mute, #76706A); margin: 0 0 16px; font-size: 14px; line-height: 1.55;">Wholesale pricing from 50 pieces, custom cuts to your CAD, and matched layouts for collections.</p>
+    <p style="color: var(--mute, #76706A); margin: 0 0 16px; font-size: 14px; line-height: 1.55;">Larger quantities, custom cuts to your CAD, and matched layouts.</p>
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
       <a href="<?php echo esc_url(home_url('/bulk-enquiry/')); ?>" class="btn sm" style="text-decoration: none;">Bulk enquiry</a>
       <a href="https://wa.me/919680552270" target="_blank" class="btn sm o" style="text-decoration: none;">WhatsApp the team</a>
@@ -677,6 +751,10 @@ get_header();
   function setNaTab(tab) {
     var btnNew = document.getElementById('btn-na-new');
     var btnBest = document.getElementById('btn-na-best');
+    var gridNew = document.getElementById('na-grid-new');
+    var gridBest = document.getElementById('na-grid-best');
+    var viewAll = document.getElementById('na-view-all');
+
     if (tab === 'new') {
       if (btnNew) {
         btnNew.classList.add('on');
@@ -690,6 +768,9 @@ get_header();
         btnBest.style.color = '#9A9186';
         btnBest.style.borderBottomColor = 'transparent';
       }
+      if (gridNew) gridNew.style.display = 'grid';
+      if (gridBest) gridBest.style.display = 'none';
+      if (viewAll) viewAll.href = '<?php echo esc_url(home_url('/gemstones/')); ?>';
     } else {
       if (btnBest) {
         btnBest.classList.add('on');
@@ -703,24 +784,36 @@ get_header();
         btnNew.style.color = '#9A9186';
         btnNew.style.borderBottomColor = 'transparent';
       }
+      if (gridNew) gridNew.style.display = 'none';
+      if (gridBest) gridBest.style.display = 'grid';
+      if (viewAll) viewAll.href = '<?php echo esc_url(home_url('/gemstones/')); ?>';
     }
   }
 
   function toggleWishlistBtn(id, btn) {
     if (typeof toggleProductWishlist === 'function') {
-      toggleProductWishlist(id, 'Product', '', '₹ 0', '', btn);
+      var card = btn.closest('.card') || btn.closest('.prod-card');
+      var title = card ? (card.querySelector('.nm') ? card.querySelector('.nm').innerText.trim() : 'Gemstone') : 'Gemstone';
+      var img = card ? (card.querySelector('img') ? card.querySelector('img').src : '') : '';
+      var price = card ? (card.querySelector('.pr') ? card.querySelector('.pr').innerText.trim() : '₹ 0') : '₹ 0';
+      var url = card ? (card.querySelector('.nm') && card.querySelector('.nm').getAttribute('onclick') ? card.querySelector('.nm').getAttribute('onclick').replace(/^window\.location\.href=['"]/, '').replace(/['"]$/, '') : window.location.href) : window.location.href;
+      toggleProductWishlist(id, title, img, price, url, btn);
     } else {
       btn.classList.toggle('on');
     }
   }
 
   function addToCartAjax(id, size, qty) {
-    if (typeof vivaazAddToCartAjax === 'function') {
+    if (typeof window.vivaazAddToCartAjax === 'function') {
+      window.vivaazAddToCartAjax(id, size, qty);
+    } else if (typeof vivaazAddToCartAjax === 'function') {
       vivaazAddToCartAjax(id, size, qty);
     } else if (typeof openCartDrawer === 'function') {
       openCartDrawer();
     }
   }
+  window.addToCartAjax = addToCartAjax;
+  window.toggleWishlistBtn = toggleWishlistBtn;
 
   // Parallax floating stones on hero scroll (100% demo match)
   window.addEventListener('scroll', function() {

@@ -10,9 +10,9 @@ defined('ABSPATH') || exit;
 get_header('shop');
 
 $reviews = array(
-  array('name' => 'Sophie Laurent', 'country' => 'France', 'stars' => 5, 'text' => 'The calibrated blue sapphires were matched with incredible precision. Tolerances were under 0.1mm, exactly as promised. Our jewelry atelier in Paris will certainly reorder.'),
-  array('name' => 'Rajesh Kothari', 'country' => 'India', 'stars' => 5, 'text' => 'Harsh and team sent live WhatsApp videos of 3 different lots before I placed the order. The Ceylon sapphire arrived fully insured with the lab certificate in 2 days.'),
-  array('name' => 'David Miller', 'country' => 'United States', 'stars' => 5, 'text' => 'Ordered a graduated ruby necklace layout. The colour graduation was seamless across all 25 pieces. Superb Jaipur craftsmanship and honest grading.')
+  array('name' => 'Anita R.', 'country' => 'Mumbai', 'stars' => 5, 'text' => 'The calibrated lot matched perfectly. Every stone was the same size and colour, and the video before packing helped a lot.'),
+  array('name' => 'James W.', 'country' => 'London', 'stars' => 5, 'text' => 'Ordered a ruby pair for earrings. Live photos on WhatsApp, insured courier, no surprises at delivery.'),
+  array('name' => 'Priya S.', 'country' => 'Jaipur', 'stars' => 5, 'text' => 'The astrologer explained everything calmly. The ruby they suggested was within my budget and came with a certificate.')
 );
 ?>
 

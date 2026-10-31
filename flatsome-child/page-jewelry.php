@@ -175,6 +175,17 @@ if (!function_exists('vivaaz_render_tennis_art_php')) {
             $raw_photo = $stKey;
             $filter = '';
             
+            // Exact rich gemstone colors (Point 41 Spec: Ruby #B01020, Pink Spinel #C23868, Blue Sapphire #183C85, Emerald #167544)
+            $stone_col_map = array(
+                'ruby'     => '#B01020',
+                'spinel'   => '#C23868',
+                'sapphire' => '#183C85',
+                'emerald'  => '#167544',
+                'amethyst' => '#6C3483',
+                'topaz'    => '#2980B9'
+            );
+            $art_bg = isset($stone_col_map[$stKey]) ? $stone_col_map[$stKey] : '#B01020';
+
             if ($stKey === 'spinel') {
                 $raw_photo = 'ruby';
                 $filter = 'hue-rotate(-18deg) saturate(.75) brightness(1.2)';
@@ -191,7 +202,7 @@ if (!function_exists('vivaaz_render_tennis_art_php')) {
             $y_rnd = round($y, 2);
             $z_rnd = round($z, 1);
             
-            $o .= '<div class="gm" style="position: absolute; border-radius: 50%; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.2); left: calc(' . $x_rnd . '% - ' . $half_z . 'px); top: calc(' . $y_rnd . '% - ' . $half_z . 'px); width: ' . $z_rnd . 'px; height: ' . $z_rnd . 'px; border: ' . $border_w . 'px solid ' . $metal . ';">';
+            $o .= '<div class="gm" style="position: absolute; border-radius: 50%; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.2); background: ' . $art_bg . '; left: calc(' . $x_rnd . '% - ' . $half_z . 'px); top: calc(' . $y_rnd . '% - ' . $half_z . 'px); width: ' . $z_rnd . 'px; height: ' . $z_rnd . 'px; border: ' . $border_w . 'px solid ' . $metal . ';">';
             $o .= '<img src="' . esc_url($img_src) . '" alt="gem" style="width: 100%; height: 100%; object-fit: cover; transform: scale(2.3);' . ($filter ? ' filter: ' . $filter . ';' : '') . '">';
             $o .= '</div>';
         }
@@ -232,6 +243,18 @@ if (!function_exists('vivaaz_render_tennis_art_php')) {
         <button type="button" class="chip lg on" data-type="" onclick="jewFilterType('', this)">All <em>7</em></button>
         <button type="button" class="chip lg" data-type="Tennis bracelets" onclick="jewFilterType('Tennis bracelets', this)">Tennis bracelets <em>5</em></button>
         <button type="button" class="chip lg" data-type="Tennis necklaces" onclick="jewFilterType('Tennis necklaces', this)">Tennis necklaces <em>2</em></button>
+      </div>
+
+      <!-- MOBILE STICKY FILTER + SORT BAR (.fsl) -->
+      <div class="fsl" id="mobile-jew-fsl">
+        <button type="button" onclick="openJewFilterSheet();">
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+          FILTER <span id="mobile-jew-filter-count"></span>
+        </button>
+        <button type="button" onclick="openJewSortSheet();">
+          SORT
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+        </button>
       </div>
 
       <!-- Divider Bar: Count + Chosen Chips + Sort -->
@@ -518,7 +541,7 @@ if (!function_exists('vivaaz_render_tennis_art_php')) {
           </div>
           <div class="f">
             <label for="modal-input-phone">WhatsApp</label>
-            <input id="modal-input-phone" placeholder="+91 96805 52270" required>
+            <input id="modal-input-phone" placeholder="+91" required>
           </div>
           <div class="f full">
             <label for="modal-input-notes">Anything else?</label>
@@ -1200,19 +1223,28 @@ if (!function_exists('vivaaz_render_tennis_art_php')) {
 <!-- ================= 5. JAVASCRIPT ================= -->
 <script src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/js/jewelry-art.js'); ?>"></script>
 <script>
+window.VIVAAZ_JEW_IMG = {
+  ruby: '<?php echo esc_url(vivaaz_get_img_url("ruby.jpg")); ?>',
+  sapphire: '<?php echo esc_url(vivaaz_get_img_url("ceylon-sapphire.jpg")); ?>',
+  emerald: '<?php echo esc_url(vivaaz_get_img_url("emerald.jpg")); ?>',
+  spinel: '<?php echo esc_url(vivaaz_get_img_url("ruby.jpg")); ?>',
+  amethyst: '<?php echo esc_url(vivaaz_get_img_url("ruby.jpg")); ?>',
+  topaz: '<?php echo esc_url(vivaaz_get_img_url("swiss-topaz.jpg")); ?>'
+};
+
 (function() {
   // Designs array matching PHP data
   const JEW_DATA = <?php echo json_encode($jewelry_designs); ?>;
   
   // Stone definitions
   const STONES_DEF = {
-    ruby: { name: 'Ruby', photo: 'ruby', f: '' },
-    sapphire: { name: 'Sapphire', photo: 'sapphire', f: '' },
-    emerald: { name: 'Emerald', photo: 'emerald', f: '' },
-    spinel: { name: 'Spinel', photo: 'ruby', f: 'hue-rotate(-18deg) saturate(.75) brightness(1.2)' },
-    amethyst: { name: 'Amethyst', photo: 'amethyst', f: '' },
-    topaz: { name: 'Topaz', photo: 'topaz', f: '' },
-    other: { name: 'Other stones', photo: 'amethyst', f: 'hue-rotate(120deg) saturate(.6)' }
+    ruby: { name: 'Ruby', photo: 'ruby', f: '', color: '#9B111E' },
+    sapphire: { name: 'Sapphire', photo: 'sapphire', f: '', color: '#0F52BA' },
+    emerald: { name: 'Emerald', photo: 'emerald', f: '', color: '#007A3D' },
+    spinel: { name: 'Spinel', photo: 'ruby', f: 'hue-rotate(-18deg) saturate(.75) brightness(1.2)', color: '#C2244E' },
+    amethyst: { name: 'Amethyst', photo: 'amethyst', f: 'hue-rotate(275deg)', color: '#6B3FA0' },
+    topaz: { name: 'Topaz', photo: 'topaz', f: '', color: '#2E86AB' },
+    other: { name: 'Other stones', photo: 'amethyst', f: 'hue-rotate(120deg) saturate(.6)', color: '#9B111E' }
   };
 
   // State object
@@ -1260,6 +1292,7 @@ if (!function_exists('vivaaz_render_tennis_art_php')) {
       const def = STONES_DEF[stKey] || STONES_DEF.ruby;
       const rawSrc = gemImgMap[def.photo] || '';
       const filter = def.f || '';
+      const fallbackColor = def.color || '#9B111E';
 
       const borderW = (1.6 * scale).toFixed(1);
       const halfZ = (z / 2).toFixed(1);
@@ -1267,8 +1300,10 @@ if (!function_exists('vivaaz_render_tennis_art_php')) {
       const yRnd = y.toFixed(2);
       const zRnd = z.toFixed(1);
 
-      html += '<div class="gm" style="position: absolute; border-radius: 50%; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.2); left: calc(' + xRnd + '% - ' + halfZ + 'px); top: calc(' + yRnd + '% - ' + halfZ + 'px); width: ' + zRnd + 'px; height: ' + zRnd + 'px; border: ' + borderW + 'px solid ' + metal + ';">';
-      html += '<img src="' + rawSrc + '" alt="gem" style="width: 100%; height: 100%; object-fit: cover; transform: scale(2.3);' + (filter ? ' filter: ' + filter + ';' : '') + '">';
+      html += '<div class="gm" style="position: absolute; border-radius: 50%; overflow: hidden; background: ' + fallbackColor + '; box-shadow: 0 1px 2px rgba(0,0,0,.2); left: calc(' + xRnd + '% - ' + halfZ + 'px); top: calc(' + yRnd + '% - ' + halfZ + 'px); width: ' + zRnd + 'px; height: ' + zRnd + 'px; border: ' + borderW + 'px solid ' + metal + ';">';
+      if (rawSrc) {
+        html += '<img src="' + rawSrc + '" alt="gem" style="width: 100%; height: 100%; object-fit: cover; transform: scale(2.3);' + (filter ? ' filter: ' + filter + ';' : '') + '">';
+      }
       html += '</div>';
     }
 
@@ -1386,19 +1421,24 @@ if (!function_exists('vivaaz_render_tennis_art_php')) {
     document.getElementById('cnt-mt-14k').textContent = pool.filter(j => j.metal.includes('14K Gold')).length;
     document.getElementById('cnt-mt-18k').textContent = pool.filter(j => j.metal.includes('18K Gold')).length;
 
-    // Show/Hide Cards
-    const cards = document.querySelectorAll('.jew-card-item');
+    // Show/Hide & Re-order Cards in DOM (Point 5 Spec)
+    const grid = document.getElementById('jew-cards-grid');
     let visibleCount = 0;
-    cards.forEach(card => {
-      const id = card.dataset.id;
-      const match = filtered.some(f => f.id === id);
-      if (match) {
-        card.style.display = 'flex';
-        visibleCount++;
-      } else {
-        card.style.display = 'none';
-      }
-    });
+    if (grid) {
+      filtered.forEach(f => {
+        const card = document.querySelector('.jew-card-item[data-id="' + f.id + '"]');
+        if (card) {
+          card.style.display = 'flex';
+          grid.appendChild(card);
+          visibleCount++;
+        }
+      });
+      document.querySelectorAll('.jew-card-item').forEach(card => {
+        if (!filtered.some(f => f.id === card.dataset.id)) {
+          card.style.display = 'none';
+        }
+      });
+    }
 
     // Empty message & load more wrap
     const emptyMsg = document.getElementById('jew-empty-msg');
@@ -1513,6 +1553,29 @@ if (!function_exists('vivaaz_render_tennis_art_php')) {
     btn.classList.add('on');
   };
 
+  // Clear All Jewelry Filters (Point 4 Spec)
+  window.jewClearAll = function() {
+    state.activeType = 'all';
+    state.activeMetal = 'all';
+    state.activeStone = 'all';
+    state.activeMaxPrice = 50000;
+    
+    document.querySelectorAll('.jew-chip, .jew-filter-chip, #mobile-jew-filter-sheet .chip, #jew-type-chips .chip').forEach(function(c) {
+      c.classList.remove('on');
+      if (c.getAttribute('data-type') === 'all' || c.getAttribute('data-metal') === 'all' || c.getAttribute('data-stone') === 'all') {
+        c.classList.add('on');
+      }
+    });
+
+    const range = document.getElementById('jew-price-range');
+    if (range) range.value = 50000;
+    const priceDisp = document.getElementById('jew-price-display');
+    if (priceDisp) priceDisp.textContent = 'up to ₹ 50,000';
+
+    jewFilterCards();
+    if (typeof jewShowToast === 'function') jewShowToast('All filters cleared');
+  };
+
   window.jewSubmitQuoteForm = function(e) {
     e.preventDefault();
     const name = document.getElementById('modal-input-name').value;
@@ -1533,6 +1596,21 @@ if (!function_exists('vivaaz_render_tennis_art_php')) {
 
     const waUrl = 'https://wa.me/919680552270?text=' + encodeURIComponent(msg);
     
+    // Send AJAX email to vivaazgems@gmail.com
+    var formData = new FormData();
+    formData.append('action', 'vivaaz_send_enquiry');
+    formData.append('type', 'Jewelry Quote: ' + state.modalDesignName);
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('metal', metal);
+    formData.append('size', size);
+    formData.append('details', notes);
+    
+    fetch('<?php echo admin_url("admin-ajax.php"); ?>', {
+      method: 'POST',
+      body: formData
+    }).catch(function(){});
+
     // Switch to done screen in modal
     document.getElementById('jew-modal-form-content').style.display = 'none';
     document.getElementById('jew-modal-done-content').style.display = 'block';
@@ -1541,8 +1619,146 @@ if (!function_exists('vivaaz_render_tennis_art_php')) {
     window.open(waUrl, '_blank');
   };
 
+  window.openJewFilterSheet = function() {
+    var sheet = document.getElementById('mobile-jew-filter-sheet');
+    var scrim = document.getElementById('mobile-jew-scrim');
+    if (sheet) {
+      sheet.classList.add('open');
+      sheet.style.setProperty('display', 'flex', 'important');
+    }
+    if (scrim) {
+      scrim.classList.add('open');
+      scrim.style.setProperty('display', 'block', 'important');
+    }
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.openJewSortSheet = function() {
+    var sheet = document.getElementById('mobile-jew-sort-sheet');
+    var scrim = document.getElementById('mobile-jew-scrim');
+    if (sheet) {
+      sheet.classList.add('open');
+      sheet.style.setProperty('display', 'flex', 'important');
+    }
+    if (scrim) {
+      scrim.classList.add('open');
+      scrim.style.setProperty('display', 'block', 'important');
+    }
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeJewSheets = function() {
+    document.querySelectorAll('#mobile-jew-filter-sheet, #mobile-jew-sort-sheet').forEach(function(s) {
+      s.classList.remove('open');
+      s.style.setProperty('display', 'none', 'important');
+    });
+    var scrim = document.getElementById('mobile-jew-scrim');
+    if (scrim) {
+      scrim.classList.remove('open');
+      scrim.style.setProperty('display', 'none', 'important');
+    }
+    document.body.style.overflow = '';
+  };
+
+  window.selectJewSort = function(val, btn) {
+    document.querySelectorAll('#mobile-jew-sort-sheet .opt').forEach(function(o) {
+      o.classList.remove('on');
+      o.innerHTML = o.innerText.replace(' ✓', '');
+    });
+    btn.classList.add('on');
+    btn.innerHTML = btn.innerText + ' ✓';
+    var sortSelect = document.getElementById('jew-sort-select');
+    if (sortSelect) {
+      sortSelect.value = val;
+      jewApplySort(val);
+    }
+    closeJewSheets();
+  };
+
+  // Read URL query parameters on load (Point 5 Spec)
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const qStone = urlParams.get('stone') || urlParams.get('filter_stone');
+    const qType = urlParams.get('type') || urlParams.get('filter_type');
+    const qMetal = urlParams.get('metal') || urlParams.get('filter_metal');
+
+    if (qStone) {
+      state.stone = qStone.toLowerCase();
+      document.querySelectorAll('#jew-side-stone-chips .chip, #mobile-jew-filter-sheet .chip').forEach(c => {
+        if (c.getAttribute('data-stone') === state.stone) c.classList.add('on');
+      });
+    }
+    if (qType) {
+      state.type = qType;
+      document.querySelectorAll('#jew-type-chips .chip').forEach(c => {
+        if (c.getAttribute('data-type') === state.type) c.classList.add('on');
+      });
+    }
+    if (qMetal) {
+      state.metal = qMetal;
+      document.querySelectorAll('#jew-side-metal-chips .chip, #mobile-jew-filter-sheet .chip').forEach(c => {
+        if (c.getAttribute('data-metal') === state.metal) c.classList.add('on');
+      });
+    }
+    applyFiltering();
+  } catch(e) {}
+
 })();
 </script>
+
+<!-- MOBILE BOTTOM SHEETS FOR JEWELRY FILTER & SORT (Matches Pic 5 100%) -->
+<div class="scrim" id="mobile-jew-scrim" style="display:none; position:fixed; inset:0; background:rgba(28,26,23,.5); z-index:99998;" onclick="closeJewSheets();"></div>
+
+<!-- Jewelry Filter Sheet (Pic 5 Replica) -->
+<section class="sheet filter-sheet" id="mobile-jew-filter-sheet" role="dialog" aria-label="Filters" style="display:none;">
+  <div class="sh">
+    <b>Filter</b>
+    <button type="button" onclick="closeJewSheets();" aria-label="Close" style="background:none; border:0; font-size:24px; cursor:pointer; color:var(--soft); line-height:1;">&times;</button>
+  </div>
+  <div class="sb2" id="mobile-jew-filter-body">
+    <div class="cap" style="font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">STONE</div>
+    <div class="chips" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;">
+      <button type="button" class="chip" data-stone="ruby" onclick="jewToggleStone('ruby', this)">Ruby <em>2</em></button>
+      <button type="button" class="chip" data-stone="spinel" onclick="jewToggleStone('spinel', this)">Spinel <em>2</em></button>
+      <button type="button" class="chip" data-stone="sapphire" onclick="jewToggleStone('sapphire', this)">Sapphire <em>1</em></button>
+      <button type="button" class="chip" data-stone="emerald" onclick="jewToggleStone('emerald', this)">Emerald <em>1</em></button>
+      <button type="button" class="chip" data-stone="other" onclick="jewToggleStone('other', this)">Other stones <em>1</em></button>
+    </div>
+
+    <hr style="border:0; border-top:1px solid var(--line); margin:18px 0;">
+
+    <div class="cap" style="font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">METAL</div>
+    <div class="chips" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;">
+      <button type="button" class="chip" data-metal="925 Silver" onclick="jewToggleMetal('925 Silver', this)">925 Silver <em>5</em></button>
+      <button type="button" class="chip" data-metal="14K Gold" onclick="jewToggleMetal('14K Gold', this)">14K Gold <em>6</em></button>
+      <button type="button" class="chip" data-metal="18K Gold" onclick="jewToggleMetal('18K Gold', this)">18K Gold <em>4</em></button>
+    </div>
+
+    <!-- Make it into jewelry callout card inside Filter Sheet -->
+    <div style="background:var(--ink); color:#fff; padding:20px; border-radius:2px; margin-bottom:14px;">
+      <b style="font-family:var(--display); font-weight:400; font-size:19px; display:block;">Make it into jewelry</b>
+      <p style="font-size:12.5px; color:#cfc6b8; margin:6px 0 12px; line-height:1.5;">Choose any stone from our shop and we set it in silver or gold.</p>
+      <button type="button" class="ul" style="color:#fff;" onclick="closeJewSheets(); jewOpenQuoteModal('Make it into jewelry');">Ask for a quote →</button>
+    </div>
+  </div>
+  <div class="sf">
+    <button type="button" class="btn o" onclick="jewClearAll(); closeJewSheets();">Clear all</button>
+    <button type="button" class="btn" id="mobile-jew-show-btn" onclick="closeJewSheets();">Show designs</button>
+  </div>
+</section>
+
+<!-- Jewelry Sort Sheet -->
+<section class="sheet sort-sheet" id="mobile-jew-sort-sheet" role="dialog" aria-label="Sort" style="display:none;">
+  <div class="sh">
+    <b>Sort</b>
+    <button type="button" onclick="closeJewSheets();" aria-label="Close" style="background:none; border:0; font-size:24px; cursor:pointer; color:var(--soft); line-height:1;">&times;</button>
+  </div>
+  <div class="sb2">
+    <button type="button" class="opt on" onclick="selectJewSort('newest', this);">Newest ✓</button>
+    <button type="button" class="opt" onclick="selectJewSort('plh', this);">Price low to high</button>
+    <button type="button" class="opt" onclick="selectJewSort('phl', this);">Price high to low</button>
+  </div>
+</section>
 
 <?php
 get_footer('shop');

@@ -10,14 +10,13 @@ get_header();
 
 <div id="content" class="luxury-wishlist-wrapper" role="main" style="background: var(--color-page-bg); min-height: 65vh; padding: 40px 20px 80px;">
 
-    <!-- Breadcrumb (12.5px #9A9186 - Point 6 & Brief Accordance) -->
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <!-- Breadcrumb Aligned Inside Container (Point 28 Spec) -->
     <div class="crumb" style="font-size: 12.5px; color: #9A9186; margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
       <a href="<?php echo esc_url(home_url('/')); ?>" style="color: inherit; text-decoration: none;">Home</a>
       <span>›</span>
       <b style="color: #1C1A17; font-weight: 500;">Wishlist</b>
     </div>
-
-  <div style="max-width: 1200px; margin: 0 auto;">
     
     <div class="wishlist-page-header" style="text-align: center; margin-bottom: 36px;">
       <span class="section-tag-divider" style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-label); display: block; margin-bottom: 6px;">SAVED GEMS</span>

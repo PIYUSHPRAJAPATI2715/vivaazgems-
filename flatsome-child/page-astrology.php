@@ -354,16 +354,25 @@ $first_img_src = isset($gem_imgs['ruby']) ? $gem_imgs['ruby'] : (function_exists
             <input id="c-name" placeholder="Your name" required>
           </div>
           <div class="f">
-            <label for="c-phone">WhatsApp number</label>
-            <input id="c-phone" placeholder="+91" required>
+            <label for="c-phone">WhatsApp number *</label>
+            <input type="tel" id="c-phone" placeholder="+91 98765 43210" required oninput="clearFieldErr('c-phone');">
+            <div id="c-phone-err" style="display: none; color: #C0392B; font-size: 11px; margin-top: 4px; font-weight: 600;">Please enter a valid 10-digit mobile number</div>
           </div>
           <div class="f">
             <label for="c-dob">Date of birth</label>
-            <input id="c-dob" placeholder="DD / MM / YYYY">
+            <input type="text" id="c-dob" placeholder="DD/MM/YYYY" maxlength="10" oninput="formatDobInput(event);">
+            <div id="c-dob-err" style="display: none; color: #C0392B; font-size: 11px; margin-top: 4px; font-weight: 600;">Please enter complete date in DD/MM/YYYY format</div>
           </div>
           <div class="f">
             <label for="c-tob">Time of birth</label>
-            <input id="c-tob" placeholder="If known">
+            <div style="display: flex; gap: 6px; align-items: stretch; height: 38px;">
+              <input type="text" id="c-tob" placeholder="HH:MM (e.g. 08:30)" maxlength="5" oninput="formatTobInput(event);" style="flex: 1; min-width: 0; height: 100%; border: 1px solid #D9CFC0; padding: 0 12px; font-size: 13px; box-sizing: border-box; background: var(--paper); outline: none; margin: 0; box-shadow: none;">
+              <select id="c-tob-ampm" style="width: 76px; height: 100%; padding: 0 8px; border: 1px solid #D9CFC0; font-size: 13px; box-sizing: border-box; background: var(--paper); color: var(--ink); font-weight: 600; cursor: pointer; margin: 0; outline: none; box-shadow: none;">
+                <option value="AM">AM</option>
+                <option value="PM" selected>PM</option>
+              </select>
+            </div>
+            <div id="c-tob-err" style="display: none; color: #C0392B; font-size: 11px; margin-top: 4px; font-weight: 600;">Please enter time in HH:MM format</div>
           </div>
           <div class="f">
             <label for="c-email">Email</label>
@@ -382,6 +391,9 @@ $first_img_src = isset($gem_imgs['ruby']) ? $gem_imgs['ruby'] : (function_exists
               <button type="button" class="chip lg" onclick="astroSelectPill(this)">Marriage</button>
               <button type="button" class="chip lg" onclick="astroSelectPill(this)">Wealth</button>
               <button type="button" class="chip lg" onclick="astroSelectPill(this)">Studies</button>
+              <button type="button" class="chip lg" onclick="astroSelectPill(this)">Peace of mind</button>
+              <button type="button" class="chip lg" onclick="astroSelectPill(this)">Other</button>
+              <button type="button" class="chip lg" onclick="astroSelectPill(this)">Not sure yet</button>
             </div>
           </div>
 
@@ -395,8 +407,18 @@ $first_img_src = isset($gem_imgs['ruby']) ? $gem_imgs['ruby'] : (function_exists
           </div>
         </div>
 
-        <div class="note" style="margin-top:14px;background:var(--sand);font-size:12.5px;padding:11px 14px;color:#4a443d;">
-          Paid consultation. You see the fee and pay online, then we confirm the time on WhatsApp.
+        <div class="consultation-fee-box" style="margin-top:14px;background:#FAF7F2;border:1px solid #EFE9E0;padding:14px 16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#9B7C4E;">CONSULTATION FEE</span>
+            <b style="font-size:15px;color:#1C1A17;">₹ 1,100 <span style="font-size:12px;color:#76706A;font-weight:400;">($15 USD)</span></b>
+          </div>
+          <div style="font-size:12px;color:#76706A;margin-bottom:8px;">Phone or video call with our astrologer, including written stone recommendation on WhatsApp.</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span style="font-size:10.5px;padding:3px 8px;background:#fff;border:1px solid #E5E0D8;font-weight:600;">UPI / GPay</span>
+            <span style="font-size:10.5px;padding:3px 8px;background:#fff;border:1px solid #E5E0D8;font-weight:600;">Cards</span>
+            <span style="font-size:10.5px;padding:3px 8px;background:#fff;border:1px solid #E5E0D8;font-weight:600;">PayPal</span>
+            <span style="font-size:10.5px;padding:3px 8px;background:#fff;border:1px solid #E5E0D8;font-weight:600;">Net Banking</span>
+          </div>
         </div>
         
         <button type="submit" class="btn wide" style="margin-top:16px;">Book a consultation</button>
@@ -866,11 +888,62 @@ $first_img_src = isset($gem_imgs['ruby']) ? $gem_imgs['ruby'] : (function_exists
 
   window.astroSubmitConsultForm = function(e) {
     e.preventDefault();
-    const name = document.getElementById('c-name').value;
-    const phone = document.getElementById('c-phone').value;
-    const dob = document.getElementById('c-dob').value;
-    const tob = document.getElementById('c-tob').value;
-    const pob = document.getElementById('c-pob').value;
+    const name = (document.getElementById('c-name').value || '').trim();
+    const phoneInput = document.getElementById('c-phone');
+    const phoneErr = document.getElementById('c-phone-err');
+    const phone = (phoneInput ? phoneInput.value : '').trim();
+
+    const isValid = (typeof isValidVivaazPhone === 'function') 
+      ? isValidVivaazPhone(phone) 
+      : (phone.replace(/\D/g, '').length >= 10 && phone.replace(/\D/g, '').length <= 15 && !/^(\d)\1{9,}$/.test(phone.replace(/\D/g, '')));
+
+    if (!isValid) {
+      if (phoneErr) phoneErr.style.display = 'block';
+      if (phoneInput) {
+        phoneInput.focus();
+        phoneInput.style.borderColor = '#C0392B';
+        phoneInput.style.background = '#FFF5F5';
+      }
+      return;
+    }
+    if (phoneErr) phoneErr.style.display = 'none';
+    if (phoneInput) {
+      phoneInput.style.borderColor = '#D9CFC0';
+      phoneInput.style.background = 'var(--paper)';
+    }
+
+    const dobInput = document.getElementById('c-dob');
+    const dobErr = document.getElementById('c-dob-err');
+    const dob = (dobInput ? dobInput.value : '').trim();
+
+    if (dob) {
+      const parts = dob.split('/');
+      const d = parseInt(parts[0], 10);
+      const m = parseInt(parts[1], 10);
+      const y = parseInt(parts[2], 10);
+      const currentYear = new Date().getFullYear();
+      if (parts.length !== 3 || (parts[2] || '').length !== 4 || isNaN(d) || isNaN(m) || isNaN(y) || d < 1 || d > 31 || m < 1 || m > 12 || y < 1900 || y > currentYear) {
+        if (dobErr) dobErr.style.display = 'block';
+        if (dobInput) {
+          dobInput.focus();
+          dobInput.style.borderColor = '#C0392B';
+          dobInput.style.background = '#FFF5F5';
+        }
+        return;
+      }
+    }
+    if (dobErr) dobErr.style.display = 'none';
+    if (dobInput) {
+      dobInput.style.borderColor = '#D9CFC0';
+      dobInput.style.background = 'var(--paper)';
+    }
+
+    const tobInput = document.getElementById('c-tob');
+    const ampmSelect = document.getElementById('c-tob-ampm');
+    const tobVal = (tobInput ? tobInput.value : '').trim();
+    const tob = tobVal ? (tobVal + ' ' + (ampmSelect ? ampmSelect.value : 'PM')) : '';
+
+    const pob = (document.getElementById('c-pob').value || '').trim();
     
     const aboutEl = document.querySelector('#c-about-chips .chip.on');
     const budgetEl = document.querySelector('#c-budget-chips .chip.on');
@@ -895,6 +968,12 @@ $first_img_src = isset($gem_imgs['ruby']) ? $gem_imgs['ruby'] : (function_exists
     // Open WhatsApp
     window.open(waUrl, '_blank');
   };
+
+  // Select first planet (Ruby) immediately on page load (Point 16 Spec)
+  document.addEventListener('DOMContentLoaded', function() {
+    astroSelectPlanet(0, document.querySelector('#astro-planets-chips .chip'));
+  });
+  astroSelectPlanet(0, document.querySelector('#astro-planets-chips .chip'));
 
 })();
 </script>

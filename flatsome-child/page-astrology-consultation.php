@@ -45,7 +45,20 @@ get_header('shop');
     <div style="background: #FFFFFF; border: 1px solid #EBE7DF; padding: 36px; margin-bottom: 32px;">
       <h2 class="font-serif" style="font-family: 'Playfair Display', Georgia, serif; font-size: 22px; margin: 0 0 20px; color: #1C1A17;">How it works</h2>
 
-      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+      <style>
+        .consult-steps-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 16px;
+        }
+        @media (max-width: 768px) {
+          .consult-steps-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+          }
+        }
+      </style>
+      <div class="consult-steps-grid">
         <div style="background: #FAF7F2; padding: 18px 12px; text-align: center;">
           <div style="font-size: 20px; font-weight: 700; color: #9C7C4C; margin-bottom: 4px;">1</div>
           <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Book</div>

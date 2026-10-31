@@ -81,7 +81,7 @@ get_header('shop');
       </div>
 
       <div style="border-top: 1px solid #EBE7DF; padding-top: 20px; font-size: 13px; color: #76706A;">
-        Vivaaz Gems, Johari Bazar, Jaipur, India · Email: vivaazgems@gmail.com
+        Vivaaz Gems & Jewellery, 2nd Floor, B-207, Janta Colony, Adarsh Nagar, Jaipur 302004, Rajasthan, India · Email: vivaazgems@gmail.com
       </div>
 
     </div>

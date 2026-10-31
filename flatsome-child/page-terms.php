@@ -79,7 +79,7 @@ get_header('shop');
       <div style="border-top: 1px solid #EBE7DF; padding-top: 20px;">
         <h3 class="font-serif" style="font-family: 'Playfair Display', Georgia, serif; font-size: 18px; margin: 0 0 8px; color: #1C1A17;">10. Contact</h3>
         <p style="margin: 0; font-size: 13px; color: #76706A;">
-          Vivaaz Gems & Jewellery, 307 Navratna Complex, KGB Ka Rasta, Johari Bazar, Jaipur 302003, India<br>
+          Vivaaz Gems & Jewellery, 2nd Floor, B-207, Janta Colony, Adarsh Nagar, Jaipur 302004, Rajasthan, India<br>
           Email: vivaazgems@gmail.com · Phone/WhatsApp: +91 96805 52270
         </p>
       </div>

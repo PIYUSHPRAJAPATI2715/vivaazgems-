@@ -52,7 +52,7 @@ $design_metal = isset($_GET['metal']) ? sanitize_text_field($_GET['metal']) : '1
         We craft this setting in solid 925 sterling silver, 14k or 18k yellow, white or rose gold. Send your stone measurements or choose a gemstone from our inventory.
       </p>
 
-      <form action="https://wa.me/919680552270" method="get" target="_blank" style="background: #FFFFFF; border: 1px solid var(--line, #EFE9E0); padding: 24px; display: flex; flex-direction: column; gap: 14px;">
+      <form id="design-quote-form" onsubmit="handleDesignQuoteSubmit(event);" style="background: #FFFFFF; border: 1px solid var(--line, #EFE9E0); padding: 24px; display: flex; flex-direction: column; gap: 14px;">
         <h4 style="font-family: var(--display, 'Playfair Display', Georgia, serif); font-size: 20px; font-weight: 400; margin: 0 0 4px; color: #1C1A17;">Ask for a setting quote</h4>
         
         <div>
@@ -62,7 +62,8 @@ $design_metal = isset($_GET['metal']) ? sanitize_text_field($_GET['metal']) : '1
 
         <div>
           <label style="display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #9B7C4E; margin-bottom: 4px;">WHATSAPP NUMBER *</label>
-          <input type="tel" name="phone" required placeholder="+91 98290 00000" style="width: 100%; height: 42px; border: 1px solid #EBE7DF; background: #FAF7F2; padding: 0 12px; font-size: 13.5px; box-sizing: border-box;">
+          <input type="tel" name="phone" id="design-phone" required placeholder="+91 98290 00000" oninput="var err=document.getElementById('design-phone-err'); if(err)err.style.display='none'; this.style.borderColor='#EBE7DF'; this.style.background='#FAF7F2';" style="width: 100%; height: 42px; border: 1px solid #EBE7DF; background: #FAF7F2; padding: 0 12px; font-size: 13.5px; box-sizing: border-box;">
+          <div id="design-phone-err" style="display: none; color: #C0392B; font-size: 11.5px; margin-top: 4px; font-weight: 600;">Please enter a valid 10-digit mobile number</div>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
@@ -85,6 +86,48 @@ $design_metal = isset($_GET['metal']) ? sanitize_text_field($_GET['metal']) : '1
           REQUEST CUSTOM QUOTE →
         </button>
       </form>
+
+      <script>
+      function handleDesignQuoteSubmit(e) {
+        e.preventDefault();
+        var form = e.target;
+        var phone = (form.phone && form.phone.value) ? form.phone.value.trim() : '';
+        var phoneInput = form.phone || document.getElementById('design-phone');
+        var phoneErr = document.getElementById('design-phone-err');
+
+        var isValid = (typeof isValidVivaazPhone === 'function')
+          ? isValidVivaazPhone(phone)
+          : (phone.replace(/\D/g, '').length >= 10 && phone.replace(/\D/g, '').length <= 15 && !/^(\d)\1{9,}$/.test(phone.replace(/\D/g, '')));
+
+        if (!isValid) {
+          if (phoneErr) phoneErr.style.display = 'block';
+          if (phoneInput) {
+            phoneInput.focus();
+            phoneInput.style.borderColor = '#C0392B';
+            phoneInput.style.background = '#FFF5F5';
+          }
+          return;
+        }
+        if (phoneErr) phoneErr.style.display = 'none';
+        if (phoneInput) {
+          phoneInput.style.borderColor = '#EBE7DF';
+          phoneInput.style.background = '#FAF7F2';
+        }
+
+        var name = (form.name && form.name.value) ? form.name.value.trim() : '';
+        var metal = form.metal ? form.metal.value : '';
+        var size = form.stone_size ? form.stone_size.value : '';
+
+        var msg = "Hello Vivaaz Gems,\n\nI want a custom quote for this setting:\n"
+          + "• Name: " + name + "\n"
+          + "• WhatsApp: " + phone + "\n"
+          + "• Metal: " + metal + "\n"
+          + (size ? ("• Stone size: " + size + "\n") : "")
+          + "• Page: " + window.location.href;
+
+        window.open('https://wa.me/919680552270?text=' + encodeURIComponent(msg), '_blank');
+      }
+      </script>
 
     </div>
 

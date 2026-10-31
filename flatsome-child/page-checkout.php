@@ -46,17 +46,17 @@ $track_url = home_url('/track-order/');
           <div class="fg" style="display: flex; flex-direction: column; gap: 14px;">
             <div class="f">
               <label for="checkout-name" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">Full name</label>
-              <input id="checkout-name" required value="Anita Rao" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
+              <input id="checkout-name" required value="" placeholder="Your full name" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
             </div>
             <div class="co-ew" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
               <div class="f">
                 <label for="checkout-email" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">Email</label>
-                <input id="checkout-email" type="email" required value="anita@example.com" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
+                <input id="checkout-email" type="email" required value="" placeholder="name@example.com" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
                 <small style="display: block; font-size: 11.5px; color: var(--soft, #76706A); margin-top: 4px;">For the order confirmation</small>
               </div>
               <div class="f">
                 <label for="checkout-wa" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">WhatsApp number</label>
-                <input id="checkout-wa" required value="+91 98290 00000" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
+                <input id="checkout-wa" required value="" placeholder="+91 98765 43210" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
                 <small style="display: block; font-size: 11.5px; color: var(--soft, #76706A); margin-top: 4px;">Only for delivery updates and live photos</small>
               </div>
             </div>
@@ -85,7 +85,7 @@ $track_url = home_url('/track-order/');
 
             <div class="f">
               <label for="checkout-address" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">Address</label>
-              <input id="checkout-address" required placeholder="House, street, area" value="12 Civil Lines" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
+              <input id="checkout-address" required placeholder="House, street, area" value="" placeholder="House, street, area" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
             </div>
 
             <div id="company-expander-link">
@@ -105,17 +105,17 @@ $track_url = home_url('/track-order/');
             <div class="co-ew" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
               <div class="f">
                 <label for="checkout-city" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">City</label>
-                <input id="checkout-city" required value="Jaipur" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
+                <input id="checkout-city" required value="" placeholder="City" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
               </div>
               <div class="f">
                 <label for="checkout-pin" id="label-pin" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">PIN code</label>
-                <input id="checkout-pin" required value="302001" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
+                <input id="checkout-pin" required value="" placeholder="PIN code" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
               </div>
             </div>
 
             <div class="f">
               <label for="checkout-state" id="label-state" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">State</label>
-              <input id="checkout-state" required value="Rajasthan" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
+              <input id="checkout-state" required value="" placeholder="State" style="width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none; background: #FFF;">
             </div>
           </div>
         </div>
@@ -204,9 +204,38 @@ $track_url = home_url('/track-order/');
   <div id="checkout-done-view" style="display: none; max-width: 640px; margin: 0 auto; padding: 40px 0 80px; text-align: center;">
     <div style="width: 52px; height: 52px; border-radius: 50%; background: #FAF7F2; border: 1px solid var(--line, #EFE9E0); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 22px; color: #1E9E52;">✓</div>
     <h1 class="h1" style="font-family: var(--display, 'Playfair Display', Georgia, serif); font-size: 32px; font-weight: 400; color: var(--ink, #1C1A17); margin: 0 0 12px;">Thank you, your order is placed.</h1>
-    <p class="lead" style="font-size: 15px; color: var(--soft, #76706A); margin: 0 auto 30px; line-height: 1.6;">
-      Order <b style="color: var(--ink, #1C1A17);">#VG-10482</b>. We pack in 1–2 days and send live photos and tracking on WhatsApp and email.
+    <p class="lead" style="font-size: 15px; color: var(--soft, #76706A); margin: 0 auto 24px; line-height: 1.6;">
+      Order <b class="order-num-display" style="color: var(--ink, #1C1A17);">#VG-10482</b>. We pack in 1–2 days and send live photos and tracking on WhatsApp and email.
     </p>
+
+    <!-- UPI QR Code Payment Box (Shown for UPI Payment) -->
+    <div id="done-upi-payment-box" style="display: none; background: #FAF7F2; border: 1.5px solid #9B7C4E; padding: 28px 24px; margin: 0 auto 30px; text-align: center; max-width: 520px;">
+      <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #9B7C4E; display: block; margin-bottom: 6px;">SCAN & PAY NOW</span>
+      <h3 style="font-family: var(--display, 'Playfair Display', Georgia, serif); font-size: 22px; font-weight: 400; margin: 0 0 10px; color: #1C1A17;">Pay via UPI QR Code</h3>
+      <div style="font-size: 18px; font-weight: 700; color: #1C1A17; margin-bottom: 16px;">
+        Total to Pay: <span id="done-upi-amount-display" style="color: #1E9E52;">₹ 0</span>
+      </div>
+
+      <div style="background: #FFF; padding: 12px; border: 1px solid #E2D7C6; display: inline-block; margin-bottom: 16px; border-radius: 4px;">
+        <img id="done-upi-qr-img" src="" alt="UPI QR Code" style="width: 180px; height: 180px; display: block; margin: 0 auto;">
+        <div style="font-size: 10.5px; font-weight: 700; color: #76706A; margin-top: 8px;">GPAY · PHONEPE · PAYTM · ANY UPI</div>
+      </div>
+
+      <div style="font-size: 13px; color: #4A4640; line-height: 1.6; margin-bottom: 16px;">
+        <b>Vivaaz Gems Official UPI ID:</b><br>
+        <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 6px;">
+          <code style="background: #FFF; padding: 6px 12px; border: 1px solid #CCC; font-size: 13px; font-weight: 700; color: #1C1A17;">9680552270@okbizaxis</code>
+          <button type="button" onclick="navigator.clipboard.writeText('9680552270@okbizaxis'); alert('UPI ID copied to clipboard!');" style="background: #1C1A17; color: #FFF; border: none; padding: 6px 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; cursor: pointer;">COPY</button>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
+        <a id="done-wa-receipt-btn" href="#" target="_blank" class="btn wa" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; background: #1E9E52; color: #FFF; text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">
+          <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
+          SHARE PAYMENT SCREENSHOT ON WHATSAPP
+        </a>
+      </div>
+    </div>
 
     <!-- Tracking steps -->
     <div style="background: var(--paper, #FFFFFF); border: 1px solid var(--line, #EFE9E0); padding: 24px; text-align: left; margin-bottom: 30px;">
@@ -243,6 +272,13 @@ $track_url = home_url('/track-order/');
   var _selectedPayIndex = 0;
   var _checkoutSubtotal = 13044;
   var _checkoutDiscount = 0;
+
+  function formatMoney(amount) {
+    if (typeof formatVivaazMoney === 'function') {
+      return formatVivaazMoney(amount);
+    }
+    return '\u20B9 ' + Math.round(Number(amount || 0)).toLocaleString('en-IN');
+  }
 
   function toggleCompanyFields() {
     var wrap = document.getElementById('company-fields-wrap');
@@ -315,7 +351,7 @@ $track_url = home_url('/track-order/');
     if (!container) return;
 
     var pays = isInd ? [
-      ['UPI, cards, net banking', 'Pay securely in ₹. No extra charge.'],
+      ['UPI QR Code / GPay / PhonePe / Paytm', 'Scan QR code or pay to UPI ID. Zero fees.'],
       ['Bank transfer (NEFT / RTGS)', 'We send the account details after you place the order.']
     ] : [
       ['PayPal or card', 'Pay in your currency. No extra charge.'],
@@ -327,15 +363,42 @@ $track_url = home_url('/track-order/');
 
     container.innerHTML = pays.map(function(p, i) {
       var isChecked = (i === _selectedPayIndex);
-      return `
-        <div class="rad ${isChecked ? 'on' : ''}" onclick="selectPayment(${i});" style="display: flex; gap: 12px; align-items: flex-start; border: 1px solid ${isChecked ? 'var(--ink, #1C1A17)' : 'var(--line2, #E2D7C6)'}; padding: 13px 14px; background: var(--paper, #FFF); cursor: pointer;">
-          <i style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink, #1C1A17); flex: none; margin-top: 2px; position: relative; display: inline-block;">
-            ${isChecked ? '<span style="position: absolute; inset: 3px; border-radius: 50%; background: var(--ink, #1C1A17); display: block;"></span>' : ''}
-          </i>
-          <div>
-            <b style="font-size: 13.5px; color: var(--ink, #1C1A17); display: block;">${p[0]}</b>
-            <span style="font-size: 12px; color: var(--soft, #76706A); display: block;">${p[1]}</span>
+      var upiBoxHtml = '';
+      if (isInd && i === 0 && isChecked) {
+        var ship = 150;
+        var total = Math.max(0, _checkoutSubtotal - _checkoutDiscount) + ship;
+        var upiUri = 'upi://pay?pa=9680552270@okbizaxis&pn=Vivaaz%20Gems&am=' + total + '&cu=INR&tn=VivaazGems';
+        var qrSrc = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(upiUri);
+        upiBoxHtml = `
+          <div style="margin-top: 10px; padding: 14px; background: #FAF7F2; border: 1px solid #E2D7C6; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+            <div style="background: #FFF; padding: 6px; border: 1px solid #DDD; text-align: center;">
+              <img src="${qrSrc}" alt="UPI QR" style="width: 110px; height: 110px; display: block;">
+              <span style="font-size: 9px; font-weight: 700; color: #76706A; display: block; margin-top: 4px;">SCAN & PAY</span>
+            </div>
+            <div style="flex: 1; min-width: 180px;">
+              <div style="font-size: 10.5px; font-weight: 700; color: #9B7C4E; letter-spacing: 0.14em; text-transform: uppercase;">SCAN WITH ANY UPI APP</div>
+              <div style="font-size: 13px; font-weight: 700; color: #1C1A17; margin: 3px 0;">Google Pay · PhonePe · Paytm · BHIM</div>
+              <div style="font-size: 11.5px; color: #555; margin-bottom: 6px;">
+                UPI ID: <code style="background: #FFF; padding: 2px 6px; border: 1px solid #CCC; font-weight: 700; color: #1C1A17;">9680552270@okbizaxis</code>
+                <button type="button" onclick="event.stopPropagation(); navigator.clipboard.writeText('9680552270@okbizaxis'); alert('UPI ID copied!');" style="margin-left: 4px; padding: 2px 6px; font-size: 10px; background: #1C1A17; color: #FFF; border: none; cursor: pointer;">COPY</button>
+              </div>
+              <a href="${upiUri}" onclick="event.stopPropagation();" style="display: inline-block; padding: 6px 12px; background: #1E9E52; color: #FFF; text-decoration: none; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">PAY VIA UPI APP</a>
+            </div>
           </div>
+        `;
+      }
+      return `
+        <div class="rad ${isChecked ? 'on' : ''}" onclick="selectPayment(${i});" style="border: 1px solid ${isChecked ? 'var(--ink, #1C1A17)' : 'var(--line2, #E2D7C6)'}; padding: 13px 14px; background: var(--paper, #FFF); cursor: pointer;">
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <i style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink, #1C1A17); flex: none; margin-top: 2px; position: relative; display: inline-block;">
+              ${isChecked ? '<span style="position: absolute; inset: 3px; border-radius: 50%; background: var(--ink, #1C1A17); display: block;"></span>' : ''}
+            </i>
+            <div>
+              <b style="font-size: 13.5px; color: var(--ink, #1C1A17); display: block;">${p[0]}</b>
+              <span style="font-size: 12px; color: var(--soft, #76706A); display: block;">${p[1]}</span>
+            </div>
+          </div>
+          ${upiBoxHtml}
         </div>
       `;
     }).join('');
@@ -370,21 +433,21 @@ $track_url = home_url('/track-order/');
       if (stateInput) stateInput.value = 'Rajasthan';
       if (shipTitle) shipTitle.textContent = 'Insured courier';
       if (shipSub) shipSub.textContent = 'Arrives in about 2–3 days';
-      if (shipCost) shipCost.textContent = '₹ 150';
-      if (coShip) coShip.textContent = '₹ 150';
+      if (shipCost) shipCost.textContent = formatMoney(150);
+      if (coShip) coShip.textContent = formatMoney(150);
       if (dutyNote) dutyNote.style.display = 'none';
       if (taxLabel) taxLabel.textContent = 'Taxes';
       if (taxVal) taxVal.textContent = 'Included in price';
       if (gstinWrap) gstinWrap.style.display = 'block';
     } else {
       if (pinLabel) pinLabel.textContent = 'ZIP / postal code';
-      if (pinInput) pinInput.value = '94103';
+      if (pinInput) pinInput.placeholder = 'ZIP / Postal code';
       if (stateLabel) stateLabel.textContent = 'State / province';
-      if (stateInput) stateInput.value = 'California';
+      if (stateInput) stateInput.placeholder = 'State / province';
       if (shipTitle) shipTitle.textContent = 'Insured express · DHL, FedEx or UPS';
       if (shipSub) shipSub.textContent = 'Arrives in about 4–7 days';
-      if (shipCost) shipCost.textContent = '$45 (₹3,780)';
-      if (coShip) coShip.textContent = '₹ 3,780 ($45)';
+      if (shipCost) shipCost.textContent = formatMoney(3780);
+      if (coShip) coShip.textContent = formatMoney(3780);
       if (dutyNote) dutyNote.style.display = 'block';
       if (taxLabel) taxLabel.textContent = 'Import duties';
       if (taxVal) taxVal.textContent = 'paid on delivery';
@@ -418,9 +481,9 @@ $track_url = home_url('/track-order/');
     var btn = document.getElementById('btn-place-order');
 
     if (subLabel) subLabel.textContent = 'Subtotal · ' + totalItems + (totalItems === 1 ? ' item' : ' items');
-    if (subEl) subEl.textContent = '₹ ' + sub.toLocaleString('en-IN');
-    if (totalEl) totalEl.textContent = '₹ ' + total.toLocaleString('en-IN') + (isInd ? '' : ' (approx $ ' + Math.round(total / 84) + ')');
-    if (btn) btn.textContent = 'PLACE ORDER · ₹ ' + total.toLocaleString('en-IN');
+    if (subEl) subEl.textContent = formatMoney(sub);
+    if (totalEl) totalEl.textContent = formatMoney(total);
+    if (btn) btn.textContent = 'PLACE ORDER · ' + formatMoney(total);
   }
 
   function renderCheckoutSummary() {
@@ -443,9 +506,9 @@ $track_url = home_url('/track-order/');
           </span>
           <span style="flex: 1; font-size: 13px; line-height: 1.35; color: var(--ink, #1C1A17);">
             ${title}<br>
-            <small style="color: var(--soft, #76706A); font-size: 11.5px;">${size} · AAA</small>
+            <small style="color: var(--soft, #76706A); font-size: 11.5px;">${size}${item.color ? " · " + item.color : ""}</small>
           </span>
-          <b style="font-size: 13.5px; color: var(--ink, #1C1A17);">₹ ${lineTot.toLocaleString('en-IN')}</b>
+          <b style="font-size: 13.5px; color: var(--ink, #1C1A17);">${formatMoney(lineTot)}</b>
         </div>
       `;
     }).join('');
@@ -455,17 +518,130 @@ $track_url = home_url('/track-order/');
 
   function handlePlaceOrder(e) {
     e.preventDefault();
-    // Smoothly show order confirmed view matching demo
+    var btn = document.getElementById('btn-place-order');
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'PLACING ORDER...';
+    }
+
+    var items = getCheckoutCartItems();
+    var name = (document.getElementById('checkout-name') ? document.getElementById('checkout-name').value : '').trim();
+    var email = (document.getElementById('checkout-email') ? document.getElementById('checkout-email').value : '').trim();
+    var phone = (document.getElementById('checkout-wa') ? document.getElementById('checkout-wa').value : '').trim();
+    var country = _selectedCountry;
+    var address = (document.getElementById('checkout-address') ? document.getElementById('checkout-address').value : '').trim();
+    var city = (document.getElementById('checkout-city') ? document.getElementById('checkout-city').value : '').trim();
+    var pin = (document.getElementById('checkout-pin') ? document.getElementById('checkout-pin').value : '').trim();
+    var state = (document.getElementById('checkout-state') ? document.getElementById('checkout-state').value : '').trim();
+    var isInd = (country === 'India');
+    var ship = isInd ? 150 : 3780;
+    var total = Math.max(0, _checkoutSubtotal - _checkoutDiscount) + ship;
+
+    var orderNumber = 'VG-' + Math.floor(10000 + Math.random() * 90000);
+
+    var formData = new FormData();
+    formData.append('action', 'vivaaz_create_order');
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('country', country);
+    formData.append('address', address);
+    formData.append('city', city);
+    formData.append('state', state);
+    formData.append('pin', pin);
+    formData.append('payment_method', isInd ? (_selectedPayIndex === 0 ? 'UPI QR Code' : 'Bank transfer (NEFT / RTGS)') : 'PayPal / International Cards');
+    formData.append('items', JSON.stringify(items));
+    formData.append('subtotal', _checkoutSubtotal);
+    formData.append('shipping', ship);
+    formData.append('total', total);
+
+    fetch('<?php echo admin_url("admin-ajax.php"); ?>', {
+      method: 'POST',
+      body: formData
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      var finalOrderNum = (data && data.data && data.data.order_number) ? data.data.order_number : orderNumber;
+      finishOrderSuccess(finalOrderNum, name, phone, email, total);
+    })
+    .catch(function(err) {
+      finishOrderSuccess(orderNumber, name, phone, email, total);
+    });
+  }
+
+  function finishOrderSuccess(orderNum, name, phone, email, total) {
     document.getElementById('checkout-main-view').style.display = 'none';
-    document.getElementById('checkout-done-view').style.display = 'block';
+    var doneView = document.getElementById('checkout-done-view');
+    if (doneView) {
+      doneView.style.display = 'block';
+      var numEl = doneView.querySelector('.order-num-display') || doneView.querySelector('h2') || doneView.querySelector('b');
+      if (numEl) {
+        numEl.textContent = '#' + orderNum;
+      }
+
+      var isInd = (_selectedCountry === 'India');
+      var isUpi = isInd && (_selectedPayIndex === 0);
+      var upiDoneBox = document.getElementById('done-upi-payment-box');
+      if (upiDoneBox) {
+        if (isUpi) {
+          upiDoneBox.style.display = 'block';
+          var orderTotal = total || (Math.max(0, _checkoutSubtotal - _checkoutDiscount) + (isInd ? 150 : 3780));
+          var amtEl = document.getElementById('done-upi-amount-display');
+          if (amtEl) amtEl.textContent = '₹ ' + Number(orderTotal).toLocaleString('en-IN');
+          var upiUri = 'upi://pay?pa=9680552270@okbizaxis&pn=Vivaaz%20Gems&am=' + orderTotal + '&cu=INR&tn=' + encodeURIComponent('Order ' + orderNum);
+          var qrImg = document.getElementById('done-upi-qr-img');
+          if (qrImg) qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=' + encodeURIComponent(upiUri);
+          var waBtn = document.getElementById('done-wa-receipt-btn');
+          if (waBtn) {
+            var msg = "Hello Vivaaz Gems,\n\nI have placed Order #" + orderNum + " for ₹ " + Number(orderTotal).toLocaleString('en-IN') + ".\nName: " + name + "\nPhone: " + phone + "\n\nI am sending my UPI payment confirmation.";
+            waBtn.href = "https://wa.me/919680552270?text=" + encodeURIComponent(msg);
+          }
+        } else {
+          upiDoneBox.style.display = 'none';
+        }
+      }
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
     try {
+      localStorage.setItem('vivaaz_last_order', orderNum);
       localStorage.removeItem('vivaaz_local_cart');
+      localStorage.removeItem('vivaaz_cart_items');
     } catch(err) {}
     if (typeof updateHeaderBagCount === 'function') updateHeaderBagCount();
   }
 
+  window.vivaazUpdateCheckoutTotals = function() {
+    var cur = (typeof getCurrentCurrency === 'function') ? getCurrentCurrency() : 'INR';
+    if (cur !== 'INR' && _selectedCountry === 'India') {
+      var countrySelect = document.getElementById('checkout-country');
+      if (countrySelect) {
+        countrySelect.value = (cur === 'USD' ? 'United States' : (cur === 'GBP' ? 'United Kingdom' : (cur === 'AED' ? 'United Arab Emirates' : 'Germany')));
+        onCountryChange(countrySelect.value);
+      }
+    }
+    renderPaymentOptions();
+    renderCheckoutSummary();
+  };
+
+  window.addEventListener('vivaaz-currency-changed', function() {
+    window.vivaazUpdateCheckoutTotals();
+  });
+
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'vivaaz_currency' || e.key === 'vivaaz_local_cart') {
+      window.vivaazUpdateCheckoutTotals();
+    }
+  });
+
   document.addEventListener('DOMContentLoaded', function() {
+    var cur = (typeof getCurrentCurrency === 'function') ? getCurrentCurrency() : 'INR';
+    if (cur !== 'INR' && _selectedCountry === 'India') {
+      var countrySelect = document.getElementById('checkout-country');
+      if (countrySelect) {
+        countrySelect.value = (cur === 'USD' ? 'United States' : (cur === 'GBP' ? 'United Kingdom' : (cur === 'AED' ? 'United Arab Emirates' : 'Germany')));
+        _selectedCountry = countrySelect.value;
+      }
+    }
     renderPaymentOptions();
     renderCheckoutSummary();
   });

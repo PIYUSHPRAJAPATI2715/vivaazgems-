@@ -31,7 +31,7 @@ get_header('shop');
 
     <!-- Treatment Disclosure Table Card -->
     <div style="background: #FFFFFF; border: 1px solid #EBE7DF; padding: 36px; margin-bottom: 32px;">
-      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; font-weight: 400; font-family: var(--body, sans-serif);">
         <thead>
           <tr style="border-bottom: 2px solid #EBE7DF; background: #FAF7F2;">
             <th style="padding: 14px 16px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9C7C4C; width: 25%;">Word we use</th>
@@ -40,27 +40,27 @@ get_header('shop');
         </thead>
         <tbody>
           <tr style="border-bottom: 1px solid #EBE7DF;">
-            <td style="padding: 16px; font-weight: 700; color: #1C1A17;">None</td>
+            <td style="padding: 16px; font-weight: 500; font-size: 14px; color: #1C1A17;">None</td>
             <td style="padding: 16px; color: #4A4640; line-height: 1.6;">Natural and untreated.</td>
           </tr>
           <tr style="border-bottom: 1px solid #EBE7DF;">
-            <td style="padding: 16px; font-weight: 700; color: #1C1A17;">Heated</td>
+            <td style="padding: 16px; font-weight: 500; font-size: 14px; color: #1C1A17;">Heated</td>
             <td style="padding: 16px; color: #4A4640; line-height: 1.6;">Heating to improve colour or clarity. Common and stable for sapphire, ruby, tanzanite, citrine and aquamarine.</td>
           </tr>
           <tr style="border-bottom: 1px solid #EBE7DF;">
-            <td style="padding: 16px; font-weight: 700; color: #1C1A17;">Oiled</td>
+            <td style="padding: 16px; font-weight: 500; font-size: 14px; color: #1C1A17;">Oiled</td>
             <td style="padding: 16px; color: #4A4640; line-height: 1.6;">Colourless oil in small surface fractures. The usual practice for emerald.</td>
           </tr>
           <tr style="border-bottom: 1px solid #EBE7DF;">
-            <td style="padding: 16px; font-weight: 700; color: #1C1A17;">Irradiated</td>
+            <td style="padding: 16px; font-weight: 500; font-size: 14px; color: #1C1A17;">Irradiated</td>
             <td style="padding: 16px; color: #4A4640; line-height: 1.6;">Irradiated, then heated, to create the colour. All blue topaz is treated this way.</td>
           </tr>
           <tr style="border-bottom: 1px solid #EBE7DF;">
-            <td style="padding: 16px; font-weight: 700; color: #1C1A17;">Dyed or coated</td>
+            <td style="padding: 16px; font-weight: 500; font-size: 14px; color: #1C1A17;">Dyed or coated</td>
             <td style="padding: 16px; color: #4A4640; line-height: 1.6;">Colour added to the surface or inside. We say so clearly and price accordingly.</td>
           </tr>
           <tr>
-            <td style="padding: 16px; font-weight: 700; color: #1C1A17;">Glass filled</td>
+            <td style="padding: 16px; font-weight: 500; font-size: 14px; color: #1C1A17;">Glass filled</td>
             <td style="padding: 16px; color: #4A4640; line-height: 1.6;">We do not sell glass-filled stones as natural.</td>
           </tr>
         </tbody>

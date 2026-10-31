@@ -105,7 +105,7 @@ $cart_count   = (function_exists('WC') && WC()->cart) ? WC()->cart->get_cart_con
                               <?php endif; ?>
                             </div>
                             <div style="font-size: 11px; color: #76706A; display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-                              <span style="background: #FAF7F2; border: 1px solid #EBE7DF; padding: 2px 6px; font-weight: 600; color: #9C7C4C;"><?php echo esc_html($size_attr); ?> · AAA</span>
+                              <span style="background: #FAF7F2; border: 1px solid #EBE7DF; padding: 2px 6px; font-weight: 600; color: #9C7C4C;"><?php echo esc_html($size_attr); ?></span>
                               <span>SKU: <?php echo esc_html($sku); ?></span>
                             </div>
                           </td>
@@ -425,7 +425,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <td class="product-name" style="padding: 16px 14px;">
               <div style="font-size: 14px; font-weight: 600; color: #1C1A17; margin-bottom: 4px;">${item.title}</div>
               <div style="font-size: 11px; color: #76706A; display: flex; gap: 8px; align-items: center;">
-                <span style="background: #FAF7F2; border: 1px solid #EBE7DF; padding: 2px 6px; font-weight: 600; color: #9C7C4C;">${item.size || '7×5 mm'} · AAA</span>
+                <span style="background: #FAF7F2; border: 1px solid #EBE7DF; padding: 2px 6px; font-weight: 600; color: #9C7C4C;">${item.size || '7×5 mm'}</span>
                 <span>SKU: ${item.sku || 'VG-LOT-01'}</span>
               </div>
             </td>

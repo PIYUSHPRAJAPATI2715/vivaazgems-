@@ -15,7 +15,7 @@ $shop_url = home_url('/shop/');
 $checkout_url = home_url('/checkout/');
 ?>
 
-<div class="wrap bag-page-wrap" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px 80px; min-height: 70vh;">
+<div class="wrap bag-page-wrap" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px 140px; min-height: 70vh;">
   
   <div class="crumb" style="font-size: 12.5px; color: var(--mute, #A8A29E); margin-bottom: 20px;">
     <a href="<?php echo esc_url(home_url('/')); ?>" style="color: inherit; text-decoration: none;">Home</a> › <b style="color: var(--ink, #1C1A17);">Your bag</b>
@@ -59,8 +59,13 @@ $checkout_url = home_url('/checkout/');
     }
   }
 
+  var activeSizePickerIdx = -1;
+
   function formatMoney(amount) {
-    return '₹ ' + Number(amount || 0).toLocaleString('en-IN');
+    if (typeof formatVivaazMoney === 'function') {
+      return formatVivaazMoney(amount);
+    }
+    return '\u20B9 ' + Math.round(Number(amount || 0)).toLocaleString('en-IN');
   }
 
   function renderBagPage() {
@@ -69,7 +74,7 @@ $checkout_url = home_url('/checkout/');
 
     var items = getLocalBagItems();
 
-    // If localStorage is empty, let's check if we should populate with sample item or show empty
+    // If localStorage is empty, show empty state
     if (!items || items.length === 0) {
       root.innerHTML = `
         <div style="padding: 20px 0;">
@@ -82,6 +87,8 @@ $checkout_url = home_url('/checkout/');
 
     var n = items.length;
     var subtotal = 0;
+    var cur = (typeof getCurrentCurrency === 'function') ? getCurrentCurrency() : 'INR';
+    var isInd = (cur === 'INR');
 
     var linesHtml = items.map(function(item, idx) {
       var qty = parseInt(item.quantity || item.qty) || 1;
@@ -110,11 +117,11 @@ $checkout_url = home_url('/checkout/');
         stepLine = '<div style="font-size: 11px; color: #76706A; margin-top: 4px;">Only 1. This exact lot, as in the photos.</div>';
       } else if (qty < 10) {
         var t10P = item.tier10 || Math.round(unitPrice * 0.88);
-        stepLine = '<div style="font-size: 11px; color: #9B7C4E; margin-top: 4px; font-weight: 600;">Add ' + (10 - qty) + ' more for 10+ price (₹' + t10P + ' each)</div>';
+        stepLine = '<div style="font-size: 11px; color: #9B7C4E; margin-top: 4px; font-weight: 600;">Add ' + (10 - qty) + ' more for 10+ price (' + formatMoney(t10P) + ' each)</div>';
       } else if (qty >= 10 && qty < 50) {
-        stepLine = '<div style="font-size: 11px; color: #1E9E52; margin-top: 4px; font-weight: 600;">₹' + tierPrice + ' each · 10+ price step unlocked</div>';
+        stepLine = '<div style="font-size: 11px; color: #1E9E52; margin-top: 4px; font-weight: 600;">' + formatMoney(tierPrice) + ' each · 10+ price step unlocked</div>';
       } else {
-        stepLine = '<div style="font-size: 11px; color: #1E9E52; margin-top: 4px; font-weight: 600;">₹' + tierPrice + ' each · 50+ bulk tier unlocked</div>';
+        stepLine = '<div style="font-size: 11px; color: #1E9E52; margin-top: 4px; font-weight: 600;">' + formatMoney(tierPrice) + ' each · 50+ bulk tier unlocked</div>';
       }
 
       return `
@@ -124,14 +131,22 @@ $checkout_url = home_url('/checkout/');
           </div>
           <div>
             <div class="n" style="font-weight: 600; font-size: 14px; line-height: 1.35; color: var(--ink, #1C1A17);">${title}</div>
-            <div class="m" style="font-size: 12px; color: var(--soft, #76706A); margin: 3px 0 8px; display: flex; gap: 8px; align-items: center;">
-              <span>${size} · AAA</span>
-              <button type="button" onclick="changeBagItemSize(${idx});" style="background: none; border: none; font-size: 12px; color: var(--gold, #9C7C4C); text-decoration: underline; cursor: pointer; padding: 0;">Change size</button>
+            <div class="m" style="font-size: 12px; color: var(--soft, #76706A); margin: 3px 0 8px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+              <span>${size}${item.color ? " · " + item.color : ""}</span>
+              <button type="button" onclick="changeBagItemSize(${idx});" style="background: none; border: none; font-size: 12px; color: var(--gold, #9C7C4C); text-decoration: underline; cursor: pointer; padding: 0;">${activeSizePickerIdx === idx ? 'Close sizes' : 'Change size'}</button>
             </div>
-            <div class="step s" style="display: inline-flex; align-items: center; border: 1px solid var(--ink, #1C1A17); background: #FFF; height: 30px;">
-              <button type="button" onclick="stepBagQty(${idx}, -1)" aria-label="Fewer" style="width: 30px; height: 30px; border: none; background: none; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center;">−</button>
-              <input value="${qty}" onchange="onBagQtyChange(${idx}, this.value)" aria-label="Quantity" style="width: 40px; height: 30px; border: none; border-left: 1px solid var(--line, #EFE9E0); border-right: 1px solid var(--line, #EFE9E0); text-align: center; font-size: 13px; font-weight: 700;">
-              <button type="button" onclick="stepBagQty(${idx}, 1)" aria-label="More" style="width: 30px; height: 30px; border: none; background: none; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center;">+</button>
+            ${activeSizePickerIdx === idx ? `
+              <div class="bag-size-picker" style="display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 12px; padding: 10px; background: #FAF8F5; border: 1px solid var(--line, #EFE9E0);">
+                ${['3×4 mm', '3×5 mm', '4×5 mm', '4×6 mm', '5×7 mm', '6×8 mm', '7×9 mm', '8×10 mm', '10×12 mm'].map(function(s) {
+                  var isSel = (s === size || s.replace('×', 'x') === size || s === size.replace('x', '×'));
+                  return `<button type="button" onclick="selectBagItemSize(${idx}, '${s}')" style="padding: 4px 8px; font-size: 11px; font-family: monospace; border: 1px solid ${isSel ? 'var(--ink, #1C1A17)' : 'var(--line, #D6D0C7)'}; background: ${isSel ? 'var(--ink, #1C1A17)' : '#FFFFFF'}; color: ${isSel ? '#FFFFFF' : 'var(--ink, #1C1A17)'}; cursor: pointer; border-radius: 0; font-weight: ${isSel ? '700' : '400'};">${s}</button>`;
+                }).join('')}
+              </div>
+            ` : ''}
+            <div class="step s" style="display: inline-flex; align-items: stretch; border: 1px solid var(--ink, #1C1A17); background: #FFF; height: 32px; box-sizing: border-box; overflow: hidden; padding: 0; margin: 0; vertical-align: middle;">
+              <button type="button" onclick="stepBagQty(${idx}, -1)" aria-label="Fewer" style="width: 30px; height: 100%; border: none; background: transparent; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; margin: 0; outline: none; box-shadow: none; line-height: 1; color: var(--ink, #1C1A17);">−</button>
+              <input type="text" value="${qty}" onchange="onBagQtyChange(${idx}, this.value)" aria-label="Quantity" style="width: 40px; height: 100%; min-height: 0; border: none; border-left: 1px solid var(--line, #EFE9E0); border-right: 1px solid var(--line, #EFE9E0); text-align: center; font-size: 13px; font-weight: 700; margin: 0; padding: 0; outline: none; box-shadow: none; background: transparent; box-sizing: border-box; line-height: 1; border-radius: 0; color: var(--ink, #1C1A17);">
+              <button type="button" onclick="stepBagQty(${idx}, 1)" aria-label="More" style="width: 30px; height: 100%; border: none; background: transparent; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; margin: 0; outline: none; box-shadow: none; line-height: 1; color: var(--ink, #1C1A17);">+</button>
             </div>
             ${stepLine}
           </div>
@@ -143,6 +158,17 @@ $checkout_url = home_url('/checkout/');
       `;
     }).join('');
 
+    var waysToPayTitle = isInd ? 'Ways to pay in India' : 'Ways to pay from outside India';
+    var waysToPayChips = isInd 
+      ? ['UPI', 'Cards', 'Net banking', 'Bank transfer (NEFT / RTGS)']
+      : ['PayPal', 'Cards', 'Payoneer', 'Bank transfer (SWIFT / TT)'];
+    var waysToPayChipsHtml = waysToPayChips.map(function(ch) {
+      return '<span class="pchip" style="font-size: 11.5px; background: #FAF7F2; border: 1px solid var(--line, #EFE9E0); padding: 4px 10px; border-radius: 2px;">' + ch + '</span>';
+    }).join('');
+    var waysToPaySmall = isInd 
+      ? 'Prices in &#8377; INR. Change the currency at the top to see international payments.'
+      : 'Prices in ' + cur + '. For Payoneer and bank transfer we email the details after you order.';
+
     root.innerHTML = `
       <div class="co" style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr); gap: 36px; align-items: start; margin-top: 20px;">
         <div>
@@ -150,7 +176,7 @@ $checkout_url = home_url('/checkout/');
             ${linesHtml}
           </div>
           <p style="margin-top: 18px;">
-            <a class="link" href="<?php echo esc_url($shop_url); ?>" style="color: var(--ink, #1C1A17); font-size: 13px; text-decoration: underline; font-weight: 600;">← Continue shopping</a>
+            <a class="link" href="<?php echo esc_url($shop_url); ?>" style="color: var(--gold, #9B7C4E) !important; font-size: 13px; text-decoration: underline; font-weight: 600;">← Continue shopping</a>
           </p>
         </div>
 
@@ -174,14 +200,11 @@ $checkout_url = home_url('/checkout/');
 
           <!-- Ways to pay -->
           <div class="payrow" style="margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line, #EFE9E0);">
-            <span class="cap" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink, #1C1A17); margin-bottom: 8px;">Ways to pay in India</span>
+            <span class="cap" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink, #1C1A17); margin-bottom: 8px;">${waysToPayTitle}</span>
             <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
-              <span class="pchip" style="font-size: 11.5px; background: #FAF7F2; border: 1px solid var(--line, #EFE9E0); padding: 4px 10px; border-radius: 2px;">UPI</span>
-              <span class="pchip" style="font-size: 11.5px; background: #FAF7F2; border: 1px solid var(--line, #EFE9E0); padding: 4px 10px; border-radius: 2px;">Cards</span>
-              <span class="pchip" style="font-size: 11.5px; background: #FAF7F2; border: 1px solid var(--line, #EFE9E0); padding: 4px 10px; border-radius: 2px;">Net banking</span>
-              <span class="pchip" style="font-size: 11.5px; background: #FAF7F2; border: 1px solid var(--line, #EFE9E0); padding: 4px 10px; border-radius: 2px;">Bank transfer (NEFT / RTGS)</span>
+              ${waysToPayChipsHtml}
             </div>
-            <small style="display: block; font-size: 11.5px; color: var(--soft, #76706A); line-height: 1.4;">Prices in ₹ INR. Outside India: PayPal, international cards, Payoneer and SWIFT / TT.</small>
+            <small style="display: block; font-size: 11.5px; color: var(--soft, #76706A); line-height: 1.4;">${waysToPaySmall}</small>
           </div>
 
           <a href="<?php echo esc_url($checkout_url); ?>" class="btn wide" style="display: block; width: 100%; margin-top: 18px; padding: 14px; background: #1C1A17; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; text-align: center; text-decoration: none; border-radius: 0;">CHECKOUT</a>
@@ -254,19 +277,50 @@ $checkout_url = home_url('/checkout/');
   }
 
   function changeBagItemSize(index) {
+    activeSizePickerIdx = (activeSizePickerIdx === index) ? -1 : index;
+    renderBagPage();
+  }
+
+  function selectBagItemSize(index, newSize) {
     var items = getLocalBagItems();
     if (!items[index]) return;
-    var sizes = ['3×4 mm', '3×5 mm', '4×5 mm', '4×6 mm', '5×7 mm', '6×8 mm', '7×9 mm', '8×10 mm', '10×12 mm'];
-    var current = items[index].size || '6×8 mm';
-    var nextSize = prompt('Select new size for ' + (items[index].title || 'gemstone') + ':\nAvailable: ' + sizes.join(', '), current);
-    if (nextSize && sizes.indexOf(nextSize.trim()) > -1) {
-      items[index].size = nextSize.trim();
-      setLocalBagItems(items);
-      renderBagPage();
-      if (typeof renderCartDrawer === 'function') renderCartDrawer();
-      if (typeof showWishlistToast === 'function') showWishlistToast('Size updated to ' + nextSize.trim());
+    var sizePrices = {
+      '3x4 mm': 45, '3×4 mm': 45,
+      '3x5 mm': 52, '3×5 mm': 52,
+      '4x5 mm': 58, '4×5 mm': 58,
+      '4x6 mm': 68, '4×6 mm': 68,
+      '5x7 mm': 92, '5×7 mm': 92,
+      '6x8 mm': 120, '6×8 mm': 120,
+      '7x9 mm': 165, '7×9 mm': 165,
+      '8x10 mm': 220, '8×10 mm': 220,
+      '10x12 mm': 340, '10×12 mm': 340
+    };
+    items[index].size = newSize;
+    if (sizePrices[newSize]) {
+      items[index].price = sizePrices[newSize];
+      items[index].unitPrice = sizePrices[newSize];
+      items[index].tier1 = sizePrices[newSize];
+      items[index].tier10 = Math.round(sizePrices[newSize] * 0.88);
+      items[index].tier50 = Math.round(sizePrices[newSize] * 0.78);
     }
+    setLocalBagItems(items);
+    activeSizePickerIdx = -1;
+    renderBagPage();
+    if (typeof renderCartDrawer === 'function') renderCartDrawer();
+    if (typeof showWishlistToast === 'function') showWishlistToast('Size updated to ' + newSize);
   }
+
+  window.renderBagPage = renderBagPage;
+  window.vivaazRecalcCartTotals = renderBagPage;
+
+  window.addEventListener('vivaaz-currency-changed', function() {
+    renderBagPage();
+  });
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'vivaaz_currency' || e.key === 'vivaaz_local_cart') {
+      renderBagPage();
+    }
+  });
 
   document.addEventListener('DOMContentLoaded', function() {
     renderBagPage();

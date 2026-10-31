@@ -51,7 +51,20 @@ get_header('shop');
     <div style="background: #FFFFFF; border: 1px solid #EBE7DF; padding: 36px; margin-bottom: 32px;">
       <h3 class="font-serif" style="font-family: 'Playfair Display', Georgia, serif; font-size: 24px; margin: 0 0 20px; color: #1C1A17;">Trade Enquiry Form</h3>
 
-      <form action="https://wa.me/919680552270" method="get" target="_blank" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <style>
+        .bulk-form-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+        @media (max-width: 600px) {
+          .bulk-form-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      </style>
+
+      <form id="bulk-enquiry-form" onsubmit="handleBulkEnquirySubmit(event)" class="bulk-form-grid">
         <div>
           <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Name *</label>
           <input type="text" name="name" required placeholder="Your full name" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
@@ -59,7 +72,8 @@ get_header('shop');
 
         <div>
           <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">WhatsApp Number *</label>
-          <input type="tel" name="phone" required placeholder="+91 98765 43210" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+          <input type="tel" name="phone" id="bulk-phone" required placeholder="+91 98765 43210" oninput="var err=document.getElementById('bulk-phone-err'); if(err)err.style.display='none'; this.style.borderColor='#EBE7DF'; this.style.background='#FAF7F2';" style="width: 100%; padding: 12px; border: 1px solid #EBE7DF; background: #FAF7F2; font-size: 13px; outline: none;">
+          <div id="bulk-phone-err" style="display: none; color: #C0392B; font-size: 11.5px; margin-top: 4px; font-weight: 600;">Please enter a valid 10-digit mobile number</div>
         </div>
 
         <div>
@@ -93,6 +107,74 @@ get_header('shop');
           </button>
         </div>
       </form>
+      <div id="bulk-enquiry-status" style="display: none;"></div>
+    </div>
+
+    <script>
+    function handleBulkEnquirySubmit(e) {
+      e.preventDefault();
+      var form = e.target;
+      var name = (form.name && form.name.value) ? form.name.value.trim() : '';
+      var phone = (form.phone && form.phone.value) ? form.phone.value.trim() : '';
+      var phoneInput = form.phone || document.getElementById('bulk-phone');
+      var phoneErr = document.getElementById('bulk-phone-err');
+
+      var isValid = (typeof isValidVivaazPhone === 'function')
+        ? isValidVivaazPhone(phone)
+        : (phone.replace(/\D/g, '').length >= 10 && phone.replace(/\D/g, '').length <= 15 && !/^(\d)\1{9,}$/.test(phone.replace(/\D/g, '')));
+
+      if (!isValid) {
+        if (phoneErr) phoneErr.style.display = 'block';
+        if (phoneInput) {
+          phoneInput.focus();
+          phoneInput.style.borderColor = '#C0392B';
+          phoneInput.style.background = '#FFF5F5';
+        }
+        return;
+      }
+      if (phoneErr) phoneErr.style.display = 'none';
+      if (phoneInput) {
+        phoneInput.style.borderColor = '#EBE7DF';
+        phoneInput.style.background = '#FAF7F2';
+      }
+      var company = (form.company && form.company.value) ? form.company.value.trim() : '';
+      var email = (form.email && form.email.value) ? form.email.value.trim() : '';
+      var country = (form.country && form.country.value) ? form.country.value.trim() : '';
+      var details = (form.text && form.text.value) ? form.text.value.trim() : '';
+
+      var waText = "Hello Vivaaz Gems,\n\nI would like to submit a Trade / Bulk Enquiry:\n"
+        + "• Name: " + name + "\n"
+        + "• WhatsApp: " + phone + "\n"
+        + (company ? ("• Company: " + company + "\n") : "")
+        + (email ? ("• Email: " + email + "\n") : "")
+        + (country ? ("• Country: " + country + "\n") : "")
+        + "• Requirements: " + details;
+
+      var statusBox = document.getElementById('bulk-enquiry-status');
+      if (statusBox) {
+        statusBox.style.display = 'block';
+        statusBox.innerHTML = '<div style="padding: 12px; background: #FAF7F2; border: 1px solid #9C7C4C; color: #1C1A17; font-size: 13px; margin-top: 14px;">✓ Thank you! Opening WhatsApp to send your enquiry...</div>';
+      }
+
+      try {
+        var formData = new FormData();
+        formData.append('action', 'vivaaz_send_enquiry');
+        formData.append('name', name);
+        formData.append('phone', phone);
+        formData.append('company', company);
+        formData.append('email', email);
+        formData.append('country', country);
+        formData.append('message', details);
+        if (window.ajaxurl) {
+          fetch(window.ajaxurl, { method: 'POST', body: formData });
+        }
+      } catch(err) {}
+
+      setTimeout(function() {
+        window.open('https://wa.me/919680552270?text=' + encodeURIComponent(waText), '_blank');
+      }, 400);
+    }
+    </script>
     </div>
 
     <!-- Contact Info -->

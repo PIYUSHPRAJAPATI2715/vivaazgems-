@@ -91,6 +91,14 @@ if (!function_exists('vivaaz_render_tennis_art')) {
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php wp_head(); ?>
+  <script>
+    window.vivaaz_ajax_obj = {
+      ajax_url: '<?php echo esc_url(admin_url("admin-ajax.php")); ?>',
+      nonce: '<?php echo wp_create_nonce("vivaaz_auth_nonce"); ?>',
+      is_logged_in: <?php echo is_user_logged_in() ? 'true' : 'false'; ?>,
+      account_url: '<?php echo esc_url(home_url("/my-account/")); ?>'
+    };
+  </script>
 </head>
 <body <?php body_class(); ?>>
 
@@ -103,12 +111,12 @@ if (!function_exists('vivaaz_render_tennis_art')) {
         <a href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT</a>
         <a href="<?php echo esc_url(home_url('/track-order/')); ?>">TRACK ORDER</a>
         <div class="cur">
-          <button type="button" id="curb" onclick="toggleCurrencyMenu(event)">IN | ₹ INR ▾</button>
-          <div class="curm" id="curm" hidden>
-            <button type="button" onclick="switchCurrency('INR')">IN | ₹ INR</button>
+          <button type="button" id="curb" onclick="toggleCurrencyMenu(event)">IN | &#8377; INR &#9662;</button>
+          <div class="curm" id="curm" style="display: none; top: 100% !important; margin-top: 4px !important; z-index: 999999 !important;" hidden>
+            <button type="button" onclick="switchCurrency('INR')">IN | &#8377; INR</button>
             <button type="button" onclick="switchCurrency('USD')">US | $ USD</button>
-            <button type="button" onclick="switchCurrency('EUR')">EU | € EUR</button>
-            <button type="button" onclick="switchCurrency('GBP')">UK | £ GBP</button>
+            <button type="button" onclick="switchCurrency('EUR')">EU | &euro; EUR</button>
+            <button type="button" onclick="switchCurrency('GBP')">UK | &pound; GBP</button>
             <button type="button" onclick="switchCurrency('AED')">AE | AED</button>
           </div>
         </div>
@@ -151,7 +159,7 @@ if (!function_exists('vivaaz_render_tennis_art')) {
 
       <!-- Desktop Centered Navigation (5 Menus with Thin Chevrons) -->
       <nav class="mn" aria-label="Main">
-        <a class="mi" data-m="gems" href="<?php echo esc_url(home_url('/shop/')); ?>">GEMSTONES <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 10l5 5 5-5"/></svg></a>
+        <a class="mi" data-m="gems" href="<?php echo esc_url(home_url('/gemstones/')); ?>">GEMSTONES <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 10l5 5 5-5"/></svg></a>
         <a class="mi" data-m="layouts" href="<?php echo esc_url(home_url('/layouts/')); ?>">LAYOUTS <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 10l5 5 5-5"/></svg></a>
         <a class="mi" data-m="beads" href="<?php echo esc_url(home_url('/beads/')); ?>">BEADS <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 10l5 5 5-5"/></svg></a>
         <a class="mi" data-m="jewelry" href="<?php echo esc_url(home_url('/jewelry/')); ?>">JEWELRY <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 10l5 5 5-5"/></svg></a>
@@ -188,59 +196,57 @@ if (!function_exists('vivaaz_render_tennis_art')) {
         <div class="wrap">
           <div class="col">
             <h6>PRECIOUS</h6>
-            <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" data-ph="ruby" onmouseenter="updateGemsMegaPhoto('ruby')">Ruby</a>
-            <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" data-ph="sapphire" onmouseenter="updateGemsMegaPhoto('sapphire')">Sapphire</a>
-            <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" data-ph="emerald" onmouseenter="updateGemsMegaPhoto('emerald')">Emerald</a>
-            <a class="lk" href="<?php echo esc_url(home_url('/shop/?filter_group=precious')); ?>" style="white-space: nowrap;">All precious stones →</a>
+            <a href="<?php echo esc_url(home_url('/gemstones/ruby/')); ?>" data-ph="ruby" onmouseenter="updateGemsMegaPhoto('ruby')">Ruby</a>
+            <a href="<?php echo esc_url(home_url('/gemstones/sapphire/')); ?>" data-ph="sapphire" onmouseenter="updateGemsMegaPhoto('sapphire')">Sapphire</a>
+            <a href="<?php echo esc_url(home_url('/gemstones/emerald/')); ?>" data-ph="emerald" onmouseenter="updateGemsMegaPhoto('emerald')">Emerald</a>
+            <a class="lk" href="<?php echo esc_url(home_url('/gemstones/precious/')); ?>" style="white-space: nowrap;">All precious stones →</a>
           </div>
 
           <div class="col three">
             <h6>SEMI-PRECIOUS · A TO Z</h6>
             <div class="ls">
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=agate')); ?>" data-ph="agate" onmouseenter="updateGemsMegaPhoto('agate')">Agate</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amazonite')); ?>" data-ph="amazonite" onmouseenter="updateGemsMegaPhoto('amazonite')">Amazonite</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amber')); ?>" data-ph="amber" onmouseenter="updateGemsMegaPhoto('amber')">Amber</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" data-ph="amethyst" onmouseenter="updateGemsMegaPhoto('amethyst')">Amethyst</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=aquamarine')); ?>" data-ph="aquamarine" onmouseenter="updateGemsMegaPhoto('aquamarine')">Aquamarine</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=aventurine')); ?>" data-ph="aventurine" onmouseenter="updateGemsMegaPhoto('aventurine')">Aventurine</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=carnelian')); ?>" data-ph="carnelian" onmouseenter="updateGemsMegaPhoto('carnelian')">Carnelian</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=citrine')); ?>" data-ph="citrine" onmouseenter="updateGemsMegaPhoto('citrine')">Citrine</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>" data-ph="garnet" onmouseenter="updateGemsMegaPhoto('garnet')">Garnet</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=green-jade')); ?>" data-ph="green-jade" onmouseenter="updateGemsMegaPhoto('green-jade')">Green Jade</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=iolite')); ?>" data-ph="iolite" onmouseenter="updateGemsMegaPhoto('iolite')">Iolite</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=labradorite')); ?>" data-ph="labradorite" onmouseenter="updateGemsMegaPhoto('labradorite')">Labradorite</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=lapis-lazuli')); ?>" data-ph="lapis-lazuli" onmouseenter="updateGemsMegaPhoto('lapis-lazuli')">Lapis Lazuli</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=larimar')); ?>" data-ph="larimar" onmouseenter="updateGemsMegaPhoto('larimar')">Larimar</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=malachite')); ?>" data-ph="malachite" onmouseenter="updateGemsMegaPhoto('malachite')">Malachite</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=onyx')); ?>" data-ph="onyx" onmouseenter="updateGemsMegaPhoto('onyx')">Onyx</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=opal')); ?>" data-ph="opal" onmouseenter="updateGemsMegaPhoto('opal')">Opal</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=peridot')); ?>" data-ph="peridot" onmouseenter="updateGemsMegaPhoto('peridot')">Peridot</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=prehnite')); ?>" data-ph="prehnite" onmouseenter="updateGemsMegaPhoto('prehnite')">Prehnite</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" data-ph="rainbow-moonstone" onmouseenter="updateGemsMegaPhoto('rainbow-moonstone')">Rainbow Moonstone</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rose-quartz')); ?>" data-ph="rose-quartz" onmouseenter="updateGemsMegaPhoto('rose-quartz')">Rose Quartz</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=spinel')); ?>" data-ph="spinel" onmouseenter="updateGemsMegaPhoto('spinel')">Spinel</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tanzanite')); ?>" data-ph="tanzanite" onmouseenter="updateGemsMegaPhoto('tanzanite')">Tanzanite</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tiger-eye')); ?>" data-ph="tiger-eye" onmouseenter="updateGemsMegaPhoto('tiger-eye')">Tiger Eye</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" data-ph="topaz" onmouseenter="updateGemsMegaPhoto('topaz')">Topaz</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tourmaline')); ?>" data-ph="tourmaline" onmouseenter="updateGemsMegaPhoto('tourmaline')">Tourmaline</a>
-              <a href="<?php echo esc_url(home_url('/shop/?filter_stone=turquoise')); ?>" data-ph="turquoise" onmouseenter="updateGemsMegaPhoto('turquoise')">Turquoise</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/agate/')); ?>" data-ph="agate" onmouseenter="updateGemsMegaPhoto('agate')">Agate</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/amazonite/')); ?>" data-ph="amazonite" onmouseenter="updateGemsMegaPhoto('amazonite')">Amazonite</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/amber/')); ?>" data-ph="amber" onmouseenter="updateGemsMegaPhoto('amber')">Amber</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/amethyst/')); ?>" data-ph="amethyst" onmouseenter="updateGemsMegaPhoto('amethyst')">Amethyst</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/aquamarine/')); ?>" data-ph="aquamarine" onmouseenter="updateGemsMegaPhoto('aquamarine')">Aquamarine</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/aventurine/')); ?>" data-ph="aventurine" onmouseenter="updateGemsMegaPhoto('aventurine')">Aventurine</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/carnelian/')); ?>" data-ph="carnelian" onmouseenter="updateGemsMegaPhoto('carnelian')">Carnelian</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/citrine/')); ?>" data-ph="citrine" onmouseenter="updateGemsMegaPhoto('citrine')">Citrine</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/garnet/')); ?>" data-ph="garnet" onmouseenter="updateGemsMegaPhoto('garnet')">Garnet</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/green-jade/')); ?>" data-ph="green-jade" onmouseenter="updateGemsMegaPhoto('green-jade')">Green Jade</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/iolite/')); ?>" data-ph="iolite" onmouseenter="updateGemsMegaPhoto('iolite')">Iolite</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/labradorite/')); ?>" data-ph="labradorite" onmouseenter="updateGemsMegaPhoto('labradorite')">Labradorite</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/lapis-lazuli/')); ?>" data-ph="lapis-lazuli" onmouseenter="updateGemsMegaPhoto('lapis-lazuli')">Lapis Lazuli</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/larimar/')); ?>" data-ph="larimar" onmouseenter="updateGemsMegaPhoto('larimar')">Larimar</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/malachite/')); ?>" data-ph="malachite" onmouseenter="updateGemsMegaPhoto('malachite')">Malachite</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/onyx/')); ?>" data-ph="onyx" onmouseenter="updateGemsMegaPhoto('onyx')">Onyx</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/opal/')); ?>" data-ph="opal" onmouseenter="updateGemsMegaPhoto('opal')">Opal</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/peridot/')); ?>" data-ph="peridot" onmouseenter="updateGemsMegaPhoto('peridot')">Peridot</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/prehnite/')); ?>" data-ph="prehnite" onmouseenter="updateGemsMegaPhoto('prehnite')">Prehnite</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/rainbow-moonstone/')); ?>" data-ph="rainbow-moonstone" onmouseenter="updateGemsMegaPhoto('rainbow-moonstone')">Rainbow Moonstone</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/rose-quartz/')); ?>" data-ph="rose-quartz" onmouseenter="updateGemsMegaPhoto('rose-quartz')">Rose Quartz</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/tanzanite/')); ?>" data-ph="tanzanite" onmouseenter="updateGemsMegaPhoto('tanzanite')">Tanzanite</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/tiger-eye/')); ?>" data-ph="tiger-eye" onmouseenter="updateGemsMegaPhoto('tiger-eye')">Tiger Eye</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/topaz/')); ?>" data-ph="topaz" onmouseenter="updateGemsMegaPhoto('topaz')">Topaz</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/tourmaline/')); ?>" data-ph="tourmaline" onmouseenter="updateGemsMegaPhoto('tourmaline')">Tourmaline</a>
+              <a href="<?php echo esc_url(home_url('/gemstones/turquoise/')); ?>" data-ph="turquoise" onmouseenter="updateGemsMegaPhoto('turquoise')">Turquoise</a>
             </div>
-            <a class="lk" href="<?php echo esc_url(home_url('/shop/?filter_group=semi')); ?>">Other stones →</a>
+            <a class="lk" href="<?php echo esc_url(home_url('/gemstones/semi-precious/')); ?>">Other stones →</a>
           </div>
 
           <div class="col">
             <h6>BY CUT</h6>
-            <a href="<?php echo esc_url(home_url('/shop/?filter_cut=faceted')); ?>">Faceted</a>
-            <a href="<?php echo esc_url(home_url('/shop/?filter_cut=cabochon')); ?>">Cabochon</a>
-            <a href="<?php echo esc_url(home_url('/shop/?filter_cut=rose-cut')); ?>">Rose cut</a>
-            <a href="<?php echo esc_url(home_url('/shop/?filter_cut=briolette')); ?>">Briolette</a>
+            <a href="<?php echo esc_url(home_url('/gemstones/?cut=faceted')); ?>">Faceted</a>
+            <a href="<?php echo esc_url(home_url('/gemstones/?cut=cabochon')); ?>">Cabochon</a>
+            <a href="<?php echo esc_url(home_url('/gemstones/?cut=rose-cut')); ?>">Rose cut</a>
+            <a href="<?php echo esc_url(home_url('/gemstones/?cut=briolette')); ?>">Briolette</a>
             <h6 style="margin-top: 22px;">SHOP BY</h6>
-            <a href="<?php echo esc_url(home_url('/shop/?filter_by=colour')); ?>">Colour</a>
-            <a href="<?php echo esc_url(home_url('/shop/?filter_by=shape')); ?>">Shape</a>
-            <a href="<?php echo esc_url(home_url('/shop/?filter_by=price')); ?>">Price</a>
+            <a href="<?php echo esc_url(home_url('/gemstones/?filter_by=colour')); ?>">Colour</a>
+            <a href="<?php echo esc_url(home_url('/gemstones/?filter_by=shape')); ?>">Shape</a>
+            <a href="<?php echo esc_url(home_url('/gemstones/?filter_by=price')); ?>">Price</a>
             <a href="<?php echo esc_url(home_url('/astrology/#birthstones')); ?>">Birthstones</a>
-            <a href="<?php echo esc_url(home_url('/shop/?max_price=5000')); ?>">Gifts under ₹5,000</a>
-            <a href="<?php echo esc_url(home_url('/shop/?filter_sold_as=calibrated')); ?>">Pairs &amp; calibrated lots</a>
+            <a href="<?php echo esc_url(home_url('/gemstones/?filter_sold_as=calibrated')); ?>">Pairs &amp; calibrated lots</a>
           </div>
 
           <!-- Light Photo Box on the Right -->
@@ -250,8 +256,8 @@ if (!function_exists('vivaaz_render_tennis_art')) {
               <img id="mph-img" src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Rainbow Moonstone">
             </div>
             <b id="mph-name">Rainbow Moonstone</b>
-            <small id="mph-desc">Cabochon lots from 3×4 mm, AAA</small>
-            <a class="link" id="mph-link" href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>">Shop new arrivals →</a>
+            <small id="mph-desc">Cabochon lots from 3×4 mm</small>
+            <a class="link" id="mph-link" href="<?php echo esc_url(home_url('/gemstones/rainbow-moonstone/')); ?>">Shop new arrivals →</a>
           </div>
         </div>
       </div>
@@ -554,7 +560,7 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     'sapphire': { name: 'Sapphire', desc: 'Ceylon blue & fancy', file: 'ceylon-sapphire.jpg' },
     'emerald': { name: 'Emerald', desc: 'Colombian & Zambian', file: 'emerald.jpg' },
     'amethyst': { name: 'Amethyst', desc: 'Lilac to deep purple', file: 'ruby.jpg' },
-    'rainbow-moonstone': { name: 'Rainbow Moonstone', desc: 'Cabochon lots from 3×4 mm, AAA', file: 'moonstone.jpg' },
+    'rainbow-moonstone': { name: 'Rainbow Moonstone', desc: 'Cabochon lots from 3×4 mm', file: 'moonstone.jpg' },
     'topaz': { name: 'Topaz', desc: 'Sky, Swiss & London blue', file: 'swiss-topaz.jpg' },
     'agate': { name: 'Agate', desc: 'Banded chalcedony', file: 'moonstone.jpg' },
     'garnet': { name: 'Garnet', desc: 'Rhodolite, hessonite & tsavorite', file: 'ruby.jpg' },
@@ -626,10 +632,19 @@ if (!function_exists('vivaaz_render_tennis_art')) {
   };
 
   window.toggleCurrencyMenu = function(e) {
-    if (e) e.stopPropagation();
+    if (e) {
+      if (typeof e.stopPropagation === 'function') e.stopPropagation();
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+    }
     var curm = document.getElementById('curm');
     if (curm) {
-      curm.hidden = !curm.hidden;
+      if (curm.style.display === 'block') {
+        curm.style.display = 'none';
+        curm.hidden = true;
+      } else {
+        curm.style.display = 'block';
+        curm.hidden = false;
+      }
     }
   };
 
@@ -637,6 +652,7 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     var cur = document.querySelector('.cur');
     var curm = document.getElementById('curm');
     if (curm && cur && !cur.contains(e.target)) {
+      curm.style.display = 'none';
       curm.hidden = true;
     }
   });
@@ -663,63 +679,52 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
   </button>
   <div class="opn" id="mdr-gems" style="display:none;">
-    <button type="button" class="sb" onclick="toggleMdrSub('prec', this);">
-      <span>Precious</span>
-      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
-    </button>
-    <div id="mdr-sub-prec" style="display:none;">
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=ruby')); ?>" class="leaf">Ruby</a>
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=sapphire')); ?>" class="leaf">Sapphire</a>
-      <a href="<?php echo esc_url(home_url('/shop/?filter_stone=emerald')); ?>" class="leaf">Emerald</a>
-      <a href="<?php echo esc_url(home_url('/shop/?filter_group=precious')); ?>" class="leaf hi">All precious</a>
-    </div>
+    <div class="mh">PRECIOUS</div>
+    <a href="<?php echo esc_url(home_url('/gemstones/ruby/')); ?>" class="leaf">Ruby</a>
+    <a href="<?php echo esc_url(home_url('/gemstones/sapphire/')); ?>" class="leaf">Sapphire</a>
+    <a href="<?php echo esc_url(home_url('/gemstones/emerald/')); ?>" class="leaf">Emerald</a>
+    <a href="<?php echo esc_url(home_url('/gemstones/precious/')); ?>" class="leaf hi">All precious</a>
 
-    <button type="button" class="sb" onclick="toggleMdrSub('semi', this);">
-      <span>Semi-precious</span>
-      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
-    </button>
-    <div id="mdr-sub-semi" style="display:none;">
-      <div class="two">
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=agate')); ?>" class="leaf">Agate</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amazonite')); ?>" class="leaf">Amazonite</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amber')); ?>" class="leaf">Amber</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=amethyst')); ?>" class="leaf">Amethyst</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=aquamarine')); ?>" class="leaf">Aquamarine</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=aventurine')); ?>" class="leaf">Aventurine</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=carnelian')); ?>" class="leaf">Carnelian</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=citrine')); ?>" class="leaf">Citrine</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=garnet')); ?>" class="leaf">Garnet</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=green-jade')); ?>" class="leaf">Green Jade</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=iolite')); ?>" class="leaf">Iolite</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=labradorite')); ?>" class="leaf">Labradorite</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=lapis-lazuli')); ?>" class="leaf">Lapis Lazuli</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=larimar')); ?>" class="leaf">Larimar</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=malachite')); ?>" class="leaf">Malachite</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=onyx')); ?>" class="leaf">Onyx</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=opal')); ?>" class="leaf">Opal</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=peridot')); ?>" class="leaf">Peridot</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=prehnite')); ?>" class="leaf">Prehnite</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rainbow-moonstone')); ?>" class="leaf">Rainbow Moonstone</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=rose-quartz')); ?>" class="leaf">Rose Quartz</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=spinel')); ?>" class="leaf">Spinel</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tanzanite')); ?>" class="leaf">Tanzanite</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tiger-eye')); ?>" class="leaf">Tiger Eye</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=topaz')); ?>" class="leaf">Topaz</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=tourmaline')); ?>" class="leaf">Tourmaline</a>
-        <a href="<?php echo esc_url(home_url('/shop/?filter_stone=turquoise')); ?>" class="leaf">Turquoise</a>
-      </div>
-      <a href="<?php echo esc_url(home_url('/shop/?filter_group=semi')); ?>" class="leaf hi">All semi-precious</a>
+    <div class="mh">SEMI-PRECIOUS</div>
+    <div class="two">
+      <a href="<?php echo esc_url(home_url('/gemstones/agate/')); ?>" class="leaf">Agate</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/amazonite/')); ?>" class="leaf">Amazonite</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/amber/')); ?>" class="leaf">Amber</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/amethyst/')); ?>" class="leaf">Amethyst</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/aquamarine/')); ?>" class="leaf">Aquamarine</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/aventurine/')); ?>" class="leaf">Aventurine</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/carnelian/')); ?>" class="leaf">Carnelian</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/citrine/')); ?>" class="leaf">Citrine</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/garnet/')); ?>" class="leaf">Garnet</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/green-jade/')); ?>" class="leaf">Green Jade</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/iolite/')); ?>" class="leaf">Iolite</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/labradorite/')); ?>" class="leaf">Labradorite</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/lapis-lazuli/')); ?>" class="leaf">Lapis Lazuli</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/larimar/')); ?>" class="leaf">Larimar</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/malachite/')); ?>" class="leaf">Malachite</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/onyx/')); ?>" class="leaf">Onyx</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/opal/')); ?>" class="leaf">Opal</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/peridot/')); ?>" class="leaf">Peridot</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/prehnite/')); ?>" class="leaf">Prehnite</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/rainbow-moonstone/')); ?>" class="leaf">Rainbow Moonstone</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/rose-quartz/')); ?>" class="leaf">Rose Quartz</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/tanzanite/')); ?>" class="leaf">Tanzanite</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/tiger-eye/')); ?>" class="leaf">Tiger Eye</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/topaz/')); ?>" class="leaf">Topaz</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/tourmaline/')); ?>" class="leaf">Tourmaline</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/turquoise/')); ?>" class="leaf">Turquoise</a>
     </div>
+    <a href="<?php echo esc_url(home_url('/gemstones/semi-precious/')); ?>" class="leaf hi">All semi-precious</a>
 
     <button type="button" class="sb" onclick="toggleMdrSub('cut', this);">
       <span>By cut</span>
       <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
     </button>
     <div id="mdr-sub-cut" style="display:none;">
-      <a href="<?php echo esc_url(home_url('/shop/?filter_cut=faceted')); ?>" class="leaf">Faceted</a>
-      <a href="<?php echo esc_url(home_url('/shop/?filter_cut=cabochon')); ?>" class="leaf">Cabochon</a>
-      <a href="<?php echo esc_url(home_url('/shop/?filter_cut=rose-cut')); ?>" class="leaf">Rose cut</a>
-      <a href="<?php echo esc_url(home_url('/shop/?filter_cut=briolette')); ?>" class="leaf">Briolette</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/?cut=faceted')); ?>" class="leaf">Faceted</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/?cut=cabochon')); ?>" class="leaf">Cabochon</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/?cut=rose-cut')); ?>" class="leaf">Rose cut</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/?cut=briolette')); ?>" class="leaf">Briolette</a>
     </div>
 
     <button type="button" class="sb" onclick="toggleMdrSub('by', this);">
@@ -727,15 +732,14 @@ if (!function_exists('vivaaz_render_tennis_art')) {
       <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
     </button>
     <div id="mdr-sub-by" style="display:none;">
-      <a href="<?php echo esc_url(home_url('/shop/?filter_color=blue')); ?>" class="leaf">Colour</a>
-      <a href="<?php echo esc_url(home_url('/shop/?filter_shape=oval')); ?>" class="leaf">Shape</a>
-      <a href="<?php echo esc_url(home_url('/shop/?max_price=5000')); ?>" class="leaf">Price</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/?filter_by=colour')); ?>" class="leaf">Colour</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/?filter_by=shape')); ?>" class="leaf">Shape</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/?filter_by=price')); ?>" class="leaf">Price</a>
       <a href="<?php echo esc_url(home_url('/astrology/#birthstones')); ?>" class="leaf">Birthstones</a>
-      <a href="<?php echo esc_url(home_url('/shop/?max_price=15000')); ?>" class="leaf">Gifts under ₹15,000</a>
-      <a href="<?php echo esc_url(home_url('/shop/?filter_sold_as=calibrated')); ?>" class="leaf">Pairs & calibrated lots</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/?filter_sold_as=calibrated')); ?>" class="leaf">Pairs &amp; calibrated lots</a>
     </div>
 
-    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="leaf hi" style="padding-top:12px;">All gemstones</a>
+    <a href="<?php echo esc_url(home_url('/gemstones/')); ?>" class="leaf hi" style="padding-top:12px;">All gemstones</a>
   </div>
 
   <!-- 2. LAYOUTS -->
@@ -940,7 +944,8 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
       <div>
         <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: var(--soft);">WHATSAPP *</label>
-        <input type="text" id="consult-wa" placeholder="+91" required style="width: 100%; padding: 10px 14px; border: 1px solid var(--line2); font-size: 13px; box-sizing: border-box; background: var(--paper);" />
+        <input type="tel" id="consult-wa" placeholder="+91 98765 43210" required oninput="clearFieldErr('consult-wa');" style="width: 100%; padding: 10px 14px; border: 1px solid var(--line2); font-size: 13px; box-sizing: border-box; background: var(--paper);" />
+        <div id="consult-wa-err" style="display: none; color: #C0392B; font-size: 11px; margin-top: 4px; font-weight: 600;">Please enter a valid 10-digit mobile number</div>
       </div>
       <div>
         <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: var(--soft);">EMAIL</label>
@@ -951,11 +956,19 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
       <div>
         <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: var(--soft);">DATE OF BIRTH</label>
-        <input type="text" id="consult-dob" placeholder="DD / MM / YYYY" style="width: 100%; padding: 10px 14px; border: 1px solid var(--line2); font-size: 13px; box-sizing: border-box; background: var(--paper);" />
+        <input type="text" id="consult-dob" placeholder="DD/MM/YYYY" maxlength="10" oninput="formatDobInput(event);" style="width: 100%; padding: 10px 14px; border: 1px solid var(--line2); font-size: 13px; box-sizing: border-box; background: var(--paper);" />
+        <div id="consult-dob-err" style="display: none; color: #C0392B; font-size: 11px; margin-top: 4px; font-weight: 600;">Please enter complete date in DD/MM/YYYY format</div>
       </div>
       <div>
         <label style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: var(--soft);">TIME OF BIRTH</label>
-        <input type="text" id="consult-tob" placeholder="If known" style="width: 100%; padding: 10px 14px; border: 1px solid var(--line2); font-size: 13px; box-sizing: border-box; background: var(--paper);" />
+        <div style="display: flex; gap: 6px; align-items: stretch; height: 38px;">
+          <input type="text" id="consult-tob" placeholder="HH:MM (e.g. 08:30)" maxlength="5" oninput="formatTobInput(event);" style="flex: 1; min-width: 0; height: 100%; padding: 0 12px; border: 1px solid var(--line2); font-size: 13px; box-sizing: border-box; background: var(--paper); outline: none; margin: 0; box-shadow: none;" />
+          <select id="consult-tob-ampm" style="width: 76px; height: 100%; padding: 0 8px; border: 1px solid var(--line2); font-size: 13px; box-sizing: border-box; background: var(--paper); color: var(--ink); font-weight: 600; cursor: pointer; margin: 0; outline: none; box-shadow: none;">
+            <option value="AM">AM</option>
+            <option value="PM" selected>PM</option>
+          </select>
+        </div>
+        <div id="consult-tob-err" style="display: none; color: #C0392B; font-size: 11px; margin-top: 4px; font-weight: 600;">Please enter valid time (e.g. 08:30)</div>
       </div>
     </div>
 
@@ -1151,16 +1164,40 @@ if (!function_exists('vivaaz_render_tennis_art')) {
 
 <script>
   var _vivaazCatalog = [
-    { name: "Rainbow Moonstone Oval Cabochon", code: "RMCOC68", price: "₹ 120 / pc", shape: "Oval", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=RMCOC68')); ?>" },
-    { name: "Agate Oval Cabochon · AA", code: "AGTOV68", price: "₹ 75 / pc", shape: "Oval", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=Agate')); ?>" },
-    { name: "Ceylon Blue Sapphire Oval Faceted", code: "BSFOV", price: "₹ 1,450 / pc", shape: "Oval", size: "5×7 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=BSFOV')); ?>" },
-    { name: "Matched Ruby Pear Pair", code: "RBFPR", price: "₹ 6,800 / pair", shape: "Pear", size: "4×6 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=RBFPR')); ?>" },
-    { name: "Zambian Emerald Octagon Faceted", code: "EMFOC", price: "₹ 24,500", shape: "Octagon", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=EMFOC')); ?>" },
-    { name: "Swiss Blue Topaz Round Lot", code: "TPFRD", price: "₹ 45 / pc", shape: "Round", size: "4 mm", img: "<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=TPFRD')); ?>" },
-    { name: "Amethyst Oval Calibrated Lot", code: "AMFOV", price: "₹ 95 / pc", shape: "Oval", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=AMFOV')); ?>" },
-    { name: "Burma Spinel Matched Cushion Pair", code: "SPNPR", price: "₹ 280 / pc", shape: "Cushion", size: "5 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?s=spinel')); ?>" },
-    { name: "Ruby Graduated Line Layout", code: "LAYRBY", price: "₹ 38,000", shape: "Graduated", size: "17 stones", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>" },
-    { name: "Tennis Bracelet (Silver / Gold)", code: "TBRAC", price: "from ₹ 18,500", shape: "Line", size: "7 in", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/jewelry/?type=Tennis+bracelets')); ?>" }
+    // RUBY (Point 9 Comprehensive Coverage)
+    { name: "Ruby Oval Faceted · AA", code: "RBFOV", price: "₹ 980 / pc", shape: "Oval", size: "5×7 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/burma-ruby-oval-faceted/')); ?>" },
+    { name: "Ruby Round Cabochon", code: "RBCRD", price: "₹ 140 / pc", shape: "Round", size: "4 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/burma-ruby-oval-faceted/')); ?>" },
+    { name: "Ruby Oval Faceted Matched Pair", code: "RBFPR", price: "₹ 6,800 / pair", shape: "Oval", size: "7×5 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/burma-ruby-oval-faceted/')); ?>" },
+    { name: "Ruby Graduated Line Layout", code: "LAYRBY", price: "₹ 38,000", shape: "Necklace line", size: "17 stones", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/layouts/?stone=ruby')); ?>" },
+    { name: "Ruby Faceted Rondelle Beads 4 mm", code: "RBD4", price: "₹ 760", shape: "Rondelle", size: "4 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/beads/?stone=Ruby')); ?>" },
+    { name: "Ruby Tennis Bracelet (14K / 18K)", code: "TBRBY", price: "from ₹ 24,000", shape: "Line", size: "7 in", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/jewelry/?stone=ruby')); ?>" },
+
+    // SAPPHIRE
+    { name: "Ceylon Blue Sapphire Oval Faceted", code: "BSFOV", price: "₹ 1,450 / pc", shape: "Oval", size: "5×7 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
+    { name: "Ceylon Blue Sapphire Round · AA", code: "BSFRD", price: "₹ 620 / pc", shape: "Round", size: "3 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
+    { name: "Ceylon Sapphire Single Stone 2.10ct", code: "BSF1", price: "₹ 38,500", shape: "Cushion", size: "7×7 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
+    { name: "Sapphire Tennis Bracelet", code: "TBSPH", price: "from ₹ 28,000", shape: "Line", size: "7 in", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/jewelry/?stone=sapphire')); ?>" },
+
+    // EMERALD
+    { name: "Zambian Emerald Octagon Step Cut", code: "EMFOC", price: "₹ 24,500", shape: "Octagon", size: "8×6 mm", img: "<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/zambian-emerald-octagon/')); ?>" },
+    { name: "Zambian Emerald Oval Faceted · AA", code: "EMFOV", price: "₹ 890 / pc", shape: "Oval", size: "5×7 mm", img: "<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/zambian-emerald-octagon/')); ?>" },
+    { name: "Emerald Necklace Line Layout", code: "LAYEMR", price: "₹ 42,000", shape: "Necklace line", size: "15 stones", img: "<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>", url: "<?php echo esc_url(home_url('/layouts/?stone=emerald')); ?>" },
+
+    // MOONSTONE
+    { name: "Rainbow Moonstone Oval Cabochon", code: "RMCOC68", price: "₹ 120 / pc", shape: "Oval", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>" },
+    { name: "Rainbow Moonstone Oval Pair", code: "RMCPR", price: "₹ 2,600 / pair", shape: "Oval", size: "10×12 mm", img: "<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>" },
+    { name: "Rainbow Moonstone 32ct Collector Lot", code: "RMC1825", price: "₹ 4,800", shape: "Oval", size: "18×25 mm", img: "<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>" },
+    { name: "Rainbow Moonstone Rose Cut Pear", code: "RMRCP", price: "₹ 160 / pc", shape: "Pear", size: "8×12 mm", img: "<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/rainbow-moonstone-oval-cabochon/')); ?>" },
+
+    // TOPAZ & SPINEL & AMETHYST
+    { name: "Swiss Blue Topaz Square Cushion", code: "TPFOV", price: "₹ 120 / pc", shape: "Cushion", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?stone=topaz')); ?>" },
+    { name: "Burma Pink Spinel Oval Faceted", code: "SPFOV", price: "₹ 720 / pc", shape: "Oval", size: "4×6 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?stone=spinel')); ?>" },
+    { name: "Amethyst Oval Calibrated Lot", code: "AMFOV", price: "₹ 140 / pc", shape: "Oval", size: "6×8 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/shop/?stone=amethyst')); ?>" },
+    { name: "Amethyst Faceted Rondelle Beads 4 mm", code: "AMBD4", price: "₹ 680", shape: "Rondelle", size: "4 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/beads/?stone=Amethyst')); ?>" },
+
+    // GENERAL JEWELRY & LAYOUTS
+    { name: "Graduated Tennis Bracelet (Silver / Gold)", code: "TBRAC", price: "from ₹ 18,500", shape: "Line", size: "7 in", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/jewelry/')); ?>" },
+    { name: "Custom Matched Gemstone Layout", code: "LAYCUST", price: "Quote on CAD", shape: "Custom", size: "To spec", img: "<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>", url: "<?php echo esc_url(home_url('/layouts/')); ?>" }
   ];
 
   function setLiveSearchValue(val) {
@@ -1322,7 +1359,7 @@ if (!function_exists('vivaaz_render_tennis_art')) {
         <div class="soc">
           <button type="button" onclick="fakeSocialLogin('Google');"><span class="lg" style="background:#fff;color:#4285F4;border:1px solid var(--line2,#E2D7C6);">G</span>Google</button>
           <button type="button" onclick="fakeSocialLogin('Facebook');"><span class="lg" style="background:#1877F2;">f</span>Facebook</button>
-          <button type="button" onclick="showWhatsAppSignIn();"><span class="lg" style="background:#25D366;"><svg class="i" style="width:14px;height:14px;vertical-align:middle;" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></span>WhatsApp</button>
+          <a href="https://wa.me/919680552270?text=Hello%20Vivaaz%20Gems,%20I%20would%20like%20to%20sign%20in%20to%20my%20account%20via%20WhatsApp." target="_blank" style="text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px;border:1px solid var(--line2,#E2D7C6);background:var(--paper,#fff);color:var(--ink,#1C1A17);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;"><span class="lg" style="background:#25D366;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;"><svg style="width:13px;height:13px;fill:#fff;" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg></span>WhatsApp</a>
         </div>
         <div class="or"><span>or</span></div>
         <button type="button" class="btn o wide" style="width:100%;" onclick="showEmailSignIn();">CONTINUE WITH EMAIL</button>
@@ -1331,87 +1368,189 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     }
   }
 
-  function showEmailSignIn() {
+  function showEmailSignIn(tab) {
+    var mode = tab || 'signin';
     var content = document.getElementById('signin-modal-content');
-    if (content) {
-      content.innerHTML = `
-        <form onsubmit="handleEmailSignInSubmit(event);">
-          <div class="fg" style="margin-bottom:14px;">
+    if (!content) return;
+    content.innerHTML = `
+      <div style="display:flex;border-bottom:1px solid #EFE9E0;margin-bottom:16px;">
+        <button type="button" id="tab-btn-signin" onclick="showEmailSignIn('signin')" style="flex:1;padding:10px;background:none;border:none;border-bottom:2px solid ` + (mode==='signin'?'#1C1A17':'transparent') + `;font-size:12px;font-weight:` + (mode==='signin'?'700':'500') + `;color:` + (mode==='signin'?'#1C1A17':'var(--soft)') + `;cursor:pointer;letter-spacing:0.12em;text-transform:uppercase;">Sign In</button>
+        <button type="button" id="tab-btn-register" onclick="showEmailSignIn('register')" style="flex:1;padding:10px;background:none;border:none;border-bottom:2px solid ` + (mode==='register'?'#1C1A17':'transparent') + `;font-size:12px;font-weight:` + (mode==='register'?'700':'500') + `;color:` + (mode==='register'?'#1C1A17':'var(--soft)') + `;cursor:pointer;letter-spacing:0.12em;text-transform:uppercase;">Create Account</button>
+      </div>
+
+      <div id="vivaaz-auth-msg" style="display:none;padding:10px 14px;font-size:12.5px;margin-bottom:14px;"></div>
+
+      ` + (mode === 'signin' ? `
+        <form onsubmit="handleRealLogin(event);">
+          <div class="fg" style="margin-bottom:14px;display:flex;flex-direction:column;gap:12px;">
             <div class="f full">
-              <label for="sie">Email</label>
-              <input id="sie" type="email" required placeholder="name@example.com" value="customer@vivaazgems.com" style="width:100%;height:44px;padding:0 12px;border:1px solid #D9CFC0;background:var(--paper);">
+              <label for="sie" style="display:block;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Email address</label>
+              <input id="sie" type="email" required placeholder="name@example.com" value="" style="width:100%;height:44px;padding:0 12px;border:1px solid #D9CFC0;background:var(--paper);box-sizing:border-box;">
             </div>
             <div class="f full">
-              <label for="sip">Password</label>
-              <input id="sip" type="password" required value="demo-only" style="width:100%;height:44px;padding:0 12px;border:1px solid #D9CFC0;background:var(--paper);">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                <label for="sip" style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Password</label>
+                <a href="<?php echo esc_url(wp_lostpassword_url()); ?>" target="_blank" style="font-size:11.5px;color:var(--soft);text-decoration:underline;">Forgot password?</a>
+              </div>
+              <input id="sip" type="password" required placeholder="Enter password" value="" style="width:100%;height:44px;padding:0 12px;border:1px solid #D9CFC0;background:var(--paper);box-sizing:border-box;">
             </div>
           </div>
-          <button type="submit" class="btn wide" style="width:100%;padding:14px;">Sign in</button>
+          <button type="submit" id="sie-submit-btn" class="btn wide" style="width:100%;padding:14px;">SIGN IN</button>
           <p style="font-size:12.5px;text-align:center;margin:14px 0 0;">
-            <a href="javascript:void(0);" onclick="resetSignInModal();" style="color:var(--gold);text-decoration:underline;">← Back</a> · <a href="<?php echo esc_url(home_url('/my-account/lost-password/')); ?>" style="color:var(--soft);text-decoration:underline;">Forgot password?</a>
+            <a href="javascript:void(0);" onclick="resetSignInModal();" style="color:var(--gold);text-decoration:underline;">← All sign in options</a> · Don't have an account? <a href="javascript:void(0);" onclick="showEmailSignIn('register');" style="color:var(--ink);font-weight:600;text-decoration:underline;">Register</a>
           </p>
         </form>
-      `;
-    }
-  }
-
-  function showWhatsAppSignIn() {
-    var content = document.getElementById('signin-modal-content');
-    if (content) {
-      content.innerHTML = `
-        <form onsubmit="handleWhatsAppCodeSubmit(event);">
-          <div class="f" style="margin-bottom:14px;">
-            <label for="sim">Mobile number</label>
-            <input id="sim" type="tel" required value="+91 98290 00000" style="width:100%;height:44px;padding:0 12px;border:1px solid #D9CFC0;background:var(--paper);">
-            <small style="color:var(--soft);font-size:11.5px;margin-top:5px;display:block;">We send a one-time code on WhatsApp (or SMS).</small>
+      ` : `
+        <form onsubmit="handleRealRegister(event);">
+          <div class="fg" style="margin-bottom:14px;display:flex;flex-direction:column;gap:12px;">
+            <div class="f full">
+              <label for="reg-name" style="display:block;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Your Name</label>
+              <input id="reg-name" type="text" placeholder="Full name" value="" style="width:100%;height:44px;padding:0 12px;border:1px solid #D9CFC0;background:var(--paper);box-sizing:border-box;">
+            </div>
+            <div class="f full">
+              <label for="reg-email" style="display:block;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Email address</label>
+              <input id="reg-email" type="email" required placeholder="name@example.com" value="" style="width:100%;height:44px;padding:0 12px;border:1px solid #D9CFC0;background:var(--paper);box-sizing:border-box;">
+            </div>
+            <div class="f full">
+              <label for="reg-pass" style="display:block;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Password (at least 6 characters)</label>
+              <input id="reg-pass" type="password" required minlength="6" placeholder="Create a password" value="" style="width:100%;height:44px;padding:0 12px;border:1px solid #D9CFC0;background:var(--paper);box-sizing:border-box;">
+            </div>
           </div>
-          <button type="submit" class="btn wide" style="width:100%;padding:14px;">Send code</button>
-          <p style="text-align:center;margin:14px 0 0;"><a href="javascript:void(0);" onclick="resetSignInModal();" style="color:var(--gold);text-decoration:underline;font-size:12.5px;">← Back</a></p>
+          <button type="submit" id="reg-submit-btn" class="btn wide" style="width:100%;padding:14px;">CREATE AN ACCOUNT</button>
+          <p style="font-size:12.5px;text-align:center;margin:14px 0 0;">
+            <a href="javascript:void(0);" onclick="resetSignInModal();" style="color:var(--gold);text-decoration:underline;">← All sign in options</a> · Already have an account? <a href="javascript:void(0);" onclick="showEmailSignIn('signin');" style="color:var(--ink);font-weight:600;text-decoration:underline;">Sign in</a>
+          </p>
         </form>
-      `;
+      `);
+  }
+
+  function handleRealLogin(e) {
+    e.preventDefault();
+    var email = (document.getElementById('sie') || {}).value;
+    var pass = (document.getElementById('sip') || {}).value;
+    var btn = document.getElementById('sie-submit-btn');
+    var msgBox = document.getElementById('vivaaz-auth-msg');
+
+    if (!email || !pass) return;
+
+    if (btn) { btn.disabled = true; btn.textContent = 'SIGNING IN...'; }
+    if (msgBox) { msgBox.style.display = 'none'; }
+
+    var formData = new FormData();
+    formData.append('action', 'vivaaz_ajax_login');
+    formData.append('email', email);
+    formData.append('password', pass);
+    if (window.vivaaz_ajax_obj && window.vivaaz_ajax_obj.nonce) {
+      formData.append('security', window.vivaaz_ajax_obj.nonce);
     }
+
+    var ajaxUrl = (window.vivaaz_ajax_obj && window.vivaaz_ajax_obj.ajax_url) ? window.vivaaz_ajax_obj.ajax_url : '/wp-admin/admin-ajax.php';
+
+    fetch(ajaxUrl, {
+      method: 'POST',
+      body: formData
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data && data.success) {
+        showWishlistToast((data.data && data.data.message) ? data.data.message : 'Signed in successfully.');
+        setTimeout(function() {
+          if (window.location.pathname.indexOf('my-account') !== -1) {
+            window.location.reload();
+          } else {
+            window.location.href = ((data.data && data.data.redirect) ? data.data.redirect : (window.vivaaz_ajax_obj ? window.vivaaz_ajax_obj.account_url : '/my-account/'));
+          }
+        }, 500);
+      } else {
+        if (btn) { btn.disabled = false; btn.textContent = 'SIGN IN'; }
+        if (msgBox) {
+          msgBox.style.display = 'block';
+          msgBox.style.background = '#FDF2F2';
+          msgBox.style.color = '#C0392B';
+          msgBox.style.border = '1px solid #F5C6CB';
+          msgBox.textContent = (data && data.data && data.data.message) ? data.data.message : 'Invalid credentials. Please try again.';
+        }
+      }
+    })
+    .catch(function(err) {
+      if (btn) { btn.disabled = false; btn.textContent = 'SIGN IN'; }
+      if (msgBox) {
+        msgBox.style.display = 'block';
+        msgBox.style.background = '#FDF2F2';
+        msgBox.style.color = '#C0392B';
+        msgBox.style.border = '1px solid #F5C6CB';
+        msgBox.textContent = 'Could not connect to authentication server. Please check your credentials or try again.';
+      }
+    });
   }
 
-  function handleEmailSignInSubmit(e) {
+  function handleRealRegister(e) {
     e.preventDefault();
-    closeSignInModal();
-    showWishlistToast('Signed in successfully.');
-  }
+    var name = (document.getElementById('reg-name') || {}).value;
+    var email = (document.getElementById('reg-email') || {}).value;
+    var pass = (document.getElementById('reg-pass') || {}).value;
+    var btn = document.getElementById('reg-submit-btn');
+    var msgBox = document.getElementById('vivaaz-auth-msg');
 
-  function handleWhatsAppCodeSubmit(e) {
-    e.preventDefault();
-    var content = document.getElementById('signin-modal-content');
-    if (content) {
-      content.innerHTML = `
-        <form onsubmit="handleVerifySubmit(event);">
-          <p style="margin:0 0 12px;font-size:13px;">Enter the 6-digit code sent to WhatsApp.</p>
-          <div class="otp" style="display:flex;gap:8px;justify-content:center;margin:14px 0;">
-            <input maxlength="1" value="4" style="width:46px;height:52px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
-            <input maxlength="1" value="8" style="width:46px;height:52px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
-            <input maxlength="1" value="2" style="width:46px;height:52px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
-            <input maxlength="1" value="6" style="width:46px;height:52px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
-            <input maxlength="1" value="1" style="width:46px;height:52px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
-            <input maxlength="1" value="9" style="width:46px;height:52px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
-          </div>
-          <button type="submit" class="btn wide" style="width:100%;padding:14px;">Verify and sign in</button>
-          <p style="font-size:12.5px;color:var(--soft);text-align:center;margin:12px 0 0;">Didn't get it? <a href="javascript:void(0);" onclick="showWishlistToast('New code sent.');" style="color:var(--gold);text-decoration:underline;">Send again</a></p>
-        </form>
-      `;
+    if (!email || !pass) return;
+
+    if (btn) { btn.disabled = true; btn.textContent = 'CREATING ACCOUNT...'; }
+    if (msgBox) { msgBox.style.display = 'none'; }
+
+    var formData = new FormData();
+    formData.append('action', 'vivaaz_ajax_register');
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('password', pass);
+    if (window.vivaaz_ajax_obj && window.vivaaz_ajax_obj.nonce) {
+      formData.append('security', window.vivaaz_ajax_obj.nonce);
     }
-  }
 
-  function handleVerifySubmit(e) {
-    e.preventDefault();
-    closeSignInModal();
-    showWishlistToast('Signed in successfully.');
+    var ajaxUrl = (window.vivaaz_ajax_obj && window.vivaaz_ajax_obj.ajax_url) ? window.vivaaz_ajax_obj.ajax_url : '/wp-admin/admin-ajax.php';
+
+    fetch(ajaxUrl, {
+      method: 'POST',
+      body: formData
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data && data.success) {
+        showWishlistToast((data.data && data.data.message) ? data.data.message : 'Account created successfully!');
+        setTimeout(function() {
+          window.location.href = ((data.data && data.data.redirect) ? data.data.redirect : (window.vivaaz_ajax_obj ? window.vivaaz_ajax_obj.account_url : '/my-account/'));
+        }, 500);
+      } else {
+        if (btn) { btn.disabled = false; btn.textContent = 'CREATE AN ACCOUNT'; }
+        if (msgBox) {
+          msgBox.style.display = 'block';
+          msgBox.style.background = '#FDF2F2';
+          msgBox.style.color = '#C0392B';
+          msgBox.style.border = '1px solid #F5C6CB';
+          msgBox.textContent = (data && data.data && data.data.message) ? data.data.message : 'Registration failed. Please check inputs.';
+        }
+      }
+    })
+    .catch(function(err) {
+      if (btn) { btn.disabled = false; btn.textContent = 'CREATE AN ACCOUNT'; }
+      if (msgBox) {
+        msgBox.style.display = 'block';
+        msgBox.style.background = '#FDF2F2';
+        msgBox.style.color = '#C0392B';
+        msgBox.style.border = '1px solid #F5C6CB';
+        msgBox.textContent = 'Could not connect to authentication server. Please check inputs or try again.';
+      }
+    });
   }
 
   function fakeSocialLogin(provider) {
-    closeSignInModal();
-    showWishlistToast('Signed in with ' + provider + '.');
+    showWishlistToast('Signing in with ' + provider + '...');
+    setTimeout(function() {
+      closeSignInModal();
+      window.location.href = (window.vivaaz_ajax_obj ? window.vivaaz_ajax_obj.account_url : '/my-account/');
+    }, 800);
   }
 
-  // Close modals on Escape key
+  // Close modals & sheets on Escape key (Point 17 Spec)
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' || e.keyCode === 27) {
       closeLiveSearchModal();
@@ -1420,15 +1559,167 @@ if (!function_exists('vivaaz_render_tennis_art')) {
       closeVideoCallModal();
       closeQuickViewModal();
       closeDesignQuoteModal();
-      var drawer = document.getElementById('mobile-menu-drawer');
-      if (drawer && (drawer.classList.contains('open') || drawer.style.display === 'flex' || drawer.style.display === 'block')) {
-        toggleMobileMenuDrawer();
-      }
+      closeConsultationModal();
+      if (typeof jewCloseQuoteModal === 'function') jewCloseQuoteModal();
+      if (typeof astroCloseConsultModal === 'function') astroCloseConsultModal();
+      if (typeof closeJewSheets === 'function') closeJewSheets();
+      if (typeof closeMobileMenuDrawer === 'function') closeMobileMenuDrawer();
+      if (typeof closeAllModals === 'function') closeAllModals();
+      document.querySelectorAll('.sheet.open, .sheet[style*="display: flex"]').forEach(function(s) {
+        s.classList.remove('open');
+        s.style.display = 'none';
+      });
+      var scrim = document.getElementById('vivaaz-scrim') || document.getElementById('mobile-jew-scrim') || document.getElementById('filter-drawer-backdrop');
+      if (scrim) scrim.style.display = 'none';
+      document.body.style.overflow = '';
     }
   });
 
+  // REAL MULTI-CURRENCY ENGINE (Point 6 Spec)
+  var VIVAAZ_CURRENCIES = {
+    'INR': { symbol: '\u20B9 ', rate: 1, label: 'IN | \u20B9 INR' },
+    'USD': { symbol: '$ ', rate: 1/84, label: 'US | $ USD' },
+    'EUR': { symbol: '\u20AC ', rate: 1/91, label: 'EU | \u20AC EUR' },
+    'GBP': { symbol: '\u00A3 ', rate: 1/106, label: 'UK | \u00A3 GBP' },
+    'AED': { symbol: 'AED ', rate: 1/22.9, label: 'AE | AED' }
+  };
+
+  function getCurrentCurrency() {
+    try {
+      return localStorage.getItem('vivaaz_currency') || 'INR';
+    } catch(e) {
+      return 'INR';
+    }
+  }
+
+  function formatVivaazMoney(inrAmount) {
+    var cur = getCurrentCurrency();
+    var c = VIVAAZ_CURRENCIES[cur] || VIVAAZ_CURRENCIES['INR'];
+    var num = parseFloat(inrAmount) || 0;
+    if (cur === 'INR') {
+      return '\u20B9 ' + Math.round(num).toLocaleString('en-IN');
+    }
+    var converted = num * c.rate;
+    return c.symbol + converted.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
   function switchCurrency(curr) {
-    alert('Currency set to ' + curr + '. Prices update automatically.');
+    if (!VIVAAZ_CURRENCIES[curr]) curr = 'INR';
+    try {
+      localStorage.setItem('vivaaz_currency', curr);
+    } catch(e) {}
+
+    var curb = document.getElementById('curb');
+    if (curb) curb.innerHTML = VIVAAZ_CURRENCIES[curr].label + ' &#9662;';
+
+    var curm = document.getElementById('curm');
+    if (curm) {
+      curm.style.display = 'none';
+      curm.hidden = true;
+    }
+
+    var mobileChips = document.querySelectorAll('.chips button[onclick*="switchCurrency"], aside .chip[onclick*="switchCurrency"]');
+    mobileChips.forEach(function(btn) {
+      if (btn.getAttribute('onclick') && btn.getAttribute('onclick').indexOf(curr) !== -1) {
+        btn.classList.add('on');
+      } else {
+        btn.classList.remove('on');
+      }
+    });
+
+    if (typeof renderCartDrawer === 'function') renderCartDrawer();
+    vivaazUpdateAllPrices(curr);
+    if (typeof window.recalcPricing === 'function') window.recalcPricing();
+    try {
+      window.dispatchEvent(new CustomEvent('vivaaz-currency-changed', { detail: { currency: curr } }));
+    } catch(e) {}
+    showWishlistToast('Prices now in ' + curr);
+  }
+
+  function vivaazUpdateAllPrices(curr) {
+    if (!curr) curr = getCurrentCurrency();
+    var c = VIVAAZ_CURRENCIES[curr] || VIVAAZ_CURRENCIES['INR'];
+
+    // 1. Elements with explicit data-inr-price
+    document.querySelectorAll('[data-inr-price]').forEach(function(el) {
+      var inr = parseFloat(el.getAttribute('data-inr-price'));
+      if (!isNaN(inr)) {
+        var spanEl = el.querySelector('span');
+        var suffixHtml = spanEl ? (' ' + spanEl.outerHTML) : (el.getAttribute('data-suffix-html') || '');
+        var hasFrom = /from/i.test(el.textContent) || el.getAttribute('data-has-from') === '1';
+        if (hasFrom) el.setAttribute('data-has-from', '1');
+        if (suffixHtml) el.setAttribute('data-suffix-html', suffixHtml);
+        
+        var prefix = hasFrom ? 'from ' : '';
+        el.innerHTML = prefix + formatVivaazMoney(inr) + (suffixHtml ? ' ' + suffixHtml : '');
+      }
+    });
+
+    // 2. All product card price elements (.pr, .card-price, .p-price, etc.)
+    document.querySelectorAll('.card .pr, .rv .pr, .prod-card .pr, .cb .pr, .pr').forEach(function(el) {
+      if (!el.getAttribute('data-inr-price')) {
+        var card = el.closest('[data-price]');
+        if (card && card.getAttribute('data-price')) {
+          el.setAttribute('data-inr-price', card.getAttribute('data-price'));
+        } else {
+          var match = el.textContent.match(/[₹\?]\s*([0-9,]+(?:\.[0-9]+)?)/);
+          if (match && match[1]) {
+            el.setAttribute('data-inr-price', match[1].replace(/,/g, ''));
+          }
+        }
+        if (/from/i.test(el.textContent)) {
+          el.setAttribute('data-has-from', '1');
+        }
+        var s = el.querySelector('span');
+        if (s) {
+          el.setAttribute('data-suffix-html', s.outerHTML);
+        }
+      }
+
+      var inr = parseFloat(el.getAttribute('data-inr-price'));
+      if (!isNaN(inr)) {
+        var prefix = (el.getAttribute('data-has-from') === '1') ? 'from ' : '';
+        var suffix = el.getAttribute('data-suffix-html') || (el.querySelector('span') ? el.querySelector('span').outerHTML : '');
+        el.innerHTML = prefix + formatVivaazMoney(inr) + (suffix ? ' ' + suffix : '');
+      }
+    });
+
+    // 3. Update quick view modal active display
+    if (window._qvCurrentPrice) {
+      var qvDisplay = document.getElementById('qv-price-display');
+      if (qvDisplay) {
+        qvDisplay.innerHTML = formatVivaazMoney(window._qvCurrentPrice) + ' <span style="font-size:13px;font-weight:400;color:var(--mute);">' + (window._qvCurrentUnit || '') + '</span>';
+      }
+    }
+
+    // 4. Update currency dropdown button label & mobile chips
+    var curb = document.getElementById('curb');
+    if (curb) curb.innerHTML = c.label + ' ▾';
+
+    var mobileChips = document.querySelectorAll('.chips button[onclick*="switchCurrency"], aside .chip[onclick*="switchCurrency"]');
+    mobileChips.forEach(function(btn) {
+      if (btn.getAttribute('onclick') && btn.getAttribute('onclick').indexOf(curr) !== -1) {
+        btn.classList.add('on');
+      } else {
+        btn.classList.remove('on');
+      }
+    });
+
+    try {
+      window.dispatchEvent(new CustomEvent('vivaaz-currency-changed', { detail: { currency: curr } }));
+    } catch(e) {}
+
+    // Product page sync
+    if (typeof recalcPricing === 'function') {
+      try { recalcPricing(); } catch(e) {}
+    }
+    // Cart/Checkout page sync
+    if (typeof vivaazRecalcCartTotals === 'function') {
+      try { vivaazRecalcCartTotals(); } catch(e) {}
+    }
+    if (typeof vivaazUpdateCheckoutTotals === 'function') {
+      try { vivaazUpdateCheckoutTotals(); } catch(e) {}
+    }
   }
 
   // GLOBAL WISHLIST ENGINE (LOCALSTORAGE + SYNC)
@@ -1488,17 +1779,36 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     var items = getWishlistItems();
     var ids = items.map(function(item) { return String(item.id); });
     
-    // Update all product card heart buttons on page
-    document.querySelectorAll('.wishlist-heart-btn, [data-wishlist-id]').forEach(function(btn) {
+    // Update all product card heart buttons on page (both SVG and text)
+    document.querySelectorAll('.heart-btn-circle, .wishlist-heart-btn, [data-wishlist-id]').forEach(function(btn) {
       var id = String(btn.getAttribute('data-wishlist-id') || '');
-      if (id && ids.indexOf(id) > -1) {
+      if (!id) {
+        var oc = btn.getAttribute('onclick') || '';
+        var m = oc.match(/toggleProductWishlist\s*\(\s*['"]([^'"]+)['"]/);
+        if (m && m[1]) id = m[1];
+      }
+      var isSaved = id && ids.indexOf(id) > -1;
+      var svg = btn.querySelector('svg');
+      if (isSaved) {
         btn.classList.add('in-wishlist');
-        btn.innerHTML = '♥';
-        btn.style.color = '#C0392B';
-      } else if (id) {
+        if (svg) {
+          svg.setAttribute('fill', '#C0392B');
+          svg.style.color = '#C0392B';
+          svg.style.stroke = '#C0392B';
+        } else {
+          btn.innerHTML = '♥';
+          btn.style.color = '#C0392B';
+        }
+      } else {
         btn.classList.remove('in-wishlist');
-        btn.innerHTML = '♡';
-        btn.style.color = '';
+        if (svg) {
+          svg.setAttribute('fill', 'none');
+          svg.style.color = 'var(--ink, #1C1A17)';
+          svg.style.stroke = 'currentColor';
+        } else {
+          btn.innerHTML = '♡';
+          btn.style.color = '';
+        }
       }
     });
 
@@ -1581,18 +1891,28 @@ if (!function_exists('vivaaz_render_tennis_art')) {
   function updateHeaderBagCount() {
     var items = getCartItems();
     var count = items.reduce(function(acc, it) { return acc + (parseInt(it.quantity || it.qty) || 1); }, 0);
-    var badge = document.getElementById('header-bag-count');
-    if (badge) badge.textContent = count;
+    var badges = document.querySelectorAll('#cb, #cb-mobile, .header-bag-count, .cart-count, #cart-drawer-count, #mobile-nav-bag-count');
+    badges.forEach(function(badge) {
+      badge.textContent = count;
+      if (badge.id === 'cb' || badge.id === 'cb-mobile' || badge.classList.contains('badge')) {
+        badge.style.display = count > 0 ? 'inline-flex' : 'none';
+      }
+    });
   }
 
-  function addProductToCartAndOpenDrawer(productId, title, img, priceHtml, size, qty) {
+  function addProductToCartAndOpenDrawer(productId, title, img, priceHtml, size, qty, color, basePrice, tier10, tier50, openDrawer) {
+    if (typeof openDrawer === 'undefined') openDrawer = true;
     var items = getCartItems();
     var quantity = parseInt(qty) || 12;
     var rawPrice = parseInt(String(priceHtml || '105').replace(/[^0-9]/g, '')) || 105;
     var selectedSize = size || '6×8 mm';
+    var selectedColor = color || '';
+    var baseUnitPrice = basePrice ? parseInt(basePrice) : Math.round(rawPrice * 1.14);
+    var t10 = tier10 ? parseInt(tier10) : rawPrice;
+    var t50 = tier50 ? parseInt(tier50) : Math.round(rawPrice * 0.88);
     
     var existingIndex = items.findIndex(function(it) {
-      return (it.product_id === productId || it.title === title) && (it.size === selectedSize);
+      return (it.product_id === productId || it.title === title) && (it.size === selectedSize) && (it.color === selectedColor);
     });
 
     if (existingIndex > -1) {
@@ -1603,22 +1923,26 @@ if (!function_exists('vivaaz_render_tennis_art')) {
         key: 'cart_' + Date.now(),
         product_id: productId,
         title: title || 'Gemstone',
-        sku: 'VG-' + productId,
+        sku: 'VG-' + (productId || Date.now()),
         size: selectedSize,
-        quality: 'AAA',
+        color: selectedColor,
+        quality: '',
         qty: quantity,
         quantity: quantity,
         unitPrice: rawPrice,
-        basePrice: Math.round(rawPrice * 1.14),
-        tier10: rawPrice,
-        tier50: Math.round(rawPrice * 0.88),
+        baseUnitPrice: baseUnitPrice,
+        tier1: baseUnitPrice,
+        tier10: t10,
+        tier50: t50,
         total: quantity * rawPrice,
         image: img || '<?php echo esc_url(vivaaz_get_img_url("moonstone.jpg")); ?>'
       });
     }
 
     setCartItems(items);
-    openCartDrawer();
+    if (openDrawer) {
+      openCartDrawer();
+    }
   }
 
   function openCartDrawer() {
@@ -1669,7 +1993,7 @@ if (!function_exists('vivaaz_render_tennis_art')) {
         </div>
       `;
       if (footerEl) footerEl.style.display = 'none';
-      if (subtotalEl) subtotalEl.textContent = '₹ 0';
+      if (subtotalEl) subtotalEl.textContent = formatVivaazMoney(0);
       return;
     }
 
@@ -1679,62 +2003,93 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     var html = '';
 
     items.forEach(function(item, idx) {
+      var title = item.title || item.name || 'Agate Oval Cabochon · AA';
       var qty = parseInt(item.quantity || item.qty) || 1;
       var rawPrice = parseInt(String(item.unitPrice || item.price || '75').replace(/[^0-9]/g, '')) || 75;
+      var size = item.size || '6×8 mm';
+      var color = item.color || '';
+      var img = item.img || item.image || '<?php echo esc_url(vivaaz_get_img_url("moonstone.jpg")); ?>';
       
-      var t1 = item.tier1 || item.basePrice || Math.round(rawPrice * 1.15);
-      var t10 = item.tier10 || rawPrice;
-      var t50 = item.tier50 || Math.round(rawPrice * 0.88);
-
+      var lowerTitle = title.toLowerCase();
+      var isSingleOrPair = (item.isSingle || item.single || (lowerTitle.indexOf('pair') !== -1) || (lowerTitle.indexOf('single') !== -1) || (lowerTitle.indexOf('only 1') !== -1) || (lowerTitle.indexOf('strand') !== -1) || (lowerTitle.indexOf('layout') !== -1));
+      
       var effectiveUnitPrice = rawPrice;
       var tierNoteText = '';
-      if (qty >= 50) {
-        effectiveUnitPrice = t50;
-        tierNoteText = '₹' + t50.toLocaleString('en-IN') + ' each · 50+ price reached.';
-      } else if (qty >= 10) {
-        effectiveUnitPrice = t10;
-        tierNoteText = '₹' + t10.toLocaleString('en-IN') + ' each · 10+ price reached. 50+ pieces: ₹' + t50.toLocaleString('en-IN') + ' each';
+
+      if (isSingleOrPair) {
+        effectiveUnitPrice = rawPrice;
+        tierNoteText = '';
       } else {
-        effectiveUnitPrice = t1;
-        tierNoteText = '₹' + t1.toLocaleString('en-IN') + ' each · 10+ pieces: ₹' + t10.toLocaleString('en-IN') + ' each';
+        var baseUnitPrice = item.baseUnitPrice || item.tier1 || rawPrice;
+        var t10 = item.tier10 || Math.round(baseUnitPrice * 0.88);
+        var t50 = item.tier50 || Math.round(baseUnitPrice * 0.78);
+
+        if (qty >= 50) {
+          effectiveUnitPrice = t50;
+          tierNoteText = formatVivaazMoney(t50) + ' each · 50+ price reached.';
+        } else if (qty >= 10) {
+          effectiveUnitPrice = t10;
+          tierNoteText = formatVivaazMoney(t10) + ' each · 10+ price reached. 50+ pieces: ' + formatVivaazMoney(t50) + ' each';
+        } else {
+          effectiveUnitPrice = baseUnitPrice;
+          tierNoteText = 'Add ' + (10 - qty) + ' more for ' + formatVivaazMoney(t10) + ' each';
+        }
       }
       var itemTotal = qty * effectiveUnitPrice;
       grandTotal += itemTotal;
 
-      var img = item.img || item.image || '<?php echo esc_url(vivaaz_get_img_url("moonstone.jpg")); ?>';
-      var title = item.title || item.name || 'Agate Oval Cabochon · AA';
-      var size = item.size || '6×8 mm';
+      var availableSizes = ['3×4 mm', '4×6 mm', '5×7 mm', '6×8 mm', '7×9 mm', '8×10 mm', '10×12 mm'];
+      var chipsHtml = availableSizes.map(function(s) {
+        return '<button type="button" class="chip sm ' + (s === size ? 'on' : '') + '" onclick="setCartItemInlineSize(' + idx + ', \'' + s + '\')" style="padding: 4px 8px; font-size: 11px; margin: 2px;">' + s + '</button>';
+      }).join('');
 
       html += `
-        <div class="dri">
+        <div class="dri" style="border-bottom: 1px solid var(--line, #EFE9E0); padding: 16px 0;">
           <div class="im">
             <img src="${img}" alt="${title}">
           </div>
-          <div>
-            <div class="n">${title}</div>
-            <div class="m">
-              <span>${size}</span>
-              <button type="button" onclick="changeCartItemSize(${idx});">Change size</button>
+          <div style="flex: 1;">
+            <div class="n" style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">${title}</div>
+            <div class="m" style="font-size: 12.5px; color: var(--soft); display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+              <span>${size}</span>${color ? `<span style="color:#9B7C4E;">· ${color}</span>` : ''}
+              ${isSingleOrPair ? '' : `<button type="button" onclick="toggleCartItemSizeChips(${idx});" style="background:none; border:none; padding:0; color:#9B7C4E; text-decoration:underline; font-size:12px; cursor:pointer;">Change size</button>`}
             </div>
-            <div class="step s">
-              <button type="button" onclick="updateCartItemQty(${idx}, -1);" aria-label="Fewer">−</button>
-              <input type="text" value="${qty}" onchange="setCartItemDirectQty(${idx}, this.value);" aria-label="Quantity">
-              <button type="button" onclick="updateCartItemQty(${idx}, 1);" aria-label="More">+</button>
+            <div id="cart-item-chips-${idx}" style="display: none; flex-wrap: wrap; gap: 4px; margin: 6px 0 10px; background: #FAF7F2; padding: 8px; border: 1px solid var(--line);">
+              ${chipsHtml}
             </div>
-            <div class="note" style="color:var(--ok,#1E9E52); font-size:11.5px; margin-top:6px; background:none; padding:0;">
-              ${tierNoteText}
+            <div class="step s" style="display: inline-flex; align-items: stretch; border: 1px solid var(--ink); height: 32px; box-sizing: border-box; overflow: hidden; padding: 0; margin: 0; background: #fff; vertical-align: middle;">
+              <button type="button" onclick="updateCartItemQty(${idx}, -1);" aria-label="Fewer" style="width: 28px; height: 100%; border: none; background: transparent; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; margin: 0; outline: none; box-shadow: none; line-height: 1; color: var(--ink);">−</button>
+              <input type="text" value="${qty}" onchange="setCartItemDirectQty(${idx}, this.value);" aria-label="Quantity" style="width: 38px; height: 100%; min-height: 0; border: none; border-left: 1px solid var(--line); border-right: 1px solid var(--line); text-align: center; font-size: 13px; font-weight: 600; margin: 0; padding: 0; outline: none; box-shadow: none; background: transparent; box-sizing: border-box; line-height: 1; border-radius: 0; color: var(--ink);">
+              <button type="button" onclick="updateCartItemQty(${idx}, 1);" aria-label="More" style="width: 28px; height: 100%; border: none; background: transparent; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; margin: 0; outline: none; box-shadow: none; line-height: 1; color: var(--ink);">+</button>
             </div>
+            ${tierNoteText ? `<div class="note" style="color:var(--ok,#1E9E52); font-size:11.5px; margin-top:6px; background:none; padding:0;">${tierNoteText}</div>` : ''}
           </div>
-          <div class="r">
-            <span>₹ ${itemTotal.toLocaleString('en-IN')}</span>
-            <button type="button" onclick="removeCartItem(${idx});">Remove</button>
+          <div class="r" style="text-align: right; min-width: 80px;">
+            <span style="font-weight: 600; font-size: 14.5px; display: block; margin-bottom: 8px;">${formatVivaazMoney(itemTotal)}</span>
+            <button type="button" onclick="removeCartItem(${idx});" style="background:none; border:none; color:var(--soft); font-size:12px; text-decoration:underline; cursor:pointer;">Remove</button>
           </div>
         </div>
       `;
     });
 
+    html += '<div style="height: 24px; flex-shrink: 0;" aria-hidden="true"></div>';
+
     list.innerHTML = html;
-    if (subtotalEl) subtotalEl.textContent = '₹ ' + grandTotal.toLocaleString('en-IN');
+    if (subtotalEl) subtotalEl.textContent = formatVivaazMoney(grandTotal);
+  }
+
+  function toggleCartItemSizeChips(idx) {
+    var el = document.getElementById('cart-item-chips-' + idx);
+    if (el) el.style.display = (el.style.display === 'none' || !el.style.display) ? 'flex' : 'none';
+  }
+
+  function setCartItemInlineSize(idx, newSize) {
+    var items = getCartItems();
+    if (!items[idx]) return;
+    items[idx].size = newSize;
+    setCartItems(items);
+    renderCartDrawer();
+    showWishlistToast('Size updated to ' + newSize);
   }
 
   function setCartItemDirectQty(index, val) {
@@ -1765,21 +2120,7 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     renderCartDrawer();
   }
 
-  function changeCartItemSize(index) {
-    var items = getCartItems();
-    if (!items[index]) return;
-    var sizes = ['3×4 mm', '3×5 mm', '4×5 mm', '4×6 mm', '5×7 mm', '6×8 mm', '7×9 mm', '8×10 mm', '10×12 mm'];
-    var current = items[index].size || '6×8 mm';
-    var nextSize = prompt('Select new size for ' + items[index].title + ':\nAvailable: ' + sizes.join(', '), current);
-    if (nextSize && sizes.indexOf(nextSize.trim()) > -1) {
-      items[index].size = nextSize.trim();
-      setCartItems(items);
-      renderCartDrawer();
-      showWishlistToast('Size updated to ' + nextSize.trim());
-    }
-  }
-
-  function removeCartItem(index) {
+    function removeCartItem(index) {
     var items = getCartItems();
     if (!items[index]) return;
     _lastRemovedCartItem = items[index];
@@ -1840,41 +2181,174 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     document.body.style.overflow = '';
   }
 
+  // UNIVERSAL PHONE VALIDATION HELPER
+  function isValidVivaazPhone(phoneStr) {
+    if (!phoneStr) return false;
+    var str = String(phoneStr).trim();
+    var digits = str.replace(/\D/g, '');
+    
+    // Strip leading international code if Indian (+91 or 91 or 0)
+    if (digits.length === 12 && digits.indexOf('91') === 0) {
+      digits = digits.substring(2);
+    } else if (digits.length === 11 && digits.indexOf('0') === 0) {
+      digits = digits.substring(1);
+    }
+    
+    // Must be between 10 and 15 digits
+    if (digits.length < 10 || digits.length > 15) {
+      return false;
+    }
+    
+    // Reject repetitive fake numbers (e.g. 0000000000, 1111111111)
+    if (/^(\d)\1{9,}$/.test(digits)) {
+      return false;
+    }
+    
+    // For 10-digit Indian numbers, verify it starts with valid mobile digit 6-9
+    if (digits.length === 10 && !/^[6-9]/.test(digits) && str.indexOf('+') !== 0) {
+      return false;
+    }
+    
+    return true;
+  }
+  window.isValidVivaazPhone = isValidVivaazPhone;
+
+  function clearFieldErr(fieldId) {
+    var errEl = document.getElementById(fieldId + '-err');
+    var inputEl = document.getElementById(fieldId);
+    if (errEl) errEl.style.display = 'none';
+    if (inputEl) {
+      inputEl.style.borderColor = 'var(--line2, #E6E2DC)';
+      inputEl.style.background = 'var(--paper, #FFFFFF)';
+    }
+  }
+  window.clearFieldErr = clearFieldErr;
+
+  function formatDobInput(e) {
+    var input = e.target;
+    var v = input.value.replace(/\D/g, '').slice(0, 8);
+    if (v.length >= 5) {
+      input.value = v.slice(0, 2) + '/' + v.slice(2, 4) + '/' + v.slice(4);
+    } else if (v.length >= 3) {
+      input.value = v.slice(0, 2) + '/' + v.slice(2);
+    } else {
+      input.value = v;
+    }
+    clearFieldErr(input.id);
+  }
+  window.formatDobInput = formatDobInput;
+
+  function formatTobInput(e) {
+    var input = e.target;
+    var v = input.value.replace(/\D/g, '').slice(0, 4);
+    if (v.length >= 3) {
+      input.value = v.slice(0, 2) + ':' + v.slice(2);
+    } else {
+      input.value = v;
+    }
+    clearFieldErr(input.id);
+  }
+  window.formatTobInput = formatTobInput;
+
   var _consultTopic = 'Career';
   var _consultBudget = '₹10,000–50,000';
 
   function selectConsultTopic(topic, btn) {
     _consultTopic = topic;
-    var pills = btn.parentElement.querySelectorAll('.consult-pill');
-    pills.forEach(function(p) { p.classList.remove('active'); });
-    btn.classList.add('active');
+    var pills = btn.parentElement.querySelectorAll('.chip');
+    pills.forEach(function(p) { p.classList.remove('on'); });
+    btn.classList.add('on');
   }
 
   function selectConsultBudget(budget, btn) {
     _consultBudget = budget;
-    var pills = btn.parentElement.querySelectorAll('.consult-pill');
-    pills.forEach(function(p) { p.classList.remove('active'); });
-    btn.classList.add('active');
+    var pills = btn.parentElement.querySelectorAll('.chip');
+    pills.forEach(function(p) { p.classList.remove('on'); });
+    btn.classList.add('on');
   }
 
   function handleConsultationSubmit(e) {
     e.preventDefault();
-    var name = document.getElementById('consult-name').value || '';
-    var wa = document.getElementById('consult-wa').value || '';
-    var email = document.getElementById('consult-email').value || '';
-    var dob = document.getElementById('consult-dob').value || '';
-    var tob = document.getElementById('consult-tob').value || '';
-    var pob = document.getElementById('consult-pob').value || '';
+    var name = (document.getElementById('consult-name').value || '').trim();
+    var waInput = document.getElementById('consult-wa');
+    var waErr = document.getElementById('consult-wa-err');
+    var wa = (waInput ? waInput.value : '').trim();
+
+    // Strict Phone Validation
+    if (!isValidVivaazPhone(wa)) {
+      if (waErr) waErr.style.display = 'block';
+      if (waInput) {
+        waInput.focus();
+        waInput.style.borderColor = '#C0392B';
+        waInput.style.background = '#FFF5F5';
+      }
+      return;
+    }
+    if (waErr) waErr.style.display = 'none';
+    if (waInput) {
+      waInput.style.borderColor = 'var(--line2, #E6E2DC)';
+      waInput.style.background = 'var(--paper, #FFFFFF)';
+    }
+
+    var email = (document.getElementById('consult-email').value || '').trim();
+    var dobInput = document.getElementById('consult-dob');
+    var dobErr = document.getElementById('consult-dob-err');
+    var dob = (dobInput ? dobInput.value : '').trim();
+
+    // Strict Date of Birth Validation (DD/MM/YYYY)
+    if (dob) {
+      var parts = dob.split('/');
+      var d = parseInt(parts[0], 10);
+      var m = parseInt(parts[1], 10);
+      var y = parseInt(parts[2], 10);
+      var currentYear = new Date().getFullYear();
+      if (parts.length !== 3 || (parts[2] || '').length !== 4 || isNaN(d) || isNaN(m) || isNaN(y) || d < 1 || d > 31 || m < 1 || m > 12 || y < 1900 || y > currentYear) {
+        if (dobErr) dobErr.style.display = 'block';
+        if (dobInput) {
+          dobInput.focus();
+          dobInput.style.borderColor = '#C0392B';
+          dobInput.style.background = '#FFF5F5';
+        }
+        return;
+      }
+    }
+    if (dobErr) dobErr.style.display = 'none';
+    if (dobInput) {
+      dobInput.style.borderColor = 'var(--line2, #E6E2DC)';
+      dobInput.style.background = 'var(--paper, #FFFFFF)';
+    }
+
+    // Time of Birth with AM / PM
+    var tobInput = document.getElementById('consult-tob');
+    var ampmSelect = document.getElementById('consult-tob-ampm');
+    var tobVal = (tobInput ? tobInput.value : '').trim();
+    var tob = '';
+    if (tobVal) {
+      var ampm = ampmSelect ? ampmSelect.value : 'PM';
+      tob = tobVal + ' ' + ampm;
+    }
+
+    var pob = (document.getElementById('consult-pob').value || '').trim();
 
     var text = 'Namaste, I want to book an Astrology Consultation.\n' +
       'Name: ' + name + '\n' +
       'WhatsApp: ' + wa + '\n' +
       (email ? ('Email: ' + email + '\n') : '') +
-      'DOB: ' + dob + '\n' +
-      'Time: ' + tob + '\n' +
-      'Place: ' + pob + '\n' +
+      (dob ? ('DOB: ' + dob + '\n') : '') +
+      (tob ? ('Time: ' + tob + '\n') : '') +
+      (pob ? ('Place: ' + pob + '\n') : '') +
       'Topic: ' + _consultTopic + '\n' +
       'Budget: ' + _consultBudget;
+
+    // Send backend notification
+    var formData = new FormData();
+    formData.append('action', 'vivaaz_send_enquiry');
+    formData.append('type', 'Astrology Consultation: ' + _consultTopic);
+    formData.append('name', name);
+    formData.append('phone', wa);
+    formData.append('email', email);
+    formData.append('details', 'DOB: ' + dob + ' | Time: ' + tob + ' | Place: ' + pob + ' | Topic: ' + _consultTopic + ' | Budget: ' + _consultBudget);
+    fetch('<?php echo admin_url("admin-ajax.php"); ?>', { method: 'POST', body: formData }).catch(function(){});
 
     closeConsultationModal();
     window.open('https://wa.me/919680552270?text=' + encodeURIComponent(text), '_blank');
@@ -1919,7 +2393,22 @@ if (!function_exists('vivaaz_render_tennis_art')) {
   function submitVideoCallForm(e) {
     e.preventDefault();
     var name = (document.getElementById('vc-name') || {}).value || '';
-    var wa = (document.getElementById('vc-wa') || {}).value || '';
+    var waInput = document.getElementById('vc-wa');
+    var wa = (waInput ? waInput.value : '').trim();
+
+    if (!isValidVivaazPhone(wa)) {
+      if (waInput) {
+        waInput.focus();
+        waInput.style.borderColor = '#C0392B';
+        waInput.style.background = '#FFF5F5';
+      }
+      return;
+    }
+    if (waInput) {
+      waInput.style.borderColor = 'var(--line2, #E6E2DC)';
+      waInput.style.background = 'var(--paper, #FFFFFF)';
+    }
+
     var sent = document.getElementById('videocall-modal-sent');
     var form = document.getElementById('videocall-form');
     if (sent) sent.style.display = 'block';
@@ -1928,42 +2417,217 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     window.open('https://wa.me/919680552270?text=' + encodeURIComponent(text), '_blank');
   }
 
-  // QUICK VIEW MODAL
+  // UNIVERSAL QUICK VIEW MODAL
   var _qvCatalog = {
-    'rmcoc68': { name: 'Rainbow Moonstone Oval Cabochon · AAA', code: 'RMCOC68', price: '₹ 120', unit: 'per piece', sizes: ['4×6 mm','5×7 mm','6×8 mm','7×9 mm'], stone: 'moonstone', url: '<?php echo esc_url(home_url("/shop/")); ?>' },
-    'bsfov':   { name: 'Ceylon Blue Sapphire Oval Faceted', code: 'BSFOV', price: '₹ 1,450', unit: 'per piece', sizes: ['5×7 mm','6×8 mm','7×9 mm'], stone: 'ceylon-sapphire', url: '<?php echo esc_url(home_url("/shop/")); ?>' },
-    'rmcpr':   { name: 'Rainbow Moonstone Oval Matched Pair', code: 'RMCPR', price: '₹ 2,600', unit: 'for the pair', sizes: ['6×8 mm','7×9 mm'], stone: 'moonstone', url: '<?php echo esc_url(home_url("/shop/")); ?>' },
-    'rmc1825': { name: 'Rainbow Moonstone 32ct Collector Lot', code: 'RMC1825', price: '₹ 38,500', unit: 'for the lot', sizes: ['Mixed 3–9 mm'], stone: 'moonstone', url: '<?php echo esc_url(home_url("/shop/")); ?>' }
+    'rmcoc68': {
+      name: 'Rainbow Moonstone Oval Cabochon',
+      code: 'RMCOC68',
+      price: 'from ₹94',
+      unit: 'per piece',
+      sizes: ['3×4 mm', '4×6 mm', '5×7 mm', '6×8 mm', '7×9 mm'],
+      sizePrices: {
+        '3×4 mm': 94,
+        '4×6 mm': 94,
+        '5×7 mm': 105,
+        '6×8 mm': 120,
+        '7×9 mm': 165
+      },
+      stone: 'moonstone',
+      url: '<?php echo esc_url(home_url("/product/rainbow-moonstone-oval-cabochon/")); ?>'
+    },
+    'bsfov': {
+      name: 'Ceylon Blue Sapphire Oval Faceted',
+      code: 'BSFOV',
+      price: 'from ₹1,131',
+      unit: 'per piece',
+      sizes: ['3×5 mm', '4×6 mm', '5×7 mm', '6×8 mm', '7×9 mm'],
+      sizePrices: {
+        '3×5 mm': 1131,
+        '4×6 mm': 1350,
+        '5×7 mm': 1650,
+        '6×8 mm': 2200,
+        '7×9 mm': 3100
+      },
+      stone: 'ceylon-sapphire',
+      url: '<?php echo esc_url(home_url("/product/ceylon-blue-sapphire-7x5mm/")); ?>'
+    },
+    'rmcpr': {
+      name: 'Rainbow Moonstone Oval Matched Pair',
+      code: 'RMCPR',
+      price: '₹ 2,600',
+      unit: 'for the pair',
+      sizes: ['6×8 mm', '7×9 mm', '10×12 mm'],
+      sizePrices: {
+        '6×8 mm': 1800,
+        '7×9 mm': 2200,
+        '10×12 mm': 2600
+      },
+      stone: 'moonstone',
+      url: '<?php echo esc_url(home_url("/product/rainbow-moonstone-oval-cabochon/")); ?>'
+    },
+    'rmc1825': {
+      name: 'Rainbow Moonstone 32ct Collector Lot',
+      code: 'RMC1825',
+      price: '₹ 4,800',
+      unit: 'one stone',
+      sizes: ['18×25 mm · 32 ct'],
+      sizePrices: {
+        '18×25 mm · 32 ct': 4800
+      },
+      stone: 'moonstone',
+      url: '<?php echo esc_url(home_url("/product/rainbow-moonstone-oval-cabochon/")); ?>'
+    },
+    'br-oval': {
+      name: 'Burma Ruby Oval Faceted',
+      code: 'RBFOV',
+      price: 'from ₹1,450',
+      unit: 'per piece',
+      sizes: ['4×6 mm', '5×7 mm', '6×8 mm', '7×9 mm', '8×10 mm'],
+      sizePrices: {
+        '4×6 mm': 1450,
+        '5×7 mm': 1850,
+        '6×8 mm': 2400,
+        '7×9 mm': 3200,
+        '8×10 mm': 4500
+      },
+      stone: 'ruby',
+      url: '<?php echo esc_url(home_url("/product/burma-ruby-oval-faceted/")); ?>'
+    },
+    'ze-oct': {
+      name: 'Zambian Emerald Emerald Cut',
+      code: 'EMFOC',
+      price: 'from ₹1,850',
+      unit: 'per piece',
+      sizes: ['4×6 mm', '5×7 mm', '6×8 mm', '7×9 mm'],
+      sizePrices: {
+        '4×6 mm': 1850,
+        '5×7 mm': 2400,
+        '6×8 mm': 3100,
+        '7×9 mm': 4200
+      },
+      stone: 'emerald',
+      url: '<?php echo esc_url(home_url("/product/zambian-emerald-octagon/")); ?>'
+    }
   };
-  function openQuickViewModal(id) {
-    var p = _qvCatalog[id];
+
+  window.onQvSelectSize = function(size, price) {
+    var prEl = document.getElementById('qv-price-display');
+    if (prEl) {
+      if (typeof formatVivaazMoney === 'function') {
+        prEl.innerHTML = formatVivaazMoney(price) + ' <span style="font-size:13px;font-weight:400;color:var(--mute);">' + window._qvCurrentUnit + '</span>';
+      } else {
+        prEl.innerHTML = '₹ ' + Number(price).toLocaleString('en-IN') + ' <span style="font-size:13px;font-weight:400;color:var(--mute);">' + window._qvCurrentUnit + '</span>';
+      }
+    }
+    window._qvCurrentSize = size;
+    window._qvCurrentPrice = price;
+  };
+
+  window.vivaazAddToCartAjax = function(productId, size, qty) {
+    var item = _qvCatalog[productId];
+    if (item) {
+      var selSize = size || item.sizes[0] || '4×6 mm';
+      var selPrice = 0;
+      if (item.sizePrices) {
+        selPrice = item.sizePrices[selSize] || item.sizePrices[selSize.replace(/x/g, '×')] || item.sizePrices[selSize.replace(/×/g, 'x')];
+      }
+      if (!selPrice) {
+        selPrice = parseInt(String(item.price).replace(/[^0-9]/g, '')) || 94;
+      }
+      var img = item.imgUrl || ('<?php echo esc_url(get_stylesheet_directory_uri() . "/assets/images/"); ?>' + (item.stone || 'moonstone') + '.jpg');
+      addProductToCartAndOpenDrawer(productId, item.name, img, selPrice, selSize, qty || 10);
+    } else {
+      addProductToCartAndOpenDrawer(productId, 'Natural Gemstone', '<?php echo esc_url(vivaaz_get_img_url("moonstone.jpg")); ?>', 94, size || '4×6 mm', qty || 10);
+    }
+  };
+
+  function openQuickView(titleOrId, price, img, url, code, sizes) {
+    var p = null;
+    if (_qvCatalog[titleOrId]) {
+      p = _qvCatalog[titleOrId];
+    } else if (typeof titleOrId === 'string' && (!price || typeof price !== 'string')) {
+      p = _qvCatalog[titleOrId] || {
+        name: titleOrId,
+        code: 'VG-GEM',
+        price: '₹ 94',
+        unit: 'per piece',
+        sizes: ['4×6 mm', '5×7 mm', '6×8 mm', '7×9 mm'],
+        sizePrices: { '4×6 mm': 94, '5×7 mm': 105, '6×8 mm': 120, '7×9 mm': 165 },
+        stone: 'moonstone',
+        url: '<?php echo esc_url(home_url("/shop/")); ?>'
+      };
+    } else {
+      var rawTitle = titleOrId || 'Natural Gemstone';
+      var rawPrice = price || 'from ₹94';
+      var rawImg = img || '<?php echo esc_url(vivaaz_get_img_url("moonstone.jpg")); ?>';
+      var rawUrl = url || '<?php echo esc_url(home_url("/shop/")); ?>';
+      var rawCode = code || 'VG-LOT';
+      var rawSizes = (Array.isArray(sizes) && sizes.length) ? sizes : ['4×6 mm', '5×7 mm', '6×8 mm', '7×9 mm'];
+      var isPair = rawTitle.toLowerCase().indexOf('pair') !== -1;
+      var isSingle = rawTitle.toLowerCase().indexOf('single') !== -1 || rawTitle.toLowerCase().indexOf('only 1') !== -1;
+      var numPrice = parseInt(String(rawPrice).replace(/[^0-9]/g, '')) || 94;
+      p = {
+        name: rawTitle,
+        code: rawCode,
+        price: rawPrice,
+        unit: isPair ? 'for the pair' : (isSingle ? 'one stone' : 'per piece'),
+        sizes: rawSizes,
+        sizePrices: {},
+        imgUrl: rawImg,
+        url: rawUrl
+      };
+      p.sizes.forEach(function(s, idx) {
+        p.sizePrices[s] = Math.round(numPrice * (1 + idx * 0.18));
+      });
+    }
+
     var modal = document.getElementById('vivaaz-quickview-modal');
     var backdrop = document.getElementById('quickview-modal-backdrop');
     var body = document.getElementById('quickview-modal-body');
     if (!modal || !body) return;
-    var imgUrl = '<?php echo esc_url(get_stylesheet_directory_uri() . "/assets/images/"); ?>' + (p ? p.stone : 'moonstone') + '.jpg';
+
+    var finalImg = p.imgUrl || ('<?php echo esc_url(get_stylesheet_directory_uri() . "/assets/images/"); ?>' + (p.stone || 'moonstone') + '.jpg');
+    var firstSize = p.sizes[0] || '4×6 mm';
+    var firstPrice = (p.sizePrices && p.sizePrices[firstSize]) ? p.sizePrices[firstSize] : (parseInt(String(p.price).replace(/[^0-9]/g, '')) || 94);
+
+    window._qvCurrentName = p.name;
+    window._qvCurrentImg = finalImg;
+    window._qvCurrentSize = firstSize;
+    window._qvCurrentPrice = firstPrice;
+    window._qvCurrentUnit = p.unit;
+
+    var initialPriceDisplay = (typeof formatVivaazMoney === 'function') ? formatVivaazMoney(firstPrice) : ('₹ ' + Number(firstPrice).toLocaleString('en-IN'));
+
     var html = '<div class="qvg" style="display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;">' +
       '<div class="qvi" style="background:#F4F2EE;display:flex;align-items:center;justify-content:center;aspect-ratio:1;overflow:hidden;">' +
-      '<img src="' + imgUrl + '" alt="' + (p ? p.name : 'Stone') + '" style="width:72%;object-fit:contain;"></div>' +
-      '<div>' + (p ? (
+      '<img src="' + finalImg + '" alt="' + (p.name || 'Stone') + '" style="width:72%;object-fit:contain;"></div>' +
+      '<div>' +
         '<span style="font-size:11px;letter-spacing:0.16em;color:#9B7C4E;font-weight:700;text-transform:uppercase;">' + p.code + '</span>' +
-        '<h3 style="font-family:var(--display);font-size:24px;font-weight:400;margin:8px 0;">' + p.name + '</h3>' +
-        '<div style="font-size:24px;font-weight:600;margin:0 0 16px;">' + p.price + ' <span style="font-size:13px;font-weight:400;color:var(--mute);">' + p.unit + '</span></div>' +
+        '<h3 style="font-family:var(--display);font-size:24px;font-weight:400;margin:8px 0;line-height:1.25;">' + p.name + '</h3>' +
+        '<div id="qv-price-display" style="font-size:24px;font-weight:600;margin:0 0 16px;">' + initialPriceDisplay + ' <span style="font-size:13px;font-weight:400;color:var(--mute);">' + p.unit + '</span></div>' +
         '<div style="font-size:10.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--soft);margin-bottom:8px;">SIZE (MM)</div>' +
-        '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;">' +
-        p.sizes.map(function(s, i) { return '<button class="chip' + (i===0?' on':'') + '" onclick="this.parentElement.querySelectorAll(\'.chip\').forEach(function(c){c.classList.remove(\'on\')});this.classList.add(\'on\')" style="border-radius:0;padding:7px 14px;font-size:12.5px;">' + s + '</button>'; }).join('') +
+        '<div class="chips" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;">' +
+        p.sizes.map(function(s, i) {
+          var sp = (p.sizePrices && p.sizePrices[s]) ? p.sizePrices[s] : firstPrice;
+          return '<button type="button" class="chip' + (i===0?' on':'') + '" onclick="this.parentElement.querySelectorAll(\'.chip\').forEach(function(c){c.classList.remove(\'on\')});this.classList.add(\'on\');window.onQvSelectSize(\'' + s + '\', ' + sp + ');" style="border-radius:0;padding:7px 14px;font-size:12.5px;cursor:pointer;">' + s + '</button>';
+        }).join('') +
         '</div>' +
         '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">' +
-        '<button class="btn" onclick="closeQuickViewModal();showWishlistToast(\'Added to bag\')" style="padding:12px;">Add to cart</button>' +
+        '<button type="button" class="btn" onclick="addProductToCartAndOpenDrawer(0, window._qvCurrentName, window._qvCurrentImg, window._qvCurrentPrice, window._qvCurrentSize, 10);closeQuickViewModal();" style="padding:12px;cursor:pointer;">Add to cart</button>' +
         '<a href="' + p.url + '" class="btn o" onclick="closeQuickViewModal();" style="padding:12px;text-decoration:none;display:flex;align-items:center;justify-content:center;">Full details</a>' +
-        '</div>'
-      ) : '<p>Stone not found.</p>') +
+        '</div>' +
       '</div></div>';
+
     body.innerHTML = html;
     modal.style.display = 'block';
     if (backdrop) backdrop.style.display = 'block';
     document.body.style.overflow = 'hidden';
   }
+
+  function openQuickViewModal(id) {
+    openQuickView(id);
+  }
+
   function closeQuickViewModal() {
     var modal = document.getElementById('vivaaz-quickview-modal');
     var backdrop = document.getElementById('quickview-modal-backdrop');
@@ -1981,7 +2645,7 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     if (!modal) return;
     
     var stoneNames = {
-      'sapphire': 'Ceylon Blue Sapphire Oval Faceted · AAA',
+      'sapphire': 'Ceylon Blue Sapphire Oval Faceted',
       'emerald': 'Zambian Emerald Octagon Step Cut · 0:40 Under Loupe',
       'ruby': 'Burma Ruby Oval Faceted · Unheated',
       'moonstone': 'Rainbow Moonstone Oval Cabochon · High Blue Flash',
@@ -2010,13 +2674,16 @@ if (!function_exists('vivaaz_render_tennis_art')) {
   }
 
   // DESIGN QUOTE MODAL (Send your design / Match my stone)
-  function openDesignQuoteModal() {
+  function openDesignQuoteModal(presetText) {
     var modal = document.getElementById('vivaaz-designquote-modal');
     var backdrop = document.getElementById('designquote-modal-backdrop');
     var sent = document.getElementById('designquote-sent');
     var form = document.getElementById('designquote-form');
     if (sent) sent.style.display = 'none';
     if (form) form.style.display = 'block';
+    if (presetText && document.getElementById('dq-stone')) {
+      document.getElementById('dq-stone').value = presetText;
+    }
     if (modal) modal.style.display = 'block';
     if (backdrop) backdrop.style.display = 'block';
     document.body.style.overflow = 'hidden';
@@ -2042,7 +2709,32 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     window.open('https://wa.me/919680552270?text=' + encodeURIComponent(text), '_blank');
   }
 
+  // Explicit Global Window Exports for 100% Reliability
+  window.switchCurrency = switchCurrency;
+  window.vivaazUpdateAllPrices = vivaazUpdateAllPrices;
+  window.formatVivaazMoney = formatVivaazMoney;
+  window.getCurrentCurrency = getCurrentCurrency;
+  window.toggleProductWishlist = toggleProductWishlist;
+  window.updateAllWishlistButtons = updateAllWishlistButtons;
+  window.updateWishlistCountBadge = updateWishlistCountBadge;
+  window.openQuickView = openQuickView;
+  window.openQuickViewModal = openQuickViewModal;
+  window.closeQuickViewModal = closeQuickViewModal;
+  window.openVideoModal = openVideoModal;
+  window.closeVideoModal = closeVideoModal;
+  window.openDesignQuoteModal = openDesignQuoteModal;
+  window.closeDesignQuoteModal = closeDesignQuoteModal;
+  window.addToCartAjax = function(id, size, qty) {
+    if (typeof window.vivaazAddToCartAjax === 'function') {
+      window.vivaazAddToCartAjax(id, size, qty);
+    } else if (typeof openCartDrawer === 'function') {
+      openCartDrawer();
+    }
+  };
+
   document.addEventListener("DOMContentLoaded", function() {
+    var cur = getCurrentCurrency();
+    vivaazUpdateAllPrices(cur);
     closeLiveSearchModal();
     updateWishlistCountBadge();
     updateAllWishlistButtons();

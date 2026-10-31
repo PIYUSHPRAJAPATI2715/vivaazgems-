@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Vivaaz Gems | Jaipur · Bangkok — Coming Soon</title>
+  <meta name="description" content="Vivaaz Gems — Wholesalers and manufacturers of fine natural emeralds, sapphires, rubies, calibrated layouts, and bespoke gemstone beads. Jaipur · Bangkok.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0A08;
+      --card-bg: rgba(22, 19, 16, 0.78);
+      --card-border: rgba(212, 175, 55, 0.22);
+      --gold: #D4AF37;
+      --gold-light: #F3E5AB;
+      --gold-dark: #997A15;
+      --text: #F5F2EB;
+      --text-muted: #A8A095;
+      --emerald: #10B981;
+      --wa-green: #25D366;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow-x: hidden;
+      padding: 40px 20px;
+    }
+
+    /* Ambient Luxury Background */
+    .bg-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        radial-gradient(circle at 50% 15%, rgba(212, 175, 55, 0.12) 0%, transparent 55%),
+        radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 15% 75%, rgba(180, 83, 9, 0.08) 0%, transparent 50%),
+        #0B0A08;
+    }
+
+    /* Subtle Facet Pattern Overlay */
+    .bg-facets {
+      position: fixed;
+      inset: 0;
+      opacity: 0.035;
+      pointer-events: none;
+      z-index: 1;
+      background-image: 
+        radial-gradient(#D4AF37 1px, transparent 1px),
+        linear-gradient(45deg, rgba(212,175,55,0.08) 25%, transparent 25%, transparent 75%, rgba(212,175,55,0.08) 75%);
+      background-size: 32px 32px, 64px 64px;
+    }
+
+    /* Main Container */
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      padding: 64px 50px 54px;
+      box-shadow: 
+        0 24px 70px rgba(0, 0, 0, 0.65),
+        0 0 1px 1px rgba(212, 175, 55, 0.25) inset;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      text-align: center;
+    }
+
+    /* Gold corner accents */
+    .container::before, .container::after {
+      content: '';
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--gold);
+      pointer-events: none;
+    }
+    .container::before { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+    .container::after { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+    /* Logo Section */
+    .brand-header {
+      margin-bottom: 34px;
+    }
+    .logo-emblem {
+      display: inline-block;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.28));
+      transition: transform 0.4s ease;
+    }
+    .logo-emblem:hover {
+      transform: scale(1.05);
+    }
+    .brand-name {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 500;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      line-height: 1.1;
+      margin-left: 0.36em;
+    }
+    .brand-sub {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 8px;
+      margin-left: 0.42em;
+    }
+
+    /* Status Pill */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      background: rgba(212, 175, 55, 0.08);
+      border-radius: 30px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 24px;
+    }
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+      animation: pulse 2s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* Main Typography */
+    h1 {
+      font-family: var(--serif);
+      font-size: 44px;
+      font-weight: 400;
+      line-height: 1.22;
+      color: #FFFFFF;
+      margin-bottom: 18px;
+      letter-spacing: 0.01em;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+      font-weight: 300;
+    }
+    .lead {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 36px;
+    }
+
+    /* Feature Pillars */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .feat-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 22px 16px;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .feat-card:hover {
+      border-color: rgba(212, 175, 55, 0.35);
+      background: rgba(212, 175, 55, 0.04);
+      transform: translateY(-2px);
+    }
+    .feat-icon {
+      font-size: 22px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+    .feat-title {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      color: #FFFFFF;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .feat-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Action Buttons */
+    .cta-wrap {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .btn-luxury {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 36px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    /* WhatsApp Gold-Emerald Luxury Button */
+    .btn-wa {
+      background: linear-gradient(135deg, #128C7E 0%, #075E54 100%);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 24px rgba(7, 94, 84, 0.35);
+    }
+    .btn-wa:hover {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+      transform: translateY(-2px);
+      color: #FFFFFF;
+    }
+    .btn-wa svg {
+      width: 19px;
+      height: 19px;
+      fill: currentColor;
+    }
+
+    /* Instagram Luxury Button */
+    .btn-ig {
+      background: transparent;
+      color: var(--gold-light);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+    }
+    .btn-ig:hover {
+      background: rgba(212, 175, 55, 0.12);
+      border-color: var(--gold);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+    .btn-ig svg {
+      width: 17px;
+      height: 17px;
+      fill: currentColor;
+    }
+
+    /* Footer Info Section */
+    .footer-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+      margin-bottom: 28px;
+    }
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .loc-box b {
+      display: block;
+      color: var(--gold-light);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+    .contact-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .contact-row a {
+      color: var(--gold-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-row a:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    /* Responsive Rules */
+    @media (max-width: 768px) {
+      .container {
+        padding: 48px 24px 40px;
+      }
+      h1 {
+        font-size: 32px;
+      }
+      .brand-name {
+        font-size: 24px;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .cta-wrap {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .btn-luxury {
+        width: 100%;
+        padding: 16px 20px;
+      }
+      .locations-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glows -->
+  <div class="bg-glow"></div>
+  <div class="bg-facets"></div>
+
+  <!-- Central Luxury Atelier Card -->
+  <main class="container">
+    
+    <!-- Brand Header & Gold Emblem -->
+    <header class="brand-header">
+      <div class="logo-emblem">
+        <svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Stylized Luxury Gold Diamond Monogram -->
+          <polygon points="50,6 64,28 50,42 36,28" fill="#F3E5AB" stroke="#D4AF37" stroke-width="1.5"/>
+          <line x1="50" y1="6" x2="50" y2="42" stroke="#997A15" stroke-width="1"/>
+          <line x1="36" y1="28" x2="64" y2="28" stroke="#997A15" stroke-width="1"/>
+          <path d="M22 36 L48 88 L52 88 L78 36" stroke="url(#goldGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="goldGrad" x1="22" y1="36" x2="78" y2="88" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#F3E5AB"/>
+              <stop offset="50%" stop-color="#D4AF37"/>
+              <stop offset="100%" stop-color="#AA820A"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="brand-name">Vivaaz Gems</div>
+      <div class="brand-sub">Jaipur &bull; Bangkok</div>
+    </header>
+
+    <!-- Status Badge -->
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Online Atelier Opening Soon
+    </div>
+
+    <!-- Hero Title -->
+    <h1>Curating the World’s Finest <em>Natural Gemstones</em></h1>
+    <p class="lead">
+      We are preparing our bespoke digital wholesale showcase featuring certified emeralds, royal sapphires, rubies, precision-calibrated layouts, and luxury gemstone beads. Our Jaipur & Bangkok offices are open and serving clients worldwide.
+    </p>
+
+    <!-- Three Luxury Pillars -->
+    <section class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">💎</div>
+        <div class="feat-title">Calibrated Gems</div>
+        <div class="feat-desc">Precision-cut natural emeralds, sapphires & rubies in exact millimeter tolerances.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">✨</div>
+        <div class="feat-title">Matched Layouts</div>
+        <div class="feat-desc">Color-matched and size-graduated suites for high-end necklace and bracelet suites.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📿</div>
+        <div class="feat-title">Bespoke Beads</div>
+        <div class="feat-desc">Hand-selected precious gemstone bead strands and carved statement drops.</div>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <div class="cta-wrap">
+      <a href="https://wa.me/919680552270?text=Hello%20Vivaaz%20Gems,%20I%20am%20visiting%20from%20your%20website%20and%20would%20like%20to%20enquire%20about%20stones" target="_blank" rel="noopener" class="btn-luxury btn-wa">
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        WhatsApp Concierge
+      </a>
+
+      <a href="https://instagram.com/vivaazgems" target="_blank" rel="noopener" class="btn-luxury btn-ig">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram @vivaazgems
+      </a>
+    </div>
+
+    <!-- Divider -->
+    <div class="footer-divider"></div>
+
+    <!-- Locations & Direct Contacts -->
+    <footer class="footer-details">
+      <div class="locations-grid">
+        <div class="loc-box">
+          <b>Jaipur Headquarters</b>
+          Johari Bazar, Jaipur 302003, Rajasthan, India
+        </div>
+        <div class="loc-box">
+          <b>Bangkok Office</b>
+          Gem Tower, Silom Road, Bang Rak, Bangkok 10500, Thailand
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <span>Direct: <a href="tel:+919680552270">+91 96805 52270</a></span>
+        <span>&bull;</span>
+        <span>Email: <a href="mailto:info@vivaazgems.com">info@vivaazgems.com</a></span>
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>

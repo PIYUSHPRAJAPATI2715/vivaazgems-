@@ -293,9 +293,9 @@ $layouts_data = array(
                       ADD TO CART
                     </button>
                   <?php else : ?>
-                    <a href="https://wa.me/919680552270?text=<?php echo rawurlencode('Hello Vivaaz Gems, I would like to get a price for: ' . $l['name'] . ' (' . $l['d'] . ')'); ?>" target="_blank" style="font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #1C1A17; text-decoration: underline; text-underline-offset: 3px;">
+                    <button type="button" onclick="if(typeof openDesignQuoteModal==='function'){openDesignQuoteModal('<?php echo esc_js($l['name'] . ' (' . $l['d'] . ')'); ?>');}else{window.open('https://wa.me/919680552270?text=<?php echo rawurlencode('Hello Vivaaz Gems, I would like to get a price for: ' . $l['name'] . ' (' . $l['d'] . ')'); ?>','_blank');}" style="background: none; border: none; padding: 0; font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #1C1A17; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;">
                       GET MY PRICE →
-                    </a>
+                    </button>
                   <?php endif; ?>
                 </div>
               </div>
@@ -307,7 +307,7 @@ $layouts_data = array(
         <!-- Load more button (Point 17) -->
         <div style="text-align: center; margin-top: 36px;">
           <div style="font-size: 13px; color: #76706A; margin-bottom: 12px; font-family: var(--body);">Showing 9 of 14</div>
-          <button type="button" class="btn o" onclick="showWishlistToast('All 12 current layouts loaded. More layouts coming soon.');" style="padding: 13px 32px; border: 1px solid #1C1A17; background: transparent; color: #1C1A17; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;">
+          <button type="button" class="btn o" id="load-more-layouts-btn" onclick="loadMoreVivaazLayouts();" style="padding: 13px 32px; border: 1px solid #1C1A17; background: transparent; color: #1C1A17; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;">
             LOAD MORE
           </button>
         </div>
@@ -566,6 +566,43 @@ document.addEventListener('DOMContentLoaded', function() {
     applyStoneFilter(stone.toLowerCase(), null);
   }
 });
+</script>
+
+
+<script>
+function loadMoreVivaazLayouts() {
+  var grid = document.getElementById('layouts-grid');
+  if (!grid) return;
+  var extraLayouts = [
+    { id: 'l10', name: 'Burma Spinel Bracelet Layout', desc: '18 stones · 4.2 mm · 6.8 ct', price: '₹ 22,000', kind: 'bracelet', stone: 'spinel', url: '<?php echo esc_url(home_url("/layouts/?stone=spinel")); ?>' },
+    { id: 'l11', name: 'Zambian Emerald Matched Pair Layout', desc: '2 stones · 7×5 mm · 2.1 ct', price: '₹ 28,500', kind: 'pair', stone: 'emerald', url: '<?php echo esc_url(home_url("/layouts/?stone=emerald")); ?>' },
+    { id: 'l12', name: 'Rainbow Moonstone 3-Stone Ring Set', desc: '3 stones · 8×10 and 6×8 mm', price: '₹ 3,400', kind: 'set', stone: 'moonstone', url: '<?php echo esc_url(home_url("/layouts/?stone=moonstone")); ?>' }
+  ];
+
+  extraLayouts.forEach(function(l) {
+    var card = document.createElement('div');
+    card.className = 'card rv layout-card-item';
+    card.setAttribute('data-id', l.id);
+    card.setAttribute('data-stone', l.stone);
+    var imgUrl = '<?php echo esc_url(vivaaz_get_img_url("ruby.jpg")); ?>';
+    card.innerHTML = '<div class="ph" style="background:#F6F4F0; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;" onclick="window.location.href=\'' + l.url + '\'">' +
+      '<img src="' + imgUrl + '" alt="' + l.name + '" style="width:75%;object-fit:contain;">' +
+      '<span class="tag">MATCHED LAYOUT</span>' +
+      '</div>' +
+      '<div class="cb">' +
+      '<div class="nm" onclick="window.location.href=\'' + l.url + '\'">' + l.name + '</div>' +
+      '<div class="dt">' + l.desc + '</div>' +
+      '<div class="pr">' + l.price + ' <span>full set</span></div>' +
+      '<div class="act"><a href="' + l.url + '" class="ul">VIEW LAYOUT</a></div>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+
+  var countEl = document.querySelector('#load-more-layouts-btn').previousElementSibling;
+  if (countEl) countEl.textContent = 'Showing 12 of 12';
+  document.getElementById('load-more-layouts-btn').style.display = 'none';
+  showWishlistToast('All 12 layouts loaded.');
+}
 </script>
 
 <?php

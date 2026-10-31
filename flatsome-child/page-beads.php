@@ -56,7 +56,7 @@ if (!function_exists('vivaaz_render_strand_svg')) {
 $bead_shapes_tiles = array(
     array('shape' => 'Round',               'name' => 'Round',               'col' => '#6b3fa0'),
     array('shape' => 'Rondelle',            'name' => 'Rondelle',            'col' => '#6f7f8f'),
-    array('shape' => 'Faceted rondelle',    'name' => 'Faceted rondelle',    'col' => '#b02a3a'),
+    array('shape' => 'Rondelle',    'name' => 'Faceted rondelle',    'col' => '#b02a3a'),
     array('shape' => 'Nugget',              'name' => 'Nugget',              'col' => '#7d4fb5'),
     array('shape' => 'Chips',               'name' => 'Chips',               'col' => '#8fae3a'),
     array('shape' => 'Heishi',              'name' => 'Heishi',              'col' => '#2f9d9d'),
@@ -85,7 +85,7 @@ $beads_catalog = array(
         'stone' => 'Ruby',
         'col'   => '#b02a3a',
         'cut'   => 'Faceted',
-        'shape' => 'Faceted rondelle',
+        'shape' => 'Rondelle',
         'size'  => '4',
         'sold'  => 'Strand',
         'len'   => '8 in',
@@ -276,10 +276,29 @@ $beads_catalog = array(
       <?php endforeach; ?>
     </div>
 
+    <!-- MOBILE STICKY FILTER + SORT BAR (Point 25 Spec: .fsl) -->
+    <div class="fsl" id="mobile-fsl">
+      <button type="button" onclick="openBeadFilterSheet();">
+        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+        FILTER <span id="mobile-bead-filter-badge-count"></span>
+      </button>
+      <button type="button" onclick="openBeadSortSheet();">
+        SORT
+        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+      </button>
+    </div>
+
     <!-- Divider Bar: Count + Sort -->
     <div class="bar" style="display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid #E8E1D6; border-bottom: 1px solid #E8E1D6; font-size: 13px; color: #76706A; margin-bottom: 28px;">
       <div id="beads-count-text" style="font-size: 13px; color: #1C1A17; font-weight: 500;">12 products</div>
-      <div>Sort: <b style="color: #1C1A17;">Newest ▾</b></div>
+      <label style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #76706A;">
+        Sort: 
+        <select id="beads-sort-select" onchange="applyBeadsSort(this.value);" style="border: 0; background: transparent; font-weight: 600; color: #1C1A17; padding: 4px; cursor: pointer; outline: none;">
+          <option value="newest" selected>Newest ▾</option>
+          <option value="plh">Price (low to high)</option>
+          <option value="phl">Price (high to low)</option>
+        </select>
+      </label>
     </div>
 
     <!-- Main 2-Column Catalog Layout: Left Sidebar + Right 3-Column Grid (Image 1) -->
@@ -379,15 +398,21 @@ $beads_catalog = array(
           <?php 
           foreach ($beads_catalog as $b) : 
             $clean_shape = str_ireplace(array(' & drops', ' & cube'), '', $b['shape']);
-            $card_title = $b['stone'] . ' ' . $b['cut'] . ' ' . $clean_shape . ' Beads ' . $b['size'] . ' mm';
+            if (stripos($clean_shape, $b['cut']) === 0) {
+              $display_shape = trim(substr($clean_shape, strlen($b['cut'])));
+            } else {
+              $display_shape = $clean_shape;
+            }
+            $card_title = $b['stone'] . ' ' . $b['cut'] . ' ' . $display_shape . ' Beads ' . $b['size'] . ' mm';
             $card_meta = ($b['sold'] === 'Strand' ? 'Strand ' . $b['len'] . ' · ' : '') . $b['n'] . ' · hole ' . $b['hole'] . ' mm';
             $unit_label = ($b['sold'] === 'Strand') ? 'per strand' : 'per piece';
+            $strand_svg_inline = vivaaz_render_strand_svg($b['shape'], $b['col'], 260);
           ?>
-            <div class="bead-card-item" data-stone="<?php echo esc_attr($b['stone']); ?>" data-shape="<?php echo esc_attr($b['shape']); ?>" data-size="<?php echo esc_attr($b['size']); ?>" style="position: relative; background: #FFFFFF; border: 1px solid #EFE9E0; display: flex; flex-direction: column; transition: box-shadow .3s;">
+            <div class="bead-card-item" data-price="<?php echo esc_attr($b['price']); ?>" data-stone="<?php echo esc_attr($b['stone']); ?>" data-shape="<?php echo esc_attr($b['shape']); ?>" data-size="<?php echo esc_attr($b['size']); ?>" style="position: relative; background: #FFFFFF; border: 1px solid #EFE9E0; display: flex; flex-direction: column; transition: box-shadow .3s;">
               
               <!-- Card Photo / SVG Strand Illustration (Image 1) -->
-              <div class="bead-card-ph" style="position: relative; aspect-ratio: 1/1; background: #F6F4F0; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                <?php echo vivaaz_render_strand_svg($b['shape'], $b['col'], 260); ?>
+              <div class="bead-card-ph" id="bead-ph-<?php echo esc_attr($b['id']); ?>" style="position: relative; aspect-ratio: 1/1; background: #F6F4F0; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                <?php echo $strand_svg_inline; ?>
                 
                 <!-- Wishlist Heart Button top-right (Image 1) -->
                 <button type="button" class="bead-wl-btn" onclick="toggleBeadWishlist('<?php echo esc_js($b['id']); ?>', this)" style="position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: #FFFFFF; border: 1px solid #E8E1D6; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #76706A; font-size: 15px; z-index: 2;">
@@ -395,7 +420,7 @@ $beads_catalog = array(
                 </button>
 
                 <!-- Quick view bar on hover -->
-                <button type="button" class="qv-overlay-btn" onclick="openBeadQuickView('<?php echo esc_js($card_title); ?>', '<?php echo esc_js($card_meta); ?>', '₹<?php echo number_format($b['price']); ?> <?php echo $unit_label; ?>')" style="position: absolute; left: 0; right: 0; bottom: 0; background: #1C1A17; color: #FFFFFF; border: 0; padding: 10px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; z-index: 3;">
+                <button type="button" class="qv-overlay-btn" onclick="openBeadQuickView('<?php echo esc_js($b['id']); ?>', '<?php echo esc_js($card_title); ?>', '<?php echo esc_js($card_meta); ?>', <?php echo intval($b['price']); ?>, '<?php echo esc_js($b['len']); ?>', '<?php echo esc_js($unit_label); ?>')" style="position: absolute; left: 0; right: 0; bottom: 0; background: #1C1A17; color: #FFFFFF; border: 0; padding: 10px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; z-index: 3;">
                   QUICK VIEW
                 </button>
               </div>
@@ -410,7 +435,7 @@ $beads_catalog = array(
                 </div>
 
                 <div>
-                  <button type="button" onclick="selectBeadOptions('<?php echo esc_js($card_title); ?>', '₹<?php echo number_format($b['price']); ?>')" class="ul-btn-link" style="background: none; border: none; padding: 0; font-family: inherit; font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #1C1A17; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;">
+                  <button type="button" onclick="openBeadQuickView('<?php echo esc_js($b['id']); ?>', '<?php echo esc_js($card_title); ?>', '<?php echo esc_js($card_meta); ?>', <?php echo intval($b['price']); ?>, '<?php echo esc_js($b['len']); ?>', '<?php echo esc_js($unit_label); ?>')" class="ul-btn-link" style="background: none; border: none; padding: 0; font-family: inherit; font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #1C1A17; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;">
                     SELECT OPTIONS
                   </button>
                 </div>
@@ -512,7 +537,8 @@ $beads_catalog = array(
     gap: 8px !important;
   }
   .beads-cards-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
   }
 }
 </style>
@@ -621,37 +647,176 @@ function toggleBeadWishlist(id, btn) {
   }
 }
 
-function openBeadQuickView(title, meta, price) {
+function openBeadFilterSheet() {
+  var s = document.getElementById('mobile-bead-filter-sheet');
+  var sc = document.getElementById('mobile-bead-scrim');
+  if (s) { s.classList.add('open'); s.style.setProperty('display', 'flex', 'important'); }
+  if (sc) { sc.classList.add('open'); sc.style.setProperty('display', 'block', 'important'); }
+  document.body.style.overflow = 'hidden';
+}
+
+function openBeadSortSheet() {
+  var s = document.getElementById('mobile-bead-sort-sheet');
+  var sc = document.getElementById('mobile-bead-scrim');
+  if (s) { s.classList.add('open'); s.style.setProperty('display', 'flex', 'important'); }
+  if (sc) { sc.classList.add('open'); sc.style.setProperty('display', 'block', 'important'); }
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBeadSheets() {
+  document.querySelectorAll('#mobile-bead-filter-sheet, #mobile-bead-sort-sheet').forEach(function(s) {
+    s.classList.remove('open');
+    s.style.setProperty('display', 'none', 'important');
+  });
+  var sc = document.getElementById('mobile-bead-scrim');
+  if (sc) { sc.classList.remove('open'); sc.style.setProperty('display', 'none', 'important'); }
+  document.body.style.overflow = '';
+}
+
+function applyBeadsSort(val) {
+  var grid = document.getElementById('beads-cards-grid');
+  if (!grid) return;
+  var cards = Array.from(grid.querySelectorAll('.bead-card-item'));
+  if (val === 'plh') {
+    cards.sort(function(a, b) {
+      return (parseFloat(a.getAttribute('data-price')) || 0) - (parseFloat(b.getAttribute('data-price')) || 0);
+    });
+  } else if (val === 'phl') {
+    cards.sort(function(a, b) {
+      return (parseFloat(b.getAttribute('data-price')) || 0) - (parseFloat(a.getAttribute('data-price')) || 0);
+    });
+  }
+  cards.forEach(function(c) { grid.appendChild(c); });
+}
+
+var currentBeadModalPrice = 0;
+var currentBeadModalBasePrice = 0;
+var currentBeadModalTitle = '';
+var currentBeadModalImg = '';
+var currentBeadModalLen = '16 in';
+
+function openBeadQuickView(id, title, meta, basePrice, defaultLen, unitLabel) {
   var modal = document.getElementById('vivaaz-quickview-modal');
   var backdrop = document.getElementById('quickview-modal-backdrop');
   var body = document.getElementById('quickview-modal-body');
-  if (!modal || !body) {
-    if (typeof showWishlistToast === 'function') showWishlistToast(title + ' · ' + price);
-    return;
+  if (!modal || !body) return;
+
+  currentBeadModalBasePrice = basePrice || 500;
+  currentBeadModalPrice = currentBeadModalBasePrice;
+  currentBeadModalTitle = title;
+  currentBeadModalLen = defaultLen || '16 in';
+
+  // Get real strand SVG from the card
+  var ph = document.getElementById('bead-ph-' + id);
+  var svgHtml = '';
+  if (ph) {
+    var svgEl = ph.querySelector('svg');
+    if (svgEl) {
+      svgHtml = svgEl.outerHTML;
+    }
   }
+
   var html = '<div class="qvg" style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;">' +
-    '<div class="qvi" style="background:#F6F4F0;display:flex;align-items:center;justify-content:center;aspect-ratio:1;overflow:hidden;padding:20px;">' +
-    '<img src="<?php echo esc_url(get_stylesheet_directory_uri() . "/assets/images/emerald.jpg"); ?>" alt="' + title + '" style="width:75%;object-fit:contain;"></div>' +
-    '<div>' +
-    '<span style="font-size:10.5px;letter-spacing:0.2em;color:#9B7C4E;font-weight:700;text-transform:uppercase;">GEMSTONE BEADS</span>' +
-    '<h3 style="font-family:var(--display);font-size:22px;font-weight:400;margin:8px 0;color:#1C1A17;">' + title + '</h3>' +
-    '<div style="font-size:13px;color:#76706A;margin-bottom:12px;">' + meta + '</div>' +
-    '<div style="font-size:20px;font-weight:600;margin:0 0 16px;color:#1C1A17;">' + price + '</div>' +
-    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">' +
-    '<button type="button" class="btn" onclick="if(typeof addProductToCartAndOpenDrawer===\'function\'){addProductToCartAndOpenDrawer(1, \'' + title.replace(/'/g, "\\'") + '\', \'<?php echo esc_url(get_stylesheet_directory_uri() . "/assets/images/emerald.jpg"); ?>\', \'' + price + '\', \'Standard Strand\', 1);closeQuickViewModal();}else{closeQuickViewModal();}" style="padding:12px;font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:#1C1A17;color:#fff;border:none;cursor:pointer;">Add to bag</button>' +
-    '<a href="https://wa.me/919680552270?text=' + encodeURIComponent('Hello Vivaaz Gems, I would like to buy: ' + title) + '" target="_blank" class="btn wa" style="padding:12px;font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:#1E9E52;color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">WhatsApp</a>' +
+    '<div class="qvi" style="background:#F6F4F0;display:flex;align-items:center;justify-content:center;aspect-ratio:1;overflow:hidden;padding:16px;">' +
+    (svgHtml || '<div style="font-weight:600;color:#9B7C4E;">Gemstone Strand</div>') +
     '</div>' +
+    '<div>' +
+      '<span style="font-size:10.5px;letter-spacing:0.2em;color:#9B7C4E;font-weight:700;text-transform:uppercase;">GEMSTONE BEADS</span>' +
+      '<h3 style="font-family:var(--display);font-size:22px;font-weight:400;margin:6px 0 8px;color:#1C1A17;">' + title + '</h3>' +
+      '<div style="font-size:12.5px;color:#76706A;margin-bottom:12px;">' + meta + '</div>' +
+      
+      '<div style="margin-bottom:14px;">' +
+        '<div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#76706A;margin-bottom:6px;">STRAND LENGTH</div>' +
+        '<div style="display:flex;gap:6px;">' +
+          '<button type="button" class="chip sm ' + (currentBeadModalLen.includes('8') ? 'on' : '') + '" onclick="updateBeadModalLen(\'8 in\', 0.55, this)" style="padding:5px 10px;font-size:12px;">8 in (half strand)</button>' +
+          '<button type="button" class="chip sm ' + (currentBeadModalLen.includes('16') ? 'on' : '') + '" onclick="updateBeadModalLen(\'16 in\', 1, this)" style="padding:5px 10px;font-size:12px;">16 in (full strand)</button>' +
+          '<button type="button" class="chip sm ' + (currentBeadModalLen.includes('32') ? 'on' : '') + '" onclick="updateBeadModalLen(\'32 in\', 1.9, this)" style="padding:5px 10px;font-size:12px;">32 in (double)</button>' +
+        '</div>' +
+      '</div>' +
+
+      '<div id="bead-modal-price-display" style="font-size:22px;font-weight:600;margin:0 0 16px;color:#1C1A17;">₹' + Math.round(currentBeadModalPrice).toLocaleString('en-IN') + ' <span style="font-size:13px;font-weight:400;color:#76706A;">' + (unitLabel || 'per strand') + '</span></div>' +
+
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">' +
+        '<button type="button" class="btn" onclick="addCurrentBeadToBag();" style="padding:12px;font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:#1C1A17;color:#fff;border:none;cursor:pointer;">Add to bag</button>' +
+        '<a href="https://wa.me/919680552270?text=' + encodeURIComponent('Hello Vivaaz Gems, I would like to buy: ' + title + ' (' + currentBeadModalLen + ')') + '" target="_blank" class="btn wa" style="padding:12px;font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:#1E9E52;color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">WhatsApp</a>' +
+      '</div>' +
     '</div></div>';
+
   body.innerHTML = html;
   modal.style.display = 'block';
   if (backdrop) backdrop.style.display = 'block';
   document.body.style.overflow = 'hidden';
 }
 
-function selectBeadOptions(title, price) {
-  openBeadQuickView(title, 'Standard Jaipur Drilled Bead Strand', price);
+function updateBeadModalLen(len, multiplier, btn) {
+  currentBeadModalLen = len;
+  currentBeadModalPrice = Math.round(currentBeadModalBasePrice * multiplier);
+  if (btn && btn.parentElement) {
+    btn.parentElement.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('on'); });
+    btn.classList.add('on');
+  }
+  var pDisp = document.getElementById('bead-modal-price-display');
+  if (pDisp) {
+    pDisp.innerHTML = '₹' + currentBeadModalPrice.toLocaleString('en-IN') + ' <span style="font-size:13px;font-weight:400;color:#76706A;">per strand (' + len + ')</span>';
+  }
+}
+
+function addCurrentBeadToBag() {
+  if (typeof addProductToCartAndOpenDrawer === 'function') {
+    addProductToCartAndOpenDrawer(1, currentBeadModalTitle + ' (' + currentBeadModalLen + ')', '<?php echo esc_url(vivaaz_get_img_url("moonstone.jpg")); ?>', '₹' + currentBeadModalPrice, currentBeadModalLen, 1);
+  }
+  closeQuickViewModal();
 }
 </script>
+
+<!-- MOBILE BOTTOM SHEETS FOR BEADS FILTER & SORT (Point 25 Spec) -->
+<div class="scrim" id="mobile-bead-scrim" style="display:none; position:fixed; inset:0; background:rgba(28,26,23,.5); z-index:99998;" onclick="closeBeadSheets();"></div>
+
+<section class="sheet filter-sheet" id="mobile-bead-filter-sheet" role="dialog" aria-label="Filters" style="display:none;">
+  <div class="sh">
+    <b>Filter</b>
+    <button type="button" onclick="closeBeadSheets();" aria-label="Close" style="background:none; border:0; font-size:24px; cursor:pointer; color:var(--soft); line-height:1;">&times;</button>
+  </div>
+  <div class="sb2" style="padding:14px 18px;">
+    <div style="margin-bottom:18px;">
+      <span class="cap" style="display:block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#76706A; margin-bottom:10px;">STONE</span>
+      <div style="display:flex; flex-wrap:wrap; gap:6px;">
+        <button type="button" class="chip" onclick="toggleBeadFilter('stone', 'Amethyst', this)">Amethyst</button>
+        <button type="button" class="chip" onclick="toggleBeadFilter('stone', 'Blue Topaz', this)">Blue Topaz</button>
+        <button type="button" class="chip" onclick="toggleBeadFilter('stone', 'Emerald', this)">Emerald</button>
+        <button type="button" class="chip" onclick="toggleBeadFilter('stone', 'Garnet', this)">Garnet</button>
+        <button type="button" class="chip" onclick="toggleBeadFilter('stone', 'Labradorite', this)">Labradorite</button>
+        <button type="button" class="chip" onclick="toggleBeadFilter('stone', 'Ruby', this)">Ruby</button>
+      </div>
+    </div>
+    <div style="margin-bottom:18px;">
+      <span class="cap" style="display:block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#76706A; margin-bottom:10px;">BEAD SHAPE</span>
+      <div style="display:flex; flex-wrap:wrap; gap:6px;">
+        <button type="button" class="chip" onclick="toggleBeadFilter('shape', 'Round', this)">Round</button>
+        <button type="button" class="chip" onclick="toggleBeadFilter('shape', 'Rondelle', this)">Rondelle</button>
+        <button type="button" class="chip" onclick="toggleBeadFilter('shape', 'Nugget', this)">Nugget</button>
+        <button type="button" class="chip" onclick="toggleBeadFilter('shape', 'Chips', this)">Chips</button>
+        <button type="button" class="chip" onclick="toggleBeadFilter('shape', 'Heishi', this)">Heishi</button>
+      </div>
+    </div>
+  </div>
+  <div class="sf">
+    <button type="button" class="btn o" onclick="resetAllBeadFilters(); closeBeadSheets();">Clear all</button>
+    <button type="button" class="btn" onclick="closeBeadSheets();">Show results</button>
+  </div>
+</section>
+
+<section class="sheet sort-sheet" id="mobile-bead-sort-sheet" role="dialog" aria-label="Sort" style="display:none;">
+  <div class="sh">
+    <b>Sort</b>
+    <button type="button" onclick="closeBeadSheets();" aria-label="Close" style="background:none; border:0; font-size:24px; cursor:pointer; color:var(--soft); line-height:1;">&times;</button>
+  </div>
+  <div class="sb2" style="padding:10px 18px;">
+    <button type="button" class="opt on" onclick="applyBeadsSort('newest'); closeBeadSheets();">Newest ✓</button>
+    <button type="button" class="opt" onclick="applyBeadsSort('plh'); closeBeadSheets();">Price low to high</button>
+    <button type="button" class="opt" onclick="applyBeadsSort('phl'); closeBeadSheets();">Price high to low</button>
+  </div>
+</section>
 
 <?php
 get_footer('shop');

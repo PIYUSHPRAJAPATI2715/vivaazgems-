@@ -186,13 +186,47 @@ if (is_page('privacy') || is_page('privacy-policy') || strpos($request_uri, '/pr
 }
 
 // 26. Single Product Detail Route
-if ((function_exists('is_product') && is_product()) || is_singular('product') || (isset($_GET['post_type']) && $_GET['post_type'] === 'product') || strpos($request_uri, '/product/') !== false) {
+$is_product_url = (strpos($request_uri, '/product/') !== false || preg_match('~^product(/|$)~i', $clean_path));
+if ((function_exists('is_product') && is_product()) || is_singular('product') || (isset($_GET['post_type']) && $_GET['post_type'] === 'product') || $is_product_url) {
     vivaaz_safe_include('single-product.php');
     return;
 }
 
-// 27. Shop Catalog Route
-if ((function_exists('is_shop') && is_shop()) || (function_exists('is_product_taxonomy') && is_product_taxonomy()) || strpos($request_uri, '/shop') !== false) {
+// 27. Shop / Gemstones Catalog Route
+if ((function_exists('is_shop') && is_shop()) || 
+    (function_exists('is_product_taxonomy') && is_product_taxonomy()) || 
+    strpos($request_uri, '/shop') !== false || 
+    strpos($request_uri, '/gemstones') !== false || 
+    strpos($request_uri, '/gemstone') !== false || 
+    strpos($request_uri, '/product-category') !== false ||
+    $clean_path === 'shop' || $clean_path === 'gemstones' ||
+    strpos($clean_path, 'gemstones/') === 0 || strpos($clean_path, 'shop/') === 0 || strpos($clean_path, 'product-category/') === 0) {
+
+    // Extract stone or group slug from clean_path or request_uri
+    if (preg_match('#gemstones?/([a-zA-Z0-9_-]+)#i', $clean_path, $m)) {
+        $slug_param = strtolower(sanitize_title($m[1]));
+        if (!empty($slug_param) && !in_array($slug_param, array('all', 'shop', 'page', 'index'))) {
+            if ($slug_param === 'precious' || $slug_param === 'semi' || $slug_param === 'semi-precious') {
+                $_GET['group'] = ($slug_param === 'precious') ? 'precious' : 'semi';
+                $_GET['filter_group'] = $_GET['group'];
+            } else {
+                $_GET['filter_stone'] = $slug_param;
+                $_GET['stone'] = $slug_param;
+            }
+        }
+    } elseif (preg_match('#product-category/([a-zA-Z0-9_-]+)#i', $clean_path, $m)) {
+        $slug_param = strtolower(sanitize_title($m[1]));
+        if (!empty($slug_param) && !in_array($slug_param, array('all', 'shop', 'page', 'index'))) {
+            if ($slug_param === 'precious' || $slug_param === 'semi' || $slug_param === 'semi-precious') {
+                $_GET['group'] = ($slug_param === 'precious') ? 'precious' : 'semi';
+                $_GET['filter_group'] = $_GET['group'];
+            } else {
+                $_GET['filter_stone'] = $slug_param;
+                $_GET['stone'] = $slug_param;
+            }
+        }
+    }
+
     if (!vivaaz_safe_include('woocommerce/archive-product.php')) {
         vivaaz_safe_include('archive-product.php');
     }

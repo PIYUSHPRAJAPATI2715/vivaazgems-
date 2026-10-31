@@ -25,18 +25,20 @@ $vivaaz_footer_rendered = true;
         </a>
 
         <!-- 4 Outlined Social Icons Centred Below -->
-        <div class="footer-social-icons-centred" style="display: flex; justify-content: center; gap: 16px; margin-top: 18px;">
-          <a href="https://instagram.com/vivaazgems" target="_blank" class="social-circle-outline" title="Instagram">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        <div class="footer-social-icons-centred fsoc" style="display: flex; justify-content: center; gap: 12px; margin-top: 18px;">
+          <a href="https://instagram.com/vivaazgems" target="_blank" class="social-outline-box" aria-label="Instagram" style="width: 36px; height: 36px; border: 1px solid var(--line2, #E6E2DC); display: inline-flex; align-items: center; justify-content: center; color: var(--ink, #1C1A17); background: transparent !important; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
           </a>
-          <a href="https://youtube.com/vivaazgems" target="_blank" class="social-circle-outline" title="YouTube">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          <a href="https://youtube.com/vivaazgems" target="_blank" class="social-outline-box" aria-label="YouTube" style="width: 36px; height: 36px; border: 1px solid var(--line2, #E6E2DC); display: inline-flex; align-items: center; justify-content: center; color: var(--ink, #1C1A17); background: transparent !important; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
           </a>
-          <a href="https://facebook.com/vivaazgems" target="_blank" class="social-circle-outline" title="Facebook">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          <a href="https://facebook.com/vivaazgems" target="_blank" class="social-outline-box" aria-label="Facebook" style="width: 36px; height: 36px; border: 1px solid var(--line2, #E6E2DC); display: inline-flex; align-items: center; justify-content: center; color: var(--ink, #1C1A17); background: transparent !important; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
           </a>
-          <a href="https://wa.me/919680552270" target="_blank" class="social-circle-outline" title="WhatsApp">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          <a href="https://wa.me/919680552270" target="_blank" class="social-outline-box" aria-label="WhatsApp" style="width: 36px; height: 36px; border: 1px solid var(--line2, #E6E2DC); display: inline-flex; align-items: center; justify-content: center; color: #25D366; background: transparent !important; text-decoration: none;">
+            <svg width="18" height="18" viewBox="0 0 448 512" fill="#25D366">
+              <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+            </svg>
           </a>
         </div>
       </div>
@@ -93,9 +95,9 @@ $vivaaz_footer_rendered = true;
         <div class="footer-col-item">
           <h4 class="footer-col-title" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; color: var(--color-text-main);">VISIT US</h4>
           <div style="font-size: 13px; color: var(--color-text-muted); line-height: 2;">
+            <p style="margin: 0;">Jaipur · Adarsh Nagar (B-207)</p>
             <p style="margin: 0;">Jaipur · Johari Bazar</p>
-            <p style="margin: 0;">Jaipur · Adarsh Nagar</p>
-            <p style="margin: 0;">Bangkok</p>
+            <p style="margin: 0;">Bangkok · Gems Tower</p>
           </div>
         </div>
 
@@ -159,14 +161,14 @@ $vivaaz_footer_rendered = true;
         <!-- Visit Us on Mobile -->
         <div style="padding: 18px 0; text-align: center; font-size: 13px; color: var(--mute); line-height: 1.8;">
           <b style="color: var(--ink); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; display: block; margin-bottom: 6px;">VISIT US</b>
-          Jaipur · Johari Bazar &nbsp;·&nbsp; Jaipur · Adarsh Nagar &nbsp;·&nbsp; Bangkok
+          Jaipur · Adarsh Nagar (B-207) &nbsp;·&nbsp; Johari Bazar &nbsp;·&nbsp; Bangkok
         </div>
       </div>
 
       <!-- Updates Line (Build Book Page 6) -->
-      <div class="footer-updates-line" style="text-align: center; padding: 20px 0; border-top: 1px solid var(--color-border-light); font-size: 12px; color: var(--color-text-main);">
+      <div class="footer-updates-line" style="text-align: center; padding: 20px 0; border-top: 1px solid var(--color-border-light); font-size: 13px; color: var(--color-text-main);">
         New stones, first. Fresh lots shared on WhatsApp. 
-        <a href="https://wa.me/919680552270?text=Hello,%20please%20add%20me%20to%20your%20new%20stock%20updates%20on%20WhatsApp." target="_blank" style="font-weight: 600; text-decoration: underline; margin-left: 6px; color: var(--color-text-main);">
+        <a href="https://wa.me/919680552270?text=Hello,%20please%20add%20me%20to%20your%20new%20stock%20updates%20on%20WhatsApp." target="_blank" class="gold-link" style="font-weight: 600; text-decoration: none; margin-left: 6px; color: #9B7C4E !important; background: transparent !important; display: inline-block;">
           Get updates →
         </a>
       </div>
@@ -177,7 +179,7 @@ $vivaaz_footer_rendered = true;
           © <?php echo date('Y'); ?> Vivaaz Gems & Jewellery
         </div>
 
-        <div class="payment-badges-row" style="display: flex; flex-wrap: wrap; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; max-width: 100%;">
+        <div class="payment-badges-row pay" style="display: flex; flex-wrap: nowrap; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; max-width: 100%; overflow-x: auto; white-space: nowrap;">
           <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px; white-space: nowrap;">VISA</span>
           <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px; white-space: nowrap;">MASTERCARD</span>
           <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px; white-space: nowrap;">UPI</span>
@@ -194,50 +196,87 @@ $vivaaz_footer_rendered = true;
     </div>
   </footer>
 
-  <!-- PHONE BOTTOM BAR (FIXED ON PHONE ONLY, EXACT 4 ITEMS: SHOP, SEARCH, WHATSAPP, WISHLIST - 62PX HEIGHT) -->
-  <div class="mobile-fixed-bottom-bar bb" id="mobile-fixed-bottom-bar">
-    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-bar-btn" title="Shop" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: var(--mute); text-decoration: none;">
-      <span class="bar-icon" style="display: flex; justify-content: center; align-items: center;">
-        <svg class="i" style="width: 20px; height: 20px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- PHONE BOTTOM BAR (FIXED ON PHONE ONLY - EXACT 4 ITEMS ON SAME HORIZONTAL LEVEL - POINT 20 SPEC) -->
+  <nav class="mobile-fixed-bottom-bar bb" id="mobile-fixed-bottom-bar" aria-label="Mobile Bottom Navigation" style="position: fixed; bottom: 0; left: 0; right: 0; width: 100%; max-width: 100vw; height: 58px; background: #FAF7F2; border-top: 1px solid #EFE9E0; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; align-items: stretch; justify-items: center; z-index: 99999; margin: 0; padding: 0; box-sizing: border-box; overflow: hidden;">
+    <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="mobile-bar-btn" title="Shop" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; gap: 3px; font-size: 11px; color: #1C1A17; text-decoration: none; padding: 0; margin: 0; background: transparent; border: none; box-sizing: border-box;">
+      <span class="bar-icon" style="display: flex; justify-content: center; align-items: center; height: 22px; width: 22px;">
+        <svg class="i" style="width: 20px; height: 20px; color: #1C1A17;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="3" width="7" height="7"></rect>
           <rect x="14" y="3" width="7" height="7"></rect>
           <rect x="14" y="14" width="7" height="7"></rect>
           <rect x="3" y="14" width="7" height="7"></rect>
         </svg>
       </span>
-      <span class="bar-text" style="font-size: 12px;">Shop</span>
+      <span class="bar-text" style="font-size: 11px; line-height: 1; color: #1C1A17; font-weight: 500;">Shop</span>
     </a>
 
-    <button type="button" class="mobile-bar-btn" onclick="toggleLiveSearchModal();" title="Search" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: var(--mute); background: none; border: 0; cursor: pointer;">
-      <span class="bar-icon" style="display: flex; justify-content: center; align-items: center;">
-        <svg class="i" style="width: 20px; height: 20px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+    <button type="button" class="mobile-bar-btn" onclick="openLiveSearchModal();" title="Search" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; gap: 3px; font-size: 11px; color: #1C1A17; background: transparent; border: none; cursor: pointer; padding: 0; margin: 0; box-sizing: border-box; -webkit-appearance: none;">
+      <span class="bar-icon" style="display: flex; justify-content: center; align-items: center; height: 22px; width: 22px;">
+        <svg class="i" style="width: 20px; height: 20px; color: #1C1A17;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="6.5"></circle>
           <path d="M16 16l4.5 4.5"></path>
         </svg>
       </span>
-      <span class="bar-text" style="font-size: 12px;">Search</span>
+      <span class="bar-text" style="font-size: 11px; line-height: 1; color: #1C1A17; font-weight: 500;">Search</span>
     </button>
 
-    <a href="https://wa.me/919680552270" target="_blank" class="mobile-bar-btn" title="WhatsApp" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: var(--mute); text-decoration: none;">
-      <span class="bar-icon" style="display: flex; justify-content: center; align-items: center;">
-        <svg class="i" style="width: 20px; height: 20px; color: #1E9E52;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4.5 19.5l1.2-3.6A7.8 7.8 0 1 1 8.6 18.6z"></path>
-          <path d="M9.3 9.2c.3 2.4 2.6 4.8 5.4 5.4l1.1-1.1-1.7-.9-.7.7c-1.1-.5-2-1.4-2.5-2.5l.7-.7-.9-1.7z"></path>
+    <a href="https://wa.me/919680552270" target="_blank" rel="noopener noreferrer" class="mobile-bar-btn" title="WhatsApp" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; gap: 3px; font-size: 11px; color: #1C1A17; text-decoration: none; padding: 0; margin: 0; background: transparent; border: none; box-sizing: border-box;">
+      <span class="bar-icon" style="display: flex; justify-content: center; align-items: center; height: 22px; width: 22px;">
+        <svg style="width: 20px; height: 20px; fill: #25D366; display: block;" viewBox="0 0 448 512">
+          <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
         </svg>
       </span>
-      <span class="bar-text" style="font-size: 12px;">WhatsApp</span>
+      <span class="bar-text" style="font-size: 11px; line-height: 1; color: #1C1A17; font-weight: 500;">WhatsApp</span>
     </a>
 
-    <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="mobile-bar-btn" title="Wishlist" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: var(--mute); text-decoration: none; position: relative;">
-      <span class="bar-icon" style="display: flex; justify-content: center; align-items: center;">
-        <svg class="i" style="width: 20px; height: 20px; color: var(--ink);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+    <a href="<?php echo esc_url(home_url('/wishlist/')); ?>" class="mobile-bar-btn" title="Wishlist" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; gap: 3px; font-size: 11px; color: #1C1A17; text-decoration: none; position: relative; padding: 0; margin: 0; background: transparent; border: none; box-sizing: border-box;">
+      <span class="bar-icon" style="display: flex; justify-content: center; align-items: center; height: 22px; width: 22px; position: relative;">
+        <svg class="i" style="width: 20px; height: 20px; color: #1C1A17;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 19.5s-7.5-4.6-7.5-10.1A4.1 4.1 0 0 1 12 7.2a4.1 4.1 0 0 1 7.5 2.2c0 5.5-7.5 10.1-7.5 10.1z"></path>
         </svg>
+        <span class="cart-badge-count" id="mobile-bar-wishlist-count" style="display: none; position: absolute; top: -4px; right: -8px; width: 15px; height: 15px; border-radius: 50%; background: #1C1A17; color: #fff; font-size: 9px; font-weight: 700; align-items: center; justify-content: center; line-height: 15px; text-align: center;">0</span>
       </span>
-      <span class="bar-text" style="font-size: 12px;">Wishlist</span>
-      <span class="cart-badge-count" id="mobile-bar-wishlist-count" style="display: none;">0</span>
+      <span class="bar-text" style="font-size: 11px; line-height: 1; color: #1C1A17; font-weight: 500;">Wishlist</span>
     </a>
+  </nav>
+
+  <!-- FLOATING REAL WHATSAPP BUTTON (DESKTOP ONLY - ON MOBILE USE BOTTOM BAR) -->
+  <a href="https://wa.me/919680552270?text=Hello%20Vivaaz%20Gems,%20I%20have%20an%20enquiry%20regarding%20gemstones." target="_blank" rel="noopener noreferrer" id="vivaaz-floating-whatsapp" class="btn-wa vivaaz-wa-float" aria-label="Chat on WhatsApp" style="position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: #25D366 !important; background-color: #25D366 !important; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 18px rgba(37,211,102,0.42), 0 2px 8px rgba(0,0,0,0.15); z-index: 9998; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+    <svg style="width: 32px; height: 32px; fill: #FFFFFF; display: block;" viewBox="0 0 448 512">
+      <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+  </a>
+
+  <!-- COOKIE LINE BANNER (POINT 46 SPEC) -->
+  <div id="vivaaz-cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #1C1A17; color: #F5F3EF; font-size: 12.5px; padding: 12px 24px; z-index: 99999; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
+    <div style="flex: 1;">
+      We use cookies to ensure you have the best experience on our website.
+    </div>
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <a href="<?php echo esc_url(home_url('/privacy/')); ?>" style="color: #D9B66F; text-decoration: underline; font-size: 12px;">Privacy</a>
+      <button type="button" onclick="acceptVivaazCookies();" style="padding: 6px 16px; background: #D9B66F; color: #1C1A17; font-weight: 700; border: none; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">Accept</button>
+    </div>
   </div>
+  <script>
+    function acceptVivaazCookies() {
+      try { localStorage.setItem('vivaaz_cookies_accepted', '1'); } catch(e){}
+      var cb = document.getElementById('vivaaz-cookie-banner');
+      if (cb) cb.style.display = 'none';
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      try {
+        if (!localStorage.getItem('vivaaz_cookies_accepted')) {
+          var cb = document.getElementById('vivaaz-cookie-banner');
+          if (cb) {
+            cb.style.display = 'flex';
+            if (window.innerWidth <= 820) {
+              cb.style.bottom = '58px';
+            }
+          }
+        }
+      } catch(e){}
+    });
+  </script>
 
   <!-- SCRIM OVERLAY -->
   <div id="vivaaz-scrim" class="scrim" style="display: none; position: fixed; inset: 0; background: rgba(28,26,23,.5); z-index: 9998;" onclick="closeAllModals();"></div>

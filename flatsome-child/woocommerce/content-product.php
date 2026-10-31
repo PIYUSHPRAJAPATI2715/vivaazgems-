@@ -64,11 +64,7 @@ if (stripos($title, 'pair') !== false) {
       <?php echo $price_html; ?>
     </div>
     <div class="act">
-      <?php if ($is_variable || $tag_text === 'CALIBRATED LOT') : ?>
-        <a href="<?php echo esc_url($link); ?>" class="ul">SELECT OPTIONS</a>
-      <?php else : ?>
-        <a href="javascript:void(0);" class="ul add-to-cart-link" onclick="event.preventDefault(); event.stopPropagation(); addProductToCartAndOpenDrawer(<?php echo intval($product_id); ?>, <?php echo json_encode($title); ?>, <?php echo json_encode($img_url); ?>, <?php echo json_encode(wp_strip_all_tags($price_html)); ?>);">Add to cart →</a>
-      <?php endif; ?>
+      <a href="<?php echo esc_url($link); ?>" class="ul">ADD TO CART</a>
     </div>
   </div>
 </div>

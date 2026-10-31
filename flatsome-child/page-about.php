@@ -65,7 +65,7 @@ get_header('shop');
         <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: #9C7C4C; text-transform: uppercase;">TRADE CENTRES</span>
         <h2 class="font-serif" style="font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 400; margin: 8px 0 16px; color: #1C1A17;">Jaipur and Bangkok</h2>
         <p style="font-size: 14px; line-height: 1.8; color: #4A4640; margin-bottom: 14px;">
-          Our main office is in Johari Bazar, the gem market of Jaipur, where stones have been traded for generations, and we have a second Jaipur office in Adarsh Nagar. Our Bangkok office, Ruby Center (Thailand), sits in one of the world's great centres for ruby, sapphire and spinel. Having both lets us source the right stones at the source and keep a wide, steady stock.
+          Our head office and showroom is in Adarsh Nagar (2nd Floor, B-207, Janta Colony, Jaipur 302004) with a trading office in Johari Bazar, the historic gem market of Jaipur. Our Bangkok office, Ruby Center (Thailand), sits in one of the world's great centres for ruby, sapphire and spinel. Having both lets us source the right stones at the source and keep a wide, steady stock.
         </p>
         <p style="font-size: 14px; line-height: 1.8; color: #4A4640; margin: 0;">
           We exhibit at the Bangkok Gems & Jewelry Fair, where jewellers from around the world come to see our layouts and lots in person.
