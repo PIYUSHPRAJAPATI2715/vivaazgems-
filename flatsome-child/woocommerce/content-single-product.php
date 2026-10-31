@@ -102,7 +102,11 @@ foreach ($precious_gems as $pg) {
 $group_name = $is_precious ? 'Precious' : 'Semi-precious';
 $group_filter = $is_precious ? 'precious' : 'semi-precious';
 
-do_action('woocommerce_before_single_product');
+if ($product && is_object($product) && is_a($product, 'WC_Product')) {
+    do_action('woocommerce_before_single_product');
+} elseif (function_exists('wc_print_notices')) {
+    wc_print_notices();
+}
 ?>
 
 <div class="wrap" style="padding-top: 18px; padding-bottom: 72px;">
@@ -668,9 +672,6 @@ do_action('woocommerce_before_single_product');
   </button>
   <a href="https://wa.me/919680552270?text=Hello%20Vivaaz%20Gems,%20I%20am%20interested%20in%20<?php echo urlencode($title); ?>" target="_blank" class="btn wa-btn" style="text-decoration: none; width: 130px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: #1E9E52; color: #fff; font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">
     <svg class="i" style="width: 17px; height: 17px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.17 8.17 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.39-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.188 8.188 0 0 1-1.25-4.37c0-4.54 3.7-8.24 8.24-8.24zm-4.71 4.54c-.26 0-.67.1-1.02.48-.35.38-1.35 1.32-1.35 3.22 0 1.9 1.38 3.74 1.57 4 .19.26 2.68 4.25 6.64 5.8.94.37 1.68.59 2.25.77.95.3 1.82.26 2.51.16.77-.12 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.91-.1-.17-.37-.27-.78-.47-.41-.2-2.43-1.2-2.81-1.34-.38-.14-.65-.2-.93.2-.27.4-.1.06-1.39 1.65-.17.2-.35.23-.76.03-.41-.2-1.73-.64-3.3-2.04-1.22-1.09-2.05-2.43-2.29-2.84-.24-.41-.03-.63.18-.83.18-.18.41-.47.62-.7.2-.24.27-.4.41-.67.14-.27.07-.5-.03-.7-.1-.2-.93-2.24-1.27-3.07-.34-.81-.68-.7-.93-.71z"/></svg>
-    WhatsApp
-  </a>
-</div>
     WhatsApp
   </a>
 </div>

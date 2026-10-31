@@ -567,7 +567,8 @@ function vivaaz_resolve_stone_from_request($product_id = 0) {
 
     // Direct lookup in Master Catalog
     if (function_exists('vivaaz_get_product_by_slug_or_id')) {
-        $cat_item = vivaaz_get_product_by_slug_or_id($slug ?: ($product ? $product->get_slug() : ''));
+        $product_slug = ($product && is_object($product) && method_exists($product, 'get_slug')) ? $product->get_slug() : '';
+        $cat_item = vivaaz_get_product_by_slug_or_id($slug ?: $product_slug);
         if (!$cat_item && !empty($_GET['stone'])) {
             $cat_item = vivaaz_get_product_by_slug_or_id($_GET['stone']);
         }
@@ -947,11 +948,30 @@ function vivaaz_universal_route_dispatcher($template) {
     // 1. Single Product Route (/product/*)
     if (strpos($request_uri, '/product/') !== false || preg_match('~^product(/|$)~i', $path)) {
         global $wp_query;
+        $slug = '';
+        if (preg_match('~/product/([^/?#]+)~i', $request_uri, $m)) {
+            $slug = strtolower(sanitize_title($m[1]));
+        }
+
+        $existing_post = (!empty($slug) && function_exists('get_page_by_path')) ? get_page_by_path($slug, OBJECT, 'product') : null;
+
         if (isset($wp_query)) {
             $wp_query->is_404 = false;
-            $wp_query->is_page = false;
-            $wp_query->is_single = true;
-            $wp_query->is_singular = true;
+            if ($existing_post) {
+                $wp_query->post = $existing_post;
+                $wp_query->posts = array($existing_post);
+                $wp_query->queried_object = $existing_post;
+                $wp_query->queried_object_id = $existing_post->ID;
+                $wp_query->is_single = true;
+                $wp_query->is_singular = true;
+                $wp_query->is_page = false;
+                setup_postdata($existing_post);
+            } else {
+                // Virtual catalog route: set safe query flags so SEO/core hooks don't crash on null post
+                $wp_query->is_page = true;
+                $wp_query->is_single = false;
+                $wp_query->is_singular = false;
+            }
         }
         status_header(200);
         $sp = get_stylesheet_directory() . '/single-product.php';

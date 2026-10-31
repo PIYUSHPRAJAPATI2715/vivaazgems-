@@ -8,6 +8,10 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
+@ini_set('display_errors', 1);
+@ini_set('display_startup_errors', 1);
+@error_reporting(E_ALL);
+
 get_header('shop');
 ?>
 
@@ -17,25 +21,26 @@ get_header('shop');
         <?php
         $included = false;
 
-        // 1. Prioritize child theme content-single-product.php
         $child_template = get_stylesheet_directory() . '/content-single-product.php';
         $woo_template   = get_stylesheet_directory() . '/woocommerce/content-single-product.php';
 
-        if (file_exists($child_template)) {
-            include $child_template;
-            $included = true;
-        } elseif (file_exists($woo_template)) {
-            include $woo_template;
-            $included = true;
-        } elseif (function_exists('wc_get_template_part')) {
-            wc_get_template_part('content', 'single-product');
-            $included = true;
-        } else {
-            $located = locate_template(array('content-single-product.php', 'woocommerce/content-single-product.php'));
-            if (!empty($located) && file_exists($located)) {
-                include $located;
+        try {
+            if (file_exists($child_template)) {
+                include $child_template;
+                $included = true;
+            } elseif (file_exists($woo_template)) {
+                include $woo_template;
+                $included = true;
+            } elseif (function_exists('wc_get_template_part')) {
+                wc_get_template_part('content', 'single-product');
                 $included = true;
             }
+        } catch (Throwable $e) {
+            echo '<div style="background:#fff; color:#c00; padding:24px; border:2px solid #c00; margin:30px; font-family:monospace; font-size:14px; z-index:99999; position:relative;">';
+            echo '<strong>Single Product PHP Error:</strong> ' . esc_html($e->getMessage()) . '<br>';
+            echo '<strong>File:</strong> ' . esc_html($e->getFile()) . ' on line ' . esc_html($e->getLine()) . '<br><br>';
+            echo '<pre>' . esc_html($e->getTraceAsString()) . '</pre>';
+            echo '</div>';
         }
         ?>
 
