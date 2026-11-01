@@ -18,11 +18,11 @@ if (!defined('ABSPATH')) {
 
 global $product;
 $product_id = get_the_ID();
-if (!$product && $product_id && function_exists('wc_get_product')) {
+if ((empty($product) || !is_object($product)) && $product_id && function_exists('wc_get_product')) {
     $product = wc_get_product($product_id);
 }
 
-$sku = $product ? $product->get_sku() : 'RMCOC68';
+$sku = (is_object($product) && method_exists($product, 'get_sku')) ? $product->get_sku() : 'RMCOC68';
 if (!$sku) $sku = 'RMCOC68';
 
 $title = get_the_title() ?: 'Rainbow Moonstone Oval Cabochon';
@@ -33,7 +33,7 @@ $stone_info = function_exists('vivaaz_resolve_stone_from_request') ? vivaaz_reso
 $title         = !empty($stone_info['title']) ? $stone_info['title'] : (get_the_title() ?: 'Rainbow Moonstone Oval Cabochon');
 $stone_name    = !empty($stone_info['stone_name']) ? $stone_info['stone_name'] : 'Rainbow Moonstone';
 $stone_key     = !empty($stone_info['stone_key']) ? $stone_info['stone_key'] : 'moonstone';
-$sku           = !empty($stone_info['sku']) ? $stone_info['sku'] : ($product ? $product->get_sku() : 'RMCOC68');
+$sku = !empty($stone_info['sku']) ? $stone_info['sku'] : ((is_object($product) && method_exists($product, 'get_sku')) ? $product->get_sku() : 'RMCOC68');
 $base_unit_1   = !empty($stone_info['base_price']) ? $stone_info['base_price'] : 120;
 $cut_shape     = !empty($stone_info['cut_shape']) ? $stone_info['cut_shape'] : 'Cabochon, oval';
 $origin        = !empty($stone_info['origin']) ? $stone_info['origin'] : 'Sri Lanka / Jaipur';

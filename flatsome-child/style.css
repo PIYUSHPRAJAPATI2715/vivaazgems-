@@ -8060,3 +8060,32 @@ a#vivaaz-floating-whatsapp,
   }
 }
 
+
+
+/* --- SIGN IN MODAL SOCIAL BUTTONS FIX --- */
+.soc-btn-grid button {
+  border: 1px solid var(--line2, #E6E2DC) !important;
+  padding: 10px 4px !important;
+  display: flex !important;
+  gap: 6px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #FFFFFF !important;
+  color: #1C1A17 !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  height: 42px !important;
+  box-sizing: border-box !important;
+  line-height: 1 !important;
+  width: 100% !important;
+}
+.soc-btn-grid button:hover {
+  border-color: #1C1A17 !important;
+  background: #FAF8F5 !important;
+}

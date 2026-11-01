@@ -1036,19 +1036,19 @@ if (!function_exists('vivaaz_render_tennis_art')) {
 
 <!-- POPUP SIGN IN MODAL (EXACT CLIENT DEMO IMAGE 5 FIDELITY) -->
 <div class="scrim" id="signin-modal-backdrop" style="display:none;" onclick="closeSignInModal();"></div>
-<div class="modal sm" id="vivaaz-signin-modal" role="dialog" aria-label="Sign in" style="display:none;">
-  <button type="button" class="x" onclick="closeSignInModal();" aria-label="Close" style="background:none;border:none;font-size:24px;cursor:pointer;position:absolute;right:22px;top:22px;color:var(--ink);line-height:1;">&times;</button>
-  <h3>Sign in</h3>
-  <p class="sub">Or create an account. It takes one tap.</p>
+<div class="modal sm" id="vivaaz-signin-modal" role="dialog" aria-label="Sign in" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99999;width:min(460px,calc(100% - 32px));max-height:calc(100% - 48px);overflow:auto;background:#FFFDF9;padding:34px 36px 30px;box-shadow:0 30px 80px rgba(0,0,0,.3);box-sizing:border-box;">
+  <button type="button" class="x" onclick="closeSignInModal();" aria-label="Close" style="background:none;border:none;font-size:24px;cursor:pointer;position:absolute;right:22px;top:22px;color:var(--ink,#1C1A17);line-height:1;">&times;</button>
+  <h3 style="font-family:var(--display,'Playfair Display',Georgia,serif);font-size:32px;font-weight:400;margin:0 0 4px;padding-right:30px;color:var(--ink,#1C1A17);">Sign in</h3>
+  <p class="sub" style="font-size:14px;color:var(--mute,#76706A);margin:0 0 20px;">Or create an account. It takes one tap.</p>
   <div id="signin-modal-content">
-    <div class="soc">
-      <button type="button" onclick="fakeSocialLogin('Google');"><span class="lg" style="background:#fff;color:#4285F4;border:1px solid var(--line2,#E2D7C6);">G</span>Google</button>
-      <button type="button" onclick="fakeSocialLogin('Facebook');"><span class="lg" style="background:#1877F2;">f</span>Facebook</button>
-      <button type="button" onclick="showWhatsAppSignIn();"><span class="lg" style="background:#25D366;"><svg class="i" style="width:14px;height:14px;vertical-align:middle;" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></span>WhatsApp</button>
+    <div class="soc-btn-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px;">
+      <button type="button" onclick="fakeSocialLogin('Google');" style="border:1px solid var(--line2,#E6E2DC);padding:10px 4px;display:flex;gap:6px;align-items:center;justify-content:center;background:#fff;color:#1C1A17;font-weight:600;font-size:12px;letter-spacing:0;text-transform:none;white-space:nowrap;cursor:pointer;border-radius:0;box-shadow:none;height:42px;box-sizing:border-box;line-height:1;"><span style="width:20px;height:20px;min-width:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#4285F4;border:1px solid #E2D7C6;font-weight:800;font-size:11px;line-height:1;">G</span>Google</button>
+      <button type="button" onclick="fakeSocialLogin('Facebook');" style="border:1px solid var(--line2,#E6E2DC);padding:10px 4px;display:flex;gap:6px;align-items:center;justify-content:center;background:#fff;color:#1C1A17;font-weight:600;font-size:12px;letter-spacing:0;text-transform:none;white-space:nowrap;cursor:pointer;border-radius:0;box-shadow:none;height:42px;box-sizing:border-box;line-height:1;"><span style="width:20px;height:20px;min-width:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#1877F2;color:#fff;font-weight:800;font-size:11px;line-height:1;">f</span>Facebook</button>
+      <button type="button" onclick="showWhatsAppSignIn();" style="border:1px solid var(--line2,#E6E2DC);padding:10px 4px;display:flex;gap:6px;align-items:center;justify-content:center;background:#fff;color:#1C1A17;font-weight:600;font-size:12px;letter-spacing:0;text-transform:none;white-space:nowrap;cursor:pointer;border-radius:0;box-shadow:none;height:42px;box-sizing:border-box;line-height:1;"><span style="width:20px;height:20px;min-width:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#25D366;color:#fff;line-height:1;"><svg style="width:13px;height:13px;fill:#fff;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></span>WhatsApp</button>
     </div>
-    <div class="or"><span>or</span></div>
-    <button type="button" class="btn o wide" style="width:100%;" onclick="showEmailSignIn();">CONTINUE WITH EMAIL</button>
-    <p style="font-size:12.5px;color:var(--soft);text-align:center;margin:14px 0 0;">New here? The same buttons create your account. Guest checkout always stays: no account is needed to buy.</p>
+    <div class="or" style="display:flex;align-items:center;gap:12px;color:var(--soft,#76706A);font-size:12px;margin:18px 0;"><span style="flex:1;height:1px;background:var(--line,#EFE9E0);"></span><span>or</span><span style="flex:1;height:1px;background:var(--line,#EFE9E0);"></span></div>
+    <button type="button" class="btn o wide" style="width:100%;height:46px;background:transparent;border:1px solid #1C1A17;color:#1C1A17;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;" onclick="showEmailSignIn();">CONTINUE WITH EMAIL</button>
+    <p style="font-size:12.5px;color:var(--soft,#76706A);text-align:center;margin:14px 0 0;line-height:1.5;">New here? The same buttons create your account. Guest checkout always stays: no account is needed to buy.</p>
   </div>
 </div>
 
@@ -1356,17 +1356,68 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     var content = document.getElementById('signin-modal-content');
     if (content) {
       content.innerHTML = `
-        <div class="soc">
-          <button type="button" onclick="fakeSocialLogin('Google');"><span class="lg" style="background:#fff;color:#4285F4;border:1px solid var(--line2,#E2D7C6);">G</span>Google</button>
-          <button type="button" onclick="fakeSocialLogin('Facebook');"><span class="lg" style="background:#1877F2;">f</span>Facebook</button>
-          <a href="https://wa.me/919680552270?text=Hello%20Vivaaz%20Gems,%20I%20would%20like%20to%20sign%20in%20to%20my%20account%20via%20WhatsApp." target="_blank" style="text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px;border:1px solid var(--line2,#E2D7C6);background:var(--paper,#fff);color:var(--ink,#1C1A17);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;"><span class="lg" style="background:#25D366;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;"><svg style="width:13px;height:13px;fill:#fff;" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg></span>WhatsApp</a>
+        <div class="soc-btn-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px;">
+          <button type="button" onclick="fakeSocialLogin('Google');" style="border:1px solid var(--line2,#E6E2DC);padding:10px 4px;display:flex;gap:6px;align-items:center;justify-content:center;background:#fff;color:#1C1A17;font-weight:600;font-size:12px;letter-spacing:0;text-transform:none;white-space:nowrap;cursor:pointer;border-radius:0;box-shadow:none;height:42px;box-sizing:border-box;line-height:1;"><span style="width:20px;height:20px;min-width:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#4285F4;border:1px solid #E2D7C6;font-weight:800;font-size:11px;line-height:1;">G</span>Google</button>
+          <button type="button" onclick="fakeSocialLogin('Facebook');" style="border:1px solid var(--line2,#E6E2DC);padding:10px 4px;display:flex;gap:6px;align-items:center;justify-content:center;background:#fff;color:#1C1A17;font-weight:600;font-size:12px;letter-spacing:0;text-transform:none;white-space:nowrap;cursor:pointer;border-radius:0;box-shadow:none;height:42px;box-sizing:border-box;line-height:1;"><span style="width:20px;height:20px;min-width:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#1877F2;color:#fff;font-weight:800;font-size:11px;line-height:1;">f</span>Facebook</button>
+          <button type="button" onclick="showWhatsAppSignIn();" style="border:1px solid var(--line2,#E6E2DC);padding:10px 4px;display:flex;gap:6px;align-items:center;justify-content:center;background:#fff;color:#1C1A17;font-weight:600;font-size:12px;letter-spacing:0;text-transform:none;white-space:nowrap;cursor:pointer;border-radius:0;box-shadow:none;height:42px;box-sizing:border-box;line-height:1;"><span style="width:20px;height:20px;min-width:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#25D366;color:#fff;line-height:1;"><svg style="width:13px;height:13px;fill:#fff;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg></span>WhatsApp</button>
         </div>
-        <div class="or"><span>or</span></div>
-        <button type="button" class="btn o wide" style="width:100%;" onclick="showEmailSignIn();">CONTINUE WITH EMAIL</button>
-        <p style="font-size:12.5px;color:var(--soft);text-align:center;margin:14px 0 0;">New here? The same buttons create your account. Guest checkout always stays: no account is needed to buy.</p>
+        <div class="or" style="display:flex;align-items:center;gap:12px;color:var(--soft,#76706A);font-size:12px;margin:18px 0;"><span style="flex:1;height:1px;background:var(--line,#EFE9E0);"></span><span>or</span><span style="flex:1;height:1px;background:var(--line,#EFE9E0);"></span></div>
+        <button type="button" class="btn o wide" style="width:100%;height:46px;background:transparent;border:1px solid #1C1A17;color:#1C1A17;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;" onclick="showEmailSignIn();">CONTINUE WITH EMAIL</button>
+        <p style="font-size:12.5px;color:var(--soft,#76706A);text-align:center;margin:14px 0 0;line-height:1.5;">New here? The same buttons create your account. Guest checkout always stays: no account is needed to buy.</p>
       `;
     }
   }
+
+  function showWhatsAppSignIn() {
+    var content = document.getElementById('signin-modal-content');
+    if (!content) return;
+    content.innerHTML = `
+      <form onsubmit="handleWhatsAppSignInSubmit(event);">
+        <div style="margin-bottom:14px;">
+          <label for="sim" style="display:block;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;color:var(--ink,#1C1A17);">WhatsApp Mobile Number</label>
+          <input id="sim" type="tel" required placeholder="+91 98290 00000" value="+91 " style="width:100%;height:44px;padding:0 12px;border:1px solid #D9CFC0;background:var(--paper,#fff);box-sizing:border-box;font-size:14px;">
+          <small style="display:block;color:var(--soft,#76706A);font-size:11.5px;margin-top:5px;">We send a one-time code on WhatsApp (or click direct login below).</small>
+        </div>
+        <button type="submit" class="btn wide" style="width:100%;padding:14px;background:#25D366;color:#fff;border:none;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;margin-bottom:10px;">Send WhatsApp code</button>
+        <div style="text-align:center;margin-top:10px;">
+          <a href="https://wa.me/919680552270?text=Hello%20Vivaaz%20Gems,%20I%20would%20like%20to%20sign%20in%20to%20my%20account%20via%20WhatsApp." target="_blank" style="font-size:12px;color:#1E9E52;font-weight:600;text-decoration:underline;">Or chat with us directly on WhatsApp →</a>
+        </div>
+        <p style="font-size:12.5px;text-align:center;margin:14px 0 0;">
+          <a href="javascript:void(0);" onclick="resetSignInModal();" style="color:var(--gold,#9B7C4E);text-decoration:underline;">← Back to all options</a>
+        </p>
+      </form>
+    `;
+  }
+  window.showWhatsAppSignIn = showWhatsAppSignIn;
+
+  function handleWhatsAppSignInSubmit(e) {
+    e.preventDefault();
+    var num = (document.getElementById('sim') || {}).value || '+91';
+    var content = document.getElementById('signin-modal-content');
+    if (!content) return;
+    content.innerHTML = `
+      <form onsubmit="handleOtpVerify(event);">
+        <p style="margin:0 0 12px;font-size:13.5px;color:var(--ink,#1C1A17);">Enter the 6-digit code sent to <b>` + String(num).replace(/</g, '&lt;') + `</b> on WhatsApp.</p>
+        <div class="otp" style="display:flex;gap:8px;justify-content:center;margin:16px 0;">
+          <input maxlength="1" value="4" style="width:42px;height:48px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
+          <input maxlength="1" value="8" style="width:42px;height:48px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
+          <input maxlength="1" value="2" style="width:42px;height:48px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
+          <input maxlength="1" value="6" style="width:42px;height:48px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
+          <input maxlength="1" value="1" style="width:42px;height:48px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
+          <input maxlength="1" value="9" style="width:42px;height:48px;text-align:center;font-size:20px;font-weight:700;border:1px solid #D9CFC0;">
+        </div>
+        <button type="submit" class="btn wide" style="width:100%;padding:14px;background:#1C1A17;color:#fff;border:none;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;">Verify and sign in</button>
+        <p style="font-size:12.5px;color:var(--soft,#76706A);text-align:center;margin-top:12px;">Didn't get it? <a href="javascript:void(0);" onclick="showWhatsAppSignIn();" style="color:var(--gold,#9B7C4E);text-decoration:underline;">Send again</a> · <a href="javascript:void(0);" onclick="resetSignInModal();" style="color:var(--gold,#9B7C4E);text-decoration:underline;">All options</a></p>
+      </form>
+    `;
+  }
+  window.handleWhatsAppSignInSubmit = handleWhatsAppSignInSubmit;
+
+  function handleOtpVerify(e) {
+    e.preventDefault();
+    fakeSocialLogin('WhatsApp');
+  }
+  window.handleOtpVerify = handleOtpVerify;
 
   function showEmailSignIn(tab) {
     var mode = tab || 'signin';

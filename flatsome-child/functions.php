@@ -64,7 +64,7 @@ add_filter('body_class', 'vivaaz_force_full_width_layout', 9999);
 function vivaaz_get_whatsapp_link($product_id = null) {
     if (!$product_id) {
         global $product;
-        $product_id = $product ? $product->get_id() : 0;
+        $product_id = (is_object($product) && method_exists($product, 'get_id')) ? $product->get_id() : 0;
     }
     
     $phone = '+919680552270';
@@ -233,8 +233,8 @@ function vivaaz_stone_passport_shortcode($atts) {
     global $product;
     if (!$product) return '';
     
-    $product_id = $product->get_id();
-    $sku = $product->get_sku();
+    $product_id = (is_object($product) && method_exists($product, 'get_id')) ? $product->get_id() : 0;
+    $sku = (is_object($product) && method_exists($product, 'get_sku')) ? $product->get_sku() : 'RMCOC68';
     
     $origin = $product->get_attribute('origin') ?: 'Sri Lanka (Ceylon)';
     $treatment = $product->get_attribute('treatment') ?: 'Heated';
@@ -625,10 +625,10 @@ function vivaaz_resolve_stone_from_request($product_id = 0) {
     $tolerance = '± 0.1 mm';
     $is_single = false;
 
-    if ($product) {
-        $title = $product->get_name();
-        $sku = $product->get_sku();
-        $reg_p = floatval($product->get_regular_price());
+    if (is_object($product)) {
+        $title = method_exists($product, 'get_name') ? $product->get_name() : '';
+        $sku = method_exists($product, 'get_sku') ? $product->get_sku() : '';
+        $reg_p = method_exists($product, 'get_regular_price') ? floatval($product->get_regular_price()) : 0;
         if ($reg_p > 0) $price = round($reg_p);
     }
 

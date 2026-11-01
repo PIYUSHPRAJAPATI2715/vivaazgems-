@@ -11,18 +11,18 @@ if (!defined('ABSPATH')) {
 
 global $product;
 
-if (empty($product) || !$product->is_visible()) {
+if (empty($product) || !is_object($product) || !method_exists($product, 'is_visible') || !$product->is_visible()) {
     return;
 }
 
-$product_id = $product->get_id();
-$title = $product->get_name();
+$product_id = (is_object($product) && method_exists($product, 'get_id')) ? $product->get_id() : get_the_ID();
+$title = (is_object($product) && method_exists($product, 'get_name')) ? $product->get_name() : get_the_title();
 $link = get_permalink($product_id);
-$price_html = $product->get_price_html();
+$price_html = (is_object($product) && method_exists($product, 'get_price_html')) ? $product->get_price_html() : '';
 $img_url = get_the_post_thumbnail_url($product_id, 'woocommerce_thumbnail') ?: vivaaz_get_img_url('moonstone.jpg');
-$is_variable = $product->is_type('variable');
+$is_variable = (is_object($product) && method_exists($product, 'is_type')) ? $product->is_type('variable') : false;
 
-$gallery_ids = $product->get_gallery_image_ids();
+$gallery_ids = (is_object($product) && method_exists($product, 'get_gallery_image_ids')) ? $product->get_gallery_image_ids() : array();
 $second_img_url = !empty($gallery_ids) ? wp_get_attachment_image_url($gallery_ids[0], 'woocommerce_thumbnail') : '';
 
 // Determine badge & tag
