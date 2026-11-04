@@ -76,7 +76,6 @@ $beads_catalog = array(
         'sold'  => 'Strand',
         'len'   => '16 in',
         'hole'  => '0.8',
-        'q'     => 'AAA',
         'price' => 480,
         'n'     => 'about 66 beads',
     ),
@@ -90,7 +89,6 @@ $beads_catalog = array(
         'sold'  => 'Strand',
         'len'   => '8 in',
         'hole'  => '0.6',
-        'q'     => 'AA',
         'price' => 2900,
         'n'     => 'about 48 beads',
     ),
@@ -104,7 +102,6 @@ $beads_catalog = array(
         'sold'  => 'Strand',
         'len'   => '8 in',
         'hole'  => '0.6',
-        'q'     => 'AA',
         'price' => 6400,
         'n'     => 'about 30 drops',
     ),
@@ -118,7 +115,6 @@ $beads_catalog = array(
         'sold'  => 'Strand',
         'len'   => '16 in',
         'hole'  => '0.8',
-        'q'     => 'AAA',
         'price' => 1150,
         'n'     => 'about 78 beads',
     ),
@@ -132,7 +128,6 @@ $beads_catalog = array(
         'sold'  => 'Strand',
         'len'   => '16 in',
         'hole'  => '0.8',
-        'q'     => 'Commercial',
         'price' => 320,
         'n'     => 'about 90 chips',
     ),
@@ -146,7 +141,6 @@ $beads_catalog = array(
         'sold'  => 'Strand',
         'len'   => '16 in',
         'hole'  => '1',
-        'q'     => 'AA',
         'price' => 980,
         'n'     => 'about 50 beads',
     ),
@@ -160,7 +154,6 @@ $beads_catalog = array(
         'sold'  => 'Strand',
         'len'   => '15 in',
         'hole'  => '1',
-        'q'     => 'AAA',
         'price' => 540,
         'n'     => 'about 48 beads',
     ),
@@ -174,7 +167,6 @@ $beads_catalog = array(
         'sold'  => 'Loose pieces',
         'len'   => '—',
         'hole'  => '1',
-        'q'     => 'AA',
         'price' => 18,
         'n'     => 'per bead',
     ),
@@ -188,7 +180,6 @@ $beads_catalog = array(
         'sold'  => 'Strand',
         'len'   => '16 in',
         'hole'  => '1',
-        'q'     => 'AA',
         'price' => 460,
         'n'     => 'about 160 discs',
     ),
@@ -202,7 +193,6 @@ $beads_catalog = array(
         'sold'  => 'Strand',
         'len'   => '16 in',
         'hole'  => '1.5',
-        'q'     => 'Commercial',
         'price' => 690,
         'n'     => 'about 30 nuggets',
     ),
@@ -216,7 +206,6 @@ $beads_catalog = array(
         'sold'  => 'Loose pieces',
         'len'   => '—',
         'hole'  => '0.6',
-        'q'     => 'AA',
         'price' => 6,
         'n'     => 'per bead',
     ),
@@ -230,7 +219,6 @@ $beads_catalog = array(
         'sold'  => 'Strand',
         'len'   => '18 in',
         'hole'  => '1',
-        'q'     => 'AA',
         'price' => 880,
         'n'     => 'about 55 coins',
     ),
@@ -366,17 +354,7 @@ $beads_catalog = array(
           </div>
         </div>
 
-        <hr style="border: 0; border-top: 1px solid #E8E1D6; margin: 18px 0;">
 
-        <!-- Section: QUALITY (§4 Spec) -->
-        <div style="margin-bottom: 20px;">
-          <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #76706A; margin-bottom: 10px;">QUALITY</span>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-            <button type="button" class="bead-filter-pill" data-group="quality" data-val="AAA" onclick="toggleBeadFilter('quality', 'AAA', this)">AAA <em>6</em></button>
-            <button type="button" class="bead-filter-pill" data-group="quality" data-val="AA" onclick="toggleBeadFilter('quality', 'AA', this)">AA <em>4</em></button>
-            <button type="button" class="bead-filter-pill" data-group="quality" data-val="Commercial" onclick="toggleBeadFilter('quality', 'Commercial', this)">Commercial <em>2</em></button>
-          </div>
-        </div>
 
         <hr style="border: 0; border-top: 1px solid #E8E1D6; margin: 18px 0;">
 

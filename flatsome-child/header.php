@@ -679,42 +679,52 @@ if (!function_exists('vivaaz_render_tennis_art')) {
     <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
   </button>
   <div class="opn" id="mdr-gems" style="display:none;">
-    <div class="mh">PRECIOUS</div>
-    <a href="<?php echo esc_url(home_url('/gemstones/ruby/')); ?>" class="leaf">Ruby</a>
-    <a href="<?php echo esc_url(home_url('/gemstones/sapphire/')); ?>" class="leaf">Sapphire</a>
-    <a href="<?php echo esc_url(home_url('/gemstones/emerald/')); ?>" class="leaf">Emerald</a>
-    <a href="<?php echo esc_url(home_url('/gemstones/precious/')); ?>" class="leaf hi">All precious</a>
-
-    <div class="mh">SEMI-PRECIOUS</div>
-    <div class="two">
-      <a href="<?php echo esc_url(home_url('/gemstones/agate/')); ?>" class="leaf">Agate</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/amazonite/')); ?>" class="leaf">Amazonite</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/amber/')); ?>" class="leaf">Amber</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/amethyst/')); ?>" class="leaf">Amethyst</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/aquamarine/')); ?>" class="leaf">Aquamarine</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/aventurine/')); ?>" class="leaf">Aventurine</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/carnelian/')); ?>" class="leaf">Carnelian</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/citrine/')); ?>" class="leaf">Citrine</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/garnet/')); ?>" class="leaf">Garnet</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/green-jade/')); ?>" class="leaf">Green Jade</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/iolite/')); ?>" class="leaf">Iolite</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/labradorite/')); ?>" class="leaf">Labradorite</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/lapis-lazuli/')); ?>" class="leaf">Lapis Lazuli</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/larimar/')); ?>" class="leaf">Larimar</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/malachite/')); ?>" class="leaf">Malachite</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/onyx/')); ?>" class="leaf">Onyx</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/opal/')); ?>" class="leaf">Opal</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/peridot/')); ?>" class="leaf">Peridot</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/prehnite/')); ?>" class="leaf">Prehnite</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/rainbow-moonstone/')); ?>" class="leaf">Rainbow Moonstone</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/rose-quartz/')); ?>" class="leaf">Rose Quartz</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/tanzanite/')); ?>" class="leaf">Tanzanite</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/tiger-eye/')); ?>" class="leaf">Tiger Eye</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/topaz/')); ?>" class="leaf">Topaz</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/tourmaline/')); ?>" class="leaf">Tourmaline</a>
-      <a href="<?php echo esc_url(home_url('/gemstones/turquoise/')); ?>" class="leaf">Turquoise</a>
+    <button type="button" class="sb" onclick="toggleMdrSub('precious', this);">
+      <span>Precious</span>
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+    </button>
+    <div id="mdr-sub-precious" style="display:none;">
+      <a href="<?php echo esc_url(home_url('/gemstones/ruby/')); ?>" class="leaf">Ruby</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/sapphire/')); ?>" class="leaf">Sapphire</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/emerald/')); ?>" class="leaf">Emerald</a>
+      <a href="<?php echo esc_url(home_url('/gemstones/precious/')); ?>" class="leaf hi">All precious</a>
     </div>
-    <a href="<?php echo esc_url(home_url('/gemstones/semi-precious/')); ?>" class="leaf hi">All semi-precious</a>
+
+    <button type="button" class="sb" onclick="toggleMdrSub('semi', this);">
+      <span>Semi-precious</span>
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 10l5 5 5-5"/></svg>
+    </button>
+    <div id="mdr-sub-semi" style="display:none;">
+      <div class="two">
+        <a href="<?php echo esc_url(home_url('/gemstones/agate/')); ?>" class="leaf">Agate</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/amazonite/')); ?>" class="leaf">Amazonite</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/amber/')); ?>" class="leaf">Amber</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/amethyst/')); ?>" class="leaf">Amethyst</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/aquamarine/')); ?>" class="leaf">Aquamarine</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/aventurine/')); ?>" class="leaf">Aventurine</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/carnelian/')); ?>" class="leaf">Carnelian</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/citrine/')); ?>" class="leaf">Citrine</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/garnet/')); ?>" class="leaf">Garnet</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/green-jade/')); ?>" class="leaf">Green Jade</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/iolite/')); ?>" class="leaf">Iolite</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/labradorite/')); ?>" class="leaf">Labradorite</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/lapis-lazuli/')); ?>" class="leaf">Lapis Lazuli</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/larimar/')); ?>" class="leaf">Larimar</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/malachite/')); ?>" class="leaf">Malachite</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/onyx/')); ?>" class="leaf">Onyx</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/opal/')); ?>" class="leaf">Opal</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/peridot/')); ?>" class="leaf">Peridot</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/prehnite/')); ?>" class="leaf">Prehnite</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/rainbow-moonstone/')); ?>" class="leaf">Rainbow Moonstone</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/rose-quartz/')); ?>" class="leaf">Rose Quartz</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/tanzanite/')); ?>" class="leaf">Tanzanite</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/tiger-eye/')); ?>" class="leaf">Tiger Eye</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/topaz/')); ?>" class="leaf">Topaz</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/tourmaline/')); ?>" class="leaf">Tourmaline</a>
+        <a href="<?php echo esc_url(home_url('/gemstones/turquoise/')); ?>" class="leaf">Turquoise</a>
+      </div>
+      <a href="<?php echo esc_url(home_url('/gemstones/semi-precious/')); ?>" class="leaf hi">All semi-precious</a>
+    </div>
 
     <button type="button" class="sb" onclick="toggleMdrSub('cut', this);">
       <span>By cut</span>
@@ -1174,13 +1184,13 @@ if (!function_exists('vivaaz_render_tennis_art')) {
 
     // SAPPHIRE
     { name: "Ceylon Blue Sapphire Oval Faceted", code: "BSFOV", price: "₹ 1,450 / pc", shape: "Oval", size: "5×7 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
-    { name: "Ceylon Blue Sapphire Round · AA", code: "BSFRD", price: "₹ 620 / pc", shape: "Round", size: "3 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
+    { name: "Ceylon Blue Sapphire Round", code: "BSFRD", price: "₹ 620 / pc", shape: "Round", size: "3 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
     { name: "Ceylon Sapphire Single Stone 2.10ct", code: "BSF1", price: "₹ 38,500", shape: "Cushion", size: "7×7 mm", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/ceylon-blue-sapphire-7x5mm/')); ?>" },
     { name: "Sapphire Tennis Bracelet", code: "TBSPH", price: "from ₹ 28,000", shape: "Line", size: "7 in", img: "<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>", url: "<?php echo esc_url(home_url('/jewelry/?stone=sapphire')); ?>" },
 
     // EMERALD
     { name: "Zambian Emerald Octagon Step Cut", code: "EMFOC", price: "₹ 24,500", shape: "Octagon", size: "8×6 mm", img: "<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/zambian-emerald-octagon/')); ?>" },
-    { name: "Zambian Emerald Oval Faceted · AA", code: "EMFOV", price: "₹ 890 / pc", shape: "Oval", size: "5×7 mm", img: "<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/zambian-emerald-octagon/')); ?>" },
+    { name: "Zambian Emerald Oval Faceted", code: "EMFOV", price: "₹ 890 / pc", shape: "Oval", size: "5×7 mm", img: "<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>", url: "<?php echo esc_url(home_url('/product/zambian-emerald-octagon/')); ?>" },
     { name: "Emerald Necklace Line Layout", code: "LAYEMR", price: "₹ 42,000", shape: "Necklace line", size: "15 stones", img: "<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>", url: "<?php echo esc_url(home_url('/layouts/?stone=emerald')); ?>" },
 
     // MOONSTONE

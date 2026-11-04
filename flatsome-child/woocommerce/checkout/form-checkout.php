@@ -165,6 +165,12 @@ if ($checkout && method_exists($checkout, 'is_registration_enabled')) {
                       <label style="cursor: pointer; font-size: 13px;"><input type="radio" name="payment_method" value="wire" /> Direct Bank Wire / RTGS / NEFT</label>
                     </li>
                   </ul>
+                  <div class="checkout-terms-and-conditions" style="margin: 16px 0 14px; font-size: 13px; color: var(--color-text-main); line-height: 1.5;">
+                    <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer;">
+                      <input type="checkbox" name="terms_and_refund_agree" id="terms_and_refund_agree" required style="margin-top: 3px; cursor: pointer;" />
+                      <span>I have read and agree to the website <a href="<?php echo esc_url(home_url('/terms/')); ?>" target="_blank" style="text-decoration: underline; color: #9B7C4E; font-weight: 600;">Terms and conditions</a> and <a href="<?php echo esc_url(home_url('/refund-policy/')); ?>" target="_blank" style="text-decoration: underline; color: #9B7C4E; font-weight: 600;">Refund and cancellation policy</a>. <span style="color: red;">*</span></span>
+                    </label>
+                  </div>
                   <button type="submit" class="btn-square-dark-full" name="woocommerce_checkout_place_order" id="place_order" value="Place order" style="width: 100%; padding: 14px; background: #1C1A17; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer;">PLACE ORDER →</button>
                 </div>
                 <?php

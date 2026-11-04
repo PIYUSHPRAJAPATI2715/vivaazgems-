@@ -13,7 +13,23 @@ if (!defined('ABSPATH')) {
 get_header('shop');
 
 $current_user = is_user_logged_in() ? wp_get_current_user() : null;
-$user_name = $current_user ? ($current_user->first_name ?: $current_user->display_name) : 'Anita Rao';
+$user_name = $current_user ? ($current_user->first_name ?: $current_user->display_name) : 'Guest';
+$user_email = $current_user ? $current_user->user_email : '';
+$user_phone = $current_user ? get_user_meta($current_user->ID, 'billing_phone', true) : '';
+$user_addr_1 = $current_user ? get_user_meta($current_user->ID, 'billing_address_1', true) : '';
+$user_city = $current_user ? get_user_meta($current_user->ID, 'billing_city', true) : '';
+$user_state = $current_user ? get_user_meta($current_user->ID, 'billing_state', true) : '';
+$user_postcode = $current_user ? get_user_meta($current_user->ID, 'billing_postcode', true) : '';
+
+$user_orders = array();
+if ($current_user && function_exists('wc_get_orders')) {
+    $user_orders = wc_get_orders(array(
+        'customer' => $current_user->ID,
+        'limit'    => 10,
+        'orderby'  => 'date',
+        'order'    => 'DESC',
+    ));
+}
 ?>
 
 <div class="wrap account-page-wrap" style="max-width: 1000px; margin: 0 auto; padding: 24px 20px 80px; min-height: 70vh;">
@@ -147,70 +163,87 @@ $user_name = $current_user ? ($current_user->first_name ?: $current_user->displa
         
         <!-- Tab 1: Dashboard -->
         <div id="pane-Dashboard" class="acct-pane">
-          <h5 style="font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 16px; color: var(--ink, #1C1A17);">LAST ORDER</h5>
-          <table class="tbl" style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
-            <thead>
-              <tr style="border-bottom: 1px solid var(--line, #EFE9E0); color: var(--mute, #A8A29E); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;">
-                <th style="padding: 10px 0;">ORDER</th>
-                <th style="padding: 10px 0;">DATE</th>
-                <th style="padding: 10px 0;">STATUS</th>
-                <th style="padding: 10px 0;">TOTAL</th>
-                <th style="padding: 10px 0;"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="border-bottom: 1px solid var(--line, #EFE9E0);">
-                <td style="padding: 14px 0; font-weight: 600;">#VG-10482</td>
-                <td style="padding: 14px 0; color: var(--soft, #76706A);">8 Oct 2026</td>
-                <td style="padding: 14px 0; color: #1E9E52; font-weight: 600;">Shipped, insured</td>
-                <td style="padding: 14px 0; font-weight: 700;">₹ 6,010</td>
-                <td style="padding: 14px 0; text-align: right;"><a href="<?php echo esc_url(home_url('/track-order/')); ?>" class="link" style="color: var(--gold, #9C7C4C); text-decoration: underline; font-weight: 600;">Track</a></td>
-              </tr>
-            </tbody>
-          </table>
+          <h5 style="font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 16px; color: var(--ink, #1C1A17);">LATEST ACTIVITY</h5>
+          <?php if (!empty($user_orders)) : 
+            $latest = reset($user_orders);
+          ?>
+            <table class="tbl" style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--line, #EFE9E0); color: var(--mute, #A8A29E); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;">
+                  <th style="padding: 10px 0;">ORDER</th>
+                  <th style="padding: 10px 0;">DATE</th>
+                  <th style="padding: 10px 0;">STATUS</th>
+                  <th style="padding: 10px 0;">TOTAL</th>
+                  <th style="padding: 10px 0;"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--line, #EFE9E0);">
+                  <td style="padding: 14px 0; font-weight: 600;">#VG-<?php echo esc_html($latest->get_id()); ?></td>
+                  <td style="padding: 14px 0; color: var(--soft, #76706A);"><?php echo esc_html($latest->get_date_created() ? $latest->get_date_created()->date('j M Y') : date('j M Y')); ?></td>
+                  <td style="padding: 14px 0; color: #1E9E52; font-weight: 600;"><?php echo esc_html(wc_get_order_status_name($latest->get_status())); ?></td>
+                  <td style="padding: 14px 0; font-weight: 700;">₹ <?php echo esc_html(number_format($latest->get_total())); ?></td>
+                  <td style="padding: 14px 0; text-align: right;"><a href="<?php echo esc_url(home_url('/track-order/?order=' . $latest->get_id())); ?>" class="link" style="color: var(--gold, #9C7C4C); text-decoration: underline; font-weight: 600;">Track</a></td>
+                </tr>
+              </tbody>
+            </table>
+          <?php else : ?>
+            <div style="padding: 24px 0; text-align: center;">
+              <p style="font-size: 14px; color: var(--soft, #76706A); margin: 0 0 16px;">No orders placed yet. Start exploring our natural gemstone collection.</p>
+              <a href="<?php echo esc_url(home_url('/gemstones/')); ?>" class="btn sm" style="display: inline-block; padding: 10px 22px; background: #1C1A17; color: #FFFFFF; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;">EXPLORE GEMSTONES →</a>
+            </div>
+          <?php endif; ?>
         </div>
 
         <!-- Tab 2: Orders -->
         <div id="pane-Orders" class="acct-pane" style="display: none;">
           <h5 style="font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 16px; color: var(--ink, #1C1A17);">ORDERS</h5>
-          <table class="tbl" style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
-            <thead>
-              <tr style="border-bottom: 1px solid var(--line, #EFE9E0); color: var(--mute, #A8A29E); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;">
-                <th style="padding: 10px 0;">ORDER</th>
-                <th style="padding: 10px 0;">DATE</th>
-                <th style="padding: 10px 0;">STATUS</th>
-                <th style="padding: 10px 0;">TOTAL</th>
-                <th style="padding: 10px 0;"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="border-bottom: 1px solid var(--line, #EFE9E0);">
-                <td style="padding: 14px 0; font-weight: 600;">#VG-10482</td>
-                <td style="padding: 14px 0; color: var(--soft, #76706A);">8 Oct 2026</td>
-                <td style="padding: 14px 0; color: #1E9E52; font-weight: 600;">Shipped, insured</td>
-                <td style="padding: 14px 0; font-weight: 700;">₹ 6,010</td>
-                <td style="padding: 14px 0; text-align: right;"><a href="<?php echo esc_url(home_url('/track-order/')); ?>" class="link" style="color: var(--gold, #9C7C4C); text-decoration: underline; font-weight: 600;">Track</a></td>
-              </tr>
-              <tr style="border-bottom: 1px solid var(--line, #EFE9E0);">
-                <td style="padding: 14px 0; font-weight: 600;">#VG-10311</td>
-                <td style="padding: 14px 0; color: var(--soft, #76706A);">14 Sep 2026</td>
-                <td style="padding: 14px 0; color: var(--soft, #76706A);">Delivered</td>
-                <td style="padding: 14px 0; font-weight: 700;">₹ 14,200</td>
-                <td style="padding: 14px 0; text-align: right;"><a href="https://wa.me/919680552270?text=Hi,%20I%20would%20like%20to%20reorder%20from%20#VG-10311" target="_blank" class="link" style="color: #1E9E52; text-decoration: underline; font-weight: 600;">Reorder</a></td>
-              </tr>
-            </tbody>
-          </table>
+          <?php if (!empty($user_orders)) : ?>
+            <table class="tbl" style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--line, #EFE9E0); color: var(--mute, #A8A29E); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;">
+                  <th style="padding: 10px 0;">ORDER</th>
+                  <th style="padding: 10px 0;">DATE</th>
+                  <th style="padding: 10px 0;">STATUS</th>
+                  <th style="padding: 10px 0;">TOTAL</th>
+                  <th style="padding: 10px 0;"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($user_orders as $ord) : ?>
+                  <tr style="border-bottom: 1px solid var(--line, #EFE9E0);">
+                    <td style="padding: 14px 0; font-weight: 600;">#VG-<?php echo esc_html($ord->get_id()); ?></td>
+                    <td style="padding: 14px 0; color: var(--soft, #76706A);"><?php echo esc_html($ord->get_date_created() ? $ord->get_date_created()->date('j M Y') : date('j M Y')); ?></td>
+                    <td style="padding: 14px 0; color: #1E9E52; font-weight: 600;"><?php echo esc_html(wc_get_order_status_name($ord->get_status())); ?></td>
+                    <td style="padding: 14px 0; font-weight: 700;">₹ <?php echo esc_html(number_format($ord->get_total())); ?></td>
+                    <td style="padding: 14px 0; text-align: right;"><a href="<?php echo esc_url(home_url('/track-order/?order=' . $ord->get_id())); ?>" class="link" style="color: var(--gold, #9C7C4C); text-decoration: underline; font-weight: 600;">Track</a></td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          <?php else : ?>
+            <div style="padding: 24px 0; text-align: center;">
+              <p style="font-size: 14px; color: var(--soft, #76706A); margin: 0 0 16px;">No orders found. When you purchase gemstones or custom lots, they will appear here.</p>
+              <a href="<?php echo esc_url(home_url('/gemstones/')); ?>" class="btn sm" style="display: inline-block; padding: 10px 22px; background: #1C1A17; color: #FFFFFF; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;">START SHOPPING →</a>
+            </div>
+          <?php endif; ?>
         </div>
 
         <!-- Tab 3: Addresses -->
         <div id="pane-Addresses" class="acct-pane" style="display: none;">
           <h5 style="font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 16px; color: var(--ink, #1C1A17);">ADDRESSES</h5>
-          <p style="font-size: 14px; line-height: 1.8; color: var(--ink, #1C1A17); margin-bottom: 18px;">
-            Anita Rao<br>
-            12 Civil Lines, Jaipur 302001<br>
-            Rajasthan, India
-          </p>
-          <button type="button" class="btn sm o" onclick="alert('Address saved!');" style="padding: 8px 16px; background: #FFFFFF; color: #1C1A17; border: 1px solid #1C1A17; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border-radius: 0;">EDIT ADDRESS</button>
+          <?php if (!empty($user_addr_1)) : ?>
+            <p style="font-size: 14px; line-height: 1.8; color: var(--ink, #1C1A17); margin-bottom: 18px;">
+              <?php echo esc_html($user_name); ?><br>
+              <?php echo esc_html($user_addr_1); ?><br>
+              <?php echo esc_html(implode(', ', array_filter(array($user_city, $user_state, $user_postcode)))); ?>
+            </p>
+          <?php else : ?>
+            <p style="font-size: 14px; line-height: 1.8; color: var(--soft, #76706A); margin-bottom: 18px;">
+              No saved address yet. Your shipping and billing address will appear here automatically when entered during checkout.
+            </p>
+          <?php endif; ?>
+          <a href="<?php echo esc_url(function_exists('wc_get_endpoint_url') ? wc_get_endpoint_url('edit-address', 'billing', wc_get_page_permalink('myaccount')) : home_url('/my-account/edit-address/')); ?>" class="btn sm o" style="display: inline-block; padding: 8px 16px; background: #FFFFFF; color: #1C1A17; border: 1px solid #1C1A17; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border-radius: 0; text-decoration: none;">EDIT ADDRESS</a>
         </div>
 
         <!-- Tab 4: Account details -->
@@ -219,15 +252,15 @@ $user_name = $current_user ? ($current_user->first_name ?: $current_user->displa
           <div class="fg" style="display: flex; flex-direction: column; gap: 14px; max-width: 480px;">
             <div class="f">
               <label for="acct-name" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">Name</label>
-              <input id="acct-name" value="Anita Rao" style="width: 100%; height: 42px; padding: 0 12px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none;">
+              <input id="acct-name" value="<?php echo esc_attr($user_name); ?>" style="width: 100%; height: 42px; padding: 0 12px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none;">
             </div>
             <div class="f">
               <label for="acct-wa" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">WhatsApp</label>
-              <input id="acct-wa" value="+91 98290 00000" style="width: 100%; height: 42px; padding: 0 12px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none;">
+              <input id="acct-wa" value="<?php echo esc_attr($user_phone); ?>" placeholder="+91 ..." style="width: 100%; height: 42px; padding: 0 12px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none;">
             </div>
             <div class="f">
               <label for="acct-email" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; color: var(--ink, #1C1A17);">Email</label>
-              <input id="acct-email" value="anita@example.com" style="width: 100%; height: 42px; padding: 0 12px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none;">
+              <input id="acct-email" value="<?php echo esc_attr($user_email); ?>" style="width: 100%; height: 42px; padding: 0 12px; border: 1px solid var(--line, #EFE9E0); font-size: 13.5px; outline: none;">
             </div>
           </div>
           <button type="button" class="btn sm" onclick="alert('Account details saved successfully!');" style="margin-top: 18px; padding: 10px 22px; background: #1C1A17; color: #FFFFFF; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; border: none; cursor: pointer; border-radius: 0;">SAVE CHANGES</button>

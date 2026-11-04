@@ -58,8 +58,11 @@ get_header('shop');
       <div style="background: #FFFFFF; border: 1px solid #EBE7DF; padding: 36px;">
         <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #1E9E52; text-transform: uppercase;">CLAIMS</span>
         <h2 class="font-serif" style="font-family: 'Playfair Display', Georgia, serif; font-size: 22px; margin: 8px 0 16px; color: #1C1A17;">If something is wrong</h2>
+        <p style="font-size: 14px; line-height: 1.8; color: #4A4640; margin: 0 0 12px;">
+          If a stone arrives damaged, or is not what the product page and our photos showed, tell us within 48 hours of delivery with photos and an unboxing video. We will replace it, or refund you in full including shipping. That is the one case where stones come back to us, and we arrange and pay for the courier pickup.
+        </p>
         <p style="font-size: 14px; line-height: 1.8; color: #4A4640; margin: 0;">
-          If a stone arrives damaged, or is not what the product page and our photos showed, tell us within 48 hours of delivery with photos. We will replace it, or refund you in full including shipping. That is the one case where stones come back to us, and we arrange and pay for the courier pickup.
+          Please review our full <a href="<?php echo esc_url(home_url('/refund-policy/')); ?>" style="color: #9C7C4C; text-decoration: underline; font-weight: 600;">Refund and cancellation policy</a> for detailed return instructions and qualifying conditions.
         </p>
       </div>
 
@@ -72,7 +75,7 @@ get_header('shop');
 
         <h3 class="font-serif" style="font-family: 'Playfair Display', Georgia, serif; font-size: 18px; margin: 0 0 10px; color: #1C1A17;">Cancelling an order</h3>
         <p style="font-size: 14px; line-height: 1.8; color: #4A4640; margin: 0;">
-          You can cancel an order for a full refund at any time before it is dispatched. Message us on WhatsApp with your order number.
+          You can cancel an order for a full refund at any time before it is dispatched. Message us on WhatsApp with your order number. See our <a href="<?php echo esc_url(home_url('/refund-policy/')); ?>" style="color: #9C7C4C; text-decoration: underline; font-weight: 600;">Refund and cancellation policy</a> for timing.
         </p>
       </div>
 

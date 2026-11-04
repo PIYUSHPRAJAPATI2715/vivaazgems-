@@ -154,7 +154,7 @@ $display_count = count($display_products);
             array('id' => 'spinel',            'name' => 'Spinel',               'img' => 'ruby.jpg',            'filter' => 'hue-rotate(-18deg) saturate(.75) brightness(1.2)'),
           );
           foreach ($gem_circles as $gc) :
-            $link = add_query_arg('filter_stone', $gc['id'], home_url('/shop/'));
+            $link = add_query_arg('filter_stone', $gc['id'], home_url('/gemstones/'));
           ?>
             <a class="circ" href="<?php echo esc_url($link); ?>" style="display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 13.5px; width: 104px; text-align: center; text-decoration: none; color: #1C1A17;">
               <span class="c" style="width: 96px; height: 96px; border-radius: 50%; background: #FFFFFF; border: 1px solid var(--color-border-light, #E8E1D6); display: flex; align-items: center; justify-content: center; overflow: hidden; transition: transform .3s, box-shadow .3s;">
@@ -231,13 +231,13 @@ $display_count = count($display_products);
         <!-- LOOSE GEMSTONES TREE -->
         <div class="tree">
           <span class="cap" style="font-size: 10.5px; letter-spacing: .2em; color: #9B7C4E; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; display: block;">Loose gemstones</span>
-          <a href="<?php echo esc_url(home_url('/shop/')); ?>" class="<?php echo empty($active_stone) ? 'on' : ''; ?>" style="display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 14.5px; color: #1C1A17; text-decoration: none;">
+          <a href="<?php echo esc_url(home_url('/gemstones/')); ?>" class="<?php echo empty($active_stone) ? 'on' : ''; ?>" style="display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 14.5px; color: #1C1A17; text-decoration: none;">
             <span>All gemstones</span> <em style="font-style: normal; color: #76706A; font-size: 12.5px;">46</em>
           </a>
-          <a href="<?php echo esc_url(add_query_arg('group', 'precious', home_url('/shop/'))); ?>" class="g <?php echo (isset($_GET['group']) && $_GET['group'] === 'precious') ? 'on' : ''; ?>" style="display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 14.5px; color: #1C1A17; text-decoration: none; font-weight: 500;">
+          <a href="<?php echo esc_url(add_query_arg('group', 'precious', home_url('/gemstones/'))); ?>" class="g <?php echo (isset($_GET['group']) && $_GET['group'] === 'precious') ? 'on' : ''; ?>" style="display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 14.5px; color: #1C1A17; text-decoration: none; font-weight: 500;">
             <span>Precious</span> <em style="font-style: normal; color: #76706A; font-size: 12.5px;">8</em>
           </a>
-          <a href="<?php echo esc_url(add_query_arg('group', 'semi', home_url('/shop/'))); ?>" class="g <?php echo (isset($_GET['group']) && $_GET['group'] === 'semi') ? 'on' : ''; ?>" style="display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 14.5px; color: #1C1A17; text-decoration: none; font-weight: 500;">
+          <a href="<?php echo esc_url(add_query_arg('group', 'semi', home_url('/gemstones/'))); ?>" class="g <?php echo (isset($_GET['group']) && $_GET['group'] === 'semi') ? 'on' : ''; ?>" style="display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 14.5px; color: #1C1A17; text-decoration: none; font-weight: 500;">
             <span>Semi-precious</span> <em style="font-style: normal; color: #76706A; font-size: 12.5px;">38</em>
           </a>
         </div>
@@ -726,6 +726,53 @@ function showLoadMoreNotice() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var shapeParam = params.get('shape') || params.get('filter_shape');
+    var cutParam = params.get('cut') || params.get('filter_cut');
+    var colorParam = params.get('color') || params.get('colour') || params.get('filter_color');
+    var soldAsParam = params.get('sold_as') || params.get('filter_sold_as');
+
+    var hadFilter = false;
+    if (shapeParam) {
+      document.querySelectorAll('.chip[data-key="shape"]').forEach(function(c) {
+        if ((c.getAttribute('data-val') || '').toLowerCase() === shapeParam.toLowerCase()) {
+          c.classList.add('on');
+          hadFilter = true;
+        }
+      });
+    }
+    if (cutParam) {
+      document.querySelectorAll('.stone-cut-chips-row .chip, .cutg .chip').forEach(function(c) {
+        var cv = (c.getAttribute('data-cut') || c.getAttribute('data-val') || '').toLowerCase();
+        if (cv === cutParam.toLowerCase()) {
+          c.classList.add('on');
+          hadFilter = true;
+        }
+      });
+    }
+    if (colorParam) {
+      document.querySelectorAll('.chip[data-key="colour"]').forEach(function(c) {
+        if ((c.getAttribute('data-val') || '').toLowerCase() === colorParam.toLowerCase()) {
+          c.classList.add('on');
+          hadFilter = true;
+        }
+      });
+    }
+    if (soldAsParam) {
+      document.querySelectorAll('.chip[data-key="sold"]').forEach(function(c) {
+        if ((c.getAttribute('data-val') || '').toLowerCase() === soldAsParam.toLowerCase()) {
+          c.classList.add('on');
+          hadFilter = true;
+        }
+      });
+    }
+
+    if (hadFilter) {
+      applyActiveFilters();
+    }
+  } catch(e) {}
+
   var countSpan = document.getElementById('product-count-display') || document.querySelector('.chosen span');
   var grid = document.getElementById('gemstones-cards-grid');
   if (grid && countSpan) {

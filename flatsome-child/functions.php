@@ -1113,6 +1113,7 @@ function vivaaz_universal_route_dispatcher($template) {
         'treatments'            => 'page-treatments.php',
         'terms'                 => 'page-terms.php',
         'privacy'               => 'page-privacy.php',
+        'refund-policy'         => 'page-refund-policy.php',
         'bulk-enquiry'          => 'page-bulk-enquiry.php',
         'make-it-into-jewelry'  => 'page-make-it-into-jewelry.php',
         'custom-sizes'          => 'page-custom-sizes.php',
@@ -1141,6 +1142,81 @@ add_filter('get_post', function($p, $post_id) {
     }
     return $p;
 }, 10, 2);
+
+/**
+ * 12B. Coming Soon Mode & Policy Whitelist Gate (PhonePe Verification Ready)
+ * Ensures site is in 'Coming Soon' mode for guests, but whitelists policy pages
+ * (/terms/, /privacy/, /refund-policy/, /shipping/, /contact/) which PhonePe reviews.
+ * Logged-in administrators and preview requests can view the full live website.
+ */
+function vivaaz_coming_soon_gate() {
+    $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+    $path = trim(parse_url($request_uri, PHP_URL_PATH), '/');
+
+    // 1. Permanent 301 Redirects (Point 4.1 in Build / Fix Spec)
+    $redirects = array(
+        'return-policy'        => home_url('/refund-policy/'),
+        'privacy-policy'       => home_url('/privacy/'),
+        'terms-conditions'     => home_url('/terms/'),
+        'terms-and-conditions' => home_url('/terms/'),
+        'bulk-order'           => home_url('/bulk-enquiry/'),
+        'blog'                 => home_url('/gem-guide/'),
+        'place-a-order'        => home_url('/gemstones/'),
+    );
+
+    if (isset($redirects[$path])) {
+        wp_redirect($redirects[$path], 301);
+        exit;
+    }
+
+    // Allow core WordPress admin, login, cron, REST API, and AJAX
+    if (is_admin() || 
+        strpos($request_uri, 'wp-login.php') !== false ||
+        strpos($request_uri, 'wp-admin') !== false ||
+        strpos($request_uri, 'wp-cron.php') !== false ||
+        strpos($request_uri, 'admin-ajax.php') !== false ||
+        strpos($request_uri, 'wp-json') !== false ||
+        strpos($request_uri, 'wc-ajax') !== false) {
+        return;
+    }
+
+    // Allow logged-in users / admins to browse the full site
+    if (is_user_logged_in()) {
+        return;
+    }
+
+    // Preview bypass via query param ?preview_live=1 or cookie
+    if (isset($_GET['preview_live']) && $_GET['preview_live'] === '1') {
+        setcookie('vivaaz_preview_live', '1', time() + 86400 * 7, '/');
+        return;
+    }
+    if (isset($_COOKIE['vivaaz_preview_live']) && $_COOKIE['vivaaz_preview_live'] === '1') {
+        return;
+    }
+
+    // Whitelist open pages for PhonePe payment gateway review:
+    // Terms, Privacy, Refund policy, Shipping, Contact
+    $open_pages = array(
+        'terms',
+        'privacy',
+        'refund-policy',
+        'shipping',
+        'contact',
+    );
+
+    if (in_array($path, $open_pages, true)) {
+        return; // Allow request through to dedicated page template
+    }
+
+    // All other public traffic is served the luxury Coming Soon page
+    $coming_soon_file = get_stylesheet_directory() . '/coming-soon-template.php';
+    if (file_exists($coming_soon_file)) {
+        status_header(200);
+        include $coming_soon_file;
+        exit;
+    }
+}
+add_action('template_redirect', 'vivaaz_coming_soon_gate', 1);
 
 /**
  * AJAX: Handle Real Order Placement (Point 3)
@@ -1248,8 +1324,8 @@ function vivaaz_ajax_create_order() {
     update_option('vivaaz_order_' . $order_id, $order_data);
     update_option('vivaaz_order_VG-' . $order_id, $order_data);
 
-    // Send email notification to vivaazgems@gmail.com
-    $to = 'vivaazgems@gmail.com';
+    // Send email notification to info@vivaazgems.com
+    $to = 'info@vivaazgems.com';
     $subject = 'New Order #VG-' . $order_id . ' from ' . $name;
     $body = "New Vivaaz Gems Order Received:\n\n";
     $body .= "Order: VG-" . $order_id . "\n";
@@ -1288,7 +1364,7 @@ function vivaaz_ajax_send_enquiry() {
     $metal   = sanitize_text_field($_POST['metal'] ?? '');
     $details = sanitize_textarea_field($_POST['details'] ?? $_POST['message'] ?? '');
 
-    $to = 'vivaazgems@gmail.com';
+    $to = 'info@vivaazgems.com';
     $subject = 'New Vivaaz Request: ' . $type . ' from ' . $name;
     $body = "New Enquiry Received on Vivaaz Gems:\n\n";
     $body .= "Type: " . $type . "\n";

@@ -26,31 +26,31 @@ get_header('shop');
       <div class="off3">
         <div>
           <b>Vivaaz Gems & Jewellery · Head Office</b>
-          <span>2nd Floor, B-207, Janta Colony, Adarsh Nagar, Jaipur, Rajasthan 302004</span>
-          <small>Mon–Sat, 10:30 to 19:30 · By appointment</small>
+          <span>307 Navratna Complex, KGB Ka Rasta, Johari Bazar, Jaipur 302003, Rajasthan, India</span>
+          <small>Mon–Sat, 10:30 to 19:00 IST</small>
         </div>
         <div>
-          <b>Jaipur · Johari Bazar (Trading Office)</b>
-          <span>307 Navratna Complex, KGB Ka Rasta, Johari Bazar, Jaipur 302003</span>
-          <small>Mon–Sat, 10:30 to 19:00</small>
+          <b>Second Office (By Appointment)</b>
+          <span>2nd Floor, B-207, Janta Colony, Adarsh Nagar, Jaipur 302004</span>
+          <small>Mon–Sat, 10:30 to 19:30 IST · Visits by appointment</small>
         </div>
         <div>
-          <b>Bangkok · Ruby Center (Thailand)</b>
+          <b>Bangkok Office · Thailand</b>
           <span>1249/84 Gems Tower, 9th Floor, Charoenkrung Rd., Soi 47/3 Surawong, Bangrak, Bangkok 10500</span>
           <small>Sourcing and trade, by appointment</small>
         </div>
       </div>
 
       <p style="font-size: 13px; color: var(--mute); line-height: 1.6; margin-top: 14px;">
-        vivaazgems@gmail.com · You are welcome at our Jaipur offices (2nd Floor, B-207, Janta Colony, Adarsh Nagar) to see stones in person. Please message us first so we can keep the stones you want to see ready for you.
+        <a href="mailto:info@vivaazgems.com" style="color:var(--gold,#9B7C4E);text-decoration:underline;">info@vivaazgems.com</a> · WhatsApp and phone: <a href="https://wa.me/919680552270" target="_blank" style="color:var(--gold,#9B7C4E);text-decoration:underline;">+91 96805 52270</a> · You are welcome at our Jaipur offices to see stones in person. Please message us first so we can keep the stones you want to see ready for you.
       </p>
 
       <div style="position: relative; margin-top: 16px; border: 1px solid var(--line); overflow: hidden; border-radius: 2px;">
-        <a href="https://www.google.com/maps/search/?api=1&query=Vivaaz+Gems+%26+Jewellery,+2nd+Floor,+B-207,+Janta+Colony,+Adarsh+Nagar,+Jaipur+302004" target="_blank" rel="noopener noreferrer" style="position: absolute; top: 12px; left: 12px; z-index: 2; background: #FFFFFF; color: #1C1A17; border: 1px solid var(--line, #E2D7C6); padding: 8px 14px; font-size: 12px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); border-radius: 2px;">
+        <a href="https://www.google.com/maps/search/?api=1&query=307+Navratna+Complex,+KGB+Ka+Rasta,+Johari+Bazar,+Jaipur+302003" target="_blank" rel="noopener noreferrer" style="position: absolute; top: 12px; left: 12px; z-index: 2; background: #FFFFFF; color: #1C1A17; border: 1px solid var(--line, #E2D7C6); padding: 8px 14px; font-size: 12px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); border-radius: 2px;">
           Open in Maps
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
         </a>
-        <iframe src="https://maps.google.com/maps?q=Vivaaz+Gems+%26+Jewellery,+2nd+Floor,+B-207,+Janta+Colony,+Adarsh+Nagar,+Jaipur+302004&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="240" style="border:0; aspect-ratio: 16/8; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://maps.google.com/maps?q=307+Navratna+Complex,+KGB+Ka+Rasta,+Johari+Bazar,+Jaipur+302003&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="240" style="border:0; aspect-ratio: 16/8; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
 

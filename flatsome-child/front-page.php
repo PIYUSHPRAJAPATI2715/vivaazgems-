@@ -103,7 +103,7 @@ get_header();
   <!-- TAB 1: BY COLOUR (6 TILES MATCHING DEMO COLOUR_TILES) -->
   <div class="tiles6" id="panel-tab-colour">
     
-    <a href="<?php echo esc_url(home_url('/shop/?filter_color=blue')); ?>" class="tl2 rv" style="text-decoration: none;">
+    <a href="<?php echo esc_url(home_url('/gemstones/?color=blue')); ?>" class="tl2 rv" style="text-decoration: none;">
       <span class="tp cl1">
         <em class="dot" style="position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line2); background: #2B547E;"></em>
         <img src="<?php echo esc_url(vivaaz_get_img_url('ceylon-sapphire.jpg')); ?>" alt="Blue">
@@ -112,7 +112,7 @@ get_header();
       <small>Sapphire, topaz, tanzanite</small>
     </a>
 
-    <a href="<?php echo esc_url(home_url('/shop/?filter_color=red')); ?>" class="tl2 rv" style="text-decoration: none;">
+    <a href="<?php echo esc_url(home_url('/gemstones/?color=red')); ?>" class="tl2 rv" style="text-decoration: none;">
       <span class="tp cl1">
         <em class="dot" style="position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line2); background: #A81C28;"></em>
         <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Red">
@@ -121,7 +121,7 @@ get_header();
       <small>Ruby, garnet, spinel</small>
     </a>
 
-    <a href="<?php echo esc_url(home_url('/shop/?filter_color=pink')); ?>" class="tl2 rv" style="text-decoration: none;">
+    <a href="<?php echo esc_url(home_url('/gemstones/?color=pink')); ?>" class="tl2 rv" style="text-decoration: none;">
       <span class="tp cl1">
         <em class="dot" style="position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line2); background: #E07A9A;"></em>
         <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Pink" style="filter: hue-rotate(330deg);">
@@ -130,7 +130,7 @@ get_header();
       <small>Pink sapphire, spinel, tourmaline</small>
     </a>
 
-    <a href="<?php echo esc_url(home_url('/shop/?filter_color=green')); ?>" class="tl2 rv" style="text-decoration: none;">
+    <a href="<?php echo esc_url(home_url('/gemstones/?color=green')); ?>" class="tl2 rv" style="text-decoration: none;">
       <span class="tp cl1">
         <em class="dot" style="position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line2); background: #2E8B57;"></em>
         <img src="<?php echo esc_url(vivaaz_get_img_url('emerald.jpg')); ?>" alt="Green">
@@ -139,7 +139,7 @@ get_header();
       <small>Emerald, tsavorite, peridot</small>
     </a>
 
-    <a href="<?php echo esc_url(home_url('/shop/?filter_color=yellow')); ?>" class="tl2 rv" style="text-decoration: none;">
+    <a href="<?php echo esc_url(home_url('/gemstones/?color=yellow')); ?>" class="tl2 rv" style="text-decoration: none;">
       <span class="tp cl1">
         <em class="dot" style="position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line2); background: #D4A017;"></em>
         <img src="<?php echo esc_url(vivaaz_get_img_url('swiss-topaz.jpg')); ?>" alt="Yellow" style="filter: hue-rotate(190deg);">
@@ -148,7 +148,7 @@ get_header();
       <small>Yellow sapphire, citrine</small>
     </a>
 
-    <a href="<?php echo esc_url(home_url('/shop/?filter_color=purple')); ?>" class="tl2 rv" style="text-decoration: none;">
+    <a href="<?php echo esc_url(home_url('/gemstones/?color=purple')); ?>" class="tl2 rv" style="text-decoration: none;">
       <span class="tp cl1">
         <em class="dot" style="position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line2); background: #6A3B7B;"></em>
         <img src="<?php echo esc_url(vivaaz_get_img_url('moonstone.jpg')); ?>" alt="Purple" style="filter: hue-rotate(270deg) saturate(2.4) brightness(0.85);">

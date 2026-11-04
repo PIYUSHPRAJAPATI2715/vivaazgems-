@@ -1596,7 +1596,7 @@ window.VIVAAZ_JEW_IMG = {
 
     const waUrl = 'https://wa.me/919680552270?text=' + encodeURIComponent(msg);
     
-    // Send AJAX email to vivaazgems@gmail.com
+    // Send AJAX email to info@vivaazgems.com
     var formData = new FormData();
     formData.append('action', 'vivaaz_send_enquiry');
     formData.append('type', 'Jewelry Quote: ' + state.modalDesignName);

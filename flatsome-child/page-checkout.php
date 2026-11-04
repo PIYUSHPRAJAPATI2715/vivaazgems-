@@ -148,6 +148,14 @@ $track_url = home_url('/track-order/');
           </div>
         </div>
 
+        <!-- Terms & Refund Acceptance Checkbox (PhonePe Requirement & Point 1.12) -->
+        <div class="cobox" style="background: var(--paper, #FFFFFF); border: 1px solid var(--line, #EFE9E0); padding: 16px 20px; margin-bottom: 24px;">
+          <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 13px; line-height: 1.5; color: var(--ink, #1C1A17); margin: 0;">
+            <input type="checkbox" id="terms_and_refund_agree" required style="margin-top: 3px; cursor: pointer; width: 16px; height: 16px; accent-color: #1C1A17;" />
+            <span>I have read and agree to the website <a href="<?php echo esc_url(home_url('/terms/')); ?>" target="_blank" style="text-decoration: underline; color: #9B7C4E; font-weight: 600;">Terms and conditions</a> and <a href="<?php echo esc_url(home_url('/refund-policy/')); ?>" target="_blank" style="text-decoration: underline; color: #9B7C4E; font-weight: 600;">Refund and cancellation policy</a>. <span style="color: #c00;">*</span></span>
+          </label>
+        </div>
+
         <button type="submit" id="btn-place-order" class="btn wide" style="display: block; width: 100%; padding: 18px; background: #1C1A17; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; border: none; cursor: pointer; border-radius: 0;">
           PLACE ORDER · ₹ 13,194
         </button>
@@ -518,6 +526,13 @@ $track_url = home_url('/track-order/');
 
   function handlePlaceOrder(e) {
     e.preventDefault();
+    var agreeEl = document.getElementById('terms_and_refund_agree');
+    if (agreeEl && !agreeEl.checked) {
+      alert('Please check the box to agree to our Terms and Conditions and Refund Policy.');
+      agreeEl.focus();
+      return false;
+    }
+
     var btn = document.getElementById('btn-place-order');
     if (btn) {
       btn.disabled = true;

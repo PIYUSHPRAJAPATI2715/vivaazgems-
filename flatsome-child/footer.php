@@ -29,7 +29,7 @@ $vivaaz_footer_rendered = true;
           <a href="https://instagram.com/vivaazgems" target="_blank" class="social-outline-box" aria-label="Instagram" style="width: 36px; height: 36px; border: 1px solid var(--line2, #E6E2DC); display: inline-flex; align-items: center; justify-content: center; color: var(--ink, #1C1A17); background: transparent !important; text-decoration: none;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
           </a>
-          <a href="https://youtube.com/vivaazgems" target="_blank" class="social-outline-box" aria-label="YouTube" style="width: 36px; height: 36px; border: 1px solid var(--line2, #E6E2DC); display: inline-flex; align-items: center; justify-content: center; color: var(--ink, #1C1A17); background: transparent !important; text-decoration: none;">
+          <a href="https://youtube.com/@vivaazgems" target="_blank" class="social-outline-box" aria-label="YouTube" style="width: 36px; height: 36px; border: 1px solid var(--line2, #E6E2DC); display: inline-flex; align-items: center; justify-content: center; color: var(--ink, #1C1A17); background: transparent !important; text-decoration: none;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
           </a>
           <a href="https://facebook.com/vivaazgems" target="_blank" class="social-outline-box" aria-label="Facebook" style="width: 36px; height: 36px; border: 1px solid var(--line2, #E6E2DC); display: inline-flex; align-items: center; justify-content: center; color: var(--ink, #1C1A17); background: transparent !important; text-decoration: none;">
@@ -94,10 +94,11 @@ $vivaaz_footer_rendered = true;
         <!-- Col 5: Visit Us (Plain text, not links) -->
         <div class="footer-col-item">
           <h4 class="footer-col-title" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; color: var(--color-text-main);">VISIT US</h4>
-          <div style="font-size: 13px; color: var(--color-text-muted); line-height: 2;">
-            <p style="margin: 0;">Jaipur · Adarsh Nagar (B-207)</p>
-            <p style="margin: 0;">Jaipur · Johari Bazar</p>
-            <p style="margin: 0;">Bangkok · Gems Tower</p>
+          <div style="font-size: 13px; color: var(--color-text-muted); line-height: 1.8;">
+            <p style="margin: 0 0 6px;"><strong style="color: var(--color-text-main);">Jaipur · Head Office</strong><br>307 Navratna Complex, KGB Ka Rasta, Johari Bazar, Jaipur 302003</p>
+            <p style="margin: 0 0 6px;"><strong style="color: var(--color-text-main);">Jaipur · Second Office</strong><br>B-207 Adarsh Nagar (by appointment)</p>
+            <p style="margin: 0 0 6px;"><strong style="color: var(--color-text-main);">Bangkok</strong><br>Gems Tower, Charoen Krung Rd</p>
+            <p style="margin: 8px 0 0;"><a href="mailto:info@vivaazgems.com" style="color: var(--color-text-main); text-decoration: underline;">info@vivaazgems.com</a><br><a href="tel:+919680552270" style="color: var(--color-text-main); text-decoration: none;">+91 96805 52270</a></p>
           </div>
         </div>
 
@@ -161,7 +162,8 @@ $vivaaz_footer_rendered = true;
         <!-- Visit Us on Mobile -->
         <div style="padding: 18px 0; text-align: center; font-size: 13px; color: var(--mute); line-height: 1.8;">
           <b style="color: var(--ink); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; display: block; margin-bottom: 6px;">VISIT US</b>
-          Jaipur · Adarsh Nagar (B-207) &nbsp;·&nbsp; Johari Bazar &nbsp;·&nbsp; Bangkok
+          Jaipur · Johari Bazar (Head Office) &nbsp;·&nbsp; Adarsh Nagar &nbsp;·&nbsp; Bangkok<br>
+          <a href="mailto:info@vivaazgems.com" style="color: var(--mute); text-decoration: underline;">info@vivaazgems.com</a> &nbsp;·&nbsp; <a href="tel:+919680552270" style="color: var(--mute); text-decoration: none;">+91 96805 52270</a>
         </div>
       </div>
 
@@ -173,10 +175,10 @@ $vivaaz_footer_rendered = true;
         </a>
       </div>
 
-      <!-- Footer Bottom Bar (Legal name, payment icons, Privacy, Terms) -->
+      <!-- Footer Bottom Bar (Legal name, payment icons, Privacy, Terms, Refund, Shipping) -->
       <div class="footer-bottom-bar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding-top: 20px; border-top: 1px solid var(--color-border-light); font-size: 11px; color: var(--color-text-muted);">
         <div>
-          © <?php echo date('Y'); ?> Vivaaz Gems & Jewellery
+          © <?php echo date('Y'); ?> Vivaaz Gems &amp; Jewellery · 307 Navratna Complex, KGB Ka Rasta, Johari Bazar, Jaipur 302003
         </div>
 
         <div class="payment-badges-row pay" style="display: flex; flex-wrap: nowrap; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; max-width: 100%; overflow-x: auto; white-space: nowrap;">
@@ -187,9 +189,11 @@ $vivaaz_footer_rendered = true;
           <span style="background: #FFFFFF; border: 1px solid var(--color-border-light); padding: 4px 8px; white-space: nowrap;">BANK TRANSFER</span>
         </div>
 
-        <div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
           <a href="<?php echo esc_url(home_url('/privacy/')); ?>" style="text-decoration: underline;">Privacy</a> · 
-          <a href="<?php echo esc_url(home_url('/terms/')); ?>" style="text-decoration: underline;">Terms</a>
+          <a href="<?php echo esc_url(home_url('/terms/')); ?>" style="text-decoration: underline;">Terms</a> · 
+          <a href="<?php echo esc_url(home_url('/refund-policy/')); ?>" style="text-decoration: underline;">Refund policy</a> · 
+          <a href="<?php echo esc_url(home_url('/shipping/')); ?>" style="text-decoration: underline;">Shipping</a>
         </div>
       </div>
 
@@ -250,10 +254,9 @@ $vivaaz_footer_rendered = true;
   <!-- COOKIE LINE BANNER (POINT 46 SPEC) -->
   <div id="vivaaz-cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #1C1A17; color: #F5F3EF; font-size: 12.5px; padding: 12px 24px; z-index: 99999; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
     <div style="flex: 1;">
-      We use cookies to ensure you have the best experience on our website.
+      We use cookies to remember your bag, login and currency preferences. See our <a href="<?php echo esc_url(home_url('/privacy/')); ?>" style="color: #D9B66F; text-decoration: underline;">Privacy policy</a>.
     </div>
     <div style="display: flex; gap: 10px; align-items: center;">
-      <a href="<?php echo esc_url(home_url('/privacy/')); ?>" style="color: #D9B66F; text-decoration: underline; font-size: 12px;">Privacy</a>
       <button type="button" onclick="acceptVivaazCookies();" style="padding: 6px 16px; background: #D9B66F; color: #1C1A17; font-weight: 700; border: none; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">Accept</button>
     </div>
   </div>

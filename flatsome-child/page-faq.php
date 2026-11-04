@@ -48,7 +48,7 @@ $faqs = array(
       ),
       array(
         'q' => 'How can I pay?',
-        'a' => 'In India: UPI, cards, net banking and bank transfer. Outside India: PayPal, cards, Payoneer and bank transfer. No EMI, pay later or cash on delivery.'
+        'a' => 'In India: UPI, credit & debit cards (Visa, Mastercard), net banking and direct bank wire (NEFT / RTGS). Outside India: PayPal, international cards and bank transfer. We process secure payments via PhonePe. No EMI, pay later or cash on delivery.'
       )
     )
   ),
@@ -57,20 +57,24 @@ $faqs = array(
     'items' => array(
       array(
         'q' => 'How long does delivery take?',
-        'a' => 'Usually 2 to 3 working days within India and 4 to 7 working days internationally, after dispatch.'
+        'a' => 'Usually 2 to 3 working days within India and 4 to 7 working days internationally, after dispatch. Every parcel is 100% insured door-to-door.'
       ),
       array(
         'q' => 'Will I have to pay customs duty?',
-        'a' => 'Outside India, yes, if your country charges it. Duties are paid by you on delivery.'
+        'a' => 'Outside India, yes, if your country charges it. Duties and local taxes are collected by the courier on delivery. Within India, shipping is fast and fully tracked.'
       )
     )
   ),
   array(
-    'title' => 'Returns',
+    'title' => 'Returns & Refunds',
     'items' => array(
       array(
         'q' => 'Can I return a stone?',
-        'a' => 'No. Instead, we send live photos and videos before you buy, and if a stone arrives damaged or is not as described we replace or refund it in full. See <a class="link" href="' . esc_url(home_url('/guarantee/')) . '">Our guarantee</a>.'
+        'a' => 'Like most gemstone dealers, we do not accept returns for change of mind. Instead, we send live photos and videos before you pay so you know exactly what you are receiving. If a stone arrives damaged or not as described, report it to us within 48 hours of delivery with photos and an unboxing video, and we will replace or refund it in full including shipping. Please review <a class="link" href="' . esc_url(home_url('/guarantee/')) . '">Our guarantee</a> and our complete <a class="link" href="' . esc_url(home_url('/refund-policy/')) . '">Refund and cancellation policy</a>.'
+      ),
+      array(
+        'q' => 'Can I cancel an order?',
+        'a' => 'You can cancel an order for a full refund at any time before it has been dispatched. Message us on WhatsApp (+91 96805 52270) with your order number. See our <a class="link" href="' . esc_url(home_url('/refund-policy/')) . '">Refund and cancellation policy</a> for refund processing timelines.'
       )
     )
   )

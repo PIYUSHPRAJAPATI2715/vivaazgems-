@@ -504,17 +504,17 @@ if ($product && is_object($product) && is_a($product, 'WC_Product')) {
 
       <!-- Card 2: Burma Ruby -->
       <div class="card rv" data-price="764">
-        <div class="ph" onclick="window.location.href='<?php echo esc_url(home_url('/shop/?stone=ruby')); ?>';">
+        <div class="ph" onclick="window.location.href='<?php echo esc_url(home_url('/gemstones/?stone=ruby')); ?>';">
           <span class="tag">CALIBRATED LOT</span>
           <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Burma Ruby Oval">
-          <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); openQuickView('Ruby Oval Faceted · AA', 'from &#8377;764', '<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>');">QUICK VIEW</button>
+          <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); openQuickView('Ruby Oval Faceted', 'from &#8377;764', '<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>');">QUICK VIEW</button>
         </div>
         <div class="cb">
-          <div class="nm" onclick="window.location.href='<?php echo esc_url(home_url('/shop/?stone=ruby')); ?>';">Burma Ruby Oval Faceted · AA</div>
+          <div class="nm" onclick="window.location.href='<?php echo esc_url(home_url('/gemstones/?stone=ruby')); ?>';">Burma Ruby Oval Faceted</div>
           <div class="dt">Faceted · 3×4 to 5×7 mm · 4 sizes</div>
           <div class="pr" data-inr-price="764">from &#8377;764 <span>per piece</span></div>
           <div class="act">
-            <a href="<?php echo esc_url(home_url('/shop/?stone=ruby')); ?>" class="ul">ADD TO CART</a>
+            <a href="<?php echo esc_url(home_url('/gemstones/?stone=ruby')); ?>" class="ul">ADD TO CART</a>
           </div>
         </div>
       </div>
@@ -619,17 +619,17 @@ if ($product && is_object($product) && is_a($product, 'WC_Product')) {
 
       <!-- Card 4: Burma Ruby -->
       <div class="card rv" data-price="764">
-        <div class="ph" onclick="window.location.href='<?php echo esc_url(home_url('/shop/?stone=ruby')); ?>';">
+        <div class="ph" onclick="window.location.href='<?php echo esc_url(home_url('/gemstones/?stone=ruby')); ?>';">
           <span class="tag">CALIBRATED LOT</span>
           <img src="<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>" alt="Ruby Oval Faceted">
-          <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); openQuickView('Ruby Oval Faceted · AA', 'from &#8377;764', '<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>');">QUICK VIEW</button>
+          <button type="button" class="qv" onclick="event.preventDefault(); event.stopPropagation(); openQuickView('Ruby Oval Faceted', 'from &#8377;764', '<?php echo esc_url(vivaaz_get_img_url('ruby.jpg')); ?>');">QUICK VIEW</button>
         </div>
         <div class="cb">
-          <div class="nm" onclick="window.location.href='<?php echo esc_url(home_url('/shop/?stone=ruby')); ?>';">Ruby Oval Faceted · AA</div>
+          <div class="nm" onclick="window.location.href='<?php echo esc_url(home_url('/gemstones/?stone=ruby')); ?>';">Ruby Oval Faceted</div>
           <div class="dt">Faceted · 3×4 to 5×7 mm · 4 sizes</div>
           <div class="pr" data-inr-price="764">from &#8377;764 <span>per piece</span></div>
           <div class="act">
-            <a href="<?php echo esc_url(home_url('/shop/?stone=ruby')); ?>" class="ul">ADD TO CART</a>
+            <a href="<?php echo esc_url(home_url('/gemstones/?stone=ruby')); ?>" class="ul">ADD TO CART</a>
           </div>
         </div>
       </div>
@@ -857,6 +857,16 @@ if ($product && is_object($product) && is_a($product, 'WC_Product')) {
 
     // Update Display (Matches both prod-price-display and main-unit-price-display)
     var mainPriceEl = document.getElementById('prod-price-display') || document.getElementById('main-unit-price-display');
+    var totalEl = document.getElementById('prod-total-price');
+
+    if (!currentBasePrice || currentBasePrice <= 0) {
+      if (mainPriceEl) {
+        mainPriceEl.innerHTML = '<a href="https://wa.me/919680552270?text=' + encodeURIComponent('Hello Vivaaz Gems, please let me know the price for ' + document.title + ' in size ' + currentSize) + '" target="_blank" style="color: #9B7C4E; text-decoration: underline; font-size: 20px;">Ask for price</a>';
+      }
+      if (totalEl) totalEl.textContent = 'Ask for price';
+      return;
+    }
+
     if (mainPriceEl) {
       if (typeof formatVivaazMoney === 'function') {
         mainPriceEl.textContent = formatVivaazMoney(unitPrice);
@@ -911,6 +921,10 @@ if ($product && is_object($product) && is_a($product, 'WC_Product')) {
 
   function triggerAddToCart(openDrawer) {
     if (typeof openDrawer === 'undefined') openDrawer = true;
+    if (!currentBasePrice || currentBasePrice <= 0) {
+      window.open('https://wa.me/919680552270?text=' + encodeURIComponent('Hello Vivaaz Gems, please let me know the price for ' + document.title + ' in size ' + currentSize), '_blank');
+      return;
+    }
     var productId = <?php echo $product_id ? $product_id : '0'; ?>;
     var stoneCode = <?php echo json_encode($sku); ?>;
     var stoneName = <?php echo json_encode($title); ?>;

@@ -127,10 +127,7 @@ $bead_count = isset($_GET['count']) ? sanitize_text_field($_GET['count']) : 'abo
             <span style="color: #76706A; font-size: 11px; text-transform: uppercase;">HOLE SIZE</span>
             <span><?php echo esc_html($bead_hole); ?></span>
           </div>
-          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #FAF7F2; padding-bottom: 6px;">
-            <span style="color: #76706A; font-size: 11px; text-transform: uppercase;">QUALITY</span>
-            <span>AAA Jaipur Standard</span>
-          </div>
+
         </div>
       </div>
 

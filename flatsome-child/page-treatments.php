@@ -59,6 +59,10 @@ get_header('shop');
             <td style="padding: 16px; font-weight: 500; font-size: 14px; color: #1C1A17;">Dyed or coated</td>
             <td style="padding: 16px; color: #4A4640; line-height: 1.6;">Colour added to the surface or inside. We say so clearly and price accordingly.</td>
           </tr>
+          <tr style="border-bottom: 1px solid #EBE7DF;">
+            <td style="padding: 16px; font-weight: 500; font-size: 14px; color: #1C1A17;">Not tested</td>
+            <td style="padding: 16px; color: #4A4640; line-height: 1.6;">When we are not completely certain about a treatment, we state &ldquo;not tested&rdquo; rather than guessing. A laboratory certificate can be arranged to verify prior to shipping.</td>
+          </tr>
           <tr>
             <td style="padding: 16px; font-weight: 500; font-size: 14px; color: #1C1A17;">Glass filled</td>
             <td style="padding: 16px; color: #4A4640; line-height: 1.6;">We do not sell glass-filled stones as natural.</td>
