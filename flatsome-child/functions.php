@@ -1144,16 +1144,14 @@ add_filter('get_post', function($p, $post_id) {
 }, 10, 2);
 
 /**
- * 12B. Coming Soon Mode & Policy Whitelist Gate (PhonePe Verification Ready)
- * Ensures site is in 'Coming Soon' mode for guests, but whitelists policy pages
- * (/terms/, /privacy/, /refund-policy/, /shipping/, /contact/) which PhonePe reviews.
- * Logged-in administrators and preview requests can view the full live website.
+ * 12B. URL Redirects Handler (Permanent 301 Redirects for Legacy URLs)
+ * Preserves SEO and seamlessly redirects legacy routes to new official pages.
  */
-function vivaaz_coming_soon_gate() {
+function vivaaz_handle_url_redirects() {
     $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
     $path = trim(parse_url($request_uri, PHP_URL_PATH), '/');
 
-    // 1. Permanent 301 Redirects (Point 4.1 in Build / Fix Spec)
+    // Permanent 301 Redirects (Point 4.1 in Build / Fix Spec)
     $redirects = array(
         'return-policy'        => home_url('/refund-policy/'),
         'privacy-policy'       => home_url('/privacy/'),
@@ -1168,55 +1166,8 @@ function vivaaz_coming_soon_gate() {
         wp_redirect($redirects[$path], 301);
         exit;
     }
-
-    // Allow core WordPress admin, login, cron, REST API, and AJAX
-    if (is_admin() || 
-        strpos($request_uri, 'wp-login.php') !== false ||
-        strpos($request_uri, 'wp-admin') !== false ||
-        strpos($request_uri, 'wp-cron.php') !== false ||
-        strpos($request_uri, 'admin-ajax.php') !== false ||
-        strpos($request_uri, 'wp-json') !== false ||
-        strpos($request_uri, 'wc-ajax') !== false) {
-        return;
-    }
-
-    // Allow logged-in users / admins to browse the full site
-    if (is_user_logged_in()) {
-        return;
-    }
-
-    // Preview bypass via query param ?preview_live=1 or cookie
-    if (isset($_GET['preview_live']) && $_GET['preview_live'] === '1') {
-        setcookie('vivaaz_preview_live', '1', time() + 86400 * 7, '/');
-        return;
-    }
-    if (isset($_COOKIE['vivaaz_preview_live']) && $_COOKIE['vivaaz_preview_live'] === '1') {
-        return;
-    }
-
-    // Whitelist open pages for PhonePe payment gateway review:
-    // Terms, Privacy, Refund policy, Shipping, Contact
-    $open_pages = array(
-        'terms',
-        'privacy',
-        'refund-policy',
-        'shipping',
-        'contact',
-    );
-
-    if (in_array($path, $open_pages, true)) {
-        return; // Allow request through to dedicated page template
-    }
-
-    // All other public traffic is served the luxury Coming Soon page
-    $coming_soon_file = get_stylesheet_directory() . '/coming-soon-template.php';
-    if (file_exists($coming_soon_file)) {
-        status_header(200);
-        include $coming_soon_file;
-        exit;
-    }
 }
-add_action('template_redirect', 'vivaaz_coming_soon_gate', 1);
+add_action('template_redirect', 'vivaaz_handle_url_redirects', 1);
 
 /**
  * AJAX: Handle Real Order Placement (Point 3)
